@@ -1,12 +1,31 @@
 import { NgModule } from '@angular/core';
-import { WinAngularComponent } from './win-angular.component';
-
-
+import { ThemeService } from './services';
+import { ThemeEnum } from './enums';
+import { ButtonModule } from './modules';
+import { SharedModule } from './shared.module';
+import { CheckboxModule } from './modules/checkbox/checkbox.module';
 
 @NgModule({
-  declarations: [WinAngularComponent],
-  imports: [
-  ],
-  exports: [WinAngularComponent]
+    imports: [
+        SharedModule,
+
+        ButtonModule,
+        CheckboxModule
+    ],
+    exports: [
+        ButtonModule,
+        CheckboxModule
+    ],
+    providers: [
+        ThemeService
+    ]
 })
-export class WinAngularModule { }
+export class WinAngularModule {
+
+    constructor (
+        private readonly themeService: ThemeService
+    ) {
+        this.themeService.applyTheme(ThemeEnum.WinXP);
+    }
+
+}
