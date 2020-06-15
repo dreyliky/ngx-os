@@ -123,6 +123,46 @@
           }
         }
       }
+    },
+    "win-angular": {
+      "projectType": "library",
+      "root": "projects/win-angular",
+      "sourceRoot": "projects/win-angular/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/win-angular/tsconfig.lib.json",
+            "project": "projects/win-angular/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/win-angular/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/win-angular/src/test.ts",
+            "tsConfig": "projects/win-angular/tsconfig.spec.json",
+            "karmaConfig": "projects/win-angular/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/win-angular/tsconfig.lib.json",
+              "projects/win-angular/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ng-windows"
 }
