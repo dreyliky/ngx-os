@@ -2,17 +2,17 @@
     Forms
 \*-------------------------------------------*/
 
-label {
+label.os-element {
     font-family: var(--sans-serif);
     font-size: 11px;
     display: inline-flex;
     align-items: center;
 }
-input {
+input.os-element {
     font-family: var(--sans-serif);
     font-size: 11px;
 }
-textarea {
+textarea.os-element {
     font-family: var(--sans-serif);
     font-size: 11px;
     padding: 3px 4px;
@@ -27,7 +27,7 @@ textarea {
         outline: none;
     }
 }
-select {
+select.os-element {
     font-family: var(--sans-serif);
     font-size: 11px;
     padding: 3px 4px;
@@ -61,7 +61,7 @@ select {
         background-image: svg-load("./icon/button-down-active.svg");
     }
 }
-option {
+option.os-element {
     font-family: var(--sans-serif);
     font-size: 11px;
 }
@@ -70,18 +70,19 @@ option {
     height: 20px;
     background: #c0c0c0;
     box-shadow: var(--border-raised-outer), var(--border-raised-inner);
-}
-&:disabled {
-    color: var(--button-shadow);
-    text-shadow: 1px 1px 0 var(--button-highlight);
-    + {
-        label {
-            color: var(--button-shadow);
-            text-shadow: 1px 1px 0 var(--button-highlight);
+
+    &:disabled {
+        color: var(--button-shadow);
+        text-shadow: 1px 1px 0 var(--button-highlight);
+        + {
+            label.os-element {
+                color: var(--button-shadow);
+                text-shadow: 1px 1px 0 var(--button-highlight);
+            }
         }
     }
 }
-input[type="radio"] {
+input.os-element[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -91,7 +92,7 @@ input[type="radio"] {
     opacity: 0;
     border: none;
     + {
-        label {
+        label.os-element {
             line-height: 13px;
             position: relative;
             margin-left: var(--radio-total-width);
@@ -110,7 +111,7 @@ input[type="radio"] {
     }
     &:active {
         + {
-            label {
+            label.os-element {
                 &::before {
                     background: svg-load("./icon/radio-border-disabled.svg");
                 }
@@ -119,7 +120,7 @@ input[type="radio"] {
     }
     &:checked {
         + {
-            label {
+            label.os-element {
                 &::after {
                     content: "";
                     display: block;
@@ -135,13 +136,13 @@ input[type="radio"] {
     }
     &:focus {
         + {
-            label {
+            label.os-element {
                 outline: 1px dotted #000000;
             }
         }
     }
 }
-input[type="checkbox"] {
+input.os-element[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -151,7 +152,7 @@ input[type="checkbox"] {
     opacity: 0;
     border: none;
     + {
-        label {
+        label.os-element {
             line-height: 13px;
             position: relative;
             margin-left: var(--checkbox-total-width);
@@ -170,14 +171,14 @@ input[type="checkbox"] {
     }
     &:focus {
         + {
-            label {
+            label.os-element {
                 outline: 1px dotted #000000;
             }
         }
     }
     &:active {
         + {
-            label {
+            label.os-element {
                 &::before {
                     background: var(--surface);
                 }
@@ -186,7 +187,7 @@ input[type="checkbox"] {
     }
     &:checked {
         + {
-            label {
+            label.os-element {
                 &::after {
                     content: "";
                     display: block;
@@ -200,9 +201,9 @@ input[type="checkbox"] {
         }
     }
 }
-input[type="radio"][disabled] {
+input.os-element[type="radio"][disabled] {
     + {
-        label {
+        label.os-element {
             &::before {
                 background: svg-load("./icon/radio-border-disabled.svg");
             }
@@ -210,7 +211,7 @@ input[type="radio"][disabled] {
     }
     &:checked {
         + {
-            label {
+            label.os-element {
                 &::after {
                     background: svg-load("./icon/radio-dot-disabled.svg");
                 }
@@ -218,9 +219,9 @@ input[type="radio"][disabled] {
         }
     }
 }
-input[type="checkbox"][disabled] {
+input.os-element[type="checkbox"][disabled] {
     + {
-        label {
+        label.os-element {
             &::before {
                 background: var(--surface);
             }
@@ -228,7 +229,7 @@ input[type="checkbox"][disabled] {
     }
     &:checked {
         + {
-            label {
+            label.os-element {
                 &::after {
                     background: svg-load("./icon/checkmark-disabled.svg");
                 }
@@ -236,9 +237,9 @@ input[type="checkbox"][disabled] {
         }
     }
 }
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+input.os-element[type="text"],
+input.os-element[type="password"],
+input.os-element[type="email"] {
     padding: 3px 4px;
     border: none;
     background-color: var(--button-highlight);
@@ -253,7 +254,7 @@ input[type="email"] {
         outline: none;
     }
 }
-input[type="range"] {
+input.os-element[type="range"] {
     -webkit-appearance: none;
     width: 100%;
     background: transparent;
@@ -296,7 +297,7 @@ input[type="range"] {
             0 -1px 0 darkgrey, -1px 1px 0 white, 1px -1px darkgrey;
     }
 }
-input[type="range"].has-box-indicator {
+input.os-element[type="range"].has-box-indicator {
     &::-webkit-slider-thumb {
         background: svg-load("./icon/indicator-rectangle-horizontal.svg");
         transform: translateY(-10px);
@@ -311,7 +312,7 @@ input[type="range"].has-box-indicator {
     width: 4px;
     height: 150px;
     transform: translateY(50%);
-    > input[type="range"] {
+    > input.os-element[type="range"] {
         width: 150px;
         height: 4px;
         margin: 0 calc(var(--grouped-element-spacing) + var(--range-spacing)) 0 var(--range-spacing);
@@ -338,7 +339,7 @@ input[type="range"].has-box-indicator {
             transform: translateY(2px) scaleX(-1);
         }
     }
-    > input[type="range"].has-box-indicator {
+    > input.os-element[type="range"].has-box-indicator {
         &::-webkit-slider-thumb {
             transform: translateY(-10px) scaleX(-1);
         }

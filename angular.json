@@ -132,10 +132,23 @@
       "prefix": "win",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@linnenschmidt/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/os-angular/tsconfig.lib.json",
-            "project": "projects/os-angular/ng-package.json"
+            "project": "projects/os-angular/ng-package.json",
+            "assets": [
+                "src",
+                {
+                    "glob": "**/*",
+                    "input": "font",
+                    "output": "font"
+                },
+                {
+                    "glob": "**/*",
+                    "input": "icon",
+                    "output": "icon"
+                }
+            ]
           },
           "configurations": {
             "production": {
