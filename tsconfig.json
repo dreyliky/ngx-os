@@ -17,9 +17,9 @@
             "dom"
         ],
         "paths": {
-            "win-angular": [
-                "dist/win-angular/win-angular",
-                "dist/win-angular"
+            "os-angular": [
+                "dist/os-angular/os-angular",
+                "dist/os-angular"
             ]
         }
     },

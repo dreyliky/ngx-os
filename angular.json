@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/ng-windows",
             "index": "src/index.html",
@@ -28,13 +28,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "projects/os-angular/src/lib/themes/win98/index.scss"
             ],
-            "scripts": [],
-            "customWebpackConfig": {
-              "path": "./custom-webpack.config.js",
-              "replaceDuplicatePlugins": true
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -68,13 +65,9 @@
           }
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-windows:build",
-            "customWebpackConfig": {
-              "path": "./custom-webpack.config.js",
-              "replaceDuplicatePlugins": true
-            }
+            "browserTarget": "ng-windows:build"
           },
           "configurations": {
             "production": {
@@ -132,38 +125,38 @@
         }
       }
     },
-    "win-angular": {
+    "os-angular": {
       "projectType": "library",
-      "root": "projects/win-angular",
-      "sourceRoot": "projects/win-angular/src",
+      "root": "projects/os-angular",
+      "sourceRoot": "projects/os-angular/src",
       "prefix": "win",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/win-angular/tsconfig.lib.json",
-            "project": "projects/win-angular/ng-package.json"
+            "tsConfig": "projects/os-angular/tsconfig.lib.json",
+            "project": "projects/os-angular/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/win-angular/tsconfig.lib.prod.json"
+              "tsConfig": "projects/os-angular/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/win-angular/src/test.ts",
-            "tsConfig": "projects/win-angular/tsconfig.spec.json",
-            "karmaConfig": "projects/win-angular/karma.conf.js"
+            "main": "projects/os-angular/src/test.ts",
+            "tsConfig": "projects/os-angular/tsconfig.spec.json",
+            "karmaConfig": "projects/os-angular/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/win-angular/tsconfig.lib.json",
-              "projects/win-angular/tsconfig.spec.json"
+              "projects/os-angular/tsconfig.lib.json",
+              "projects/os-angular/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
