@@ -1,3 +1,11 @@
-<button class="os-button">
-    <ng-content></ng-content>
+<button
+    class="os-button"
+    [class]="styleClass"
+    [ngStyle]="style"
+    [disabled]="disabled"
+    (click)="OnClick.emit($event)"
+    (focus)="OnFocus.emit($event)"
+    (blur)="OnBlur.emit($event)">
+    <ng-content>
+    </ng-content>
 </button>
