@@ -19,7 +19,10 @@ export class OsBaseFieldComponent extends OsBaseComponent {
     public OnFocus: EventEmitter<MouseEvent> = new EventEmitter();
 
     @Output()
-    public OnBlur: EventEmitter<MouseEvent> = new EventEmitter();
+    public OnBlur: EventEmitter<Event> = new EventEmitter();
+
+    @Output()
+    public OnChange: EventEmitter<Event> = new EventEmitter();
 
     constructor () {
         super({

@@ -9,6 +9,13 @@
     [class]="styleClass"
     [ngStyle]="style"
     [id]="id"
+    [name]="name"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
     [rows]="rows"
-    [cols]="cols">
+    [cols]="cols"
+    (click)="OnClick.emit($event)"
+    (focus)="OnFocus.emit($event)"
+    (blur)="OnBlur.emit($event)"
+    (change)="OnChange.emit($event)">
 </textarea>

@@ -370,3 +370,13 @@ input.os-element[type="range"].has-box-indicator {
     }
 }
 
+.field-row.os-element {
+    > * {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    &.stacked > * {
+        flex-direction: column;
+    }
+}

@@ -6,7 +6,8 @@ import {
     CheckboxModule,
     RadioButtonModule,
     FieldRowModule,
-    GroupBoxModule
+    GroupBoxModule,
+    SliderModule
 } from './modules';
 import { TextBoxModule } from './modules/text-box';
 import { TextareaBoxModule } from './modules/textarea-box';
@@ -21,7 +22,8 @@ import { TextareaBoxModule } from './modules/textarea-box';
         TextareaBoxModule,
         CheckboxModule,
         RadioButtonModule,
-        GroupBoxModule
+        GroupBoxModule,
+        SliderModule
     ],
     exports: [
         ButtonModule,
@@ -30,7 +32,8 @@ import { TextareaBoxModule } from './modules/textarea-box';
         TextareaBoxModule,
         CheckboxModule,
         RadioButtonModule,
-        GroupBoxModule
+        GroupBoxModule,
+        SliderModule
     ]
 })
 export class OsAngularModule {}

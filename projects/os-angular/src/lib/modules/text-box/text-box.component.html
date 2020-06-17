@@ -12,4 +12,8 @@
     [placeholder]="placeholder"
     [name]="name"
     [disabled]="disabled"
-    [type]="type" />
+    [type]="type"
+    (click)="OnClick.emit($event)"
+    (focus)="OnFocus.emit($event)"
+    (blur)="OnBlur.emit($event)"
+    (change)="OnChange.emit($event)" />

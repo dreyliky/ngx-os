@@ -3,19 +3,17 @@
         <h3>Os elements</h3>
 
         <div class="form">
-            <os-field-row
-                [stacked]="true">
+            <os-field-row [stacked]="true">
                 <os-text-box
                     [placeholder]="'For example John Smith'"
                     [label]="'Enter your first and last name'">
                 </os-text-box>
             </os-field-row>
 
-            <os-field-row
-                [stacked]="true">
+            <os-field-row [stacked]="true">
                 <os-textarea-box
-                    [placeholder]="'For example John Smith'"
-                    [label]="'Enter your first and last name'">
+                    [placeholder]="'Tell about yourself'"
+                    [label]="'Description'">
                 </os-textarea-box>
             </os-field-row>
 
@@ -31,18 +29,29 @@
                     [name]="'gender'">
                 </os-radio-button>
             </os-group-box>
-        
+
+            <os-field-row>
+                <os-slider
+                    [label]="'Age'"
+                    [minValueLabel]="'Min'"
+                    [maxValueLabel]="'Max'"
+                    [min]="14"
+                    [max]="120"
+                    [value]="18">
+                </os-slider>
+            </os-field-row>
+
             <os-field-row>
                 <os-checkbox
                     [label]="'I agree to the processing of my personal data'">
                 </os-checkbox>
             </os-field-row>
-        
+
             <os-button>
                 Submit
             </os-button>
         </div>
-        
+
         <hr />
         
         <h3>Default html elements</h3>

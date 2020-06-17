@@ -1,0 +1,24 @@
+<label
+    class="os-element"
+    [for]="id">
+    {{ label }}
+</label>
+
+<label class="os-element">
+    {{ minValueLabel }}
+</label>
+
+<input
+    type="range"
+    class="os-element"
+    [class]="styleClass"
+    [ngStyle]="style"
+    [id]="id"
+    [disabled]="disabled"
+    [min]="min"
+    [max]="max"
+    [value]="value" />
+
+<label class="os-element">
+    {{ maxValueLabel }}
+</label>
