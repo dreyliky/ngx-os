@@ -4,7 +4,6 @@ import { OsBaseComponent } from '../../core';
 @Component({
     selector: 'os-checkbox',
     templateUrl: './checkbox.component.html',
-    styleUrls: ['./checkbox.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent extends OsBaseComponent implements OnInit {

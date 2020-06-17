@@ -4,7 +4,6 @@ import { OsBaseComponent } from '../../core';
 @Component({
     selector: 'os-group-box',
     templateUrl: './group-box.component.html',
-    styleUrls: ['./group-box.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GroupBoxComponent extends OsBaseComponent implements OnInit {

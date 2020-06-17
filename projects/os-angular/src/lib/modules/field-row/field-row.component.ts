@@ -4,7 +4,6 @@ import { OsBaseComponent } from '../../core';
 @Component({
     selector: 'os-field-row',
     templateUrl: './field-row.component.html',
-    styleUrls: ['./field-row.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FieldRowComponent extends OsBaseComponent implements OnInit {

@@ -4,7 +4,6 @@ import { OsBaseComponent } from '../../core';
 @Component({
     selector: 'os-slider',
     templateUrl: './slider.component.html',
-    styleUrls: ['./slider.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderComponent extends OsBaseComponent implements OnInit {

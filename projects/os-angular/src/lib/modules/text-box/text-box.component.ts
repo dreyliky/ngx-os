@@ -5,7 +5,6 @@ import { OsBaseFieldComponent } from '../../core';
 @Component({
     selector: 'os-text-box',
     templateUrl: './text-box.component.html',
-    styleUrls: ['./text-box.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextBoxComponent extends OsBaseFieldComponent implements OnInit {

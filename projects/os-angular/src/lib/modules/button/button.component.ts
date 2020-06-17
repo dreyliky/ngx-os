@@ -5,7 +5,6 @@ import { buttonType } from './shared';
 @Component({
     selector: 'os-button',
     templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent extends OsBaseButtonComponent implements OnInit {

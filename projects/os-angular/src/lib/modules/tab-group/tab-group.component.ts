@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'os-tab-group',
     templateUrl: './tab-group.component.html',
-    styleUrls: ['./tab-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabGroupComponent implements OnInit, OnDestroy, AfterContentInit {
