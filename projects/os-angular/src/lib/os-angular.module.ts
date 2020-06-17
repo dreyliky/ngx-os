@@ -5,7 +5,8 @@ import {
     ButtonModule,
     CheckboxModule,
     RadioButtonModule,
-    FieldRowModule
+    FieldRowModule,
+    GroupBoxModule
 } from './modules';
 
 @NgModule({
@@ -15,13 +16,15 @@ import {
         ButtonModule,
         FieldRowModule,
         CheckboxModule,
-        RadioButtonModule
+        RadioButtonModule,
+        GroupBoxModule
     ],
     exports: [
         ButtonModule,
         FieldRowModule,
         CheckboxModule,
-        RadioButtonModule
+        RadioButtonModule,
+        GroupBoxModule
     ]
 })
 export class OsAngularModule {}

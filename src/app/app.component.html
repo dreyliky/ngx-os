@@ -1,25 +1,40 @@
 <div class="wrapper">
-    <os-field-row>
-        <os-radio-button
-            [label]="'Male'"
-            [name]="'gender'">
-        </os-radio-button>
+    <div class="content">
+        <h3>Os elements</h3>
 
-        <os-radio-button
-            [label]="'Female'"
-            [name]="'gender'">
-        </os-radio-button>
-    </os-field-row>
+        <div class="form">
+            <os-group-box
+                [label]="'Choose your gender'">
+                <os-radio-button
+                    [label]="'Male'"
+                    [name]="'gender'">
+                </os-radio-button>
+        
+                <os-radio-button
+                    [label]="'Female'"
+                    [name]="'gender'">
+                </os-radio-button>
+            </os-group-box>
+        
+            <os-field-row>
+                <os-checkbox
+                    [label]="'I agree to the processing of my personal data'">
+                </os-checkbox>
+            </os-field-row>
+        
+            <os-button>
+                Submit
+            </os-button>
+        </div>
+        
+        <hr />
+        
+        <h3>Default html elements</h3>
+        
+        RandomText outside
 
-    <os-field-row>
-        <os-checkbox
-            [label]="'I agree to the processing of my personal data'">
-        </os-checkbox>
-    </os-field-row>
-
-    <os-button>
-        Submit
-    </os-button>
+        <button>Random button</button>
+        <input type="checkbox" id="rnd-check1" />
+        <label for="rnd-check1">Random checkbox</label>
+    </div>
 </div>
-
-<hr />
