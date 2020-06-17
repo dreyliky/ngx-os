@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
-    selector: 'os-checkbox',
-    templateUrl: './checkbox.component.html',
-    styleUrls: ['./checkbox.component.scss'],
+    selector: 'os-radio-button',
+    templateUrl: './radio-button.component.html',
+    styleUrls: ['./radio-button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent implements OnInit {
+export class RadioButtonComponent implements OnInit {
 
     @Input()
     public label: string;
@@ -31,8 +31,6 @@ export class CheckboxComponent implements OnInit {
 
     private _id: string;
 
-    constructor () {}
-
     public ngOnInit (): void {
         if (!this._id) {
             this.generateId();
@@ -40,7 +38,7 @@ export class CheckboxComponent implements OnInit {
     }
 
     private generateId (): void {
-        this.id = `os-checkbox-${Math.random()}`;
+        this.id = `os-radiobutton-${Math.random()}`;
     }
 
 }

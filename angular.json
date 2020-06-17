@@ -129,7 +129,7 @@
       "projectType": "library",
       "root": "projects/os-angular",
       "sourceRoot": "projects/os-angular/src",
-      "prefix": "win",
+      "prefix": "os",
       "architect": {
         "build": {
           "builder": "@linnenschmidt/build-ng-packagr:build",

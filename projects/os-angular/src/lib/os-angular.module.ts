@@ -3,7 +3,9 @@ import { SharedModule } from './shared.module';
 
 import {
     ButtonModule,
-    CheckboxModule
+    CheckboxModule,
+    RadioButtonModule,
+    FieldRowModule
 } from './modules';
 
 @NgModule({
@@ -11,11 +13,15 @@ import {
         SharedModule,
 
         ButtonModule,
-        CheckboxModule
+        FieldRowModule,
+        CheckboxModule,
+        RadioButtonModule
     ],
     exports: [
         ButtonModule,
-        CheckboxModule
+        FieldRowModule,
+        CheckboxModule,
+        RadioButtonModule
     ]
 })
 export class OsAngularModule {}

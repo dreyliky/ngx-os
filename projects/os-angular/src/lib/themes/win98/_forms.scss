@@ -2,10 +2,10 @@
     Forms
 \*-------------------------------------------*/
 
-.os-text-field[type="text"],
-.os-text-field[type="password"],
-.os-text-field[type="email"],
-.os-textarea-field,
+input.os-element[type="text"],
+input.os-element[type="password"],
+input.os-element[type="email"],
+textarea.os-element,
 .os-selectbox {
     box-shadow: var(--border-field);
 }
@@ -60,7 +60,7 @@ select.os-element {
     -moz-appearance: none;
     position: relative;
     padding-right: 32px;
-    background-image: svg-load("./icon/button-down.svg");
+    background-image: url("./icon/button-down.svg");
     background-position: top 2px right 2px;
     background-repeat: no-repeat;
     border-radius: 0;
@@ -74,7 +74,7 @@ select.os-element {
         }
     }
     &:active {
-        background-image: svg-load("./icon/button-down-active.svg");
+        background-image: url("./icon/button-down-active.svg");
     }
 }
 option.os-element {
@@ -121,7 +121,7 @@ input.os-element[type="radio"] {
                 width: var(--radio-width);
                 height: var(--radio-width);
                 margin-right: var(--radio-label-spacing);
-                background: svg-load("./icon/radio-border.svg");
+                background: url("./icon/radio-border.svg");
             }
         }
     }
@@ -129,7 +129,7 @@ input.os-element[type="radio"] {
         + {
             label.os-element {
                 &::before {
-                    background: svg-load("./icon/radio-border-disabled.svg");
+                    background: url("./icon/radio-border-disabled.svg");
                 }
             }
         }
@@ -145,7 +145,7 @@ input.os-element[type="radio"] {
                     top: var(--radio-dot-top);
                     left: var(--radio-dot-left);
                     position: absolute;
-                    background: svg-load("./icon/radio-dot.svg");
+                    background: url("./icon/radio-dot.svg");
                 }
             }
         }
@@ -226,7 +226,7 @@ input.os-element[type="radio"][disabled] {
     + {
         label.os-element {
             &::before {
-                background: svg-load("./icon/radio-border-disabled.svg");
+                background: url("./icon/radio-border-disabled.svg");
             }
         }
     }
@@ -234,7 +234,7 @@ input.os-element[type="radio"][disabled] {
         + {
             label.os-element {
                 &::after {
-                    background: svg-load("./icon/radio-dot-disabled.svg");
+                    background: url("./icon/radio-dot-disabled.svg");
                 }
             }
         }
@@ -252,7 +252,7 @@ input.os-element[type="checkbox"][disabled] {
         + {
             label.os-element {
                 &::after {
-                    background: svg-load("./icon/checkmark-disabled.svg");
+                    background: url("./icon/checkmark-disabled.svg");
                 }
             }
         }
@@ -286,7 +286,7 @@ input.os-element[type="range"] {
         -webkit-appearance: none;
         height: 21px;
         width: 11px;
-        background: svg-load("./icon/indicator-horizontal.svg");
+        background: url("./icon/indicator-horizontal.svg");
         transform: translateY(-8px);
     }
     &::-moz-range-thumb {
@@ -294,7 +294,7 @@ input.os-element[type="range"] {
         width: 11px;
         border: 0;
         border-radius: 0;
-        background: svg-load("./icon/indicator-horizontal.svg");
+        background: url("./icon/indicator-horizontal.svg");
         transform: translateY(2px);
     }
     &::-webkit-slider-runnable-track {
@@ -320,11 +320,11 @@ input.os-element[type="range"] {
 }
 input.os-element[type="range"].has-box-indicator {
     &::-webkit-slider-thumb {
-        background: svg-load("./icon/indicator-rectangle-horizontal.svg");
+        background: url("./icon/indicator-rectangle-horizontal.svg");
         transform: translateY(-10px);
     }
     &::-moz-range-thumb {
-        background: svg-load("./icon/indicator-rectangle-horizontal.svg");
+        background: url("./icon/indicator-rectangle-horizontal.svg");
         transform: translateY(0px);
     }
 }

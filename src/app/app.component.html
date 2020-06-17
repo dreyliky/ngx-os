@@ -1,9 +1,25 @@
-<os-checkbox
-    [label]="'Checkbox'">
-</os-checkbox>
+<div class="wrapper">
+    <os-field-row>
+        <os-radio-button
+            [label]="'Male'"
+            [name]="'gender'">
+        </os-radio-button>
+
+        <os-radio-button
+            [label]="'Female'"
+            [name]="'gender'">
+        </os-radio-button>
+    </os-field-row>
+
+    <os-field-row>
+        <os-checkbox
+            [label]="'I agree to the processing of my personal data'">
+        </os-checkbox>
+    </os-field-row>
+
+    <os-button>
+        Submit
+    </os-button>
+</div>
 
 <hr />
-
-<os-button>
-    Hi there!
-</os-button>
