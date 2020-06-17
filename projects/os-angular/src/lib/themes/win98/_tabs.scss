@@ -2,14 +2,37 @@
     Tabs
 \*-------------------------------------------*/
 
-menu[role="tablist"] {
-    button {
+:root {
+    --tab-border: 1px solid #888;
+    --tab-bg: var(--surface);
+}
+
+.os-element[role="tabpanel"] {
+    position: relative;
+    z-index: 2;
+}
+
+menu.os-element[role="tablist"] {
+    position: relative;
+    margin: 0 0 -2px 0;
+    text-indent: 0;
+    list-style-type: none;
+    display: flex;
+    padding-left: 3px;
+    button.os-element {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom: 2px solid transparent;
+        z-index: 1;
+        display: block;
+        color: #222;
+        text-decoration: none;
+        min-width: unset;
         top: 3px;
+        padding: 3px 12px;
         background: var(--surface);
         box-shadow: inset 1px 1px #fff, inset 2px 2px #dfdfdf, inset -1px 0 black, inset -2px 0 #7f7f7f;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
-        border-bottom: 2px solid transparent;
+
         &:first-of-type::before {
             content: "";
             display: block;
@@ -22,18 +45,44 @@ menu[role="tablist"] {
             border-left: 1px solid #fff;
             border-right: 1px solid #dfdfdf;
         }
+
         &[aria-selected="true"] {
-            top: 2px;
+            padding-bottom: 2px;
+            margin-top: -2px;
+            background-color: var(--surface);
+            position: relative;
+            z-index: 8;
             margin-right: -1px;
             margin-top: -4px;
+            margin-left: -3px;
+            margin-bottom: 1px;
+            top: 2px;
+
             &:first-of-type {
                 left: 0;
             }
         }
-        padding: 3px 12px;
+
+        &:focus {
+            outline: 1px dotted #222;
+            outline-offset: -4px;
+        }
+    }
+
+    &.justified {
+        button.os-element {
+            flex-grow: 1;
+            text-align: center;
+        }
     }
 }
 
-[role="tabpanel"] {
+.os-element[role="tabpanel"] {
+    padding: 14px;
+    clear: both;
+    background: var(--tab-bg);
+    position: relative;
+    z-index: 2;
+    margin-bottom: 9px;
     box-shadow: inset 1px 1px white, inset 2px 2px #dfdfdf, inset -1px -1px #0a0a0a, inset -2px -2px gray;
 }

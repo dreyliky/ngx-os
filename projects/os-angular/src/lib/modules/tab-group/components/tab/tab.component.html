@@ -1,0 +1,20 @@
+<ng-template #TabButtonTemplate>
+    <button
+        class="os-element"
+        role="tab"
+        [attr.aria-selected]="selected"
+        [attr.aria-controls]="id"
+        (click)="OnTabButtonClick.emit($event)">
+        {{ label }}
+    </button>
+</ng-template>
+
+<ng-template #TabContentTemplate>
+    <article
+        class="os-element"
+        [id]="id"
+        role="tabpanel">
+        <ng-content>
+        </ng-content>
+    </article>
+</ng-template>

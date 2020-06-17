@@ -11,6 +11,7 @@ import {
 } from './modules';
 import { TextBoxModule } from './modules/text-box';
 import { TextareaBoxModule } from './modules/textarea-box';
+import { TabGroupModule } from './modules/tab-group';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { TextareaBoxModule } from './modules/textarea-box';
         CheckboxModule,
         RadioButtonModule,
         GroupBoxModule,
-        SliderModule
+        SliderModule,
+        TabGroupModule
     ],
     exports: [
         ButtonModule,
@@ -33,7 +35,8 @@ import { TextareaBoxModule } from './modules/textarea-box';
         CheckboxModule,
         RadioButtonModule,
         GroupBoxModule,
-        SliderModule
+        SliderModule,
+        TabGroupModule
     ]
 })
 export class OsAngularModule {}

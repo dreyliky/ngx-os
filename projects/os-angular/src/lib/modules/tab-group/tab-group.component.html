@@ -1,0 +1,32 @@
+<section class="os-element tabs">
+
+    <menu
+        class="os-element"
+        role="tablist"
+        aria-label="Sample Tabs">
+
+        <ng-template
+            ngFor
+            let-tabContent
+            [ngForOf]="tabComponentList"
+            [ngForTrackBy]="trackByFn">
+            <ng-container
+                *ngTemplateOutlet="tabContent.tabButtonTemplate">
+            </ng-container>
+        </ng-template>
+
+    </menu>
+
+    <ng-template
+        ngFor
+        let-tabContent
+        [ngForOf]="tabComponentList"
+        [ngForTrackBy]="trackByFn">
+        <ng-template [ngIf]="tabContent.selected">
+            <ng-container
+                *ngTemplateOutlet="tabContent.tabContentTemplate">
+            </ng-container>
+        </ng-template>
+    </ng-template>
+
+</section>
