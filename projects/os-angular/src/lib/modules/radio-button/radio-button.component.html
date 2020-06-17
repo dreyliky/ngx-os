@@ -1,13 +1,15 @@
 <input
     class="os-element"
-    [attr.id]="id"
-    [attr.name]="name"
+    [class]="styleClass"
+    [ngStyle]="style"
+    [id]="id"
+    [name]="name"
     [checked]="checked"
     [disabled]="disabled"
     type="radio" />
 
 <label
     class="os-element"
-    [attr.for]="id">
+    [for]="id">
     {{ label }}
 </label>

@@ -1,4 +1,7 @@
-<fieldset class="os-element">
+<fieldset
+    class="os-element"
+    [class]="styleClass"
+    [ngStyle]="style">
     <legend
         *ngIf="label"
         class="os-element">

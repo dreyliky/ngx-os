@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { OsBaseComponent } from '../../core';
 
 @Component({
     selector: 'os-field-row',
@@ -6,13 +7,19 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
     styleUrls: ['./field-row.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FieldRowComponent implements OnInit {
+export class FieldRowComponent extends OsBaseComponent implements OnInit {
 
     @Input()
     public stacked: boolean = false;
 
-    constructor () {}
+    constructor () {
+        super({
+            elementName: 'os-field-row'
+        });
+    }
 
-    public ngOnInit (): void {}
+    public ngOnInit (): void {
+        super.ngOnInit();
+    }
 
 }

@@ -9,6 +9,7 @@ import {
     GroupBoxModule
 } from './modules';
 import { TextBoxModule } from './modules/text-box';
+import { TextareaBoxModule } from './modules/textarea-box';
 
 @NgModule({
     imports: [
@@ -17,6 +18,7 @@ import { TextBoxModule } from './modules/text-box';
         ButtonModule,
         FieldRowModule,
         TextBoxModule,
+        TextareaBoxModule,
         CheckboxModule,
         RadioButtonModule,
         GroupBoxModule
@@ -25,6 +27,7 @@ import { TextBoxModule } from './modules/text-box';
         ButtonModule,
         FieldRowModule,
         TextBoxModule,
+        TextareaBoxModule,
         CheckboxModule,
         RadioButtonModule,
         GroupBoxModule

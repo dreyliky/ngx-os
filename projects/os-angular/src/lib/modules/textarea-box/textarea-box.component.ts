@@ -1,17 +1,20 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { textboxType } from './shared';
+import { IdGenerator } from '../../helpers';
 import { OsBaseFieldComponent } from '../../core';
 
 @Component({
-    selector: 'os-text-box',
-    templateUrl: './text-box.component.html',
-    styleUrls: ['./text-box.component.scss'],
+    selector: 'os-textarea-box',
+    templateUrl: './textarea-box.component.html',
+    styleUrls: ['./textarea-box.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextBoxComponent extends OsBaseFieldComponent implements OnInit {
+export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit {
 
     @Input()
-    public type: textboxType = 'text';
+    public rows: number;
+
+    @Input()
+    public cols: number;
 
     constructor () {
         super();

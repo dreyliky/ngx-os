@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { OsBaseButtonComponent } from '../../core';
+import { buttonType } from './shared';
 
 @Component({
     selector: 'os-button',
@@ -6,22 +8,10 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
     styleUrls: ['./button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent extends OsBaseButtonComponent implements OnInit {
 
     @Input()
-    public type: string;
-
-    @Input()
-    public disabled: boolean;
-
-    @Input()
-    public style: any;
-
-    @Input()
-    public styleClass: string;
-
-    @Output()
-    public OnClick: EventEmitter<MouseEvent> = new EventEmitter();
+    public type: buttonType;
 
     @Output()
     public OnFocus: EventEmitter<MouseEvent> = new EventEmitter();
@@ -29,8 +19,12 @@ export class ButtonComponent implements OnInit {
     @Output()
     public OnBlur: EventEmitter<MouseEvent> = new EventEmitter();
 
-    constructor () {}
+    constructor () {
+        super();
+    }
 
-    public ngOnInit (): void {}
+    public ngOnInit (): void {
+        super.ngOnInit();
+    }
 
 }

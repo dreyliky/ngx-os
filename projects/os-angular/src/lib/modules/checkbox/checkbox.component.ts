@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { IdGenerator } from '../../helpers';
+import { OsBaseComponent } from '../../core';
 
 @Component({
     selector: 'os-checkbox',
@@ -7,7 +7,7 @@ import { IdGenerator } from '../../helpers';
     styleUrls: ['./checkbox.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent implements OnInit {
+export class CheckboxComponent extends OsBaseComponent implements OnInit {
 
     @Input()
     public label: string;
@@ -21,23 +21,14 @@ export class CheckboxComponent implements OnInit {
     @Input()
     public disabled: boolean;
 
-    @Input()
-    public set id (value: string) {
-        this._id = value;
+    constructor () {
+        super({
+            elementName: 'os-checkbox'
+        });
     }
-
-    public get id (): string {
-        return this._id;
-    }
-
-    private _id: string;
-
-    constructor () {}
 
     public ngOnInit (): void {
-        if (!this._id) {
-            this._id = IdGenerator.generate(`os-checkbox`);
-        }
+        super.ngOnInit();
     }
 
 }
