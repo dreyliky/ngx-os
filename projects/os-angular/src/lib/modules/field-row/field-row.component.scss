@@ -1,0 +1,10 @@
+:host::ng-deep .field-row {
+    > * {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    &.stacked > * {
+        flex-direction: column;
+    }
+}

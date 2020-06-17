@@ -1,22 +1,27 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { IdGenerator } from '../../helpers';
 
+type textboxType = 'text' | 'number' | 'email' | 'password' | 'hidden';
+
 @Component({
-    selector: 'os-radio-button',
-    templateUrl: './radio-button.component.html',
-    styleUrls: ['./radio-button.component.scss'],
+    selector: 'os-text-box',
+    templateUrl: './text-box.component.html',
+    styleUrls: ['./text-box.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonComponent implements OnInit {
+export class TextBoxComponent implements OnInit {
+
+    @Input()
+    public type: textboxType = 'text';
+
+    @Input()
+    public placeholder: string;
 
     @Input()
     public label: string;
 
     @Input()
     public name: string;
-
-    @Input()
-    public checked: boolean;
 
     @Input()
     public disabled: boolean;
@@ -34,7 +39,7 @@ export class RadioButtonComponent implements OnInit {
 
     public ngOnInit (): void {
         if (!this._id) {
-            this._id = IdGenerator.generate(`os-radio-button`);
+            this._id = IdGenerator.generate(`os-text-box`);
         }
     }
 

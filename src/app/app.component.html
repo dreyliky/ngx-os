@@ -3,6 +3,13 @@
         <h3>Os elements</h3>
 
         <div class="form">
+            <os-field-row [stacked]="true">
+                <os-text-box
+                    [placeholder]="'For example John Smith'"
+                    [label]="'Enter your first and last name'">
+                </os-text-box>
+            </os-field-row>
+
             <os-group-box
                 [label]="'Choose your gender'">
                 <os-radio-button

@@ -8,6 +8,7 @@ import {
     FieldRowModule,
     GroupBoxModule
 } from './modules';
+import { TextBoxModule } from './modules/text-box';
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import {
 
         ButtonModule,
         FieldRowModule,
+        TextBoxModule,
         CheckboxModule,
         RadioButtonModule,
         GroupBoxModule
@@ -22,6 +24,7 @@ import {
     exports: [
         ButtonModule,
         FieldRowModule,
+        TextBoxModule,
         CheckboxModule,
         RadioButtonModule,
         GroupBoxModule

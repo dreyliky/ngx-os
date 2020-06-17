@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { IdGenerator } from '../../helpers';
 
 @Component({
     selector: 'os-checkbox',
@@ -35,12 +36,8 @@ export class CheckboxComponent implements OnInit {
 
     public ngOnInit (): void {
         if (!this._id) {
-            this.generateId();
+            this._id = IdGenerator.generate(`os-checkbox`);
         }
-    }
-
-    private generateId (): void {
-        this.id = `os-checkbox-${Math.random()}`;
     }
 
 }
