@@ -9,11 +9,12 @@ import {
     FieldRowModule,
     GroupBoxModule,
     SliderModule,
+    TextModule,
     TextBoxModule,
     TextareaBoxModule,
-    TabGroupModule
+    TabGroupModule,
+    WindowModule
 } from './modules';
-import { WindowModule } from './modules/window';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import { WindowModule } from './modules/window';
 
         ButtonModule,
         FieldRowModule,
+        TextModule,
         TextBoxModule,
         TextareaBoxModule,
         CheckboxModule,
@@ -34,6 +36,7 @@ import { WindowModule } from './modules/window';
     exports: [
         ButtonModule,
         FieldRowModule,
+        TextModule,
         TextBoxModule,
         TextareaBoxModule,
         CheckboxModule,

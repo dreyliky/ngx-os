@@ -21,8 +21,8 @@ label.os-element {
     align-items: center;
 }
 
-input.os-element {
-    font-family: var(--sans-serif);
+input.os-element,
+textarea.os-element {
     font-size: 11px;
 }
 
