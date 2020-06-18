@@ -13,6 +13,7 @@ import {
     TextareaBoxModule,
     TabGroupModule
 } from './modules';
+import { WindowModule } from './modules/window';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {
         RadioButtonModule,
         GroupBoxModule,
         SliderModule,
-        TabGroupModule
+        TabGroupModule,
+        WindowModule
     ],
     exports: [
         ButtonModule,
@@ -39,7 +41,8 @@ import {
         RadioButtonModule,
         GroupBoxModule,
         SliderModule,
-        TabGroupModule
+        TabGroupModule,
+        WindowModule
     ]
 })
 export class OsAngularModule {}

@@ -4,6 +4,7 @@
     [ngStyle]="style"
     [disabled]="disabled"
     [type]="type"
+    [attr.aria-label]="ariaLabel"
     (click)="OnClick.emit($event)"
     (focus)="OnFocus.emit($event)"
     (blur)="OnBlur.emit($event)">

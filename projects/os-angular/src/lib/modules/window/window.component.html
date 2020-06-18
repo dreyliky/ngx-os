@@ -1,0 +1,16 @@
+<div
+    class="window os-element"
+    [ngClass]="styleClass"
+    [style]="style"
+    [id]="id">
+
+    <os-title-bar>
+        {{ title }}
+    </os-title-bar>
+
+    <div class="window-body">
+        <ng-content>
+        </ng-content>
+    </div>
+
+</div>

@@ -1,25 +1,78 @@
 os-window {
 
     .window {
+        font-size: 11px;
         font-family: var(--sans-serif);
+        box-shadow: var(--border-window-outer), var(--border-window-inner);
+        background: var(--surface);
+        padding: 3px;
         -webkit-font-smoothing: none;
+
+        fieldset {
+            margin-bottom: 9px;
+        }
     }
+
+    .window-body {
+        margin: var(--element-spacing);
+
+        pre {
+            margin: -8px;
+        }
+    }
+
+}
+
+os-title-bar {
+
+    .title-bar {
+        font-size: 11px;
+        background: var(--title-bar-bg);
+        padding: 3px 2px 3px 3px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .title-bar-text {
+        font-weight: bold;
+        color: white;
+        letter-spacing: 0;
+        margin-right: 24px;
+    }
+
     .title-bar-controls {
+        display: flex;
+
+        button {
+            padding: 0;
+            display: block;
+            min-width: 16px;
+            min-height: 14px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
         button[aria-label="Minimize"] {
             background-image: url("./icon/minimize.svg");
             background-repeat: no-repeat;
             background-position: bottom 3px left 4px;
         }
+
         button[aria-label="Maximize"] {
             background-image: url("./icon/maximize.svg");
             background-repeat: no-repeat;
             background-position: top 2px left 3px;
         }
+
         button[aria-label="Help"] {
             background-image: url("./icon/help.svg");
             background-repeat: no-repeat;
             background-position: top 2px left 5px;
         }
+
         button[aria-label="Close"] {
             margin-left: 2px;
             background-image: url("./icon/close.svg");

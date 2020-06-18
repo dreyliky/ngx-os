@@ -6,6 +6,9 @@ export class OsBaseButtonComponent extends OsBaseComponent {
     @Input()
     public disabled: boolean;
 
+    @Input()
+    public ariaLabel: string;
+
     @Output()
     public OnFocus: EventEmitter<MouseEvent> = new EventEmitter();
 

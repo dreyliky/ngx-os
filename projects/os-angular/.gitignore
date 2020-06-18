@@ -1,1 +1,5 @@
 node_modules
+
+src/lib/themes/_gui
+src/lib/themes/_win98
+src/lib/themes/_winXP

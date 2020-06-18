@@ -1,0 +1,25 @@
+<div class="title-bar os-element">
+    <div class="title-bar-text os-element">
+        <ng-content>
+        </ng-content>
+    </div>
+
+    <div
+        class="title-bar-controls os-element">
+        <ng-content
+            select="[control-button]">
+        </ng-content>
+
+        <os-button
+            [ariaLabel]="'Minimize'">
+        </os-button>
+
+        <os-button
+            [ariaLabel]="'Maximize'">
+        </os-button>
+
+        <os-button
+            [ariaLabel]="'Close'">
+        </os-button>
+    </div>
+</div>
