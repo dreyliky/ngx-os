@@ -4,14 +4,15 @@ import { SharedModule } from './shared.module';
 import {
     ButtonModule,
     CheckboxModule,
+    SelectboxModule,
     RadioButtonModule,
     FieldRowModule,
     GroupBoxModule,
-    SliderModule
+    SliderModule,
+    TextBoxModule,
+    TextareaBoxModule,
+    TabGroupModule
 } from './modules';
-import { TextBoxModule } from './modules/text-box';
-import { TextareaBoxModule } from './modules/textarea-box';
-import { TabGroupModule } from './modules/tab-group';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import { TabGroupModule } from './modules/tab-group';
         TextBoxModule,
         TextareaBoxModule,
         CheckboxModule,
+        SelectboxModule,
         RadioButtonModule,
         GroupBoxModule,
         SliderModule,
@@ -33,6 +35,7 @@ import { TabGroupModule } from './modules/tab-group';
         TextBoxModule,
         TextareaBoxModule,
         CheckboxModule,
+        SelectboxModule,
         RadioButtonModule,
         GroupBoxModule,
         SliderModule,

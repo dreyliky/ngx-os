@@ -51,7 +51,12 @@
                 <os-tab
                     [selected]="true"
                     [label]="'Tab 1'">
-                    Tab 1 content
+                    <os-selectbox>
+                        <os-option>Item 1</os-option>
+                        <os-option>Item 2</os-option>
+                        <os-option [selected]="true">Item 3 - Selected by default</os-option>
+                        <os-option>Item 4</os-option>
+                    </os-selectbox>
                 </os-tab>
 
                 <os-tab

@@ -1,31 +1,31 @@
-/*-------------------------------------------*\
-    Buttons
-\*-------------------------------------------*/
+os-button {
 
-button.os-element {
-    font-family: var(--sans-serif);
-    font-size: 11px;
-    box-sizing: border-box;
-    border: none;
-    background: var(--surface);
-    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
-    border-radius: 0;
-    min-width: 75px;
-    min-height: 23px;
-    padding: 0 12px;
-    -webkit-font-smoothing: none;
-    &:not(:disabled) {
-        &:active,
-        &.active {
-            box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    button {
+        font-family: var(--sans-serif);
+        font-size: 11px;
+        box-sizing: border-box;
+        border: none;
+        background: var(--surface);
+        box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+        border-radius: 0;
+        min-width: 75px;
+        min-height: 23px;
+        padding: 0 12px;
+        -webkit-font-smoothing: none;
+        &:not(:disabled) {
+            &:active,
+            &.active {
+                box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+            }
+        }
+        &:focus,
+        &.focused {
+            outline: 1px dotted #000000;
+            outline-offset: -4px;
+        }
+        &::-moz-focus-inner {
+            border: 0;
         }
     }
-    &:focus,
-    &.focused {
-        outline: 1px dotted #000000;
-        outline-offset: -4px;
-    }
-    &::-moz-focus-inner {
-        border: 0;
-    }
+
 }

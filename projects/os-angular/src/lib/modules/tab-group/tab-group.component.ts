@@ -36,8 +36,8 @@ export class TabGroupComponent implements OnInit, OnDestroy, AfterContentInit {
         });
     }
 
-    public trackByFn = (tabComponent: TabComponent, index: number): string => {
-        return tabComponent.id;
+    public trackByFn = (tabComponent: TabComponent, index: number): number => {
+        return index;
     }
 
     private deselectAllTabs (): void {

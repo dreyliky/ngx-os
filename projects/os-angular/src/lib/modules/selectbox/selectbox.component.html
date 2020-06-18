@@ -1,0 +1,17 @@
+<select
+    class="os-element"
+    [ngClass]="styleClass"
+    [style]="style"
+    [id]="id">
+
+    <ng-template
+        ngFor
+        let-optionContent
+        [ngForOf]="optionComponentList"
+        [ngForTrackBy]="trackByFn">
+        <ng-container
+            *ngTemplateOutlet="optionContent.optionTemplate">
+        </ng-container>
+    </ng-template>
+
+</select>

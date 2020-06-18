@@ -1,0 +1,11 @@
+<ng-template #OptionTemplate>
+    <option
+        class="os-element"
+        [ngClass]="styleClass"
+        [style]="style"
+        [id]="id"
+        [selected]="selected">
+        <ng-content>
+        </ng-content>
+    </option>
+</ng-template>
