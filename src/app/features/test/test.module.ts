@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/app-shared.module';
 import { HelloWorldWindowComponent } from './components';
+import { DemoWindowComponent } from './components/demo-window/demo-window.component';
 
 @NgModule({
     declarations: [
-        HelloWorldWindowComponent
+        HelloWorldWindowComponent,
+        DemoWindowComponent
     ],
     imports: [
         SharedModule
@@ -13,7 +15,8 @@ import { HelloWorldWindowComponent } from './components';
         HelloWorldWindowComponent
     ],
     entryComponents: [
-        HelloWorldWindowComponent
+        HelloWorldWindowComponent,
+        DemoWindowComponent
     ]
 })
 export class TestModule {}

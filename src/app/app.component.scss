@@ -6,14 +6,3 @@
     justify-content: center;
     background-color: #3a6ea5;
 }
-
-os-window {
-    ::ng-deep .window {
-        width: 100vw;
-        max-width: 450px;
-    }
-}
-
-.element-wrapper {
-    margin: 5px 0px;
-}
