@@ -47,10 +47,14 @@ export class DynamicWindowComponent implements OnDestroy, AfterViewInit {
         this.changeDetector.detectChanges();
     }
 
+    public onCloseButtonClick (): void {
+        this.windowRef.close();
+    }
+
     private loadChildComponent (componentType: Type<any>): void {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-
         const viewContainerRef = this.dynamicWindowContent.viewContainerRef;
+
         viewContainerRef.clear();
 
         this._childComponentRef = viewContainerRef.createComponent(componentFactory);

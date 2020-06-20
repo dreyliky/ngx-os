@@ -8,10 +8,10 @@ import { OsBaseComponent } from '../../core';
 export class TextComponent extends OsBaseComponent implements OnInit {
 
     @Input()
-    public size: number = 12;
+    public size: string = '12px';
 
     @Input()
-    public bold: boolean = false;
+    public fontWeight: string = 'normal';
 
     constructor () {
         super({

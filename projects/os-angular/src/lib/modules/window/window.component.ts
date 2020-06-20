@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { OsBaseComponent } from '../../core';
 
 @Component({
@@ -10,6 +10,12 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
 
     @Input()
     public title: string;
+
+    @Input()
+    public width: string;
+
+    @Input()
+    public height: string;
 
     @Input()
     public isMinimizable: boolean = true;
@@ -25,6 +31,15 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
 
     @Input()
     public scrollViewStyleClass: any;
+
+    @Output()
+    public OnMinimizeButtonClick = new EventEmitter<MouseEvent>();
+
+    @Output()
+    public OnMaximizeButtonClick = new EventEmitter<MouseEvent>();
+
+    @Output()
+    public OnCloseButtonClick = new EventEmitter<MouseEvent>();
 
     constructor () {
         super({

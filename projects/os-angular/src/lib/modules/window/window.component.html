@@ -2,9 +2,14 @@
     class="window os-element"
     [ngStyle]="style"
     [class]="styleClass"
-    [id]="id">
+    [id]="id"
+    [style.width]="width"
+    [style.height]="height">
 
-    <os-title-bar>
+    <os-title-bar
+        (OnMinimizeButtonClick)="OnMinimizeButtonClick.emit($event)"
+        (OnMaximizeButtonClick)="OnMaximizeButtonClick.emit($event)"
+        (OnCloseButtonClick)="OnCloseButtonClick.emit($event)">
         {{ title }}
     </os-title-bar>
 

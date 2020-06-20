@@ -29,7 +29,8 @@ export class DynamicWindowService {
         private readonly applicationRef: ApplicationRef
     ) {}
 
-    public open (childComponent: Type<any>, config: DynamicWindowConfig): DynamicWindowRef {
+    public open (childComponent: Type<any>, configuration: DynamicWindowConfig): DynamicWindowRef {
+        const config = { ...new DynamicWindowConfig(), ...configuration };
         const windowRef = this.createDynamicWindow(config);
 
         this.applyDataForCreatedWindow({

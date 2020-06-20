@@ -1,6 +1,14 @@
 <os-window
-    [title]="'Dynamic window'">
-    
+    [title]="config.title"
+    [width]="config.width"
+    [height]="config.height"
+    [isMinimizable]="config.isMinimizable"
+    [isMaximizable]="config.isMaximizable"
+    [isClosable]="config.isClosable"
+    [scrollViewStyle]="config.scrollViewStyle"
+    [scrollViewStyleClass]="config.scrollViewStyleClass"
+    (OnCloseButtonClick)="onCloseButtonClick()">
+
     <ng-template dynamicWindowContent>
     </ng-template>
 

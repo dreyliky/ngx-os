@@ -11,15 +11,18 @@
     <div
         class="title-bar-controls os-element">
         <os-button
-            [ariaLabel]="'Minimize'">
+            [ariaLabel]="'Minimize'"
+            (OnClick)="OnMinimizeButtonClick.emit($event)">
         </os-button>
 
         <os-button
-            [ariaLabel]="'Maximize'">
+            [ariaLabel]="'Maximize'"
+            (OnClick)="OnMaximizeButtonClick.emit($event)">
         </os-button>
 
         <os-button
-            [ariaLabel]="'Close'">
+            [ariaLabel]="'Close'"
+            (OnClick)="OnCloseButtonClick.emit($event)">
         </os-button>
     </div>
 </div>

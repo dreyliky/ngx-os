@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { OsBaseComponent } from 'projects/os-angular/src/lib/core';
 
 @Component({
@@ -7,6 +7,15 @@ import { OsBaseComponent } from 'projects/os-angular/src/lib/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitleBarComponent extends OsBaseComponent implements OnInit {
+
+    @Output()
+    public OnMinimizeButtonClick = new EventEmitter<MouseEvent>();
+
+    @Output()
+    public OnMaximizeButtonClick = new EventEmitter<MouseEvent>();
+
+    @Output()
+    public OnCloseButtonClick = new EventEmitter<MouseEvent>();
 
     constructor () {
         super({

@@ -1,1 +1,1 @@
-export * from './window.service';
+export * from './dynamic-window.service';
