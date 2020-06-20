@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OsAngularModule } from 'projects/os-angular/src/public-api';
+import { SharedModule } from './app-shared.module';
+import { FeaturesModule } from './features/features.module';
 
 @NgModule({
     declarations: [
@@ -12,7 +13,9 @@ import { OsAngularModule } from 'projects/os-angular/src/public-api';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        OsAngularModule
+
+        SharedModule,
+        FeaturesModule
     ],
     bootstrap: [
         AppComponent

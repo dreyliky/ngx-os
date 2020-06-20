@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { TreeNode } from 'projects/os-angular/src/lib';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { TreeNode, WindowService } from 'projects/os-angular/src/lib';
+import { HelloWorldWindowComponent } from './features/test';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,7 @@ import { TreeNode } from 'projects/os-angular/src/lib';
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
     public treeItems: TreeNode<any>[] = [
         { label: 'Item 1' },
@@ -27,6 +28,12 @@ export class AppComponent {
         { label: 'Item 3' }
     ];
 
-    constructor () {}
+    constructor (
+        private readonly windowService: WindowService
+    ) {}
+
+    public ngOnInit (): void {
+        this.windowService.open(HelloWorldWindowComponent, { data: 'There is custom data for window!' });
+    }
 
 }

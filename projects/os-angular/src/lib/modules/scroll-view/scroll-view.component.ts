@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { OsBaseComponent } from '../../core';
 
 @Component({
     selector: 'os-scroll-view',
-    templateUrl: './scroll-view.component.html'
+    templateUrl: './scroll-view.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScrollViewComponent extends OsBaseComponent implements OnInit {
 

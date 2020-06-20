@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
-import { WindowComponent } from './window.component';
 import { SharedModule } from '../../shared.module';
 import { ButtonModule } from '../button';
 import { ScrollViewModule } from '../scroll-view';
-import { TitleBarComponent } from './components';
 import { WindowService } from './services';
+import { DynamicWindowContentDirective } from './directives';
+import { WindowComponent } from './window.component';
+import { TitleBarComponent, DynamicWindowComponent } from './components';
 
 @NgModule({
     declarations: [
+        DynamicWindowContentDirective,
+
         WindowComponent,
-        TitleBarComponent
+        TitleBarComponent,
+        DynamicWindowComponent
     ],
     imports: [
         SharedModule,
@@ -23,6 +27,9 @@ import { WindowService } from './services';
     ],
     providers: [
         WindowService
+    ],
+    entryComponents: [
+        DynamicWindowComponent
     ]
 })
 export class WindowModule {}
