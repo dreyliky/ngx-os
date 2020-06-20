@@ -1,0 +1,92 @@
+os-checkbox {
+
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0;
+        background: 0;
+        position: fixed;
+        opacity: 0;
+        border: none;
+
+        + label {
+            line-height: 13px;
+            position: relative;
+            margin-left: var(--checkbox-total-width);
+
+            &:before {
+                content: "";
+                position: absolute;
+                left: calc(-1 * (var(--checkbox-total-width-precalc)));
+                display: inline-block;
+                width: var(--checkbox-width);
+                height: var(--checkbox-width);
+                margin-right: var(--radio-label-spacing);
+                box-shadow: none;
+                border: var(--radio-border);
+                background: var(--radio-bg);
+            }
+        }
+
+        &:focus {
+            + {
+                label.os-element {
+                    outline: 1px dotted #000000;
+                }
+            }
+        }
+
+        &:checked + label {
+            &:after {
+                content: "";
+                display: block;
+                width: var(--checkmark-width);
+                height: var(--checkmark-width);
+                background: url("./icon/checkmark.svg");
+                position: absolute;
+                top: 1px;
+                left: -17px;
+            }
+        }
+
+        &:not([disabled]):not(:active) {
+            + label {
+                &:hover:before {
+                    box-shadow: var(--radio-inner-shadow-hover);
+                }
+            }
+        }
+
+        &:active {
+            + {
+                label {
+                    &::before {
+                        background: var(--radio-bg-active);
+                    }
+                }
+            }
+        }
+    }
+    
+    input[type="checkbox"][disabled] {
+        + {
+            label {
+                &::before {
+                    background: white;
+                    border: var(--radio-border-disabled);
+                }
+            }
+        }
+        &:checked {
+            + {
+                label {
+                    &::after {
+                        background: url("./icon/checkmark-disabled.svg");
+                    }
+                }
+            }
+        }
+    }
+
+}

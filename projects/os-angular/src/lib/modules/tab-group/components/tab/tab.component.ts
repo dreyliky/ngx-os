@@ -14,6 +14,12 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     @Input()
     public label: string;
 
+    @Input()
+    public tabButtonStyle: string;
+
+    @Input()
+    public tabButtonStyleClass: string;
+
     @Output()
     public OnTabButtonClick = new EventEmitter<MouseEvent>();
 

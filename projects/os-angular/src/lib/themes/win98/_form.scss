@@ -31,24 +31,6 @@ option.os-element {
     font-size: 11px;
 }
 
-input.os-element[type="text"],
-input.os-element[type="password"],
-input.os-element[type="email"] {
-    padding: 3px 4px;
-    border: none;
-    background-color: var(--button-highlight);
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0;
-    height: 21px;
-    line-height: 2;
-    &:focus {
-        outline: none;
-    }
-}
-
 .field-row.os-element {
     > * {
         display: flex;

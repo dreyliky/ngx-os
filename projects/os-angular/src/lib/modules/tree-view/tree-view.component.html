@@ -1,1 +1,33 @@
-<p>tree-view works!</p>
+<ul
+    class="os-element tree-view"
+    [ngStyle]="style"
+    [class]="styleClass"
+    [id]="id">
+
+    <ng-container
+        *ngTemplateOutlet="treeNodesTemplate; context:{ nodes: data }">
+    </ng-container>
+
+</ul>
+
+<ng-template
+    #treeNodesTemplate
+    let-nodes="nodes">
+    <li *ngFor="let node of nodes">
+        <ng-template [ngIf]="node.children">
+            <details>
+                <summary>{{ node.label }}</summary>
+
+                <ul>
+                    <ng-container
+                        *ngTemplateOutlet="treeNodesTemplate; context:{ nodes: node.children }">
+                    </ng-container>
+                </ul>
+            </details>
+        </ng-template>
+
+        <ng-template [ngIf]="!node.children">
+            {{ node.label }}
+        </ng-template>
+    </li>
+</ng-template>

@@ -10,3 +10,4 @@ export * from './group-box';
 export * from './slider';
 export * from './tab-group';
 export * from './window';
+export * from './tree-view';

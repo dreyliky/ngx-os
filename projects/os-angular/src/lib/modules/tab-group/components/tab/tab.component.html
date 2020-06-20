@@ -1,6 +1,8 @@
 <ng-template #TabButtonTemplate>
     <button
         class="os-element"
+        [ngStyle]="tabButtonStyle"
+        [class]="tabButtonStyleClass"
         role="tab"
         [attr.aria-selected]="selected"
         [attr.aria-controls]="id"
@@ -12,6 +14,8 @@
 <ng-template #TabContentTemplate>
     <article
         class="os-element"
+        [ngStyle]="style"
+        [class]="styleClass"
         [id]="id"
         role="tabpanel">
         <ng-content>

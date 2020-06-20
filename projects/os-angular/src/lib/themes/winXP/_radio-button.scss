@@ -1,0 +1,100 @@
+os-radio-button {
+
+    input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0;
+        background: 0;
+        position: fixed;
+        opacity: 0;
+        border: none;
+
+        + {
+            label {
+                position: relative;
+                margin-left: var(--radio-total-width);
+                line-height: 16px;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: calc(-1 * (var(--radio-total-width-precalc)));
+                    display: inline-block;
+                    width: var(--radio-width);
+                    height: var(--radio-width);
+                    border-radius: 50%;
+                    border: var(--radio-border);
+                    margin-right: var(--radio-label-spacing);
+                    background: var(--radio-bg);
+                }
+            }
+        }
+
+        &:not([disabled]):not(:active) {
+            + label {
+                &:hover:before {
+                    box-shadow: var(--radio-inner-shadow-hover);
+                }
+            }
+        }
+
+        &:active {
+            + {
+                label {
+                    &::before {
+                        background: var(--radio-bg-active);
+                    }
+                }
+            }
+        }
+
+        &:checked {
+            + {
+                label {
+                    &::after {
+                        content: "";
+                        display: block;
+                        width: var(--radio-dot-width);
+                        height: var(--radio-dot-width);
+                        top: var(--radio-dot-top);
+                        left: var(--radio-dot-left);
+                        position: absolute;
+                        background: url("./icon/radio-dot.svg");
+                    }
+                }
+            }
+        }
+
+        &:focus {
+            + {
+                label {
+                    outline: 1px dotted #000000;
+                }
+            }
+        }
+    }
+
+    input[type="radio"][disabled] {
+        + {
+            label {
+                &::before {
+                    border: var(--radio-border-disabled);
+                    background: white;
+                }
+            }
+        }
+
+        &:checked {
+            + {
+                label {
+                    &::after {
+                        background: url("./icon/radio-dot-disabled.svg");
+                    }
+                }
+            }
+        }
+    }
+
+}

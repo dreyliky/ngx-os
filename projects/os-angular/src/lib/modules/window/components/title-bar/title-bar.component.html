@@ -1,4 +1,8 @@
-<div class="title-bar os-element">
+<div
+    class="title-bar os-element"
+    [ngStyle]="style"
+    [class]="styleClass"
+    [id]="id">
     <div class="title-bar-text os-element">
         <ng-content>
         </ng-content>
@@ -6,10 +10,6 @@
 
     <div
         class="title-bar-controls os-element">
-        <ng-content
-            select="[control-button]">
-        </ng-content>
-
         <os-button
             [ariaLabel]="'Minimize'">
         </os-button>
