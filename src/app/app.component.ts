@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { TreeNode, WindowService } from 'projects/os-angular/src/lib';
+import { TreeNode, DynamicWindowService } from 'projects/os-angular/src/lib';
 import { HelloWorldWindowComponent } from './features/test';
 
 @Component({
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     ];
 
     constructor (
-        private readonly windowService: WindowService
+        private readonly windowService: DynamicWindowService
     ) {}
 
     public ngOnInit (): void {

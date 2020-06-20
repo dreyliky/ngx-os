@@ -1,6 +1,5 @@
 import {
     Component,
-    OnInit,
     OnDestroy,
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -12,6 +11,7 @@ import {
 } from '@angular/core';
 
 import { DynamicWindowContentDirective } from '../../directives';
+import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
 
 @Component({
     selector: 'os-dynamic-window',
@@ -19,24 +19,25 @@ import { DynamicWindowContentDirective } from '../../directives';
     styleUrls: ['./dynamic-window.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DynamicWindowComponent implements OnDestroy, AfterViewInit {
 
-    public componentRef: ComponentRef<any>;
     public childComponentType: Type<any>;
+    public config: DynamicWindowConfig;
+    public windowRef: DynamicWindowRef;
 
     @ViewChild(DynamicWindowContentDirective)
     public dynamicWindowContent: DynamicWindowContentDirective;
+
+    private _childComponentRef: ComponentRef<any>;
 
     constructor (
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
-    public ngOnInit (): void {}
-
     public ngOnDestroy (): void {
-        if (this.componentRef) {
-            this.componentRef.destroy();
+        if (this._childComponentRef) {
+            this._childComponentRef.destroy();
         }
     }
 
@@ -52,7 +53,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         const viewContainerRef = this.dynamicWindowContent.viewContainerRef;
         viewContainerRef.clear();
 
-        this.componentRef = viewContainerRef.createComponent(componentFactory);
+        this._childComponentRef = viewContainerRef.createComponent(componentFactory);
     }
 
 }

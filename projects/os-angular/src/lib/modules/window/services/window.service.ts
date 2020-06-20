@@ -10,12 +10,12 @@ import {
 
 import { DynamicWindowComponent } from '../components';
 import { DynamicWindowInjector, DynamicWindowConfig, DynamicWindowRef } from '../classes';
-import { BehaviorSubject } from 'rxjs';
-import { DynamicWindowDiParams } from '../interfaces';
-import { Observable } from 'rxjs';
+import { DynamicWindowDiParams, DynamicWindowInputParams } from '../interfaces';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Injectable()
-export class WindowService {
+export class DynamicWindowService {
 
     public get windowComponentsRef$ (): Observable<ComponentRef<DynamicWindowComponent>[]> {
         return this._windowComponentsRef$.asObservable();
@@ -30,11 +30,13 @@ export class WindowService {
     ) {}
 
     public open (childComponent: Type<any>, config: DynamicWindowConfig): DynamicWindowRef {
-        const dynamicWindowRef = this.createDynamicWindow(config);
+        const windowRef = this.createDynamicWindow(config);
 
-        this.applyChildComponentForCreatedWindow(childComponent);
+        this.applyDataForCreatedWindow({
+            childComponent, config, windowRef
+        });
 
-        return dynamicWindowRef;
+        return windowRef;
     }
 
     private createDynamicWindow (config: DynamicWindowConfig): DynamicWindowRef {
@@ -79,11 +81,9 @@ export class WindowService {
         windowRef: DynamicWindowRef,
         componentRef: ComponentRef<DynamicWindowComponent>
     ): void {
-        const afterClosedSubscription = windowRef.afterClosed$
+        windowRef.afterClosed$.pipe(first())
             .subscribe(() => {
                 this.removeWindowComponentFromBody(componentRef);
-
-                afterClosedSubscription.unsubscribe();
             });
     }
 
@@ -93,11 +93,14 @@ export class WindowService {
         this._windowComponentsRef$.next([...windowComponentsRef, componentRef]);
     }
 
-    private applyChildComponentForCreatedWindow (childComponent: Type<any>): void {
+    private applyDataForCreatedWindow (params: DynamicWindowInputParams): void {
         const windowComponents = this._windowComponentsRef$.getValue();
         const lastCreatedWindowComponent = windowComponents[windowComponents.length - 1];
+        const { instance: windowInstance } = lastCreatedWindowComponent;
 
-        lastCreatedWindowComponent.instance.childComponentType = childComponent;
+        windowInstance.childComponentType = params.childComponent;
+        windowInstance.config = params.config;
+        windowInstance.windowRef = params.windowRef;
     }
 
 }
