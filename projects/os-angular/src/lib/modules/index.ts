@@ -11,3 +11,4 @@ export * from './slider';
 export * from './tab-group';
 export * from './window';
 export * from './tree-view';
+export * from './scroll-view';

@@ -1,0 +1,14 @@
+<div
+    class="os-element os-scroll-view"
+    [class]="styleClass"
+    [ngStyle]="style"
+    [id]="id"
+    [style.overflow-x]="(horizontalScrollEnabled) ? 'auto' : 'hidden'"
+    [style.overflow-y]="(verticalScrollEnabled) ? 'auto' : 'hidden'">
+
+    <div class="os-element os-content-wrapper">
+        <ng-content>
+        </ng-content>
+    </div>
+
+</div>

@@ -9,8 +9,14 @@
     </os-title-bar>
 
     <div class="window-body">
-        <ng-content>
-        </ng-content>
+        <os-scroll-view
+            [verticalScrollEnabled]="true"
+            [horizontalScrollEnabled]="true"
+            [style]="scrollViewStyle"
+            [styleClass]="scrollViewStyleClass">
+            <ng-content>
+            </ng-content>
+        </os-scroll-view>
     </div>
 
 </div>

@@ -1,24 +1,30 @@
 <div class="wrapper">
-    <div class="content">
+    <os-window
+        [title]="'Demo is here!'"
+        [scrollViewStyle]="{ height: '250px' }">
         <os-text [size]="24" [bold]="true">
             Os Elements
         </os-text>
 
-        <div class="form">
+        <div class="element-wrapper">
             <os-field-row [stacked]="true">
                 <os-text-box
                     [placeholder]="'For example John Smith'"
                     [label]="'Enter your first and last name'">
                 </os-text-box>
             </os-field-row>
+        </div>
 
+        <div class="element-wrapper">
             <os-field-row [stacked]="true">
                 <os-textarea-box
                     [placeholder]="'Tell about yourself'"
                     [label]="'Description'">
                 </os-textarea-box>
             </os-field-row>
+        </div>
 
+        <div class="element-wrapper">
             <os-group-box
                 [label]="'Choose your gender'">
                 <os-radio-button
@@ -31,7 +37,9 @@
                     [name]="'gender'">
                 </os-radio-button>
             </os-group-box>
+        </div>
 
+        <div class="element-wrapper">
             <os-field-row>
                 <os-slider
                     [label]="'Age'"
@@ -42,13 +50,17 @@
                     [value]="18">
                 </os-slider>
             </os-field-row>
+        </div>
 
+        <div class="element-wrapper">
             <os-field-row>
                 <os-checkbox
                     [label]="'I agree to the processing of my personal data'">
                 </os-checkbox>
             </os-field-row>
+        </div>
 
+        <div class="element-wrapper">
             <os-tab-group>
                 <os-tab
                     [selected]="true"
@@ -69,23 +81,22 @@
                     </os-text>
                 </os-tab>
             </os-tab-group>
-
-            <os-text>
-                This is an OS text
-            </os-text>
-
-            <os-button>
-                Submit
-            </os-button>
         </div>
 
-        <os-window
-            [title]="'Test window'">
-            Content
-        </os-window>
+        <div class="element-wrapper">
+            <os-text>
+                Please expand some nodes in tree below to see how it works:
+            </os-text>
+        </div>
 
         <os-tree-view
             [data]="treeItems">
         </os-tree-view>
-    </div>
+
+        <div class="element-wrapper">
+            <os-button>
+                Submit
+            </os-button>
+        </div>
+    </os-window>
 </div>

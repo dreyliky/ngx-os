@@ -11,6 +11,21 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     @Input()
     public title: string;
 
+    @Input()
+    public isMinimizable: boolean = true;
+
+    @Input()
+    public isMaximizable: boolean = true;
+
+    @Input()
+    public isClosable: boolean = true;
+
+    @Input()
+    public scrollViewStyle: any;
+
+    @Input()
+    public scrollViewStyleClass: any;
+
     constructor () {
         super({
             elementName: 'os-window'

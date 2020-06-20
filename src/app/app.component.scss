@@ -2,16 +2,18 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    align-items: center;
     justify-content: center;
-    // background-color: silver;
-    background-color: #ece9d8;
+    background-color: #3a6ea5;
 }
 
-.content {
-    width: 50%;
-    margin: 25px;
+os-window {
+    ::ng-deep .window {
+        width: 100vw;
+        max-width: 450px;
+    }
 }
 
-h3 {
-    margin: 0px;
+.element-wrapper {
+    margin: 5px 0px;
 }
