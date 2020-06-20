@@ -1,6 +1,8 @@
 :host::ng-deep .window {
     position: fixed;
     z-index: 1000;
-    left: 0;
-    top: 0;
+
+    ::ng-deep .title-bar {
+        user-select: none;
+    }
 }
