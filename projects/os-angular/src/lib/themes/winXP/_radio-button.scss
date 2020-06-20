@@ -1,3 +1,14 @@
+:root {
+    --radio-dot-width: 5px;
+    --radio-dot-top: 5px;
+    --radio-width: 13px;
+    --radio-inner-shadow-hover: inset -2px -2px #f8b636, inset 2px 2px #fedf9c;
+    --radio-bg-active: linear-gradient(135deg, rgba(176, 176, 167, 1) 0%, rgba(227, 225, 210, 1) 100%);
+    --radio-bg: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    --radio-border: 1px solid #1d5281;
+    --radio-border-disabled: 1px solid #cac8bb;
+}
+
 os-radio-button {
 
     input[type="radio"] {
@@ -24,10 +35,10 @@ os-radio-button {
                     display: inline-block;
                     width: var(--radio-width);
                     height: var(--radio-width);
-                    border-radius: 50%;
-                    border: var(--radio-border);
                     margin-right: var(--radio-label-spacing);
                     background: var(--radio-bg);
+                    border-radius: 50%;
+                    border: var(--radio-border);
                 }
             }
         }

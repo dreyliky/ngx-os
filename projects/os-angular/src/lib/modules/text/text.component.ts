@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OsBaseComponent } from '../../core';
 
 @Component({
@@ -6,6 +6,12 @@ import { OsBaseComponent } from '../../core';
     templateUrl: './text.component.html'
 })
 export class TextComponent extends OsBaseComponent implements OnInit {
+
+    @Input()
+    public size: number = 12;
+
+    @Input()
+    public bold: boolean = false;
 
     constructor () {
         super({

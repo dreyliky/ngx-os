@@ -2,7 +2,9 @@
     class="os-element"
     [ngStyle]="style"
     [class]="styleClass"
-    [id]="id">
+    [id]="id"
+    [style.fontSize]="size + 'px'"
+    [style.fontWeight]="(bold) ? '600' : '400'">
     <ng-content>
     </ng-content>
 </span>

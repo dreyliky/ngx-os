@@ -9,6 +9,15 @@ export class OsBaseButtonComponent extends OsBaseComponent {
     @Input()
     public ariaLabel: string;
 
+    @Input()
+    public ariaControls: string;
+
+    @Input()
+    public ariaSelected: string;
+
+    @Input()
+    public role: string;
+
     @Output()
     public OnFocus: EventEmitter<MouseEvent> = new EventEmitter();
 

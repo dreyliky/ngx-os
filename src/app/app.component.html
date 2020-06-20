@@ -1,6 +1,8 @@
 <div class="wrapper">
     <div class="content">
-        <h3>Os elements</h3>
+        <os-text [size]="24" [bold]="true">
+            Os Elements
+        </os-text>
 
         <div class="form">
             <os-field-row [stacked]="true">
@@ -62,7 +64,9 @@
                 <os-tab
                     [selected]="false"
                     [label]="'Tab 2'">
-                    Tab 2 content
+                    <os-text>
+                        Tab 2 content
+                    </os-text>
                 </os-tab>
             </os-tab-group>
 
@@ -83,15 +87,5 @@
         <os-tree-view
             [data]="treeItems">
         </os-tree-view>
-
-        <hr />
-
-        <h3>Default html elements</h3>
-
-        RandomText outside
-
-        <button>Random button</button>
-        <input type="checkbox" id="rnd-check1" />
-        <label for="rnd-check1">Random checkbox</label>
     </div>
 </div>

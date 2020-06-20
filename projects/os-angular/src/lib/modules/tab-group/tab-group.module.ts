@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { TabGroupComponent } from './tab-group.component';
 import { SharedModule } from '../../shared.module';
 import { TabComponent } from './components/tab/tab.component';
+import { ButtonModule } from '../button';
 
 @NgModule({
     declarations: [
@@ -9,7 +10,9 @@ import { TabComponent } from './components/tab/tab.component';
         TabComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+
+        ButtonModule
     ],
     exports: [
         TabGroupComponent,
