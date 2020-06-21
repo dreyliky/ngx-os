@@ -29,8 +29,8 @@ export class AppComponent implements OnInit {
         this.windowService.open(
             DemoWindowComponent,
             {
-                title: 'Small height window',
-                scrollViewStyle: { height: '150px' },
+                title: 'Window with 200px height',
+                height: '200px',
                 positionX: '850px',
                 positionY: '50px'
             }
