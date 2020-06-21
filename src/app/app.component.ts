@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { TreeNode, DynamicWindowService } from 'projects/os-angular/src/lib';
 import { HelloWorldWindowComponent, DemoWindowComponent } from './features/test';
+import { BrowserComponent } from './features/browser';
 
 @Component({
     selector: 'app-root',
@@ -15,7 +16,14 @@ export class AppComponent implements OnInit {
     ) {}
 
     public ngOnInit (): void {
-        this.windowService.open(HelloWorldWindowComponent, { data: 'There is custom data for window!' });
+        this.windowService.open(
+            HelloWorldWindowComponent,
+            {
+                data: 'There is custom data for window!',
+                positionX: '70px',
+                positionY: '550px'
+            }
+        );
 
         this.windowService.open(
             DemoWindowComponent,
@@ -27,12 +35,14 @@ export class AppComponent implements OnInit {
         );
 
         this.windowService.open(
-            DemoWindowComponent,
+            BrowserComponent,
             {
-                title: 'Window with 200px height',
-                height: '200px',
-                positionX: '850px',
-                positionY: '50px'
+                title: 'Web browser',
+                width: '600px',
+                height: '600px',
+                positionX: '550px',
+                positionY: '50px',
+                scrollViewStyle: { overflow: 'hidden' }
             }
         );
     }

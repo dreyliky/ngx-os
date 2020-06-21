@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { TestModule } from './test';
+import { BrowserModule } from './browser';
 
 @NgModule({
     imports: [
-        TestModule
+        TestModule,
+        BrowserModule
     ],
     exports: [
-        TestModule
+        TestModule,
+        BrowserModule
     ]
 })
 export class FeaturesModule {}
