@@ -50,5 +50,6 @@
     --border-field: inset -1px -1px var(--button-highlight), inset 1px 1px var(--button-shadow),
         inset -2px -2px var(--button-face), inset 2px 2px var(--window-frame);
     --tab-border: none;
-    --title-bar-bg: linear-gradient(90deg, var(--dialog-blue), var(--dialog-blue-light));
+    --title-bar-active-bg: linear-gradient(90deg, var(--dialog-blue), var(--dialog-blue-light));
+    --title-bar-bg: linear-gradient(90deg, var(--button-shadow), var(--surface));
 }

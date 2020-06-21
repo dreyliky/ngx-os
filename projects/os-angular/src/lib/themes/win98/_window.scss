@@ -28,13 +28,19 @@ os-window {
         top: -3px !important;
     }
 
+    .os-window.active {
+        .os-title-bar {
+            background: var(--title-bar-active-bg);
+        }
+    }
+
 }
 
 os-title-bar {
 
     .os-title-bar {
-        font-size: 11px;
         background: var(--title-bar-bg);
+        font-size: 11px;
         padding: 3px 2px 3px 3px;
         display: flex;
         justify-content: space-between;

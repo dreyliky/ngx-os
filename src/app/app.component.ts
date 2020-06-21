@@ -33,6 +33,16 @@ export class AppComponent implements OnInit {
                 positionY: '50px'
             }
         );
+
+        this.windowService.open(
+            DemoWindowComponent,
+            {
+                title: 'Demo',
+                height: '250px',
+                positionX: '500px',
+                positionY: '50px'
+            }
+        );
     }
 
 }

@@ -8,13 +8,14 @@ import {
     ComponentRef,
     Type,
     ChangeDetectorRef,
-    OnInit
+    OnInit,
+    HostListener
 } from '@angular/core';
 
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
 import { WindowComponent } from '../../window.component';
-import { HtmlElementDragAndDrop, HtmlElementResizing } from '../../../../helpers';
+import { HtmlElementDragAndDrop, HtmlElementResizing, OutsideClick } from '../../../../helpers';
 import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
 import { Subscription } from 'rxjs';
 
@@ -45,7 +46,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private readonly _windowComponent: WindowComponent;
 
     private readonly _baseZIndex: number = 1000;
-    private readonly _baseActiveWindowZIndex: number = 1000;
 
     private _childComponentRef: ComponentRef<any>;
 
@@ -99,6 +99,15 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.changeDetector.detectChanges();
     }
 
+    @HostListener('document:click', ['$event'])
+    public onClickOutside (event: MouseEvent): void {
+        const isClickOutsideWindow = OutsideClick.checkForElement(this._windowElement, event);
+
+        if (isClickOutsideWindow && this.isActive) {
+            this.windowControlService.setActiveStateForWindowId(null);
+        }
+    }
+
     public onMinimizeButtonClick (): void {
         this.windowRef.hide();
     }
@@ -116,15 +125,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     private updateZIndex (): void {
-        let calculatedZIndex: number = this._baseZIndex;
-
-        calculatedZIndex += this.windowIdOrderIndex;
-
-        if (this.isActive) {
-            calculatedZIndex += this._baseActiveWindowZIndex;
-        }
-
-        this.zIndex = calculatedZIndex;
+        this.zIndex = (this._baseZIndex + this.windowIdOrderIndex);
 
         this.changeDetector.detectChanges();
     }
