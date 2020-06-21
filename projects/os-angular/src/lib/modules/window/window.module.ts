@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared.module';
 import { ButtonModule } from '../button';
 import { ScrollViewModule } from '../scroll-view';
-import { DynamicWindowService } from './services';
+import { DynamicWindowService, DynamicWindowControlService } from './services';
 import { DynamicWindowContentDirective } from './directives';
 import { WindowComponent } from './window.component';
 import { TitleBarComponent, DynamicWindowComponent } from './components';
@@ -26,6 +26,7 @@ import { TitleBarComponent, DynamicWindowComponent } from './components';
         TitleBarComponent
     ],
     providers: [
+        DynamicWindowControlService,
         DynamicWindowService
     ],
     entryComponents: [

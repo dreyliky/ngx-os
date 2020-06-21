@@ -3,10 +3,15 @@
     [ngStyle]="style"
     [class]="styleClass"
     [id]="id"
+    [class.active]="isActive"
     [style.width]="width"
     [style.height]="height"
     [style.left]="positionX"
-    [style.top]="positionY">
+    [style.top]="positionY"
+    [style.zIndex]="zIndex"
+    (click)="OnClick.emit($event)"
+    (mousedown)="OnMouseDown.emit($event)"
+    (mouseup)="OnMouseUp.emit($event)">
 
     <os-title-bar
         (OnMinimizeButtonClick)="OnMinimizeButtonClick.emit($event)"

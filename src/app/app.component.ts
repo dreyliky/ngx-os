@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
                 positionY: '50px'
             }
         );
+
+        this.windowService.open(HelloWorldWindowComponent, { data: 'Another window', positionX: '450px', positionY: '100px' });
     }
 
 }

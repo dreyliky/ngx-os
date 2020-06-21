@@ -24,6 +24,12 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public positionY: string;
 
     @Input()
+    public zIndex: number;
+
+    @Input()
+    public isActive: boolean = false;
+
+    @Input()
     public isMinimizable: boolean = true;
 
     @Input()
@@ -37,6 +43,15 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
 
     @Input()
     public scrollViewStyleClass: any;
+
+    @Output()
+    public OnClick = new EventEmitter<MouseEvent>();
+
+    @Output()
+    public OnMouseDown = new EventEmitter<MouseEvent>();
+
+    @Output()
+    public OnMouseUp = new EventEmitter<MouseEvent>();
 
     @Output()
     public OnMinimizeButtonClick = new EventEmitter<MouseEvent>();
