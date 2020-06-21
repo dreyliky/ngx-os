@@ -124,7 +124,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     private initHtmlElements (): void {
         this._windowElement = document.getElementById(this._windowComponent.id) as HTMLDivElement;
-        this._titleBarElement = this._windowElement.querySelector('.title-bar');
+        this._titleBarElement = this._windowElement.querySelector('.os-title-bar');
     }
 
     private initTitleDragAndDrop (): void {

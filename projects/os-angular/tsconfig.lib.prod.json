@@ -1,12 +1,6 @@
 {
     "extends": "./tsconfig.lib.json",
     "angularCompilerOptions": {
-        "enableIvy": false,
-        "paths": {
-            "@Lib/*": ["src/lib/*"],
-            "@Core/*": ["src/lib/core/*"],
-            "@Modules/*": ["src/lib/modules/*"],
-            "@Helpers/*": ["src/lib/helpers/*"]
-        }
+        "enableIvy": false
     }
 }

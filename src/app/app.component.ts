@@ -26,7 +26,15 @@ export class AppComponent implements OnInit {
             }
         );
 
-        this.windowService.open(HelloWorldWindowComponent, { data: 'Another window', positionX: '450px', positionY: '100px' });
+        this.windowService.open(
+            DemoWindowComponent,
+            {
+                title: 'Small height window',
+                scrollViewStyle: { height: '150px' },
+                positionX: '850px',
+                positionY: '50px'
+            }
+        );
     }
 
 }

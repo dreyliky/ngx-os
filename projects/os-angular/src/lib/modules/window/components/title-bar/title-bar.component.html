@@ -1,15 +1,15 @@
 <div
-    class="title-bar os-element"
+    class="os-title-bar os-element"
     [ngStyle]="style"
     [class]="styleClass"
     [id]="id">
-    <div class="title-bar-text os-element">
+    <div class="os-title-bar-text os-element">
         <ng-content>
         </ng-content>
     </div>
 
     <div
-        class="title-bar-controls os-element">
+        class="os-title-bar-controls os-element">
         <os-button
             [ariaLabel]="'Minimize'"
             (OnClick)="OnMinimizeButtonClick.emit($event)">

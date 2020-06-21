@@ -1,6 +1,6 @@
 os-window {
 
-    .window {
+    .os-window {
         font-size: 11px;
         font-family: var(--sans-serif);
         box-shadow: inset -1px -1px #00138c, inset 1px 1px #0831d9, inset -2px -2px #001ea0, inset 2px 2px #166aee,
@@ -16,7 +16,7 @@ os-window {
         }
     }
 
-    .window-body {
+    .os-window-body {
         margin: 0px 3px;
     }
 
@@ -24,7 +24,7 @@ os-window {
 
 os-title-bar {
 
-    .title-bar {
+    .os-title-bar {
         font-size: 11px;
         font-family: "Trebuchet MS";
         background: linear-gradient(
@@ -51,7 +51,7 @@ os-title-bar {
         text-shadow: 1px 1px #0f1089;
     }
 
-    .title-bar-text {
+    .os-title-bar-text {
         font-weight: bold;
         color: white;
         letter-spacing: 0;
@@ -59,7 +59,7 @@ os-title-bar {
         padding-left: 3px;
     }
 
-    .title-bar-controls {
+    .os-title-bar-controls {
         display: flex;
 
         button {

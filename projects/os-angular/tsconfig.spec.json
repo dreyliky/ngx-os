@@ -5,13 +5,7 @@
         "types": [
             "jasmine",
             "node"
-        ],
-        "paths": {
-            "@Lib/*": ["src/lib/*"],
-            "@Core/*": ["src/lib/core/*"],
-            "@Modules/*": ["src/lib/modules/*"],
-            "@Helpers/*": ["src/lib/helpers/*"]
-        }
+        ]
     },
     "files": [
         "src/test.ts"

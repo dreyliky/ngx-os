@@ -9,13 +9,7 @@
         "lib": [
             "dom",
             "es2018"
-        ],
-        "paths": {
-            "@Lib/*": ["src/lib/*"],
-            "@Core/*": ["src/lib/core/*"],
-            "@Modules/*": ["src/lib/modules/*"],
-            "@Helpers/*": ["src/lib/helpers/*"]
-        }
+        ]
     },
     "angularCompilerOptions": {
         "skipTemplateCodegen": true,
