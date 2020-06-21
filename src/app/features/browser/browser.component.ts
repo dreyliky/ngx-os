@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -9,12 +9,17 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class BrowserComponent implements OnInit {
 
-    public homePage: SafeUrl;
+    @Input()
+    public page: string;
+
+    public src: SafeUrl;
+
+    private readonly defaultPage: string = 'https://bing.com';
 
     constructor (
         private readonly sanitizer: DomSanitizer
     ) {
-        this.homePage = this.sanitizer.bypassSecurityTrustResourceUrl('https://bing.com');
+        this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.page || this.defaultPage);
     }
 
     public ngOnInit (): void {}

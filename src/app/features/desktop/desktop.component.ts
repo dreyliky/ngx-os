@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ListItem } from 'projects/os-angular/src/lib/modules/list/interfaces/item.interface';
 import { DynamicWindowService } from 'projects/os-angular/src/lib';
 import { DemoWindowComponent, HelloWorldWindowComponent } from '../test';
+import { SurvivWindowComponent } from '../test/components/surviv-window/surviv-window.component';
 
 @Component({
     selector: 'app-desktop',
@@ -26,6 +27,11 @@ export class DesktopComponent implements OnInit {
             label: 'Calculator',
             iconUrl: 'assets/icons/calculator.png',
             onDblClick: () => alert("Calculator")
+        },
+        {
+            label: 'Surviv.io',
+            iconUrl: 'assets/icons/surviv.png',
+            onDblClick: () => this.onAgarioShortcutDblClick()
         }
     ];
 
@@ -57,6 +63,18 @@ export class DesktopComponent implements OnInit {
                 data: 'There is custom data for window!',
                 positionX: '70px',
                 positionY: '550px'
+            }
+        );
+    }
+
+    private onAgarioShortcutDblClick (): void {
+        this.windowService.open(
+            SurvivWindowComponent,
+            {
+                title: 'Surviv.io',
+                width: '800px',
+                height: '600px',
+                isFullscreen: true
             }
         );
     }

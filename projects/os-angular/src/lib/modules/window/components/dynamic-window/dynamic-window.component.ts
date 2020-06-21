@@ -66,6 +66,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     ) {}
 
     public ngOnInit (): void {
+        this.isFullscreen = this.config.isFullscreen;
+        this.isHidden = this.config.isHidden;
         this.positionX = this.config.positionX;
         this.positionY = this.config.positionY;
     }
