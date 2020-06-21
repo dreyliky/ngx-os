@@ -13,6 +13,10 @@
     (mousedown)="OnMouseDown.emit($event)"
     (mouseup)="OnMouseUp.emit($event)">
 
+    <ng-content
+        select="[os-window-content]">
+    </ng-content>
+
     <os-title-bar
         (OnMinimizeButtonClick)="OnMinimizeButtonClick.emit($event)"
         (OnMaximizeButtonClick)="OnMaximizeButtonClick.emit($event)"

@@ -14,7 +14,7 @@ import {
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
 import { WindowComponent } from '../../window.component';
-import { HtmlElementDragAndDrop } from '../../../../helpers';
+import { HtmlElementDragAndDrop, HtmlElementResizing } from '../../../../helpers';
 import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
 import { Subscription } from 'rxjs';
 
@@ -51,6 +51,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private _titleBarElement: HTMLDivElement;
 
     private _titleDragAndDrop: HtmlElementDragAndDrop;
+    private _windowResizing: HtmlElementResizing;
 
     private _activeWindowIdSubscription: Subscription;
     private _windowIdOrderSubscription: Subscription;
@@ -76,6 +77,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         }
 
         this._titleDragAndDrop.destroy();
+        this._windowResizing.destroy();
     }
 
     public ngAfterViewInit (): void {
@@ -85,6 +87,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
         this.initHtmlElements();
         this.initTitleDragAndDrop();
+        this.initWindowResizing();
+
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
 
@@ -137,6 +141,10 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
                 this.changeDetector.markForCheck();
             });
+    }
+
+    private initWindowResizing (): void {
+        this._windowResizing = new HtmlElementResizing(this._windowElement);
     }
 
     private initActiveWindowIdObserver (): void {

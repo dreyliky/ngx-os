@@ -11,8 +11,18 @@
     [isClosable]="config.isClosable"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
+    [styleClass]="'os-resizable'"
     (OnMouseDown)="onWindowMouseDown()"
     (OnCloseButtonClick)="onCloseButtonClick()">
+
+    <div
+        os-window-content
+        class="os-resizers">
+        <div class="os-resizer top-left"></div>
+        <div class="os-resizer top-right"></div>
+        <div class="os-resizer bottom-left"></div>
+        <div class="os-resizer bottom-right"></div>
+    </div>
 
     <ng-template dynamicWindowContent>
     </ng-template>
