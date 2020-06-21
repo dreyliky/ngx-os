@@ -6,6 +6,8 @@
     [positionY]="positionY"
     [zIndex]="zIndex"
     [isActive]="isActive"
+    [isFullscreen]="isFullscreen"
+    [isHidden]="isHidden"
     [isMinimizable]="config.isMinimizable"
     [isMaximizable]="config.isMaximizable"
     [isClosable]="config.isClosable"
@@ -13,6 +15,8 @@
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     [styleClass]="'os-resizable'"
     (OnMouseDown)="onWindowMouseDown()"
+    (OnMinimizeButtonClick)="onMinimizeButtonClick()"
+    (OnMaximizeButtonClick)="onMaximizeButtonClick()"
     (OnCloseButtonClick)="onCloseButtonClick()">
 
     <div

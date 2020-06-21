@@ -34,6 +34,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public positionY: string;
     public zIndex: number;
     public isActive: boolean = false;
+    public isFullscreen: boolean = false;
+    public isHidden: boolean = false;
     public windowIdOrderIndex: number = 0;
 
     @ViewChild(DynamicWindowContentDirective, { static: true })
@@ -53,6 +55,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private _titleDragAndDrop: HtmlElementDragAndDrop;
     private _windowResizing: HtmlElementResizing;
 
+    private _isHiddenStateSubscription: Subscription;
     private _activeWindowIdSubscription: Subscription;
     private _windowIdOrderSubscription: Subscription;
 
@@ -72,9 +75,9 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
             this._childComponentRef.destroy();
         }
 
-        if (this._activeWindowIdSubscription) {
-            this._activeWindowIdSubscription.unsubscribe();
-        }
+        this._isHiddenStateSubscription.unsubscribe();
+        this._activeWindowIdSubscription.unsubscribe();
+        this._windowIdOrderSubscription.unsubscribe();
 
         this._titleDragAndDrop.destroy();
         this._windowResizing.destroy();
@@ -89,10 +92,19 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.initTitleDragAndDrop();
         this.initWindowResizing();
 
+        this.initIsHiddenStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
 
         this.changeDetector.detectChanges();
+    }
+
+    public onMinimizeButtonClick (): void {
+        this.windowRef.hide();
+    }
+
+    public onMaximizeButtonClick (): void {
+        this.isFullscreen = !this.isFullscreen;
     }
 
     public onCloseButtonClick (): void {
@@ -136,10 +148,12 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
         this._titleDragAndDrop.coords$
             .subscribe((coords) => {
-                this.positionX = `${coords.left}px`;
-                this.positionY = `${coords.top}px`;
+                if (!this.isFullscreen) {
+                    this.positionX = `${coords.left}px`;
+                    this.positionY = `${coords.top}px`;
 
-                this.changeDetector.markForCheck();
+                    this.changeDetector.markForCheck();
+                }
             });
     }
 
@@ -163,6 +177,15 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
                     .findIndex((currWindowId) => currWindowId === this._windowComponent.id);
 
                 this.updateZIndex();
+            });
+    }
+
+    private initIsHiddenStateObserver (): void {
+        this._isHiddenStateSubscription = this.windowRef.isHidden$
+            .subscribe((state) => {
+                this.isHidden = state;
+
+                this.changeDetector.detectChanges();
             });
     }
 

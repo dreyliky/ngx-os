@@ -33,18 +33,6 @@ export class AppComponent implements OnInit {
                 positionY: '50px'
             }
         );
-
-        this.windowService.open(
-            BrowserComponent,
-            {
-                title: 'Web browser',
-                width: '600px',
-                height: '600px',
-                positionX: '550px',
-                positionY: '50px',
-                scrollViewStyle: { overflow: 'hidden' }
-            }
-        );
     }
 
 }
