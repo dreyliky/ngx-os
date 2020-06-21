@@ -12,3 +12,4 @@ export * from './tab-group';
 export * from './window';
 export * from './tree-view';
 export * from './scroll-view';
+export * from './list';

@@ -1,1 +1,1 @@
-export * from './tree-node.interface';
+export * from './node.interface';

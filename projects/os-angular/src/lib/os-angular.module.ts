@@ -15,7 +15,8 @@ import {
     TabGroupModule,
     WindowModule,
     TreeViewModule,
-    ScrollViewModule
+    ScrollViewModule,
+    ListModule
 } from './modules';
 
 @NgModule({
@@ -35,7 +36,8 @@ import {
         TabGroupModule,
         WindowModule,
         TreeViewModule,
-        ScrollViewModule
+        ScrollViewModule,
+        ListModule
     ],
     exports: [
         ButtonModule,
@@ -51,7 +53,8 @@ import {
         TabGroupModule,
         WindowModule,
         TreeViewModule,
-        ScrollViewModule
+        ScrollViewModule,
+        ListModule
     ]
 })
 export class OsAngularModule {}
