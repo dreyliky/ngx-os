@@ -1,7 +1,18 @@
 import { Directive, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
 import { ResizerEnum } from '../enums';
 import { ResizerConfig } from '../interfaces';
-import { Resizer, TopLeftResizer, TopRightResizer, BottomLeftResizer, BottomRightResizer } from '../classes';
+
+import {
+    Resizer,
+    TopResizer,
+    LeftResizer,
+    RightResizer,
+    BottomResizer,
+    TopLeftResizer,
+    TopRightResizer,
+    BottomLeftResizer,
+    BottomRightResizer
+} from '../classes';
 
 @Directive({
     selector: '[os-resizable]'
@@ -35,10 +46,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     private readonly _defaultMinSize: number = 20;
 
-    private readonly _resizerClasses: ResizerEnum[] = [
-        ResizerEnum.topLeft, ResizerEnum.topRight,
-        ResizerEnum.bottomLeft, ResizerEnum.bottomRight
-    ];
+    private _resizerClasses: ResizerEnum[];
 
     private readonly _resizerInstanceMap: Map<ResizerEnum, Resizer> = new Map();
 
@@ -50,6 +58,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.minWidth = this.resizerConfig?.minWidth || this._defaultMinSize;
         this.minHeight = this.resizerConfig?.minHeight || this._defaultMinSize;
 
+        this.initResizerClasses();
         this.initResizableElement();
         this.createResizerElement();
         this.initResizers();
@@ -58,6 +67,11 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     public ngOnDestroy (): void {
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
+    }
+
+    private initResizerClasses (): void {
+        this._resizerClasses = Object.keys(ResizerEnum)
+            .filter((key) => typeof(key) === 'string') as ResizerEnum[];
     }
 
     private initResizableElement (): void {
@@ -99,6 +113,10 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     private initResizerInstances (): void {
         this._resizerInstanceMap
+            .set(ResizerEnum.top, new TopResizer(this))
+            .set(ResizerEnum.left, new LeftResizer(this))
+            .set(ResizerEnum.right, new RightResizer(this))
+            .set(ResizerEnum.bottom, new BottomResizer(this))
             .set(ResizerEnum.topLeft, new TopLeftResizer(this))
             .set(ResizerEnum.topRight, new TopRightResizer(this))
             .set(ResizerEnum.bottomLeft, new BottomLeftResizer(this))

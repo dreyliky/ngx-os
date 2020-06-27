@@ -1,6 +1,10 @@
 export enum ResizerEnum {
-    topLeft     = 'top-left',
-    topRight    = 'top-right',
-    bottomLeft  = 'bottom-left',
-    bottomRight = 'bottom-right',
+    top         = 'top',
+    left        = 'left',
+    right       = 'right',
+    bottom      = 'bottom',
+    topLeft     = 'topLeft',
+    topRight    = 'topRight',
+    bottomLeft  = 'bottomLeft',
+    bottomRight = 'bottomRight',
 }

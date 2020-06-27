@@ -1,32 +1,96 @@
+$border-resizer-size: 5px;
+
+@mixin corner-resizer {
+    width: 8px;
+    height: 8px;
+    opacity: .999;
+    z-index: 999;
+}
+
+@mixin border-resizer {
+    opacity: .998;
+    z-index: 998;
+}
+
 os-resizers {
     .os-resizer {
-        width: 8px;
-        height: 8px;
         opacity: 0;
         position: absolute;
-    }
+
+        &.top {
+            @include border-resizer;
+
+            width: 100%;
+            height: $border-resizer-size;
+
+            top: -0px;
+            left: -0px;
+            cursor: ns-resize;
+        }
+
+        &.left {
+            @include border-resizer;
+
+            width: $border-resizer-size;
+            height: 100%;
+
+            top: -0px;
+            left: -0px;
+            cursor: ew-resize;
+        }
+
+        &.right {
+            @include border-resizer;
+
+            width: $border-resizer-size;
+            height: 100%;
+
+            top: -0px;
+            right: -0px;
+            cursor: ew-resize;
+        }
+
+        &.bottom {
+            @include border-resizer;
+
+            width: 100%;
+            height: $border-resizer-size;
+
+            bottom: -0px;
+            left: -0px;
+            cursor: ns-resize;
+        }
+
+        &.topLeft {
+            @include corner-resizer;
     
-    .os-resizer.top-left {
-        left: -0px;
-        top: -0px;
-        cursor: nwse-resize;
-    }
+            left: -0px;
+            top: -0px;
+            cursor: nwse-resize;
+        }
+        
+        &.topRight {
+            @include corner-resizer;
     
-    .os-resizer.top-right {
-        right: -0px;
-        top: -0px;
-        cursor: nesw-resize;
-    }
+            right: -0px;
+            top: -0px;
+            cursor: nesw-resize;
+        }
+        
+        &.bottomLeft {
+            @include corner-resizer;
     
-    .os-resizer.bottom-left {
-        left: 0px;
-        bottom: -0px;
-        cursor: nesw-resize;
-    }
+            left: -0px;
+            bottom: -0px;
+            cursor: nesw-resize;
+        }
+        
+        &.bottomRight {
+            @include corner-resizer;
     
-    .os-resizer.bottom-right {
-        right: -0px;
-        bottom: -0px;
-        cursor: nwse-resize;
+            right: -0px;
+            bottom: -0px;
+            cursor: nwse-resize;
+        }
     }
 }
