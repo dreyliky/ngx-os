@@ -10,9 +10,10 @@
     margin: 15px;
 }
 
-.test-block-width-static-width {
+.test-resizable-block {
     width: 350px;
     height: 150px;
+    position: relative;
     background: rgba(0, 0, 255, .2);
     display: flex;
     align-items: center;

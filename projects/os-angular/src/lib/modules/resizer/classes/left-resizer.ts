@@ -7,7 +7,10 @@ export class LeftResizer extends Resizer {
 
         if (width > this.context.minWidth && width < this.context.maxWidth) {
             this.context.resizableElement.style.width = `${width}px`;
-            this.context.resizableElement.style.left = `${this.context.originalX + (event.pageX - this.context.originalMouseX)}px`;
+
+            if (this.context.isElementAbsolute) {
+                this.context.resizableElement.style.left = `${this.context.originalX + (event.pageX - this.context.originalMouseX)}px`;
+            }
         }
     }
 

@@ -12,7 +12,10 @@ export class TopRightResizer extends Resizer {
 
         if (height > this.context.minHeight && height < this.context.maxHeight) {
             this.context.resizableElement.style.height = `${height}px`;
-            this.context.resizableElement.style.top = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
+
+            if (this.context.isElementAbsolute) {
+                this.context.resizableElement.style.top = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
+            }
         }
     }
 
