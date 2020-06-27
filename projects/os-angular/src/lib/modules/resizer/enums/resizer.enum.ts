@@ -6,5 +6,5 @@ export enum ResizerEnum {
     topLeft     = 'topLeft',
     topRight    = 'topRight',
     bottomLeft  = 'bottomLeft',
-    bottomRight = 'bottomRight',
+    bottomRight = 'bottomRight'
 }

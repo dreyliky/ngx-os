@@ -48,7 +48,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     private readonly _defaultMinSize: number = 20;
 
-    private _resizerClasses: ResizerEnum[];
+    private _allowedResizers: ResizerEnum[];
 
     private readonly _resizerInstanceMap: Map<ResizerEnum, Resizer> = new Map();
 
@@ -62,7 +62,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.maxWidth = this.resizerConfig?.maxWidth || Infinity;
         this.maxHeight = this.resizerConfig?.maxHeight || Infinity;
 
-        this.initResizerClasses();
+        this.initAllowedResizers();
         this.initResizableElement();
         this.createResizerElement();
         this.initResizers();
@@ -73,9 +73,13 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
     }
 
-    private initResizerClasses (): void {
-        this._resizerClasses = Object.keys(ResizerEnum)
-            .filter((key) => typeof(key) === 'string') as ResizerEnum[];
+    private initAllowedResizers (): void {
+        if (this.resizerConfig.allowedResizers) {
+            this._allowedResizers = this.resizerConfig.allowedResizers;
+        } else {
+            this._allowedResizers = Object.keys(ResizerEnum)
+                .filter((key) => typeof(key) === 'string') as ResizerEnum[];
+        }
     }
 
     private initResizableElement (): void {
@@ -89,7 +93,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     private createResizerElement (): void {
         this._resizerElement = document.createElement(`os-resizers`);
 
-        this._resizerClasses.forEach((currResizerClass) => {
+        this._allowedResizers.forEach((currResizerClass) => {
             const resizerElement = document.createElement('div');
 
             resizerElement.classList.add('os-resizer', currResizerClass);

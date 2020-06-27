@@ -3,6 +3,7 @@ import { ListItem } from 'projects/os-angular/src/lib/modules/list/interfaces/it
 import { DynamicWindowService } from 'projects/os-angular/src/lib';
 import { DemoWindowComponent, HelloWorldWindowComponent } from '../test';
 import { SurvivWindowComponent } from '../test/components/surviv-window/surviv-window.component';
+import { ResizerEnum } from 'projects/os-angular/src/lib/modules/resizer/enums';
 
 @Component({
     selector: 'app-desktop',

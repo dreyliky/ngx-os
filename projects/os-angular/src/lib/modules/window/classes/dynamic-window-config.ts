@@ -1,3 +1,5 @@
+import { ResizerEnum } from '../../resizer/enums';
+
 export class DynamicWindowConfig<D = any> {
     public title?: string = 'OS dynamic window';
     public data?: D;
@@ -7,6 +9,7 @@ export class DynamicWindowConfig<D = any> {
     public minHeight?: string = '175px';
     public maxWidth?: string;
     public maxHeight?: string;
+    public allowedResizers?: ResizerEnum[];
     public positionX?: string = '50%';
     public positionY?: string = '50%';
     public isFullscreen?: boolean = false;

@@ -18,6 +18,7 @@ import { WindowComponent } from '../../window.component';
 import { HtmlElementDragAndDrop, OutsideClick } from '../../../../helpers';
 import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
 import { Subscription } from 'rxjs';
+import { ResizerEnum } from '../../../resizer/enums';
 
 @Component({
     selector: 'os-dynamic-window',
@@ -35,6 +36,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public minHeight: number;
     public maxWidth: number;
     public maxHeight: number;
+    public allowedResizers: ResizerEnum[];
     public positionX: string;
     public positionY: string;
     public zIndex: number;
@@ -77,6 +79,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.minHeight = Number.parseInt(this.config.minHeight);
         this.maxWidth = Number.parseInt(this.config.maxWidth);
         this.maxHeight = Number.parseInt(this.config.maxHeight);
+        this.allowedResizers = this.config.allowedResizers;
     }
 
     public ngOnDestroy (): void {
