@@ -33,6 +33,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     public minWidth: number;
     public minHeight: number;
+    public maxWidth: number;
+    public maxHeight: number;
     public positionX: string;
     public positionY: string;
     public zIndex: number;
@@ -73,6 +75,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.positionY = this.config.positionY;
         this.minWidth = Number.parseInt(this.config.minWidth);
         this.minHeight = Number.parseInt(this.config.minHeight);
+        this.maxWidth = Number.parseInt(this.config.maxWidth);
+        this.maxHeight = Number.parseInt(this.config.maxHeight);
     }
 
     public ngOnDestroy (): void {

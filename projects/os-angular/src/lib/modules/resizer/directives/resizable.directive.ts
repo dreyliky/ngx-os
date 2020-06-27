@@ -23,8 +23,10 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     public resizerConfig: ResizerConfig;
 
     public readonly resizers: HTMLDivElement[] = [];
-    public minWidth;
-    public minHeight;
+    public minWidth: number;
+    public minHeight: number;
+    public maxWidth: number;
+    public maxHeight: number;
     public originalWidth = 20;
     public originalHeight = 20;
     public originalX = 20;
@@ -57,6 +59,8 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     public ngOnInit (): void {
         this.minWidth = this.resizerConfig?.minWidth || this._defaultMinSize;
         this.minHeight = this.resizerConfig?.minHeight || this._defaultMinSize;
+        this.maxWidth = this.resizerConfig?.maxWidth || Infinity;
+        this.maxHeight = this.resizerConfig?.maxHeight || Infinity;
 
         this.initResizerClasses();
         this.initResizableElement();
