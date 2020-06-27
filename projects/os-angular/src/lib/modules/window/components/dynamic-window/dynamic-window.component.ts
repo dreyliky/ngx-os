@@ -15,7 +15,7 @@ import {
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
 import { WindowComponent } from '../../window.component';
-import { HtmlElementDragAndDrop, HtmlElementResizing, OutsideClick } from '../../../../helpers';
+import { HtmlElementDragAndDrop, OutsideClick } from '../../../../helpers';
 import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
 import { Subscription } from 'rxjs';
 
@@ -31,6 +31,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public config: DynamicWindowConfig;
     public windowRef: DynamicWindowRef;
 
+    public minWidth: number;
+    public minHeight: number;
     public positionX: string;
     public positionY: string;
     public zIndex: number;
@@ -53,7 +55,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private _titleBarElement: HTMLDivElement;
 
     private _titleDragAndDrop: HtmlElementDragAndDrop;
-    private _windowResizing: HtmlElementResizing;
 
     private _isHiddenStateSubscription: Subscription;
     private _activeWindowIdSubscription: Subscription;
@@ -70,6 +71,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.isHidden = this.config.isHidden;
         this.positionX = this.config.positionX;
         this.positionY = this.config.positionY;
+        this.minWidth = Number.parseInt(this.config.minWidth);
+        this.minHeight = Number.parseInt(this.config.minHeight);
     }
 
     public ngOnDestroy (): void {
@@ -82,7 +85,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this._windowIdOrderSubscription.unsubscribe();
 
         this._titleDragAndDrop.destroy();
-        this._windowResizing.destroy();
     }
 
     public ngAfterViewInit (): void {
@@ -92,7 +94,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
         this.initHtmlElements();
         this.initTitleDragAndDrop();
-        this.initWindowResizing();
 
         this.initIsHiddenStateObserver();
         this.initActiveWindowIdObserver();
@@ -158,10 +159,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
                     this.changeDetector.markForCheck();
                 }
             });
-    }
-
-    private initWindowResizing (): void {
-        this._windowResizing = new HtmlElementResizing(this._windowElement);
     }
 
     private initActiveWindowIdObserver (): void {

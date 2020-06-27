@@ -73,7 +73,7 @@
         ],
         "prefer-const": true,
         "quotemark": false,
-        "radix": true,
+        "radix": false,
         "semicolon": [
             true,
             "always"

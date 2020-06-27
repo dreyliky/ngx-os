@@ -20,34 +20,3 @@
 :host::ng-deep .os-scroll-view {
     height: 100%;
 }
-  
-:host::ng-deep .os-resizable .os-resizers .os-resizer {
-    width: 8px;
-    height: 8px;
-    opacity: 0;
-    position: absolute;
-}
-
-:host::ng-deep .os-resizable .os-resizers .os-resizer.top-left {
-    left: -0px;
-    top: -0px;
-    cursor: nwse-resize;
-}
-
-:host::ng-deep .os-resizable .os-resizers .os-resizer.top-right {
-    right: -0px;
-    top: -0px;
-    cursor: nesw-resize;
-}
-
-:host::ng-deep .os-resizable .os-resizers .os-resizer.bottom-left {
-    left: 0px;
-    bottom: -0px;
-    cursor: nesw-resize;
-}
-
-:host::ng-deep .os-resizable .os-resizers .os-resizer.bottom-right {
-    right: -0px;
-    bottom: -0px;
-    cursor: nwse-resize;
-}

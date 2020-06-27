@@ -22,13 +22,12 @@ export class HtmlElementDragAndDrop {
     constructor (element: HTMLElement) {
         this.element = element;
 
-        this.element.onmousedown = this.elementMouseDownHandler;
+        this.element.addEventListener('mousedown', this.elementMouseDownHandler);
     }
 
     public destroy (): void {
         this._coords$.complete();
-        this.element.onmousedown = null;
-        this.element.onmouseup = null;
+        this.element.removeEventListener('mousedown', this.elementMouseDownHandler);
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {

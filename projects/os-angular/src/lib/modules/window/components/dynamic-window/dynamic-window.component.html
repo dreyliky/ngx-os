@@ -1,4 +1,10 @@
 <os-window
+    os-resizable
+    [resizerConfig]="{
+        targetElementSelector: '.os-window',
+        minWidth: minWidth,
+        minHeight: minHeight
+    }"
     [title]="config.title"
     [width]="config.width"
     [height]="config.height"
@@ -18,15 +24,6 @@
     (OnMinimizeButtonClick)="onMinimizeButtonClick()"
     (OnMaximizeButtonClick)="onMaximizeButtonClick()"
     (OnCloseButtonClick)="onCloseButtonClick()">
-
-    <div
-        os-window-content
-        class="os-resizers">
-        <div class="os-resizer top-left"></div>
-        <div class="os-resizer top-right"></div>
-        <div class="os-resizer bottom-left"></div>
-        <div class="os-resizer bottom-right"></div>
-    </div>
 
     <ng-template dynamicWindowContent>
     </ng-template>

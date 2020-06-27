@@ -3,6 +3,8 @@ export class DynamicWindowConfig<D = any> {
     public data?: D;
     public width?: string = 'auto';
     public height?: string = 'auto';
+    public minWidth?: string = '275px';
+    public minHeight?: string = '175px';
     public positionX?: string = '50%';
     public positionY?: string = '50%';
     public isFullscreen?: boolean = false;
