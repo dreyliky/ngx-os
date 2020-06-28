@@ -72,10 +72,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.isHidden = this.config.isHidden;
     }
 
-    public onResizeStart (e: any): void { console.log('ResizeStart', e); }
-    public onResizeEnd (e: any): void { console.log('ResizeEnd', e); }
-    public onResize (e: any): void { console.log('Resize', e); }
-
     public ngOnDestroy (): void {
         if (this._childComponentRef) {
             this._childComponentRef.destroy();
