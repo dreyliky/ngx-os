@@ -1,4 +1,5 @@
 import { ResizerEnum } from '../enums';
+import { xAxisStyleNameType, yAxisStyleNameType } from '../types';
 
 export class ResizerConfig {
 
@@ -9,6 +10,8 @@ export class ResizerConfig {
     public maxHeight: number = Infinity;
     public allowChangePosition: boolean = true;
     public allowedResizers: ResizerEnum[];
+    public xAxisStyleName: xAxisStyleNameType = 'left';
+    public yAxisStyleName: yAxisStyleNameType = 'top';
     public enabled: boolean = true;
 
 }

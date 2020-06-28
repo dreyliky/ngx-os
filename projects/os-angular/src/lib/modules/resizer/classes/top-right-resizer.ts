@@ -14,7 +14,7 @@ export class TopRightResizer extends Resizer {
             this.context.resizableElement.style.height = `${height}px`;
 
             if (this.config.allowChangePosition) {
-                this.context.resizableElement.style.top = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
+                this.context.resizableElement.style[this.config.yAxisStyleName] = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
             }
         }
 

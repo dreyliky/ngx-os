@@ -14,7 +14,7 @@ export class BottomLeftResizer extends Resizer {
             this.context.resizableElement.style.width = `${width}px`;
 
             if (this.config.allowChangePosition) {
-                this.context.resizableElement.style.left = `${this.context.originalX + (event.pageX - this.context.originalMouseX)}px`;
+                this.context.resizableElement.style[this.config.xAxisStyleName] = `${this.context.originalX + (event.pageX - this.context.originalMouseX)}px`;
             }
         }
 
