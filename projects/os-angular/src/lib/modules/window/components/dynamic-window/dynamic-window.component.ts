@@ -92,6 +92,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.initIsHiddenStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
+        this.initConfigObserver();
 
         this.changeDetector.detectChanges();
     }
@@ -163,6 +164,15 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this._isHiddenStateSubscription = this.windowRef.isHidden$
             .subscribe((state) => {
                 this.isHidden = state;
+
+                this.changeDetector.detectChanges();
+            });
+    }
+
+    private initConfigObserver (): void {
+        this._isHiddenStateSubscription = this.windowRef.config$
+            .subscribe((updatedConfig) => {
+                this.config = updatedConfig;
 
                 this.changeDetector.detectChanges();
             });

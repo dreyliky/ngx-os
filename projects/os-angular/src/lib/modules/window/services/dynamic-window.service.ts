@@ -89,9 +89,11 @@ export class DynamicWindowService {
         const lastCreatedWindowComponent = windowComponents[windowComponents.length - 1];
         const { instance: windowInstance } = lastCreatedWindowComponent;
 
+        params.windowRef.updateConfig(params.config);
+
         windowInstance.childComponentType = params.childComponent;
-        windowInstance.config = params.config;
         windowInstance.windowRef = params.windowRef;
+        windowInstance.config = params.config;
     }
 
 }
