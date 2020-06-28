@@ -112,6 +112,10 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         }
     }
 
+    public onDragStart (e): void { console.log('DragStart', e); }
+    public onDrag (e): void { console.log('Drag', e); }
+    public onDragEnd (e): void { console.log('StartEnd', e); }
+
     public onMinimizeButtonClick (): void {
         this.windowRef.hide();
     }
