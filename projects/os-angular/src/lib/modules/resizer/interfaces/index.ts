@@ -1,1 +1,1 @@
-export * from './resizer-config.interface';
+export * from './resize-info.interface';

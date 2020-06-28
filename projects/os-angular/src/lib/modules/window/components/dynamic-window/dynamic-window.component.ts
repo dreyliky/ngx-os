@@ -70,14 +70,11 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public ngOnInit (): void {
         this.isFullscreen = this.config.isFullscreen;
         this.isHidden = this.config.isHidden;
-        this.positionX = this.config.positionX;
-        this.positionY = this.config.positionY;
-        this.minWidth = Number.parseInt(this.config.minWidth);
-        this.minHeight = Number.parseInt(this.config.minHeight);
-        this.maxWidth = Number.parseInt(this.config.maxWidth);
-        this.maxHeight = Number.parseInt(this.config.maxHeight);
-        this.allowedResizers = this.config.allowedResizers;
     }
+
+    public onResizeStart (e: any): void { console.log('ResizeStart', e); }
+    public onResizeEnd (e: any): void { console.log('ResizeEnd', e); }
+    public onResize (e: any): void { console.log('Resize', e); }
 
     public ngOnDestroy (): void {
         if (this._childComponentRef) {

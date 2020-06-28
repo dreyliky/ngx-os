@@ -6,13 +6,15 @@ export class BottomRightResizer extends Resizer {
         const width = this.context.originalWidth + (event.pageX - this.context.originalMouseX);
         const height = this.context.originalHeight + (event.pageY - this.context.originalMouseY);
 
-        if (width > this.context.minWidth && width < this.context.maxWidth) {
+        if (width > this.config.minWidth && width < this.config.maxWidth) {
             this.context.resizableElement.style.width = `${width}px`;
         }
 
-        if (height > this.context.minHeight && height < this.context.maxHeight) {
+        if (height > this.config.minHeight && height < this.config.maxHeight) {
             this.context.resizableElement.style.height = `${height}px`;
         }
+
+        this.onResize();
     }
 
 }

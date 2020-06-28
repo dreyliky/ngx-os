@@ -7,17 +7,15 @@
     }"
     [resizerConfig]="{
         targetElementSelector: '.os-window',
-        minWidth: minWidth,
-        minHeight: minHeight,
-        maxWidth: maxWidth,
-        maxHeight: maxHeight,
-        allowedResizers: allowedResizers
+        minWidth: config.minWidth,
+        minHeight: config.minHeight,
+        maxWidth: config.maxWidth,
+        maxHeight: config.maxHeight,
+        allowedResizers: config.allowedResizers
     }"
     [title]="config.title"
     [width]="config.width"
     [height]="config.height"
-    [positionX]="positionX"
-    [positionY]="positionY"
     [zIndex]="zIndex"
     [isActive]="isActive"
     [isFullscreen]="isFullscreen"
@@ -28,6 +26,10 @@
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     [styleClass]="'os-resizable'"
+    [style]="{ top: config.positionY + 'px', left: config.positionX + 'px' }"
+    (OnResizeStart)="onResizeStart($event)"
+    (OnResizeEnd)="onResizeEnd($event)"
+    (OnResizing)="onResize($event)"
     (OnMouseDown)="onWindowMouseDown()"
     (OnMinimizeButtonClick)="onMinimizeButtonClick()"
     (OnMaximizeButtonClick)="onMaximizeButtonClick()"

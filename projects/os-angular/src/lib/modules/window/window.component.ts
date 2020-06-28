@@ -18,12 +18,6 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public height: string;
 
     @Input()
-    public positionX: string;
-
-    @Input()
-    public positionY: string;
-
-    @Input()
     public zIndex: number;
 
     @Input()

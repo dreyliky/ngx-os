@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { ResizerEnum } from '../enums';
-import { ResizerConfig } from '../interfaces';
+import { ResizerConfig } from '../classes';
 
 import {
     Resizer,
@@ -13,6 +13,7 @@ import {
     BottomLeftResizer,
     BottomRightResizer
 } from '../classes';
+import { ResizeInfo } from '../interfaces';
 
 @Directive({
     selector: '[os-resizable]'
@@ -20,14 +21,37 @@ import {
 export class OsResizableDirective implements OnInit, OnDestroy {
 
     @Input()
-    public resizerConfig: ResizerConfig;
+    public set resizerConfig (config: ResizerConfig) {
+        this._resizerConfig = { ...this._resizerConfig, ...config };
+    }
 
-    public readonly resizers: HTMLDivElement[] = [];
-    public minWidth: number;
-    public minHeight: number;
-    public maxWidth: number;
-    public maxHeight: number;
-    public isAllowChangePosition: boolean;
+    public get resizerConfig (): ResizerConfig {
+        return this._resizerConfig;
+    }
+
+    @Output()
+    public OnResizableElementInit = new EventEmitter<HTMLElement>();
+
+    @Output()
+    public OnResizerElementInit = new EventEmitter<HTMLElement>();
+
+    @Output()
+    public OnResizeStart = new EventEmitter<ResizeInfo>();
+
+    @Output()
+    public OnResizeEnd = new EventEmitter<ResizeInfo>();
+
+    @Output()
+    public OnResizing = new EventEmitter<ResizeInfo>();
+
+    public get resizableElement (): HTMLElement {
+        return this._resizableElement;
+    }
+
+    public get resizerElement (): HTMLElement {
+        return this._resizersWrapperElement;
+    }
+
     public originalWidth = 20;
     public originalHeight = 20;
     public originalX = 20;
@@ -36,20 +60,11 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     public originalMouseY = 20;
     public activeResizerName: ResizerEnum;
 
-    public get resizableElement (): HTMLElement {
-        return this._resizableElement;
-    }
-
-    public get resizerElement (): HTMLElement {
-        return this._resizerElement;
-    }
-
     private _resizableElement: HTMLElement;
-    private _resizerElement: HTMLElement;
-
-    private readonly _defaultMinSize: number = 20;
+    private _resizersWrapperElement: HTMLElement;
 
     private _allowedResizers: ResizerEnum[];
+    private _resizerConfig: ResizerConfig = new ResizerConfig();
 
     private readonly _resizerInstanceMap: Map<ResizerEnum, Resizer> = new Map();
 
@@ -58,21 +73,28 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit (): void {
-        this.minWidth = this.resizerConfig?.minWidth || this._defaultMinSize;
-        this.minHeight = this.resizerConfig?.minHeight || this._defaultMinSize;
-        this.maxWidth = this.resizerConfig?.maxWidth || Infinity;
-        this.maxHeight = this.resizerConfig?.maxHeight || Infinity;
-        this.isAllowChangePosition = (typeof(this.resizerConfig.allowChangePosition) === 'boolean') ? this.resizerConfig.allowChangePosition : true;
-
         this.initAllowedResizers();
         this.initResizableElement();
-        this.createResizerElement();
-        this.initResizers();
+        this.initResizersWrapperElement();
+        this.initResizerElements();
         this.initResizerInstances();
     }
 
     public ngOnDestroy (): void {
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
+    }
+
+    public getResizeInfo (): ResizeInfo {
+        const domRect = this._resizableElement.getBoundingClientRect();
+
+        return {
+            width: domRect.width,
+            height: domRect.height,
+            positionTop: domRect.top,
+            positionLeft: domRect.left,
+            positionRight: domRect.right,
+            positionBottom: domRect.bottom
+        };
     }
 
     private initAllowedResizers (): void {
@@ -90,35 +112,32 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         } else {
             this._resizableElement = this.element.nativeElement;
         }
+
+        this.OnResizableElementInit.emit(this._resizableElement);
     }
 
-    private createResizerElement (): void {
-        this._resizerElement = document.createElement(`os-resizers`);
+    private initResizersWrapperElement (): void {
+        this._resizersWrapperElement = document.createElement(`os-resizers`);
 
-        this._allowedResizers.forEach((currResizerClass) => {
+        this._resizableElement.appendChild(this._resizersWrapperElement);
+
+        this.OnResizerElementInit.emit(this._resizersWrapperElement);
+    }
+
+    private initResizerElements (): void {
+        this._allowedResizers.forEach((resizerName) => {
             const resizerElement = document.createElement('div');
 
-            resizerElement.classList.add('os-resizer', currResizerClass);
-            resizerElement.setAttribute('data-resizer-name', currResizerClass);
+            resizerElement.classList.add('os-resizer', resizerName);
 
-            this.resizers.push(resizerElement);
-
-            this._resizerElement.appendChild(resizerElement);
-        });
-
-        this._resizableElement.appendChild(this._resizerElement);
-    }
-
-    private initResizers (): void {
-        for (const resizer of this.resizers) {
-            const resizeName = resizer.getAttribute('data-resizer-name') as ResizerEnum;
-
-            resizer.addEventListener('mousedown', (event: MouseEvent) => {
-                this.activeResizerName = resizeName;
+            resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
+                this.activeResizerName = resizerName;
 
                 this.resizerMouseDownHandler(event);
             });
-        }
+
+            this._resizersWrapperElement.appendChild(resizerElement);
+        });
     }
 
     private initResizerInstances (): void {
@@ -133,31 +152,35 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             .set(ResizerEnum.bottomRight, new BottomRightResizer(this));
     }
 
-    private readonly resizerMouseDownHandler = (e: MouseEvent): void => {
+    private readonly resizerMouseDownHandler = (event: MouseEvent): void => {
         const { left: resizableElemBoundingLeft, top: resizableElemBoundingTop } = this._resizableElement.getBoundingClientRect();
         const { width: resizableElemWidth, height: resizableElemHeight } = getComputedStyle(this._resizableElement, null);
 
-        e.preventDefault();
+        event.preventDefault();
 
         this.originalWidth = parseFloat(resizableElemWidth.replace('px', ''));
         this.originalHeight = parseFloat(resizableElemHeight.replace('px', ''));
         this.originalX = resizableElemBoundingLeft;
         this.originalY = resizableElemBoundingTop;
-        this.originalMouseX = e.pageX;
-        this.originalMouseY = e.pageY;
+        this.originalMouseX = event.pageX;
+        this.originalMouseY = event.pageY;
 
         document.addEventListener('mousemove', this.documentMouseMoveHandler);
         document.addEventListener('mouseup', this.documentMouseUpHandler);
+
+        this.OnResizeStart.emit(this.getResizeInfo());
     }
 
-    private readonly documentMouseMoveHandler = (e: MouseEvent): void => {
+    private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
         const resizerInstance = this._resizerInstanceMap.get(this.activeResizerName);
 
-        resizerInstance.resizeElement(e);
+        resizerInstance.resizeElement(event);
     }
 
     private readonly documentMouseUpHandler = (): void => {
         document.removeEventListener('mousemove', this.documentMouseMoveHandler);
+
+        this.OnResizeEnd.emit(this.getResizeInfo());
     }
 
 }

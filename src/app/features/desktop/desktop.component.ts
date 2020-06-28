@@ -3,7 +3,6 @@ import { ListItem } from 'projects/os-angular/src/lib/modules/list/interfaces/it
 import { DynamicWindowService } from 'projects/os-angular/src/lib';
 import { DemoWindowComponent, HelloWorldWindowComponent } from '../test';
 import { SurvivWindowComponent } from '../test/components/surviv-window/surviv-window.component';
-import { ResizerEnum } from 'projects/os-angular/src/lib/modules/resizer/enums';
 
 @Component({
     selector: 'app-desktop',
@@ -51,8 +50,8 @@ export class DesktopComponent implements OnInit {
             DemoWindowComponent,
             {
                 title: 'OS components overview',
-                positionX: '175px',
-                positionY: '50px'
+                positionX: 175,
+                positionY: 50
             }
         );
     }
@@ -62,8 +61,8 @@ export class DesktopComponent implements OnInit {
             HelloWorldWindowComponent,
             {
                 data: 'There is custom data for window!',
-                positionX: '70px',
-                positionY: '550px'
+                positionX: 70,
+                positionY: 550
             }
         );
     }
@@ -73,8 +72,8 @@ export class DesktopComponent implements OnInit {
             SurvivWindowComponent,
             {
                 title: 'Surviv.io',
-                width: '800px',
-                height: '600px',
+                width: 800,
+                height: 600,
                 isFullscreen: true
             }
         );
