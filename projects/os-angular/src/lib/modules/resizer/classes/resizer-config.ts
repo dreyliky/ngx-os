@@ -9,5 +9,6 @@ export class ResizerConfig {
     public maxHeight: number = Infinity;
     public allowChangePosition: boolean = true;
     public allowedResizers: ResizerEnum[];
+    public enabled: boolean = true;
 
 }

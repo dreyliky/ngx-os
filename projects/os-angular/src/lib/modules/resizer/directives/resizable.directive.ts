@@ -23,6 +23,8 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     @Input()
     public set resizerConfig (config: ResizerConfig) {
         this._resizerConfig = { ...this._resizerConfig, ...config };
+
+        this.updateResizersActivity();
     }
 
     public get resizerConfig (): ResizerConfig {
@@ -62,6 +64,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     private _resizableElement: HTMLElement;
     private _resizersWrapperElement: HTMLElement;
+    private readonly _resizerElements: HTMLElement[] = [];
 
     private _allowedResizers: ResizerEnum[];
     private _resizerConfig: ResizerConfig = new ResizerConfig();
@@ -78,6 +81,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.initResizersWrapperElement();
         this.initResizerElements();
         this.initResizerInstances();
+        this.updateResizersActivity();
     }
 
     public ngOnDestroy (): void {
@@ -131,11 +135,14 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             resizerElement.classList.add('os-resizer', resizerName);
 
             resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
-                this.activeResizerName = resizerName;
+                if (this.resizerConfig.enabled) {
+                    this.activeResizerName = resizerName;
 
-                this.resizerMouseDownHandler(event);
+                    this.resizerMouseDownHandler(event);
+                }
             });
 
+            this._resizerElements.push(resizerElement);
             this._resizersWrapperElement.appendChild(resizerElement);
         });
     }
@@ -150,6 +157,22 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             .set(ResizerEnum.topRight, new TopRightResizer(this))
             .set(ResizerEnum.bottomLeft, new BottomLeftResizer(this))
             .set(ResizerEnum.bottomRight, new BottomRightResizer(this));
+    }
+
+    private updateResizersActivity (): void {
+        const activityClassName: string = 'active';
+
+        this._resizerElements.forEach((resizerElement) => {
+            if (resizerElement.classList.contains(activityClassName)) {
+                if (!this._resizerConfig.enabled) {
+                    resizerElement.classList.remove(activityClassName);
+                }
+            } else {
+                if (this._resizerConfig.enabled) {
+                    resizerElement.classList.add(activityClassName);
+                }
+            }
+        });
     }
 
     private readonly resizerMouseDownHandler = (event: MouseEvent): void => {

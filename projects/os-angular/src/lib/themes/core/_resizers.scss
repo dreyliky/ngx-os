@@ -22,10 +22,12 @@ os-resizers {
 
             width: 100%;
             height: $border-resizer-size;
-
             top: -0px;
             left: -0px;
-            cursor: ns-resize;
+
+            &.active {
+                cursor: ns-resize;
+            }
         }
 
         &.left {
@@ -33,10 +35,12 @@ os-resizers {
 
             width: $border-resizer-size;
             height: 100%;
-
             top: -0px;
             left: -0px;
-            cursor: ew-resize;
+
+            &.active {
+                cursor: ew-resize;
+            }
         }
 
         &.right {
@@ -44,10 +48,12 @@ os-resizers {
 
             width: $border-resizer-size;
             height: 100%;
-
             top: -0px;
             right: -0px;
-            cursor: ew-resize;
+
+            &.active {
+                cursor: ew-resize;
+            }
         }
 
         &.bottom {
@@ -55,10 +61,12 @@ os-resizers {
 
             width: 100%;
             height: $border-resizer-size;
-
             bottom: -0px;
             left: -0px;
-            cursor: ns-resize;
+
+            &.active {
+                cursor: ns-resize;
+            }
         }
 
         &.topLeft {
@@ -66,7 +74,10 @@ os-resizers {
     
             left: -0px;
             top: -0px;
-            cursor: nwse-resize;
+
+            &.active {
+                cursor: nwse-resize;
+            }
         }
         
         &.topRight {
@@ -74,7 +85,10 @@ os-resizers {
     
             right: -0px;
             top: -0px;
-            cursor: nesw-resize;
+
+            &.active {
+                cursor: nesw-resize;
+            }
         }
         
         &.bottomLeft {
@@ -82,7 +96,10 @@ os-resizers {
     
             left: -0px;
             bottom: -0px;
-            cursor: nesw-resize;
+
+            &.active {
+                cursor: nesw-resize;
+            }
         }
         
         &.bottomRight {
@@ -90,7 +107,10 @@ os-resizers {
     
             right: -0px;
             bottom: -0px;
-            cursor: nwse-resize;
+
+            &.active {
+                cursor: nwse-resize;
+            }
         }
     }
 }
