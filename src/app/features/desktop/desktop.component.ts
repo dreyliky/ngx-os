@@ -50,8 +50,6 @@ export class DesktopComponent implements OnInit {
             DemoWindowComponent,
             {
                 title: 'Angular OS - components overview',
-                positionX: 175,
-                positionY: 50,
                 minWidth: 250
             }
         );

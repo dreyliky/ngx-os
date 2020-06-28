@@ -11,7 +11,9 @@
         minHeight: config.minHeight,
         maxWidth: config.maxWidth,
         maxHeight: config.maxHeight,
-        allowedResizers: config.allowedResizers
+        allowedResizers: config.allowedResizers,
+        xAxisStyleName: 'right',
+        yAxisStyleName: 'bottom'
     }"
     [title]="config.title"
     [width]="config.width"
@@ -26,7 +28,7 @@
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     [styleClass]="'os-resizable'"
-    [style]="{ top: config.positionY + 'px', left: config.positionX + 'px' }"
+    [style]="styleObject"
     (OnMouseDown)="onWindowMouseDown()"
     (OnMinimizeButtonClick)="onMinimizeButtonClick()"
     (OnMaximizeButtonClick)="onMaximizeButtonClick()"

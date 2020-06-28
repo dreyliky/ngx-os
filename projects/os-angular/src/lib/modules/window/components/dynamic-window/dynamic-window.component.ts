@@ -40,6 +40,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public positionX: string;
     public positionY: string;
     public zIndex: number;
+    public styleObject: object;
     public isActive: boolean = false;
     public isFullscreen: boolean = false;
     public isHidden: boolean = false;
@@ -70,6 +71,10 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public ngOnInit (): void {
         this.isFullscreen = this.config.isFullscreen;
         this.isHidden = this.config.isHidden;
+        this.styleObject = {
+            ['right']: `${this.config.positionX}px`,
+            ['bottom']: `${this.config.positionY}px`
+        };
     }
 
     public ngOnDestroy (): void {

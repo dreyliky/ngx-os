@@ -9,7 +9,11 @@ export class TopResizer extends Resizer {
             this.context.resizableElement.style.height = `${height}px`;
 
             if (this.config.allowChangePosition) {
-                this.context.resizableElement.style[this.config.yAxisStyleName] = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
+                if (this.config.yAxisStyleName === 'top' || this.config.yAxisStyleName === 'marginTop') {
+                    const position = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
+
+                    this.context.resizableElement.style[this.config.yAxisStyleName] = position;
+                }
             }
         }
 
