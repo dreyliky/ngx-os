@@ -1,6 +1,10 @@
 <os-window
     os-draggable
     os-resizable
+    [draggerConfig]="{
+        draggableElementSelector: '.os-title-bar',
+        movableElementSelector: '.os-window'
+    }"
     [resizerConfig]="{
         targetElementSelector: '.os-window',
         minWidth: minWidth,

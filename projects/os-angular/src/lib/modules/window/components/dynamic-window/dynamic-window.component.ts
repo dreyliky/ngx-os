@@ -15,7 +15,7 @@ import {
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
 import { WindowComponent } from '../../window.component';
-import { HtmlElementDragAndDrop, OutsideClick } from '../../../../helpers';
+import { OutsideClick } from '../../../../helpers';
 import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
 import { Subscription } from 'rxjs';
 import { ResizerEnum } from '../../../resizer/enums';
@@ -56,9 +56,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private _childComponentRef: ComponentRef<any>;
 
     private _windowElement: HTMLDivElement;
-    private _titleBarElement: HTMLDivElement;
-
-    private _titleDragAndDrop: HtmlElementDragAndDrop;
 
     private _isHiddenStateSubscription: Subscription;
     private _activeWindowIdSubscription: Subscription;
@@ -90,8 +87,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this._isHiddenStateSubscription.unsubscribe();
         this._activeWindowIdSubscription.unsubscribe();
         this._windowIdOrderSubscription.unsubscribe();
-
-        this._titleDragAndDrop.destroy();
     }
 
     public ngAfterViewInit (): void {
@@ -100,7 +95,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.loadChildComponent(this.childComponentType);
 
         this.initHtmlElements();
-        this.initTitleDragAndDrop();
 
         this.initIsHiddenStateObserver();
         this.initActiveWindowIdObserver();
@@ -151,21 +145,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     private initHtmlElements (): void {
         this._windowElement = document.getElementById(this._windowComponent.id) as HTMLDivElement;
-        this._titleBarElement = this._windowElement.querySelector('.os-title-bar');
-    }
-
-    private initTitleDragAndDrop (): void {
-        this._titleDragAndDrop = new HtmlElementDragAndDrop(this._titleBarElement);
-
-        this._titleDragAndDrop.coords$
-            .subscribe((coords) => {
-                if (!this.isFullscreen) {
-                    this.positionX = `${coords.left}px`;
-                    this.positionY = `${coords.top}px`;
-
-                    this.changeDetector.markForCheck();
-                }
-            });
     }
 
     private initActiveWindowIdObserver (): void {
