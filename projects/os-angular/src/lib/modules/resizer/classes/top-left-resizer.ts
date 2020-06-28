@@ -9,7 +9,7 @@ export class TopLeftResizer extends Resizer {
         if (width > this.context.minWidth && width < this.context.maxWidth) {
             this.context.resizableElement.style.width = `${width}px`;
 
-            if (this.context.isElementAbsolute) {
+            if (this.context.isAllowChangePosition) {
                 this.context.resizableElement.style.left = `${this.context.originalX + (event.pageX - this.context.originalMouseX)}px`;
             }
         }
@@ -17,7 +17,7 @@ export class TopLeftResizer extends Resizer {
         if (height > this.context.minHeight && height < this.context.maxHeight) {
             this.context.resizableElement.style.height = `${height}px`;
 
-            if (this.context.isElementAbsolute) {
+            if (this.context.isAllowChangePosition) {
                 this.context.resizableElement.style.top = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
             }
         }

@@ -8,7 +8,7 @@ export class TopResizer extends Resizer {
         if (height > this.context.minHeight && height < this.context.maxHeight) {
             this.context.resizableElement.style.height = `${height}px`;
 
-            if (this.context.isElementAbsolute) {
+            if (this.context.isAllowChangePosition) {
                 this.context.resizableElement.style.top = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
             }
         }

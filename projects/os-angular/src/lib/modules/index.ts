@@ -14,3 +14,4 @@ export * from './tree-view';
 export * from './scroll-view';
 export * from './list';
 export * from './resizer';
+export * from './drag-and-drop';

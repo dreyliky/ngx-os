@@ -6,6 +6,6 @@ export interface ResizerConfig {
     minHeight?: number;
     maxWidth?: number;
     maxHeight?: number;
-    elementAbsoluteOrFixed?: boolean;
+    allowChangePosition?: boolean;
     allowedResizers?: ResizerEnum[];
 }

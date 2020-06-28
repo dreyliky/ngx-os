@@ -27,7 +27,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     public minHeight: number;
     public maxWidth: number;
     public maxHeight: number;
-    public isElementAbsolute: boolean;
+    public isAllowChangePosition: boolean;
     public originalWidth = 20;
     public originalHeight = 20;
     public originalX = 20;
@@ -62,7 +62,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.minHeight = this.resizerConfig?.minHeight || this._defaultMinSize;
         this.maxWidth = this.resizerConfig?.maxWidth || Infinity;
         this.maxHeight = this.resizerConfig?.maxHeight || Infinity;
-        this.isElementAbsolute = (typeof(this.resizerConfig.elementAbsoluteOrFixed) === 'boolean') ? this.resizerConfig.elementAbsoluteOrFixed : true;
+        this.isAllowChangePosition = (typeof(this.resizerConfig.allowChangePosition) === 'boolean') ? this.resizerConfig.allowChangePosition : true;
 
         this.initAllowedResizers();
         this.initResizableElement();

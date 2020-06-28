@@ -7,6 +7,7 @@ import { DynamicWindowService, DynamicWindowControlService } from './services';
 import { DynamicWindowContentDirective } from './directives';
 import { WindowComponent } from './window.component';
 import { TitleBarComponent, DynamicWindowComponent } from './components';
+import { DragAndDropModule } from '../drag-and-drop';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { TitleBarComponent, DynamicWindowComponent } from './components';
 
         ButtonModule,
         ScrollViewModule,
-        ResizerModule
+        ResizerModule,
+        DragAndDropModule
     ],
     exports: [
         WindowComponent,
