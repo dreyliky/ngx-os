@@ -52,6 +52,9 @@ os-title-bar {
         color: white;
         letter-spacing: 0;
         margin-right: 24px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .os-title-bar-controls {

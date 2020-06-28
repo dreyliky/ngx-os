@@ -49,9 +49,10 @@ export class DesktopComponent implements OnInit {
         this.windowService.open(
             DemoWindowComponent,
             {
-                title: 'OS components overview',
+                title: 'Angular OS - components overview',
                 positionX: 175,
-                positionY: 50
+                positionY: 50,
+                minWidth: 250
             }
         );
     }

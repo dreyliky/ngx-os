@@ -97,6 +97,9 @@ os-title-bar {
         letter-spacing: 0;
         margin-right: 24px;
         padding-left: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .os-title-bar-controls {
