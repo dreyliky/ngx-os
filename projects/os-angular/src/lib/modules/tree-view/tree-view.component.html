@@ -13,12 +13,16 @@
 <ng-template
     #treeNodesTemplate
     let-nodes="nodes">
-    <li *ngFor="let node of nodes">
+    <li
+        *ngFor="let node of nodes"
+        class="os-element">
         <ng-template [ngIf]="node.children">
-            <details>
-                <summary>{{ node.label }}</summary>
+            <details class="os-element">
+                <summary class="os-element">
+                    {{ node.label }}
+                </summary>
 
-                <ul>
+                <ul class="os-element">
                     <ng-container
                         *ngTemplateOutlet="treeNodesTemplate; context:{ nodes: node.children }">
                     </ng-container>
