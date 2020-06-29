@@ -73,17 +73,25 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
-        if (this._draggerConfig.isEnabled) {
-            const dragInfo = this.getDragInfo();
-
-            this.shiftX = event.pageX - dragInfo.positionLeft;
-            this.shiftY = event.pageY - dragInfo.positionTop;
-
-            document.addEventListener('mousemove', this.documentMouseMoveHandler);
-            document.addEventListener('mouseup', this.documentMouseUpHandler);
-
-            this.OnDragStart.emit(dragInfo);
+        if (
+            !this._draggerConfig.isEnabled
+            ||
+            !this._draggerConfig.allowedMouseButtons
+            ||
+            !this._draggerConfig.allowedMouseButtons.includes(event.button)
+        ) {
+            return;
         }
+
+        const dragInfo = this.getDragInfo();
+
+        this.shiftX = event.pageX - dragInfo.positionLeft;
+        this.shiftY = event.pageY - dragInfo.positionTop;
+
+        document.addEventListener('mousemove', this.documentMouseMoveHandler);
+        document.addEventListener('mouseup', this.documentMouseUpHandler);
+
+        this.OnDragStart.emit(dragInfo);
     }
 
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {

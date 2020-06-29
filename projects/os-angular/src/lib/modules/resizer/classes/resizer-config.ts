@@ -1,5 +1,6 @@
 import { ResizerEnum } from '../enums';
 import { xAxisStyleNameType, yAxisStyleNameType } from '../types';
+import { MouseButtonEnum } from '../../../core';
 
 export class ResizerConfig {
 
@@ -9,6 +10,7 @@ export class ResizerConfig {
     public maxWidth: number = Infinity;
     public maxHeight: number = Infinity;
     public allowedResizers: ResizerEnum[];
+    public allowedMouseButtons: MouseButtonEnum[] = [MouseButtonEnum.left];
     public xAxisStyleName: xAxisStyleNameType = 'left';
     public yAxisStyleName: yAxisStyleNameType = 'top';
     public isAllowChangePosition: boolean = true;

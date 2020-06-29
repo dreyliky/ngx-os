@@ -14,6 +14,7 @@ import {
     BottomRightResizer
 } from '../classes';
 import { ResizeInfo } from '../interfaces';
+import { MouseButtonEnum } from '../../../core';
 
 @Directive({
     selector: '[os-resizable]'
@@ -176,6 +177,16 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     }
 
     private readonly resizerMouseDownHandler = (event: MouseEvent): void => {
+        if (
+            !this.resizerConfig.isEnabled
+            ||
+            !this.resizerConfig.allowedMouseButtons
+            ||
+            !this.resizerConfig.allowedMouseButtons.includes(event.button)
+        ) {
+            return;
+        }
+
         const { left: resizableElemBoundingLeft, top: resizableElemBoundingTop } = this._resizableElement.getBoundingClientRect();
         const { width: resizableElemWidth, height: resizableElemHeight } = getComputedStyle(this._resizableElement, null);
 
