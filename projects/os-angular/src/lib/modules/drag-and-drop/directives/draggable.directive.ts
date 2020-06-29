@@ -61,7 +61,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private initMovableElement (): void {
-        if (this._draggerConfig.allowMoveElement) {
+        if (this._draggerConfig.isAllowMoveElement) {
             if (this._draggerConfig?.movableElementSelector) {
                 this._movableElement = this.element.nativeElement.querySelector(this._draggerConfig.movableElementSelector);
             } else {
@@ -73,7 +73,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
-        if (this._draggerConfig.enabled) {
+        if (this._draggerConfig.isEnabled) {
             const dragInfo = this.getDragInfo();
 
             this.shiftX = event.pageX - dragInfo.positionLeft;
