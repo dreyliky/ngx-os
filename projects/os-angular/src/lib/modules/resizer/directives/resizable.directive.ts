@@ -135,7 +135,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             resizerElement.classList.add('os-resizer', resizerName);
 
             resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
-                if (this.resizerConfig.enabled) {
+                if (this.resizerConfig.isEnabled) {
                     this.activeResizerName = resizerName;
 
                     this.resizerMouseDownHandler(event);
@@ -164,11 +164,11 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
         this._resizerElements.forEach((resizerElement) => {
             if (resizerElement.classList.contains(activityClassName)) {
-                if (!this._resizerConfig.enabled) {
+                if (!this._resizerConfig.isEnabled) {
                     resizerElement.classList.remove(activityClassName);
                 }
             } else {
-                if (this._resizerConfig.enabled) {
+                if (this._resizerConfig.isEnabled) {
                     resizerElement.classList.add(activityClassName);
                 }
             }

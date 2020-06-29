@@ -8,7 +8,7 @@ export class LeftResizer extends Resizer {
         if (width > this.config.minWidth && width < this.config.maxWidth) {
             this.context.resizableElement.style.width = `${width}px`;
 
-            if (this.config.allowChangePosition) {
+            if (this.config.isAllowChangePosition) {
                 if (this.config.xAxisStyleName === 'left' || this.config.xAxisStyleName === 'marginLeft') {
                     const position = `${this.context.originalX + (event.pageX - this.context.originalMouseX)}px`;
 

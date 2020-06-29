@@ -9,7 +9,7 @@ export class BottomResizer extends Resizer {
         if (height > this.config.minHeight && height < this.config.maxHeight) {
             this.context.resizableElement.style.height = `${height}px`;
 
-            if (this.config.allowChangePosition) {
+            if (this.config.isAllowChangePosition) {
                 if (this.config.yAxisStyleName === 'bottom' || this.config.yAxisStyleName === 'marginBottom') {
                     const position = `${docElement.clientHeight - event.pageY}px`;
 

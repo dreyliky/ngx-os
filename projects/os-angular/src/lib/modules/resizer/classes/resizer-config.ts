@@ -8,10 +8,10 @@ export class ResizerConfig {
     public minHeight: number = 20;
     public maxWidth: number = Infinity;
     public maxHeight: number = Infinity;
-    public allowChangePosition: boolean = true;
     public allowedResizers: ResizerEnum[];
     public xAxisStyleName: xAxisStyleNameType = 'left';
     public yAxisStyleName: yAxisStyleNameType = 'top';
-    public enabled: boolean = true;
+    public isAllowChangePosition: boolean = true;
+    public isEnabled: boolean = true;
 
 }

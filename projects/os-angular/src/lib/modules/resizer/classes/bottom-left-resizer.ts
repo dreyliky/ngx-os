@@ -10,7 +10,7 @@ export class BottomLeftResizer extends Resizer {
         if (width > this.config.minWidth && width < this.config.maxWidth) {
             this.context.resizableElement.style.width = `${width}px`;
 
-            if (this.config.allowChangePosition) {
+            if (this.config.isAllowChangePosition) {
                 if (this.config.xAxisStyleName === 'left' || this.config.xAxisStyleName === 'marginLeft') {
                     const position = `${this.context.originalX + (event.pageX - this.context.originalMouseX)}px`;
 
@@ -22,7 +22,7 @@ export class BottomLeftResizer extends Resizer {
         if (height > this.config.minHeight && height < this.config.maxHeight) {
             this.context.resizableElement.style.height = `${height}px`;
 
-            if (this.config.allowChangePosition) {
+            if (this.config.isAllowChangePosition) {
                 if (this.config.yAxisStyleName === 'bottom' || this.config.yAxisStyleName === 'marginBottom') {
                     const position = `${docElement.clientHeight - event.pageY}px`;
 
