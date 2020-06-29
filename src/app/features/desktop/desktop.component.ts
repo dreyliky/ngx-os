@@ -61,7 +61,8 @@ export class DesktopComponent implements OnInit {
             {
                 data: 'There is custom data for window!',
                 positionX: 70,
-                positionY: 550
+                positionY: 550,
+                isAlwaysOnTop: true
             }
         );
     }

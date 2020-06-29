@@ -53,6 +53,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private readonly _windowComponent: WindowComponent;
 
     private readonly _baseZIndex: number = 1000;
+    private readonly _alwaysOnTopZIndex: number = 5000;
 
     private _childComponentRef: ComponentRef<any>;
 
@@ -72,8 +73,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.isFullscreen = this.config.isFullscreen;
         this.isHidden = this.config.isHidden;
         this.styleObject = {
-            ['right']: `${this.config.positionX}px`,
-            ['bottom']: `${this.config.positionY}px`
+            left: `${this.config.positionX}px`,
+            top: `${this.config.positionY}px`
         };
     }
 
@@ -129,6 +130,10 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     private updateZIndex (): void {
         this.zIndex = (this._baseZIndex + this.windowIdOrderIndex);
+
+        if (this.config.isAlwaysOnTop) {
+            this.zIndex += this._alwaysOnTopZIndex;
+        }
 
         this.changeDetector.detectChanges();
     }

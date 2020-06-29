@@ -17,6 +17,7 @@ export class DynamicWindowConfig<D = any> {
     public isMinimizable?: boolean = true;
     public isMaximizable?: boolean = true;
     public isClosable?: boolean = true;
+    public isAlwaysOnTop?: boolean = false;
     public scrollViewStyle?: any;
     public scrollViewStyleClass?: any;
 }
