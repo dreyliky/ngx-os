@@ -10,7 +10,7 @@ import { buttonType } from './shared';
 export class ButtonComponent extends OsBaseButtonComponent implements OnInit {
 
     @Input()
-    public type: buttonType;
+    public type: buttonType = 'button';
 
     @Output()
     public OnFocus: EventEmitter<MouseEvent> = new EventEmitter();
