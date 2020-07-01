@@ -1,0 +1,20 @@
+os-textarea-box {
+
+    textarea {
+        font-family: var(--sans-serif);
+        font-size: 11px;
+        padding: 3px 4px;
+        border: none;
+        background-color: var(--button-highlight);
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+}
