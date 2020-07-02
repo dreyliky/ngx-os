@@ -182,7 +182,7 @@
   "defaultProject": "ng-os",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
+      "style": "scss"
     }
   }
 }
