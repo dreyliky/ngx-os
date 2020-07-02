@@ -1,6 +1,7 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Directive } from '@angular/core';
 import { OsBaseComponent } from './element';
 
+@Directive()
 export class OsBaseFieldComponent extends OsBaseComponent {
 
     @Input()

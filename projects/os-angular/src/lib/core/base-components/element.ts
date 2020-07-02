@@ -1,6 +1,7 @@
-import { Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Input, Output, EventEmitter, OnInit, Directive } from '@angular/core';
 import { IdGenerator } from '../../helpers';
 
+@Directive()
 export class OsBaseComponent implements OnInit {
 
     @Input()
