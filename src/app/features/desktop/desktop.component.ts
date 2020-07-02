@@ -1,8 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ListItem } from 'projects/os-angular/src/lib/modules/list/interfaces/item.interface';
 import { DynamicWindowService } from 'projects/os-angular/src/lib';
-import { DemoWindowComponent, HelloWorldWindowComponent } from '../test';
-import { SurvivWindowComponent } from '../test/components/surviv-window/surviv-window.component';
+import {
+    DemoWindowComponent,
+    HelloWorldWindowComponent,
+    DemoWin10WindowComponent,
+    SurvivWindowComponent
+} from '../test';
 
 @Component({
     selector: 'app-desktop',
@@ -17,6 +21,11 @@ export class DesktopComponent implements OnInit {
             label: 'Os Elements',
             iconUrl: 'assets/icons/my-pc.png',
             onDblClick: () => this.onOsElementsShortcutDblClick()
+        },
+        {
+            label: 'Os Elements (Win10)',
+            iconUrl: 'assets/icons/my-pc.png',
+            onDblClick: () => this.onOsElementsWin10ShortcutDblClick()
         },
         {
             label: 'Hello World',
@@ -40,7 +49,7 @@ export class DesktopComponent implements OnInit {
     ) {}
 
     public ngOnInit (): void {
-        this.onOsElementsShortcutDblClick();
+        this.onOsElementsWin10ShortcutDblClick();
     }
 
     public trackByFn = (shortcut: ListItem, index: number): number => {
@@ -55,6 +64,17 @@ export class DesktopComponent implements OnInit {
                 minWidth: 250,
                 width: 350,
                 height: 450
+            }
+        );
+    }
+
+    private onOsElementsWin10ShortcutDblClick (): void {
+        this.windowService.open(
+            DemoWin10WindowComponent,
+            {
+                title: 'Angular OS - components overview (Win10)',
+                minWidth: 700,
+                height: 500
             }
         );
     }

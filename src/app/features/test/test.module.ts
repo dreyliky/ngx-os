@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/app-shared.module';
-import { HelloWorldWindowComponent } from './components';
-import { DemoWindowComponent } from './components/demo-window/demo-window.component';
-import { SurvivWindowComponent } from './components/surviv-window/surviv-window.component';
+import {
+    HelloWorldWindowComponent,
+    DemoWindowComponent,
+    SurvivWindowComponent,
+    DemoWin10WindowComponent
+} from './components';
 
 @NgModule({
     declarations: [
         HelloWorldWindowComponent,
         DemoWindowComponent,
-        SurvivWindowComponent
+        SurvivWindowComponent,
+        DemoWin10WindowComponent
     ],
     imports: [
         SharedModule
@@ -19,7 +23,8 @@ import { SurvivWindowComponent } from './components/surviv-window/surviv-window.
     entryComponents: [
         HelloWorldWindowComponent,
         DemoWindowComponent,
-        SurvivWindowComponent
+        SurvivWindowComponent,
+        DemoWin10WindowComponent
     ]
 })
 export class TestModule {}

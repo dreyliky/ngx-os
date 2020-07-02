@@ -2,11 +2,14 @@ os-window {
 
     .os-window {
         font-size: 11px;
-        font-family: var(--sans-serif);
+        font-family: var(--segoe-ui);
         background: rgba(255, 255, 255, .7);
         backdrop-filter: blur(20px);
         border: solid 1px #aaaaaa;
         -webkit-font-smoothing: none;
+        -webkit-box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
+        box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
     }
 
     .os-window.fullscreen {
@@ -18,6 +21,9 @@ os-window {
 
     .os-window.active {
         border: solid 1px var(--primary-color);
+        -webkit-box-shadow: 0px 5px 24px -3px rgba(0,0,0,0.35);
+        -moz-box-shadow: 0px 5px 24px -3px rgba(0,0,0,0.35);
+        box-shadow: 0px 5px 24px -3px rgba(0,0,0,0.35);
 
         .os-title-bar {
             background: var(--primary-color);
@@ -81,7 +87,6 @@ os-title-bar {
     .os-title-bar {
         height: 32px;
         font-size: 11px;
-        font-family: "Trebuchet MS";
         display: flex;
         align-items: flex-start;
         background: #ffffff;
@@ -90,9 +95,10 @@ os-title-bar {
     .os-title-bar-text {
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        margin-left: 8px;
+        margin: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .os-title-bar-controls {

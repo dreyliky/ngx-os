@@ -238,7 +238,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
             .subscribe((state) => {
                 this.isFullscreen = state;
                 this.isAllowMoveWindowByDragger = !this.isFullscreen;
-                console.log(this.isFullscreen);
 
                 this.changeDetector.markForCheck();
             });

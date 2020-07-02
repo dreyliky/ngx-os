@@ -2,32 +2,19 @@ os-button {
 
     button {
         min-width: 75px;
-        min-height: 23px;
+        min-height: 31px;
         padding: 0 12px;
-        font-family: var(--sans-serif);
+        font-family: var(--segoe-ui);
         -webkit-font-smoothing: antialiased;
-        font-size: 11px;
+        font-size: 13px;
         box-sizing: border-box;
-        border: 1px solid #003c74;
-        box-shadow: none;
+        border: 2px solid transparent;
+        background: var(--secondary-color);
         border-radius: 0px;
+        font-weight: 500;
 
-        &:not(:disabled) {
-            &:active,
-            &.active {
-                box-shadow: none;
-            }
-        }
-        &:focus,
-        &.focused {
-            outline: 1px dotted #000000;
-            outline-offset: -4px;
-            box-shadow: inset -1px 1px #cee7ff, inset 1px 2px #98b8ea, inset -2px 2px #bcd4f6, inset 1px -1px #89ade4,
-                inset 2px -2px #89ade4;
-        }
-
-        &::-moz-focus-inner {
-            border: 0;
+        &:hover {
+            border: 2px solid rgba(0, 0, 0, .4);
         }
     }
 
