@@ -1,11 +1,10 @@
 <os-window
-    os-draggable
-    os-resizable
-    [draggerConfig]="{
+    [os-draggable]="{
         draggableElementSelector: '.os-title-bar',
-        movableElementSelector: '.os-window'
+        movableElementSelector: '.os-window',
+        isAllowMoveElement: isAllowMoveWindowByDragger
     }"
-    [resizerConfig]="{
+    [os-resizable]="{
         targetElementSelector: '.os-window',
         minWidth: config.minWidth,
         minHeight: config.minHeight,
@@ -14,8 +13,8 @@
         allowedResizers: config.allowedResizers
     }"
     [title]="config.title"
-    [width]="config.width"
-    [height]="config.height"
+    [width]="(config.width) ? config.width + 'px' : undefined"
+    [height]="(config.height) ? config.height + 'px' : undefined"
     [zIndex]="zIndex"
     [isActive]="isActive"
     [isFullscreen]="isFullscreen"
@@ -26,8 +25,15 @@
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     [styleClass]="'os-resizable'"
-    [style]="styleObject"
+    [style]="{
+        left: positionX,
+        top: positionY
+    }"
+    (OnBeforeDragStart)="onTitleBarBeforeDrag($event)"
+    (OnDragging)="onTitleBarDragging($event)"
+    (OnDragEnd)="onTitleBarDragEnd()"
     (OnMouseDown)="onWindowMouseDown()"
+    (OnResizing)="onWindowResizing($event)"
     (OnMinimizeButtonClick)="onMinimizeButtonClick()"
     (OnMaximizeButtonClick)="onMaximizeButtonClick()"
     (OnCloseButtonClick)="onCloseButtonClick()">

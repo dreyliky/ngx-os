@@ -14,14 +14,13 @@ import {
     BottomRightResizer
 } from '../classes';
 import { ResizeInfo } from '../interfaces';
-import { MouseButtonEnum } from '../../../core';
 
 @Directive({
     selector: '[os-resizable]'
 })
 export class OsResizableDirective implements OnInit, OnDestroy {
 
-    @Input()
+    @Input('os-resizable')
     public set resizerConfig (config: ResizerConfig) {
         this._resizerConfig = { ...this._resizerConfig, ...config };
 

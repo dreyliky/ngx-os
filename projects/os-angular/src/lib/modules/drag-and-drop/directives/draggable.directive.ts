@@ -7,9 +7,9 @@ import { DragInfo } from '../interfaces/drag-info.interface';
 })
 export class OsDraggableDirective implements OnInit, OnDestroy {
 
-    @Input()
+    @Input('os-draggable')
     public set draggerConfig (config: DraggerConfig) {
-        this._draggerConfig = { ...new DraggerConfig(), ...config };
+        this._draggerConfig = { ...this._draggerConfig, ...config };
     }
 
     @Output()
@@ -17,6 +17,9 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
 
     @Output()
     public OnMovableElementInit = new EventEmitter<HTMLElement>();
+
+    @Output()
+    public OnBeforeDragStart = new EventEmitter<DragInfo>();
 
     @Output()
     public OnDragStart = new EventEmitter<DragInfo>();
@@ -33,7 +36,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     private _draggableElement: HTMLElement;
     private _movableElement: HTMLElement;
 
-    private _draggerConfig: DraggerConfig;
+    private _draggerConfig: DraggerConfig = new DraggerConfig();
 
     constructor (
         private readonly element: ElementRef<HTMLElement>
@@ -61,15 +64,13 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private initMovableElement (): void {
-        if (this._draggerConfig.isAllowMoveElement) {
-            if (this._draggerConfig?.movableElementSelector) {
-                this._movableElement = this.element.nativeElement.querySelector(this._draggerConfig.movableElementSelector);
-            } else {
-                this._movableElement = this.element.nativeElement;
-            }
-
-            this.OnMovableElementInit.emit(this._movableElement);
+        if (this._draggerConfig?.movableElementSelector) {
+            this._movableElement = this.element.nativeElement.querySelector(this._draggerConfig.movableElementSelector);
+        } else {
+            this._movableElement = this.element.nativeElement;
         }
+
+        this.OnMovableElementInit.emit(this._movableElement);
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
@@ -83,10 +84,12 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
             return;
         }
 
-        const dragInfo = this.getDragInfo();
+        const dragInfo = this.getDragInfo(event);
 
-        this.shiftX = event.pageX - dragInfo.positionLeft;
-        this.shiftY = event.pageY - dragInfo.positionTop;
+        this.OnBeforeDragStart.emit(dragInfo);
+
+        this.setShiftX(dragInfo, event);
+        this.setShiftY(dragInfo, event);
 
         document.addEventListener('mousemove', this.documentMouseMoveHandler);
         document.addEventListener('mouseup', this.documentMouseUpHandler);
@@ -97,20 +100,20 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
         this.updateMovableElementPosition(event);
 
-        const dragInfo = this.getDragInfo();
+        const dragInfo = this.getDragInfo(event);
 
         this.OnDragging.emit(dragInfo);
     }
 
     private updateMovableElementPosition (event: MouseEvent): void {
-        if (this._movableElement) {
+        if (this._movableElement && this._draggerConfig.isAllowMoveElement) {
             this._movableElement.style.left = `${event.pageX - this.shiftX}px`;
             this._movableElement.style.top  = `${event.pageY - this.shiftY}px`;
         }
     }
 
-    private readonly documentMouseUpHandler = (): void => {
-        const dragInfo = this.getDragInfo();
+    private readonly documentMouseUpHandler = (event: MouseEvent): void => {
+        const dragInfo = this.getDragInfo(event);
 
         document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
@@ -118,13 +121,29 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         this.OnDragEnd.emit(dragInfo);
     }
 
-    private getDragInfo (): DragInfo {
-        const box = this._draggableElement.getBoundingClientRect();
+    private getDragInfo (event: MouseEvent): DragInfo {
+        const box = this._movableElement.getBoundingClientRect();
 
         return {
-            positionTop: box.top + pageYOffset,
-            positionLeft: box.left + pageXOffset
+            draggableElementDomRect: box,
+            mouseEvent: event
         };
+    }
+
+    private setShiftX (dragInfo: DragInfo, event: MouseEvent): void {
+        if (typeof(this._draggerConfig.shiftX) === 'number') {
+            this.shiftX = this._draggerConfig.shiftX;
+        } else {
+            this.shiftX = event.pageX - dragInfo.draggableElementDomRect.left + pageXOffset;
+        }
+    }
+
+    private setShiftY (dragInfo: DragInfo, event: MouseEvent): void {
+        if (typeof(this._draggerConfig.shiftY) === 'number') {
+            this.shiftY = this._draggerConfig.shiftY;
+        } else {
+            this.shiftY = event.pageY - dragInfo.draggableElementDomRect.top + pageYOffset;
+        }
     }
 
 }

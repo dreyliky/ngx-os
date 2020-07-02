@@ -3,8 +3,8 @@ import { ResizerEnum } from '../../resizer/enums';
 export class DynamicWindowConfig<D = any> {
     public title?: string = 'OS dynamic window';
     public data?: D;
-    public width?: number = 800;
-    public height?: number = 600;
+    public width?: number;
+    public height?: number;
     public minWidth?: number = 275;
     public minHeight?: number = 175;
     public maxWidth?: number = Infinity;
@@ -18,6 +18,7 @@ export class DynamicWindowConfig<D = any> {
     public isMaximizable?: boolean = true;
     public isClosable?: boolean = true;
     public isAlwaysOnTop?: boolean = false;
+    public isExitFullscreenByDragTitle?: boolean = true;
     public scrollViewStyle?: any;
     public scrollViewStyleClass?: any;
 }

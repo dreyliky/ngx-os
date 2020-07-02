@@ -31,7 +31,7 @@ export class DesktopComponent implements OnInit {
         {
             label: 'Surviv.io',
             iconUrl: 'assets/icons/surviv.png',
-            onDblClick: () => this.onAgarioShortcutDblClick()
+            onDblClick: () => this.onSurvivShortcutDblClick()
         }
     ];
 
@@ -52,7 +52,9 @@ export class DesktopComponent implements OnInit {
             DemoWindowComponent,
             {
                 title: 'Angular OS - components overview',
-                minWidth: 250
+                minWidth: 250,
+                width: 350,
+                height: 450
             }
         );
     }
@@ -63,12 +65,13 @@ export class DesktopComponent implements OnInit {
             {
                 data: 'There is custom data for window!',
                 positionX: 70,
-                positionY: 550
+                positionY: 350,
+                isExitFullscreenByDragTitle: false
             }
         );
     }
 
-    private onAgarioShortcutDblClick (): void {
+    private onSurvivShortcutDblClick (): void {
         this.windowService.open(
             SurvivWindowComponent,
             {
