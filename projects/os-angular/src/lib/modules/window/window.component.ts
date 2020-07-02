@@ -54,6 +54,12 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public OnMouseUp = new EventEmitter<MouseEvent>();
 
     @Output()
+    public OnTitleBarClick = new EventEmitter<MouseEvent>();
+
+    @Output()
+    public OnTitleBarDblClick = new EventEmitter<MouseEvent>();
+
+    @Output()
     public OnMinimizeButtonClick = new EventEmitter<MouseEvent>();
 
     @Output()

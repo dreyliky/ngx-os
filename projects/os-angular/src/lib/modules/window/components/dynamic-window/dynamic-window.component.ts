@@ -163,6 +163,12 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this._draggableDirective.draggerConfig = { shiftX: null, shiftY: null };
     }
 
+    public onTitleBarDblClick (): void {
+        if (this.config.isToggleFullscreenByDblClickTitle) {
+            this.isFullscreen = !this.isFullscreen;
+        }
+    }
+
     public onWindowResizing (event: ResizeInfo): void {
         this._widthAtWindowedMode = event.width;
         this._heightAtWindowedMode = event.height;

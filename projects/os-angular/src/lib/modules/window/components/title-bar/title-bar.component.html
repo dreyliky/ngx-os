@@ -2,7 +2,9 @@
     class="os-title-bar os-element"
     [ngStyle]="style"
     [class]="styleClass"
-    [id]="id">
+    [id]="id"
+    (click)="OnClick.emit($event)"
+    (dblclick)="OnDblClick.emit($event)">
     <div class="os-title-bar-text os-element">
         <ng-content>
         </ng-content>

@@ -9,6 +9,9 @@ import { OsBaseComponent } from 'projects/os-angular/src/lib/core';
 export class TitleBarComponent extends OsBaseComponent implements OnInit {
 
     @Output()
+    public OnDblClick = new EventEmitter<MouseEvent>();
+
+    @Output()
     public OnMinimizeButtonClick = new EventEmitter<MouseEvent>();
 
     @Output()

@@ -18,6 +18,8 @@
     </ng-content>
 
     <os-title-bar
+        (OnClick)="OnTitleBarClick.emit($event)"
+        (OnDblClick)="OnTitleBarDblClick.emit($event)"
         (OnMinimizeButtonClick)="OnMinimizeButtonClick.emit($event)"
         (OnMaximizeButtonClick)="OnMaximizeButtonClick.emit($event)"
         (OnCloseButtonClick)="OnCloseButtonClick.emit($event)">
