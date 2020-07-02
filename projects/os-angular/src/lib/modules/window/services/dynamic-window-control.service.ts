@@ -42,6 +42,10 @@ export class DynamicWindowControlService {
         this._windowIdsOrder$.next([...windowIdsOrder]);
     }
 
+    public resetActiveWindowId (): void {
+        this._activeWindowId$.next(null);
+    }
+
     public addWindowComponentRef (windowComponentRef: ComponentRef<DynamicWindowComponent>): void {
         const windowComponents = this.getWindowComponentsRef();
 

@@ -81,10 +81,11 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public ngOnInit (): void {
         this.positionX = `${this.config.positionX}px`;
         this.positionY = `${this.config.positionY}px`;
-        this.isFullscreen = this.config.isFullscreen;
         this.isHidden = this.config.isHidden;
 
-        if (!this.isFullscreen) {
+        this.windowRef.setFullscreenState(this.config.isFullscreen);
+
+        if (!this.config.isFullscreen) {
             this._widthAtWindowedMode = this.config.width;
             this._heightAtWindowedMode = this.config.height;
         }
@@ -108,6 +109,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.initHtmlElements();
 
         this.initIsHiddenStateObserver();
+        this.initIsFullscreenStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
         this.initConfigObserver();
@@ -120,7 +122,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         const isClickOutsideWindow = OutsideClick.checkForElement(this._windowElement, event);
 
         if (isClickOutsideWindow && this.isActive) {
-            this.windowControlService.setActiveStateForWindowId(null);
+            this.windowControlService.resetActiveWindowId();
         }
     }
 
@@ -129,8 +131,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     public onMaximizeButtonClick (): void {
-        this.isFullscreen = !this.isFullscreen;
-        this.isAllowMoveWindowByDragger = !this.isFullscreen;
+        this.windowRef.setFullscreenState(!this.isFullscreen);
     }
 
     public onCloseButtonClick (): void {
@@ -141,7 +142,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.windowControlService.setActiveStateForWindowId(this._windowComponent.id);
     }
 
-    public onTitleBarBeforeDrag (event: DragInfo): void {
+    public onTitleBarBeforeDrag (): void {
         if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
             const titleBarDomRect = this._titleBarElement.getBoundingClientRect();
 
@@ -152,9 +153,9 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         }
     }
 
-    public onTitleBarDragging (event: DragInfo): void {
+    public onTitleBarDragging (): void {
         if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
-            this.isFullscreen = false;
+            this.windowRef.goWindowed();
             this.isAllowMoveWindowByDragger = true;
         }
     }
@@ -165,7 +166,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     public onTitleBarDblClick (): void {
         if (this.config.isToggleFullscreenByDblClickTitle) {
-            this.isFullscreen = !this.isFullscreen;
+            this.windowRef.setFullscreenState(!this.isFullscreen);
         }
     }
 
@@ -199,18 +200,18 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     private initActiveWindowIdObserver (): void {
-        const activeWindowIdSubscription = this.windowControlService.activeWindowId$
+        const subscription = this.windowControlService.activeWindowId$
             .subscribe((activeWindowId) => {
                 this.isActive = (activeWindowId === this._windowComponent.id);
 
                 this.updateZIndex();
             });
 
-        this._subscriptions.push(activeWindowIdSubscription);
+        this._subscriptions.push(subscription);
     }
 
     private initWindowIdOrderObserver (): void {
-        const windowIdOrderSubscription = this.windowControlService.windowIdsOrder$
+        const subscription = this.windowControlService.windowIdsOrder$
             .subscribe((orderedWindowIds) => {
                 this.windowIdOrderIndex = orderedWindowIds
                     .findIndex((currWindowId) => currWindowId === this._windowComponent.id);
@@ -218,29 +219,42 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
                 this.updateZIndex();
             });
 
-        this._subscriptions.push(windowIdOrderSubscription);
+        this._subscriptions.push(subscription);
     }
 
     private initIsHiddenStateObserver (): void {
-        const isHiddenStateSubscription = this.windowRef.isHidden$
+        const subscription = this.windowRef.isHidden$
             .subscribe((state) => {
                 this.isHidden = state;
 
                 this.changeDetector.detectChanges();
             });
 
-        this._subscriptions.push(isHiddenStateSubscription);
+        this._subscriptions.push(subscription);
+    }
+
+    private initIsFullscreenStateObserver (): void {
+        const subscription = this.windowRef.isFullscreen$
+            .subscribe((state) => {
+                this.isFullscreen = state;
+                this.isAllowMoveWindowByDragger = !this.isFullscreen;
+                console.log(this.isFullscreen);
+
+                this.changeDetector.markForCheck();
+            });
+
+        this._subscriptions.push(subscription);
     }
 
     private initConfigObserver (): void {
-        const configSubscription = this.windowRef.config$
+        const subscription = this.windowRef.config$
             .subscribe((updatedConfig) => {
                 this.config = updatedConfig;
 
                 this.changeDetector.detectChanges();
             });
 
-        this._subscriptions.push(configSubscription);
+        this._subscriptions.push(subscription);
     }
 
 }
