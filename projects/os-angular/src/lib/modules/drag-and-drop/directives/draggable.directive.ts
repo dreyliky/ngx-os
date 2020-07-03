@@ -133,6 +133,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     private setShiftX (dragInfo: DragInfo, event: MouseEvent): void {
         if (typeof(this._draggerConfig.shiftX) === 'number') {
             this.shiftX = this._draggerConfig.shiftX;
+            console.log(this.shiftX);
         } else {
             this.shiftX = event.pageX - dragInfo.draggableElementDomRect.left + pageXOffset;
         }

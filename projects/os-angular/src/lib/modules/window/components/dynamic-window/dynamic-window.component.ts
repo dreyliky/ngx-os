@@ -83,11 +83,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.isHidden = this.config.isHidden;
 
         this.windowRef.setFullscreenState(this.config.isFullscreen);
-
-        if (!this.config.isFullscreen) {
-            this._widthAtWindowedMode = this.config.width;
-            this._heightAtWindowedMode = this.config.height;
-        }
     }
 
     public ngOnDestroy (): void {
@@ -106,12 +101,12 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.loadChildComponent(this.childComponentType);
 
         this.initHtmlElements();
-
         this.initIsHiddenStateObserver();
         this.initIsFullscreenStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
         this.initConfigObserver();
+        this.initSizesAtWindowedMode();
 
         this.changeDetector.detectChanges();
     }
@@ -155,7 +150,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public onTitleBarDragging (): void {
         if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
             this.windowRef.goWindowed();
-            this.isAllowMoveWindowByDragger = true;
         }
     }
 
@@ -191,6 +185,15 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         viewContainerRef.clear();
 
         this._childComponentRef = viewContainerRef.createComponent(componentFactory);
+    }
+
+    private initSizesAtWindowedMode (): void {
+        if (!this.isFullscreen) {
+            const windowDomRect = this._windowElement.getBoundingClientRect();
+
+            this._widthAtWindowedMode = windowDomRect.width;
+            this._heightAtWindowedMode = windowDomRect.height;
+        }
     }
 
     private initHtmlElements (): void {
