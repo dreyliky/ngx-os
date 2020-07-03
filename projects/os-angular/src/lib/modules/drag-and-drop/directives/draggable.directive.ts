@@ -10,13 +10,14 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     @Input('os-draggable')
     public set draggerConfig (config: DraggerConfig) {
         this._draggerConfig = { ...this._draggerConfig, ...config };
+
+        this.initDraggableElement();
+        this.initMovableElement();
     }
 
-    @Output()
-    public OnDraggableElementInit = new EventEmitter<HTMLElement>();
-
-    @Output()
-    public OnMovableElementInit = new EventEmitter<HTMLElement>();
+    public get draggerConfig (): DraggerConfig {
+        return this._draggerConfig;
+    }
 
     @Output()
     public OnBeforeDragStart = new EventEmitter<DragInfo>();
@@ -43,10 +44,6 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit (): void {
-        this.initDraggableElement();
-        this.initMovableElement();
-
-        this._draggableElement.addEventListener('mousedown', this.elementMouseDownHandler);
     }
 
     public ngOnDestroy (): void {
@@ -54,32 +51,32 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private initDraggableElement (): void {
-        if (this._draggerConfig?.draggableElementSelector) {
-            this._draggableElement = this.element.nativeElement.querySelector(this._draggerConfig.draggableElementSelector);
+        this._draggableElement?.removeEventListener('mousedown', this.elementMouseDownHandler);
+
+        if (this.draggerConfig?.draggableElement) {
+            this._draggableElement = this.draggerConfig.draggableElement;
         } else {
             this._draggableElement = this.element.nativeElement;
         }
 
-        this.OnDraggableElementInit.emit(this._draggableElement);
+        this._draggableElement.addEventListener('mousedown', this.elementMouseDownHandler);
     }
 
     private initMovableElement (): void {
-        if (this._draggerConfig?.movableElementSelector) {
-            this._movableElement = this.element.nativeElement.querySelector(this._draggerConfig.movableElementSelector);
+        if (this.draggerConfig?.movableElement) {
+            this._movableElement = this.draggerConfig.movableElement;
         } else {
             this._movableElement = this.element.nativeElement;
         }
-
-        this.OnMovableElementInit.emit(this._movableElement);
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
         if (
-            !this._draggerConfig.isEnabled
+            !this.draggerConfig.isEnabled
             ||
-            !this._draggerConfig.allowedMouseButtons
+            !this.draggerConfig.allowedMouseButtons
             ||
-            !this._draggerConfig.allowedMouseButtons.includes(event.button)
+            !this.draggerConfig.allowedMouseButtons.includes(event.button)
         ) {
             return;
         }
@@ -106,7 +103,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private updateMovableElementPosition (event: MouseEvent): void {
-        if (this._movableElement && this._draggerConfig.isAllowMoveElement) {
+        if (this._movableElement && this.draggerConfig.isAllowMoveElement) {
             this._movableElement.style.left = `${event.pageX - this.shiftX}px`;
             this._movableElement.style.top  = `${event.pageY - this.shiftY}px`;
         }
@@ -131,17 +128,16 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private setShiftX (dragInfo: DragInfo, event: MouseEvent): void {
-        if (typeof(this._draggerConfig.shiftX) === 'number') {
-            this.shiftX = this._draggerConfig.shiftX;
-            console.log(this.shiftX);
+        if (typeof(this.draggerConfig.shiftX) === 'number') {
+            this.shiftX = this.draggerConfig.shiftX;
         } else {
             this.shiftX = event.pageX - dragInfo.draggableElementDomRect.left + pageXOffset;
         }
     }
 
     private setShiftY (dragInfo: DragInfo, event: MouseEvent): void {
-        if (typeof(this._draggerConfig.shiftY) === 'number') {
-            this.shiftY = this._draggerConfig.shiftY;
+        if (typeof(this.draggerConfig.shiftY) === 'number') {
+            this.shiftY = this.draggerConfig.shiftY;
         } else {
             this.shiftY = event.pageY - dragInfo.draggableElementDomRect.top + pageYOffset;
         }

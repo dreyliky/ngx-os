@@ -4,7 +4,7 @@ import { MouseButtonEnum } from '../../../core';
 
 export class ResizerConfig {
 
-    public targetElementSelector: string;
+    public targetElement: HTMLElement;
     public minWidth: number = 20;
     public minHeight: number = 20;
     public maxWidth: number = Infinity;

@@ -2,8 +2,8 @@ import { MouseButtonEnum } from '../../../core';
 
 export class DraggerConfig {
 
-    public draggableElementSelector?: string;
-    public movableElementSelector?: string;
+    public draggableElement?: HTMLElement;
+    public movableElement?: HTMLElement;
     public allowedMouseButtons?: MouseButtonEnum[] = [MouseButtonEnum.left];
     public shiftX?: number;
     public shiftY?: number;

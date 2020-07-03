@@ -1,11 +1,11 @@
 <os-window
     [os-draggable]="{
-        draggableElementSelector: '.os-title-bar',
-        movableElementSelector: '.os-window',
+        draggableElement: titleBarElement,
+        movableElement: windowElement,
         isAllowMoveElement: isAllowMoveWindowByDragger
     }"
     [os-resizable]="{
-        targetElementSelector: '.os-window',
+        targetElement: windowElement,
         minWidth: config.minWidth,
         minHeight: config.minHeight,
         maxWidth: config.maxWidth,

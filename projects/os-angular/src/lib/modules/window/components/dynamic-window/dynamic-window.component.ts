@@ -49,6 +49,9 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     public isAllowMoveWindowByDragger: boolean = true;
 
+    public windowElement: HTMLDivElement;
+    public titleBarElement: HTMLDivElement;
+
     @ViewChild(DynamicWindowContentDirective, { static: true })
     private readonly _dynamicWindowContent: DynamicWindowContentDirective;
 
@@ -62,9 +65,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private readonly _alwaysOnTopZIndex: number = 5000;
 
     private _childComponentRef: ComponentRef<any>;
-
-    private _windowElement: HTMLDivElement;
-    private _titleBarElement: HTMLDivElement;
 
     private _widthAtWindowedMode: number;
     private _heightAtWindowedMode: number;
@@ -113,7 +113,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     @HostListener('document:click', ['$event'])
     public onClickOutside (event: MouseEvent): void {
-        const isClickOutsideWindow = OutsideClick.checkForElement(this._windowElement, event);
+        const isClickOutsideWindow = OutsideClick.checkForElement(this.windowElement, event);
 
         if (isClickOutsideWindow && this.isActive) {
             this.windowControlService.resetActiveWindowId();
@@ -138,7 +138,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     public onTitleBarBeforeDrag (): void {
         if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
-            const titleBarDomRect = this._titleBarElement.getBoundingClientRect();
+            const titleBarDomRect = this.titleBarElement.getBoundingClientRect();
 
             this._draggableDirective.draggerConfig = {
                 shiftX: (this._widthAtWindowedMode / 2),
@@ -189,7 +189,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     private initSizesAtWindowedMode (): void {
         if (!this.isFullscreen) {
-            const windowDomRect = this._windowElement.getBoundingClientRect();
+            const windowDomRect = this.windowElement.getBoundingClientRect();
 
             this._widthAtWindowedMode = windowDomRect.width;
             this._heightAtWindowedMode = windowDomRect.height;
@@ -197,8 +197,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     private initHtmlElements (): void {
-        this._windowElement = document.getElementById(this._windowComponent.id) as HTMLDivElement;
-        this._titleBarElement = this._windowElement.querySelector('.os-title-bar');
+        this.windowElement = document.getElementById(this._windowComponent.id) as HTMLDivElement;
+        this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
     }
 
     private initActiveWindowIdObserver (): void {

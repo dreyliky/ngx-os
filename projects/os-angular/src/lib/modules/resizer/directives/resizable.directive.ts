@@ -24,6 +24,8 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     public set resizerConfig (config: ResizerConfig) {
         this._resizerConfig = { ...this._resizerConfig, ...config };
 
+        this.initResizableElement();
+        this.updateResizersWrapperDomPlacement();
         this.updateResizersActivity();
     }
 
@@ -77,10 +79,10 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     public ngOnInit (): void {
         this.initAllowedResizers();
-        this.initResizableElement();
         this.initResizersWrapperElement();
         this.initResizerElements();
         this.initResizerInstances();
+        this.updateResizersWrapperDomPlacement();
         this.updateResizersActivity();
     }
 
@@ -111,8 +113,8 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     }
 
     private initResizableElement (): void {
-        if (this.resizerConfig?.targetElementSelector) {
-            this._resizableElement = this.element.nativeElement.querySelector(this.resizerConfig.targetElementSelector);
+        if (this.resizerConfig?.targetElement) {
+            this._resizableElement = this.resizerConfig.targetElement;
         } else {
             this._resizableElement = this.element.nativeElement;
         }
@@ -122,8 +124,6 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     private initResizersWrapperElement (): void {
         this._resizersWrapperElement = document.createElement(`os-resizers`);
-
-        this._resizableElement.appendChild(this._resizersWrapperElement);
 
         this.OnResizerElementInit.emit(this._resizersWrapperElement);
     }
@@ -157,6 +157,14 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             .set(ResizerEnum.topRight, new TopRightResizer(this))
             .set(ResizerEnum.bottomLeft, new BottomLeftResizer(this))
             .set(ResizerEnum.bottomRight, new BottomRightResizer(this));
+    }
+
+    private updateResizersWrapperDomPlacement (): void {
+        if (this._resizersWrapperElement && (this._resizersWrapperElement.parentElement !== this._resizableElement)) {
+            this._resizersWrapperElement.remove();
+
+            this._resizableElement.appendChild(this._resizersWrapperElement);
+        }
     }
 
     private updateResizersActivity (): void {
