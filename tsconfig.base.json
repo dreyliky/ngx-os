@@ -17,10 +17,7 @@
             "dom"
         ],
         "paths": {
-            "os-angular": [
-                "dist/os-angular/os-angular",
-                "dist/os-angular"
-            ]
+            "os-angular/*": ["projects/os-angular/src/lib/*"]
         }
     },
     "angularCompilerOptions": {

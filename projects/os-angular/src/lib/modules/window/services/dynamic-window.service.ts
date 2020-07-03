@@ -8,11 +8,11 @@ import {
     ComponentRef
 } from '@angular/core';
 
+import { first } from 'rxjs/operators';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 import { DynamicWindowComponent } from '../components';
 import { DynamicWindowInjector, DynamicWindowConfig, DynamicWindowRef } from '../classes';
 import { DynamicWindowDiParams, DynamicWindowInputParams } from '../interfaces';
-import { first } from 'rxjs/operators';
 
 @Injectable()
 export class DynamicWindowService {

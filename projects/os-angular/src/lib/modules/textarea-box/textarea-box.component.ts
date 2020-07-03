@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { OsBaseFieldComponent } from '../../core';
+import { OsBaseFieldComponent } from 'os-angular/core';
 
 @Component({
     selector: 'os-textarea-box',

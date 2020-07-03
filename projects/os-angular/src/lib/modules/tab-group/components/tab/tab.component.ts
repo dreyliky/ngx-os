@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, TemplateRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { OsBaseComponent } from 'projects/os-angular/src/lib/core';
+import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
     selector: 'os-tab',

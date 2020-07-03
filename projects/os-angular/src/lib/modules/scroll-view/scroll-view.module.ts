@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from 'os-angular/shared.module';
 import { ScrollViewComponent } from './scroll-view.component';
-import { SharedModule } from '../../shared.module';
 
 @NgModule({
     declarations: [

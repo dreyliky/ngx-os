@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OsBaseComponent } from '../../core';
+import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
     selector: 'os-text',

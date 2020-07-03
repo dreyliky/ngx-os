@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared.module';
-import { ButtonModule } from '../button';
-import { ScrollViewModule } from '../scroll-view';
-import { ResizerModule } from '../resizer';
+import { SharedModule } from 'os-angular/shared.module';
+import { ButtonModule } from 'os-angular/modules/button';
+import { ScrollViewModule } from 'os-angular/modules/scroll-view';
+import { ResizerModule } from 'os-angular/modules/resizer';
+import { DragAndDropModule } from 'os-angular/modules/drag-and-drop';
 import { DynamicWindowService, DynamicWindowControlService } from './services';
 import { DynamicWindowContentDirective } from './directives';
 import { WindowComponent } from './window.component';
 import { TitleBarComponent, DynamicWindowComponent } from './components';
-import { DragAndDropModule } from '../drag-and-drop';
 
 @NgModule({
     declarations: [

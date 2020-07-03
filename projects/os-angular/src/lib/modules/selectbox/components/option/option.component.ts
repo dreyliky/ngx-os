@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ViewChild, TemplateRef } from '@angular/core';
-import { OsBaseComponent } from 'projects/os-angular/src/lib/core';
+import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
     selector: 'os-option',

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { OsBaseButtonComponent } from '../../core';
+import { OsBaseButtonComponent } from 'os-angular/core';
 import { buttonType } from './shared';
 
 @Component({

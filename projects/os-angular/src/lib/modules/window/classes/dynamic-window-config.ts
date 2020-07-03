@@ -1,4 +1,4 @@
-import { ResizerEnum } from '../../resizer/enums';
+import { ResizerEnum } from 'os-angular/modules/resizer';
 
 export class DynamicWindowConfig<D = any> {
     public title?: string = 'OS dynamic window';

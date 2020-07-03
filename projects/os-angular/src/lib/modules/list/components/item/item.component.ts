@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { OsBaseComponent } from 'os-angular/core';
+import { OutsideClick } from 'os-angular/helpers';
 import { ListItem } from '../../interfaces/item.interface';
-import { OsBaseComponent } from '../../../../core';
-import { OutsideClick } from '../../../../helpers';
 
 @Component({
     selector: 'os-list-item',

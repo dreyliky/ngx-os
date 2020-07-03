@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, QueryList, ContentChildren, AfterContentInit, OnDestroy } from '@angular/core';
-import { TabComponent } from './components';
 import { Subscription } from 'rxjs';
-import { OsBaseComponent } from '../../core';
+import { OsBaseComponent } from 'os-angular/core';
+import { TabComponent } from './components';
 
 @Component({
     selector: 'os-tab-group',

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from 'os-angular/shared.module';
 import { TreeViewComponent } from './tree-view.component';
-import { SharedModule } from '../../shared.module';
 
 @NgModule({
     declarations: [

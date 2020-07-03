@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, ContentChildren, QueryList } from '@angular/core';
-import { OsBaseComponent } from '../../core';
+import { OsBaseComponent } from 'os-angular/core';
 import { OptionComponent } from './components/option/option.component';
 
 @Component({

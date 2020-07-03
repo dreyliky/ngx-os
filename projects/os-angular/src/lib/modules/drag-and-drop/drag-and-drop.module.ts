@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from 'os-angular/shared.module';
 
 import {
     OsDraggableDirective
