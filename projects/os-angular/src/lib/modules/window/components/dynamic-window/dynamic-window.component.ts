@@ -18,7 +18,7 @@ import { OsDraggableDirective } from 'os-angular/modules/drag-and-drop';
 import { ResizerEnum, ResizeInfo } from 'os-angular/modules/resizer';
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
-import { WindowComponent } from '../../window.component';
+import { WindowComponent } from '../window';
 import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
 
 @Component({

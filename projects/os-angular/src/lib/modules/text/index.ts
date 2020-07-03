@@ -1,3 +1,3 @@
-export * from './text.component';
+export * from './components';
 
 export * from './text.module';

@@ -1,3 +1,3 @@
-export * from './radio-button.component';
+export * from './components';
 
 export * from './radio-button.module';

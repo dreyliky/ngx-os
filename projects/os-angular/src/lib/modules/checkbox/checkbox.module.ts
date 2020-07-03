@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
-import { CheckboxComponent } from './checkbox.component';
+import { CheckboxComponent } from './components';
 
 @NgModule({
     declarations: [

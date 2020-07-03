@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { textboxType } from './shared';
 import { OsBaseFieldComponent } from 'os-angular/core';
+import { textboxType } from '../../shared';
 
 @Component({
     selector: 'os-text-box',

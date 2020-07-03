@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TextBoxComponent } from './text-box.component';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from 'os-angular/shared.module';
+import { TextBoxComponent } from './components';
 
 @NgModule({
     declarations: [

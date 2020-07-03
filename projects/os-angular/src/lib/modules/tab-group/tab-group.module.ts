@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
 import { ButtonModule } from 'os-angular/modules/button';
-import { TabGroupComponent } from './tab-group.component';
-import { TabComponent } from './components/tab/tab.component';
+import { TabGroupComponent, TabComponent } from './components';
 
 @NgModule({
     declarations: [

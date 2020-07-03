@@ -1,3 +1,3 @@
-export * from './group-box.component';
+export * from './components';
 
 export * from './group-box.module';

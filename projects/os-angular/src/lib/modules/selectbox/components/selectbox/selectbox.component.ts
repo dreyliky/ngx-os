@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ContentChildren, QueryList } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
-import { OptionComponent } from './components/option/option.component';
+import { OptionComponent } from '../option';
 
 @Component({
     selector: 'os-selectbox',

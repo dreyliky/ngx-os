@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
-import { FieldRowComponent } from './field-row.component';
+import { FieldRowComponent } from './components';
 
 @NgModule({
     declarations: [

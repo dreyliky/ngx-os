@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
-import { RadioButtonComponent } from './radio-button.component';
+import { RadioButtonComponent } from './components';
 
 @NgModule({
     declarations: [

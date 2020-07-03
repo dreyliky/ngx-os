@@ -6,8 +6,11 @@ import { ResizerModule } from 'os-angular/modules/resizer';
 import { DragAndDropModule } from 'os-angular/modules/drag-and-drop';
 import { DynamicWindowService, DynamicWindowControlService } from './services';
 import { DynamicWindowContentDirective } from './directives';
-import { WindowComponent } from './window.component';
-import { TitleBarComponent, DynamicWindowComponent } from './components';
+import {
+    TitleBarComponent,
+    WindowComponent,
+    DynamicWindowComponent
+} from './components';
 
 @NgModule({
     declarations: [

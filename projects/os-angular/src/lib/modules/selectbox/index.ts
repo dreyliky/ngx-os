@@ -1,3 +1,3 @@
-export * from './selectbox.component';
+export * from './components';
 
 export * from './selectbox.module';

@@ -1,3 +1,3 @@
-export * from './text-box.component';
+export * from './components';
 
 export * from './text-box.module';

@@ -10,7 +10,7 @@ import {
 
 import { first } from 'rxjs/operators';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
-import { DynamicWindowComponent } from '../components';
+import { DynamicWindowComponent } from '../components/dynamic-window/dynamic-window.component';
 import { DynamicWindowInjector, DynamicWindowConfig, DynamicWindowRef } from '../classes';
 import { DynamicWindowDiParams, DynamicWindowInputParams } from '../interfaces';
 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
-import { SelectboxComponent } from './selectbox.component';
-import { OptionComponent } from './components/option/option.component';
+import { SelectboxComponent, OptionComponent } from './components';
 
 @NgModule({
     declarations: [

@@ -1,3 +1,3 @@
-export * from './textarea-box.component';
+export * from './components';
 
 export * from './textarea-box.module';

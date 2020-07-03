@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
-import { ListComponent } from './list.component';
-import { ItemComponent } from './components/item/item.component';
+import { ListComponent, ItemComponent } from './components';
 
 @NgModule({
     declarations: [

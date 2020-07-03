@@ -1,3 +1,3 @@
-export * from './slider.component';
+export * from './components';
 
 export * from './slider.module';

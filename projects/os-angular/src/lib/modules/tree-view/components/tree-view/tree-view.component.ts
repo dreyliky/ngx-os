@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
-import { TreeNode } from './interfaces';
+import { TreeNode } from '../../interfaces';
 
 @Component({
     selector: 'os-tree-view',

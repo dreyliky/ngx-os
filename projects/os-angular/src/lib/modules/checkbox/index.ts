@@ -1,3 +1,3 @@
-export * from './checkbox.component';
+export * from './components';
 
 export * from './checkbox.module';

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { OsBaseButtonComponent } from 'os-angular/core';
-import { buttonType } from './shared';
+import { buttonType } from '../../shared';
 
 @Component({
     selector: 'os-button',

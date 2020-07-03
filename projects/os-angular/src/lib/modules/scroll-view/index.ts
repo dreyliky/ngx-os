@@ -1,3 +1,3 @@
-export * from './scroll-view.component';
+export * from './components';
 
 export * from './scroll-view.module';
