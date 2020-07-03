@@ -51,6 +51,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     public windowElement: HTMLDivElement;
     public titleBarElement: HTMLDivElement;
+    public titleBarButtons: HTMLButtonElement[] = [];
 
     @ViewChild(DynamicWindowContentDirective, { static: true })
     private readonly _dynamicWindowContent: DynamicWindowContentDirective;
@@ -199,6 +200,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private initHtmlElements (): void {
         this.windowElement = document.getElementById(this._windowComponent.id) as HTMLDivElement;
         this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
+        this.titleBarElement.querySelectorAll('button')
+            .forEach((titleBarButton) => this.titleBarButtons.push(titleBarButton));
     }
 
     private initActiveWindowIdObserver (): void {

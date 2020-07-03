@@ -71,12 +71,16 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
+        const childElementsBlackList = this.draggerConfig.childElementsBlackList || [];
+
         if (
             !this.draggerConfig.isEnabled
             ||
             !this.draggerConfig.allowedMouseButtons
             ||
             !this.draggerConfig.allowedMouseButtons.includes(event.button)
+            ||
+            childElementsBlackList.includes(event.target as HTMLElement)
         ) {
             return;
         }
