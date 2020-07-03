@@ -31,6 +31,9 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     @Output()
     public OnDragging = new EventEmitter<DragInfo>();
 
+    @Output()
+    public OnAfterDragging = new EventEmitter<DragInfo>();
+
     private shiftX: number;
     private shiftY: number;
 
@@ -43,11 +46,17 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         private readonly element: ElementRef<HTMLElement>
     ) {}
 
-    public ngOnInit (): void {
-    }
+    public ngOnInit (): void {}
 
     public ngOnDestroy (): void {
         this._draggableElement.removeEventListener('mousedown', this.elementMouseDownHandler);
+    }
+
+    public updateMovableElementPosition (event: MouseEvent): void {
+        if (this._movableElement && this.draggerConfig.isAllowMoveElement) {
+            this._movableElement.style.left = `${event.pageX - this.shiftX}px`;
+            this._movableElement.style.top  = `${event.pageY - this.shiftY}px`;
+        }
     }
 
     private initDraggableElement (): void {
@@ -104,13 +113,12 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         const dragInfo = this.getDragInfo(event);
 
         this.OnDragging.emit(dragInfo);
-    }
 
-    private updateMovableElementPosition (event: MouseEvent): void {
-        if (this._movableElement && this.draggerConfig.isAllowMoveElement) {
-            this._movableElement.style.left = `${event.pageX - this.shiftX}px`;
-            this._movableElement.style.top  = `${event.pageY - this.shiftY}px`;
-        }
+        setTimeout(() => {
+            const dragInfoAfter = this.getDragInfo(event);
+
+            this.OnAfterDragging.emit(dragInfoAfter);
+        });
     }
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {

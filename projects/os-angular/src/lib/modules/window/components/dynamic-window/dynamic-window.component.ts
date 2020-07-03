@@ -14,7 +14,7 @@ import {
 
 import { Subscription } from 'rxjs';
 import { OutsideClick } from 'os-angular/helpers';
-import { OsDraggableDirective } from 'os-angular/modules/drag-and-drop';
+import { OsDraggableDirective, DragInfo } from 'os-angular/modules/drag-and-drop';
 import { ResizerEnum, ResizeInfo } from 'os-angular/modules/resizer';
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
@@ -69,6 +69,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
     private _widthAtWindowedMode: number;
     private _heightAtWindowedMode: number;
+
+    private _isAfterExitFullscreenByDragging: boolean = false;
 
     private readonly _subscriptions: Subscription[] = [];
 
@@ -151,6 +153,14 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public onTitleBarDragging (): void {
         if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
             this.windowRef.goWindowed();
+            this._isAfterExitFullscreenByDragging = true;
+        }
+    }
+
+    public onTitleBarAfterDragging (event: DragInfo): void {
+        if (this._isAfterExitFullscreenByDragging) {
+            this._draggableDirective.updateMovableElementPosition(event.mouseEvent);
+            this._isAfterExitFullscreenByDragging = false;
         }
     }
 
