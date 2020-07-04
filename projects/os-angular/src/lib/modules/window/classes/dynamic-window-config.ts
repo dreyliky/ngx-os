@@ -22,4 +22,7 @@ export class DynamicWindowConfig<D = any> {
     public isExitFullscreenByDragTitle?: boolean = true;
     public scrollViewStyle?: any;
     public scrollViewStyleClass?: any;
+    public onMinimizeButtonClick?: () => any;
+    public onMaximizeButtonClick?: () => any;
+    public onCloseButtonClick?: () => any;
 }

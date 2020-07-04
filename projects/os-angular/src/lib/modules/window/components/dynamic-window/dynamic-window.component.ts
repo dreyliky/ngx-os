@@ -124,15 +124,27 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     public onMinimizeButtonClick (): void {
-        this.windowRef.hide();
+        if (this.config.onMinimizeButtonClick) {
+            this.config.onMinimizeButtonClick();
+        } else {
+            this.windowRef.hide();
+        }
     }
 
     public onMaximizeButtonClick (): void {
-        this.windowRef.setFullscreenState(!this.isFullscreen);
+        if (this.config.onMaximizeButtonClick) {
+            this.config.onMaximizeButtonClick();
+        } else {
+            this.windowRef.setFullscreenState(!this.isFullscreen);
+        }
     }
 
     public onCloseButtonClick (): void {
-        this.windowRef.close();
+        if (this.config.onCloseButtonClick) {
+            this.config.onCloseButtonClick();
+        } else {
+            this.windowRef.close();
+        }
     }
 
     public onWindowMouseDown (): void {
