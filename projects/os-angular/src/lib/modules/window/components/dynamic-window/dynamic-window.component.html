@@ -27,17 +27,23 @@
     [isTitleBarVisible]="config.isTitleBarVisible"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
-    [styleClass]="'os-resizable'"
+    [styleClass]="{
+        'dragging': isDragging,
+        'resizing': isResizing
+    }"
     [style]="{
         left: positionX,
         top: positionY
     }"
-    (OnBeforeDragStart)="onTitleBarBeforeDrag()"
-    (OnDragging)="onTitleBarDragging()"
-    (OnAfterDragging)="onTitleBarAfterDragging($event)"
-    (OnDragEnd)="onTitleBarDragEnd()"
+    (OnBeforeDragStart)="onBeforeDragStart()"
+    (OnDragStart)="onDragStart()"
+    (OnDragging)="onDragging()"
+    (OnAfterDragging)="onAfterDragging($event)"
+    (OnDragEnd)="onDragEnd()"
     (OnMouseDown)="onWindowMouseDown()"
-    (OnResizing)="onWindowResizing($event)"
+    (OnResizeStart)="onResizeStart()"
+    (OnResizing)="onResizing($event)"
+    (OnResizeEnd)="onResizeEnd()"
     (OnTitleBarDblClick)="onTitleBarDblClick()"
     (OnMinimizeButtonClick)="onMinimizeButtonClick()"
     (OnMaximizeButtonClick)="onMaximizeButtonClick()"

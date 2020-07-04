@@ -45,6 +45,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public isActive: boolean = false;
     public isFullscreen: boolean = false;
     public isHidden: boolean = false;
+    public isDragging: boolean = false;
+    public isResizing: boolean = false;
     public windowIdOrderIndex: number = 0;
 
     public isAllowResizing: boolean = true;
@@ -154,7 +156,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.windowControlService.setActiveStateForWindowId(this._windowComponent.id);
     }
 
-    public onTitleBarBeforeDrag (): void {
+    public onBeforeDragStart (): void {
         if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
             const titleBarDomRect = this.titleBarElement.getBoundingClientRect();
 
@@ -165,22 +167,27 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         }
     }
 
-    public onTitleBarDragging (): void {
+    public onDragStart (): void {
+        this.isDragging = true;
+    }
+
+    public onDragging (): void {
         if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
             this.windowRef.goWindowed();
             this._isAfterExitFullscreenByDragging = true;
         }
     }
 
-    public onTitleBarAfterDragging (event: DragInfo): void {
+    public onAfterDragging (event: DragInfo): void {
         if (this._isAfterExitFullscreenByDragging) {
             this._draggableDirective.updateMovableElementPosition(event.mouseEvent);
             this._isAfterExitFullscreenByDragging = false;
         }
     }
 
-    public onTitleBarDragEnd (): void {
+    public onDragEnd (): void {
         this._draggableDirective.draggerConfig = { shiftX: null, shiftY: null };
+        this.isDragging = false;
     }
 
     public onTitleBarDblClick (): void {
@@ -189,9 +196,17 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         }
     }
 
-    public onWindowResizing (event: ResizeInfo): void {
+    public onResizeStart (): void {
+        this.isResizing = true;
+    }
+
+    public onResizing (event: ResizeInfo): void {
         this._widthAtWindowedMode = event.width;
         this._heightAtWindowedMode = event.height;
+    }
+
+    public onResizeEnd (): void {
+        this.isResizing = false;
     }
 
     private updateZIndex (): void {
