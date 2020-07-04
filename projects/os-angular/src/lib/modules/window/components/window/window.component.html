@@ -18,6 +18,7 @@
     </ng-content>
 
     <os-title-bar
+        [hidden]="!isTitleBarVisible"
         (OnClick)="OnTitleBarClick.emit($event)"
         (OnDblClick)="OnTitleBarDblClick.emit($event)"
         (OnMinimizeButtonClick)="OnMinimizeButtonClick.emit($event)"

@@ -17,6 +17,7 @@ import {
     TreeViewModule,
     ScrollViewModule,
     ListModule,
+    DragAndDropModule,
     ResizerModule
 } from './modules';
 
@@ -39,6 +40,7 @@ import {
         TreeViewModule,
         ScrollViewModule,
         ListModule,
+        DragAndDropModule,
         ResizerModule
     ],
     exports: [
@@ -57,6 +59,7 @@ import {
         TreeViewModule,
         ScrollViewModule,
         ListModule,
+        DragAndDropModule,
         ResizerModule
     ]
 })

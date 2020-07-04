@@ -20,6 +20,7 @@ export class DynamicWindowConfig<D = any> {
     public isAlwaysOnTop?: boolean = false;
     public isToggleFullscreenByDblClickTitle?: boolean = true;
     public isExitFullscreenByDragTitle?: boolean = true;
+    public isTitleBarVisible?: boolean = true;
     public scrollViewStyle?: any;
     public scrollViewStyleClass?: any;
     public onMinimizeButtonClick?: () => any;

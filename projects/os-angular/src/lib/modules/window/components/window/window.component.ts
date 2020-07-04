@@ -39,6 +39,9 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public isClosable: boolean = true;
 
     @Input()
+    public isTitleBarVisible: boolean = true;
+
+    @Input()
     public scrollViewStyle: any;
 
     @Input()

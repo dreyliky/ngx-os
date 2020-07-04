@@ -1,0 +1,39 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: rgba(255, 255, 255, .5);
+}
+
+.wrapper {
+    width: 100%;
+    position: relative;
+    margin: 20px;
+}
+
+.dragger {
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 0, 0, .3);
+    user-select: none;
+    cursor: not-allowed;
+
+    &.active {
+        background: rgba(0, 255, 0, .3);
+        cursor: all-scroll;
+    }
+}
+
+.action-buttons {
+    &::ng-deep button {
+        margin-right: 10px;
+    }
+}

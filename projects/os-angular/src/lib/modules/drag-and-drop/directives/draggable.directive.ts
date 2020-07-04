@@ -2,6 +2,8 @@ import { Directive, ElementRef, Input, OnInit, OnDestroy, Output, EventEmitter }
 import { DraggerConfig } from '../classes';
 import { DragInfo } from '../interfaces/drag-info.interface';
 
+declare var getEventListeners;
+
 @Directive({
     selector: '[os-draggable]'
 })
@@ -11,8 +13,8 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     public set draggerConfig (config: DraggerConfig) {
         this._draggerConfig = { ...this._draggerConfig, ...config };
 
-        this.initDraggableElement();
         this.initMovableElement();
+        this.initDraggableElement();
     }
 
     public get draggerConfig (): DraggerConfig {

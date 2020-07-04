@@ -33,13 +33,8 @@ export class DesktopComponent implements OnInit {
             onDblClick: () => this.onHelloWorldShortcutDblClick()
         },
         {
-            label: 'Calculator',
-            iconUrl: 'assets/icons/calculator.png',
-            onDblClick: () => alert("Calculator")
-        },
-        {
             label: 'Fullscreen App',
-            iconUrl: 'assets/icons/folder-opened.png',
+            iconUrl: 'assets/icons/calculator.png',
             onDblClick: () => this.onFullscreenAppShortcutDblClick()
         }
     ];

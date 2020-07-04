@@ -112,6 +112,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this.initConfigObserver();
         this.initSizesAtWindowedMode();
 
+        this.windowRef._setWindowElement(this.windowElement);
+
         this.changeDetector.detectChanges();
     }
 
