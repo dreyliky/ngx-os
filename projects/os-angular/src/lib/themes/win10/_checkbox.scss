@@ -20,7 +20,8 @@ os-checkbox {
         width: 0;
 
         + label {
-            line-height: 12px;
+            display: flex;
+            align-items: center;
             position: relative;
             margin-left: var(--checkbox-total-width);
             font-size: 14px;

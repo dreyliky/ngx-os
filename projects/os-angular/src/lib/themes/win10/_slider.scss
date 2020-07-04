@@ -2,63 +2,58 @@ os-slider {
 
     input[type="range"] {
         -webkit-appearance: none;
-        width: 100%;
-        background: transparent;
+        appearance: none;
+        width: 256px;
+        height: 2px;
+        background-color: #999999;
+        outline: none;
+        font-family: sans-serif;
 
         &:focus {
             outline: none;
         }
 
+        &:hover {
+            background-color: #888888;
+        }
+
         &::-webkit-slider-thumb {
             -webkit-appearance: none;
-            height: 21px;
-            width: 11px;
-            background: url("./icon/indicator-horizontal.svg");
-            transform: translateY(-8px);
-        }
-
-        &::-moz-range-thumb {
-            height: 21px;
-            width: 11px;
+            appearance: none;
+            width: 8px;
+            height: 24px;
+            background: var(--primary-color);
             border: 0;
-            border-radius: 0;
-            background: url("./icon/indicator-horizontal.svg");
-            transform: translateY(2px);
+            border-radius: 4px;
+            transition: ease all 0.1s;
+
+            &:hover {
+                background-color: #171717;
+            }
+
+            &:active {
+                background-color: #cccccc;
+            }
         }
 
-        &::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 2px;
-            box-sizing: border-box;
-            background: #ecebe4;
-            border-right: 1px solid #f3f2ea;
-            border-bottom: 1px solid #f3f2ea;
-            border-radius: 2px;
-            box-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 0 0 #9d9c99, -1px -1px 0 #9d9c99,
-                0 -1px 0 #9d9c99, -1px 1px 0 white, 1px -1px #9d9c99;
-        }
-
-        &::-moz-range-track {
-            width: 100%;
-            height: 2px;
-            box-sizing: border-box;
-            background: #ecebe4;
-            border-right: 1px solid #f3f2ea;
-            border-bottom: 1px solid #f3f2ea;
-            border-radius: 2px;
-            box-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 0 0 #9d9c99, -1px -1px 0 #9d9c99,
-                0 -1px 0 #9d9c99, -1px 1px 0 white, 1px -1px #9d9c99;
-        }
-    }
-
-    input[type="range"].has-box-indicator {
-        &::-webkit-slider-thumb {
-            background: url("./icon/indicator-rectangle-horizontal.svg");
-            transform: translateY(-10px);
-        }
         &::-moz-range-thumb {
-            background: url("./icon/indicator-rectangle-horizontal.svg");
-            transform: translateY(0px);
+            -webkit-appearance: none;
+            appearance: none;
+            width: 8px;
+            height: 24px;
+            background: rgb(var(--accent-color));
+            cursor: pointer;
+            border: 0;
+            border-radius: 4px;
+            transition: ease all 0.1s;
+
+            &:hover {
+                background-color: #171717;
+            }
+
+            &:active {
+                background-color: #cccccc;
+            }
         }
     }
 
