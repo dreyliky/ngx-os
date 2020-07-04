@@ -1,7 +1,7 @@
 os-scroll-view {
 
     .os-scroll-view::-webkit-scrollbar {
-        width: 17px;
+        width: 16px;
     }
 
     .os-scroll-view::-webkit-scrollbar-corner {
@@ -9,50 +9,65 @@ os-scroll-view {
     }
 
     .os-scroll-view::-webkit-scrollbar-track {
-        &:vertical {
-            background-image: url("./icon/scroll-background.svg");
-        }
-        &:horizontal {
-            background-image: url("./icon/scroll-background-horizontal.svg");
-        }
+        background: #e1e1e2;
     }
 
     .os-scroll-view::-webkit-scrollbar-thumb {
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: #c8d6fb;
-        background-size: 7px;
-        border: 1px solid white;
-        border-radius: 2px;
-        box-shadow: inset -3px 0 #bad1fc, inset 1px 1px #b7caf5;
-        &:vertical {
-            background-image: url("./icon/scroll-thumb.svg");
-        }
-        &:horizontal {
-            background-size: 8px;
-            background-image: url("./icon/scroll-thumb-horizontal.svg");
+        background: #bababa;
+
+        &:hover {
+            background: #8c8c8c;
         }
     }
 
     .os-scroll-view::-webkit-scrollbar-button {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-color: #e9e9e9;
+
+        &:hover {
+            background-color: #d2d2d2 !important;
+        }
+
+        &:active {
+            background-color: #5d5d5d !important;
+        }
+
         &:vertical {
+            height: 16px;
+
             &:start {
-                height: 17px;
-                background-image: url("./icon/scroll-arrow-up.svg");
+                background-image: url("./icon/chevron-up-black.svg");
+
+                &:active {
+                    background-image: url("./icon/chevron-up-white.svg");
+                }
             }
             &:end {
-                height: 17px;
-                background-image: url("./icon/scroll-arrow-down.svg");
+                background-image: url("./icon/chevron-down-black.svg");
+
+                &:active {
+                    background-image: url("./icon/chevron-down-white.svg");
+                }
             }
         }
+
         &:horizontal {
+            width: 16px;
+
             &:start {
-                width: 17px;
-                background-image: url("./icon/scroll-arrow-left.svg");
+                background-image: url("./icon/cheveron-left-black.svg");
+
+                &:active {
+                    background-image: url("./icon/cheveron-left-white.svg");
+                }
             }
             &:end {
-                width: 17px;
-                background-image: url("./icon/scroll-arrow-right.svg");
+                background-image: url("./icon/cheveron-right-black.svg");
+
+                &:active {
+                    background-image: url("./icon/cheveron-right-white.svg");
+                }
             }
         }
     }
