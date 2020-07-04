@@ -55,6 +55,26 @@ os-window {
         }
     }
 
+    .os-window.fullscreen {
+        &.active {
+            .os-title-bar {
+                button[aria-label="Maximize"] {
+                    background-image: url("./icon/restore-down-white.svg") !important;
+                }
+            }
+        }
+
+        .os-title-bar {
+            button[aria-label="Maximize"] {
+                background-image: url("./icon/restore-down-grey.svg") !important;
+
+                &:hover {
+                    background-image: url("./icon/restore-down-black.svg");
+                }
+            }
+        }
+    }
+
     button[aria-label="Minimize"] {
         background-image: url("./icon/minimize-grey.svg");
 
