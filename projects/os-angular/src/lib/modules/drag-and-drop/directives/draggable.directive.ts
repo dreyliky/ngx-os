@@ -2,8 +2,6 @@ import { Directive, ElementRef, Input, OnInit, OnDestroy, Output, EventEmitter }
 import { DraggerConfig } from '../classes';
 import { DragInfo } from '../interfaces/drag-info.interface';
 
-declare var getEventListeners;
-
 @Directive({
     selector: '[os-draggable]'
 })
