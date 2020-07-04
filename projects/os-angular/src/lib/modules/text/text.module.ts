@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
-import { TextComponent } from './components';
+import {
+    TextComponent,
+    HeaderComponent
+} from './components';
 
 @NgModule({
     declarations: [
-        TextComponent
+        TextComponent,
+        HeaderComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        TextComponent
+        TextComponent,
+        HeaderComponent
     ]
 })
 export class TextModule {}
