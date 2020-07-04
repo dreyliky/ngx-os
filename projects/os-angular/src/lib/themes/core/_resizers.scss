@@ -1,8 +1,8 @@
-$border-resizer-size: 5px;
+$border-resizer-size: 3px;
 
 @mixin corner-resizer {
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
     opacity: .999;
     z-index: 999;
 }
