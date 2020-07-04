@@ -8,103 +8,105 @@
     </div>
 
     <div class="right-side">
-        <os-text
-            [size]="'24px'"
-            [fontWeight]="'bold'">
-            Os Elements - Win10
-        </os-text>
-
-        <div class="element-wrapper">
-            <os-field-row [stacked]="true">
-                <os-text-box
-                    [placeholder]="'For example John Smith'"
-                    [label]="'Enter your first and last name'">
-                </os-text-box>
-            </os-field-row>
-        </div>
-
-        <div class="element-wrapper">
-            <os-field-row [stacked]="true">
-                <os-textarea-box
-                    [placeholder]="'Tell about yourself'"
-                    [label]="'Description'">
-                </os-textarea-box>
-            </os-field-row>
-        </div>
-
-        <div class="element-wrapper">
-            <os-group-box
-                [label]="'Choose your gender'">
-                <os-radio-button
-                    [label]="'Male'"
-                    [name]="'gender'">
-                </os-radio-button>
-
-                <os-radio-button
-                    [label]="'Female'"
-                    [name]="'gender'">
-                </os-radio-button>
-            </os-group-box>
-        </div>
-
-        <div class="element-wrapper">
-            <os-field-row>
-                <os-slider
-                    [label]="'Age'"
-                    [minValueLabel]="'Min'"
-                    [maxValueLabel]="'Max'"
-                    [min]="14"
-                    [max]="120"
-                    [value]="18">
-                </os-slider>
-            </os-field-row>
-        </div>
-
-        <div class="element-wrapper">
-            <os-field-row>
-                <os-checkbox
-                    [label]="'I agree to the processing of my personal data'">
-                </os-checkbox>
-            </os-field-row>
-        </div>
-
-        <div class="element-wrapper">
-            <os-tab-group>
-                <os-tab
-                    [selected]="true"
-                    [label]="'Tab 1'">
-                    <os-selectbox>
-                        <os-option>Item 1</os-option>
-                        <os-option>Item 2</os-option>
-                        <os-option [selected]="true">Item 3 - Selected by default</os-option>
-                        <os-option>Item 4</os-option>
-                    </os-selectbox>
-                </os-tab>
-
-                <os-tab
-                    [selected]="false"
-                    [label]="'Tab 2'">
-                    <os-text>
-                        Tab 2 content
-                    </os-text>
-                </os-tab>
-            </os-tab-group>
-        </div>
-
-        <div class="element-wrapper">
-            <os-text>
-                Please expand some nodes in tree below to see how it works:
+        <os-scroll-view>
+            <os-text
+                [size]="'24px'"
+                [fontWeight]="'bold'">
+                Os Elements - Win10
             </os-text>
-        </div>
 
-        <os-tree-view
-            [data]="treeItems">
-        </os-tree-view>
+            <div class="element-wrapper">
+                <os-field-row [stacked]="true">
+                    <os-text-box
+                        [placeholder]="'For example John Smith'"
+                        [label]="'Enter your first and last name'">
+                    </os-text-box>
+                </os-field-row>
+            </div>
 
-        <div class="element-wrapper">
-            <os-button>
-                Submit
-            </os-button>
-        </div>
+            <div class="element-wrapper">
+                <os-field-row [stacked]="true">
+                    <os-textarea-box
+                        [placeholder]="'Tell about yourself'"
+                        [label]="'Description'">
+                    </os-textarea-box>
+                </os-field-row>
+            </div>
+
+            <div class="element-wrapper">
+                <os-group-box
+                    [label]="'Choose your gender'">
+                    <os-radio-button
+                        [label]="'Male'"
+                        [name]="'gender'">
+                    </os-radio-button>
+
+                    <os-radio-button
+                        [label]="'Female'"
+                        [name]="'gender'">
+                    </os-radio-button>
+                </os-group-box>
+            </div>
+
+            <div class="element-wrapper">
+                <os-field-row>
+                    <os-slider
+                        [label]="'Age'"
+                        [minValueLabel]="'Min'"
+                        [maxValueLabel]="'Max'"
+                        [min]="14"
+                        [max]="120"
+                        [value]="18">
+                    </os-slider>
+                </os-field-row>
+            </div>
+
+            <div class="element-wrapper">
+                <os-field-row>
+                    <os-checkbox
+                        [label]="'I agree to the processing of my personal data'">
+                    </os-checkbox>
+                </os-field-row>
+            </div>
+
+            <div class="element-wrapper">
+                <os-tab-group>
+                    <os-tab
+                        [selected]="true"
+                        [label]="'Tab 1'">
+                        <os-selectbox>
+                            <os-option>Item 1</os-option>
+                            <os-option>Item 2</os-option>
+                            <os-option [selected]="true">Item 3 - Selected by default</os-option>
+                            <os-option>Item 4</os-option>
+                        </os-selectbox>
+                    </os-tab>
+
+                    <os-tab
+                        [selected]="false"
+                        [label]="'Tab 2'">
+                        <os-text>
+                            Tab 2 content
+                        </os-text>
+                    </os-tab>
+                </os-tab-group>
+            </div>
+
+            <div class="element-wrapper">
+                <os-text>
+                    Please expand some nodes in tree below to see how it works:
+                </os-text>
+            </div>
+
+            <os-tree-view
+                [data]="treeItems">
+            </os-tree-view>
+
+            <div class="element-wrapper">
+                <os-button>
+                    Submit
+                </os-button>
+            </div>
+        </os-scroll-view>
     </div>
 </div>

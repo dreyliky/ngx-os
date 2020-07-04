@@ -194,15 +194,14 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             return;
         }
 
-        const { left: resizableElemBoundingLeft, top: resizableElemBoundingTop } = this._resizableElement.getBoundingClientRect();
-        const { width: resizableElemWidth, height: resizableElemHeight } = getComputedStyle(this._resizableElement, null);
+        const resizableElemDomRect = this._resizableElement.getBoundingClientRect();
 
         event.preventDefault();
 
-        this.originalWidth = parseFloat(resizableElemWidth.replace('px', ''));
-        this.originalHeight = parseFloat(resizableElemHeight.replace('px', ''));
-        this.originalX = resizableElemBoundingLeft;
-        this.originalY = resizableElemBoundingTop;
+        this.originalWidth = resizableElemDomRect.width;
+        this.originalHeight = resizableElemDomRect.height;
+        this.originalX = resizableElemDomRect.left;
+        this.originalY = resizableElemDomRect.top;
         this.originalMouseX = event.pageX;
         this.originalMouseY = event.pageY;
 
