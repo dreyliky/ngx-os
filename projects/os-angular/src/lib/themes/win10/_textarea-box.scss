@@ -1,19 +1,33 @@
 os-textarea-box {
 
-    textarea {
+    label.os-element {
         font-family: var(--segoe-ui);
-        font-size: 11px;
-        padding: 3px 4px;
-        border: none;
-        background-color: var(--button-highlight);
-        box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
+        font-size: 13px;
+        margin-bottom: 7px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    textarea {
+        width: 256px;
+        padding: 4px 8px;
+        outline: 0;
+        font-size: 14px;
+        border: 2px solid #999999;
         border-radius: 0;
+        transition: ease border 0.1s;
+        font-family: sans-serif;
+
+        &:placeholder {
+            color: #666666; 
+        }
+
+        &:hover {
+            border-color: #666666;
+        }
 
         &:focus {
-            outline: none;
+            border-color: var(--primary-color);
         }
     }
 
