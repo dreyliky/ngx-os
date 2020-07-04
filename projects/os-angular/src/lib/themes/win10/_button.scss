@@ -3,7 +3,7 @@ os-button {
     button {
         min-width: 75px;
         min-height: 31px;
-        padding: 0 12px;
+        padding: 6px 18px;
         font-family: var(--segoe-ui);
         -webkit-font-smoothing: antialiased;
         font-size: 13px;
@@ -12,9 +12,24 @@ os-button {
         background: var(--secondary-color);
         border-radius: 0px;
         font-weight: 500;
+        font-size: 14px;
+        font-family: sans-serif;
+        outline: 0;
+        margin-inline-start: 4px;
+        margin-inline-end: 4px;
+        flex-shrink: 0;
+        transition: ease transform 0.5s;
+        user-select: none;
 
         &:hover {
-            border: 2px solid rgba(0, 0, 0, .4);
+            border-color: rgba(0, 0, 0, .4);
+        }
+
+        &:active {
+            background-color: #999999;
+            border-color: rgba(255,255,255,0.1);
+            transform: scale(0.96);
+            transition: ease all 0.1s;
         }
     }
 
