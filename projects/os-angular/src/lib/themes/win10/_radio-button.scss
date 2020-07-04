@@ -1,109 +1,61 @@
-:root {
-    --radio-dot-width: 5px;
-    --radio-dot-top: 5px;
-    --radio-width: 13px;
-    --radio-inner-shadow-hover: inset -2px -2px #f8b636, inset 2px 2px #fedf9c;
-    --radio-bg-active: linear-gradient(135deg, rgba(176, 176, 167, 1) 0%, rgba(227, 225, 210, 1) 100%);
-    --radio-bg: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
-    --radio-border: 1px solid #1d5281;
-    --radio-border-disabled: 1px solid #cac8bb;
-}
-
 os-radio-button {
+    display: block;
+    position: relative;
+    user-select: none;
+    margin-inline-start: 4px;
+    margin-inline-end: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
 
     input[type="radio"] {
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        margin: 0;
-        background: 0;
-        position: fixed;
+        position: absolute;
         opacity: 0;
-        border: none;
+        height: 0;
+        width: 0;
 
-        + {
-            label {
-                position: relative;
-                margin-left: var(--radio-total-width);
-                line-height: 16px;
+        + label {
+            display: flex;
+            align-items: center;
+            position: relative;
+            font-size: 14px;
 
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: calc(-1 * (var(--radio-total-width-precalc)));
-                    display: inline-block;
-                    width: var(--radio-width);
-                    height: var(--radio-width);
-                    margin-right: var(--radio-label-spacing);
-                    background: var(--radio-bg);
-                    border-radius: 50%;
-                    border: var(--radio-border);
-                }
+            &:before {
+                content: "";
+                display: inline-block;
+                height: 16px;
+                width: 16px;
+                margin-right: 8px;
+                background-color: transparent;
+                border: 2px solid #333333;
+                border-radius: 50%;
+                transition: ease 0.2s all;
             }
         }
 
-        &:not([disabled]):not(:active) {
-            + label {
-                &:hover:before {
-                    box-shadow: var(--radio-inner-shadow-hover);
-                }
-            }
+        &:hover + label:before {
+            border: solid 2px #000000;
         }
 
-        &:active {
-            + {
-                label {
-                    &::before {
-                        background: var(--radio-bg-active);
-                    }
-                }
+        &:checked + label {
+            &:before {
+                border: solid 2px var(--primary-color);
             }
-        }
 
-        &:checked {
-            + {
-                label {
-                    &::after {
-                        content: "";
-                        display: block;
-                        width: var(--radio-dot-width);
-                        height: var(--radio-dot-width);
-                        top: var(--radio-dot-top);
-                        left: var(--radio-dot-left);
-                        position: absolute;
-                        background: url("./icon/radio-dot.svg");
-                    }
-                }
-            }
-        }
-
-        &:focus {
-            + {
-                label {
-                    outline: 1px dotted #000000;
-                }
-            }
-        }
-    }
-
-    input[type="radio"][disabled] {
-        + {
-            label {
-                &::before {
-                    border: var(--radio-border-disabled);
-                    background: white;
-                }
-            }
-        }
-
-        &:checked {
-            + {
-                label {
-                    &::after {
-                        background: url("./icon/radio-dot-disabled.svg");
-                    }
-                }
+            &:after {
+                content: "";
+                position: absolute;
+                transition: ease 0.1s all;
+                background-color: #333333;
+                left: 5px;
+                top: calc(50% - 4px);
+                width: 9px;
+                height: 9px;
+                -webkit-transform: translateX(0.5px) translateY(-0.5px);
+                -ms-transform: translateX(0.5px) translateY(-0.5px);
+                transform: translateX(0.5px) translateY(-0.5px);
+                border-radius: 50%;
             }
         }
     }
