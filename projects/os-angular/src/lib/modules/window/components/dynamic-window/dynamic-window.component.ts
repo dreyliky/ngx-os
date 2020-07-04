@@ -212,12 +212,10 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     private initSizesAtWindowedMode (): void {
-        if (!this.isFullscreen) {
-            const windowDomRect = this.windowElement.getBoundingClientRect();
+        const windowDomRect = this.windowElement.getBoundingClientRect();
 
-            this._widthAtWindowedMode = windowDomRect.width;
-            this._heightAtWindowedMode = windowDomRect.height;
-        }
+        this._widthAtWindowedMode = this.config.width || windowDomRect.width;
+        this._heightAtWindowedMode = this.config.height || windowDomRect.height;
     }
 
     private initHtmlElements (): void {

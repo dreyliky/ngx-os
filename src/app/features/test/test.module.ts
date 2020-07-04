@@ -3,28 +3,31 @@ import { SharedModule } from 'src/app/app-shared.module';
 import {
     HelloWorldWindowComponent,
     DemoWindowComponent,
-    SurvivWindowComponent,
-    DemoWin10WindowComponent
+    DemoWin10WindowComponent,
+    FullscreenTestAppComponent
 } from './components';
 
 @NgModule({
     declarations: [
         HelloWorldWindowComponent,
         DemoWindowComponent,
-        SurvivWindowComponent,
-        DemoWin10WindowComponent
+        DemoWin10WindowComponent,
+        FullscreenTestAppComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        HelloWorldWindowComponent
+        HelloWorldWindowComponent,
+        DemoWindowComponent,
+        DemoWin10WindowComponent,
+        FullscreenTestAppComponent
     ],
     entryComponents: [
         HelloWorldWindowComponent,
         DemoWindowComponent,
-        SurvivWindowComponent,
-        DemoWin10WindowComponent
+        DemoWin10WindowComponent,
+        FullscreenTestAppComponent
     ]
 })
 export class TestModule {}

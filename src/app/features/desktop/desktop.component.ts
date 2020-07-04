@@ -5,7 +5,7 @@ import {
     DemoWindowComponent,
     HelloWorldWindowComponent,
     DemoWin10WindowComponent,
-    SurvivWindowComponent
+    FullscreenTestAppComponent
 } from '../test';
 
 @Component({
@@ -38,9 +38,9 @@ export class DesktopComponent implements OnInit {
             onDblClick: () => alert("Calculator")
         },
         {
-            label: 'Surviv.io',
-            iconUrl: 'assets/icons/surviv.png',
-            onDblClick: () => this.onSurvivShortcutDblClick()
+            label: 'Fullscreen App',
+            iconUrl: 'assets/icons/folder-opened.png',
+            onDblClick: () => this.onFullscreenAppShortcutDblClick()
         }
     ];
 
@@ -85,17 +85,16 @@ export class DesktopComponent implements OnInit {
             {
                 data: 'There is custom data for window!',
                 positionX: 70,
-                positionY: 350,
-                isExitFullscreenByDragTitle: false
+                positionY: 350
             }
         );
     }
 
-    private onSurvivShortcutDblClick (): void {
+    private onFullscreenAppShortcutDblClick (): void {
         this.windowService.open(
-            SurvivWindowComponent,
+            FullscreenTestAppComponent,
             {
-                title: 'Surviv.io',
+                title: 'Fullscreen test App',
                 width: 800,
                 height: 600,
                 isFullscreen: true

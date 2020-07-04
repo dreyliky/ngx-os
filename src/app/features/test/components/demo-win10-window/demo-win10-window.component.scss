@@ -19,6 +19,10 @@
     .right-side {
         width: 100%;
         background: #ffffff;
+
+        &::ng-deep .os-scroll-view {
+            padding: 20px;
+        }
     }
 }
 

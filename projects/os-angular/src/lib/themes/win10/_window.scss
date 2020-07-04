@@ -13,10 +13,10 @@ os-window {
     }
 
     .os-window.fullscreen {
-        width: calc(100% + 6px) !important;
-        height: calc(100% + 4px) !important;
-        left: -3px !important;
-        top: -2px !important;
+        width: 100% !important;
+        height: 100% !important;
+        left: -1px !important;
+        top: -1px !important;
     }
 
     .os-window.active {
