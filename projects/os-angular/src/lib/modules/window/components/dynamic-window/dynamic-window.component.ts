@@ -47,7 +47,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public isHidden: boolean = false;
     public windowIdOrderIndex: number = 0;
 
-    public isAllowMoveWindowByDragger: boolean = true;
+    public isAllowResizing: boolean = true;
+    public isAllowDragging: boolean = true;
 
     public windowElement: HTMLDivElement;
     public titleBarElement: HTMLDivElement;
@@ -264,7 +265,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         const subscription = this.windowRef.isFullscreen$
             .subscribe((state) => {
                 this.isFullscreen = state;
-                this.isAllowMoveWindowByDragger = !this.isFullscreen;
+                this.isAllowDragging = !this.isFullscreen;
+                this.isAllowResizing = !this.isFullscreen;
 
                 this.changeDetector.markForCheck();
             });

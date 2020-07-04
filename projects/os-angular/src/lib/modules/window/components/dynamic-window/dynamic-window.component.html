@@ -3,7 +3,7 @@
         draggableElement: titleBarElement,
         movableElement: windowElement,
         childElementsBlackList: titleBarButtons,
-        isAllowMoveElement: isAllowMoveWindowByDragger
+        isAllowMoveElement: isAllowDragging
     }"
     [os-resizable]="{
         targetElement: windowElement,
@@ -11,7 +11,8 @@
         minHeight: config.minHeight,
         maxWidth: config.maxWidth,
         maxHeight: config.maxHeight,
-        allowedResizers: config.allowedResizers
+        allowedResizers: config.allowedResizers,
+        isEnabled: isAllowResizing
     }"
     [title]="config.title"
     [width]="(config.width) ? config.width + 'px' : undefined"
