@@ -1,16 +1,6 @@
 <div class="wrapper">
     <p>fullscreen-test-app works!</p>
 
-    <div
-        [os-draggable]="{
-            movableElement: windowElement,
-            isAllowMoveElement: !isWindowFullscreen
-        }"
-        class="dragger"
-        [class.active]="!isWindowFullscreen">
-        Drag window
-    </div>
-
     <div class="action-buttons">
         <os-button
             (OnClick)="onToggleTitleBarButtonClick()">

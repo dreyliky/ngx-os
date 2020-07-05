@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
 export class FullscreenTestAppComponent implements OnInit, OnDestroy {
 
     public isWindowFullscreen: boolean;
-    public windowElement: HTMLDivElement;
 
     private readonly _subscriptions: Subscription[] = [];
 
@@ -24,7 +23,6 @@ export class FullscreenTestAppComponent implements OnInit, OnDestroy {
     public ngOnInit (): void {
         this.initOnCloseConfirmation();
 
-        this.initWindowElementObserver();
         this.initWindowFullscreenStateObserver();
     }
 
@@ -58,15 +56,6 @@ export class FullscreenTestAppComponent implements OnInit, OnDestroy {
                 }
             }
         });
-    }
-
-    private initWindowElementObserver (): void {
-        this.windowRef.windowElement$
-            .subscribe((element) => {
-                this.windowElement = element;
-
-                this.changeDetector.markForCheck();
-            });
     }
 
     private initWindowFullscreenStateObserver (): void {
