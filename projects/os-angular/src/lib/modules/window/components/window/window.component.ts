@@ -24,12 +24,6 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public isActive: boolean = false;
 
     @Input()
-    public isFullscreen: boolean = false;
-
-    @Input()
-    public isHidden: boolean = false;
-
-    @Input()
     public isMinimizable: boolean = true;
 
     @Input()

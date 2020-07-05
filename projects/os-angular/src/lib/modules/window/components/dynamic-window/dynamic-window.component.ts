@@ -33,10 +33,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public config: DynamicWindowConfig;
     public windowRef: DynamicWindowRef;
 
-    public minWidth: number;
-    public minHeight: number;
-    public maxWidth: number;
-    public maxHeight: number;
+    public width: string;
+    public height: string;
     public allowedResizers: ResizerEnum[];
     public positionX: string;
     public positionY: string;
@@ -45,8 +43,10 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public isActive: boolean = false;
     public isFullscreen: boolean = false;
     public isHidden: boolean = false;
+    public isOpening: boolean = true;
     public isDragging: boolean = false;
     public isResizing: boolean = false;
+    public isClosing: boolean = false;
     public windowIdOrderIndex: number = 0;
 
     public isAllowResizing: boolean = true;
@@ -106,13 +106,15 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
         this.loadChildComponent(this.childComponentType);
 
+        this.initIsOpeningState();
         this.initHtmlElements();
         this.initIsHiddenStateObserver();
         this.initIsFullscreenStateObserver();
+        this.initAfterClosedStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
         this.initConfigObserver();
-        this.initSizesAtWindowedMode();
+        this.initWindowSizes();
 
         this.windowRef._setWindowElement(this.windowElement);
 
@@ -228,11 +230,22 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         this._childComponentRef = viewContainerRef.createComponent(componentFactory);
     }
 
-    private initSizesAtWindowedMode (): void {
+    private initIsOpeningState (): void {
+        setTimeout(() => {
+            this.isOpening = false;
+
+            this.changeDetector.detectChanges();
+        }, 1000);
+    }
+
+    private initWindowSizes (): void {
         const windowDomRect = this.windowElement.getBoundingClientRect();
 
         this._widthAtWindowedMode = this.config.width || windowDomRect.width;
         this._heightAtWindowedMode = this.config.height || windowDomRect.height;
+
+        this.width  = `${this._widthAtWindowedMode}px`;
+        this.height = `${this._heightAtWindowedMode}px`;
     }
 
     private initHtmlElements (): void {
@@ -260,6 +273,17 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
                     .findIndex((currWindowId) => currWindowId === this._windowComponent.id);
 
                 this.updateZIndex();
+            });
+
+        this._subscriptions.push(subscription);
+    }
+
+    private initAfterClosedStateObserver (): void {
+        const subscription = this.windowRef.afterClosed$
+            .subscribe(() => {
+                this.isClosing = true;
+
+                this.changeDetector.detectChanges();
             });
 
         this._subscriptions.push(subscription);

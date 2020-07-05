@@ -11,21 +11,25 @@ os-window {
         fieldset {
             margin-bottom: 9px;
         }
+
+        &.hiding {
+            display: none;
+        }
+
+        &.fullscreen {
+            width: calc(100% + 4px) !important;
+            height: calc(100% + 6px) !important;
+            left: -5px !important;
+            top: -3px !important;
+        }
+
+        &.closing {
+            display: none;
+        }
     }
 
     .os-window-body {
         margin: 0px 2px;
-    }
-
-    .os-window.hidden {
-        display: none;
-    }
-
-    .os-window.fullscreen {
-        width: calc(100% + 4px) !important;
-        height: calc(100% + 6px) !important;
-        left: -5px !important;
-        top: -3px !important;
     }
 
     .os-window.active {

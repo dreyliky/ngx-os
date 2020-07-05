@@ -14,21 +14,25 @@ os-window {
         fieldset {
             margin-bottom: 9px;
         }
+
+        &.hiding {
+            display: none;
+        }
+
+        &.fullscreen {
+            width: calc(100% + 6px) !important;
+            height: calc(100% + 4px) !important;
+            left: -3px !important;
+            top: -2px !important;
+        }
+
+        &.closing {
+            display: none;
+        }
     }
 
     .os-window-body {
         margin: 0px 3px;
-    }
-
-    .os-window.hidden {
-        display: none;
-    }
-
-    .os-window.fullscreen {
-        width: calc(100% + 6px) !important;
-        height: calc(100% + 4px) !important;
-        left: -3px !important;
-        top: -2px !important;
     }
 
     .os-window.active {

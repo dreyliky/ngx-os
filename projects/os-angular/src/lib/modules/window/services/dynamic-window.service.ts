@@ -8,7 +8,7 @@ import {
     ComponentRef
 } from '@angular/core';
 
-import { first } from 'rxjs/operators';
+import { first, delay } from 'rxjs/operators';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 import { DynamicWindowComponent } from '../components/dynamic-window/dynamic-window.component';
 import { DynamicWindowInjector, DynamicWindowConfig, DynamicWindowRef } from '../classes';
@@ -78,6 +78,9 @@ export class DynamicWindowService {
         componentRef: ComponentRef<DynamicWindowComponent>
     ): void {
         windowRef.afterClosed$.pipe(first())
+            .pipe(
+                delay(1000)
+            )
             .subscribe(() => {
                 this.windowControlService.removeWindowComponentRef(componentRef);
                 this.removeWindowComponentFromBody(componentRef);

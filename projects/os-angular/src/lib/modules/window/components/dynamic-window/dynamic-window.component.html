@@ -15,12 +15,10 @@
         isEnabled: isAllowResizing
     }"
     [title]="config.title"
-    [width]="(config.width) ? config.width + 'px' : undefined"
-    [height]="(config.height) ? config.height + 'px' : undefined"
+    [width]="width"
+    [height]="height"
     [zIndex]="zIndex"
     [isActive]="isActive"
-    [isFullscreen]="isFullscreen"
-    [isHidden]="isHidden"
     [isMinimizable]="config.isMinimizable"
     [isMaximizable]="config.isMaximizable"
     [isClosable]="config.isClosable"
@@ -28,8 +26,13 @@
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     [styleClass]="{
+        'opening': isOpening,
+        'hiding': isHidden,
+        'fullscreen': isFullscreen,
+        'windowed': !isFullscreen,
         'dragging': isDragging,
-        'resizing': isResizing
+        'resizing': isResizing,
+        'closing': isClosing
     }"
     [style]="{
         left: positionX,

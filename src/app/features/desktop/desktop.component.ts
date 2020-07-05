@@ -43,9 +43,7 @@ export class DesktopComponent implements OnInit {
         private readonly windowService: DynamicWindowService
     ) {}
 
-    public ngOnInit (): void {
-        this.onOsElementsWin10ShortcutDblClick();
-    }
+    public ngOnInit (): void {}
 
     public trackByFn = (shortcut: ListItem, index: number): number => {
         return index;
