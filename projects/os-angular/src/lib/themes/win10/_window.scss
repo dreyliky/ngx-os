@@ -46,8 +46,7 @@ os-window {
     .os-window {
         font-size: 11px;
         font-family: var(--segoe-ui);
-        background: rgba(255, 255, 255, .7);
-        backdrop-filter: blur(20px);
+        background: #e6e6e6;
         border: solid 1px #aaaaaa;
         -webkit-font-smoothing: none;
         -webkit-box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
@@ -83,6 +82,8 @@ os-window {
     }
 
     .os-window.active {
+        background: rgba(255, 255, 255, .7);
+        backdrop-filter: blur(40px);
         border: solid 1px var(--primary-color);
         -webkit-box-shadow: 0px 5px 24px -3px rgba(0,0,0,0.35);
         -moz-box-shadow: 0px 5px 24px -3px rgba(0,0,0,0.35);
