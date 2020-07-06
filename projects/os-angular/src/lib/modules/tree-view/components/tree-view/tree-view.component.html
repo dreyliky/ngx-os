@@ -15,7 +15,9 @@
     let-nodes="nodes">
     <li
         *ngFor="let node of nodes"
-        class="os-element">
+        class="os-element"
+        [class.os-tree-node-expandable]="node.children?.length"
+        [class.os-tree-node-flat]="!node.children?.length">
         <ng-template [ngIf]="node.children">
             <details class="os-element">
                 <summary class="os-element">

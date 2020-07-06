@@ -34,16 +34,6 @@ os-tree-view {
             > li {
                 position: relative;
 
-                &::before {
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    left: -16px;
-                    top: 6px;
-                    width: 12px;
-                    border-bottom: 1px dotted #808080;
-                }
-
                 &:last-child {
                     &::after {
                         content: "";
