@@ -34,19 +34,19 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     }
 
     @Output()
-    public OnResizableElementInit = new EventEmitter<HTMLElement>();
+    public osResizableElementInit = new EventEmitter<HTMLElement>();
 
     @Output()
-    public OnResizerElementInit = new EventEmitter<HTMLElement>();
+    public osResizerElementInit = new EventEmitter<HTMLElement>();
 
     @Output()
-    public OnResizeStart = new EventEmitter<ResizeInfo>();
+    public osResizeStart = new EventEmitter<ResizeInfo>();
 
     @Output()
-    public OnResizeEnd = new EventEmitter<ResizeInfo>();
+    public osResizeEnd = new EventEmitter<ResizeInfo>();
 
     @Output()
-    public OnResizing = new EventEmitter<ResizeInfo>();
+    public osResizing = new EventEmitter<ResizeInfo>();
 
     public get resizableElement (): HTMLElement {
         return this._resizableElement;
@@ -119,13 +119,13 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             this._resizableElement = this.element.nativeElement;
         }
 
-        this.OnResizableElementInit.emit(this._resizableElement);
+        this.osResizableElementInit.emit(this._resizableElement);
     }
 
     private initResizersWrapperElement (): void {
         this._resizersWrapperElement = document.createElement(`os-resizers`);
 
-        this.OnResizerElementInit.emit(this._resizersWrapperElement);
+        this.osResizerElementInit.emit(this._resizersWrapperElement);
     }
 
     private initResizerElements (): void {
@@ -208,7 +208,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         document.addEventListener('mousemove', this.documentMouseMoveHandler);
         document.addEventListener('mouseup', this.documentMouseUpHandler);
 
-        this.OnResizeStart.emit(this.getResizeInfo());
+        this.osResizeStart.emit(this.getResizeInfo());
     }
 
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
@@ -220,7 +220,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     private readonly documentMouseUpHandler = (): void => {
         document.removeEventListener('mousemove', this.documentMouseMoveHandler);
 
-        this.OnResizeEnd.emit(this.getResizeInfo());
+        this.osResizeEnd.emit(this.getResizeInfo());
     }
 
 }

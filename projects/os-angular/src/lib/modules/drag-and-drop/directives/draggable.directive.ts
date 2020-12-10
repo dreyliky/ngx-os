@@ -20,19 +20,19 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     @Output()
-    public OnBeforeDragStart = new EventEmitter<DragInfo>();
+    public osBeforeDragStart = new EventEmitter<DragInfo>();
 
     @Output()
-    public OnDragStart = new EventEmitter<DragInfo>();
+    public osDragStart = new EventEmitter<DragInfo>();
 
     @Output()
-    public OnDragEnd = new EventEmitter<DragInfo>();
+    public osDragEnd = new EventEmitter<DragInfo>();
 
     @Output()
-    public OnDragging = new EventEmitter<DragInfo>();
+    public osDragging = new EventEmitter<DragInfo>();
 
     @Output()
-    public OnAfterDragging = new EventEmitter<DragInfo>();
+    public osAfterDragging = new EventEmitter<DragInfo>();
 
     private shiftX: number;
     private shiftY: number;
@@ -96,7 +96,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
 
         const dragInfo = this.getDragInfo(event);
 
-        this.OnBeforeDragStart.emit(dragInfo);
+        this.osBeforeDragStart.emit(dragInfo);
 
         this.setShiftX(dragInfo, event);
         this.setShiftY(dragInfo, event);
@@ -104,7 +104,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         document.addEventListener('mousemove', this.documentMouseMoveHandler);
         document.addEventListener('mouseup', this.documentMouseUpHandler);
 
-        this.OnDragStart.emit(dragInfo);
+        this.osDragStart.emit(dragInfo);
     }
 
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
@@ -112,12 +112,12 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
 
         const dragInfo = this.getDragInfo(event);
 
-        this.OnDragging.emit(dragInfo);
+        this.osDragging.emit(dragInfo);
 
         setTimeout(() => {
             const dragInfoAfter = this.getDragInfo(event);
 
-            this.OnAfterDragging.emit(dragInfoAfter);
+            this.osAfterDragging.emit(dragInfoAfter);
         });
     }
 
@@ -127,7 +127,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
 
-        this.OnDragEnd.emit(dragInfo);
+        this.osDragEnd.emit(dragInfo);
     }
 
     private getDragInfo (event: MouseEvent): DragInfo {

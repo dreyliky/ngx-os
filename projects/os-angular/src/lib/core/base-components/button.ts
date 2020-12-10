@@ -20,10 +20,10 @@ export class OsBaseButtonComponent extends OsBaseComponent {
     public role: string;
 
     @Output()
-    public OnFocus: EventEmitter<MouseEvent> = new EventEmitter();
+    public osFocus: EventEmitter<MouseEvent> = new EventEmitter();
 
     @Output()
-    public OnBlur: EventEmitter<MouseEvent> = new EventEmitter();
+    public osBlur: EventEmitter<MouseEvent> = new EventEmitter();
 
     constructor () {
         super({

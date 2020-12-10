@@ -12,12 +12,6 @@ export class ButtonComponent extends OsBaseButtonComponent implements OnInit {
     @Input()
     public type: buttonType = 'button';
 
-    @Output()
-    public OnFocus: EventEmitter<MouseEvent> = new EventEmitter();
-
-    @Output()
-    public OnBlur: EventEmitter<MouseEvent> = new EventEmitter();
-
     constructor () {
         super();
     }

@@ -3,8 +3,8 @@
     [ngStyle]="style"
     [class]="styleClass"
     [id]="id"
-    (click)="OnClick.emit($event)"
-    (dblclick)="OnDblClick.emit($event)">
+    (click)="osClick.emit($event)"
+    (dblclick)="osDblClick.emit($event)">
     <div class="os-title-bar-text os-element">
         <ng-content>
         </ng-content>
@@ -14,17 +14,17 @@
         class="os-title-bar-controls os-element">
         <os-button
             [ariaLabel]="'Minimize'"
-            (OnClick)="OnMinimizeButtonClick.emit($event)">
+            (osClick)="osMinimizeButtonClick.emit($event)">
         </os-button>
 
         <os-button
             [ariaLabel]="'Maximize'"
-            (OnClick)="OnMaximizeButtonClick.emit($event)">
+            (osClick)="osMaximizeButtonClick.emit($event)">
         </os-button>
 
         <os-button
             [ariaLabel]="'Close'"
-            (OnClick)="OnCloseButtonClick.emit($event)">
+            (osClick)="osCloseButtonClick.emit($event)">
         </os-button>
     </div>
 </div>

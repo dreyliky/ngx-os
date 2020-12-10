@@ -42,28 +42,28 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public scrollViewStyleClass: any;
 
     @Output()
-    public OnClick = new EventEmitter<MouseEvent>();
+    public osClick = new EventEmitter<MouseEvent>();
 
     @Output()
-    public OnMouseDown = new EventEmitter<MouseEvent>();
+    public osMouseDown = new EventEmitter<MouseEvent>();
 
     @Output()
-    public OnMouseUp = new EventEmitter<MouseEvent>();
+    public osMouseUp = new EventEmitter<MouseEvent>();
 
     @Output()
-    public OnTitleBarClick = new EventEmitter<MouseEvent>();
+    public osTitleBarClick = new EventEmitter<MouseEvent>();
 
     @Output()
-    public OnTitleBarDblClick = new EventEmitter<MouseEvent>();
+    public osTitleBarDblClick = new EventEmitter<MouseEvent>();
 
     @Output()
-    public OnMinimizeButtonClick = new EventEmitter<MouseEvent>();
+    public osMinimizeButtonClick = new EventEmitter<MouseEvent>();
 
     @Output()
-    public OnMaximizeButtonClick = new EventEmitter<MouseEvent>();
+    public osMaximizeButtonClick = new EventEmitter<MouseEvent>();
 
     @Output()
-    public OnCloseButtonClick = new EventEmitter<MouseEvent>();
+    public osCloseButtonClick = new EventEmitter<MouseEvent>();
 
     constructor () {
         super({

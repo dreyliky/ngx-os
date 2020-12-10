@@ -17,13 +17,13 @@ export class OsBaseFieldComponent extends OsBaseComponent {
     public name: string;
 
     @Output()
-    public OnFocus: EventEmitter<MouseEvent> = new EventEmitter();
+    public osFocus: EventEmitter<MouseEvent> = new EventEmitter();
 
     @Output()
-    public OnBlur: EventEmitter<Event> = new EventEmitter();
+    public osBlur: EventEmitter<Event> = new EventEmitter();
 
     @Output()
-    public OnChange: EventEmitter<Event> = new EventEmitter();
+    public osChange: EventEmitter<Event> = new EventEmitter();
 
     constructor () {
         super({

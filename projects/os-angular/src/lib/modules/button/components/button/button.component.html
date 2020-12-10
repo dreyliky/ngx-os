@@ -8,9 +8,9 @@
     [attr.aria-selected]="ariaSelected"
     [attr.aria-controls]="ariaControls"
     [attr.role]="role"
-    (click)="OnClick.emit($event)"
-    (focus)="OnFocus.emit($event)"
-    (blur)="OnBlur.emit($event)">
+    (click)="osClick.emit($event)"
+    (focus)="osFocus.emit($event)"
+    (blur)="osBlur.emit($event)">
     <ng-content>
     </ng-content>
 </button>

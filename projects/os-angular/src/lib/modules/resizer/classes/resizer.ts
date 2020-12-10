@@ -16,7 +16,7 @@ export abstract class Resizer {
     protected onResize (): void {
         const resizeInfo = this.context.getResizeInfo();
 
-        this.context.OnResizing.emit(resizeInfo);
+        this.context.osResizing.emit(resizeInfo);
     }
 
 }

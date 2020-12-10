@@ -7,9 +7,9 @@
     [style.width]="width"
     [style.height]="height"
     [style.zIndex]="zIndex"
-    (click)="OnClick.emit($event)"
-    (mousedown)="OnMouseDown.emit($event)"
-    (mouseup)="OnMouseUp.emit($event)">
+    (click)="osClick.emit($event)"
+    (mousedown)="osMouseDown.emit($event)"
+    (mouseup)="osMouseUp.emit($event)">
 
     <ng-content
         select="[os-window-content]">
@@ -17,11 +17,11 @@
 
     <os-title-bar
         [hidden]="!isTitleBarVisible"
-        (OnClick)="OnTitleBarClick.emit($event)"
-        (OnDblClick)="OnTitleBarDblClick.emit($event)"
-        (OnMinimizeButtonClick)="OnMinimizeButtonClick.emit($event)"
-        (OnMaximizeButtonClick)="OnMaximizeButtonClick.emit($event)"
-        (OnCloseButtonClick)="OnCloseButtonClick.emit($event)">
+        (osClick)="osTitleBarClick.emit($event)"
+        (osDblClick)="osTitleBarDblClick.emit($event)"
+        (osMinimizeButtonClick)="osMinimizeButtonClick.emit($event)"
+        (osMaximizeButtonClick)="osMaximizeButtonClick.emit($event)"
+        (osCloseButtonClick)="osCloseButtonClick.emit($event)">
         {{ title }}
     </os-title-bar>
 

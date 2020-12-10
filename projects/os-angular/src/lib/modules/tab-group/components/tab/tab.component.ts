@@ -21,7 +21,7 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     public tabButtonStyleClass: string;
 
     @Output()
-    public OnTabButtonClick = new EventEmitter<MouseEvent>();
+    public osTabButtonClick = new EventEmitter<MouseEvent>();
 
     @ViewChild('TabButtonTemplate', { static: true })
     public tabButtonTemplate: TemplateRef<HTMLButtonElement>;

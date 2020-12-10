@@ -32,7 +32,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
 
     public ngAfterContentInit (): void {
         this.tabComponentList.forEach((tabComponent) => {
-            const tabEventSubscription = tabComponent.OnTabButtonClick
+            const tabEventSubscription = tabComponent.osTabButtonClick
                 .subscribe(() => {
                     this.deselectAllTabs();
 

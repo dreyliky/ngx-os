@@ -14,8 +14,8 @@
     [disabled]="disabled"
     [rows]="rows"
     [cols]="cols"
-    (click)="OnClick.emit($event)"
-    (focus)="OnFocus.emit($event)"
-    (blur)="OnBlur.emit($event)"
-    (change)="OnChange.emit($event)">
+    (click)="osClick.emit($event)"
+    (focus)="osFocus.emit($event)"
+    (blur)="osBlur.emit($event)"
+    (change)="osChange.emit($event)">
 </textarea>

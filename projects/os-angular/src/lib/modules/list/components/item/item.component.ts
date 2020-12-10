@@ -17,10 +17,10 @@ export class ItemComponent extends OsBaseComponent implements OnInit {
     public isSelected: boolean = false;
 
     @Output()
-    public OnClick = new EventEmitter<MouseEvent>();
+    public osClick = new EventEmitter<MouseEvent>();
 
     @Output()
-    public OnDblClick = new EventEmitter<MouseEvent>();
+    public osDblClick = new EventEmitter<MouseEvent>();
 
     @ViewChild('OsListItem')
     private readonly _osListItemElement: ElementRef<HTMLDivElement>;
@@ -51,7 +51,7 @@ export class ItemComponent extends OsBaseComponent implements OnInit {
             this.data.onClick(event);
         }
 
-        this.OnClick.emit(event);
+        this.osClick.emit(event);
     }
 
     public onDblClick (event: MouseEvent): void {
@@ -59,7 +59,7 @@ export class ItemComponent extends OsBaseComponent implements OnInit {
             this.data.onDblClick(event);
         }
 
-        this.OnDblClick.emit(event);
+        this.osDblClick.emit(event);
     }
 
 }

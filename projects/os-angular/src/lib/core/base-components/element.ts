@@ -20,7 +20,7 @@ export class OsBaseComponent implements OnInit {
     }
 
     @Output()
-    public OnClick: EventEmitter<MouseEvent> = new EventEmitter();
+    public osClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     protected _id: string;
 
