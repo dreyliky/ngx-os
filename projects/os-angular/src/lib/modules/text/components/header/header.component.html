@@ -1,4 +1,13 @@
-<ng-container [ngSwitch]="size">
+<div
+    [ngSwitch]="size"
+    (click)="osClick.emit($event)"
+    (dblclick)="osDblclick.emit($event)"
+    (mousedown)="osMousedown.emit($event)"
+    (mousemove)="osMousemove.emit($event)"
+    (mouseout)="osMouseout.emit($event)"
+    (mouseover)="osMouseover.emit($event)"
+    (mouseup)="osMouseup.emit($event)"
+    (wheel)="osWheel.emit($event)">
     <h1
         *ngSwitchCase="1"
         class="os-header os-element">
@@ -34,7 +43,7 @@
         class="os-header os-element">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </h6>
-</ng-container>
+</div>
 
 <ng-template #contentTemplate>
     <ng-content></ng-content>

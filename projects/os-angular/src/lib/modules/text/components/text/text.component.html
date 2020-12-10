@@ -4,7 +4,15 @@
     [class]="styleClass"
     [id]="id"
     [style.fontSize]="size"
-    [style.fontWeight]="fontWeight">
+    [style.fontWeight]="fontWeight"
+    (click)="osClick.emit($event)"
+    (dblclick)="osDblclick.emit($event)"
+    (mousedown)="osMousedown.emit($event)"
+    (mousemove)="osMousemove.emit($event)"
+    (mouseout)="osMouseout.emit($event)"
+    (mouseover)="osMouseover.emit($event)"
+    (mouseup)="osMouseup.emit($event)"
+    (wheel)="osWheel.emit($event)">
     <ng-content>
     </ng-content>
 </span>

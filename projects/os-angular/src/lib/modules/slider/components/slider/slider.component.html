@@ -17,7 +17,15 @@
     [disabled]="disabled"
     [min]="min"
     [max]="max"
-    [value]="value" />
+    [value]="value"
+    (click)="osClick.emit($event)"
+    (dblclick)="osDblclick.emit($event)"
+    (mousedown)="osMousedown.emit($event)"
+    (mousemove)="osMousemove.emit($event)"
+    (mouseout)="osMouseout.emit($event)"
+    (mouseover)="osMouseover.emit($event)"
+    (mouseup)="osMouseup.emit($event)"
+    (wheel)="osWheel.emit($event)" />
 
 <label class="os-element">
     {{ maxValueLabel }}

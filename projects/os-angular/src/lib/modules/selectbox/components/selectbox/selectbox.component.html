@@ -2,7 +2,15 @@
     class="os-element"
     [ngStyle]="style"
     [class]="styleClass"
-    [id]="id">
+    [id]="id"
+    (click)="osClick.emit($event)"
+    (dblclick)="osDblclick.emit($event)"
+    (mousedown)="osMousedown.emit($event)"
+    (mousemove)="osMousemove.emit($event)"
+    (mouseout)="osMouseout.emit($event)"
+    (mouseover)="osMouseover.emit($event)"
+    (mouseup)="osMouseup.emit($event)"
+    (wheel)="osWheel.emit($event)">
 
     <ng-template
         ngFor

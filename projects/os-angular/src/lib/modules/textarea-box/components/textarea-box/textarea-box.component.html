@@ -15,6 +15,13 @@
     [rows]="rows"
     [cols]="cols"
     (click)="osClick.emit($event)"
+    (dblclick)="osDblclick.emit($event)"
+    (mousedown)="osMousedown.emit($event)"
+    (mousemove)="osMousemove.emit($event)"
+    (mouseout)="osMouseout.emit($event)"
+    (mouseover)="osMouseover.emit($event)"
+    (mouseup)="osMouseup.emit($event)"
+    (wheel)="osWheel.emit($event)"
     (focus)="osFocus.emit($event)"
     (blur)="osBlur.emit($event)"
     (change)="osChange.emit($event)">

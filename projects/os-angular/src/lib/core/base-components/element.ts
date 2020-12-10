@@ -22,6 +22,27 @@ export class OsBaseComponent implements OnInit {
     @Output()
     public osClick: EventEmitter<MouseEvent> = new EventEmitter();
 
+    @Output()
+    public osDblclick: EventEmitter<MouseEvent> = new EventEmitter();
+
+    @Output()
+    public osMousedown: EventEmitter<MouseEvent> = new EventEmitter();
+
+    @Output()
+    public osMousemove: EventEmitter<MouseEvent> = new EventEmitter();
+
+    @Output()
+    public osMouseout: EventEmitter<MouseEvent> = new EventEmitter();
+
+    @Output()
+    public osMouseover: EventEmitter<MouseEvent> = new EventEmitter();
+
+    @Output()
+    public osMouseup: EventEmitter<MouseEvent> = new EventEmitter();
+
+    @Output()
+    public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
+
     protected _id: string;
 
     private readonly _elementName;
