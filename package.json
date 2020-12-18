@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "doc": "compodoc -p projects/os-angular/tsconfig.lib.json -n 'documentation' -d src/assets/doc --theme vagrant -e json"
   },
   "private": true,
   "dependencies": {

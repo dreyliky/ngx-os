@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { OsAngularModule } from 'projects/os-angular/src/public-api';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentPropertyComponent } from './core/components/component-property/component-property.component';
 
 @NgModule({
     exports: [
@@ -12,7 +11,6 @@ import { ComponentPropertyComponent } from './core/components/component-property
         HttpClientModule,
 
         OsAngularModule
-    ],
-    declarations: [ComponentPropertyComponent]
+    ]
 })
 export class SharedModule {}
