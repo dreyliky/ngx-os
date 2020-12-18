@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'doc-button',
@@ -9,16 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ButtonComponent implements OnInit {
 
-    constructor(
-        private readonly http: HttpClient
-    ) {}
+    constructor() {}
 
-    public ngOnInit(): void {
-        this.http.get('./button.component.html')
-            .subscribe(
-                (d) => console.log(d),
-                (e) => console.log(e)
-            );
-    }
+    public ngOnInit(): void {}
 
 }
