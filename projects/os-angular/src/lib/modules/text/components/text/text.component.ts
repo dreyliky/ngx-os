@@ -7,12 +7,6 @@ import { OsBaseComponent } from 'os-angular/core';
 })
 export class TextComponent extends OsBaseComponent implements OnInit {
 
-    @Input()
-    public size: string = '12px';
-
-    @Input()
-    public fontWeight: string = 'normal';
-
     constructor () {
         super({
             elementName: 'os-text'

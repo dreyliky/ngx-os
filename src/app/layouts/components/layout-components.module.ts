@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { DesktopComponent } from './desktop.component';
 import { SharedModule } from '@Doc/doc-shared.module';
+import { ComponentHeaderComponent } from './component-header/component-header.component';
 
 @NgModule({
     declarations: [
-        DesktopComponent
+        ComponentHeaderComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        DesktopComponent
+        ComponentHeaderComponent
     ]
 })
-export class DesktopModule {}
+export class LayoutComponentsModule {}

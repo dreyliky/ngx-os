@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
-import { SharedModule } from './app-shared.module';
-import { FeaturesModule } from './features/features.module';
+import { SharedModule } from './doc-shared.module';
+import { FeaturesModule } from '@Features/features.module';
+import { LayoutsModule } from '@Layouts/layouts.module';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { FeaturesModule } from './features/features.module';
         AppRoutingModule,
 
         SharedModule,
-        FeaturesModule
+        FeaturesModule,
+        LayoutsModule
     ],
     bootstrap: [
         AppComponent

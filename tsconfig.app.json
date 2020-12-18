@@ -2,7 +2,19 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "outDir": "./out-tsc/app",
-        "types": []
+        "types": [],
+        "paths": {
+            "os-angular/*": ["projects/os-angular/src/lib/*"],
+            "os-angular": ["projects/os-angular/src/lib"],
+            "@Doc/*": ["src/app/*"],
+            "@Core/*": ["src/app/core/*"],
+            "@Features/*": ["src/app/features/*"],
+            "@Features": ["src/app/features"],
+            "@Layouts/*": ["src/app/layouts/*"],
+            "@Layouts": ["src/app/layouts"],
+            "@Pages/*": ["src/app/pages/*"],
+            "@Pages": ["src/app/pages"]
+        }
     },
     "files": [
         "src/main.ts",

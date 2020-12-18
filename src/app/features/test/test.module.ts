@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/app/app-shared.module';
+import { SharedModule } from '@Doc/doc-shared.module';
 import {
     HelloWorldWindowComponent,
     DemoWindowComponent,

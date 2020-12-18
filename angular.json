@@ -7,7 +7,9 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "changeDetection": "OnPush",
+          "style": "scss",
+          "prefix": "doc"
         }
       },
       "root": "",
