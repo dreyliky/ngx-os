@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'doc-demo-block',
+    selector: 'demo-demo-block',
     templateUrl: './demo-block.component.html',
     styleUrls: ['./demo-block.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

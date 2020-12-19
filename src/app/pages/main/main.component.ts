@@ -4,7 +4,7 @@ import { DocumentationRouteEnum } from '@Doc/core/enums';
 import { ComponentDescriptionMap, ComponentType } from '@Doc/features/doc';
 
 @Component({
-    selector: 'doc-main',
+    selector: 'demo-main',
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -2,10 +2,10 @@
     {{ description.name }}
 </os-header>
 
-<doc-demo-block>
+<demo-demo-block>
     <ng-template #demoTemplate>
     </ng-template>
-</doc-demo-block>
+</demo-demo-block>
 
 <div
     *ngFor="let component of components"
@@ -14,13 +14,13 @@
         {{ component.name }}
     </os-header>
 
-    <doc-properties
+    <demo-properties
         [description]="description"
         [component]="component">
-    </doc-properties>
+    </demo-properties>
 
-    <doc-methods
+    <demo-methods
         [description]="description"
         [component]="component">
-    </doc-methods>
+    </demo-methods>
 </div>

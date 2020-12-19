@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'doc-desktop-page',
+    selector: 'demo-desktop-page',
     templateUrl: './desktop.component.html',
     styleUrls: ['./desktop.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

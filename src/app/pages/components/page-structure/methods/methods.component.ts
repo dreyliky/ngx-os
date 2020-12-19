@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 import { ComponentDescription, DocComponent } from '@Doc/features/doc';
 
 @Component({
-    selector: 'doc-methods',
+    selector: 'demo-methods',
     templateUrl: './methods.component.html',
     styleUrls: ['./methods.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'doc-component-header',
+    selector: 'demo-component-header',
     templateUrl: './component-header.component.html',
     styleUrls: ['./component-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 import { ComponentDescription, DocComponent } from '@Doc/features/doc';
 
 @Component({
-    selector: 'doc-properties',
+    selector: 'demo-properties',
     templateUrl: './properties.component.html',
     styleUrls: ['./properties.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

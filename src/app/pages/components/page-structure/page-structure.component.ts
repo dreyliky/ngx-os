@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ComponentDescription, ComponentDescriptionMap, ComponentType, DocComponent, DocService } from '@Doc/features/doc';
 
 @Component({
-    selector: 'doc-page-structure',
+    selector: 'demo-page-structure',
     templateUrl: './page-structure.component.html',
     styleUrls: ['./page-structure.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
