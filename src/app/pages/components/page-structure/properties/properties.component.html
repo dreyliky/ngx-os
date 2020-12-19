@@ -2,7 +2,7 @@
     Properties
 </os-header>
 
-<table>
+<table *ngIf="component.inputsClass.length || component.outputsClass.length; else noPropsTemplate">
     <thead>
         <tr>
             <th>
@@ -15,12 +15,24 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let property of component.inputsClass">
+        <tr *ngFor="let inputProp of component.inputsClass">
             <td class="prop-name-col">
                 <os-text>@Input()</os-text>
-                <os-text>{{ property.name }}: {{ property.type }}</os-text>
+                <os-text>{{ inputProp.name }}: {{ inputProp.type }}</os-text>
+            </td>
+            <td></td>
+        </tr>
+
+        <tr *ngFor="let outputProp of component.outputsClass">
+            <td class="prop-name-col">
+                <os-text>@Output()</os-text>
+                <os-text>{{ outputProp.name }}: {{ outputProp.type }}</os-text>
             </td>
             <td></td>
         </tr>
     </tbody>
 </table>
+
+<ng-template #noPropsTemplate>
+    <os-text>No properties</os-text>
+</ng-template>

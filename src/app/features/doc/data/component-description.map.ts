@@ -169,6 +169,10 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'window',
             shortInfo: 'Window component short info',
             imageUrl: '',
-            componentNames: ['WindowComponent']
+            componentNames: [
+                'WindowComponent',
+                'DynamicWindowComponent',
+                'TitleBarComponent'
+            ]
         }
     );

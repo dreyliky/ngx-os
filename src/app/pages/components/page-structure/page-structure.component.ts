@@ -31,8 +31,6 @@ export class PageStructureComponent implements OnInit {
 
     private initDocComponents(): void {
         this.components = this.docService.getDocComponentsByNames(this.description.componentNames);
-        console.log(this.description);
-        console.log(this.components);
     }
 
 }

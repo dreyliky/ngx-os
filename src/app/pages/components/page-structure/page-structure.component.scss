@@ -1,7 +1,9 @@
 .component {
-    border-left: solid 3px blue;
+    border-left: solid 2px blue;
+    border-bottom: solid 4px blue;
     background: rgba(blue, .05);
     padding: 10px;
+    margin-bottom: 25px;
 
     os-header {
         color: blue;

@@ -141,7 +141,7 @@ interface HostListener {
 
 interface MethodsClass {
     name: string;
-    args: Arg4[][];
+    args: Arg4[];
     optional: boolean;
     returnType: string;
     typeParameters: any[];

@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+    border: solid 1px gray;
+
+    thead {
+        th {
+            text-align: left;
+            height: 50px;
+            background: rgba(0, 0, 0, .05);
+            padding: 5px;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: solid 1px gray !important;
+        }
+
+        .method-name-col {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+        }
+    }
+}
