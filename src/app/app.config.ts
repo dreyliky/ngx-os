@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Doc, DocApiService, DocStateService } from '@Features/doc';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
@@ -12,17 +12,27 @@ export class AppConfig {
     ) {}
 
     public load (): any {
-        return this.updateDoc()
+        return forkJoin([
+            this.updateLibDoc(),
+            this.updateDemoDoc(),
+        ])
             .toPromise()
             .catch(() => {
                 return true;
             });
     }
 
-    private updateDoc (): Observable<Doc> {
-        return this.docApiService.get()
+    private updateLibDoc (): Observable<Doc> {
+        return this.docApiService.getLibDoc()
             .pipe(
-                tap((doc) => this.docStateService.setDoc(doc))
+                tap((doc) => this.docStateService.setLibDoc(doc))
+            );
+    }
+
+    private updateDemoDoc (): Observable<Doc> {
+        return this.docApiService.getDemoDoc()
+            .pipe(
+                tap((doc) => this.docStateService.setDemoDoc(doc))
             );
     }
 

@@ -1,3 +1,10 @@
+:host {
+    width: 100%;
+    max-width: 1000px;
+    display: block;
+    margin: auto;
+}
+
 .component {
     border-left: solid 2px blue;
     border-bottom: solid 4px blue;

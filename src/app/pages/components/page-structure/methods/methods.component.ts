@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Inject } from '@angular/core';
-import { ComponentDescription, Doc, DOC, DocComponent } from '@Doc/features/doc';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ComponentDescription, DocComponent } from '@Doc/features/doc';
 
 @Component({
     selector: 'doc-methods',
@@ -15,9 +15,7 @@ export class MethodsComponent implements OnInit {
     @Input()
     public readonly component: DocComponent;
 
-    constructor(
-        @Inject(DOC) private readonly doc: Doc
-    ) {}
+    constructor() {}
 
     public ngOnInit(): void {}
 

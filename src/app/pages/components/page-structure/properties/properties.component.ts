@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Inject } from '@angular/core';
-import { ComponentDescription, Doc, DOC, DocComponent, DocService } from '@Doc/features/doc';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ComponentDescription, DocComponent } from '@Doc/features/doc';
 
 @Component({
     selector: 'doc-properties',
@@ -17,10 +17,7 @@ export class PropertiesComponent implements OnInit {
 
     public components: DocComponent[];
 
-    constructor(
-        @Inject(DOC) private readonly doc: Doc,
-        private readonly docService: DocService
-    ) {}
+    constructor() {}
 
     public ngOnInit(): void {}
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/doc-shared.module';
+import { DocumentationModule } from '@Doc/features/doc';
 import { PageStructureComponent } from './page-structure.component';
 import { PropertiesComponent } from './properties';
 import { MethodsComponent } from './methods';
@@ -11,7 +12,8 @@ import { MethodsComponent } from './methods';
         MethodsComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        DocumentationModule
     ]
 })
 export class PageStructureModule {}

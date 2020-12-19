@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { DocProvider } from '@Features/doc';
+import { LibDocProvider, DemoDocProvider } from '@Features/doc';
 
 @Component({
     selector: 'doc-root',
@@ -7,7 +7,7 @@ import { DocProvider } from '@Features/doc';
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
-        DocProvider
+        LibDocProvider, DemoDocProvider
     ]
 })
 export class AppComponent {

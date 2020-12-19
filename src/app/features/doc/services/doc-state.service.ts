@@ -7,22 +7,37 @@ import { Doc } from "../interfaces";
 })
 export class DocStateService {
 
-    public get doc (): Doc {
-        return this._doc$.getValue();
+    public get libDoc (): Doc {
+        return this._libDoc$.getValue();
     }
 
-    public get doc$ (): Observable<Doc> {
-        return this._doc$.asObservable();
+    public get libDoc$ (): Observable<Doc> {
+        return this._libDoc$.asObservable();
     }
 
-    private readonly _doc$ = new BehaviorSubject<Doc>(null);
+    public get demoDoc (): Doc {
+        return this._demoDoc$.getValue();
+    }
+
+    public get demoDoc$ (): Observable<Doc> {
+        return this._demoDoc$.asObservable();
+    }
+
+    private readonly _libDoc$ = new BehaviorSubject<Doc>(null);
+    private readonly _demoDoc$ = new BehaviorSubject<Doc>(null);
 
     constructor () {}
 
-    public setDoc (doc: Doc): void {
-        console.log(doc);
+    public setLibDoc (doc: Doc): void {
+        console.log('lib-doc', doc);
 
-        this._doc$.next(doc);
+        this._libDoc$.next(doc);
+    }
+
+    public setDemoDoc (doc: Doc): void {
+        console.log('demo-doc', doc);
+
+        this._demoDoc$.next(doc);
     }
 
 }

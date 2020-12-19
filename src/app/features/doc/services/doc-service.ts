@@ -8,26 +8,36 @@ import { DocStateService } from "./doc-state.service";
 })
 export class DocService {
 
-    private doc: Doc;
+    private libDoc: Doc;
+    private demoDoc: Doc;
 
     constructor(
         private readonly docStateService: DocStateService
     ) {
-        this.updateDocData();
+        this.updateLibDocData();
+        this.updateDemoDocData();
     }
 
-    public getDocComponentsByNames(componentNames: string[]): DocComponent[] {
-        return this.doc.components.filter((component) => {
+    public getLibDocComponentsByNames(componentNames: string[]): DocComponent[] {
+        return this.libDoc.components.filter((component) => {
             return componentNames.includes(component.name);
         });
     }
 
-    private updateDocData(): void {
-        this.docStateService.doc$
+    private updateLibDocData(): void {
+        this.docStateService.libDoc$
             .pipe(
                 first()
             )
-            .subscribe((doc) => this.doc = doc);
+            .subscribe((doc) => this.libDoc = doc);
+    }
+
+    private updateDemoDocData(): void {
+        this.docStateService.demoDoc$
+            .pipe(
+                first()
+            )
+            .subscribe((doc) => this.demoDoc = doc);
     }
 
 }

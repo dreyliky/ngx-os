@@ -1,3 +1,4 @@
+import { ButtonOverviewComponent } from '../demo';
 import { ComponentDescription } from '../interfaces/component-description.interface';
 import { ComponentType } from '../types';
 
@@ -9,7 +10,10 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'button',
             shortInfo: 'Button component short info',
             imageUrl: '',
-            componentNames: ['ButtonComponent']
+            componentNames: ['ButtonComponent'],
+            demoComponents: [
+                ButtonOverviewComponent
+            ]
         }
     )
     .set(

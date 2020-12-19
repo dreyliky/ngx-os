@@ -12,8 +12,12 @@ export class DocApiService {
         private readonly http: HttpClient
     ) {}
 
-    public get (): Observable<Doc> {
-        return this.http.get<Doc>(`/assets/doc/documentation.json`);
+    public getLibDoc (): Observable<Doc> {
+        return this.http.get<Doc>(`/assets/lib-doc/documentation.json`);
+    }
+
+    public getDemoDoc (): Observable<Doc> {
+        return this.http.get<Doc>(`/assets/demo-doc/documentation.json`);
     }
 
 }
