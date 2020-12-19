@@ -2,15 +2,15 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LibDocProvider, DemoDocProvider } from '@Features/doc';
 
 @Component({
-    selector: 'doc-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
+    selector: 'demo-root',
+    templateUrl: './demo.component.html',
+    styleUrls: ['./demo.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         LibDocProvider, DemoDocProvider
     ]
 })
-export class AppComponent {
+export class DemoComponent {
 
     constructor () {}
 

@@ -4,7 +4,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class AppConfig {
+export class DemoConfig {
 
     constructor (
         private readonly docApiService: DocApiService,

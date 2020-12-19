@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/doc-shared.module';
+import { SharedModule } from '@Doc/demo-shared.module';
 import { LayoutComponentsModule } from './components/layout-components.module'
 import { ComponentLayoutComponent } from './component-layout';
 

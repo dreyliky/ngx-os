@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/doc-shared.module';
+import { SharedModule } from '@Doc/demo-shared.module';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main.routing';
 

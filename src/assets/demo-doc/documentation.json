@@ -1,0 +1,84 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "ButtonOverviewComponent",
+            "id": "component-ButtonOverviewComponent-583b7792a14a0038634397d9b4597f22",
+            "file": "src/app/features/doc/demo/button/button-overview/button-overview.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "doc-button-overview",
+            "styleUrls": [
+                "./button-overview.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./button-overview.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'doc-button-overview',\n  templateUrl: './button-overview.component.html',\n  styleUrls: ['./button-overview.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush\n})\nexport class ButtonOverviewComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./button-overview.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 9
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p>button-overview works!</p>\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": [],
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/features/doc/demo/button/button-overview/button-overview.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonOverviewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            }
+        ]
+    }
+}
