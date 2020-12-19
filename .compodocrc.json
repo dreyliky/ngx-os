@@ -1,0 +1,8 @@
+{
+    "name": "documentation",
+    "exportFormat": "json",
+    "output": "src/assets/doc",
+    "tsconfig": "projects/os-angular/tsconfig.lib.json",
+    "silent": true,
+    "disableSourceCode": true
+}
