@@ -1,0 +1,14 @@
+os-header {
+    &::ng-deep {
+        h5 {
+            color: green;
+            margin-bottom: 0px !important;
+        }
+    }
+}
+
+.wrapper {
+    padding: 10px;
+    border-left: solid 2px green;
+    border-bottom: solid 4px green;
+}
