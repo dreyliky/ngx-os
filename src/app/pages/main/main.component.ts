@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
-import { ComponentsRouteEnum } from '../components/components-route.enum';
+import { ComponentDescriptionMap, ComponentType } from '@Doc/features/doc';
 
 @Component({
     selector: 'doc-main',
@@ -11,7 +11,7 @@ import { ComponentsRouteEnum } from '../components/components-route.enum';
 })
 export class MainComponent implements OnInit {
 
-    public componentsRouteEnum = ComponentsRouteEnum;
+    public components = [...ComponentDescriptionMap.values()];
 
     constructor(
         private readonly router: Router
@@ -19,8 +19,8 @@ export class MainComponent implements OnInit {
 
     public ngOnInit(): void {}
 
-    public onOpenSectionButtonClick(componentRoute: ComponentsRouteEnum): void {
-        this.router.navigateByUrl(`/${DocumentationRouteEnum.Components}/${componentRoute}`);
+    public onOpenSectionButtonClick(componentType: ComponentType): void {
+        this.router.navigateByUrl(`/${DocumentationRouteEnum.Components}/${componentType}`);
     }
 
 }

@@ -10,3 +10,9 @@
     flex-direction: column;
     padding: 30px;
 }
+
+.components {
+    os-button::ng-deep button {
+        margin: 5px;
+    }
+}

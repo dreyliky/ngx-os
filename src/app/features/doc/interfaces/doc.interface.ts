@@ -4,7 +4,7 @@ export interface Doc {
     injectables: Injectable[];
     classes: Class[];
     directives: Directive[];
-    components: Component[];
+    components: DocComponent[];
     modules: Module[];
     miscellaneous: Miscellaneous;
     routes: any[];
@@ -87,13 +87,13 @@ interface Element {
     name: string;
 }
 
-interface Component {
+export interface DocComponent {
     name: string;
     id: string;
     file: string;
     changeDetection?: string;
     encapsulation: any[];
-    entryComponents: any[];
+    entryDocComponents: any[];
     inputs: any[];
     outputs: any[];
     providers: any[];
@@ -448,7 +448,7 @@ interface Injectable {
 interface Accessors {
     'activeWindowId$': ActiveWindowId;
     'windowIdsOrder$': ActiveWindowId;
-    'windowComponentsRef$': ActiveWindowId;
+    'windowDocComponentsRef$': ActiveWindowId;
 }
 
 interface ActiveWindowId {

@@ -1,0 +1,16 @@
+.component {
+    border-left: solid 3px blue;
+    background: rgba(blue, .05);
+    padding: 10px;
+
+    os-header {
+        color: blue;
+
+        &::ng-deep {
+            h4 {
+                margin-top: 0px !important;
+                font-weight: bold;
+            }
+        }
+    }
+}

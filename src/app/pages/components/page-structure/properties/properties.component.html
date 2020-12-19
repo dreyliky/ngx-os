@@ -1,0 +1,26 @@
+<os-header [size]="5">
+    Properties
+</os-header>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                <os-text>Property</os-text>
+            </th>
+            <th>
+                <os-text>Description</os-text>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let property of component.inputsClass">
+            <td class="prop-name-col">
+                <os-text>@Input()</os-text>
+                <os-text>{{ property.name }}: {{ property.type }}</os-text>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

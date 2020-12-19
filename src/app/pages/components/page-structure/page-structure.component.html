@@ -1,0 +1,26 @@
+<os-header [size]="1">
+    {{ description.name }}
+</os-header>
+
+<os-header [size]="5">
+    Demo
+</os-header>
+
+<router-outlet></router-outlet>
+
+<div
+    *ngFor="let component of components"
+    class="component">
+    <os-header [size]="4">
+        {{ component.name }}
+    </os-header>
+
+    <doc-properties
+        [description]="description"
+        [component]="component">
+    </doc-properties>
+
+    <doc-methods
+        [description]="description">
+    </doc-methods>
+</div>

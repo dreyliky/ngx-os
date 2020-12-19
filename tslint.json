@@ -51,6 +51,7 @@
         ],
         "prefer-readonly": true,
         "member-access": true,
+        "no-angle-bracket-type-assertion": false,
         "space-before-function-paren": false,
         "typedef": [true, "call-signature"],
         "no-arg": true,
