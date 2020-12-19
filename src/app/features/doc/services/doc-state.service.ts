@@ -20,7 +20,6 @@ export class DocStateService {
     constructor () {}
 
     public setDoc (doc: Doc): void {
-        console.log(doc);
         this._doc$.next(doc);
     }
 

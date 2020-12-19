@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { OsBaseFieldComponent } from 'os-angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseFieldComponent } from 'os-angular/core';
     templateUrl: './textarea-box.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit {
+export class TextareaBoxComponent extends OsBaseFieldComponent {
 
     @Input()
     public rows: number;
@@ -16,10 +16,6 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit
 
     constructor () {
         super();
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
     }
 
 }

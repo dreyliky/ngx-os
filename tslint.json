@@ -51,7 +51,7 @@
         ],
         "prefer-readonly": true,
         "member-access": true,
-        "space-before-function-paren": true,
+        "space-before-function-paren": false,
         "typedef": [true, "call-signature"],
         "no-arg": true,
         "no-bitwise": true,

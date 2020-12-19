@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, TemplateRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, TemplateRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './tab.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent extends OsBaseComponent implements OnInit {
+export class TabComponent extends OsBaseComponent {
 
     @Input()
     public selected: boolean;
@@ -30,13 +30,7 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     public tabContentTemplate: TemplateRef<any>;
 
     constructor () {
-        super({
-            elementName: 'os-tab'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
 }

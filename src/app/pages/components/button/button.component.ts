@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Doc, DOC } from '@Doc/features/doc';
 
 @Component({
     selector: 'doc-button',
@@ -8,8 +9,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
-    constructor() {}
+    constructor(
+        @Inject(DOC) private readonly doc: Doc
+    ) {}
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+        console.log(this.doc);
+    }
 
 }

@@ -9,11 +9,12 @@ import {
     Type,
     ChangeDetectorRef,
     OnInit,
-    HostListener
+    HostListener,
+    ElementRef
 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-import { OutsideClick } from 'os-angular/helpers';
+import { IdGenerator, OutsideClick } from 'os-angular/helpers';
 import { OsDraggableDirective, DragInfo } from 'os-angular/modules/drag-and-drop';
 import { ResizerEnum, ResizeInfo } from 'os-angular/modules/resizer';
 import { DynamicWindowContentDirective } from '../../directives';
@@ -65,6 +66,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     @ViewChild(OsDraggableDirective, { static: true })
     private readonly _draggableDirective: OsDraggableDirective;
 
+    private readonly _id: string = IdGenerator.generate('os-window');
     private readonly _baseZIndex: number = 1000;
     private readonly _alwaysOnTopZIndex: number = 5000;
 
@@ -78,6 +80,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private readonly _subscriptions: Subscription[] = [];
 
     constructor (
+        private readonly dynamicWindowElementRef: ElementRef,
         private readonly windowControlService: DynamicWindowControlService,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
@@ -102,7 +105,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     public ngAfterViewInit (): void {
-        this.windowControlService.setActiveStateForWindowId(this._windowComponent.id);
+        this.windowControlService.setActiveStateForWindowId(this._id);
 
         this.loadChildComponent(this.childComponentType);
 
@@ -155,7 +158,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     public onWindowMouseDown (): void {
-        this.windowControlService.setActiveStateForWindowId(this._windowComponent.id);
+        this.windowControlService.setActiveStateForWindowId(this._id);
     }
 
     public onBeforeDragStart (): void {
@@ -249,7 +252,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     private initHtmlElements (): void {
-        this.windowElement = document.getElementById(this._windowComponent.id) as HTMLDivElement;
+        this.windowElement = this.dynamicWindowElementRef.nativeElement.querySelector('.os-window');
         this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
         this.titleBarElement.querySelectorAll('button')
             .forEach((titleBarButton) => this.titleBarButtons.push(titleBarButton));
@@ -258,7 +261,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private initActiveWindowIdObserver (): void {
         const subscription = this.windowControlService.activeWindowId$
             .subscribe((activeWindowId) => {
-                this.isActive = (activeWindowId === this._windowComponent.id);
+                this.isActive = (activeWindowId === this._id);
 
                 this.updateZIndex();
             });
@@ -270,7 +273,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
         const subscription = this.windowControlService.windowIdsOrder$
             .subscribe((orderedWindowIds) => {
                 this.windowIdOrderIndex = orderedWindowIds
-                    .findIndex((currWindowId) => currWindowId === this._windowComponent.id);
+                    .findIndex((currWindowId) => currWindowId === this._id);
 
                 this.updateZIndex();
             });

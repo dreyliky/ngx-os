@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './slider.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SliderComponent extends OsBaseComponent implements OnInit {
+export class SliderComponent extends OsBaseComponent {
 
     @Input()
     public label: string;
@@ -33,13 +33,7 @@ export class SliderComponent extends OsBaseComponent implements OnInit {
     public value: number = 0;
 
     constructor () {
-        super({
-            elementName: 'os-slider'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
 }

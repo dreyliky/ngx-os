@@ -1,6 +1,7 @@
 export enum DocumentationRouteEnum {
 
     Main = 'main',
-    Components = 'components'
+    Components = 'components',
+    Desktop = 'desktop'
 
 }

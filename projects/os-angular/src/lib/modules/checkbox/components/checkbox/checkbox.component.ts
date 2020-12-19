@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './checkbox.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent extends OsBaseComponent implements OnInit {
+export class CheckboxComponent extends OsBaseComponent {
 
     @Input()
     public label: string;
@@ -21,13 +21,7 @@ export class CheckboxComponent extends OsBaseComponent implements OnInit {
     public disabled: boolean;
 
     constructor () {
-        super({
-            elementName: 'os-checkbox'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
 }

@@ -14,6 +14,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/components/components.module').then((m) => m.ComponentsModule)
     },
     {
+        path: DocumentationRouteEnum.Desktop,
+        loadChildren: () => import('./pages/desktop/desktop.module').then((m) => m.DesktopPageModule)
+    },
+    {
         path: '',
         redirectTo: DocumentationRouteEnum.Main,
         pathMatch: 'full'

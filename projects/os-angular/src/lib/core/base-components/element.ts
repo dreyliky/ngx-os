@@ -1,23 +1,15 @@
-import { Input, Output, EventEmitter, OnInit, Directive } from '@angular/core';
-import { IdGenerator } from '../../helpers';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
-@Directive()
-export class OsBaseComponent implements OnInit {
+@Component({
+    template: ''
+})
+export class OsBaseComponent {
 
     @Input()
     public style: any;
 
     @Input()
     public styleClass: string;
-
-    @Input()
-    public set id (value: string) {
-        this._id = value;
-    }
-
-    public get id (): string {
-        return this._id;
-    }
 
     @Output()
     public osClick: EventEmitter<MouseEvent> = new EventEmitter();
@@ -43,20 +35,6 @@ export class OsBaseComponent implements OnInit {
     @Output()
     public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
 
-    protected _id: string;
-
-    private readonly _elementName;
-
-    constructor ({
-        elementName = 'element'
-    }) {
-        this._elementName = elementName;
-    }
-
-    public ngOnInit (): void {
-        if (!this._id) {
-            this._id = IdGenerator.generate(this._elementName);
-        }
-    }
+    constructor () {}
 
 }

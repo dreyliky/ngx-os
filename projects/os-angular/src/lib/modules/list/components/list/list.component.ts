@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,16 +6,10 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './list.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent extends OsBaseComponent implements OnInit {
+export class ListComponent extends OsBaseComponent {
 
     constructor () {
-        super({
-            elementName: 'os-list'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
 }

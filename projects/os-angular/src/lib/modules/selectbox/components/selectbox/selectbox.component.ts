@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ContentChildren, QueryList } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ContentChildren, QueryList } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { OptionComponent } from '../option';
 
@@ -7,19 +7,13 @@ import { OptionComponent } from '../option';
     templateUrl: './selectbox.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectboxComponent extends OsBaseComponent implements OnInit {
+export class SelectboxComponent extends OsBaseComponent {
 
     @ContentChildren(OptionComponent)
     public readonly optionComponentList: QueryList<OptionComponent>;
 
     constructor () {
-        super({
-            elementName: 'os-selectbox'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
     public trackByFn (optionComponent: OptionComponent, index: number): number {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,19 +6,13 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './field-row.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FieldRowComponent extends OsBaseComponent implements OnInit {
+export class FieldRowComponent extends OsBaseComponent {
 
     @Input()
     public stacked: boolean = false;
 
     constructor () {
-        super({
-            elementName: 'os-field-row'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
 }

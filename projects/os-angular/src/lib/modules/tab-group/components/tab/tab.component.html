@@ -4,7 +4,6 @@
         [styleClass]="tabButtonStyleClass"
         [role]="'tab'"
         [ariaSelected]="selected"
-        [ariaControls]="id"
         (osClick)="osTabButtonClick.emit($event)">
         {{ label }}
     </os-button>
@@ -15,7 +14,6 @@
         class="os-element"
         [ngStyle]="style"
         [class]="styleClass"
-        [id]="id"
         role="tabpanel">
         <ng-content>
         </ng-content>
