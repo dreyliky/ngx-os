@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PageStructureComponent } from './page-structure';
+import { ListComponent } from './list';
+import { OverviewComponent } from './overview';
 
 const routes: Routes = [
     {
+        path: '',
+        component: ListComponent
+    },
+    {
         path: ':componentType',
-        component: PageStructureComponent
+        component: OverviewComponent
     },
     {
         path: '**',

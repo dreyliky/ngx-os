@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { ComponentMetaInfo, ComponentMetaInfoMap, ComponentType, DemoComponentMetaInfo, DocComponent, DocService } from '@Doc/features/doc';
 
 @Component({
-    selector: 'demo-page-structure',
-    templateUrl: './page-structure.component.html',
-    styleUrls: ['./page-structure.component.scss'],
+    selector: 'demo-component-overview',
+    templateUrl: './overview.component.html',
+    styleUrls: ['./overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageStructureComponent implements OnInit, AfterViewInit {
+export class OverviewComponent implements OnInit, AfterViewInit {
 
     public metaInfo: ComponentMetaInfo;
     public components: DocComponent[];

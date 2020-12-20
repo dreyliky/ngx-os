@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { DocumentationModule } from '@Doc/features/doc';
-import { PageStructureComponent } from './page-structure.component';
+import { OverviewComponent } from './overview.component';
 import { PropertiesComponent } from './properties';
 import { MethodsComponent } from './methods';
 import { DemoBlockComponent } from './demo-block';
@@ -9,7 +9,7 @@ import { ComponentBlockComponent } from './component-block/component-block.compo
 
 @NgModule({
     declarations: [
-        PageStructureComponent,
+        OverviewComponent,
         PropertiesComponent,
         MethodsComponent,
         DemoBlockComponent,
@@ -20,4 +20,4 @@ import { ComponentBlockComponent } from './component-block/component-block.compo
         DocumentationModule
     ]
 })
-export class PageStructureModule {}
+export class OverviewModule {}

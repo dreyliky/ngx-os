@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <os-header [size]="2">
+        Components
+    </os-header>
+
+    <os-list>
+        <os-list-item
+            *ngFor="let component of components"
+            [data]="{
+                label: component.name
+            }"
+            (osDblClick)="onOpenSectionButtonClick(component.type)">
+        </os-list-item>
+    </os-list>
+</div>

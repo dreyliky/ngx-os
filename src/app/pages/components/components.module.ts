@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { ComponentsRoutingModule } from './components.routing';
-import { PageStructureModule } from './page-structure';
+import { ListModule } from './list';
+import { OverviewModule } from './overview';
 
 @NgModule({
     imports: [
-        PageStructureModule,
+        ListModule,
+        OverviewModule,
         ComponentsRoutingModule
     ]
 })
