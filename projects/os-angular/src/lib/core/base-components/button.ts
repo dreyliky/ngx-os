@@ -21,9 +21,15 @@ export class OsBaseButtonComponent extends OsBaseComponent {
     @Input()
     public role: string;
 
+    /**
+     * Target internal element focus event
+     */
     @Output()
     public osFocus: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /**
+     * Target internal element blur event
+     */
     @Output()
     public osBlur: EventEmitter<MouseEvent> = new EventEmitter();
 

@@ -3661,15 +3661,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3677,15 +3679,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3696,7 +3700,8 @@
                 {
                     "name": "osBlur",
                     "defaultValue": "new EventEmitter()",
-                    "line": 28,
+                    "description": "<p>Target internal element blur event</p>\n",
+                    "line": 34,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3705,7 +3710,8 @@
                 {
                     "name": "osFocus",
                     "defaultValue": "new EventEmitter()",
-                    "line": 25,
+                    "description": "<p>Target internal element focus event</p>\n",
+                    "line": 28,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3714,7 +3720,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3723,7 +3730,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3732,7 +3740,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3741,7 +3750,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3750,7 +3760,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3759,7 +3770,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3768,7 +3780,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3777,7 +3790,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseButtonComponent"
@@ -3786,7 +3800,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3795,7 +3810,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3804,7 +3820,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3813,7 +3830,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3822,7 +3840,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3831,7 +3850,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3840,7 +3860,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3849,7 +3870,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3916,15 +3938,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3935,7 +3959,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3944,7 +3969,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3953,7 +3979,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3962,7 +3989,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3971,7 +3999,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3980,7 +4009,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3989,7 +4019,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -3998,7 +4029,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4882,15 +4914,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4901,7 +4935,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4910,7 +4945,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4919,7 +4955,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4928,7 +4965,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4937,7 +4975,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4946,7 +4985,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4955,7 +4995,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -4964,7 +5005,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5015,15 +5057,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5034,7 +5078,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5043,7 +5088,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5052,7 +5098,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5061,7 +5108,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5070,7 +5118,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5079,7 +5128,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5088,7 +5138,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5097,7 +5148,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5148,15 +5200,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5167,7 +5221,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5176,7 +5231,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5185,7 +5241,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5194,7 +5251,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5203,7 +5261,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5212,7 +5271,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5221,7 +5281,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5230,7 +5291,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5382,15 +5444,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5413,7 +5477,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5422,7 +5487,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5431,7 +5497,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5440,7 +5507,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5449,7 +5517,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5458,7 +5527,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5467,7 +5537,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5476,7 +5547,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5605,15 +5677,17 @@
             "inputsClass": [
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5624,7 +5698,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5633,7 +5708,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5642,7 +5718,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5651,7 +5728,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5660,7 +5738,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5669,7 +5748,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5678,7 +5758,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5687,7 +5768,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5738,15 +5820,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5757,7 +5841,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5766,7 +5851,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5775,7 +5861,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5784,7 +5871,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5793,7 +5881,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5802,7 +5891,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5811,7 +5901,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5820,7 +5911,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5865,7 +5957,7 @@
         },
         {
             "name": "OsBaseButtonComponent",
-            "id": "component-OsBaseButtonComponent-e67674b850538683913e41c6efce52f2",
+            "id": "component-OsBaseButtonComponent-cd08a0fb16535407dbb987a5b6f76d3a",
             "file": "projects/os-angular/src/lib/core/base-components/button.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -5905,15 +5997,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5924,19 +6018,22 @@
                 {
                     "name": "osBlur",
                     "defaultValue": "new EventEmitter()",
-                    "line": 28,
+                    "description": "<p>Target internal element blur event</p>\n",
+                    "line": 34,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osFocus",
                     "defaultValue": "new EventEmitter()",
-                    "line": 25,
+                    "description": "<p>Target internal element focus event</p>\n",
+                    "line": 28,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5945,7 +6042,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5954,7 +6052,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5963,7 +6062,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5972,7 +6072,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5981,7 +6082,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5990,7 +6092,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -5999,7 +6102,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6020,13 +6124,13 @@
                 "name": "constructor",
                 "description": "",
                 "args": [],
-                "line": 28
+                "line": 34
             },
             "extends": "OsBaseComponent"
         },
         {
             "name": "OsBaseComponent",
-            "id": "component-OsBaseComponent-d8fad96531cba52f56735338d9bbfcff",
+            "id": "component-OsBaseComponent-1ca9774c4b06b7859b8e39e8a1ac0342",
             "file": "projects/os-angular/src/lib/core/base-components/element.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -6041,12 +6145,14 @@
             "inputsClass": [
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any"
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object"
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string"
                 }
             ],
@@ -6054,49 +6160,57 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>"
                 },
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>"
                 }
             ],
@@ -6114,7 +6228,7 @@
                 "name": "constructor",
                 "description": "",
                 "args": [],
-                "line": 36
+                "line": 66
             }
         },
         {
@@ -6155,15 +6269,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6192,7 +6308,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6201,7 +6318,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6210,7 +6328,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6219,7 +6338,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6228,7 +6348,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6237,7 +6358,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6246,7 +6368,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6255,7 +6378,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6320,15 +6444,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6339,7 +6465,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6348,7 +6475,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6357,7 +6485,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6366,7 +6495,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6375,7 +6505,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6384,7 +6515,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6393,7 +6525,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6402,7 +6535,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6460,15 +6594,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6479,7 +6615,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6488,7 +6625,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6497,7 +6635,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6506,7 +6645,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6515,7 +6655,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6524,7 +6665,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6533,7 +6675,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6542,7 +6685,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6588,15 +6732,17 @@
             "inputsClass": [
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6607,7 +6753,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6616,7 +6763,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6625,7 +6773,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6634,7 +6783,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6643,7 +6793,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6652,7 +6803,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6661,7 +6813,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6670,7 +6823,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6815,15 +6969,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6834,7 +6990,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6843,7 +7000,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6852,7 +7010,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6861,7 +7020,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6870,7 +7030,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6879,7 +7040,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6888,7 +7050,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6897,7 +7060,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6963,15 +7127,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6988,7 +7154,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -6997,7 +7164,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7006,7 +7174,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7015,7 +7184,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7024,7 +7194,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7033,7 +7204,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7042,7 +7214,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7051,7 +7224,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7130,15 +7304,17 @@
             "inputsClass": [
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7149,7 +7325,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7158,7 +7335,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7167,7 +7345,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7176,7 +7355,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7185,7 +7365,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7194,7 +7375,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7203,7 +7385,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7212,7 +7395,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7380,15 +7564,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7396,15 +7582,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7442,7 +7630,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7451,7 +7640,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7460,7 +7650,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7469,7 +7660,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7478,7 +7670,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7487,7 +7680,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7496,7 +7690,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7505,7 +7700,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7514,7 +7710,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7523,7 +7720,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7532,7 +7730,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7541,7 +7740,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7550,7 +7750,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7559,7 +7760,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7568,7 +7770,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7577,7 +7780,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7662,15 +7866,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7678,15 +7884,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7724,7 +7932,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7733,7 +7942,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7742,7 +7952,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7751,7 +7962,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7760,7 +7972,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7769,7 +7982,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7778,7 +7992,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7787,7 +8002,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseFieldComponent"
@@ -7796,7 +8012,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7805,7 +8022,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7814,7 +8032,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7823,7 +8042,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7832,7 +8052,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7841,7 +8062,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7850,7 +8072,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7859,7 +8082,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7904,15 +8128,17 @@
             "inputsClass": [
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7923,7 +8149,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7932,7 +8159,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7941,7 +8169,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7950,7 +8179,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7959,7 +8189,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7968,7 +8199,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7977,7 +8209,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -7986,7 +8219,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8032,15 +8266,17 @@
             "inputsClass": [
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8075,7 +8311,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8084,7 +8321,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8093,7 +8331,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8102,7 +8341,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8111,7 +8351,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8120,7 +8361,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8129,7 +8371,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8138,7 +8381,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8189,15 +8433,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8208,7 +8454,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8217,7 +8464,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8226,7 +8474,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8235,7 +8484,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8244,7 +8494,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8253,7 +8504,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8262,7 +8514,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8271,7 +8524,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8484,15 +8738,17 @@
                 },
                 {
                     "name": "style",
-                    "line": 9,
-                    "type": "any",
+                    "description": "<p>Object with css styles which will applied for target internal element</p>\n",
+                    "line": 12,
+                    "type": "object",
                     "inheritance": {
                         "file": "OsBaseComponent"
                     }
                 },
                 {
                     "name": "styleClass",
-                    "line": 12,
+                    "description": "<p>String with classes for target internal element</p>\n",
+                    "line": 18,
                     "type": "string",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8551,7 +8807,8 @@
                 {
                     "name": "osClick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 15,
+                    "description": "<p>Target internal element click event</p>\n",
+                    "line": 24,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8560,7 +8817,8 @@
                 {
                     "name": "osDblclick",
                     "defaultValue": "new EventEmitter()",
-                    "line": 18,
+                    "description": "<p>Target internal element dblclick event</p>\n",
+                    "line": 30,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8569,7 +8827,8 @@
                 {
                     "name": "osMousedown",
                     "defaultValue": "new EventEmitter()",
-                    "line": 21,
+                    "description": "<p>Target internal element mousedown event</p>\n",
+                    "line": 36,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8578,7 +8837,8 @@
                 {
                     "name": "osMousemove",
                     "defaultValue": "new EventEmitter()",
-                    "line": 24,
+                    "description": "<p>Target internal element mousemove event</p>\n",
+                    "line": 42,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8587,7 +8847,8 @@
                 {
                     "name": "osMouseout",
                     "defaultValue": "new EventEmitter()",
-                    "line": 27,
+                    "description": "<p>Target internal element mouseout event</p>\n",
+                    "line": 48,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8596,7 +8857,8 @@
                 {
                     "name": "osMouseover",
                     "defaultValue": "new EventEmitter()",
-                    "line": 30,
+                    "description": "<p>Target internal element mouseover event</p>\n",
+                    "line": 54,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8605,7 +8867,8 @@
                 {
                     "name": "osMouseup",
                     "defaultValue": "new EventEmitter()",
-                    "line": 33,
+                    "description": "<p>Target internal element mouseup event</p>\n",
+                    "line": 60,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -8614,7 +8877,8 @@
                 {
                     "name": "osWheel",
                     "defaultValue": "new EventEmitter()",
-                    "line": 36,
+                    "description": "<p>Target internal element wheel event</p>\n",
+                    "line": 66,
                     "type": "EventEmitter<MouseEvent>",
                     "inheritance": {
                         "file": "OsBaseComponent"
@@ -9787,35 +10051,35 @@
     },
     "routes": [],
     "coverage": {
-        "count": 0,
-        "status": "low",
+        "count": 28,
+        "status": "medium",
         "files": [
             {
                 "filePath": "projects/os-angular/src/lib/core/base-components/button.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "OsBaseButtonComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/19",
-                "status": "low"
+                "coveragePercent": 63,
+                "coverageCount": "12/19",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/core/base-components/element.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "OsBaseComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/12",
-                "status": "low"
+                "coveragePercent": 83,
+                "coverageCount": "10/12",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/core/base-components/field.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "OsBaseFieldComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/19",
-                "status": "low"
+                "coveragePercent": 52,
+                "coverageCount": "10/19",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/helpers/id-generator.helper.ts",
@@ -9849,18 +10113,18 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/30",
-                "status": "low"
+                "coveragePercent": 73,
+                "coverageCount": "22/30",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/checkbox/components/checkbox/checkbox.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CheckboxComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/16",
-                "status": "low"
+                "coveragePercent": 62,
+                "coverageCount": "10/16",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/drag-and-drop/classes/dragger-config.ts",
@@ -9894,36 +10158,36 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "FieldRowComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/13",
-                "status": "low"
+                "coveragePercent": 76,
+                "coverageCount": "10/13",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/group-box/components/group-box/group-box.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "GroupBoxComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/13",
-                "status": "low"
+                "coveragePercent": 76,
+                "coverageCount": "10/13",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/list/components/item/item.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ItemComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/20",
-                "status": "low"
+                "coveragePercent": 50,
+                "coverageCount": "10/20",
+                "status": "medium"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/list/components/list/list.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ListComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/12",
-                "status": "low"
+                "coveragePercent": 83,
+                "coverageCount": "10/12",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/list/interfaces/item.interface.ts",
@@ -9939,9 +10203,9 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "RadioButtonComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/16",
-                "status": "low"
+                "coveragePercent": 62,
+                "coverageCount": "10/16",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/resizer/classes/bottom-left-resizer.ts",
@@ -10056,99 +10320,99 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ScrollViewComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/14",
-                "status": "low"
+                "coveragePercent": 71,
+                "coverageCount": "10/14",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/selectbox/components/option/option.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "OptionComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/14",
-                "status": "low"
+                "coveragePercent": 71,
+                "coverageCount": "10/14",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/selectbox/components/selectbox/selectbox.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "SelectboxComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/14",
-                "status": "low"
+                "coveragePercent": 71,
+                "coverageCount": "10/14",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/slider/components/slider/slider.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "SliderComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/20",
-                "status": "low"
+                "coveragePercent": 50,
+                "coverageCount": "10/20",
+                "status": "medium"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/tab-group/components/tab-group/tab-group.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TabGroupComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/18",
-                "status": "low"
+                "coveragePercent": 55,
+                "coverageCount": "10/18",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/tab-group/components/tab/tab.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TabComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/19",
-                "status": "low"
+                "coveragePercent": 52,
+                "coverageCount": "10/19",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/text-box/components/text-box/text-box.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TextBoxComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/30",
-                "status": "low"
+                "coveragePercent": 66,
+                "coverageCount": "20/30",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/text/components/header/header.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "HeaderComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/16",
-                "status": "low"
+                "coveragePercent": 62,
+                "coverageCount": "10/16",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/text/components/text/text.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TextComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/12",
-                "status": "low"
+                "coveragePercent": 83,
+                "coverageCount": "10/12",
+                "status": "very-good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/textarea-box/components/textarea-box/textarea-box.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TextareaBoxComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/31",
-                "status": "low"
+                "coveragePercent": 64,
+                "coverageCount": "20/31",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/tree-view/components/tree-view/tree-view.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TreeViewComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/16",
-                "status": "low"
+                "coveragePercent": 62,
+                "coverageCount": "10/16",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/tree-view/interfaces/node.interface.ts",
@@ -10200,18 +10464,18 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "TitleBarComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/16",
-                "status": "low"
+                "coveragePercent": 62,
+                "coverageCount": "10/16",
+                "status": "good"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/window/components/window/window.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "WindowComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/31",
-                "status": "low"
+                "coveragePercent": 32,
+                "coverageCount": "10/31",
+                "status": "medium"
             },
             {
                 "filePath": "projects/os-angular/src/lib/modules/window/directives/dynamic-window-content.directive.ts",

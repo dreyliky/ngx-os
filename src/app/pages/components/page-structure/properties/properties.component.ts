@@ -15,10 +15,16 @@ export class PropertiesComponent implements OnInit {
     @Input()
     public readonly component: DocComponent;
 
+    public isCollapsed: boolean = false;
+
     public components: DocComponent[];
 
     constructor() {}
 
     public ngOnInit(): void {}
+
+    public onCollapseButtonClick(): void {
+        this.isCollapsed = !this.isCollapsed;
+    }
 
 }

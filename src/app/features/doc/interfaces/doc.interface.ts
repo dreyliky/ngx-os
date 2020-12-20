@@ -102,7 +102,7 @@ export interface DocComponent {
     styles: any[];
     templateUrl: string[];
     viewProviders: any[];
-    inputsClass: (InputsClass | InputsClass2 | OutputsClass)[];
+    inputsClass: InputsClass[];
     outputsClass: OutputsClass[];
     propertiesClass: (PropertiesClass | PropertiesClass2 | Property3 | Property2)[];
     methodsClass: MethodsClass[];
@@ -258,15 +258,20 @@ interface MethodsClass2 {
 
 interface OutputsClass {
     name: string;
-    defaultValue: string;
     line: number;
     type: string;
+    defaultValue?: string;
+    description?: string;
+    inheritance?: Inheritance;
 }
 
 interface InputsClass {
     name: string;
     line: number;
     type: string;
+    defaultValue?: string;
+    description?: string;
+    inheritance?: Inheritance;
 }
 
 interface Class {

@@ -1,37 +1,68 @@
-<os-header [size]="5">
-    Properties
-</os-header>
+<div class="title">
+    <os-button
+        (osClick)="onCollapseButtonClick()">
+        <div
+            class="collapse-text"
+            [class.collapsed]="isCollapsed">
+            &#62;
+        </div>
+    </os-button>
 
-<table *ngIf="component.inputsClass.length || component.outputsClass.length; else noPropsTemplate">
-    <thead>
-        <tr>
-            <th>
-                <os-text>Property</os-text>
-            </th>
-            <th>
-                <os-text>Description</os-text>
-            </th>
-        </tr>
-    </thead>
+    <os-header [size]="5">
+        Properties
+    </os-header>
+</div>
 
-    <tbody>
-        <tr *ngFor="let inputProp of component.inputsClass">
-            <td class="prop-name-col">
-                <os-text>@Input()</os-text>
-                <os-text>{{ inputProp.name }}: {{ inputProp.type }}</os-text>
-            </td>
-            <td></td>
-        </tr>
+<div
+    *ngIf="isCollapsed"
+    class="content">
+    <table *ngIf="component.inputsClass.length || component.outputsClass.length; else noPropsTemplate">
+        <thead>
+            <tr>
+                <th>
+                    <os-text>Property</os-text>
+                </th>
+    
+                <th class="description-col">
+                    <os-text>Description</os-text>
+                </th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <tr *ngFor="let inputProp of component.inputsClass">
+                <td class="prop-name-col">
+                    <os-text>@Input()</os-text>
+                    <os-text>
+                        public {{ inputProp.name }}: {{ inputProp.type }}
+                    </os-text>
+                </td>
+    
+                <td class="prop-description-col">
+                    <os-text>
+                        <span [innerHTML]="inputProp?.description"></span>
+                    </os-text>
+                </td>
+            </tr>
+    
+            <tr *ngFor="let outputProp of component.outputsClass">
+                <td class="prop-name-col">
+                    <os-text>@Output()</os-text>
+                    <os-text>
+                        public {{ outputProp.name }}: {{ outputProp.type }}
+                    </os-text>
+                </td>
+    
+                <td class="prop-description-col">
+                    <os-text>
+                        <span [innerHTML]="outputProp?.description"></span>
+                    </os-text>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-        <tr *ngFor="let outputProp of component.outputsClass">
-            <td class="prop-name-col">
-                <os-text>@Output()</os-text>
-                <os-text>{{ outputProp.name }}: {{ outputProp.type }}</os-text>
-            </td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
 
 <ng-template #noPropsTemplate>
     <os-text>No properties</os-text>

@@ -46,7 +46,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "os-button {\n    background: red;\n}",
+                    "data": "",
                     "styleUrl": "./button-overview.component.scss"
                 }
             ],

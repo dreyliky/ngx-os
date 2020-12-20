@@ -1,3 +1,35 @@
+:host {
+    width: 100%;
+    display: block;
+    padding-left: 5px;
+    border-left: solid 3px purple;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    margin-top: 15px;
+    color: purple;
+
+    os-header::ng-deep {
+        h5 {
+            margin-bottom: 0px;
+        }
+    }
+
+    .collapse-text {
+        transform: rotateZ(90deg);
+
+        &:not(.collapsed) {
+            transform: none;
+        }
+    }
+}
+
+.content {
+    margin-top: 8px;
+}
+
 table {
     width: 100%;
     border: solid 1px gray;
