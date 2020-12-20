@@ -1,10 +1,10 @@
 <os-header [size]="1">
-    {{ description.name }}
+    {{ metaInfo.name }}
 </os-header>
 
 <demo-demo-block
-    *ngIf="description.demoComponents && description.demoComponents[0]"
-    [demoComponentMetaInfo]="description.demoComponents[0]">
+    *ngIf="metaInfo.demoComponents && metaInfo.demoComponents[0]"
+    [demoComponentMetaInfo]="metaInfo.demoComponents[0]">
     <ng-template #demoTemplate>
     </ng-template>
 </demo-demo-block>
@@ -21,12 +21,12 @@
     </os-text>
 
     <demo-properties
-        [description]="description"
+        [metaInfo]="metaInfo"
         [component]="component">
     </demo-properties>
 
     <demo-methods
-        [description]="description"
+        [metaInfo]="metaInfo"
         [component]="component">
     </demo-methods>
 </div>

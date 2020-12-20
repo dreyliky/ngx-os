@@ -10,7 +10,7 @@ import { ComponentMetaInfo, DocComponent } from '@Doc/features/doc';
 export class PropertiesComponent implements OnInit {
 
     @Input()
-    public readonly description: ComponentMetaInfo;
+    public readonly metaInfo: ComponentMetaInfo;
 
     @Input()
     public readonly component: DocComponent;

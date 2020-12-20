@@ -10,7 +10,7 @@ import { ComponentMetaInfo, ComponentMetaInfoMap, ComponentType, DemoComponentMe
 })
 export class PageStructureComponent implements OnInit, AfterViewInit {
 
-    public description: ComponentMetaInfo;
+    public metaInfo: ComponentMetaInfo;
     public components: DocComponent[];
 
     @ViewChild('demoTemplate', { read: ViewContainerRef })
@@ -34,11 +34,11 @@ export class PageStructureComponent implements OnInit, AfterViewInit {
     private initDescription(): void {
         const componentType: ComponentType = this.activatedRoute.snapshot.params.componentType;
 
-        this.description = ComponentMetaInfoMap.get(componentType);
+        this.metaInfo = ComponentMetaInfoMap.get(componentType);
     }
 
     private initDocComponents(): void {
-        this.components = this.docService.getLibDocComponentsByTypes(this.description.libComponents);
+        this.components = this.docService.getLibDocComponentsByTypes(this.metaInfo.libComponents);
     }
 
     private initDemoComponent(): void {
@@ -54,8 +54,8 @@ export class PageStructureComponent implements OnInit, AfterViewInit {
     }
 
     private getDemoComponentTypeRef(): DemoComponentMetaInfo {
-        if (this.description.demoComponents) {
-            return this.description.demoComponents[0];
+        if (this.metaInfo.demoComponents) {
+            return this.metaInfo.demoComponents[0];
         }
     }
 
