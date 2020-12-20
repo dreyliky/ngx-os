@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ComponentDescription, DocComponent } from '@Doc/features/doc';
+import { ComponentMetaInfo, DocComponent } from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-properties',
@@ -10,7 +10,7 @@ import { ComponentDescription, DocComponent } from '@Doc/features/doc';
 export class PropertiesComponent implements OnInit {
 
     @Input()
-    public readonly description: ComponentDescription;
+    public readonly description: ComponentMetaInfo;
 
     @Input()
     public readonly component: DocComponent;

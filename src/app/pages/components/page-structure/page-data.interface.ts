@@ -1,7 +1,7 @@
-import { ComponentDescription } from '@Features/doc';
+import { ComponentMetaInfo } from '@Features/doc';
 
 export interface PageData {
 
-    description: ComponentDescription;
+    description: ComponentMetaInfo;
 
 }

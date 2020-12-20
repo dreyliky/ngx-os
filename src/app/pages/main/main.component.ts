@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
-import { ComponentDescriptionMap, ComponentType } from '@Doc/features/doc';
+import { ComponentMetaInfoMap, ComponentType } from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-main',
@@ -11,7 +11,7 @@ import { ComponentDescriptionMap, ComponentType } from '@Doc/features/doc';
 })
 export class MainComponent implements OnInit {
 
-    public components = [...ComponentDescriptionMap.values()];
+    public components = [...ComponentMetaInfoMap.values()];
 
     constructor(
         private readonly router: Router

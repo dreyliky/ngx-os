@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef, ComponentFactoryResolver, Type, Injector, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ComponentFactoryResolver, ViewContainerRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ComponentDescription, ComponentDescriptionMap, ComponentType, DocComponent, DocService } from '@Doc/features/doc';
+import { ComponentMetaInfo, ComponentMetaInfoMap, ComponentType, DemoComponentMetaInfo, DocComponent, DocService } from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-page-structure',
@@ -10,14 +10,13 @@ import { ComponentDescription, ComponentDescriptionMap, ComponentType, DocCompon
 })
 export class PageStructureComponent implements OnInit, AfterViewInit {
 
-    public description: ComponentDescription;
+    public description: ComponentMetaInfo;
     public components: DocComponent[];
 
     @ViewChild('demoTemplate', { read: ViewContainerRef })
     private readonly demoTemplate: ViewContainerRef;
 
     constructor(
-        private readonly injector: Injector,
         private readonly activatedRoute: ActivatedRoute,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly docService: DocService
@@ -35,7 +34,7 @@ export class PageStructureComponent implements OnInit, AfterViewInit {
     private initDescription(): void {
         const componentType: ComponentType = this.activatedRoute.snapshot.params.componentType;
 
-        this.description = ComponentDescriptionMap.get(componentType);
+        this.description = ComponentMetaInfoMap.get(componentType);
     }
 
     private initDocComponents(): void {
@@ -43,16 +42,18 @@ export class PageStructureComponent implements OnInit, AfterViewInit {
     }
 
     private initDemoComponent(): void {
-        const demoComponentTypeRef: Type<any> = this.getDemoComponentTypeRef();
+        const demoComponentMetaInfo = this.getDemoComponentTypeRef();
 
-        if (demoComponentTypeRef) {
-            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(demoComponentTypeRef);
+        if (demoComponentMetaInfo) {
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
+                demoComponentMetaInfo.component
+            );
 
             this.demoTemplate.createComponent(componentFactory);
         }
     }
 
-    private getDemoComponentTypeRef(): Type<any> {
+    private getDemoComponentTypeRef(): DemoComponentMetaInfo {
         if (this.description.demoComponents) {
             return this.description.demoComponents[0];
         }

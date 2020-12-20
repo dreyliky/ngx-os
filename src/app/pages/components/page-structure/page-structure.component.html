@@ -4,7 +4,7 @@
 
 <demo-demo-block
     *ngIf="description.demoComponents && description.demoComponents[0]"
-    [componentType]="description.demoComponents[0]">
+    [demoComponentMetaInfo]="description.demoComponents[0]">
     <ng-template #demoTemplate>
     </ng-template>
 </demo-demo-block>
