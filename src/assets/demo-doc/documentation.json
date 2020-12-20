@@ -7,7 +7,7 @@
     "components": [
         {
             "name": "ButtonOverviewComponent",
-            "id": "component-ButtonOverviewComponent-583b7792a14a0038634397d9b4597f22",
+            "id": "component-ButtonOverviewComponent-aeb6f07121f53f05ae737c3c1b391ffc",
             "file": "src/app/features/doc/demo/button/button-overview/button-overview.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -15,7 +15,7 @@
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "doc-button-overview",
+            "selector": "demo-button-overview",
             "styleUrls": [
                 "./button-overview.component.scss"
             ],
@@ -42,11 +42,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'doc-button-overview',\n  templateUrl: './button-overview.component.html',\n  styleUrls: ['./button-overview.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush\n})\nexport class ButtonOverviewComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'demo-button-overview',\n  templateUrl: './button-overview.component.html',\n  styleUrls: ['./button-overview.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush\n})\nexport class ButtonOverviewComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": "os-button {\n    background: red;\n}",
                     "styleUrl": "./button-overview.component.scss"
                 }
             ],
@@ -60,7 +60,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<p>button-overview works!</p>\n"
+            "templateData": "<os-button>OS Button</os-button>"
         }
     ],
     "modules": [],

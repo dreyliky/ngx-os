@@ -24,6 +24,11 @@ export class DocService {
         });
     }
 
+    public getDemoDocComponentByName(componentName: string): DocComponent {
+        return this.demoDoc.components
+            .find((component) => component.name === componentName);
+    }
+
     private updateLibDocData(): void {
         this.docStateService.libDoc$
             .pipe(

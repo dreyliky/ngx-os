@@ -3,5 +3,29 @@
 </os-header>
 
 <div class="wrapper">
-    <ng-content></ng-content>
+    <os-tab-group>
+        <os-tab
+            [selected]="openedSection === sectionEnum.Demo"
+            [label]="'Demo'">
+            <ng-content></ng-content>
+        </os-tab>
+
+        <os-tab
+            [selected]="openedSection === sectionEnum.HTML"
+            [label]="'HTML'">
+            <pre>{{ docComponent.templateData }}</pre>
+        </os-tab>
+
+        <os-tab
+            [selected]="openedSection === sectionEnum.SCSS"
+            [label]="'SCSS'">
+            <pre>{{ docComponent.styleUrlsData[0].data }}</pre>
+        </os-tab>
+
+        <os-tab
+            [selected]="openedSection === sectionEnum.TS"
+            [label]="'TypeScript'">
+            <pre>{{ docComponent.sourceCode }}</pre>
+        </os-tab>
+    </os-tab-group>
 </div>

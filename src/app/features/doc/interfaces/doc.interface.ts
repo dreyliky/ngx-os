@@ -113,7 +113,7 @@ export interface DocComponent {
     type: string;
     sourceCode: string;
     assetsDirs: any[];
-    styleUrlsData: StyleUrlsDatum[] | string;
+    styleUrlsData: StyleUrlsDatum[];
     stylesData: string;
     constructorObj: ConstructorObj;
     extends?: string;
