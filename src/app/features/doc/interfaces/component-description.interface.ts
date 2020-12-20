@@ -7,7 +7,7 @@ export interface ComponentDescription {
     type: ComponentType;
     shortInfo: string;
     imageUrl: string;
-    componentNames: string[];
+    libComponents?: Type<any>[];
     demoComponents?: Type<any>[];
 
 }

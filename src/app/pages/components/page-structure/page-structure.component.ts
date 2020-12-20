@@ -39,7 +39,7 @@ export class PageStructureComponent implements OnInit, AfterViewInit {
     }
 
     private initDocComponents(): void {
-        this.components = this.docService.getLibDocComponentsByNames(this.description.componentNames);
+        this.components = this.docService.getLibDocComponentsByTypes(this.description.libComponents);
     }
 
     private initDemoComponent(): void {

@@ -3,6 +3,7 @@
 </os-header>
 
 <demo-demo-block
+    *ngIf="description.demoComponents && description.demoComponents[0]"
     [componentType]="description.demoComponents[0]">
     <ng-template #demoTemplate>
     </ng-template>
@@ -14,6 +15,10 @@
     <os-header [size]="4">
         {{ component.name }}
     </os-header>
+
+    <os-text>
+        Selector: <b>{{ component.selector }}</b>
+    </os-text>
 
     <demo-properties
         [description]="description"

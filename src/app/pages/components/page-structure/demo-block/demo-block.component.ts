@@ -18,7 +18,7 @@ export class DemoBlockComponent implements OnInit {
 
     @Input()
     public set componentType(componentType: Type<any>) {
-        this.initDemoDocComponent(componentType.name);
+        this.initDemoDocComponent(componentType);
     }
 
     public readonly sectionEnum = SectionEnum;
@@ -32,8 +32,8 @@ export class DemoBlockComponent implements OnInit {
 
     public ngOnInit(): void {}
 
-    private initDemoDocComponent(componentName: string): void {
-        this.docComponent = this.docService.getDemoDocComponentByName(componentName);
+    private initDemoDocComponent(componentType: Type<any>): void {
+        this.docComponent = this.docService.getDemoDocComponentByName(componentType);
     }
 
 }

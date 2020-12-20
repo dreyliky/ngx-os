@@ -1,3 +1,6 @@
+import {
+    ButtonComponent, CheckboxComponent, DynamicWindowComponent, FieldRowComponent, GroupBoxComponent, HeaderComponent, ListComponent, RadioButtonComponent, ScrollViewComponent, SelectboxComponent, SliderComponent, TabGroupComponent, TextareaBoxComponent, TextBoxComponent, TextComponent, TitleBarComponent, TreeViewComponent, WindowComponent
+} from 'os-angular';
 import { ButtonOverviewComponent } from '../demo';
 import { ComponentDescription } from '../interfaces/component-description.interface';
 import { ComponentType } from '../types';
@@ -10,7 +13,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'button',
             shortInfo: 'Button component short info',
             imageUrl: '',
-            componentNames: ['ButtonComponent'],
+            libComponents: [
+                ButtonComponent
+            ],
             demoComponents: [
                 ButtonOverviewComponent
             ]
@@ -23,7 +28,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'checkbox',
             shortInfo: 'Checkbox component short info',
             imageUrl: '',
-            componentNames: ['CheckboxComponent']
+            libComponents: [
+                CheckboxComponent
+            ]
         }
     )
     .set(
@@ -33,7 +40,7 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'drag-and-drop',
             shortInfo: 'Drag and Drop component short info',
             imageUrl: '',
-            componentNames: []
+            libComponents: []
         }
     )
     .set(
@@ -43,7 +50,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'field-row',
             shortInfo: 'Field row component short info',
             imageUrl: '',
-            componentNames: ['FieldComponent']
+            libComponents: [
+                FieldRowComponent
+            ]
         }
     )
     .set(
@@ -53,7 +62,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'group-box',
             shortInfo: 'Group box component short info',
             imageUrl: '',
-            componentNames: ['GroupBoxComponent']
+            libComponents: [
+                GroupBoxComponent
+            ]
         }
     )
     .set(
@@ -63,7 +74,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'list',
             shortInfo: 'List component short info',
             imageUrl: '',
-            componentNames: ['ListComponent']
+            libComponents: [
+                ListComponent
+            ]
         }
     )
     .set(
@@ -73,7 +86,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'radio-button',
             shortInfo: 'Radio button component short info',
             imageUrl: '',
-            componentNames: ['RadioButtonComponent']
+            libComponents: [
+                RadioButtonComponent
+            ]
         }
     )
     .set(
@@ -83,7 +98,7 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'resizer',
             shortInfo: 'Resizer',
             imageUrl: '',
-            componentNames: ['ResizerComponent']
+            libComponents: []
         }
     )
     .set(
@@ -93,7 +108,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'scroll-view',
             shortInfo: 'Scroll view component short info',
             imageUrl: '',
-            componentNames: ['ScrollViewComponent']
+            libComponents: [
+                ScrollViewComponent
+            ]
         }
     )
     .set(
@@ -103,7 +120,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'selectbox',
             shortInfo: 'Selectbox component short info',
             imageUrl: '',
-            componentNames: ['SelectboxComponent']
+            libComponents: [
+                SelectboxComponent
+            ]
         }
     )
     .set(
@@ -113,7 +132,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'slider',
             shortInfo: 'Slider component short info',
             imageUrl: '',
-            componentNames: ['SliderComponent']
+            libComponents: [
+                SliderComponent
+            ]
         }
     )
     .set(
@@ -123,7 +144,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'tab-group',
             shortInfo: 'Tab Group component short info',
             imageUrl: '',
-            componentNames: ['TabGroupComponent']
+            libComponents: [
+                TabGroupComponent
+            ]
         }
     )
     .set(
@@ -133,7 +156,10 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'text',
             shortInfo: 'Text component short info',
             imageUrl: '',
-            componentNames: ['TextComponent']
+            libComponents: [
+                TextComponent,
+                HeaderComponent
+            ]
         }
     )
     .set(
@@ -143,7 +169,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'text-box',
             shortInfo: 'Text box component short info',
             imageUrl: '',
-            componentNames: ['TextBoxComponent']
+            libComponents: [
+                TextBoxComponent
+            ]
         }
     )
     .set(
@@ -153,7 +181,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'textarea-box',
             shortInfo: 'Textarea box component short info',
             imageUrl: '',
-            componentNames: ['TextareaBoxComponent']
+            libComponents: [
+                TextareaBoxComponent
+            ]
         }
     )
     .set(
@@ -163,7 +193,9 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'tree-view',
             shortInfo: 'Tree view component short info',
             imageUrl: '',
-            componentNames: ['TreeViewComponent']
+            libComponents: [
+                TreeViewComponent
+            ]
         }
     )
     .set(
@@ -173,10 +205,10 @@ export const ComponentDescriptionMap = new Map<ComponentType, ComponentDescripti
             type: 'window',
             shortInfo: 'Window component short info',
             imageUrl: '',
-            componentNames: [
-                'WindowComponent',
-                'DynamicWindowComponent',
-                'TitleBarComponent'
+            libComponents: [
+                WindowComponent,
+                DynamicWindowComponent,
+                TitleBarComponent
             ]
         }
     );

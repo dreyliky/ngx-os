@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Type } from "@angular/core";
 import { first } from "rxjs/operators";
 import { Doc, DocComponent } from "../interfaces";
 import { DocStateService } from "./doc-state.service";
@@ -18,15 +18,18 @@ export class DocService {
         this.updateDemoDocData();
     }
 
-    public getLibDocComponentsByNames(componentNames: string[]): DocComponent[] {
+    public getLibDocComponentsByTypes(componentTypes: Type<any>[]): DocComponent[] {
+        const componentNames: string[] = componentTypes
+            .map((componentType) => componentType.name);
+
         return this.libDoc.components.filter((component) => {
             return componentNames.includes(component.name);
         });
     }
 
-    public getDemoDocComponentByName(componentName: string): DocComponent {
+    public getDemoDocComponentByName(componentType: Type<any>): DocComponent {
         return this.demoDoc.components
-            .find((component) => component.name === componentName);
+            .find((component) => component.name === componentType.name);
     }
 
     private updateLibDocData(): void {

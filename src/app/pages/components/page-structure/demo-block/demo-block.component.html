@@ -17,6 +17,7 @@
         </os-tab>
 
         <os-tab
+            *ngIf="docComponent.styleUrlsData && docComponent.styleUrlsData[0]"
             [selected]="openedSection === sectionEnum.SCSS"
             [label]="'SCSS'">
             <pre>{{ docComponent.styleUrlsData[0].data }}</pre>
