@@ -1,32 +1,20 @@
-<os-header [size]="1">
-    {{ metaInfo.name }}
-</os-header>
-
-<demo-demo-block
-    *ngIf="metaInfo.demoComponents && metaInfo.demoComponents[0]"
-    [demoComponentMetaInfo]="metaInfo.demoComponents[0]">
-    <ng-template #demoTemplate>
-    </ng-template>
-</demo-demo-block>
-
-<div
-    *ngFor="let component of components"
-    class="component">
-    <os-header [size]="4">
-        {{ component.name }}
+<div class="header">
+    <os-header [size]="1">
+        {{ metaInfo.name }}
     </os-header>
+</div>
 
-    <os-text>
-        Selector: <b>{{ component.selector }}</b>
-    </os-text>
-
-    <demo-properties
-        [metaInfo]="metaInfo"
-        [component]="component">
-    </demo-properties>
-
-    <demo-methods
-        [metaInfo]="metaInfo"
-        [component]="component">
-    </demo-methods>
+<div class="content">
+    <demo-demo-block
+        *ngIf="metaInfo.demoComponents && metaInfo.demoComponents[0]"
+        [demoComponentMetaInfo]="metaInfo.demoComponents[0]">
+        <ng-template #demoTemplate>
+        </ng-template>
+    </demo-demo-block>
+    
+    <demo-component-block
+        *ngFor="let component of components"
+        [component]="component"
+        [metaInfo]="metaInfo">
+    </demo-component-block>
 </div>

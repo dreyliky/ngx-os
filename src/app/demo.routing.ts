@@ -6,6 +6,7 @@ import { ComponentLayoutComponent } from '@Layouts';
 const routes: Routes = [
     {
         path: DocumentationRouteEnum.Main,
+        component: ComponentLayoutComponent,
         loadChildren: () => import('./pages/main/main.module').then((m) => m.MainModule)
     },
     {

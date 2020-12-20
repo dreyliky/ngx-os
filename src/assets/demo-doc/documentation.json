@@ -7,7 +7,7 @@
     "components": [
         {
             "name": "ButtonOverviewComponent",
-            "id": "component-ButtonOverviewComponent-aeb6f07121f53f05ae737c3c1b391ffc",
+            "id": "component-ButtonOverviewComponent-a5e133e977e42bf4fe51bf70302951bb",
             "file": "src/app/features/doc/demo/button/button-overview/button-overview.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -16,9 +16,7 @@
             "outputs": [],
             "providers": [],
             "selector": "demo-button-overview",
-            "styleUrls": [
-                "./button-overview.component.scss"
-            ],
+            "styleUrls": [],
             "styles": [],
             "templateUrl": [
                 "./button-overview.component.html"
@@ -34,7 +32,10 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 13
+                    "line": 12,
+                    "modifierKind": [
+                        114
+                    ]
                 }
             ],
             "hostBindings": [],
@@ -42,20 +43,15 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'demo-button-overview',\n  templateUrl: './button-overview.component.html',\n  styleUrls: ['./button-overview.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush\n})\nexport class ButtonOverviewComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n    selector: 'demo-button-overview',\n    templateUrl: './button-overview.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush\n})\nexport class ButtonOverviewComponent implements OnInit {\n\n    constructor() {}\n\n    public ngOnInit(): void {}\n\n}\n",
             "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "",
-                    "styleUrl": "./button-overview.component.scss"
-                }
-            ],
+            "styleUrlsData": "",
             "stylesData": "",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
                 "args": [],
-                "line": 9
+                "line": 8
             },
             "implements": [
                 "OnInit"

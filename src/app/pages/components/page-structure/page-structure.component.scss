@@ -1,25 +1,27 @@
 :host {
-    width: 100%;
-    max-width: 1000px;
     display: block;
-    margin: auto;
 }
 
-.component {
-    border-left: solid 2px blue;
-    border-bottom: solid 4px blue;
-    background: rgba(black, .02);
-    padding: 10px;
-    margin: 12px 0px;
+.header {
+    width: 100%;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background-color: rgb(0, 82, 149);
 
     os-header {
-        color: blue;
-
         &::ng-deep {
-            h4 {
-                margin-top: 0px !important;
-                font-weight: bold;
+            h1 {
+                margin: 0px 0px 0px 30px;
             }
         }
     }
+}
+
+.content {
+    width: 100%;
+    max-width: 1000px;
+    display: block;
+    margin: 30px auto;
 }

@@ -1,5 +1,5 @@
 <os-header [size]="5">
-    Demo
+    {{ demoComponentMetaInfo.title }}
 </os-header>
 
 <div class="wrapper">
@@ -17,7 +17,7 @@
         </os-tab>
 
         <os-tab
-            *ngIf="docComponent.styleUrlsData && docComponent.styleUrlsData[0]"
+            *ngIf="!!docComponent.styleUrlsData && docComponent.styleUrlsData[0]"
             [selected]="openedSection === sectionEnum.SCSS"
             [label]="'SCSS'">
             <pre>{{ docComponent.styleUrlsData[0].data }}</pre>
