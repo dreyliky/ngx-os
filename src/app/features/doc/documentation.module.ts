@@ -3,6 +3,7 @@ import { SharedModule } from '@Doc/demo-shared.module';
 import {
     ButtonOverviewComponent,
     CheckboxOverviewComponent,
+    FieldRowOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
@@ -11,6 +12,7 @@ import {
     declarations: [
         ButtonOverviewComponent,
         CheckboxOverviewComponent,
+        FieldRowOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ],
@@ -20,6 +22,7 @@ import {
     exports: [
         ButtonOverviewComponent,
         CheckboxOverviewComponent,
+        FieldRowOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ]

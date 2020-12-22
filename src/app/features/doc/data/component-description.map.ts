@@ -7,6 +7,7 @@ import {
 } from 'os-angular';
 import {
     ButtonOverviewComponent, CheckboxOverviewComponent,
+    FieldRowOverviewComponent,
     TextOverviewComponent, WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -68,6 +69,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 FieldRowComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Field row Overview',
+                    component: FieldRowOverviewComponent
+                }
             ]
         }
     )

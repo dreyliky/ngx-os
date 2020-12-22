@@ -1,10 +1,12 @@
 <label
+    [attr.for]="id"
     class="os-element">
     {{ label }}
 </label>
 
 <input
     class="os-element"
+    [attr.id]="id"
     [class]="styleClass"
     [ngStyle]="style"
     [placeholder]="placeholder"
