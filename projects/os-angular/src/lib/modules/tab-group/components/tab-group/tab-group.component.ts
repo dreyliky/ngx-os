@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, QueryList, ContentChildren, AfterContentInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, QueryList, ContentChildren, AfterContentInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { OsBaseComponent } from 'os-angular/core';
 import { TabComponent } from '../tab';
@@ -8,7 +8,7 @@ import { TabComponent } from '../tab';
     templateUrl: './tab-group.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDestroy, AfterContentInit {
+export class TabGroupComponent extends OsBaseComponent implements OnDestroy, AfterContentInit {
 
     @ContentChildren(TabComponent)
     public readonly tabComponentList: QueryList<TabComponent>;
@@ -16,13 +16,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     private readonly tabButtonOnClickSubscriptions: Subscription[] = [];
 
     constructor () {
-        super({
-            elementName: 'os-tab-group'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
     public ngOnDestroy (): void {

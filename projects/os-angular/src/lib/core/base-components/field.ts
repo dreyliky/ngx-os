@@ -1,14 +1,16 @@
-import { Input, Output, EventEmitter, Directive } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 import { OsBaseComponent } from './element';
 
-@Directive()
+@Component({
+    template: ''
+})
 export class OsBaseFieldComponent extends OsBaseComponent {
 
     @Input()
     public disabled: boolean;
 
     @Input()
-    public placeholder: string;
+    public placeholder: string = '';
 
     @Input()
     public label: string;
@@ -26,9 +28,7 @@ export class OsBaseFieldComponent extends OsBaseComponent {
     public osChange: EventEmitter<Event> = new EventEmitter();
 
     constructor () {
-        super({
-            elementName: 'os-field'
-        });
+        super();
     }
 
 }

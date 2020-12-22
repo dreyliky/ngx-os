@@ -1,22 +1,18 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
+import { DocumentationRouteEnum } from '@Doc/core/enums';
 
 @Component({
-    selector: 'doc-component-header',
+    selector: 'demo-component-header',
     templateUrl: './component-header.component.html',
     styleUrls: ['./component-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComponentHeaderComponent implements OnInit {
 
-    constructor(
-        private readonly router: Router
-    ) {}
+    public routeEnum = DocumentationRouteEnum;
+
+    constructor() {}
 
     public ngOnInit(): void {}
-
-    public onBackButtonClick(): void {
-        this.router.navigateByUrl(`/`);
-    }
 
 }

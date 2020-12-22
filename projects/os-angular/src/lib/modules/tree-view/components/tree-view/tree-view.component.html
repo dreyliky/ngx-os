@@ -1,8 +1,7 @@
 <ul
     class="os-element tree-view"
     [ngStyle]="style"
-    [class]="styleClass"
-    [id]="id">
+    [class]="styleClass">
 
     <ng-container
         *ngTemplateOutlet="treeNodesTemplate; context:{ nodes: data }">

@@ -1,0 +1,20 @@
+<div class="header">
+    <os-header [size]="1">
+        {{ metaInfo.name }}
+    </os-header>
+</div>
+
+<div class="content">
+    <demo-demo-block
+        *ngIf="metaInfo.demoComponents && metaInfo.demoComponents[0]"
+        [demoComponentMetaInfo]="metaInfo.demoComponents[0]">
+        <ng-template #demoTemplate>
+        </ng-template>
+    </demo-demo-block>
+    
+    <demo-component-block
+        *ngFor="let component of components"
+        [component]="component"
+        [metaInfo]="metaInfo">
+    </demo-component-block>
+</div>

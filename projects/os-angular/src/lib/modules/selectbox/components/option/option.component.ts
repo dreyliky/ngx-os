@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewChild, TemplateRef } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './option.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionComponent extends OsBaseComponent implements OnInit {
+export class OptionComponent extends OsBaseComponent {
 
     @Input()
     public selected: boolean;
@@ -15,13 +15,7 @@ export class OptionComponent extends OsBaseComponent implements OnInit {
     public optionTemplate: TemplateRef<HTMLOptionElement>;
 
     constructor () {
-        super({
-            elementName: 'os-option'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
 }

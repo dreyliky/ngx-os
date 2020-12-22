@@ -1,0 +1,46 @@
+<div class="title">
+    <os-button (osClick)="onCollapseButtonClick()">
+        <div
+            class="collapse-text"
+            [class.collapsed]="isCollapsed">
+            &#62;
+        </div>
+    </os-button>
+
+    <os-header [size]="5">
+        Methods
+    </os-header>
+</div>
+
+<div
+    *ngIf="isCollapsed"
+    class="content">
+    <table *ngIf="component.methodsClass.length; else noMethodsTemplate">
+        <thead>
+            <tr>
+                <th>
+                    <os-text>Method</os-text>
+                </th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <tr *ngFor="let method of component.methodsClass">
+                <td class="method-name-col">
+                    <os-text>
+                        {{ method.name }}(
+                            <ng-container *ngFor="let arg of method.args; let argInd = index">
+                                <ng-container *ngIf="argInd !== 0">, </ng-container>
+                                {{ arg.name }}: {{ arg.type }}
+                            </ng-container>
+                        )
+                    </os-text>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #noMethodsTemplate>
+    <os-text>No methods</os-text>
+</ng-template>

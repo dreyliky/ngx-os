@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { OutsideClick } from 'os-angular/helpers';
 import { ListItem } from '../../interfaces/item.interface';
@@ -8,7 +8,7 @@ import { ListItem } from '../../interfaces/item.interface';
     templateUrl: './item.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ItemComponent extends OsBaseComponent implements OnInit {
+export class ItemComponent extends OsBaseComponent {
 
     @Input()
     public data: ListItem;
@@ -26,13 +26,7 @@ export class ItemComponent extends OsBaseComponent implements OnInit {
     private readonly _osListItemElement: ElementRef<HTMLDivElement>;
 
     constructor () {
-        super({
-            elementName: 'os-list-item'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
     @HostListener('document:click', ['$event'])

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { OsBaseFieldComponent } from 'os-angular/core';
 import { textboxType } from '../../shared';
 
@@ -7,17 +7,13 @@ import { textboxType } from '../../shared';
     templateUrl: './text-box.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextBoxComponent extends OsBaseFieldComponent implements OnInit {
+export class TextBoxComponent extends OsBaseFieldComponent {
 
     @Input()
     public type: textboxType = 'text';
 
     constructor () {
         super();
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
     }
 
 }

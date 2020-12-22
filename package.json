@@ -9,7 +9,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "eslint-check": "eslint **/*.ts --ignore-pattern node_modules",
-    "eslint-fix": "eslint --fix **/*.ts --ignore-pattern node_modules"
+    "eslint-fix": "eslint --fix **/*.ts --ignore-pattern node_modules",
+    "doc": "npm run build-lib-doc && npm run build-demo-doc",
+    "build-lib-doc": "compodoc -c 'compodoc-lib-config.json'",
+    "build-demo-doc": "compodoc -c 'compodoc-demo-config.json'"
   },
   "private": true,
   "dependencies": {

@@ -1,0 +1,6 @@
+{
+    "exportFormat": "json",
+    "output": "src/assets/demo-doc",
+    "tsconfig": "tsconfig.doc.json",
+    "silent": true
+}

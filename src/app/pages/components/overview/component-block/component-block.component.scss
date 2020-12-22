@@ -1,0 +1,22 @@
+os-header::ng-deep h5 {
+    margin-top: 25px;
+    margin-bottom: 0px;
+}
+
+.component {
+    border-left: solid 2px blue;
+    background: rgba(black, .02);
+    padding: 10px;
+    margin: 12px 0px;
+
+    os-header {
+        color: blue;
+
+        &::ng-deep {
+            h4 {
+                margin-top: 0px !important;
+                font-weight: bold;
+            }
+        }
+    }
+}

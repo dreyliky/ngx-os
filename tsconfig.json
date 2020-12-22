@@ -5,19 +5,24 @@
   To learn more about this file see: https://angular.io/config/solution-tsconfig.
 */
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
+    "files": [],
+    "compilerOptions": {
+        "typeRoots": ["node_modules/@types", "node_modules/@angular"],
+        "experimentalDecorators": true,
+        "allowJs": true
     },
-    {
-      "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/os-angular/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/os-angular/tsconfig.spec.json"
-    }
-  ]
+    "references": [
+        {
+            "path": "./tsconfig.app.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/os-angular/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/os-angular/tsconfig.spec.json"
+        }
+    ]
 }

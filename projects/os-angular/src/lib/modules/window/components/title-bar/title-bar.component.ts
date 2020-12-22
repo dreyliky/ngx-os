@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './title-bar.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarComponent extends OsBaseComponent implements OnInit {
+export class TitleBarComponent extends OsBaseComponent {
 
     @Output()
     public osDblClick = new EventEmitter<MouseEvent>();
@@ -21,13 +21,7 @@ export class TitleBarComponent extends OsBaseComponent implements OnInit {
     public osCloseButtonClick = new EventEmitter<MouseEvent>();
 
     constructor () {
-        super({
-            elementName: 'os-title-bar'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
 }

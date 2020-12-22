@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './scroll-view.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScrollViewComponent extends OsBaseComponent implements OnInit {
+export class ScrollViewComponent extends OsBaseComponent {
 
     @Input()
     public verticalScrollEnabled: boolean = true;
@@ -15,13 +15,7 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
     public horizontalScrollEnabled: boolean = false;
 
     constructor () {
-        super({
-            elementName: 'os-scroll-view'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
 }

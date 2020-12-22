@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "typeRoots": ["node_modules/@types", "node_modules/@angular"],
+        "experimentalDecorators": true,
+        "allowJs": true
+    },
+    "references": [
+        {
+            "path": "./tsconfig.app.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/os-angular/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/os-angular/tsconfig.spec.json"
+        }
+    ],
+    "include": [
+        "src/app/features/doc/demo/**/*.ts"
+    ]
+}

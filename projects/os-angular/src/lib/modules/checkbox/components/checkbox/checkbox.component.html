@@ -3,7 +3,6 @@
     type="checkbox"
     [class]="styleClass"
     [ngStyle]="style"
-    [id]="id"
     [name]="name"
     [checked]="checked"
     [disabled]="disabled"
@@ -17,7 +16,6 @@
     (wheel)="osWheel.emit($event)" />
 
 <label
-    class="os-element"
-    [for]="id">
+    class="os-element">
     {{ label }}
 </label>

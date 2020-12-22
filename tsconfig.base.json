@@ -16,6 +16,7 @@
             "es2018",
             "dom"
         ],
+        "typeRoots": ["node_modules/@types", "node_modules/@angular"],
         "paths": {
             "os-angular/*": ["projects/os-angular/src/lib/*"]
         }

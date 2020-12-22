@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './header.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent extends OsBaseComponent implements OnInit {
+export class HeaderComponent extends OsBaseComponent {
 
     @Input()
     public set size (value: number) {
@@ -22,12 +22,8 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
     private _size: number = 1;
 
     constructor () {
-        super({
-            elementName: 'os-header'
-        });
+        super();
     }
-
-    public ngOnInit (): void {}
 
     private getValidSize (value: number): number {
         if (value < 1 || typeof(value) !== 'number') {

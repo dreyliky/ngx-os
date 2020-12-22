@@ -1,62 +1,70 @@
-import { Input, Output, EventEmitter, OnInit, Directive } from '@angular/core';
-import { IdGenerator } from '../../helpers';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
-@Directive()
-export class OsBaseComponent implements OnInit {
+@Component({
+    template: ''
+})
+export class OsBaseComponent {
 
+    /**
+     * Object with css styles which will applied for target internal element
+     */
     @Input()
-    public style: any;
+    public style: object;
 
+    /**
+     * String with classes for target internal element
+     */
     @Input()
     public styleClass: string;
 
-    @Input()
-    public set id (value: string) {
-        this._id = value;
-    }
-
-    public get id (): string {
-        return this._id;
-    }
-
+    /**
+     * Target internal element click event
+     */
     @Output()
     public osClick: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /**
+     * Target internal element dblclick event
+     */
     @Output()
     public osDblclick: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /**
+     * Target internal element mousedown event
+     */
     @Output()
     public osMousedown: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /**
+     * Target internal element mousemove event
+     */
     @Output()
     public osMousemove: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /**
+     * Target internal element mouseout event
+     */
     @Output()
     public osMouseout: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /**
+     * Target internal element mouseover event
+     */
     @Output()
     public osMouseover: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /**
+     * Target internal element mouseup event
+     */
     @Output()
     public osMouseup: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /**
+     * Target internal element wheel event
+     */
     @Output()
     public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
 
-    protected _id: string;
-
-    private readonly _elementName;
-
-    constructor ({
-        elementName = 'element'
-    }) {
-        this._elementName = elementName;
-    }
-
-    public ngOnInit (): void {
-        if (!this._id) {
-            this._id = IdGenerator.generate(this._elementName);
-        }
-    }
+    constructor () {}
 
 }

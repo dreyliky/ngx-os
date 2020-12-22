@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { TreeNode } from '../../interfaces';
 
@@ -7,7 +7,7 @@ import { TreeNode } from '../../interfaces';
     templateUrl: './tree-view.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeViewComponent extends OsBaseComponent implements OnInit {
+export class TreeViewComponent extends OsBaseComponent {
 
     @Input()
     public set data (value: TreeNode<any>[]) {
@@ -23,13 +23,7 @@ export class TreeViewComponent extends OsBaseComponent implements OnInit {
     private _data: TreeNode<any>[];
 
     constructor () {
-        super({
-            elementName: 'os-tree-view'
-        });
-    }
-
-    public ngOnInit (): void {
-        super.ngOnInit();
+        super();
     }
 
     private prepareData (data: TreeNode<any>[]): void {

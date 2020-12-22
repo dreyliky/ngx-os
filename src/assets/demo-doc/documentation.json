@@ -1,0 +1,80 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "ButtonOverviewComponent",
+            "id": "component-ButtonOverviewComponent-a5e133e977e42bf4fe51bf70302951bb",
+            "file": "src/app/features/doc/demo/button/button-overview/button-overview.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "demo-button-overview",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./button-overview.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n    selector: 'demo-button-overview',\n    templateUrl: './button-overview.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush\n})\nexport class ButtonOverviewComponent implements OnInit {\n\n    constructor() {}\n\n    public ngOnInit(): void {}\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<os-button>OS Button</os-button>"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": [],
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/features/doc/demo/button/button-overview/button-overview.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonOverviewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            }
+        ]
+    }
+}

@@ -1,0 +1,19 @@
+<os-header [size]="5">
+    {{ component.name }}
+</os-header>
+
+<div class="component">
+    <os-text>
+        Selector: <b>{{ component.selector }}</b>
+    </os-text>
+
+    <demo-properties
+        [metaInfo]="metaInfo"
+        [component]="component">
+    </demo-properties>
+
+    <demo-methods
+        [metaInfo]="metaInfo"
+        [component]="component">
+    </demo-methods>
+</div>

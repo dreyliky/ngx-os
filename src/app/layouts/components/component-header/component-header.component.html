@@ -1,9 +1,18 @@
-<os-button
-    (osClick)="onBackButtonClick()">
-    < Back
-</os-button>
+<a [routerLink]="'/'">
+    <os-text
+        [style.color]="'#ffffff'"
+        [style.fontWeight]="'bold'">
+        OS Angular
+    </os-text>
+</a>
 
-<os-text
-    [style.color]="'#ffffff'">
-    OS Components
-</os-text>
+<a [routerLink]="'/' + routeEnum.Components">
+    <os-button>
+        Components
+    </os-button>
+</a>
+
+<os-button
+    [routerLink]="'/' + routeEnum.Desktop">
+    Desktop
+</os-button>

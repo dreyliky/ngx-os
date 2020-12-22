@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ComponentsRouteEnum } from './components-route.enum';
+import { ListComponent } from './list';
+import { OverviewComponent } from './overview';
 
 const routes: Routes = [
     {
-        path: ComponentsRouteEnum.Button,
-        loadChildren: () => import('./button/button.module').then((m) => m.ButtonModule)
+        path: '',
+        component: ListComponent
     },
     {
-        path: '',
-        redirectTo: ComponentsRouteEnum.Button,
-        pathMatch: 'full'
+        path: ':componentType',
+        component: OverviewComponent
     },
     {
         path: '**',
-        redirectTo: ComponentsRouteEnum.Button,
+        redirectTo: '',
         pathMatch: 'full'
     }
 ];

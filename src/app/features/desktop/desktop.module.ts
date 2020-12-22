@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { DesktopComponent } from './desktop.component';
-import { SharedModule } from '@Doc/doc-shared.module';
+import { SharedModule } from '@Doc/demo-shared.module';
 
 @NgModule({
     declarations: [
