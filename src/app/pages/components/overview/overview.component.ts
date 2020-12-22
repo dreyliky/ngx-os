@@ -1,6 +1,13 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+    AfterViewInit, ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ComponentMetaInfo, ComponentMetaInfoMap, ComponentType, DemoComponentMetaInfo, DocComponent, DocService } from '@Doc/features/doc';
+import {
+    ComponentMetaInfo, ComponentMetaInfoMap,
+    ComponentType, DemoComponentMetaInfo, DocComponent, DocService
+} from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-component-overview',
@@ -17,6 +24,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     private readonly demoTemplate: ViewContainerRef;
 
     constructor(
+        private readonly changeDetector: ChangeDetectorRef,
         private readonly activatedRoute: ActivatedRoute,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly docService: DocService
@@ -50,6 +58,7 @@ export class OverviewComponent implements OnInit, AfterViewInit {
             );
 
             this.demoTemplate.createComponent(componentFactory);
+            this.changeDetector.detectChanges();
         }
     }
 
