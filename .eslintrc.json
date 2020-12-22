@@ -1,0 +1,108 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "max-params-no-constructor"
+    ],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "extends": [
+                "eslint:recommended",
+                "plugin:@typescript-eslint/recommended"
+            ],
+            "rules": {
+                "max-len": ["warn", { "code": 120, "ignorePattern": "import(.*).then(.*)" }],
+                "no-shadow": "off",
+                "padded-blocks": ["error", { "classes": "always" }],
+                "padding-line-between-statements": [
+                    "warn",
+                    { "blankLine": "always", "prev": "*", "next": ["block", "block-like"] }
+                ],
+                "space-infix-ops": "warn",
+                "no-multi-spaces": "warn",
+                "arrow-parens": "warn",
+                "no-trailing-spaces": "warn",
+                "space-before-function-paren": ["error", "never"],
+                "no-mixed-spaces-and-tabs": "error",
+                "newline-before-return": "error",
+                "object-curly-spacing": ["error", "always"],
+                "comma-spacing": ["error", { "before": false, "after": true }],
+                "indent": ["warn", 4, { "SwitchCase": 1 }],
+                "max-lines-per-function": ["warn", { "max": 20, "skipComments": true }],
+                "spaced-comment": ["error", "always"],
+                "space-before-blocks": "error",
+                "keyword-spacing": "error",
+                "max-params-no-constructor/max-params-no-constructor": ["error", 3],
+                "no-eq-null": "error",
+                "no-unreachable": "error",
+                "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+                "no-extra-boolean-cast": "off",
+                "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
+                "no-eval": "error",
+                "no-var": "error",
+                "prefer-const": "warn",
+                "semi": "error",
+                "eol-last": "warn",
+                "comma-dangle": "error",
+                "lines-between-class-members": "off",
+                "no-multiple-empty-lines": ["warn", { "max": 1 }],
+                "@typescript-eslint/lines-between-class-members": [
+                    "warn",
+                    "always",
+                    { "exceptAfterSingleLine": true }
+                ],
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error",
+                    {
+                        "allowTypedFunctionExpressions": true,
+                        "allowExpressions": true
+                    }
+                ],
+                "@typescript-eslint/explicit-member-accessibility": ["error", { "overrides": { "constructors": "no-public" } }],
+                "@typescript-eslint/no-shadow": "error",
+                "@typescript-eslint/type-annotation-spacing": [
+                    "error", {
+                        "before": false,
+                        "after": true,
+                        "overrides": { "arrow": { "before": true, "after": true }}
+                    }],
+                "@typescript-eslint/member-ordering": [
+                    "error",
+                    {
+                        "default": [
+                            "public-instance-field",
+                            "static-field",
+                            "private-instance-field",
+                            "instance-field",
+                            "constructor",
+                            "public-instance-method",
+                            "static-method",
+                            "private-instance-method",
+                            "instance-method"
+                        ]
+                    }
+                ],
+                "@typescript-eslint/explicit-module-boundary-types": "off",
+                "@typescript-eslint/no-namespace": "off",
+                "@typescript-eslint/no-empty-function": "off",
+                "@typescript-eslint/no-inferrable-types": "off",
+                "@typescript-eslint/no-explicit-any": "off"
+            }
+        },
+        {
+            "files": ["src/**/*.spec.ts"],
+            "rules": {
+                "max-lines-per-function": "off"
+            }
+        }
+    ]
+}
