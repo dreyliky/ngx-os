@@ -11,7 +11,7 @@
     "window.zoomLevel": 1,
     "workbench.sideBar.location": "left",
     "editor.codeActionsOnSave": {
-        "source.fixAll": true,
+        "source.fixAll.eslint": true,
         "source.organizeImports": true
     },
     "editor.tabSize": 4,
@@ -19,5 +19,6 @@
     "eslint.options": {
         "extensions": [".ts", ".html"]
     },
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.detectIndentation": false
 }

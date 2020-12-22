@@ -1,7 +1,11 @@
 import {
-    ButtonComponent, CheckboxComponent, DynamicWindowComponent, FieldRowComponent, GroupBoxComponent, HeaderComponent, ListComponent, RadioButtonComponent, ScrollViewComponent, SelectboxComponent, SliderComponent, TabGroupComponent, TextareaBoxComponent, TextBoxComponent, TextComponent, TitleBarComponent, TreeViewComponent, WindowComponent
+    ButtonComponent, CheckboxComponent, DynamicWindowComponent,
+    FieldRowComponent, GroupBoxComponent, HeaderComponent, ListComponent,
+    RadioButtonComponent, ScrollViewComponent, SelectboxComponent,
+    SliderComponent, TabGroupComponent, TextareaBoxComponent, TextBoxComponent,
+    TextComponent, TitleBarComponent, TreeViewComponent, WindowComponent
 } from 'os-angular';
-import { ButtonOverviewComponent, WindowOverviewComponent } from '../demo';
+import { ButtonOverviewComponent, TextOverviewComponent, WindowOverviewComponent } from '../demo';
 import { ComponentMetaInfo } from '../interfaces/component-meta-info.interface';
 import { ComponentType } from '../types';
 
@@ -162,6 +166,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             libComponents: [
                 TextComponent,
                 HeaderComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Text Overview',
+                    component: TextOverviewComponent
+                }
             ]
         }
     )
