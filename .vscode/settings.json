@@ -14,6 +14,8 @@
         "source.fixAll": true,
         "source.organizeImports": true
     },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
     "eslint.options": {
         "extensions": [".ts", ".html"]
     },

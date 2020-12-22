@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
-
 import {
-    ButtonOverviewComponent
+    ButtonOverviewComponent,
+    WindowOverviewComponent
 } from './demo';
 
 @NgModule({
     declarations: [
-        ButtonOverviewComponent
+        ButtonOverviewComponent,
+        WindowOverviewComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        ButtonOverviewComponent
+        ButtonOverviewComponent,
+        WindowOverviewComponent
     ]
 })
 export class DocumentationModule {}

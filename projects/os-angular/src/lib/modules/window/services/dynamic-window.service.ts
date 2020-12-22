@@ -1,18 +1,20 @@
 import {
-    Injectable,
-    ComponentFactoryResolver,
-    Type,
-    Injector,
-    ApplicationRef,
-    EmbeddedViewRef,
-    ComponentRef
-} from '@angular/core';
+    ApplicationRef, ComponentFactoryResolver,
 
-import { first, delay } from 'rxjs/operators';
-import { DynamicWindowControlService } from './dynamic-window-control.service';
+
+
+
+    ComponentRef, EmbeddedViewRef, Injectable,
+
+
+    Injector, Type
+} from '@angular/core';
+import { delay, first } from 'rxjs/operators';
+import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
 import { DynamicWindowComponent } from '../components/dynamic-window/dynamic-window.component';
-import { DynamicWindowInjector, DynamicWindowConfig, DynamicWindowRef } from '../classes';
 import { DynamicWindowDiParams, DynamicWindowInputParams } from '../interfaces';
+import { DynamicWindowControlService } from './dynamic-window-control.service';
+
 
 @Injectable()
 export class DynamicWindowService {
@@ -24,7 +26,7 @@ export class DynamicWindowService {
         private readonly windowControlService: DynamicWindowControlService
     ) {}
 
-    public open(childComponent: Type<any>, configuration: DynamicWindowConfig): DynamicWindowRef {
+    public open(childComponent: Type<any>, configuration: DynamicWindowConfig = {}): DynamicWindowRef {
         const config = { ...new DynamicWindowConfig(), ...configuration };
         const windowRef = this.createDynamicWindow(config);
 
