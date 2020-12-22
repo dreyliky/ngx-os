@@ -1,4 +1,5 @@
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IdGenerator } from 'os-angular/helpers';
 
 @Component({
     template: ''
@@ -16,6 +17,12 @@ export class OsBaseComponent {
      */
     @Input()
     public styleClass: string;
+
+    /**
+     * Id of html element
+     */
+    @Input()
+    public id: string = IdGenerator.generate('os-element');
 
     /**
      * Target internal element click event

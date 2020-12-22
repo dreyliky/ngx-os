@@ -5,8 +5,11 @@ import {
     SliderComponent, TabGroupComponent, TextareaBoxComponent, TextBoxComponent,
     TextComponent, TitleBarComponent, TreeViewComponent, WindowComponent
 } from 'os-angular';
-import { ButtonOverviewComponent, TextOverviewComponent, WindowOverviewComponent } from '../demo';
-import { ComponentMetaInfo } from '../interfaces/component-meta-info.interface';
+import {
+    ButtonOverviewComponent, CheckboxOverviewComponent,
+    TextOverviewComponent, WindowOverviewComponent
+} from '../demo';
+import { ComponentMetaInfo } from '../interfaces';
 import { ComponentType } from '../types';
 
 export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
@@ -37,6 +40,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 CheckboxComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Checkbox Overview',
+                    component: CheckboxOverviewComponent
+                }
             ]
         }
     )

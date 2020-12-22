@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import {
     ButtonOverviewComponent,
+    CheckboxOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
@@ -9,14 +10,16 @@ import {
 @NgModule({
     declarations: [
         ButtonOverviewComponent,
-        WindowOverviewComponent,
-        TextOverviewComponent
+        CheckboxOverviewComponent,
+        TextOverviewComponent,
+        WindowOverviewComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
         ButtonOverviewComponent,
+        CheckboxOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ]

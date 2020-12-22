@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Type } from '@angular/core';
+import {
+    ChangeDetectionStrategy, ChangeDetectorRef,
+    Component, Input, OnInit, Type
+} from '@angular/core';
 import { DemoComponentMetaInfo, DocComponent, DocService } from '@Doc/features/doc';
 
 enum SectionEnum {
@@ -34,6 +37,7 @@ export class DemoBlockComponent implements OnInit {
     private _demoComponentMetaInfo: DemoComponentMetaInfo;
 
     constructor(
+        private readonly changeDetector: ChangeDetectorRef,
         private readonly docService: DocService
     ) {}
 
@@ -41,6 +45,7 @@ export class DemoBlockComponent implements OnInit {
 
     private initDemoDocComponent(componentType: Type<any>): void {
         this.docComponent = this.docService.getDemoDocComponentByName(componentType);
+        this.changeDetector.detectChanges();
     }
 
 }
