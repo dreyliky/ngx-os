@@ -39,11 +39,11 @@ export class DesktopComponent implements OnInit {
         }
     ];
 
-    constructor (
+    constructor(
         private readonly windowService: DynamicWindowService
     ) {}
 
-    public ngOnInit (): void {
+    public ngOnInit(): void {
         this.onOsElementsWin10ShortcutDblClick();
     }
 
@@ -51,7 +51,7 @@ export class DesktopComponent implements OnInit {
         return index;
     }
 
-    private onOsElementsShortcutDblClick (): void {
+    private onOsElementsShortcutDblClick(): void {
         this.windowService.open(
             DemoWindowComponent,
             {
@@ -63,7 +63,7 @@ export class DesktopComponent implements OnInit {
         );
     }
 
-    private onOsElementsWin10ShortcutDblClick (): void {
+    private onOsElementsWin10ShortcutDblClick(): void {
         this.windowService.open(
             DemoWin10WindowComponent,
             {
@@ -74,7 +74,7 @@ export class DesktopComponent implements OnInit {
         );
     }
 
-    private onHelloWorldShortcutDblClick (): void {
+    private onHelloWorldShortcutDblClick(): void {
         this.windowService.open(
             HelloWorldWindowComponent,
             {
@@ -85,7 +85,7 @@ export class DesktopComponent implements OnInit {
         );
     }
 
-    private onFullscreenAppShortcutDblClick (): void {
+    private onFullscreenAppShortcutDblClick(): void {
         this.windowService.open(
             FullscreenTestAppComponent,
             {

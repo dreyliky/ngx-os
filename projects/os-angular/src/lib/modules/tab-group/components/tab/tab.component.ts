@@ -29,7 +29,7 @@ export class TabComponent extends OsBaseComponent {
     @ViewChild('TabContentTemplate', { static: true })
     public tabContentTemplate: TemplateRef<any>;
 
-    constructor () {
+    constructor() {
         super();
     }
 

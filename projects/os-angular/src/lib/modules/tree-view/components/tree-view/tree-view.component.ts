@@ -10,28 +10,28 @@ import { TreeNode } from '../../interfaces';
 export class TreeViewComponent extends OsBaseComponent {
 
     @Input()
-    public set data (value: TreeNode<any>[]) {
+    public set data(value: TreeNode<any>[]) {
         if (value) {
             this.prepareData(value);
         }
     }
 
-    public get data (): TreeNode<any>[] {
+    public get data(): TreeNode<any>[] {
         return this._data;
     }
 
     private _data: TreeNode<any>[];
 
-    constructor () {
+    constructor() {
         super();
     }
 
-    private prepareData (data: TreeNode<any>[]): void {
+    private prepareData(data: TreeNode<any>[]): void {
         this._data = data
             .map((treeNode) => this.setParentForNodeAndChildren(treeNode));
     }
 
-    private setParentForNodeAndChildren (node: TreeNode<any>, parent: TreeNode<any> = null): TreeNode<any> {
+    private setParentForNodeAndChildren(node: TreeNode<any>, parent: TreeNode<any> = null): TreeNode<any> {
         const targetNode = { ...node };
 
         targetNode.parent = parent;

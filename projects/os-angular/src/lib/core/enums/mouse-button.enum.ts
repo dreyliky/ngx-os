@@ -1,5 +1,5 @@
 export enum MouseButtonEnum {
-    left   = 0,
+    left = 0,
     middle = 1,
-    right  = 2
+    right = 2
 }

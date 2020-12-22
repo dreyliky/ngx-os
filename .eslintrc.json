@@ -20,7 +20,7 @@
                 "plugin:@typescript-eslint/recommended"
             ],
             "rules": {
-                "max-len": ["warn", { "code": 120, "ignorePattern": "import(.*).then(.*)" }],
+                "max-len": ["warn", { "code": 100, "ignorePattern": "import(.*).then(.*)", "ignoreComments": true }],
                 "no-shadow": "off",
                 "padded-blocks": ["error", { "classes": "always" }],
                 "padding-line-between-statements": [
@@ -91,6 +91,7 @@
                         ]
                     }
                 ],
+                "@typescript-eslint/ban-types": "off",
                 "@typescript-eslint/explicit-module-boundary-types": "off",
                 "@typescript-eslint/no-namespace": "off",
                 "@typescript-eslint/no-empty-function": "off",
@@ -99,7 +100,7 @@
             }
         },
         {
-            "files": ["src/**/*.spec.ts"],
+            "files": ["**/*.spec.ts"],
             "rules": {
                 "max-lines-per-function": "off"
             }

@@ -25,12 +25,12 @@ export class ItemComponent extends OsBaseComponent {
     @ViewChild('OsListItem')
     private readonly _osListItemElement: ElementRef<HTMLDivElement>;
 
-    constructor () {
+    constructor() {
         super();
     }
 
     @HostListener('document:click', ['$event'])
-    public onClickOutside (event: MouseEvent): void {
+    public onClickOutside(event: MouseEvent): void {
         const isClickOutsideWindow = OutsideClick.checkForElement(this._osListItemElement.nativeElement, event);
 
         if (isClickOutsideWindow && this.isSelected) {
@@ -38,7 +38,7 @@ export class ItemComponent extends OsBaseComponent {
         }
     }
 
-    public onClick (event: MouseEvent): void {
+    public onClick(event: MouseEvent): void {
         this.isSelected = true;
 
         if (this.data.onClick) {
@@ -48,7 +48,7 @@ export class ItemComponent extends OsBaseComponent {
         this.osClick.emit(event);
     }
 
-    public onDblClick (event: MouseEvent): void {
+    public onDblClick(event: MouseEvent): void {
         if (this.data.onDblClick) {
             this.data.onDblClick(event);
         }

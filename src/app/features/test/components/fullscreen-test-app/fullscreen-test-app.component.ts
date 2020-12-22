@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import {
+    ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
+} from '@angular/core';
 import { DynamicWindowConfig, DynamicWindowRef } from 'os-angular/modules/window';
 import { Subscription } from 'rxjs';
 
@@ -14,39 +16,39 @@ export class FullscreenTestAppComponent implements OnInit, OnDestroy {
 
     private readonly _subscriptions: Subscription[] = [];
 
-    constructor (
+    constructor(
         private readonly config: DynamicWindowConfig,
         private readonly windowRef: DynamicWindowRef,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
-    public ngOnInit (): void {
+    public ngOnInit(): void {
         this.initOnCloseConfirmation();
 
         this.initWindowFullscreenStateObserver();
     }
 
-    public ngOnDestroy (): void {
+    public ngOnDestroy(): void {
         this._subscriptions.forEach((subscription) => {
             subscription.unsubscribe();
         });
     }
 
-    public onToggleTitleBarButtonClick (): void {
+    public onToggleTitleBarButtonClick(): void {
         this.windowRef.updateConfig({
             isTitleBarVisible: !this.windowRef.config.isTitleBarVisible
         });
     }
 
-    public onToggleFullscreenButtonClick (): void {
+    public onToggleFullscreenButtonClick(): void {
         this.windowRef.setFullscreenState(!this.isWindowFullscreen);
     }
 
-    public onCloseButtonClick (): void {
+    public onCloseButtonClick(): void {
         this.windowRef.close();
     }
 
-    private initOnCloseConfirmation (): void {
+    private initOnCloseConfirmation(): void {
         this.windowRef.updateConfig({
             onCloseButtonClick: () => {
                 const confirmationResult = confirm('Do you really want close this app?');
@@ -58,7 +60,7 @@ export class FullscreenTestAppComponent implements OnInit, OnDestroy {
         });
     }
 
-    private initWindowFullscreenStateObserver (): void {
+    private initWindowFullscreenStateObserver(): void {
         const subscription = this.windowRef.isFullscreen$
             .subscribe((state) => {
                 this.isWindowFullscreen = state;

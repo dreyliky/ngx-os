@@ -33,7 +33,7 @@ export class OsBaseButtonComponent extends OsBaseComponent {
     @Output()
     public osBlur: EventEmitter<MouseEvent> = new EventEmitter();
 
-    constructor () {
+    constructor() {
         super();
     }
 

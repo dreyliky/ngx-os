@@ -21,7 +21,7 @@ import { ResizeInfo } from '../interfaces';
 export class OsResizableDirective implements OnInit, OnDestroy {
 
     @Input('os-resizable')
-    public set resizerConfig (config: ResizerConfig) {
+    public set resizerConfig(config: ResizerConfig) {
         this._resizerConfig = { ...this._resizerConfig, ...config };
 
         this.initResizableElement();
@@ -29,7 +29,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.updateResizersActivity();
     }
 
-    public get resizerConfig (): ResizerConfig {
+    public get resizerConfig(): ResizerConfig {
         return this._resizerConfig;
     }
 
@@ -48,11 +48,11 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     @Output()
     public osResizing = new EventEmitter<ResizeInfo>();
 
-    public get resizableElement (): HTMLElement {
+    public get resizableElement(): HTMLElement {
         return this._resizableElement;
     }
 
-    public get resizerElement (): HTMLElement {
+    public get resizerElement(): HTMLElement {
         return this._resizersWrapperElement;
     }
 
@@ -73,11 +73,11 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     private readonly _resizerInstanceMap: Map<ResizerEnum, Resizer> = new Map();
 
-    constructor (
+    constructor(
         private readonly element: ElementRef<HTMLElement>
     ) {}
 
-    public ngOnInit (): void {
+    public ngOnInit(): void {
         this.initAllowedResizers();
         this.initResizersWrapperElement();
         this.initResizerElements();
@@ -86,11 +86,11 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.updateResizersActivity();
     }
 
-    public ngOnDestroy (): void {
+    public ngOnDestroy(): void {
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
     }
 
-    public getResizeInfo (): ResizeInfo {
+    public getResizeInfo(): ResizeInfo {
         const domRect = this._resizableElement.getBoundingClientRect();
 
         return {
@@ -103,7 +103,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         };
     }
 
-    private initAllowedResizers (): void {
+    private initAllowedResizers(): void {
         if (this.resizerConfig.allowedResizers) {
             this._allowedResizers = this.resizerConfig.allowedResizers;
         } else {
@@ -112,7 +112,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         }
     }
 
-    private initResizableElement (): void {
+    private initResizableElement(): void {
         if (this.resizerConfig?.targetElement) {
             this._resizableElement = this.resizerConfig.targetElement;
         } else {
@@ -122,13 +122,13 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.osResizableElementInit.emit(this._resizableElement);
     }
 
-    private initResizersWrapperElement (): void {
+    private initResizersWrapperElement(): void {
         this._resizersWrapperElement = document.createElement(`os-resizers`);
 
         this.osResizerElementInit.emit(this._resizersWrapperElement);
     }
 
-    private initResizerElements (): void {
+    private initResizerElements(): void {
         this._allowedResizers.forEach((resizerName) => {
             const resizerElement = document.createElement('div');
 
@@ -147,7 +147,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         });
     }
 
-    private initResizerInstances (): void {
+    private initResizerInstances(): void {
         this._resizerInstanceMap
             .set(ResizerEnum.top, new TopResizer(this))
             .set(ResizerEnum.left, new LeftResizer(this))
@@ -159,7 +159,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             .set(ResizerEnum.bottomRight, new BottomRightResizer(this));
     }
 
-    private updateResizersWrapperDomPlacement (): void {
+    private updateResizersWrapperDomPlacement(): void {
         if (this._resizersWrapperElement && (this._resizersWrapperElement.parentElement !== this._resizableElement)) {
             this._resizersWrapperElement.remove();
 
@@ -167,7 +167,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         }
     }
 
-    private updateResizersActivity (): void {
+    private updateResizersActivity(): void {
         const activityClassName: string = 'active';
 
         this._resizerElements.forEach((resizerElement) => {

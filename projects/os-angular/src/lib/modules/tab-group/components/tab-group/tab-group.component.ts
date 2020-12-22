@@ -15,16 +15,16 @@ export class TabGroupComponent extends OsBaseComponent implements OnDestroy, Aft
 
     private readonly tabButtonOnClickSubscriptions: Subscription[] = [];
 
-    constructor () {
+    constructor() {
         super();
     }
 
-    public ngOnDestroy (): void {
+    public ngOnDestroy(): void {
         this.tabButtonOnClickSubscriptions
             .forEach((subscription) => subscription.unsubscribe());
     }
 
-    public ngAfterContentInit (): void {
+    public ngAfterContentInit(): void {
         this.tabComponentList.forEach((tabComponent) => {
             const tabEventSubscription = tabComponent.osTabButtonClick
                 .subscribe(() => {
@@ -41,7 +41,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnDestroy, Aft
         return index;
     }
 
-    private deselectAllTabs (): void {
+    private deselectAllTabs(): void {
         this.tabComponentList.forEach((tabComponent) => {
             tabComponent.selected = false;
         });

@@ -11,7 +11,7 @@ export class FieldRowComponent extends OsBaseComponent {
     @Input()
     public stacked: boolean = false;
 
-    constructor () {
+    constructor() {
         super();
     }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ComponentFactoryResolver, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentMetaInfo, ComponentMetaInfoMap, ComponentType, DemoComponentMetaInfo, DocComponent, DocService } from '@Doc/features/doc';
 

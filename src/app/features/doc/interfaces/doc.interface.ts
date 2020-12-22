@@ -32,8 +32,8 @@ interface Miscellaneous {
     functions: any[];
     typealiases: Typealias[];
     enumerations: Enumeration[];
-    groupedVariables: GroupedVariables;
-    groupedFunctions: GroupedVariables;
+    groupedVariables: any;
+    groupedFunctions: any;
     groupedEnumerations: GroupedEnumerations;
     groupedTypeAliases: GroupedTypeAliases;
 }
@@ -44,9 +44,6 @@ interface GroupedTypeAliases {
 
 interface GroupedEnumerations {
     [key: string]: Enumeration[];
-}
-
-interface GroupedVariables {
 }
 
 interface Enumeration {
@@ -187,13 +184,6 @@ interface PropertiesClass {
 interface Decorator {
     name: string;
     stringifiedArguments: string;
-}
-
-interface InputsClass2 {
-    name: string;
-    line: number;
-    type: string;
-    defaultValue?: string;
 }
 
 interface Directive {

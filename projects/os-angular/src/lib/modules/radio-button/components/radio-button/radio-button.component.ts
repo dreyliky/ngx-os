@@ -20,7 +20,7 @@ export class RadioButtonComponent extends OsBaseComponent {
     @Input()
     public disabled: boolean;
 
-    constructor () {
+    constructor() {
         super();
     }
 

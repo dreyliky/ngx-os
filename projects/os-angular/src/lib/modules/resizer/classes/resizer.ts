@@ -5,7 +5,7 @@ export abstract class Resizer {
 
     protected config: ResizerConfig;
 
-    constructor (
+    constructor(
         protected readonly context: OsResizableDirective
     ) {
         this.config = this.context.resizerConfig;
@@ -13,7 +13,7 @@ export abstract class Resizer {
 
     public abstract resizeElement (event: MouseEvent): void;
 
-    protected onResize (): void {
+    protected onResize(): void {
         const resizeInfo = this.context.getResizeInfo();
 
         this.context.osResizing.emit(resizeInfo);

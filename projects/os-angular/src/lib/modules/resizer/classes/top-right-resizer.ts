@@ -2,7 +2,7 @@ import { Resizer } from './resizer';
 
 export class TopRightResizer extends Resizer {
 
-    public resizeElement (event: MouseEvent): void {
+    public resizeElement(event: MouseEvent): void {
         const width = this.context.originalWidth + (event.pageX - this.context.originalMouseX);
         const height = this.context.originalHeight - (event.pageY - this.context.originalMouseY);
         const docElement = document.documentElement;

@@ -14,7 +14,7 @@ export class TextareaBoxComponent extends OsBaseFieldComponent {
     @Input()
     public cols: number;
 
-    constructor () {
+    constructor() {
         super();
     }
 

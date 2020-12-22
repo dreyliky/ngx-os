@@ -8,7 +8,7 @@ import { OsBaseComponent } from 'os-angular/core';
 })
 export class ListComponent extends OsBaseComponent {
 
-    constructor () {
+    constructor() {
         super();
     }
 

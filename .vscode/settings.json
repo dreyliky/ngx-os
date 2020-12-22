@@ -1,3 +1,21 @@
 {
-    "editor.detectIndentation": false
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Material Theme High Contrast",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "explorer.compactFolders": false,
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+    "window.zoomLevel": 1,
+    "workbench.sideBar.location": "left",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+    },
+    "eslint.options": {
+        "extensions": [".ts", ".html"]
+    },
+    "diffEditor.ignoreTrimWhitespace": false
 }

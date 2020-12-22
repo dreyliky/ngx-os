@@ -1,7 +1,7 @@
-import { Injectable, Type } from "@angular/core";
-import { first } from "rxjs/operators";
-import { Doc, DocComponent } from "../interfaces";
-import { DocStateService } from "./doc-state.service";
+import { Injectable, Type } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { Doc, DocComponent } from '../interfaces';
+import { DocStateService } from './doc-state.service';
 
 @Injectable({
     providedIn: 'root'

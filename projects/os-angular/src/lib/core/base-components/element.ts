@@ -65,6 +65,6 @@ export class OsBaseComponent {
     @Output()
     public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
 
-    constructor () {}
+    constructor() {}
 
 }

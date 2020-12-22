@@ -17,14 +17,14 @@ import { DynamicWindowDiParams, DynamicWindowInputParams } from '../interfaces';
 @Injectable()
 export class DynamicWindowService {
 
-    constructor (
+    constructor(
         private readonly injector: Injector,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly applicationRef: ApplicationRef,
         private readonly windowControlService: DynamicWindowControlService
     ) {}
 
-    public open (childComponent: Type<any>, configuration: DynamicWindowConfig): DynamicWindowRef {
+    public open(childComponent: Type<any>, configuration: DynamicWindowConfig): DynamicWindowRef {
         const config = { ...new DynamicWindowConfig(), ...configuration };
         const windowRef = this.createDynamicWindow(config);
 
@@ -35,7 +35,7 @@ export class DynamicWindowService {
         return windowRef;
     }
 
-    private createDynamicWindow (config: DynamicWindowConfig): DynamicWindowRef {
+    private createDynamicWindow(config: DynamicWindowConfig): DynamicWindowRef {
         const windowRef = new DynamicWindowRef();
         const windowInjector = this.createWindowInjector({ config, windowRef });
         const componentRef = this.createComponentRef(windowInjector);
@@ -47,7 +47,7 @@ export class DynamicWindowService {
         return windowRef;
     }
 
-    private createWindowInjector (params: DynamicWindowDiParams): DynamicWindowInjector {
+    private createWindowInjector(params: DynamicWindowDiParams): DynamicWindowInjector {
         const DI_MAP = new WeakMap();
 
         DI_MAP.set(DynamicWindowConfig, params.config);
@@ -56,24 +56,24 @@ export class DynamicWindowService {
         return new DynamicWindowInjector(this.injector, DI_MAP);
     }
 
-    private createComponentRef (windowInjector: DynamicWindowInjector): ComponentRef<DynamicWindowComponent> {
+    private createComponentRef(windowInjector: DynamicWindowInjector): ComponentRef<DynamicWindowComponent> {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(DynamicWindowComponent);
 
         return componentFactory.create(windowInjector);
     }
 
-    private appendWindowComponentToBody (componentRef: ComponentRef<DynamicWindowComponent>): void {
+    private appendWindowComponentToBody(componentRef: ComponentRef<DynamicWindowComponent>): void {
         this.applicationRef.attachView(componentRef.hostView);
 
         const domElement = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
         document.body.appendChild(domElement);
     }
 
-    private removeWindowComponentFromBody (componentRef: ComponentRef<DynamicWindowComponent>): void {
+    private removeWindowComponentFromBody(componentRef: ComponentRef<DynamicWindowComponent>): void {
         componentRef.destroy();
     }
 
-    private initWindowRefAfterClosedObserver (
+    private initWindowRefAfterClosedObserver(
         windowRef: DynamicWindowRef,
         componentRef: ComponentRef<DynamicWindowComponent>
     ): void {
@@ -87,7 +87,7 @@ export class DynamicWindowService {
             });
     }
 
-    private applyDataForCreatedWindow (params: DynamicWindowInputParams): void {
+    private applyDataForCreatedWindow(params: DynamicWindowInputParams): void {
         const windowComponents = this.windowControlService.getWindowComponentsRef();
         const lastCreatedWindowComponent = windowComponents[windowComponents.length - 1];
         const { instance: windowInstance } = lastCreatedWindowComponent;

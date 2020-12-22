@@ -1,6 +1,6 @@
-import { Type } from "@angular/core";
-import { ComponentType } from "../types";
-import { DemoComponentMetaInfo } from "./demo-component-meta-info.interface";
+import { Type } from '@angular/core';
+import { ComponentType } from '../types';
+import { DemoComponentMetaInfo } from './demo-component-meta-info.interface';
 
 export interface ComponentMetaInfo {
 

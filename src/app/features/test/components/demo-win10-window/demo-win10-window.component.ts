@@ -27,8 +27,8 @@ export class DemoWin10WindowComponent implements OnInit {
         { label: 'Item 3' }
     ];
 
-    constructor () {}
+    constructor() {}
 
-    public ngOnInit (): void {}
+    public ngOnInit(): void {}
 
 }

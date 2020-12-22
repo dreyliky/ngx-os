@@ -8,15 +8,15 @@ import { Doc } from '../interfaces';
 })
 export class DocApiService {
 
-    constructor (
+    constructor(
         private readonly http: HttpClient
     ) {}
 
-    public getLibDoc (): Observable<Doc> {
+    public getLibDoc(): Observable<Doc> {
         return this.http.get<Doc>(`/assets/lib-doc/documentation.json`);
     }
 
-    public getDemoDoc (): Observable<Doc> {
+    public getDemoDoc(): Observable<Doc> {
         return this.http.get<Doc>(`/assets/demo-doc/documentation.json`);
     }
 

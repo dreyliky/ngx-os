@@ -8,14 +8,14 @@ import { DragInfo } from '../interfaces/drag-info.interface';
 export class OsDraggableDirective implements OnInit, OnDestroy {
 
     @Input('os-draggable')
-    public set draggerConfig (config: DraggerConfig) {
+    public set draggerConfig(config: DraggerConfig) {
         this._draggerConfig = { ...this._draggerConfig, ...config };
 
         this.initMovableElement();
         this.initDraggableElement();
     }
 
-    public get draggerConfig (): DraggerConfig {
+    public get draggerConfig(): DraggerConfig {
         return this._draggerConfig;
     }
 
@@ -42,24 +42,24 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
 
     private _draggerConfig: DraggerConfig = new DraggerConfig();
 
-    constructor (
+    constructor(
         private readonly element: ElementRef<HTMLElement>
     ) {}
 
-    public ngOnInit (): void {}
+    public ngOnInit(): void {}
 
-    public ngOnDestroy (): void {
+    public ngOnDestroy(): void {
         this._draggableElement.removeEventListener('mousedown', this.elementMouseDownHandler);
     }
 
-    public updateMovableElementPosition (event: MouseEvent): void {
+    public updateMovableElementPosition(event: MouseEvent): void {
         if (this._movableElement && this.draggerConfig.isAllowMoveElement) {
             this._movableElement.style.left = `${event.pageX - this.shiftX}px`;
-            this._movableElement.style.top  = `${event.pageY - this.shiftY}px`;
+            this._movableElement.style.top = `${event.pageY - this.shiftY}px`;
         }
     }
 
-    private initDraggableElement (): void {
+    private initDraggableElement(): void {
         this._draggableElement?.removeEventListener('mousedown', this.elementMouseDownHandler);
 
         if (this.draggerConfig?.draggableElement) {
@@ -71,7 +71,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         this._draggableElement.addEventListener('mousedown', this.elementMouseDownHandler);
     }
 
-    private initMovableElement (): void {
+    private initMovableElement(): void {
         if (this.draggerConfig?.movableElement) {
             this._movableElement = this.draggerConfig.movableElement;
         } else {
@@ -130,7 +130,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         this.osDragEnd.emit(dragInfo);
     }
 
-    private getDragInfo (event: MouseEvent): DragInfo {
+    private getDragInfo(event: MouseEvent): DragInfo {
         const box = this._movableElement.getBoundingClientRect();
 
         return {
@@ -139,7 +139,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         };
     }
 
-    private setShiftX (dragInfo: DragInfo, event: MouseEvent): void {
+    private setShiftX(dragInfo: DragInfo, event: MouseEvent): void {
         if (typeof(this.draggerConfig.shiftX) === 'number') {
             this.shiftX = this.draggerConfig.shiftX;
         } else {
@@ -147,7 +147,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         }
     }
 
-    private setShiftY (dragInfo: DragInfo, event: MouseEvent): void {
+    private setShiftY(dragInfo: DragInfo, event: MouseEvent): void {
         if (typeof(this.draggerConfig.shiftY) === 'number') {
             this.shiftY = this.draggerConfig.shiftY;
         } else {

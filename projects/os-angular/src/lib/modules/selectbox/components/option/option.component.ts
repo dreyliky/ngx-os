@@ -14,7 +14,7 @@ export class OptionComponent extends OsBaseComponent {
     @ViewChild('OptionTemplate', { static: true })
     public optionTemplate: TemplateRef<HTMLOptionElement>;
 
-    constructor () {
+    constructor() {
         super();
     }
 

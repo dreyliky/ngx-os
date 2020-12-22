@@ -4,10 +4,10 @@ import { DocumentationRouteEnum } from '@Doc/core/enums';
 import { ComponentMetaInfoMap, ComponentType } from '@Doc/features/doc';
 
 @Component({
-  selector: 'demo-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'demo-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent implements OnInit {
 

@@ -12,7 +12,7 @@ export class ButtonComponent extends OsBaseButtonComponent {
     @Input()
     public type: buttonType = 'button';
 
-    constructor () {
+    constructor() {
         super();
     }
 

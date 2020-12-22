@@ -12,11 +12,11 @@ export class SelectboxComponent extends OsBaseComponent {
     @ContentChildren(OptionComponent)
     public readonly optionComponentList: QueryList<OptionComponent>;
 
-    constructor () {
+    constructor() {
         super();
     }
 
-    public trackByFn (optionComponent: OptionComponent, index: number): number {
+    public trackByFn(optionComponent: OptionComponent, index: number): number {
         return index;
     }
 

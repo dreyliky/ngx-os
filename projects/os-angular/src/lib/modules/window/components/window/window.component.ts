@@ -65,7 +65,7 @@ export class WindowComponent extends OsBaseComponent {
     @Output()
     public osCloseButtonClick = new EventEmitter<MouseEvent>();
 
-    constructor () {
+    constructor() {
         super();
     }
 

@@ -9,23 +9,23 @@ import { OsBaseComponent } from 'os-angular/core';
 export class HeaderComponent extends OsBaseComponent {
 
     @Input()
-    public set size (value: number) {
+    public set size(value: number) {
         this.validateSize(value);
 
         this._size = this.getValidSize(value);
     }
 
-    public get size (): number {
+    public get size(): number {
         return this._size;
     }
 
     private _size: number = 1;
 
-    constructor () {
+    constructor() {
         super();
     }
 
-    private getValidSize (value: number): number {
+    private getValidSize(value: number): number {
         if (value < 1 || typeof(value) !== 'number') {
             return 1;
         } else if (value > 6) {
@@ -35,7 +35,7 @@ export class HeaderComponent extends OsBaseComponent {
         return value;
     }
 
-    private validateSize (value: number): void {
+    private validateSize(value: number): void {
         if (typeof(value) !== 'number') {
             console.warn('os-header size param must be a number!');
         }

@@ -12,7 +12,7 @@ export class TextBoxComponent extends OsBaseFieldComponent {
     @Input()
     public type: textboxType = 'text';
 
-    constructor () {
+    constructor() {
         super();
     }
 

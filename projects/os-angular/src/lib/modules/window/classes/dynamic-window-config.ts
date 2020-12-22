@@ -1,6 +1,7 @@
 import { ResizerEnum } from 'os-angular/modules/resizer';
 
 export class DynamicWindowConfig<D = any> {
+
     public title?: string = 'OS dynamic window';
     public data?: D;
     public width?: number;
@@ -26,4 +27,5 @@ export class DynamicWindowConfig<D = any> {
     public onMinimizeButtonClick?: () => any;
     public onMaximizeButtonClick?: () => any;
     public onCloseButtonClick?: () => any;
+
 }

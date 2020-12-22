@@ -20,7 +20,7 @@ export class CheckboxComponent extends OsBaseComponent {
     @Input()
     public disabled: boolean;
 
-    constructor () {
+    constructor() {
         super();
     }
 

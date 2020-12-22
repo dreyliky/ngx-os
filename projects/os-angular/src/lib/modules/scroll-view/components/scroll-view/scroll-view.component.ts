@@ -14,7 +14,7 @@ export class ScrollViewComponent extends OsBaseComponent {
     @Input()
     public horizontalScrollEnabled: boolean = false;
 
-    constructor () {
+    constructor() {
         super();
     }
 

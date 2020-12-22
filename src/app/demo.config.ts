@@ -6,15 +6,15 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class DemoConfig {
 
-    constructor (
+    constructor(
         private readonly docApiService: DocApiService,
         private readonly docStateService: DocStateService
     ) {}
 
-    public load (): any {
+    public load(): any {
         return forkJoin([
             this.updateLibDoc(),
-            this.updateDemoDoc(),
+            this.updateDemoDoc()
         ])
             .toPromise()
             .catch(() => {
@@ -22,14 +22,14 @@ export class DemoConfig {
             });
     }
 
-    private updateLibDoc (): Observable<Doc> {
+    private updateLibDoc(): Observable<Doc> {
         return this.docApiService.getLibDoc()
             .pipe(
                 tap((doc) => this.docStateService.setLibDoc(doc))
             );
     }
 
-    private updateDemoDoc (): Observable<Doc> {
+    private updateDemoDoc(): Observable<Doc> {
         return this.docApiService.getDemoDoc()
             .pipe(
                 tap((doc) => this.docStateService.setDemoDoc(doc))

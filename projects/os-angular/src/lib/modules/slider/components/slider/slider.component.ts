@@ -32,7 +32,7 @@ export class SliderComponent extends OsBaseComponent {
     @Input()
     public value: number = 0;
 
-    constructor () {
+    constructor() {
         super();
     }
 

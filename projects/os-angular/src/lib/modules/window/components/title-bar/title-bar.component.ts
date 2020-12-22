@@ -20,7 +20,7 @@ export class TitleBarComponent extends OsBaseComponent {
     @Output()
     public osCloseButtonClick = new EventEmitter<MouseEvent>();
 
-    constructor () {
+    constructor() {
         super();
     }
 

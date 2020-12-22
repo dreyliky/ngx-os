@@ -27,7 +27,7 @@ export class OsBaseFieldComponent extends OsBaseComponent {
     @Output()
     public osChange: EventEmitter<Event> = new EventEmitter();
 
-    constructor () {
+    constructor() {
         super();
     }
 

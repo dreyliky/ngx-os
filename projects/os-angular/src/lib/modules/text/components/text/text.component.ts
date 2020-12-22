@@ -7,7 +7,7 @@ import { OsBaseComponent } from 'os-angular/core';
 })
 export class TextComponent extends OsBaseComponent {
 
-    constructor () {
+    constructor() {
         super();
     }
 

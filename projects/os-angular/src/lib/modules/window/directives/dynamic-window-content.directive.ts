@@ -1,11 +1,11 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-    selector: '[dynamicWindowContent]',
+    selector: '[dynamicWindowContent]'
 })
 export class DynamicWindowContentDirective {
 
-    constructor (
+    constructor(
         public readonly viewContainerRef: ViewContainerRef
     ) {}
 

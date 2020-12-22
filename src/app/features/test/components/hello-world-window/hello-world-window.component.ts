@@ -10,16 +10,16 @@ export class HelloWorldWindowComponent implements OnInit {
 
     public data: string;
 
-    constructor (
+    constructor(
         private readonly config: DynamicWindowConfig<string>,
         private readonly windowRef: DynamicWindowRef
     ) {
         this.data = this.config.data;
     }
 
-    public ngOnInit (): void {}
+    public ngOnInit(): void {}
 
-    public onDestroyButtonClick (): void {
+    public onDestroyButtonClick(): void {
         this.windowRef.close();
     }
 

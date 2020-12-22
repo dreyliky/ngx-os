@@ -12,6 +12,6 @@ import { LibDocProvider, DemoDocProvider } from '@Features/doc';
 })
 export class DemoComponent {
 
-    constructor () {}
+    constructor() {}
 
 }

@@ -11,7 +11,7 @@ export class GroupBoxComponent extends OsBaseComponent {
     @Input()
     public label: string;
 
-    constructor () {
+    constructor() {
         super();
     }
 
