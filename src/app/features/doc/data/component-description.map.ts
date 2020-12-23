@@ -9,6 +9,7 @@ import {
     ButtonOverviewComponent, CheckboxOverviewComponent,
     FieldRowOverviewComponent,
     GroupBoxOverviewComponent,
+    ListOverviewComponent,
     TextOverviewComponent, WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -106,6 +107,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 ListComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'List Overview',
+                    component: ListOverviewComponent
+                }
             ]
         }
     )
