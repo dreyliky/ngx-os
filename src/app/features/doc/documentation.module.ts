@@ -7,6 +7,7 @@ import {
     GroupBoxOverviewComponent,
     ListOverviewComponent,
     RadioButtonOverviewComponent,
+    ScrollViewOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
@@ -19,6 +20,7 @@ import {
         GroupBoxOverviewComponent,
         ListOverviewComponent,
         RadioButtonOverviewComponent,
+        ScrollViewOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ],
@@ -32,6 +34,7 @@ import {
         GroupBoxOverviewComponent,
         ListOverviewComponent,
         RadioButtonOverviewComponent,
+        ScrollViewOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ]

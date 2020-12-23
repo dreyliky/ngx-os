@@ -11,6 +11,7 @@ import {
     GroupBoxOverviewComponent,
     ListOverviewComponent,
     RadioButtonOverviewComponent,
+    ScrollViewOverviewComponent,
     TextOverviewComponent, WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -154,6 +155,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 ScrollViewComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Scroll View Overview',
+                    component: ScrollViewOverviewComponent
+                }
             ]
         }
     )

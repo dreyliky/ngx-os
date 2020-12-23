@@ -1,0 +1,38 @@
+<div class="wrapper">
+    <os-header [size]="5">
+        Only vertical scroll
+    </os-header>
+
+    <os-scroll-view
+        [style]="{ height: '400px' }"
+        [horizontalScrollEnabled]="false"
+        [verticalScrollEnabled]="true">
+        <div class="big-vertical-block"></div>
+    </os-scroll-view>
+</div>
+
+<div class="wrapper">
+    <os-header [size]="5">
+        Only horizontal scroll
+    </os-header>
+
+    <os-scroll-view
+        [style]="{ height: '400px' }"
+        [horizontalScrollEnabled]="true"
+        [verticalScrollEnabled]="false">
+        <div class="big-horizontal-block"></div>
+    </os-scroll-view>
+</div>
+
+<div class="wrapper">
+    <os-header [size]="5">
+        Both scrolls
+    </os-header>
+
+    <os-scroll-view
+        [style]="{ height: '400px' }"
+        [horizontalScrollEnabled]="true"
+        [verticalScrollEnabled]="true">
+        <div class="big-block"></div>
+    </os-scroll-view>
+</div>
