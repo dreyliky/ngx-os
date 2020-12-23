@@ -4,6 +4,7 @@ import {
     ButtonOverviewComponent,
     CheckboxOverviewComponent,
     FieldRowOverviewComponent,
+    GroupBoxOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
@@ -14,7 +15,8 @@ import {
         CheckboxOverviewComponent,
         FieldRowOverviewComponent,
         TextOverviewComponent,
-        WindowOverviewComponent
+        WindowOverviewComponent,
+        GroupBoxOverviewComponent
     ],
     imports: [
         SharedModule
@@ -23,6 +25,7 @@ import {
         ButtonOverviewComponent,
         CheckboxOverviewComponent,
         FieldRowOverviewComponent,
+        GroupBoxOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ]

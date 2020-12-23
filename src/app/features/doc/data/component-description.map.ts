@@ -8,6 +8,7 @@ import {
 import {
     ButtonOverviewComponent, CheckboxOverviewComponent,
     FieldRowOverviewComponent,
+    GroupBoxOverviewComponent,
     TextOverviewComponent, WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -87,6 +88,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 GroupBoxComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Group box Overview',
+                    component: GroupBoxOverviewComponent
+                }
             ]
         }
     )
