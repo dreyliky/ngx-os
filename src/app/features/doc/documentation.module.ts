@@ -6,6 +6,7 @@ import {
     FieldRowOverviewComponent,
     GroupBoxOverviewComponent,
     ListOverviewComponent,
+    RadioButtonOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
@@ -17,6 +18,7 @@ import {
         FieldRowOverviewComponent,
         GroupBoxOverviewComponent,
         ListOverviewComponent,
+        RadioButtonOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ],
@@ -29,6 +31,7 @@ import {
         FieldRowOverviewComponent,
         GroupBoxOverviewComponent,
         ListOverviewComponent,
+        RadioButtonOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ]

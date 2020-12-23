@@ -10,6 +10,7 @@ import {
     FieldRowOverviewComponent,
     GroupBoxOverviewComponent,
     ListOverviewComponent,
+    RadioButtonOverviewComponent,
     TextOverviewComponent, WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -125,6 +126,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 RadioButtonComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Radio button Overview',
+                    component: RadioButtonOverviewComponent
+                }
             ]
         }
     )

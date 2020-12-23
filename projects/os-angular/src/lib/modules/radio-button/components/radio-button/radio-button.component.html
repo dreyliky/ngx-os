@@ -1,6 +1,7 @@
 <input
     class="os-element"
     type="radio"
+    [id]="id"
     [class]="styleClass"
     [ngStyle]="style"
     [name]="name"
@@ -16,6 +17,7 @@
     (wheel)="osWheel.emit($event)" />
 
 <label
+    [attr.for]="id"
     class="os-element">
     {{ label }}
 </label>
