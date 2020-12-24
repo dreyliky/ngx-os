@@ -11,8 +11,8 @@
     "eslint-check": "eslint **/*.ts --ignore-pattern node_modules",
     "eslint-fix": "eslint --fix **/*.ts --ignore-pattern node_modules",
     "doc": "npm run build-lib-doc && npm run build-demo-doc",
-    "build-lib-doc": "compodoc -c 'compodoc-lib-config.json'",
-    "build-demo-doc": "compodoc -c 'compodoc-demo-config.json'"
+    "build-lib-doc": "compodoc -c compodoc-lib-config.json",
+    "build-demo-doc": "compodoc -c compodoc-demo-config.json"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +39,7 @@
     "@angular/cli": "~11.0.5",
     "@angular/compiler-cli": "~11.0.5",
     "@angular/language-service": "~11.0.5",
+    "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@typescript-eslint/eslint-plugin": "^4.11.0",

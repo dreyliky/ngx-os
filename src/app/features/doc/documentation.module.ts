@@ -8,6 +8,7 @@ import {
     ListOverviewComponent,
     RadioButtonOverviewComponent,
     ScrollViewOverviewComponent,
+    SelectboxOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
@@ -21,6 +22,7 @@ import {
         ListOverviewComponent,
         RadioButtonOverviewComponent,
         ScrollViewOverviewComponent,
+        SelectboxOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ],
@@ -35,6 +37,7 @@ import {
         ListOverviewComponent,
         RadioButtonOverviewComponent,
         ScrollViewOverviewComponent,
+        SelectboxOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ]
