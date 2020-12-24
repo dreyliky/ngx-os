@@ -7,17 +7,13 @@ import {
 } from 'os-angular';
 import {
     ButtonOverviewComponent, CheckboxOverviewComponent,
-    FieldRowOverviewComponent,
-    GroupBoxOverviewComponent,
-    ListOverviewComponent,
-    RadioButtonOverviewComponent,
-    ScrollViewOverviewComponent,
-    SelectboxOverviewComponent,
-    SliderOverviewComponent,
-    TabGroupOverviewComponent,
-    TextareaOverviewComponent,
-    TextBoxOverviewComponent,
-    TextOverviewComponent, WindowOverviewComponent
+    FieldRowOverviewComponent, GroupBoxOverviewComponent,
+    ListOverviewComponent, RadioButtonOverviewComponent,
+    ScrollViewOverviewComponent, SelectboxOverviewComponent,
+    SliderOverviewComponent, TabGroupOverviewComponent,
+    TextareaOverviewComponent, TextBoxOverviewComponent,
+    TextOverviewComponent, TreeViewOverviewComponent,
+    WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
 import { ComponentType } from '../types';
@@ -287,6 +283,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 TreeViewComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Tree view Overview',
+                    component: TreeViewOverviewComponent
+                }
             ]
         }
     )

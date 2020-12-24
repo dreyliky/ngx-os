@@ -14,6 +14,7 @@ import {
     TextareaOverviewComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
+    TreeViewOverviewComponent,
     WindowOverviewComponent
 } from './demo';
 
@@ -32,6 +33,7 @@ import {
         TextOverviewComponent,
         TextBoxOverviewComponent,
         TextareaOverviewComponent,
+        TreeViewOverviewComponent,
         WindowOverviewComponent
     ],
     imports: [
@@ -51,6 +53,7 @@ import {
         TextOverviewComponent,
         TextBoxOverviewComponent,
         TextareaOverviewComponent,
+        TreeViewOverviewComponent,
         WindowOverviewComponent
     ]
 })
