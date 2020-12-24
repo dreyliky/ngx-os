@@ -11,6 +11,7 @@ import {
     SelectboxOverviewComponent,
     SliderOverviewComponent,
     TabGroupOverviewComponent,
+    TextBoxOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
@@ -28,6 +29,7 @@ import {
         SliderOverviewComponent,
         TabGroupOverviewComponent,
         TextOverviewComponent,
+        TextBoxOverviewComponent,
         WindowOverviewComponent
     ],
     imports: [
@@ -45,6 +47,7 @@ import {
         SliderOverviewComponent,
         TabGroupOverviewComponent,
         TextOverviewComponent,
+        TextBoxOverviewComponent,
         WindowOverviewComponent
     ]
 })

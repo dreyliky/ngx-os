@@ -15,6 +15,7 @@ import {
     SelectboxOverviewComponent,
     SliderOverviewComponent,
     TabGroupOverviewComponent,
+    TextBoxOverviewComponent,
     TextOverviewComponent, WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -249,6 +250,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 TextBoxComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Text box Overview',
+                    component: TextBoxOverviewComponent
+                }
             ]
         }
     )

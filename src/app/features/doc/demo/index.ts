@@ -9,5 +9,6 @@ export * from './selectbox';
 export * from './slider';
 export * from './tab-group';
 export * from './text';
+export * from './text-box';
 export * from './window';
 
