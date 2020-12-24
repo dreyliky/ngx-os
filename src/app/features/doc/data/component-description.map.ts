@@ -13,6 +13,7 @@ import {
     RadioButtonOverviewComponent,
     ScrollViewOverviewComponent,
     SelectboxOverviewComponent,
+    SliderOverviewComponent,
     TextOverviewComponent, WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -192,6 +193,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 SliderComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Selectbox Overview',
+                    component: SliderOverviewComponent
+                }
             ]
         }
     )

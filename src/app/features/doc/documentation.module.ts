@@ -12,6 +12,7 @@ import {
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
+import { SliderOverviewComponent } from './demo/slider/slider-overview/slider-overview.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import {
         RadioButtonOverviewComponent,
         ScrollViewOverviewComponent,
         SelectboxOverviewComponent,
+        SliderOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ],
@@ -38,6 +40,7 @@ import {
         RadioButtonOverviewComponent,
         ScrollViewOverviewComponent,
         SelectboxOverviewComponent,
+        SliderOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ]

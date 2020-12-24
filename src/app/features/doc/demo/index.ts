@@ -6,6 +6,7 @@ export * from './list';
 export * from './radio-button';
 export * from './scroll-view';
 export * from './selectbox';
+export * from './slider';
 export * from './text';
 export * from './window';
 
