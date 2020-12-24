@@ -11,6 +11,7 @@ import {
     SelectboxOverviewComponent,
     SliderOverviewComponent,
     TabGroupOverviewComponent,
+    TextareaOverviewComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
@@ -30,6 +31,7 @@ import {
         TabGroupOverviewComponent,
         TextOverviewComponent,
         TextBoxOverviewComponent,
+        TextareaOverviewComponent,
         WindowOverviewComponent
     ],
     imports: [
@@ -48,6 +50,7 @@ import {
         TabGroupOverviewComponent,
         TextOverviewComponent,
         TextBoxOverviewComponent,
+        TextareaOverviewComponent,
         WindowOverviewComponent
     ]
 })

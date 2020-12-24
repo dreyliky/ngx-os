@@ -10,5 +10,6 @@ export * from './slider';
 export * from './tab-group';
 export * from './text';
 export * from './text-box';
+export * from './textarea-box';
 export * from './window';
 
