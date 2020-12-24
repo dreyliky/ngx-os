@@ -14,6 +14,7 @@ import {
     ScrollViewOverviewComponent,
     SelectboxOverviewComponent,
     SliderOverviewComponent,
+    TabGroupOverviewComponent,
     TextOverviewComponent, WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -211,6 +212,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 TabGroupComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Tab Group Overview',
+                    component: TabGroupOverviewComponent
+                }
             ]
         }
     )

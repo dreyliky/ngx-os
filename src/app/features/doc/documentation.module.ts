@@ -9,10 +9,11 @@ import {
     RadioButtonOverviewComponent,
     ScrollViewOverviewComponent,
     SelectboxOverviewComponent,
+    SliderOverviewComponent,
+    TabGroupOverviewComponent,
     TextOverviewComponent,
     WindowOverviewComponent
 } from './demo';
-import { SliderOverviewComponent } from './demo/slider/slider-overview/slider-overview.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { SliderOverviewComponent } from './demo/slider/slider-overview/slider-ov
         ScrollViewOverviewComponent,
         SelectboxOverviewComponent,
         SliderOverviewComponent,
+        TabGroupOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ],
@@ -41,6 +43,7 @@ import { SliderOverviewComponent } from './demo/slider/slider-overview/slider-ov
         ScrollViewOverviewComponent,
         SelectboxOverviewComponent,
         SliderOverviewComponent,
+        TabGroupOverviewComponent,
         TextOverviewComponent,
         WindowOverviewComponent
     ]
