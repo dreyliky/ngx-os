@@ -22,6 +22,7 @@
         (osChange)="onThemeChanged($event)">
         <os-option
             *ngFor="let theme of themes"
+            [selected]="theme.cssName === appliedTheme"
             [value]="theme.cssName">
             {{ theme.name }}
         </os-option>
