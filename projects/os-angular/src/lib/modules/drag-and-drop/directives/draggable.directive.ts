@@ -1,4 +1,7 @@
-import { Directive, ElementRef, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import {
+    Directive, ElementRef,
+    EventEmitter, Input, OnDestroy, OnInit, Output
+} from '@angular/core';
 import { DraggerConfig } from '../classes';
 import { DragInfo } from '../interfaces/drag-info.interface';
 
@@ -54,8 +57,8 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
 
     public updateMovableElementPosition(event: MouseEvent): void {
         if (this._movableElement && this.draggerConfig.isAllowMoveElement) {
-            this._movableElement.style.left = `${event.pageX - this.shiftX}px`;
-            this._movableElement.style.top = `${event.pageY - this.shiftY}px`;
+            this._movableElement.style.left = `${event.clientX - this.shiftX}px`;
+            this._movableElement.style.top = `${event.clientY - this.shiftY}px`;
         }
     }
 
@@ -80,17 +83,9 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
-        const childElementsBlackList = this.draggerConfig.childElementsBlackList || [];
+        const isDragAvailable = this.getIsAvailableDragInteraction(event);
 
-        if (
-            !this.draggerConfig.isEnabled
-            ||
-            !this.draggerConfig.allowedMouseButtons
-            ||
-            !this.draggerConfig.allowedMouseButtons.includes(event.button)
-            ||
-            childElementsBlackList.includes(event.target as HTMLElement)
-        ) {
+        if (!isDragAvailable) {
             return;
         }
 
@@ -143,7 +138,7 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         if (typeof(this.draggerConfig.shiftX) === 'number') {
             this.shiftX = this.draggerConfig.shiftX;
         } else {
-            this.shiftX = event.pageX - dragInfo.draggableElementDomRect.left + pageXOffset;
+            this.shiftX = event.clientX - dragInfo.draggableElementDomRect.left + pageXOffset;
         }
     }
 
@@ -151,8 +146,26 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
         if (typeof(this.draggerConfig.shiftY) === 'number') {
             this.shiftY = this.draggerConfig.shiftY;
         } else {
-            this.shiftY = event.pageY - dragInfo.draggableElementDomRect.top + pageYOffset;
+            this.shiftY = event.clientY - dragInfo.draggableElementDomRect.top + pageYOffset;
         }
+    }
+
+    private getIsAvailableDragInteraction(event: MouseEvent): boolean {
+        const childElementsBlackList = this.draggerConfig.childElementsBlackList || [];
+
+        if (
+            !this.draggerConfig.isEnabled
+            ||
+            !this.draggerConfig.allowedMouseButtons
+            ||
+            !this.draggerConfig.allowedMouseButtons.includes(event.button)
+            ||
+            childElementsBlackList.includes(event.target as HTMLElement)
+        ) {
+            return false;
+        }
+
+        return true;
     }
 
 }

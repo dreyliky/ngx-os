@@ -1,26 +1,18 @@
 import {
-    Component,
-    OnDestroy,
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    ViewChild,
-    ComponentFactoryResolver,
-    ComponentRef,
-    Type,
-    ChangeDetectorRef,
-    OnInit,
-    HostListener,
-    ElementRef
+    AfterViewInit, ChangeDetectionStrategy,
+    ChangeDetectorRef, Component,
+    ComponentFactoryResolver, ComponentRef,
+    ElementRef, HostListener, OnDestroy,
+    OnInit, Type, ViewChild
 } from '@angular/core';
-
-import { Subscription } from 'rxjs';
 import { IdGenerator, OutsideClick } from 'os-angular/helpers';
-import { OsDraggableDirective, DragInfo } from 'os-angular/modules/drag-and-drop';
-import { ResizerEnum, ResizeInfo } from 'os-angular/modules/resizer';
-import { DynamicWindowContentDirective } from '../../directives';
+import { DragInfo, OsDraggableDirective } from 'os-angular/modules/drag-and-drop';
+import { ResizeInfo, ResizerEnum } from 'os-angular/modules/resizer';
+import { Subscription } from 'rxjs';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
-import { WindowComponent } from '../window';
+import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
+import { WindowComponent } from '../window';
 
 @Component({
     selector: 'os-dynamic-window',
@@ -225,12 +217,12 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     private loadChildComponent(componentType: Type<any>): void {
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+        const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
         const viewContainerRef = this._dynamicWindowContent.viewContainerRef;
 
         viewContainerRef.clear();
 
-        this._childComponentRef = viewContainerRef.createComponent(componentFactory);
+        this._childComponentRef = viewContainerRef.createComponent(factory);
     }
 
     private initIsOpeningState(): void {
