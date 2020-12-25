@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DocumentationRouteEnum } from '@Core/enums';
 import { ComponentLayoutComponent } from '@Layouts';
 
@@ -17,6 +17,11 @@ const routes: Routes = [
     {
         path: DocumentationRouteEnum.Desktop,
         loadChildren: () => import('./pages/desktop/desktop.module').then((m) => m.DesktopPageModule)
+    },
+    {
+        path: DocumentationRouteEnum.Theming,
+        component: ComponentLayoutComponent,
+        loadChildren: () => import('./pages/theming/theming.module').then((m) => m.ThemingModule)
     },
     {
         path: '',
