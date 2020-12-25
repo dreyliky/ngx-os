@@ -37,17 +37,17 @@ os-scroll-view {
             height: 16px;
 
             &:start {
-                background-image: url("./icon/chevron-up-black.svg");
+                background-image: url("./icon/win10_chevron-up-black.svg");
 
                 &:active {
-                    background-image: url("./icon/chevron-up-white.svg");
+                    background-image: url("./icon/win10_chevron-up-white.svg");
                 }
             }
             &:end {
-                background-image: url("./icon/chevron-down-black.svg");
+                background-image: url("./icon/win10_chevron-down-black.svg");
 
                 &:active {
-                    background-image: url("./icon/chevron-down-white.svg");
+                    background-image: url("./icon/win10_chevron-down-white.svg");
                 }
             }
         }
@@ -56,17 +56,17 @@ os-scroll-view {
             width: 16px;
 
             &:start {
-                background-image: url("./icon/cheveron-left-black.svg");
+                background-image: url("./icon/win10_cheveron-left-black.svg");
 
                 &:active {
-                    background-image: url("./icon/cheveron-left-white.svg");
+                    background-image: url("./icon/win10_cheveron-left-white.svg");
                 }
             }
             &:end {
-                background-image: url("./icon/cheveron-right-black.svg");
+                background-image: url("./icon/win10_cheveron-right-black.svg");
 
                 &:active {
-                    background-image: url("./icon/cheveron-right-white.svg");
+                    background-image: url("./icon/win10_cheveron-right-white.svg");
                 }
             }
         }

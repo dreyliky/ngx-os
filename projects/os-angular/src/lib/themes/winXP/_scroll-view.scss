@@ -10,10 +10,10 @@ os-scroll-view {
 
     .os-scroll-view::-webkit-scrollbar-track {
         &:vertical {
-            background-image: url("./icon/scroll-background.svg");
+            background-image: url("./icon/winXP_scroll-background.svg");
         }
         &:horizontal {
-            background-image: url("./icon/scroll-background-horizontal.svg");
+            background-image: url("./icon/winXP_scroll-background-horizontal.svg");
         }
     }
 
@@ -26,11 +26,11 @@ os-scroll-view {
         border-radius: 2px;
         box-shadow: inset -3px 0 #bad1fc, inset 1px 1px #b7caf5;
         &:vertical {
-            background-image: url("./icon/scroll-thumb.svg");
+            background-image: url("./icon/winXP_scroll-thumb.svg");
         }
         &:horizontal {
             background-size: 8px;
-            background-image: url("./icon/scroll-thumb-horizontal.svg");
+            background-image: url("./icon/winXP_scroll-thumb-horizontal.svg");
         }
     }
 
@@ -38,21 +38,21 @@ os-scroll-view {
         &:vertical {
             &:start {
                 height: 17px;
-                background-image: url("./icon/scroll-arrow-up.svg");
+                background-image: url("./icon/winXP_scroll-arrow-up.svg");
             }
             &:end {
                 height: 17px;
-                background-image: url("./icon/scroll-arrow-down.svg");
+                background-image: url("./icon/winXP_scroll-arrow-down.svg");
             }
         }
         &:horizontal {
             &:start {
                 width: 17px;
-                background-image: url("./icon/scroll-arrow-left.svg");
+                background-image: url("./icon/winXP_scroll-arrow-left.svg");
             }
             &:end {
                 width: 17px;
-                background-image: url("./icon/scroll-arrow-right.svg");
+                background-image: url("./icon/winXP_scroll-arrow-right.svg");
             }
         }
     }

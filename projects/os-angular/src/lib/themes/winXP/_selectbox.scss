@@ -17,7 +17,7 @@ os-selectbox {
         -moz-appearance: none;
         position: relative;
         padding-right: 32px;
-        background-image: url("./icon/dropdown.svg");
+        background-image: url("./icon/winXP_dropdown.svg");
         background-size: 15px;
         background-position: top 2px right 2px;
         background-repeat: no-repeat;
@@ -36,11 +36,11 @@ os-selectbox {
         }
 
         &:hover {
-            background-image: url("./icon/dropdown-hover.svg");
+            background-image: url("./icon/winXP_dropdown-hover.svg");
         }
 
         &:active {
-            background-image: url("./icon/dropdown-active.svg");
+            background-image: url("./icon/winXP_dropdown-active.svg");
         }
     }
 

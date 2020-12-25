@@ -94,7 +94,7 @@ os-window {
             color: #ffffff;
 
             button[aria-label="Minimize"] {
-                background-image: url("./icon/minimize-white.svg");
+                background-image: url("./icon/win10_minimize-white.svg");
 
                 &:hover {
                     background-color: rgba(255, 255, 255, .1);
@@ -102,7 +102,7 @@ os-window {
             }
     
             button[aria-label="Maximize"] {
-                background-image: url("./icon/maximize-white.svg");
+                background-image: url("./icon/win10_maximize-white.svg");
 
                 &:hover {
                     background-color: rgba(255, 255, 255, .1);
@@ -110,7 +110,7 @@ os-window {
             }
     
             button[aria-label="Close"] {
-                background-image: url("./icon/close-white.svg");
+                background-image: url("./icon/win10_close-white.svg");
     
                 &:hover {
                     background-color: var(--danger-color);
@@ -123,45 +123,45 @@ os-window {
         &.active {
             .os-title-bar {
                 button[aria-label="Maximize"] {
-                    background-image: url("./icon/restore-down-white.svg") !important;
+                    background-image: url("./icon/win10_restore-down-white.svg") !important;
                 }
             }
         }
 
         .os-title-bar {
             button[aria-label="Maximize"] {
-                background-image: url("./icon/restore-down-grey.svg") !important;
+                background-image: url("./icon/win10_restore-down-grey.svg") !important;
 
                 &:hover {
-                    background-image: url("./icon/restore-down-black.svg");
+                    background-image: url("./icon/win10_restore-down-black.svg");
                 }
             }
         }
     }
 
     button[aria-label="Minimize"] {
-        background-image: url("./icon/minimize-grey.svg");
+        background-image: url("./icon/win10_minimize-grey.svg");
 
         &:hover {
             background-color: rgba(0, 0, 0, .1);
-            background-image: url("./icon/minimize-black.svg");
+            background-image: url("./icon/win10_minimize-black.svg");
         }
     }
 
     button[aria-label="Maximize"] {
-        background-image: url("./icon/maximize-grey.svg");
+        background-image: url("./icon/win10_maximize-grey.svg");
         &:hover {
             background-color: rgba(0, 0, 0, .1);
-            background-image: url("./icon/maximize-black.svg");
+            background-image: url("./icon/win10_maximize-black.svg");
         }
     }
 
     button[aria-label="Close"] {
-        background-image: url("./icon/close-grey.svg");
+        background-image: url("./icon/win10_close-grey.svg");
 
         &:hover {
             background-color: var(--danger-color);
-            background-image: url("./icon/close-white.svg");
+            background-image: url("./icon/win10_close-white.svg");
         }
     }
 }

@@ -134,39 +134,39 @@ os-title-bar {
         }
 
         button[aria-label="Minimize"] {
-            background-image: url("./icon/minimize.svg");
+            background-image: url("./icon/winXP_minimize.svg");
             &:hover {
-                background-image: url("./icon/minimize-hover.svg");
+                background-image: url("./icon/winXP_minimize-hover.svg");
             }
             &:not(:disabled):active {
-                background-image: url("./icon/minimize-active.svg");
+                background-image: url("./icon/winXP_minimize-active.svg");
             }
         }
         button[aria-label="Maximize"] {
-            background-image: url("./icon/maximize.svg");
+            background-image: url("./icon/winXP_maximize.svg");
             &:hover {
-                background-image: url("./icon/maximize-hover.svg");
+                background-image: url("./icon/winXP_maximize-hover.svg");
             }
             &:not(:disabled):active {
-                background-image: url("./icon/maximize-active.svg");
+                background-image: url("./icon/winXP_maximize-active.svg");
             }
         }
         button[aria-label="Help"] {
-            background-image: url("./icon/help.svg");
+            background-image: url("./icon/winXP_help.svg");
             &:hover {
-                background-image: url("./icon/help-hover.svg");
+                background-image: url("./icon/winXP_help-hover.svg");
             }
             &:not(:disabled):active {
-                background-image: url("./icon/help-active.svg");
+                background-image: url("./icon/winXP_help-active.svg");
             }
         }
         button[aria-label="Close"] {
-            background-image: url("./icon/close.svg");
+            background-image: url("./icon/winXP_close.svg");
             &:hover {
-                background-image: url("./icon/close-hover.svg");
+                background-image: url("./icon/winXP_close-hover.svg");
             }
             &:not(:disabled):active {
-                background-image: url("./icon/close-active.svg");
+                background-image: url("./icon/winXP_close-active.svg");
             }
         }
     }

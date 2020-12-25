@@ -13,7 +13,7 @@ os-slider {
             -webkit-appearance: none;
             height: 21px;
             width: 11px;
-            background: url("./icon/indicator-horizontal.svg");
+            background: url("./icon/winXP_indicator-horizontal.svg");
             transform: translateY(-8px);
         }
 
@@ -22,7 +22,7 @@ os-slider {
             width: 11px;
             border: 0;
             border-radius: 0;
-            background: url("./icon/indicator-horizontal.svg");
+            background: url("./icon/winXP_indicator-horizontal.svg");
             transform: translateY(2px);
         }
 
@@ -53,11 +53,11 @@ os-slider {
 
     input[type="range"].has-box-indicator {
         &::-webkit-slider-thumb {
-            background: url("./icon/indicator-rectangle-horizontal.svg");
+            background: url("./icon/winXP_indicator-rectangle-horizontal.svg");
             transform: translateY(-10px);
         }
         &::-moz-range-thumb {
-            background: url("./icon/indicator-rectangle-horizontal.svg");
+            background: url("./icon/winXP_indicator-rectangle-horizontal.svg");
             transform: translateY(0px);
         }
     }

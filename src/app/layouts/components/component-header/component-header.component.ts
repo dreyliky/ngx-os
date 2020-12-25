@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ThemeArray } from '@Doc/core/data';
-import { DocumentationRouteEnum } from '@Doc/core/enums';
-import { ThemeService } from 'os-angular';
+import { DocumentationRouteEnum, ThemeEnum } from '@Doc/core/enums';
+import { ThemeManagerService } from '@Doc/core/services';
 
 @Component({
     selector: 'demo-component-header',
@@ -16,15 +16,16 @@ export class ComponentHeaderComponent implements OnInit {
     public routeEnum = DocumentationRouteEnum;
 
     constructor(
-        private readonly themeService: ThemeService
+        private readonly themeManagerService: ThemeManagerService
     ) {}
 
     public ngOnInit(): void {}
 
     public onThemeChanged(event: Event): void {
         const target = event.target as HTMLSelectElement;
-        console.log(event);
-        this.themeService.applyTheme(target.value);
+        const themeName = target.value as ThemeEnum;
+
+        this.themeManagerService.applyTheme(themeName);
     }
 
 }

@@ -24,7 +24,7 @@ os-radio-button {
                     width: var(--radio-width);
                     height: var(--radio-width);
                     margin-right: var(--radio-label-spacing);
-                    background: url("./icon/radio-border.svg");
+                    background: url("./icon/win98_radio-border.svg");
                 }
             }
         }
@@ -33,7 +33,7 @@ os-radio-button {
             + {
                 label {
                     &::before {
-                        background: url("./icon/radio-border-disabled.svg");
+                        background: url("./icon/win98_radio-border-disabled.svg");
                     }
                 }
             }
@@ -50,7 +50,7 @@ os-radio-button {
                         top: var(--radio-dot-top);
                         left: var(--radio-dot-left);
                         position: absolute;
-                        background: url("./icon/radio-dot.svg");
+                        background: url("./icon/win98_radio-dot.svg");
                     }
                 }
             }
@@ -68,7 +68,7 @@ os-radio-button {
             + {
                 label {
                     &::before {
-                        background: url("./icon/radio-border-disabled.svg");
+                        background: url("./icon/win98_radio-border-disabled.svg");
                     }
                 }
             }
@@ -76,7 +76,7 @@ os-radio-button {
                 + {
                     label {
                         &::after {
-                            background: url("./icon/radio-dot-disabled.svg");
+                            background: url("./icon/win98_radio-dot-disabled.svg");
                         }
                     }
                 }

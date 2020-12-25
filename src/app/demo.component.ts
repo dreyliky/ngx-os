@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { LibDocProvider, DemoDocProvider } from '@Features/doc';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ThemeManagerService } from '@Core/services';
+import { DemoDocProvider, LibDocProvider } from '@Features/doc';
 
 @Component({
     selector: 'demo-root',
@@ -12,6 +13,10 @@ import { LibDocProvider, DemoDocProvider } from '@Features/doc';
 })
 export class DemoComponent {
 
-    constructor() {}
+    constructor(
+        private readonly themeManagerService: ThemeManagerService
+    ) {
+        this.themeManagerService.applyThemeFromStorage();
+    }
 
 }

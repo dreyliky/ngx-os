@@ -17,7 +17,7 @@ os-selectbox {
         -moz-appearance: none;
         position: relative;
         padding-right: 32px;
-        background-image: url("./icon/button-down.svg");
+        background-image: url("./icon/win98_button-down.svg");
         background-position: top 2px right 2px;
         background-repeat: no-repeat;
         border-radius: 0;
@@ -33,7 +33,7 @@ os-selectbox {
         }
 
         &:active {
-            background-image: url("./icon/button-down-active.svg");
+            background-image: url("./icon/win98_button-down-active.svg");
         }
     }
 

@@ -23,7 +23,7 @@ os-scroll-view {
     }
 
     .os-scroll-view::-webkit-scrollbar-track {
-        background-image: url("./icon/scrollbar-background.svg");
+        background-image: url("./icon/win98_scrollbar-background.svg");
     }
 
     .os-scroll-view::-webkit-scrollbar-thumb {
@@ -42,21 +42,21 @@ os-scroll-view {
         &:vertical {
             &:start {
                 height: 17px;
-                background-image: url("./icon/button-up.svg");
+                background-image: url("./icon/win98_button-up.svg");
             }
             &:end {
                 height: 17px;
-                background-image: url("./icon/button-down.svg");
+                background-image: url("./icon/win98_button-down.svg");
             }
         }
         &:horizontal {
             &:start {
                 width: 16px;
-                background-image: url("./icon/button-left.svg");
+                background-image: url("./icon/win98_button-left.svg");
             }
             &:end {
                 width: 16px;
-                background-image: url("./icon/button-right.svg");
+                background-image: url("./icon/win98_button-right.svg");
             }
         }
     }
