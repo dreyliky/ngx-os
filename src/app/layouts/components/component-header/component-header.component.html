@@ -16,3 +16,14 @@
     [routerLink]="'/' + routeEnum.Desktop">
     Desktop
 </os-button>
+
+<div class="theme-selector">
+    <os-selectbox
+        (osChange)="onThemeChanged($event)">
+        <os-option
+            *ngFor="let theme of themes"
+            [value]="theme.cssName">
+            {{ theme.name }}
+        </os-option>
+    </os-selectbox>
+</div>

@@ -1,0 +1,2 @@
+export * from './theme.service';
+

@@ -1,0 +1,17 @@
+import { ThemeEnum } from '../enums';
+import { Theme } from '../interfaces';
+
+export const ThemeArray: Theme[] = [
+    {
+        name: 'Windows 98',
+        cssName: ThemeEnum.Win98
+    },
+    {
+        name: 'Windows XP',
+        cssName: ThemeEnum.WinXP
+    },
+    {
+        name: 'Windows 10',
+        cssName: ThemeEnum.Win10
+    }
+];

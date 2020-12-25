@@ -29,9 +29,24 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "extractCss": true,
             "styles": [
               "src/styles.scss",
-              "projects/os-angular/src/lib/themes/win10/index.scss"
+              {
+                "input": "projects/os-angular/src/lib/themes/win98/index.scss",
+                "bundleName": "win98",
+                "inject": false
+              },
+              {
+                "input": "projects/os-angular/src/lib/themes/winXP/index.scss",
+                "bundleName": "winXP",
+                "inject": false
+              },
+              {
+                "input": "projects/os-angular/src/lib/themes/win10/index.scss",
+                "bundleName": "win10",
+                "inject": false
+              }
             ],
             "scripts": []
           },

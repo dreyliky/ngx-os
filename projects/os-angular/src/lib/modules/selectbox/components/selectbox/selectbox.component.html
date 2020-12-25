@@ -2,6 +2,7 @@
     class="os-element"
     [ngStyle]="style"
     [class]="styleClass"
+    (change)="osChange.emit($event)"
     (click)="osClick.emit($event)"
     (dblclick)="osDblclick.emit($event)"
     (mousedown)="osMousedown.emit($event)"

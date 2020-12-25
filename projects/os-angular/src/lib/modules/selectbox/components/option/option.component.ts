@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, ViewChild, TemplateRef } from '@angular/core';
+import {
+    ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild
+} from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -10,6 +12,9 @@ export class OptionComponent extends OsBaseComponent {
 
     @Input()
     public selected: boolean;
+
+    @Input()
+    public value: string;
 
     @ViewChild('OptionTemplate', { static: true })
     public optionTemplate: TemplateRef<HTMLOptionElement>;
