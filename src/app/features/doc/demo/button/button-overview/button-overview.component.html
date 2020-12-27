@@ -1,1 +1,21 @@
-<os-button>OS Button</os-button>
+<os-header [size]="6">
+    Counter
+</os-header>
+
+<div class="row">
+    <os-button
+        (osClick)="onIncreaseButtonClick()">
+        +
+    </os-button>
+
+    <os-button
+        (osClick)="onDecreaseButtonClick()">
+        -
+    </os-button>
+</div>
+
+<div class="row">
+    <os-text>
+        Result: {{ counter }}
+    </os-text>
+</div>
