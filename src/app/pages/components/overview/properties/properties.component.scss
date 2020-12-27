@@ -8,19 +8,12 @@
 .title {
     width: 100%;
     display: flex;
+    align-items: center;
     margin-top: 15px;
 
     os-header::ng-deep {
-        h5 {
+        h6 {
             margin-bottom: 0px;
-        }
-    }
-
-    .collapse-text {
-        transform: rotateZ(90deg);
-
-        &:not(.collapsed) {
-            transform: none;
         }
     }
 }

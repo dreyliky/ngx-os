@@ -1,13 +1,10 @@
 <div class="title">
-    <os-button (osClick)="onCollapseButtonClick()">
-        <div
-            class="collapse-text"
-            [class.collapsed]="isCollapsed">
-            &#62;
-        </div>
-    </os-button>
+    <demo-collapse-button
+        [isCollapsed]="isCollapsed"
+        (click)="onCollapseButtonClick()">
+    </demo-collapse-button>
 
-    <os-header [size]="5">
+    <os-header [size]="6">
         Properties
     </os-header>
 </div>

@@ -7,6 +7,7 @@ import { MenuComponent } from './menu';
 import { MethodsComponent } from './methods';
 import { OverviewComponent } from './overview.component';
 import { PropertiesComponent } from './properties';
+import { CollapseButtonComponent } from './collapse-button/collapse-button.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { PropertiesComponent } from './properties';
         MethodsComponent,
         DemoBlockComponent,
         ComponentBlockComponent,
-        MenuComponent
+        MenuComponent,
+        CollapseButtonComponent
     ],
     imports: [
         SharedModule,
