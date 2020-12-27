@@ -10,37 +10,43 @@
     (wheel)="osWheel.emit($event)">
     <h1
         *ngSwitchCase="1"
-        class="os-header os-element">
+        class="os-header os-element"
+        [id]="id">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </h1>
 
     <h2
         *ngSwitchCase="2"
-        class="os-header os-element">
+        class="os-header os-element"
+        [id]="id">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </h2>
 
     <h3
         *ngSwitchCase="3"
-        class="os-header os-element">
+        class="os-header os-element"
+        [id]="id">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </h3>
 
     <h4
         *ngSwitchCase="4"
-        class="os-header os-element">
+        class="os-header os-element"
+        [id]="id">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </h4>
 
     <h5
         *ngSwitchCase="5"
-        class="os-header os-element">
+        class="os-header os-element"
+        [id]="id">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </h5>
 
     <h6
         *ngSwitchCase="6"
-        class="os-header os-element">
+        class="os-header os-element"
+        [id]="id">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </h6>
 </div>

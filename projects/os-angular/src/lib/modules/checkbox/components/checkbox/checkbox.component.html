@@ -1,7 +1,7 @@
 <input
     class="os-element"
     type="checkbox"
-    [attr.id]="id"
+    [id]="id"
     [class]="styleClass"
     [ngStyle]="style"
     [name]="name"
@@ -18,7 +18,7 @@
     (wheel)="osWheel.emit($event)" />
 
 <label
-    [attr.for]="id"
+    [for]="id"
     class="os-element">
     {{ label }}
 </label>

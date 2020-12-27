@@ -1,11 +1,13 @@
 <label
-    class="os-element">
+    class="os-element"
+    [for]="id">
     {{ label }}
 </label>
 
 <textarea
     class="os-element"
     [class]="styleClass"
+    [id]="id"
     [ngStyle]="style"
     [name]="name"
     [placeholder]="placeholder"
