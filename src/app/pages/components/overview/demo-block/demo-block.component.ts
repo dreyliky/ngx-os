@@ -12,7 +12,7 @@ enum SectionEnum {
 }
 
 @Component({
-    selector: 'demo-demo-block',
+    selector: 'demonstration-block',
     templateUrl: './demo-block.component.html',
     styleUrls: ['./demo-block.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

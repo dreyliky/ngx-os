@@ -18,6 +18,7 @@ import {
 import { ComponentMetaInfo } from '../interfaces';
 import { ComponentType } from '../types';
 
+// FIXME: Rename file name as const below
 export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
     .set(
         'button',

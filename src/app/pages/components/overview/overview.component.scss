@@ -19,9 +19,18 @@
     }
 }
 
-.content {
+.wrapper {
     width: 100%;
-    max-width: 1000px;
-    display: block;
-    margin: 30px auto;
+    display: flex;
+
+    .menu {
+        width: 250px;
+    }
+    
+    .content {
+        width: 100%;
+        max-width: 1000px;
+        display: block;
+        margin: 30px auto;
+    }
 }

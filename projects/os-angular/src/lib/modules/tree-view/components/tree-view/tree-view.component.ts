@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { TreeNode } from '../../interfaces';
 
@@ -31,20 +31,22 @@ export class TreeViewComponent extends OsBaseComponent {
             .map((treeNode) => this.setParentForNodeAndChildren(treeNode));
     }
 
-    private setParentForNodeAndChildren(node: TreeNode<any>, parent: TreeNode<any> = null): TreeNode<any> {
+    private setParentForNodeAndChildren(
+        node: TreeNode<any>,
+        parent: TreeNode<any> = null
+    ): TreeNode<any> {
         const targetNode = { ...node };
 
         targetNode.parent = parent;
 
         if (node.children && node.children.length) {
-            targetNode.children = node.children
-                .map((childNode) => {
-                    childNode.parent = targetNode;
+            targetNode.children = node.children.map((childNode) => {
+                childNode.parent = targetNode;
 
-                    childNode = this.setParentForNodeAndChildren(childNode, targetNode);
+                childNode = this.setParentForNodeAndChildren(childNode, targetNode);
 
-                    return childNode;
-                });
+                return childNode;
+            });
         }
 
         return targetNode;

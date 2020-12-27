@@ -4,17 +4,23 @@
     </os-header>
 </div>
 
-<div class="content">
-    <demo-demo-block
-        *ngIf="metaInfo.demoComponents && metaInfo.demoComponents[0]"
-        [demoComponentMetaInfo]="metaInfo.demoComponents[0]">
-        <ng-template #demoTemplate>
-        </ng-template>
-    </demo-demo-block>
+<div class="wrapper">
+    <div class="menu">
+        <demo-menu></demo-menu>
+    </div>
     
-    <demo-component-block
-        *ngFor="let component of components"
-        [component]="component"
-        [metaInfo]="metaInfo">
-    </demo-component-block>
+    <div class="content">
+        <demonstration-block
+            *ngIf="metaInfo.demoComponents && metaInfo.demoComponents[0]"
+            [demoComponentMetaInfo]="metaInfo.demoComponents[0]">
+            <ng-template #demoTemplate>
+            </ng-template>
+        </demonstration-block>
+        
+        <demo-component-block
+            *ngFor="let component of components"
+            [component]="component"
+            [metaInfo]="metaInfo">
+        </demo-component-block>
+    </div>
 </div>

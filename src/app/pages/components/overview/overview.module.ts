@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { DocumentationModule } from '@Doc/features/doc';
+import { ComponentBlockComponent } from './component-block';
+import { DemoBlockComponent } from './demo-block';
+import { MenuComponent } from './menu';
+import { MethodsComponent } from './methods';
 import { OverviewComponent } from './overview.component';
 import { PropertiesComponent } from './properties';
-import { MethodsComponent } from './methods';
-import { DemoBlockComponent } from './demo-block';
-import { ComponentBlockComponent } from './component-block/component-block.component';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { ComponentBlockComponent } from './component-block/component-block.compo
         PropertiesComponent,
         MethodsComponent,
         DemoBlockComponent,
-        ComponentBlockComponent
+        ComponentBlockComponent,
+        MenuComponent
     ],
     imports: [
         SharedModule,
