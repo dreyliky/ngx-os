@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
+} from '@angular/core';
 import { ThemeArray } from '@Doc/core/data';
-import { DocumentationRouteEnum, ThemeEnum } from '@Doc/core/enums';
+import { DocumentationRouteEnum } from '@Doc/core/enums';
+import { Theme } from '@Doc/core/interfaces';
 import { ThemeManagerService } from '@Doc/core/services';
 import { Subscription } from 'rxjs';
 
@@ -10,10 +13,10 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./component-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ComponentHeaderComponent implements OnInit {
+export class ComponentHeaderComponent implements OnInit, OnDestroy {
 
     public themes = ThemeArray;
-    public appliedTheme: ThemeEnum;
+    public appliedTheme: Theme;
 
     public routeEnum = DocumentationRouteEnum;
 
@@ -28,17 +31,19 @@ export class ComponentHeaderComponent implements OnInit {
         this.initAppliedThemeObserver();
     }
 
-    public onThemeChanged(event: Event): void {
-        const target = event.target as HTMLSelectElement;
-        const themeName = target.value as ThemeEnum;
+    public ngOnDestroy(): void {
+        this.appliedThemeSubscription?.unsubscribe();
+    }
 
-        this.themeManagerService.applyTheme(themeName);
+    public onThemeChanged(theme: Theme): void {
+        this.themeManagerService.applyTheme(theme.cssName);
     }
 
     private initAppliedThemeObserver(): void {
         this.appliedThemeSubscription = this.themeManagerService.appliedTheme$
-            .subscribe((theme) => {
-                this.appliedTheme = theme;
+            .subscribe((themeCssName) => {
+                this.appliedTheme = this.themes
+                    .find((currTheme) => currTheme.cssName === themeCssName);
 
                 this.changeDetector.detectChanges();
             });

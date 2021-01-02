@@ -144,6 +144,13 @@
     },
     "os-angular": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "style": "scss",
+          "prefix": "os"
+        }
+      },
       "root": "projects/os-angular",
       "sourceRoot": "projects/os-angular/src",
       "prefix": "os",

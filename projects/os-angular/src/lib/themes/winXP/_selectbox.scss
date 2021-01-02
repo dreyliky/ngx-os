@@ -1,6 +1,11 @@
 os-selectbox {
+    display: block;
+    position: relative;
 
-    select {
+    div.os-selectbox {
+        height: 21px;
+        display: flex;
+        align-items: center;
         font-family: var(--sans-serif);
         font-size: 11px;
         padding: 3px 4px;
@@ -11,17 +16,16 @@ os-selectbox {
         -moz-appearance: none;
         appearance: none;
         border-radius: 0;
-        height: 21px;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
-        position: relative;
         padding-right: 32px;
         background-image: url("./icon/winXP_dropdown.svg");
         background-size: 15px;
-        background-position: top 2px right 2px;
+        background-position: top 1px right 2px;
         background-repeat: no-repeat;
         border-radius: 0;
+        user-select: none;
 
         &:focus {
             outline: none;
@@ -44,4 +48,40 @@ os-selectbox {
         }
     }
 
+}
+
+os-options {
+    width: 100%;
+    display: block;
+    border: solid 1px #000000;
+    position: absolute;
+    background-color: #ffffff;
+    cursor: default;
+    user-select: none;
+
+    .os-options {
+        &:hover {
+            .os-option.selected {
+                background-color: #ffffff;
+                color: #000000;
+            }
+        }
+
+        .os-option {
+            height: 15px;
+            display: flex;
+            align-items: center;
+            padding: 0px 2px;
+    
+            &.selected {
+                background-color: #316ac5;
+                color: #ffffff;
+            }
+
+            &:hover {
+                background-color: #316ac5 !important;
+                color: #ffffff !important;
+            }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 import {
-    ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild
+    ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild
 } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
@@ -8,19 +8,27 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './option.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionComponent extends OsBaseComponent {
+export class OptionComponent<T> extends OsBaseComponent {
 
     @Input()
     public selected: boolean;
 
     @Input()
-    public value: string;
+    public value: T;
+
+    @Output()
+    public osSelected = new EventEmitter<T>();
 
     @ViewChild('OptionTemplate', { static: true })
     public optionTemplate: TemplateRef<HTMLOptionElement>;
 
     constructor() {
         super();
+    }
+
+    public onOptionClick(event: MouseEvent): void {
+        this.osClick.emit(event);
+        this.osSelected.emit(this.value);
     }
 
 }

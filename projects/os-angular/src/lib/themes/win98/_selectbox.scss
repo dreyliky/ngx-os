@@ -1,6 +1,11 @@
 os-selectbox {
+    display: block;
+    position: relative;
 
-    select {
+    div.os-selectbox {
+        height: 21px;
+        display: flex;
+        align-items: center;
         font-family: var(--sans-serif);
         font-size: 11px;
         padding: 3px 4px;
@@ -11,16 +16,16 @@ os-selectbox {
         -moz-appearance: none;
         appearance: none;
         border-radius: 0;
-        height: 21px;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
-        position: relative;
         padding-right: 32px;
         background-image: url("./icon/win98_button-down.svg");
         background-position: top 2px right 2px;
         background-repeat: no-repeat;
         border-radius: 0;
+        user-select: none;
+        box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
 
         &:focus {
             outline: none;
@@ -37,4 +42,40 @@ os-selectbox {
         }
     }
 
+}
+
+os-options {
+    width: 100%;
+    display: block;
+    border: solid 1px #000000;
+    position: absolute;
+    background-color: #ffffff;
+    cursor: default;
+    user-select: none;
+
+    .os-options {
+        &:hover {
+            .os-option.selected {
+                background-color: #ffffff;
+                color: #000000;
+            }
+        }
+
+        .os-option {
+            height: 15px;
+            display: flex;
+            align-items: center;
+            padding: 0px 2px;
+    
+            &.selected {
+                background-color: #0a246a;
+                color: #ffffff;
+            }
+
+            &:hover {
+                background-color: #0a246a !important;
+                color: #ffffff !important;
+            }
+        }
+    }
 }

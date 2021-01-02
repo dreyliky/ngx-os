@@ -1,13 +1,16 @@
-<os-selectbox>
-    <os-option>
-        Option 1
-    </os-option>
+<form [formGroup]="formGroup">
+    <os-selectbox
+        [formControl]="formGroup.controls.selectedItem"
+        [displayField]="'text'">
+        <os-option
+            *ngFor="let item of items"
+            [selected]="formGroup.controls.selectedItem.value === item"
+            [value]="item">
+            {{ item.text }}
+        </os-option>
+    </os-selectbox>
+</form>
 
-    <os-option [selected]="true">
-        Option 2
-    </os-option>
-
-    <os-option>
-        Option 3
-    </os-option>
-</os-selectbox>
+<div class="form-data">
+    Form data: {{ formGroup.value | json }}
+</div>

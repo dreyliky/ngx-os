@@ -25,11 +25,14 @@
 
 <div class="theme-selector">
     <os-selectbox
+        [placeholder]="'Choose theme'"
+        [value]="appliedTheme"
+        [displayField]="'name'"
         (osChange)="onThemeChanged($event)">
         <os-option
             *ngFor="let theme of themes"
-            [selected]="theme.cssName === appliedTheme"
-            [value]="theme.cssName">
+            [selected]="theme === appliedTheme"
+            [value]="theme">
             {{ theme.name }}
         </os-option>
     </os-selectbox>
