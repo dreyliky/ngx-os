@@ -24,25 +24,25 @@
 
 table {
     width: 100%;
-    border: solid 1px gray;
     border-collapse: collapse; 
 
     thead {
         th {
             text-align: left;
             height: 50px;
-            background: rgba(0, 0, 0, .05);
+            background: rgb(243, 243, 243);
+            border: solid 1px rgb(243, 243, 243);
             padding: 5px;
 
             &.description-col {
-                width: 350px !important;
+                width: 60% !important;
             }
         }
     }
 
     tbody {
         tr {
-            border: solid 1px gray !important;
+            border: solid 1px rgb(243, 243, 243);
 
             .prop-description-col {
                 padding: 5px;
@@ -51,9 +51,12 @@ table {
         }
 
         .prop-name-col {
-            display: flex;
-            flex-direction: column;
-            padding: 5px;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 10px;
+            font-size: 12px;
         }
     }
 }

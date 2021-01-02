@@ -16,7 +16,15 @@
         <thead>
             <tr>
                 <th>
-                    <os-text>Property</os-text>
+                    <os-text>Name</os-text>
+                </th>
+
+                <th>
+                    <os-text>Type</os-text>
+                </th>
+
+                <th>
+                    <os-text>Default</os-text>
                 </th>
     
                 <th class="description-col">
@@ -26,12 +34,17 @@
         </thead>
     
         <tbody>
-            <tr *ngFor="let inputProp of component.inputsClass">
+            <tr *ngFor="let inputProp of inputs">
                 <td class="prop-name-col">
-                    <os-text>@Input()</os-text>
-                    <os-text>
-                        public {{ inputProp.name }}: {{ inputProp.type }}
-                    </os-text>
+                    <os-text>{{ inputProp.name }}</os-text>
+                </td>
+
+                <td>
+                    <os-text>{{ inputProp.type }}</os-text>
+                </td>
+
+                <td>
+                    <os-text>{{ inputProp.defaultValue || 'undefined' }}</os-text>
                 </td>
     
                 <td class="prop-metaInfo-col">
@@ -41,12 +54,17 @@
                 </td>
             </tr>
     
-            <tr *ngFor="let outputProp of component.outputsClass">
+            <tr *ngFor="let outputProp of outputs">
                 <td class="prop-name-col">
-                    <os-text>@Output()</os-text>
-                    <os-text>
-                        public {{ outputProp.name }}: {{ outputProp.type }}
-                    </os-text>
+                    <os-text>{{ outputProp.name }}</os-text>
+                </td>
+
+                <td>
+                    <os-text>{{ outputProp.type }}</os-text>
+                </td>
+
+                <td>
+                    <os-text>{{ outputProp.defaultValue }}</os-text>
                 </td>
     
                 <td class="prop-metaInfo-col">

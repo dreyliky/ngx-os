@@ -246,7 +246,7 @@ interface MethodsClass2 {
     modifierKind: number[];
 }
 
-interface OutputsClass {
+export interface OutputsClass {
     name: string;
     line: number;
     type: string;
@@ -255,7 +255,7 @@ interface OutputsClass {
     inheritance?: Inheritance;
 }
 
-interface InputsClass {
+export interface InputsClass {
     name: string;
     line: number;
     type: string;

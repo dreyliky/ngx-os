@@ -2,13 +2,15 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef
+    Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild, ViewContainerRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
     ComponentMetaInfo, ComponentMetaInfoMap,
     ComponentType, DemoComponentMetaInfo, DocComponent, DocService
 } from '@Doc/features/doc';
+import { Subscription } from 'rxjs';
+import { DemoBlockComponent } from './demo-block';
 
 @Component({
     selector: 'demo-component-overview',
@@ -16,13 +18,20 @@ import {
     styleUrls: ['./overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OverviewComponent implements OnInit, AfterViewInit {
+export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public metaInfo: ComponentMetaInfo;
     public components: DocComponent[];
 
     @ViewChild('demoTemplate', { read: ViewContainerRef })
     private readonly demoTemplate: ViewContainerRef;
+
+    @ViewChild(DemoBlockComponent)
+    private set demoBlockComponent(_: DemoBlockComponent) {
+        this.initDemoComponent();
+    }
+
+    private routeParamsSubscription: Subscription;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef,
@@ -33,11 +42,15 @@ export class OverviewComponent implements OnInit, AfterViewInit {
 
     public ngOnInit(): void {
         this.initPage();
-        this.routeObserver();
+        this.initRouteParamsObserver();
     }
 
     public ngAfterViewInit(): void {
         this.initDemoComponent();
+    }
+
+    public ngOnDestroy(): void {
+        this.routeParamsSubscription?.unsubscribe();
     }
 
     private initDescription(): void {
@@ -70,17 +83,18 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         }
     }
 
-    private routeObserver(): void {
-        this.activatedRoute.params.subscribe(() => {
-            this.initPage();
-        });
+    private initRouteParamsObserver(): void {
+        this.routeParamsSubscription = this.activatedRoute.params
+            .subscribe(() => {
+                this.initPage();
+                this.changeDetector.detectChanges();
+            });
     }
 
     private initPage(): void {
         this.initDescription();
         this.initDocComponents();
         this.initDemoComponent();
-        this.changeDetector.detectChanges();
     }
 
 }

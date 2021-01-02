@@ -32,6 +32,20 @@ export class DocService {
             .find((component) => component.name === componentType.name);
     }
 
+    public getUniqueDocComponentInputs(docComponent: DocComponent): any {
+        const inputNames = docComponent.inputsClass.map((input) => input.name);
+
+        return docComponent.inputsClass
+            .filter((input, index) => inputNames.indexOf(input.name) === index);
+    }
+
+    public getUniqueDocComponentOutputs(docComponent: DocComponent): any {
+        const outputNames = docComponent.outputsClass.map((output) => output.name);
+
+        return docComponent.outputsClass
+            .filter((output, index) => outputNames.indexOf(output.name) === index);
+    }
+
     private updateLibDocData(): void {
         this.docStateService.libDoc$
             .pipe(
