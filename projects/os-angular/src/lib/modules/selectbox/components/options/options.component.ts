@@ -1,5 +1,5 @@
 import {
-    ChangeDetectionStrategy, Component, OnInit
+    ChangeDetectionStrategy, Component, Input, OnInit
 } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
@@ -10,6 +10,12 @@ import { OsBaseComponent } from 'os-angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionsComponent extends OsBaseComponent implements OnInit {
+
+    @Input()
+    public scrollViewStyle: object;
+
+    @Input()
+    public scrollViewStyleClass: string;
 
     constructor() {
         super();

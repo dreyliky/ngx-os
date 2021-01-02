@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ComponentMetaInfoMap } from '@Doc/features/doc';
-import { TreeNode } from 'os-angular';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DocumentationRouteEnum } from '@Doc/core/enums';
+import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-menu',
@@ -10,22 +11,19 @@ import { TreeNode } from 'os-angular';
 })
 export class MenuComponent implements OnInit {
 
-    public components: TreeNode<any>[] = [];
+    @Input()
+    public openedComponentMetaInfo: ComponentMetaInfo;
 
-    constructor() {}
+    public components: ComponentMetaInfo[] = [...ComponentMetaInfoMap.values()];
 
-    public ngOnInit(): void {
-        this.initComponents();
-    }
+    constructor(
+        private readonly router: Router
+    ) {}
 
-    private initComponents(): void {
-        this.components = [...ComponentMetaInfoMap.values()]
-            .map((componentMeta) => {
-                return {
-                    label: componentMeta.name,
-                    data: componentMeta
-                };
-            });
+    public ngOnInit(): void {}
+
+    public onComponentOptionSelected(component: ComponentMetaInfo): void {
+        this.router.navigateByUrl(`/${DocumentationRouteEnum.Components}/${component.type}`);
     }
 
 }

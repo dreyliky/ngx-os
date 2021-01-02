@@ -26,18 +26,12 @@
 </div>
 
 <os-options
-    *ngIf="isOpened">
+    *ngIf="isOpened"
+    [scrollViewStyle]="scrollViewStyle"
+    [scrollViewStyleClass]="scrollViewStyleClass">
     <ng-content select="[options-header]"></ng-content>
 
-    <ng-template
-        ngFor
-        let-optionContent
-        [ngForOf]="optionComponentList"
-        [ngForTrackBy]="trackByFn">
-        <ng-container
-            *ngTemplateOutlet="optionContent.optionTemplate">
-        </ng-container>
-    </ng-template>
+    <ng-content select="os-option"></ng-content>
 
     <ng-content select="[options-footer]"></ng-content>
 </os-options>

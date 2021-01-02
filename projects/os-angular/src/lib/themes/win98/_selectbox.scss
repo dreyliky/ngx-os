@@ -42,13 +42,16 @@ os-selectbox {
         }
     }
 
+    os-options {
+        position: absolute;
+    }
+
 }
 
 os-options {
     width: 100%;
     display: block;
     border: solid 1px #000000;
-    position: absolute;
     background-color: #ffffff;
     cursor: default;
     user-select: none;

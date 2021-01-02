@@ -1,5 +1,5 @@
 import {
-    ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild
+    ChangeDetectionStrategy, Component, EventEmitter, Input, Output
 } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
@@ -18,9 +18,6 @@ export class OptionComponent<T> extends OsBaseComponent {
 
     @Output()
     public osSelected = new EventEmitter<T>();
-
-    @ViewChild('OptionTemplate', { static: true })
-    public optionTemplate: TemplateRef<HTMLOptionElement>;
 
     constructor() {
         super();

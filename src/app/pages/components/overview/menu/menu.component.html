@@ -1,3 +1,9 @@
-<os-tree-view
-    [data]="components">
-</os-tree-view>
+<os-options>
+    <os-option
+        *ngFor="let component of components"
+        [selected]="openedComponentMetaInfo.type === component.type"
+        [value]="component"
+        (osSelected)="onComponentOptionSelected($event)">
+        {{ component.name }}
+    </os-option>
+</os-options>

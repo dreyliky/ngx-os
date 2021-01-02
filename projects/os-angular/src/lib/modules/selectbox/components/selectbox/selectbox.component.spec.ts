@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SelectboxComponent } from './selectbox.component';
 
 describe('SelectboxComponent', () => {
-    let component: SelectboxComponent;
-    let fixture: ComponentFixture<SelectboxComponent>;
+    let component: SelectboxComponent<any>;
+    let fixture: ComponentFixture<SelectboxComponent<any>>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

@@ -1,5 +1,6 @@
 import {
-    AfterViewInit, ChangeDetectionStrategy,
+    AfterViewInit,
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef
 } from '@angular/core';
@@ -31,8 +32,8 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     ) {}
 
     public ngOnInit(): void {
-        this.initDescription();
-        this.initDocComponents();
+        this.initPage();
+        this.routeObserver();
     }
 
     public ngAfterViewInit(): void {
@@ -52,11 +53,12 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     private initDemoComponent(): void {
         const demoComponentMetaInfo = this.getDemoComponentTypeRef();
 
-        if (demoComponentMetaInfo) {
+        if (this.demoTemplate && demoComponentMetaInfo) {
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
                 demoComponentMetaInfo.component
             );
 
+            this.demoTemplate.clear();
             this.demoTemplate.createComponent(componentFactory);
             this.changeDetector.detectChanges();
         }
@@ -66,6 +68,19 @@ export class OverviewComponent implements OnInit, AfterViewInit {
         if (this.metaInfo.demoComponents) {
             return this.metaInfo.demoComponents[0];
         }
+    }
+
+    private routeObserver(): void {
+        this.activatedRoute.params.subscribe(() => {
+            this.initPage();
+        });
+    }
+
+    private initPage(): void {
+        this.initDescription();
+        this.initDocComponents();
+        this.initDemoComponent();
+        this.changeDetector.detectChanges();
     }
 
 }

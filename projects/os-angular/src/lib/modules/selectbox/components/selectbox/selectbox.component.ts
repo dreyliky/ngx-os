@@ -42,6 +42,12 @@ export class SelectboxComponent<T>
     @Input()
     public valueField: keyof T;
 
+    @Input()
+    public scrollViewStyle: object = { maxHeight: '250px' };
+
+    @Input()
+    public scrollViewStyleClass: string;
+
     @Output()
     public osChange = new EventEmitter<T>();
 
