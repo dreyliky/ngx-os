@@ -1,4 +1,6 @@
-<div class="title">
+<div
+    *ngIf="inputs.length"
+    class="title">
     <demo-collapse-button
         [isCollapsed]="isCollapsed"
         (click)="onCollapseButtonClick()">
@@ -12,7 +14,7 @@
 <div
     *ngIf="isCollapsed"
     class="content">
-    <table *ngIf="inputs.length; else noPropsTemplate">
+    <table>
         <thead>
             <tr>
                 <th>
@@ -56,8 +58,3 @@
         </tbody>
     </table>
 </div>
-
-
-<ng-template #noPropsTemplate>
-    <os-text>No properties</os-text>
-</ng-template>

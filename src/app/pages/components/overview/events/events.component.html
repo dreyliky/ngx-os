@@ -1,4 +1,6 @@
-<div class="title">
+<div
+    *ngIf="outputs.length"
+    class="title">
     <demo-collapse-button
         [isCollapsed]="isCollapsed"
         (click)="onCollapseButtonClick()">
@@ -12,7 +14,7 @@
 <div
     *ngIf="isCollapsed"
     class="content">
-    <table *ngIf="outputs.length; else noEventsTemplate">
+    <table>
         <thead>
             <tr>
                 <th>
@@ -49,8 +51,3 @@
         </tbody>
     </table>
 </div>
-
-
-<ng-template #noEventsTemplate>
-    <os-text>No events</os-text>
-</ng-template>

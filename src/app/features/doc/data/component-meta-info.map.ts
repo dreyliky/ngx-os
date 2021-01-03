@@ -301,8 +301,8 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 WindowComponent,
-                DynamicWindowComponent,
-                TitleBarComponent
+                TitleBarComponent,
+                DynamicWindowComponent
             ],
             demoComponents: [
                 {

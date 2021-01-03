@@ -30,12 +30,11 @@ export class DocService {
     }
 
     public getLibDocComponentsByTypes(componentTypes: Type<any>[]): DocComponent[] {
-        const componentNames: string[] = componentTypes
-            .map((componentType) => componentType.name);
-
-        return this.libDoc.components.filter((component) => {
-            return componentNames.includes(component.name);
-        });
+        return componentTypes
+            .map((componentType) => {
+                return this.libDoc.components
+                    .find((component) => component.name === componentType.name);
+            });
     }
 
     public getDemoDocComponentByName(componentType: Type<any>): DocComponent {
