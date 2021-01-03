@@ -1,49 +1,53 @@
 os-selectbox {
+    height: 21px;
     display: block;
     position: relative;
+    font-family: var(--sans-serif);
+    font-size: 11px;
+    padding: 3px 4px;
+    border: none;
+    background-color: var(--button-highlight);
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 32px;
+    background-image: url("./icon/win98_button-down.svg");
+    background-position: top 2px right 2px;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    user-select: none;
+    box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
 
-    div.os-selectbox {
-        height: 21px;
-        display: flex;
-        align-items: center;
-        font-family: var(--sans-serif);
-        font-size: 11px;
-        padding: 3px 4px;
-        border: none;
-        background-color: var(--button-highlight);
-        box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 0;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        padding-right: 32px;
-        background-image: url("./icon/win98_button-down.svg");
-        background-position: top 2px right 2px;
-        background-repeat: no-repeat;
-        border-radius: 0;
-        user-select: none;
-        box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
-
-        &:focus {
-            outline: none;
-            color: var(--button-highlight);
-            background-color: var(--dialog-blue);
-            option {
-                color: #000;
-                background-color: #fff;
-            }
+    &:focus {
+        outline: none;
+        color: var(--button-highlight);
+        background-color: var(--dialog-blue);
+        option {
+            color: #000;
+            background-color: #fff;
         }
+    }
 
-        &:active {
-            background-image: url("./icon/win98_button-down-active.svg");
-        }
+    &:active {
+        background-image: url("./icon/win98_button-down-active.svg");
     }
 
     os-options {
         position: absolute;
+        left: -1px;
+        top: 100%;
+    }
+
+    .os-placeholder, .os-value {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
 
 }
