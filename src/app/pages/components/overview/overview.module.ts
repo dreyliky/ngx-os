@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { DocumentationModule } from '@Doc/features/doc';
+import { CollapseButtonComponent } from './collapse-button';
 import { ComponentBlockComponent } from './component-block';
 import { DemoBlockComponent } from './demo-block';
+import { EventsComponent } from './events';
 import { MenuComponent } from './menu';
 import { MethodsComponent } from './methods';
 import { OverviewComponent } from './overview.component';
 import { PropertiesComponent } from './properties';
-import { CollapseButtonComponent } from './collapse-button/collapse-button.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { CollapseButtonComponent } from './collapse-button/collapse-button.compo
         DemoBlockComponent,
         ComponentBlockComponent,
         MenuComponent,
-        CollapseButtonComponent
+        CollapseButtonComponent,
+        EventsComponent
     ],
     imports: [
         SharedModule,

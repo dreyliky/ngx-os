@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { Doc, DocComponent } from '../interfaces';
+import { Doc, DocComponent, MethodsClass } from '../interfaces';
 import { DocStateService } from './doc-state.service';
 
 @Injectable({
@@ -10,6 +10,17 @@ export class DocService {
 
     private libDoc: Doc;
     private demoDoc: Doc;
+
+    private readonly publicMethodModifier: number = 114;
+
+    private readonly forbiddenMethodNames: string[] = [
+        'ngOnInit', 'ngOnDestroy', 'ngAfterViewInit', 'ngOnChange',
+        'ngAfterContentInit'
+    ];
+
+    private readonly forbiddenMethodStartsWithPhrase: string[] = [
+        'on'
+    ];
 
     constructor(
         private readonly docStateService: DocStateService
@@ -44,6 +55,20 @@ export class DocService {
 
         return docComponent.outputsClass
             .filter((output, index) => outputNames.indexOf(output.name) === index);
+    }
+
+    public getDocComponentActualPublicMethods(docComponent: DocComponent): MethodsClass[] {
+        return docComponent.methodsClass
+            .filter((method) => {
+                return (
+                    method.modifierKind.includes(this.publicMethodModifier)
+                    &&
+                    !this.forbiddenMethodNames.includes(method.name)
+                    &&
+                    this.forbiddenMethodStartsWithPhrase
+                        .every((phrase) => !method.name.startsWith(phrase))
+                );
+            });
     }
 
     private updateLibDocData(): void {

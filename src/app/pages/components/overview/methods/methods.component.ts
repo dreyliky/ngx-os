@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ComponentMetaInfo, DocComponent } from '@Doc/features/doc';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ComponentMetaInfo, DocComponent, DocService, MethodsClass } from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-methods',
@@ -15,11 +15,17 @@ export class MethodsComponent implements OnInit {
     @Input()
     public readonly component: DocComponent;
 
+    public methods: MethodsClass[];
+
     public isCollapsed: boolean = false;
 
-    constructor() {}
+    constructor(
+        private readonly docService: DocService
+    ) {}
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+        this.methods = this.docService.getDocComponentActualPublicMethods(this.component);
+    }
 
     public onCollapseButtonClick(): void {
         this.isCollapsed = !this.isCollapsed;

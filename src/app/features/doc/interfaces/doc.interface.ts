@@ -136,13 +136,14 @@ interface HostListener {
     line: number;
 }
 
-interface MethodsClass {
+export interface MethodsClass {
     name: string;
     args: Arg4[];
     optional: boolean;
     returnType: string;
     typeParameters: any[];
     line: number;
+    description?: string;
     modifierKind: number[];
     jsdoctags?: Jsdoctag4[];
 }

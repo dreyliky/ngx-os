@@ -5,22 +5,18 @@
     </demo-collapse-button>
 
     <os-header [size]="6">
-        Properties
+        Events
     </os-header>
 </div>
 
 <div
     *ngIf="isCollapsed"
     class="content">
-    <table *ngIf="inputs.length; else noPropsTemplate">
+    <table *ngIf="outputs.length; else noEventsTemplate">
         <thead>
             <tr>
                 <th>
                     <os-text>Name</os-text>
-                </th>
-
-                <th>
-                    <os-text>Type</os-text>
                 </th>
 
                 <th>
@@ -32,24 +28,21 @@
                 </th>
             </tr>
         </thead>
-    
+
         <tbody>
-            <tr *ngFor="let inputProp of inputs">
+    
+            <tr *ngFor="let outputProp of outputs">
                 <td class="prop-name-col">
-                    <os-text>{{ inputProp.name }}</os-text>
+                    <os-text>{{ outputProp.name }}</os-text>
                 </td>
 
                 <td>
-                    <os-text>{{ inputProp.type }}</os-text>
-                </td>
-
-                <td>
-                    <os-text>{{ inputProp.defaultValue || 'undefined' }}</os-text>
+                    <os-text>{{ outputProp.defaultValue }}</os-text>
                 </td>
     
                 <td class="prop-metaInfo-col">
                     <os-text>
-                        <span [innerHTML]="inputProp?.description"></span>
+                        <span [innerHTML]="outputProp?.description"></span>
                     </os-text>
                 </td>
             </tr>
@@ -58,6 +51,6 @@
 </div>
 
 
-<ng-template #noPropsTemplate>
-    <os-text>No properties</os-text>
+<ng-template #noEventsTemplate>
+    <os-text>No events</os-text>
 </ng-template>
