@@ -3,7 +3,7 @@ import {
     OnChanges, OnInit, SimpleChanges
 } from '@angular/core';
 import {
-    ComponentMetaInfo, DocComponent, DocService, InputsClass, OutputsClass
+    ComponentMetaInfo, DocComponent, DocService, InputsClass
 } from '@Doc/features/doc';
 
 @Component({
@@ -21,7 +21,6 @@ export class PropertiesComponent implements OnInit, OnChanges {
     public readonly component: DocComponent;
 
     public inputs: InputsClass[];
-    public outputs: OutputsClass[];
 
     public isCollapsed: boolean = false;
 
@@ -34,8 +33,6 @@ export class PropertiesComponent implements OnInit, OnChanges {
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.component.previousValue !== changes.component.currentValue) {
             this.inputs = this.docService.getUniqueDocComponentInputs(this.component);
-            this.outputs = this.docService.getUniqueDocComponentOutputs(this.component);
-            console.log(this.inputs);
         }
     }
 
