@@ -15,7 +15,8 @@ export class DocService {
 
     private readonly forbiddenMethodNames: string[] = [
         'ngOnInit', 'ngOnDestroy', 'ngAfterViewInit', 'ngOnChange',
-        'ngAfterContentInit'
+        'ngAfterContentInit', 'registerOnChange', 'registerOnTouched',
+        'writeValue', 'onChange', 'onTouched'
     ];
 
     private readonly forbiddenMethodStartsWithPhrase: string[] = [
