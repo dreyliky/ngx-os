@@ -3,6 +3,18 @@ os-header::ng-deep h5 {
     margin-bottom: 0px;
 }
 
+os-text-box::ng-deep {
+    .selector {
+        width: auto !important; 
+        margin-left: 10px;
+        margin-top: 4px;
+        white-space: nowrap;
+        color: blue !important;
+        font-weight: bold;
+        user-select: all !important;
+    }
+}
+
 .component {
     border-left: solid 2px blue;
     padding: 10px;

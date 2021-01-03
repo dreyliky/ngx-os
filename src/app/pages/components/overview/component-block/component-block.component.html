@@ -3,9 +3,15 @@
 </os-header>
 
 <div class="component">
-    <os-text>
-        Selector: <b>{{ component.selector }}</b>
-    </os-text>
+    <os-text-box
+        [styleClass]="'selector'"
+        [label]="'Selector'"
+        [size]="component.selector.length"
+        [isReadonly]="true"
+        [value]="component.selector">
+    </os-text-box>
+
+    <os-text [innerHTML]="component.readme"></os-text>
 
     <demo-properties
         [metaInfo]="metaInfo"

@@ -95,6 +95,7 @@ export interface DocComponent {
     outputs: any[];
     providers: any[];
     selector: string;
+    readme: string;
     styleUrls: string[];
     styles: any[];
     templateUrl: string[];

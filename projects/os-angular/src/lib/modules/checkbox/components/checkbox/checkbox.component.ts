@@ -29,7 +29,7 @@ export class CheckboxComponent extends OsBaseComponent implements ControlValueAc
     public checked: boolean;
 
     @Input()
-    public disabled: boolean;
+    public isDisabled: boolean;
 
     @Output()
     public osChange = new EventEmitter<Event>();

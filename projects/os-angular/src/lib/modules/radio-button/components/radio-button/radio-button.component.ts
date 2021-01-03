@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -18,7 +18,7 @@ export class RadioButtonComponent extends OsBaseComponent {
     public checked: boolean;
 
     @Input()
-    public disabled: boolean;
+    public isDisabled: boolean;
 
     constructor() {
         super();

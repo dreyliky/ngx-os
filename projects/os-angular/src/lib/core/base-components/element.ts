@@ -64,7 +64,7 @@ export class OsBaseComponent {
      * Target internal element mouseup event
      */
     @Output()
-    public osMouseup: EventEmitter<MouseEvent> = new EventEmitter();
+    public osMouseup = new EventEmitter();
 
     /**
      * Target internal element wheel event
