@@ -1,17 +1,2 @@
-<div
-    class="os-element os-option"
-    [class.selected]="selected"
-    [class]="styleClass"
-    [id]="id"
-    [ngStyle]="style"
-    (click)="onOptionClick($event)"
-    (dblclick)="osDblclick.emit($event)"
-    (mousedown)="osMousedown.emit($event)"
-    (mousemove)="osMousemove.emit($event)"
-    (mouseout)="osMouseout.emit($event)"
-    (mouseover)="osMouseover.emit($event)"
-    (mouseup)="osMouseup.emit($event)"
-    (wheel)="osWheel.emit($event)">
-    <ng-content>
-    </ng-content>
-</div>
+<ng-content>
+</ng-content>
