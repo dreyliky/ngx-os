@@ -21,6 +21,7 @@ os-selectbox {
     background-repeat: no-repeat;
     border-radius: 0;
     user-select: none;
+    cursor: default;
     box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
 
     &:focus {

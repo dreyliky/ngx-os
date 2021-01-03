@@ -19,7 +19,7 @@ export class OsBaseComponent {
     public styleClass: string;
 
     /**
-     * Id of html element
+     * Id of html element. By default it generates randomly
      */
     @Input()
     public id: string = IdGenerator.generate('os-element');
@@ -64,7 +64,7 @@ export class OsBaseComponent {
      * Target internal element mouseup event
      */
     @Output()
-    public osMouseup = new EventEmitter();
+    public osMouseup: EventEmitter<MouseEvent> = new EventEmitter();
 
     /**
      * Target internal element wheel event

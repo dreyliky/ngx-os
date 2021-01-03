@@ -34,6 +34,7 @@ os-selectbox {
     background-position: top 1px right 2px;
     background-repeat: no-repeat;
     border-radius: 0;
+    cursor: default;
     user-select: none;
 
     &:focus {

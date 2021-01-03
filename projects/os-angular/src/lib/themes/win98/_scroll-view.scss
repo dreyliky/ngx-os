@@ -1,62 +1,60 @@
 os-scroll-view {
+    display: block;
 
-    .os-scroll-view::-webkit-scrollbar {
+    &::-webkit-scrollbar {
         width: 16px;
         &:horizontal {
             height: 17px;
         }
     }
 
-    .os-scroll-view::-webkit-scrollbar-corner {
+    &::-webkit-scrollbar-corner {
         background: var(--button-face);
     }
 
-    .os-scroll-view::-webkit-scrollbar {
-        width: 16px;
-        &:horizontal {
-            height: 17px;
-        }
-    }
-
-    .os-scroll-view::-webkit-scrollbar-corner {
-        background: var(--button-face);
-    }
-
-    .os-scroll-view::-webkit-scrollbar-track {
+    &::-webkit-scrollbar-track {
         background-image: url("./icon/win98_scrollbar-background.svg");
     }
 
-    .os-scroll-view::-webkit-scrollbar-thumb {
+    &::-webkit-scrollbar-thumb {
         background-color: var(--button-face);
         box-shadow: var(--border-raised-outer), var(--border-raised-inner);
     }
 
-    .os-scroll-view::-webkit-scrollbar-button:horizontal:start:decrement,
-    .os-scroll-view::-webkit-scrollbar-button:horizontal:end:increment,
-    .os-scroll-view::-webkit-scrollbar-button:vertical:start:decrement,
-    .os-scroll-view::-webkit-scrollbar-button:vertical:end:increment {
+    &::-webkit-scrollbar-button {
+        height: 17px;
         display: block;
-    }
 
-    .os-scroll-view::-webkit-scrollbar-button {
         &:vertical {
             &:start {
-                height: 17px;
                 background-image: url("./icon/win98_button-up.svg");
+
+                &:increment {
+                    display: none;
+                }
             }
             &:end {
-                height: 17px;
                 background-image: url("./icon/win98_button-down.svg");
+
+                &:decrement {
+                    display: none;
+                }
             }
         }
         &:horizontal {
             &:start {
-                width: 16px;
                 background-image: url("./icon/win98_button-left.svg");
+
+                &:increment {
+                    display: none;
+                }
             }
             &:end {
-                width: 16px;
                 background-image: url("./icon/win98_button-right.svg");
+
+                &:decrement {
+                    display: none;
+                }
             }
         }
     }

@@ -23,6 +23,7 @@ import { OptionComponent } from '../option';
     host: {
         'class': 'os-element os-selectbox',
         '[class]': 'styleClass',
+        '[style]': 'style',
         '[id]': 'id',
         '(click)': 'onSelectboxClick($event)',
         '(dblclick)': 'osDblclick.emit($event)',

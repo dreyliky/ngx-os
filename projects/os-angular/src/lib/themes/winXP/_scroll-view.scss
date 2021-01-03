@@ -1,14 +1,15 @@
 os-scroll-view {
+    display: block;
 
-    .os-scroll-view::-webkit-scrollbar {
+    &::-webkit-scrollbar {
         width: 17px;
     }
 
-    .os-scroll-view::-webkit-scrollbar-corner {
+    &::-webkit-scrollbar-corner {
         background: var(--button-face);
     }
 
-    .os-scroll-view::-webkit-scrollbar-track {
+    &::-webkit-scrollbar-track {
         &:vertical {
             background-image: url("./icon/winXP_scroll-background.svg");
         }
@@ -17,7 +18,7 @@ os-scroll-view {
         }
     }
 
-    .os-scroll-view::-webkit-scrollbar-thumb {
+    &::-webkit-scrollbar-thumb {
         background-position: center;
         background-repeat: no-repeat;
         background-color: #c8d6fb;
@@ -34,25 +35,41 @@ os-scroll-view {
         }
     }
 
-    .os-scroll-view::-webkit-scrollbar-button {
+    &::-webkit-scrollbar-button {
+        height: 17px;
+        display: block;
+
         &:vertical {
             &:start {
-                height: 17px;
                 background-image: url("./icon/winXP_scroll-arrow-up.svg");
+
+                &:increment {
+                    display: none;
+                }
             }
             &:end {
-                height: 17px;
                 background-image: url("./icon/winXP_scroll-arrow-down.svg");
+
+                &:decrement {
+                    display: none;
+                }
             }
+            
         }
         &:horizontal {
             &:start {
-                width: 17px;
                 background-image: url("./icon/winXP_scroll-arrow-left.svg");
+
+                &:increment {
+                    display: none;
+                }
             }
             &:end {
-                width: 17px;
                 background-image: url("./icon/winXP_scroll-arrow-right.svg");
+
+                &:decrement {
+                    display: none;
+                }
             }
         }
     }
