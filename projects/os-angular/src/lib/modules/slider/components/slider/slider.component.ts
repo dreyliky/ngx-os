@@ -21,9 +21,6 @@ export class SliderComponent extends OsBaseComponent {
     public isDisabled: boolean;
 
     @Input()
-    public isVertical: boolean = false;
-
-    @Input()
     public min: number = 0;
 
     @Input()
