@@ -1,4 +1,7 @@
 os-slider {
+    height: 48px;
+    display: block;
+    position: relative;
 
     input[type="range"] {
         -webkit-appearance: none;
@@ -109,6 +112,24 @@ os-slider {
         &::-moz-range-thumb {
             transform: translateY(0px) scaleX(-1);
         }
+    }
+
+    .os-label {
+        display: block;
+    }
+
+    .os-min-val-label {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        color: #999999;
+    }
+
+    .os-max-val-label {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        color: #999999;
     }
 
 }

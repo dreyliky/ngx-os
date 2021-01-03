@@ -6,6 +6,7 @@ import { DocumentationRouteEnum } from '@Doc/core/enums';
 import { Theme } from '@Doc/core/interfaces';
 import { ThemeManagerService } from '@Doc/core/services';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'demo-component-header',
@@ -14,6 +15,8 @@ import { Subscription } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComponentHeaderComponent implements OnInit, OnDestroy {
+
+    public readonly libVersion: string = environment.version;
 
     public themes = ThemeArray;
     public appliedTheme: Theme;

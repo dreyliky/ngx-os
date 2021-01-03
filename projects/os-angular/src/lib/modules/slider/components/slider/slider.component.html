@@ -1,15 +1,15 @@
 <label
-    class="os-element">
+    class="os-element os-label">
     {{ label }}
 </label>
 
-<label class="os-element">
+<label class="os-element os-min-val-label">
     {{ minValueLabel }}
 </label>
 
 <input
     type="range"
-    class="os-element"
+    class="os-element os-slider"
     [class]="styleClass"
     [id]="id"
     [ngStyle]="style"
@@ -26,6 +26,6 @@
     (mouseup)="osMouseup.emit($event)"
     (wheel)="osWheel.emit($event)" />
 
-<label class="os-element">
+<label class="os-element os-max-val-label">
     {{ maxValueLabel }}
 </label>
