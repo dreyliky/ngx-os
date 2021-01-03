@@ -1,10 +1,24 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
     selector: 'os-header',
     templateUrl: './header.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        'class': 'os-element',
+        '[class]': `styleClass + ' os-header-' + size`,
+        '[style]': 'style',
+        '[id]': 'id',
+        '(click)': 'osClick.emit($event)',
+        '(dblclick)': 'osDblclick.emit($event)',
+        '(mousedown)': 'osMousedown.emit($event)',
+        '(mousemove)': 'osMousemove.emit($event)',
+        '(mouseout)': 'osMouseout.emit($event)',
+        '(mouseover)': 'osMouseover.emit($event)',
+        '(mouseup)': 'osMouseup.emit($event)',
+        '(wheel)': 'osWheel.emit($event)'
+    }
 })
 export class HeaderComponent extends OsBaseComponent {
 

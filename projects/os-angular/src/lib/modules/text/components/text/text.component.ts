@@ -6,7 +6,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './text.component.html',
     host: {
         'class': 'os-element',
-        '[ngStyle]': 'style',
+        '[style]': 'style',
         '[class]': 'styleClass',
         '(click)': 'osClick.emit($event)',
         '(dblclick)': 'osDblclick.emit($event)',
