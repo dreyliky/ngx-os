@@ -22,7 +22,6 @@ import { OptionComponent } from '../option';
     ],
     host: {
         'class': 'os-element os-selectbox',
-        '[ngStyle]': 'style',
         '[class]': 'styleClass',
         '[id]': 'id',
         '(click)': 'onSelectboxClick($event)',

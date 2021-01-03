@@ -39,6 +39,8 @@ os-selectbox {
 
     os-options {
         position: absolute;
+        z-index: 999;
+        opacity: .999;
         left: -1px;
         top: 100%;
     }

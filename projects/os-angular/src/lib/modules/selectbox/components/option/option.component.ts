@@ -12,7 +12,6 @@ import { OsBaseComponent } from 'os-angular/core';
         '[class.selected]': 'selected',
         '[class]': 'styleClass',
         '[id]': 'id',
-        '[ngStyle]': 'style',
         '(click)': 'onOptionClick($event)',
         '(dblclick)': 'osDblclick.emit($event)',
         '(mousedown)': 'osMousedown.emit($event)',
