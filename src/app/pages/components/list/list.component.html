@@ -3,13 +3,13 @@
         Components
     </os-header>
 
-    <os-list>
-        <os-list-item
+    <os-grid>
+        <os-grid-item
             *ngFor="let component of components"
             [data]="{
                 label: component.name
             }"
             (osDblClick)="onOpenSectionButtonClick(component.type)">
-        </os-list-item>
-    </os-list>
+        </os-grid-item>
+    </os-grid>
 </div>

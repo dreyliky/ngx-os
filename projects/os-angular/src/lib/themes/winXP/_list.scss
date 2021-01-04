@@ -1,6 +1,6 @@
-os-list {
+os-grid {
 
-    .os-list-item {
+    .os-grid-item {
         width: 96px;
         height: 96px;
         align-items: center;
@@ -9,12 +9,12 @@ os-list {
         flex-direction: column;
         user-select: none;
 
-        .os-list-item-image {
+        .os-grid-item-image {
             width: 56px;
             height: 56px;
         }
 
-        .os-list-item-text {
+        .os-grid-item-text {
             font-family: Arial !important;
             font-size: 13px;
             text-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
@@ -27,7 +27,7 @@ os-list {
         }
 
         &.selected {
-            .os-list-item-image-wrapper {
+            .os-grid-item-image-wrapper {
                 position: relative;
 
                 &:after {
@@ -42,7 +42,7 @@ os-list {
                 }
             }
 
-            .os-list-item-text {
+            .os-grid-item-text {
                 background-color: #316ac5;
                 text-shadow: none;
             }

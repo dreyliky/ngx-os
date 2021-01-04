@@ -1,14 +1,15 @@
 import {
     ButtonComponent, CheckboxComponent, DynamicWindowComponent,
-    FieldRowComponent, GroupBoxComponent, HeaderComponent, ListComponent,
+    FieldRowComponent, GridComponent, GroupBoxComponent, HeaderComponent,
     RadioButtonComponent, ScrollViewComponent, SelectboxComponent,
     SliderComponent, TabGroupComponent, TextareaBoxComponent, TextBoxComponent,
     TextComponent, TitleBarComponent, TreeViewComponent, WindowComponent
 } from 'os-angular';
 import {
     ButtonOverviewComponent, CheckboxOverviewComponent,
-    FieldRowOverviewComponent, GroupBoxOverviewComponent,
-    ListOverviewComponent, RadioButtonOverviewComponent,
+    FieldRowOverviewComponent,
+    GridOverviewComponent, GroupBoxOverviewComponent,
+    RadioButtonOverviewComponent,
     ScrollViewOverviewComponent, SelectboxOverviewComponent,
     SliderOverviewComponent, TabGroupOverviewComponent,
     TextareaOverviewComponent, TextBoxOverviewComponent,
@@ -102,19 +103,19 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
         }
     )
     .set(
-        'list',
+        'grid',
         {
-            name: 'List',
-            type: 'list',
-            shortInfo: 'List component short info',
+            name: 'Grid',
+            type: 'grid',
+            shortInfo: 'Grid component short info',
             imageUrl: '',
             libComponents: [
-                ListComponent
+                GridComponent
             ],
             demoComponents: [
                 {
-                    title: 'List Overview',
-                    component: ListOverviewComponent
+                    title: 'Grid Overview',
+                    component: GridOverviewComponent
                 }
             ]
         }

@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
-import { ListComponent, ItemComponent } from './components';
+import { GridComponent, GridItemComponent } from './components';
 
 @NgModule({
     declarations: [
-        ListComponent,
-        ItemComponent
+        GridComponent,
+        GridItemComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        ListComponent,
-        ItemComponent
+        GridComponent,
+        GridItemComponent
     ]
 })
-export class ListModule {}
+export class GridModule {}

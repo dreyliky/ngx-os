@@ -1,6 +1,6 @@
 <div
-    #OsListItem
-    class="os-element os-list-item"
+    #OsGridItem
+    class="os-element os-grid-item"
     [class]="styleClass"
     [id]="id"
     [ngStyle]="style"
@@ -8,14 +8,14 @@
     (click)="onClick($event)"
     (dblclick)="onDblClick($event)">
 
-    <div class="os-element os-list-item-image-wrapper">
+    <div class="os-element os-grid-item-image-wrapper">
         <img
-            class="os-element os-list-item-image"
+            class="os-element os-grid-item-image"
             [attr.src]="data.iconUrl" />
     </div>
 
     <span
-        class="os-element os-list-item-text">
+        class="os-element os-grid-item-text">
         {{ data.label }}
     </span>
 

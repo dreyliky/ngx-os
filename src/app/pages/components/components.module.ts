@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { ComponentsRoutingModule } from './components.routing';
-import { ListModule } from './list';
+import { GridModule } from './list';
 import { OverviewModule } from './overview';
 
 @NgModule({
     imports: [
-        ListModule,
+        GridModule,
         OverviewModule,
         ComponentsRoutingModule
     ]

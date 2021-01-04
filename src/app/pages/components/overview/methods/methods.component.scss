@@ -9,10 +9,8 @@
     align-items: center;
     margin-top: 15px;
 
-    os-header::ng-deep {
-        h6 {
-            margin-bottom: 0px;
-        }
+    os-header {
+        margin-bottom: 0px;
     }
 }
 

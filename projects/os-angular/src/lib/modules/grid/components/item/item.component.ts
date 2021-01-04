@@ -1,17 +1,20 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
+import {
+    ChangeDetectionStrategy, Component, ElementRef,
+    EventEmitter, HostListener, Input, Output, ViewChild
+} from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { OutsideClick } from 'os-angular/helpers';
-import { ListItem } from '../../interfaces/item.interface';
+import { GridItem } from '../../interfaces/item.interface';
 
 @Component({
-    selector: 'os-list-item',
+    selector: 'os-grid-item',
     templateUrl: './item.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ItemComponent extends OsBaseComponent {
+export class GridItemComponent extends OsBaseComponent {
 
     @Input()
-    public data: ListItem;
+    public data: GridItem;
 
     @Input()
     public isSelected: boolean = false;
@@ -22,8 +25,8 @@ export class ItemComponent extends OsBaseComponent {
     @Output()
     public osDblClick = new EventEmitter<MouseEvent>();
 
-    @ViewChild('OsListItem')
-    private readonly _osListItemElement: ElementRef<HTMLDivElement>;
+    @ViewChild('OsGridItem')
+    private readonly _osGridItemElement: ElementRef<HTMLDivElement>;
 
     constructor() {
         super();
@@ -31,7 +34,8 @@ export class ItemComponent extends OsBaseComponent {
 
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
-        const isClickOutsideWindow = OutsideClick.checkForElement(this._osListItemElement.nativeElement, event);
+        const gridItemElem = this._osGridItemElement.nativeElement;
+        const isClickOutsideWindow = OutsideClick.checkForElement(gridItemElem, event);
 
         if (isClickOutsideWindow && this.isSelected) {
             this.isSelected = false;

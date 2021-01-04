@@ -11,17 +11,17 @@
     padding: 30px;
 }
 
-os-list::ng-deep .os-list {
+os-grid::ng-deep .os-grid {
     display: flex;
     flex-wrap: wrap;
 
-    .os-list-item-text {
+    .os-grid-item-text {
         color: rgb(42, 42, 42);
         text-shadow: none;
     }
 
-    os-list-item::ng-deep .os-list-item.selected {
-        .os-list-item-text {
+    os-grid-item::ng-deep .os-grid-item.selected {
+        .os-grid-item-text {
             color: #fff !important;
         }
     }

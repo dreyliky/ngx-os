@@ -1,8 +1,8 @@
 <div class="wrapper">
-    <os-list>
-        <os-list-item
+    <os-grid>
+        <os-grid-item
             *ngFor="let shortcut of shortcuts; trackBy: trackByFn"
             [data]="shortcut">
-        </os-list-item>
-    </os-list>
+        </os-grid-item>
+    </os-grid>
 </div>

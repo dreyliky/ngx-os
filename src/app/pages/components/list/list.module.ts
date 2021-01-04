@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { ListComponent } from './list.component';
 import { SharedModule } from '@Doc/demo-shared.module';
+import { GridComponent } from './list.component';
 
 @NgModule({
     declarations: [
-        ListComponent
+        GridComponent
     ],
     imports: [
         SharedModule
     ]
 })
-export class ListModule {}
+export class GridModule {}

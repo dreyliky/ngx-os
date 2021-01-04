@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from './list';
+import { GridComponent } from './list';
 import { OverviewComponent } from './overview';
 
 const routes: Routes = [
     {
         path: '',
-        component: ListComponent
+        component: GridComponent
     },
     {
         path: ':componentType',

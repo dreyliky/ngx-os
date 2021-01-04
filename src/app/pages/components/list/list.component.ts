@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
 import { ComponentMetaInfoMap, ComponentType } from '@Doc/features/doc';
@@ -9,7 +9,7 @@ import { ComponentMetaInfoMap, ComponentType } from '@Doc/features/doc';
     styleUrls: ['./list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent implements OnInit {
+export class GridComponent implements OnInit {
 
     public components = [...ComponentMetaInfoMap.values()];
 
