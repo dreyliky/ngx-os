@@ -4,11 +4,11 @@ import {
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
-    selector: 'os-option',
-    templateUrl: './option.component.html',
+    selector: 'os-list-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
-        // FIXME: Refactoring (exist os-list-item)
         'class': 'os-element os-option',
         '[class.selected]': 'selected',
         '[class]': 'styleClass',
@@ -23,7 +23,7 @@ import { OsBaseComponent } from 'os-angular/core';
         '(wheel)': 'osWheel.emit($event)'
     }
 })
-export class OptionComponent<T> extends OsBaseComponent {
+export class ListItemComponent<T> extends OsBaseComponent {
 
     @Input()
     public selected: boolean;

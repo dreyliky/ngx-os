@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'os-angular/shared.module';
+import { ListModule } from '../list';
 import { ScrollViewModule } from '../scroll-view';
-import { OptionComponent, OptionsComponent, SelectboxComponent } from './components';
+import { OptionComponent, SelectboxComponent } from './components';
 
 @NgModule({
     declarations: [
         SelectboxComponent,
-        OptionComponent,
-        OptionsComponent
+        OptionComponent
     ],
     imports: [
         SharedModule,
-        ScrollViewModule
+        ScrollViewModule,
+        ListModule
     ],
     exports: [
         SelectboxComponent,
-        OptionComponent,
-        OptionsComponent
+        OptionComponent
     ]
 })
 export class SelectboxModule {}

@@ -10,7 +10,7 @@
     {{ (displayField) ? value[displayField] : value }}
 </span>
 
-<os-options
+<os-list
     *ngIf="isOpened"
     [scrollViewStyle]="scrollViewStyle"
     [scrollViewStyleClass]="scrollViewStyleClass">
@@ -19,4 +19,4 @@
     <ng-content select="os-option"></ng-content>
 
     <ng-content select="[options-footer]"></ng-content>
-</os-options>
+</os-list>

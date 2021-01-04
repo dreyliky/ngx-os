@@ -6,6 +6,7 @@ import {
     FieldRowOverviewComponent,
     GridOverviewComponent,
     GroupBoxOverviewComponent,
+    ListOverviewComponent,
     RadioButtonOverviewComponent,
     ScrollViewOverviewComponent,
     SelectboxOverviewComponent,
@@ -34,7 +35,8 @@ import {
         TextBoxOverviewComponent,
         TextareaOverviewComponent,
         TreeViewOverviewComponent,
-        WindowOverviewComponent
+        WindowOverviewComponent,
+        ListOverviewComponent
     ],
     imports: [
         SharedModule

@@ -1,6 +1,7 @@
 import {
     ButtonComponent, CheckboxComponent, DynamicWindowComponent,
     FieldRowComponent, GridComponent, GroupBoxComponent, HeaderComponent,
+    ListComponent, ListItemComponent,
     RadioButtonComponent, ScrollViewComponent, SelectboxComponent,
     SliderComponent, TabGroupComponent, TextareaBoxComponent, TextBoxComponent,
     TextComponent, TitleBarComponent, TreeViewComponent, WindowComponent
@@ -9,6 +10,7 @@ import {
     ButtonOverviewComponent, CheckboxOverviewComponent,
     FieldRowOverviewComponent,
     GridOverviewComponent, GroupBoxOverviewComponent,
+    ListOverviewComponent,
     RadioButtonOverviewComponent,
     ScrollViewOverviewComponent, SelectboxOverviewComponent,
     SliderOverviewComponent, TabGroupOverviewComponent,
@@ -116,6 +118,25 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
                 {
                     title: 'Grid Overview',
                     component: GridOverviewComponent
+                }
+            ]
+        }
+    )
+    .set(
+        'list',
+        {
+            name: 'List',
+            type: 'list',
+            shortInfo: 'List component short info',
+            imageUrl: '',
+            libComponents: [
+                ListComponent,
+                ListItemComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'List Overview',
+                    component: ListOverviewComponent
                 }
             ]
         }

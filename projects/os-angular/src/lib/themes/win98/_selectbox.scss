@@ -38,7 +38,7 @@ os-selectbox {
         background-image: url("./icon/win98_button-down-active.svg");
     }
 
-    os-options {
+    os-list {
         position: absolute;
         z-index: 999;
         opacity: .999;
@@ -53,39 +53,4 @@ os-selectbox {
         align-items: center;
     }
 
-}
-
-os-options {
-    width: 100%;
-    display: block;
-    border: solid 1px #000000;
-    background-color: #ffffff;
-    cursor: default;
-    user-select: none;
-
-    .os-options {
-        &:hover {
-            .os-option.selected {
-                background-color: #ffffff;
-                color: #000000;
-            }
-        }
-
-        .os-option {
-            height: 15px;
-            display: flex;
-            align-items: center;
-            padding: 0px 2px;
-    
-            &.selected {
-                background-color: #0a246a;
-                color: #ffffff;
-            }
-
-            &:hover {
-                background-color: #0a246a !important;
-                color: #ffffff !important;
-            }
-        }
-    }
 }

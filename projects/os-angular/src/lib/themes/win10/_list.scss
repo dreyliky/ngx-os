@@ -1,0 +1,30 @@
+os-list {
+    width: 100%;
+    display: block;
+    border: solid 1px #cccccc;
+    background-color: #f2f2f2;
+    cursor: default;
+    user-select: none;
+    padding: 7px 1px;
+
+    os-list-item {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        padding: 0px 10px;
+        margin: 1px 0px;
+
+        &.selected {
+            background-color: #a6d8ff;
+
+            &:hover {
+                background-color: #7ebdee;
+            }
+        }
+
+        &:hover {
+            background-color: #dfdfdf;
+        }
+    }
+}
