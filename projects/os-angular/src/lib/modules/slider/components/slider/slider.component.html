@@ -17,6 +17,7 @@
     [min]="min"
     [max]="max"
     [value]="value"
+    (change)="onSliderValueChange($event)"
     (click)="osClick.emit($event)"
     (dblclick)="osDblclick.emit($event)"
     (mousedown)="osMousedown.emit($event)"
