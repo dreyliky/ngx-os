@@ -1,4 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
+interface Item {
+    text: string;
+}
 
 @Component({
     selector: 'demo-radio-button-overview',
@@ -8,8 +13,24 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class RadioButtonOverviewComponent implements OnInit {
 
+    public items: Item[] = [
+        { text: 'Item 1' },
+        { text: 'Item 2' },
+        { text: 'Item 3' }
+    ];
+
+    public formGroup: FormGroup;
+
     constructor() {}
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+        this.createFormGroup();
+    }
+
+    public createFormGroup(): void {
+        this.formGroup = new FormGroup({
+            selectedValue: new FormControl(this.items[1])
+        });
+    }
 
 }
