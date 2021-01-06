@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy, Component, EventEmitter, Input, Output
 } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
+import { OptionSelectedEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-option',
@@ -32,7 +33,7 @@ export class OptionComponent<T> extends OsBaseComponent {
     public value: T;
 
     @Output()
-    public osSelected = new EventEmitter<T>();
+    public osSelected = new EventEmitter<OptionSelectedEvent<T>>();
 
     constructor() {
         super();
@@ -40,7 +41,7 @@ export class OptionComponent<T> extends OsBaseComponent {
 
     public onListItemClick(event: MouseEvent): void {
         this.osClick.emit(event);
-        this.osSelected.emit(this.value);
+        this.osSelected.emit({ event, value: this.value });
     }
 
 }

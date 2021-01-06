@@ -1,8 +1,7 @@
 <os-list-item
     [selected]="selected"
     [value]="value"
-    (osClick)="onListItemClick($event)"
-    (osSelected)="osSelected.emit($event)">
+    (osSelected)="onListItemClick($event)">
     <ng-content>
     </ng-content>
 </os-list-item>

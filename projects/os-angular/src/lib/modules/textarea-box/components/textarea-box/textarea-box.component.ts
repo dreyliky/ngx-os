@@ -27,7 +27,7 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements Contro
     public cols: number;
 
     @Output()
-    public osChange = new EventEmitter<TextareaBoxChangeEvent>();
+    public osChange: EventEmitter<TextareaBoxChangeEvent> = new EventEmitter();
 
     constructor(
         private changeDetector: ChangeDetectorRef

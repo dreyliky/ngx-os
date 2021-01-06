@@ -41,7 +41,7 @@ export class SliderComponent extends OsBaseComponent implements ControlValueAcce
     public value: number = 0;
 
     @Output()
-    public osChange = new EventEmitter<SliderValueChangeEvent>();
+    public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef

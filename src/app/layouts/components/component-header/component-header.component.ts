@@ -5,6 +5,7 @@ import { ThemeArray } from '@Doc/core/data';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
 import { Theme } from '@Doc/core/interfaces';
 import { ThemeManagerService } from '@Doc/core/services';
+import { OptionSelectedEvent } from 'os-angular';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -38,7 +39,9 @@ export class ComponentHeaderComponent implements OnInit, OnDestroy {
         this.appliedThemeSubscription?.unsubscribe();
     }
 
-    public onThemeChanged(theme: Theme): void {
+    public onThemeChanged(event: OptionSelectedEvent<Theme>): void {
+        const theme: Theme = event.value;
+
         this.themeManagerService.applyTheme(theme.cssName);
     }
 

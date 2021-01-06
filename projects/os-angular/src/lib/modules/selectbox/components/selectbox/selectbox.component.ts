@@ -7,6 +7,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
 import { OutsideClick } from 'os-angular/helpers';
 import { Subscription } from 'rxjs';
+import { OptionSelectedEvent } from '../../interfaces';
 import { OptionComponent } from '../option';
 
 @Component({
@@ -63,7 +64,7 @@ export class SelectboxComponent<T>
     public scrollViewStyleClass: string;
 
     @Output()
-    public osChange = new EventEmitter<T>();
+    public osChange: EventEmitter<OptionSelectedEvent<T>> = new EventEmitter();
 
     @Output()
     public valueChange = new EventEmitter<T>();
@@ -147,12 +148,12 @@ export class SelectboxComponent<T>
 
         optionComponents.forEach((optionComponent) => {
             const subscription = optionComponent.osSelected
-                .subscribe((value: T) => {
-                    this.value = value;
+                .subscribe((event: OptionSelectedEvent<T>) => {
+                    this.value = event.value;
 
-                    this.valueChange.emit(value);
-                    this.osChange.emit(value);
-                    this.onChange(value);
+                    this.valueChange.emit(event.value);
+                    this.osChange.emit(event);
+                    this.onChange(event.value);
                 });
 
             this._optionsSelectedEventSubscriptions.push(subscription);
