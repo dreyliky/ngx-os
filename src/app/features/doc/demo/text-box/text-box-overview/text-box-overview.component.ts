@@ -1,16 +1,26 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'demo-text-box-overview',
-  templateUrl: './text-box-overview.component.html',
-  styleUrls: ['./text-box-overview.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'demo-text-box-overview',
+    templateUrl: './text-box-overview.component.html',
+    styleUrls: ['./text-box-overview.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextBoxOverviewComponent implements OnInit {
 
-  constructor() { }
+    public formGroup: FormGroup;
 
-  ngOnInit(): void {
-  }
+    constructor() {}
+
+    public ngOnInit(): void {
+        this.createFormGroup();
+    }
+
+    public createFormGroup(): void {
+        this.formGroup = new FormGroup({
+            textboxValue: new FormControl('Hi there!')
+        });
+    }
 
 }
