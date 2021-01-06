@@ -1,1 +1,10 @@
-<p>list-overview works!</p>
+<os-list>
+    <os-list-item
+        *ngFor="let item of items"
+        [selected]="item === selectedItem"
+        (osClick)="onItemClick(item)">
+        {{ item.text }}
+    </os-list-item>
+</os-list>
+
+{{ selectedItem | json }}
