@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
+import { RadioButtonValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-radio-button',
@@ -34,15 +35,15 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
     public isDisabled: boolean;
 
     @Output()
-    public osChange = new EventEmitter<T>();
+    public osChange = new EventEmitter<RadioButtonValueChangeEvent<T>>();
 
     constructor() {
         super();
     }
 
-    public onRadioButtonChange(): void {
+    public onRadioButtonChange(event: Event): void {
         this.onChange(this.value);
-        this.osChange.emit(this.value);
+        this.osChange.emit({ event, value: this.value });
     }
 
     public registerOnChange(fn: () => {}): void {
