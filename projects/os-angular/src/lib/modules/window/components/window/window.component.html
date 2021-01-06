@@ -11,10 +11,6 @@
     (mousedown)="osMouseDown.emit($event)"
     (mouseup)="osMouseUp.emit($event)">
 
-    <ng-content
-        select="[os-window-content]">
-    </ng-content>
-
     <os-title-bar
         [hidden]="!isTitleBarVisible"
         (osClick)="osTitleBarClick.emit($event)"

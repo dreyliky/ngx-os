@@ -1,0 +1,12 @@
+<os-header [size]="2">
+    Random components
+</os-header>
+
+<div class="board">
+    <os-grid>
+        <os-grid-item
+            *ngFor="let component of components"
+            [data]="{ label: component.name }">
+        </os-grid-item>
+    </os-grid>
+</div>

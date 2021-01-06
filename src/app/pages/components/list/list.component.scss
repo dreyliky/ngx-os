@@ -11,18 +11,20 @@
     padding: 30px;
 }
 
-os-grid::ng-deep .os-grid {
+os-grid {
     display: flex;
     flex-wrap: wrap;
 
-    .os-grid-item-text {
-        color: rgb(42, 42, 42);
-        text-shadow: none;
-    }
-
-    os-grid-item::ng-deep .os-grid-item.selected {
+    &::ng-deep {
         .os-grid-item-text {
-            color: #fff !important;
+            color: rgb(42, 42, 42);
+            text-shadow: none;
+        }
+    
+        os-grid-item::ng-deep .os-grid-item.selected {
+            .os-grid-item-text {
+                color: #fff !important;
+            }
         }
     }
 }
