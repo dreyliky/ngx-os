@@ -6,7 +6,8 @@
     <os-grid>
         <os-grid-item
             *ngFor="let component of components"
-            [data]="{ label: component.name }">
+            [data]="{ label: component.name }"
+            (osDblClick)="onGridItemClick(component)">
         </os-grid-item>
     </os-grid>
 </div>
