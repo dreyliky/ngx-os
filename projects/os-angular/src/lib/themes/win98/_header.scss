@@ -1,32 +1,30 @@
 os-header {
+    display: block;
+    font-family: "Arial";
+    font-weight: 400;
+    margin: 0px 0px 24px 0px;
 
-    div * {
-        font-family: "Arial";
-        font-weight: 400;
-        margin: 0px 0px 24px 0px;
-    }
-
-    h1.os-header {
+    &.os-header-1 {
         font-size: 2.3em;
     }
 
-    h2.os-header {
+    &.os-header-2 {
         font-size: 2.1em;
     }
 
-    h3.os-header {
+    &.os-header-3 {
         font-size: 1.9em;
     }
 
-    h4.os-header {
+    &.os-header-4 {
         font-size: 1.7em;
     }
 
-    h5.os-header {
+    &.os-header-5 {
         font-size: 1.5em;
     }
 
-    h6.os-header {
+    &.os-header-6 {
         font-size: 1.3em;
     }
 

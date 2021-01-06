@@ -1,59 +1,46 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
+import {
+    ChangeDetectionStrategy, Component, EventEmitter, Input, Output
+} from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
-import { OutsideClick } from 'os-angular/helpers';
-import { ListItem } from '../../interfaces/item.interface';
 
 @Component({
     selector: 'os-list-item',
     templateUrl: './item.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        'class': 'os-element os-option',
+        '[class.selected]': 'selected',
+        '[class]': 'styleClass',
+        '[id]': 'id',
+        '(click)': 'onListItemClick($event)',
+        '(dblclick)': 'osDblclick.emit($event)',
+        '(mousedown)': 'osMousedown.emit($event)',
+        '(mousemove)': 'osMousemove.emit($event)',
+        '(mouseout)': 'osMouseout.emit($event)',
+        '(mouseover)': 'osMouseover.emit($event)',
+        '(mouseup)': 'osMouseup.emit($event)',
+        '(wheel)': 'osWheel.emit($event)'
+    }
 })
-export class ItemComponent extends OsBaseComponent {
+export class ListItemComponent<T> extends OsBaseComponent {
 
     @Input()
-    public data: ListItem;
+    public selected: boolean;
 
     @Input()
-    public isSelected: boolean = false;
+    public value: T;
 
     @Output()
-    public osClick = new EventEmitter<MouseEvent>();
-
-    @Output()
-    public osDblClick = new EventEmitter<MouseEvent>();
-
-    @ViewChild('OsListItem')
-    private readonly _osListItemElement: ElementRef<HTMLDivElement>;
+    public osSelected = new EventEmitter<T>();
 
     constructor() {
         super();
     }
 
-    @HostListener('document:click', ['$event'])
-    public onClickOutside(event: MouseEvent): void {
-        const isClickOutsideWindow = OutsideClick.checkForElement(this._osListItemElement.nativeElement, event);
-
-        if (isClickOutsideWindow && this.isSelected) {
-            this.isSelected = false;
-        }
-    }
-
-    public onClick(event: MouseEvent): void {
-        this.isSelected = true;
-
-        if (this.data.onClick) {
-            this.data.onClick(event);
-        }
-
+    public onListItemClick(event: MouseEvent): void {
         this.osClick.emit(event);
-    }
-
-    public onDblClick(event: MouseEvent): void {
-        if (this.data.onDblClick) {
-            this.data.onDblClick(event);
-        }
-
-        this.osDblClick.emit(event);
+        this.osSelected.emit(this.value);
     }
 
 }

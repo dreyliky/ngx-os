@@ -4,6 +4,7 @@ import {
     ButtonOverviewComponent,
     CheckboxOverviewComponent,
     FieldRowOverviewComponent,
+    GridOverviewComponent,
     GroupBoxOverviewComponent,
     ListOverviewComponent,
     RadioButtonOverviewComponent,
@@ -24,7 +25,7 @@ import {
         CheckboxOverviewComponent,
         FieldRowOverviewComponent,
         GroupBoxOverviewComponent,
-        ListOverviewComponent,
+        GridOverviewComponent,
         RadioButtonOverviewComponent,
         ScrollViewOverviewComponent,
         SelectboxOverviewComponent,
@@ -34,7 +35,8 @@ import {
         TextBoxOverviewComponent,
         TextareaOverviewComponent,
         TreeViewOverviewComponent,
-        WindowOverviewComponent
+        WindowOverviewComponent,
+        ListOverviewComponent
     ],
     imports: [
         SharedModule
@@ -44,7 +46,7 @@ import {
         CheckboxOverviewComponent,
         FieldRowOverviewComponent,
         GroupBoxOverviewComponent,
-        ListOverviewComponent,
+        GridOverviewComponent,
         RadioButtonOverviewComponent,
         ScrollViewOverviewComponent,
         SelectboxOverviewComponent,

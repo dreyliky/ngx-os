@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -18,10 +18,7 @@ export class SliderComponent extends OsBaseComponent {
     public maxValueLabel: string;
 
     @Input()
-    public disabled: boolean;
-
-    @Input()
-    public isVertical: boolean = false;
+    public isDisabled: boolean;
 
     @Input()
     public min: number = 0;

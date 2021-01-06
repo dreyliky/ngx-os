@@ -1,31 +1,16 @@
-<div
-    #SelectboxElement
-    class="os-element os-selectbox"
-    [ngStyle]="style"
-    [class]="styleClass"
-    [id]="id"
-    (click)="onSelectboxClick($event)"
-    (dblclick)="osDblclick.emit($event)"
-    (mousedown)="osMousedown.emit($event)"
-    (mousemove)="osMousemove.emit($event)"
-    (mouseout)="osMouseout.emit($event)"
-    (mouseover)="osMouseover.emit($event)"
-    (mouseup)="osMouseup.emit($event)"
-    (wheel)="osWheel.emit($event)">
-    <span
-        *ngIf="placeholder && !value"
-        class="os-placeholder">
-        {{ placeholder }}
-    </span>
+<span
+    *ngIf="placeholder && !value"
+    class="os-placeholder">
+    {{ placeholder }}
+</span>
 
-    <span
-        *ngIf="value || (displayField && value[displayField])"
-        class="os-value">
-        {{ (displayField) ? value[displayField] : value }}
-    </span>
-</div>
+<span
+    *ngIf="value || (displayField && value[displayField])"
+    class="os-value">
+    {{ (displayField) ? value[displayField] : value }}
+</span>
 
-<os-options
+<os-list
     *ngIf="isOpened"
     [scrollViewStyle]="scrollViewStyle"
     [scrollViewStyleClass]="scrollViewStyleClass">
@@ -34,4 +19,4 @@
     <ng-content select="os-option"></ng-content>
 
     <ng-content select="[options-footer]"></ng-content>
-</os-options>
+</os-list>

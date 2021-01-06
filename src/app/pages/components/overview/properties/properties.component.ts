@@ -1,5 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ComponentMetaInfo, DocComponent } from '@Doc/features/doc';
+import {
+    ChangeDetectionStrategy, Component, Input,
+    OnChanges, OnInit, SimpleChanges
+} from '@angular/core';
+import {
+    ComponentMetaInfo, DocComponent, DocService, InputsClass
+} from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-properties',
@@ -7,7 +12,7 @@ import { ComponentMetaInfo, DocComponent } from '@Doc/features/doc';
     styleUrls: ['./properties.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PropertiesComponent implements OnInit {
+export class PropertiesComponent implements OnInit, OnChanges {
 
     @Input()
     public readonly metaInfo: ComponentMetaInfo;
@@ -15,13 +20,21 @@ export class PropertiesComponent implements OnInit {
     @Input()
     public readonly component: DocComponent;
 
+    public inputs: InputsClass[];
+
     public isCollapsed: boolean = false;
 
-    public components: DocComponent[];
-
-    constructor() {}
+    constructor(
+        private readonly docService: DocService
+    ) {}
 
     public ngOnInit(): void {}
+
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.component.previousValue !== changes.component.currentValue) {
+            this.inputs = this.docService.getUniqueDocComponentInputs(this.component);
+        }
+    }
 
     public onCollapseButtonClick(): void {
         this.isCollapsed = !this.isCollapsed;

@@ -95,6 +95,7 @@ export interface DocComponent {
     outputs: any[];
     providers: any[];
     selector: string;
+    readme: string;
     styleUrls: string[];
     styles: any[];
     templateUrl: string[];
@@ -136,13 +137,14 @@ interface HostListener {
     line: number;
 }
 
-interface MethodsClass {
+export interface MethodsClass {
     name: string;
     args: Arg4[];
     optional: boolean;
     returnType: string;
     typeParameters: any[];
     line: number;
+    description?: string;
     modifierKind: number[];
     jsdoctags?: Jsdoctag4[];
 }
@@ -246,7 +248,7 @@ interface MethodsClass2 {
     modifierKind: number[];
 }
 
-interface OutputsClass {
+export interface OutputsClass {
     name: string;
     line: number;
     type: string;
@@ -255,7 +257,7 @@ interface OutputsClass {
     inheritance?: Inheritance;
 }
 
-interface InputsClass {
+export interface InputsClass {
     name: string;
     line: number;
     type: string;

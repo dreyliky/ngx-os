@@ -1,0 +1,22 @@
+<div
+    #OsGridItem
+    class="os-element os-grid-item"
+    [class]="styleClass"
+    [id]="id"
+    [ngStyle]="style"
+    [class.selected]="isSelected"
+    (click)="onClick($event)"
+    (dblclick)="onDblClick($event)">
+
+    <div class="os-element os-grid-item-image-wrapper">
+        <img
+            class="os-element os-grid-item-image"
+            [attr.src]="data.iconUrl" />
+    </div>
+
+    <span
+        class="os-element os-grid-item-text">
+        {{ data.label }}
+    </span>
+
+</div>

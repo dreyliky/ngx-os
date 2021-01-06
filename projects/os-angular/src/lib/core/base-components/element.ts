@@ -19,7 +19,7 @@ export class OsBaseComponent {
     public styleClass: string;
 
     /**
-     * Id of html element
+     * Id of html element. By default it generates randomly
      */
     @Input()
     public id: string = IdGenerator.generate('os-element');

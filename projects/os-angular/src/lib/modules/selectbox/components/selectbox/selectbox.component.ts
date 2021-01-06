@@ -1,7 +1,7 @@
 import {
     ChangeDetectionStrategy, ChangeDetectorRef, Component,
     ContentChildren, ElementRef, EventEmitter, forwardRef,
-    HostListener, Input, OnDestroy, Output, QueryList, ViewChild
+    HostListener, Input, OnDestroy, Output, QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
@@ -19,7 +19,21 @@ import { OptionComponent } from '../option';
             useExisting: forwardRef(() => SelectboxComponent),
             multi: true
         }
-    ]
+    ],
+    host: {
+        'class': 'os-element os-selectbox',
+        '[class]': 'styleClass',
+        '[style]': 'style',
+        '[id]': 'id',
+        '(click)': 'onSelectboxClick($event)',
+        '(dblclick)': 'osDblclick.emit($event)',
+        '(mousedown)': 'osMousedown.emit($event)',
+        '(mousemove)': 'osMousemove.emit($event)',
+        '(mouseout)': 'osMouseout.emit($event)',
+        '(mouseover)': 'osMouseover.emit($event)',
+        '(mouseup)': 'osMouseup.emit($event)',
+        '(wheel)': 'osWheel.emit($event)'
+    }
 })
 export class SelectboxComponent<T>
     extends OsBaseComponent implements OnDestroy, ControlValueAccessor {
@@ -65,13 +79,11 @@ export class SelectboxComponent<T>
         this.initSelectboxOptions(data);
     }
 
-    @ViewChild('SelectboxElement')
-    private readonly selectboxElement: ElementRef<HTMLDivElement>;
-
     private _optionComponentList: QueryList<OptionComponent<T>>;
     private _optionsSelectedEventSubscriptions: Subscription[];
 
     constructor(
+        private readonly selectboxElement: ElementRef,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();

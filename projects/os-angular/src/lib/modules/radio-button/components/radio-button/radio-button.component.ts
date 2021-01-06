@@ -31,7 +31,7 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
     public value: T;
 
     @Input()
-    public disabled: boolean;
+    public isDisabled: boolean;
 
     constructor() {
         super();

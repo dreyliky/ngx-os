@@ -1,11 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ListItem } from 'projects/os-angular/src/lib/modules/list/interfaces/item.interface';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { GridItem } from 'os-angular/modules/grid/interfaces/item.interface';
 import { DynamicWindowService } from 'projects/os-angular/src/lib';
 import {
-    DemoWindowComponent,
-    HelloWorldWindowComponent,
-    DemoWin10WindowComponent,
-    FullscreenTestAppComponent
+    DemoWin10WindowComponent, DemoWindowComponent,
+
+    FullscreenTestAppComponent, HelloWorldWindowComponent
 } from '../test';
 
 @Component({
@@ -16,7 +15,7 @@ import {
 })
 export class DesktopComponent implements OnInit {
 
-    public shortcuts: ListItem[] = [
+    public shortcuts: GridItem[] = [
         {
             label: 'Os Elements',
             iconUrl: 'assets/icons/my-pc.png',
@@ -47,7 +46,7 @@ export class DesktopComponent implements OnInit {
         this.onOsElementsWin10ShortcutDblClick();
     }
 
-    public trackByFn = (shortcut: ListItem, index: number): number => {
+    public trackByFn = (shortcut: GridItem, index: number): number => {
         return index;
     }
 

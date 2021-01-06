@@ -1,4 +1,4 @@
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OsBaseComponent } from './element';
 
 @Component({
@@ -7,7 +7,10 @@ import { OsBaseComponent } from './element';
 export class OsBaseFieldComponent extends OsBaseComponent {
 
     @Input()
-    public disabled: boolean;
+    public isDisabled: boolean;
+
+    @Input()
+    public isReadonly: boolean = false;
 
     @Input()
     public placeholder: string = '';
@@ -17,6 +20,12 @@ export class OsBaseFieldComponent extends OsBaseComponent {
 
     @Input()
     public name: string;
+
+    @Input()
+    public size: number = 20;
+
+    @Input()
+    public value: string = '';
 
     @Output()
     public osFocus: EventEmitter<MouseEvent> = new EventEmitter();

@@ -20,7 +20,7 @@
         width: 100%;
         background: #ffffff;
 
-        &::ng-deep .os-scroll-view {
+        os-scroll-view {
             padding: 20px;
         }
     }

@@ -1,4 +1,4 @@
-import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OsBaseComponent } from './element';
 
 @Component({
@@ -7,7 +7,7 @@ import { OsBaseComponent } from './element';
 export class OsBaseButtonComponent extends OsBaseComponent {
 
     @Input()
-    public disabled: boolean;
+    public isDisabled: boolean;
 
     @Input()
     public ariaLabel: string;

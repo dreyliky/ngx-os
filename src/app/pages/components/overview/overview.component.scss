@@ -11,11 +11,7 @@
     background-color: rgb(0, 82, 149);
 
     os-header {
-        &::ng-deep {
-            h1 {
-                margin: 0px 0px 0px 30px;
-            }
-        }
+        margin: 0px 0px 0px 30px;
     }
 }
 
@@ -30,7 +26,6 @@
     
     .content {
         width: 100%;
-        max-width: 1000px;
         display: block;
         margin: 30px auto;
     }

@@ -1,25 +1,14 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from './shared.module';
-
 import {
-    ButtonModule,
-    CheckboxModule,
-    SelectboxModule,
+    ButtonModule, CheckboxModule,
+    DragAndDropModule, FieldRowModule,
+    GridModule, GroupBoxModule, ListModule,
     RadioButtonModule,
-    FieldRowModule,
-    GroupBoxModule,
-    SliderModule,
-    TextModule,
-    TextBoxModule,
-    TextareaBoxModule,
-    TabGroupModule,
-    WindowModule,
-    TreeViewModule,
-    ScrollViewModule,
-    ListModule,
-    DragAndDropModule,
-    ResizerModule
+    ResizerModule, ScrollViewModule, SelectboxModule,
+    SliderModule, TabGroupModule, TextareaBoxModule,
+    TextBoxModule, TextModule, TreeViewModule, WindowModule
 } from './modules';
+import { SharedModule } from './shared.module';
 
 @NgModule({
     imports: [
@@ -40,6 +29,7 @@ import {
         TreeViewModule,
         ScrollViewModule,
         ListModule,
+        GridModule,
         DragAndDropModule,
         ResizerModule
     ],
@@ -59,6 +49,7 @@ import {
         TreeViewModule,
         ScrollViewModule,
         ListModule,
+        GridModule,
         DragAndDropModule,
         ResizerModule
     ]

@@ -1,14 +1,17 @@
 import {
     ButtonComponent, CheckboxComponent, DynamicWindowComponent,
-    FieldRowComponent, GroupBoxComponent, HeaderComponent, ListComponent,
+    FieldRowComponent, GridComponent, GroupBoxComponent, HeaderComponent,
+    ListComponent, ListItemComponent,
     RadioButtonComponent, ScrollViewComponent, SelectboxComponent,
     SliderComponent, TabGroupComponent, TextareaBoxComponent, TextBoxComponent,
     TextComponent, TitleBarComponent, TreeViewComponent, WindowComponent
 } from 'os-angular';
 import {
     ButtonOverviewComponent, CheckboxOverviewComponent,
-    FieldRowOverviewComponent, GroupBoxOverviewComponent,
-    ListOverviewComponent, RadioButtonOverviewComponent,
+    FieldRowOverviewComponent,
+    GridOverviewComponent, GroupBoxOverviewComponent,
+    ListOverviewComponent,
+    RadioButtonOverviewComponent,
     ScrollViewOverviewComponent, SelectboxOverviewComponent,
     SliderOverviewComponent, TabGroupOverviewComponent,
     TextareaOverviewComponent, TextBoxOverviewComponent,
@@ -18,7 +21,6 @@ import {
 import { ComponentMetaInfo } from '../interfaces';
 import { ComponentType } from '../types';
 
-// FIXME: Rename file name as const below
 export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
     .set(
         'button',
@@ -103,6 +105,24 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
         }
     )
     .set(
+        'grid',
+        {
+            name: 'Grid',
+            type: 'grid',
+            shortInfo: 'Grid component short info',
+            imageUrl: '',
+            libComponents: [
+                GridComponent
+            ],
+            demoComponents: [
+                {
+                    title: 'Grid Overview',
+                    component: GridOverviewComponent
+                }
+            ]
+        }
+    )
+    .set(
         'list',
         {
             name: 'List',
@@ -110,7 +130,8 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             shortInfo: 'List component short info',
             imageUrl: '',
             libComponents: [
-                ListComponent
+                ListComponent,
+                ListItemComponent
             ],
             demoComponents: [
                 {
@@ -302,8 +323,8 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '',
             libComponents: [
                 WindowComponent,
-                DynamicWindowComponent,
-                TitleBarComponent
+                TitleBarComponent,
+                DynamicWindowComponent
             ],
             demoComponents: [
                 {
