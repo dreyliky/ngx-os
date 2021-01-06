@@ -1,5 +1,5 @@
 import {
-    ChangeDetectionStrategy, Component, forwardRef, Input
+    ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
@@ -33,13 +33,16 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
     @Input()
     public isDisabled: boolean;
 
+    @Output()
+    public osChange = new EventEmitter<T>();
+
     constructor() {
         super();
     }
 
     public onRadioButtonChange(): void {
-        console.log(this.value);
         this.onChange(this.value);
+        this.osChange.emit(this.value);
     }
 
     public registerOnChange(fn: () => {}): void {
