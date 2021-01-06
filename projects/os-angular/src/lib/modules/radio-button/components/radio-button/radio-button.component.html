@@ -6,7 +6,7 @@
     [ngStyle]="style"
     [name]="name"
     [checked]="checked"
-    [disabled]="disabled"
+    [disabled]="isDisabled"
     (change)="onRadioButtonChange()"
     (click)="osClick.emit($event)"
     (dblclick)="osDblclick.emit($event)"
