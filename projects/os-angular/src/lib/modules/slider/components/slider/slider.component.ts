@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
+import { SliderValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-slider',
@@ -40,7 +41,7 @@ export class SliderComponent extends OsBaseComponent implements ControlValueAcce
     public value: number = 0;
 
     @Output()
-    public osChange = new EventEmitter<number>();
+    public osChange = new EventEmitter<SliderValueChangeEvent>();
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef
@@ -53,7 +54,7 @@ export class SliderComponent extends OsBaseComponent implements ControlValueAcce
         const sliderValue: number = +targetElement.value;
 
         this.onChange(sliderValue);
-        this.osChange.emit(sliderValue);
+        this.osChange.emit({ event, value: this.value });
     }
 
     public registerOnChange(fn: () => {}): void {

@@ -7,7 +7,7 @@
     [name]="name"
     [checked]="checked"
     [disabled]="isDisabled"
-    (change)="onRadioButtonChange()"
+    (change)="onRadioButtonChange($event)"
     (click)="osClick.emit($event)"
     (dblclick)="osDblclick.emit($event)"
     (mousedown)="osMousedown.emit($event)"
