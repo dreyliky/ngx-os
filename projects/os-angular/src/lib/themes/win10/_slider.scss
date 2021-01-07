@@ -25,7 +25,7 @@ os-slider {
             appearance: none;
             width: 8px;
             height: 24px;
-            background: var(--primary-color);
+            background: rgb(var(--os-primary-color));
             border: 0;
             border-radius: 4px;
             transition: ease all 0.1s;

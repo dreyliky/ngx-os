@@ -27,7 +27,7 @@ os-textarea-box {
         }
 
         &:focus {
-            border-color: var(--primary-color);
+            border-color: rgb(var(--os-primary-color));
         }
     }
 

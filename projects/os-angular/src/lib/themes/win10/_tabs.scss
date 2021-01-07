@@ -30,7 +30,7 @@ os-tab-group {
 
             &[aria-selected="true"] {
                 color: #000000;
-                border-bottom: solid 2px var(--primary-color);
+                border-bottom: solid 2px rgb(var(--os-primary-color));
             }
         }
 

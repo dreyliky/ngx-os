@@ -39,7 +39,7 @@ os-checkbox {
 
         &:checked + label {
             &:before {
-                background-color: var(--primary-color);
+                background-color: rgb(var(--os-primary-color));
                 border: solid 2px transparent;
             }
 

@@ -1,14 +1,25 @@
 :root {
     --sans-serif: "Pixelated MS Sans Serif", Arial;
 
+    /** Universal color variables */
+    --os-primary-color: 0, 0, 128;
+    --os-secondary-color: 215, 215, 215;
+    --os-danger-color: 232, 17, 35;
+    --os-success-color: 0, 255, 0;
+    --os-warning-color: 255, 140, 0;
+    --os-info-color: 16, 132, 208;
+    --os-light-color: 242, 242, 242;
+    --os-dark-color: 41, 41, 41;
+    --os-white-color: 255, 255, 255;
+    --os-black-color: 0, 0, 0;
+    --os-bg-color: transparent;
+
     /* Color */
     --surface: #c0c0c0;
     --button-highlight: #ffffff;
     --button-face: #dfdfdf;
     --button-shadow: #808080;
     --window-frame: #0a0a0a;
-    --dialog-blue: #000080;
-    --dialog-blue-light: #1084d0;
     --link-blue: #0000ff;
 
     /* Spacing */
@@ -50,6 +61,6 @@
     --border-field: inset -1px -1px var(--button-highlight), inset 1px 1px var(--button-shadow),
         inset -2px -2px var(--button-face), inset 2px 2px var(--window-frame);
     --tab-border: none;
-    --title-bar-active-bg: linear-gradient(90deg, var(--dialog-blue), var(--dialog-blue-light));
+    --title-bar-active-bg: linear-gradient(90deg, rgb(var(--os-primary-color)), rgb(var(--os-info-color)));
     --title-bar-bg: linear-gradient(90deg, var(--button-shadow), var(--surface));
 }

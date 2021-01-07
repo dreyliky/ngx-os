@@ -40,7 +40,7 @@ os-radio-button {
 
         &:checked + label {
             &:before {
-                border: solid 2px var(--primary-color);
+                border: solid 2px rgb(var(--os-primary-color));
             }
 
             &:after {

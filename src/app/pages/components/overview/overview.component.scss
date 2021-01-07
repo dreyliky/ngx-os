@@ -7,8 +7,8 @@
     height: 125px;
     display: flex;
     align-items: center;
-    color: #fff;
-    background-color: rgb(0, 82, 149);
+    color: rgb(var(--os-white-color));
+    background-color: rgba(var(--os-primary-color), .8);
 
     os-header {
         margin: 0px 0px 0px 30px;
@@ -27,6 +27,7 @@
     .content {
         width: 100%;
         display: block;
+        padding: 0px 10px;
         margin: 30px auto;
     }
 }

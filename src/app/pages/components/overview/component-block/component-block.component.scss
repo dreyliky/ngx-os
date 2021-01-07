@@ -1,6 +1,7 @@
 os-header.os-header-5 {
     margin-top: 25px;
     margin-bottom: 0px;
+    font-weight: bold;
 }
 
 os-text-box::ng-deep {
@@ -9,14 +10,13 @@ os-text-box::ng-deep {
         margin-left: 10px;
         margin-top: 4px;
         white-space: nowrap;
-        color: blue !important;
+        color: rgb(var(--os-primary-color));
         font-weight: bold;
         user-select: all !important;
     }
 }
 
 .component {
-    border-left: solid 2px blue;
     padding: 10px;
     margin: 12px 0px;
 

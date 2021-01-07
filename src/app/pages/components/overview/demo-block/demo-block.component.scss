@@ -1,11 +1,11 @@
 os-header.os-header-5 {
-    color: green;
+    color: rgb(var(--os-primary-color));
+    font-weight: bold;
     margin-bottom: 0px !important;
 }
 
 .wrapper {
     padding: 10px;
-    border-left: solid 2px green;
 }
 
 .action-buttons {
