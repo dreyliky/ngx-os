@@ -61,7 +61,7 @@ os-radio-button {
         &:focus {
             + {
                 label {
-                    outline: 1px dotted #000000;
+                    outline: 1px dotted rgb(var(--os-black-color));
                 }
             }
         }

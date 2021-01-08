@@ -22,15 +22,15 @@ os-selectbox {
     border-radius: 0;
     user-select: none;
     cursor: default;
-    box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+    box-shadow: var(--border-field);
 
     &:focus {
         outline: none;
         color: var(--button-highlight);
         background-color: var(--dialog-blue);
         option {
-            color: #000;
-            background-color: #fff;
+            color: rgb(var(--os-black-color));
+            background-color: rgb(var(--os-white-color));
         }
     }
 

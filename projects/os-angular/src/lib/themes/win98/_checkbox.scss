@@ -36,7 +36,7 @@ os-checkbox {
         &:focus {
             + {
                 label {
-                    outline: 1px dotted #000000;
+                    outline: 1px dotted rgb(var(--os-black-color));
                 }
             }
         }
@@ -44,7 +44,7 @@ os-checkbox {
             + {
                 label {
                     &::before {
-                        background: var(--surface);
+                        background: rgb(var(--os-bg-color));
                     }
                 }
             }
@@ -71,7 +71,7 @@ os-checkbox {
         + {
             label {
                 &::before {
-                    background: var(--surface);
+                    background: rgb(var(--os-bg-color));
                 }
             }
         }

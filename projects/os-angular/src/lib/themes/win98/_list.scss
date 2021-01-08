@@ -1,17 +1,10 @@
 os-list {
     width: 100%;
     display: block;
-    border: solid 1px #000000;
-    background-color: #ffffff;
+    border: solid 1px rgb(var(--os-black-color));
+    background-color: rgb(var(--os-white-color));
     cursor: default;
     user-select: none;
-
-    &:hover {
-        os-list-item.selected {
-            background-color: #ffffff;
-            color: #000000;
-        }
-    }
 
     os-list-item {
         height: 15px;
@@ -20,13 +13,12 @@ os-list {
         padding: 0px 2px;
 
         &.selected {
-            background-color: #0a246a;
-            color: #ffffff;
+            background-color: rgba(var(--os-primary-color)) !important;
+            color: rgb(var(--os-light-color));
         }
 
         &:hover {
-            background-color: #0a246a !important;
-            color: #ffffff !important;
+            background-color: rgba(var(--os-secondary-color), .4);
         }
     }
 }

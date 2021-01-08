@@ -8,14 +8,13 @@
     --os-success-color: 0, 255, 0;
     --os-warning-color: 255, 140, 0;
     --os-info-color: 16, 132, 208;
-    --os-light-color: 242, 242, 242;
+    --os-light-color: 246, 246, 246;
     --os-dark-color: 41, 41, 41;
     --os-white-color: 255, 255, 255;
     --os-black-color: 0, 0, 0;
-    --os-bg-color: transparent;
+    --os-bg-color: 192, 192, 192;
 
     /* Color */
-    --surface: #c0c0c0;
     --button-highlight: #ffffff;
     --button-face: #dfdfdf;
     --button-shadow: #808080;
@@ -58,9 +57,8 @@
     /* Window borders flip button-face and button-highlight */
     --border-window-outer: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-face);
     --border-window-inner: inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-highlight);
-    --border-field: inset -1px -1px var(--button-highlight), inset 1px 1px var(--button-shadow),
-        inset -2px -2px var(--button-face), inset 2px 2px var(--window-frame);
-    --tab-border: none;
+    --border-field: inset -1px -1px rgb(var(--os-white-color)), inset 1px 1px rgba(var(--os-white-color), .5), inset -2px -2px rgb(var(--os-light-color)), inset 2px 2px rgb(var(--os-black-color));
+
     --title-bar-active-bg: linear-gradient(90deg, rgb(var(--os-primary-color)), rgb(var(--os-info-color)));
-    --title-bar-bg: linear-gradient(90deg, var(--button-shadow), var(--surface));
+    --title-bar-bg: linear-gradient(90deg, var(--button-shadow), rgb(var(--os-bg-color)));
 }
