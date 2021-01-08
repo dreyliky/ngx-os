@@ -3,11 +3,29 @@
         Components
     </os-header>
 
-    <os-grid>
+    <div class="grid-view">
+        <os-text>
+            Grid view
+        </os-text>
+
+        <os-selectbox
+            [(ngModel)]="selectedGridView"
+            (osChange)="onGridViewChange($event)">
+            <os-option
+                *ngFor="let gridView of gridViews"
+                [value]="gridView"
+                [selected]="gridView === selectedGridView">
+                {{ gridView }}
+            </os-option>
+        </os-selectbox>
+    </div>
+
+    <os-grid [view]="selectedGridView">
         <os-grid-item
             *ngFor="let component of components"
             [data]="{
-                label: component.name
+                label: component.name,
+                iconUrl: component.imageUrl
             }"
             (osDblClick)="onOpenSectionButtonClick(component.type)">
         </os-grid-item>

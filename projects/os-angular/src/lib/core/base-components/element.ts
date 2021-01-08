@@ -16,7 +16,7 @@ export class OsBaseComponent {
      * String with classes for target internal element
      */
     @Input()
-    public styleClass: string;
+    public styleClass: string = '';
 
     /**
      * Id of html element. By default it generates randomly

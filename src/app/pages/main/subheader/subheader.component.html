@@ -5,3 +5,14 @@
 <os-text>
     Operating system components for Angular
 </os-text>
+
+<os-grid>
+    <os-grid-item
+        *ngFor="let component of components"
+        [data]="{
+            label: component.name,
+            iconUrl: component.imageUrl
+        }"
+        (osDblClick)="onGridItemClick(component)">
+    </os-grid-item>
+</os-grid>

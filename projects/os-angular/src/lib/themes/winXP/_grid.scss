@@ -1,6 +1,6 @@
 os-grid {
 
-    .os-grid-item {
+    os-grid-item {
         width: 96px;
         height: 96px;
         align-items: center;
@@ -12,6 +12,7 @@ os-grid {
         .os-grid-item-image {
             width: 56px;
             height: 56px;
+            background-size: contain;
         }
 
         .os-grid-item-text {
@@ -27,7 +28,7 @@ os-grid {
         }
 
         &.selected {
-            .os-grid-item-image-wrapper {
+            .os-grid-item-image {
                 position: relative;
 
                 &:after {

@@ -1,6 +1,6 @@
 import {
     ChangeDetectionStrategy, Component, ElementRef,
-    EventEmitter, HostListener, Input, Output, ViewChild
+    EventEmitter, HostListener, Input, Output
 } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { OutsideClick } from 'os-angular/helpers';
@@ -9,7 +9,22 @@ import { GridItem } from '../../interfaces/item.interface';
 @Component({
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        'class': 'os-element os-grid-item',
+        '[class]': 'styleClass',
+        '[id]': 'id',
+        '[style]': 'style',
+        '[class.selected]': 'isSelected',
+        '(click)': 'onClick($event)',
+        '(dblclick)': 'onDblClick($event)',
+        '(mousedown)': 'onMouseDown($event)',
+        '(mousemove)': 'osMousemove.emit($event)',
+        '(mouseout)': 'osMouseout.emit($event)',
+        '(mouseover)': 'osMouseover.emit($event)',
+        '(mouseup)': 'osMouseup.emit($event)',
+        '(wheel)': 'osWheel.emit($event)'
+    }
 })
 export class GridItemComponent extends OsBaseComponent {
 
@@ -25,16 +40,15 @@ export class GridItemComponent extends OsBaseComponent {
     @Output()
     public osDblClick = new EventEmitter<MouseEvent>();
 
-    @ViewChild('OsGridItem')
-    private readonly _osGridItemElement: ElementRef<HTMLDivElement>;
-
-    constructor() {
+    constructor(
+        private readonly hostElement: ElementRef
+    ) {
         super();
     }
 
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
-        const gridItemElem = this._osGridItemElement.nativeElement;
+        const gridItemElem = this.hostElement.nativeElement;
         const isClickOutsideWindow = OutsideClick.checkForElement(gridItemElem, event);
 
         if (isClickOutsideWindow && this.isSelected) {
@@ -42,9 +56,13 @@ export class GridItemComponent extends OsBaseComponent {
         }
     }
 
-    public onClick(event: MouseEvent): void {
+    public onMouseDown(event: MouseEvent): void {
         this.isSelected = true;
 
+        this.osMousedown.emit(event);
+    }
+
+    public onClick(event: MouseEvent): void {
         if (this.data.onClick) {
             this.data.onClick(event);
         }

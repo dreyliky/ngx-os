@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
+import { GridView } from '../../types/grid-view.type';
 
 @Component({
     selector: 'os-grid',
@@ -7,12 +8,23 @@ import { OsBaseComponent } from 'os-angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         'class': 'os-element os-grid',
-        '[class]': 'styleClass',
+        '[class]': `styleClass + ' ' + view`,
         '[id]': 'id',
-        '[style]': 'style'
+        '[style]': 'style',
+        '(click)': 'osClick.emit($event)',
+        '(dblclick)': 'osDblclick.emit($event)',
+        '(mousedown)': 'osMousedown.emit($event)',
+        '(mousemove)': 'osMousemove.emit($event)',
+        '(mouseout)': 'osMouseout.emit($event)',
+        '(mouseover)': 'osMouseover.emit($event)',
+        '(mouseup)': 'osMouseup.emit($event)',
+        '(wheel)': 'osWheel.emit($event)'
     }
 })
 export class GridComponent extends OsBaseComponent {
+
+    @Input()
+    public view: GridView = 'medium-icons';
 
     constructor() {
         super();

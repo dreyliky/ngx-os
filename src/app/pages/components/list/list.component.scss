@@ -11,6 +11,18 @@
     padding: 30px;
 }
 
+.grid-view {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    os-selectbox {
+        min-width: 200px;
+        margin-left: 10px;
+    }
+}
+
 os-grid {
     display: flex;
     flex-wrap: wrap;

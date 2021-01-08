@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
 import { ComponentMetaInfoMap, ComponentType } from '@Doc/features/doc';
+import { OptionSelectedEvent } from 'os-angular';
+import { GridView } from 'os-angular/modules/grid/types/grid-view.type';
 
 @Component({
     selector: 'demo-list',
@@ -11,16 +13,38 @@ import { ComponentMetaInfoMap, ComponentType } from '@Doc/features/doc';
 })
 export class GridComponent implements OnInit {
 
+    public gridViews: GridView[] = [
+        'medium-icons', 'large-icons', 'extra-large-icons',
+        'list', 'details', 'tiles'
+    ];
+
+    public selectedGridView: GridView;
+
     public components = [...ComponentMetaInfoMap.values()];
+
+    private readonly gridViewStorageKey: string = 'os-comp-list-grid-view';
 
     constructor(
         private readonly router: Router
     ) {}
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+        this.initSelectedGridView();
+    }
+
+    public onGridViewChange(event: OptionSelectedEvent<GridView>): void {
+        localStorage.setItem(this.gridViewStorageKey, event.value);
+    }
 
     public onOpenSectionButtonClick(componentType: ComponentType): void {
         this.router.navigateByUrl(`/${DocumentationRouteEnum.Components}/${componentType}`);
+    }
+
+    private initSelectedGridView(): void {
+        const view: GridView = <GridView>localStorage
+            .getItem(this.gridViewStorageKey) ?? 'medium-icons';
+
+        this.selectedGridView = view;
     }
 
 }
