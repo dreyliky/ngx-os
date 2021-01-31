@@ -8,6 +8,7 @@ os-grid {
         user-select: none;
 
         .os-grid-item-text {
+            width: 100%;
             display: block;
             white-space: nowrap;
             overflow: hidden;
@@ -48,6 +49,12 @@ os-grid {
     }
 
     &.medium-icons {
+        os-grid-item {
+            width: 64px;
+            height: 64px;
+            margin: 5px;
+        }
+
         .os-grid-item-image {
             width: 48px;
             height: 48px;
