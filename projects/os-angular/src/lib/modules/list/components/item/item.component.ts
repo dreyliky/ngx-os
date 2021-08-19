@@ -8,8 +8,9 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './item.component.html',
     styleUrls: ['./item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
-        'class': 'os-element os-option',
+        class: 'os-element os-option',
         '[class.selected]': 'selected',
         '[class]': 'styleClass',
         '[id]': 'id',
@@ -24,7 +25,6 @@ import { OsBaseComponent } from 'os-angular/core';
     }
 })
 export class ListItemComponent<T> extends OsBaseComponent {
-
     @Input()
     public selected: boolean;
 
@@ -42,5 +42,4 @@ export class ListItemComponent<T> extends OsBaseComponent {
         this.osClick.emit(event);
         this.osSelected.emit(this.value);
     }
-
 }

@@ -8,13 +8,10 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxOverviewComponent implements OnInit {
-
     public formGroup: FormGroup;
 
     public simpleCheckbox1Value: boolean = true;
     public simpleCheckbox2Value: boolean = true;
-
-    constructor() {}
 
     public ngOnInit(): void {
         this.initFormGroup();
@@ -26,5 +23,4 @@ export class CheckboxOverviewComponent implements OnInit {
             checkbox2: new FormControl(true)
         });
     }
-
 }

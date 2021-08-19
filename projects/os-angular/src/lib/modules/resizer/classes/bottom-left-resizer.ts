@@ -1,7 +1,7 @@
+/* eslint-disable max-lines-per-function */
 import { Resizer } from './resizer';
 
 export class BottomLeftResizer extends Resizer {
-
     public resizeElement(event: MouseEvent): void {
         const height = this.context.originalHeight + (event.pageY - this.context.originalMouseY);
         const width = this.context.originalWidth - (event.pageX - this.context.originalMouseX);
@@ -33,5 +33,4 @@ export class BottomLeftResizer extends Resizer {
 
         this.onResize();
     }
-
 }

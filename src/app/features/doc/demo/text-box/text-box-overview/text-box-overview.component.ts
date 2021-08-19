@@ -8,10 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextBoxOverviewComponent implements OnInit {
-
     public formGroup: FormGroup;
-
-    constructor() {}
 
     public ngOnInit(): void {
         this.createFormGroup();
@@ -22,5 +19,4 @@ export class TextBoxOverviewComponent implements OnInit {
             textboxValue: new FormControl('Hi there!')
         });
     }
-
 }

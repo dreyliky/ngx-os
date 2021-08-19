@@ -7,7 +7,6 @@ import { OsBaseComponent } from 'os-angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WindowComponent extends OsBaseComponent {
-
     @Input()
     public title: string;
 
@@ -68,5 +67,4 @@ export class WindowComponent extends OsBaseComponent {
     constructor() {
         super();
     }
-
 }

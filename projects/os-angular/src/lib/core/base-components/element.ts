@@ -5,7 +5,6 @@ import { IdGenerator } from 'os-angular/helpers';
     template: ''
 })
 export class OsBaseComponent {
-
     /**
      * Object with css styles which will applied for target internal element
      */
@@ -71,7 +70,4 @@ export class OsBaseComponent {
      */
     @Output()
     public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
-
-    constructor() {}
-
 }

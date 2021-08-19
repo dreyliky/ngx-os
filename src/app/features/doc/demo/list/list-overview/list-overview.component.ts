@@ -11,7 +11,6 @@ interface Item {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListOverviewComponent implements OnInit {
-
     public items: Item[] = [
         { text: 'Item 1' },
         { text: 'Item 2' },
@@ -20,8 +19,6 @@ export class ListOverviewComponent implements OnInit {
 
     public selectedItem: Item;
 
-    constructor() { }
-
     public ngOnInit(): void {
         this.selectedItem = this.items[2];
     }
@@ -29,5 +26,4 @@ export class ListOverviewComponent implements OnInit {
     public onItemClick(item: Item): void {
         this.selectedItem = item;
     }
-
 }

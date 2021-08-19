@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'demo-desktop-page',
@@ -6,10 +6,4 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     styleUrls: ['./desktop.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DesktopComponent implements OnInit {
-
-    constructor() {}
-
-    public ngOnInit(): void {}
-
-}
+export class DesktopComponent {}

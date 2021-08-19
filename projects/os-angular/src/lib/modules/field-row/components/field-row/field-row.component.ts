@@ -7,12 +7,10 @@ import { OsBaseComponent } from 'os-angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FieldRowComponent extends OsBaseComponent {
-
     @Input()
     public stacked: boolean = false;
 
     constructor() {
         super();
     }
-
 }

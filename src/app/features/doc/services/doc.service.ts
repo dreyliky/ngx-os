@@ -7,7 +7,6 @@ import { DocStateService } from './doc-state.service';
     providedIn: 'root'
 })
 export class DocService {
-
     private libDoc: Doc;
     private demoDoc: Doc;
 
@@ -86,5 +85,4 @@ export class DocService {
             )
             .subscribe((doc) => this.demoDoc = doc);
     }
-
 }

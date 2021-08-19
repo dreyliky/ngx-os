@@ -14,7 +14,6 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DesktopComponent implements OnInit {
-
     public shortcuts: GridItem[] = [
         {
             label: 'Os Elements',
@@ -95,5 +94,4 @@ export class DesktopComponent implements OnInit {
             }
         );
     }
-
 }

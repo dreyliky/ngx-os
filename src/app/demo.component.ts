@@ -8,15 +8,14 @@ import { DemoDocProvider, LibDocProvider } from '@Features/doc';
     styleUrls: ['./demo.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
-        LibDocProvider, DemoDocProvider
+        LibDocProvider,
+        DemoDocProvider
     ]
 })
 export class DemoComponent {
-
     constructor(
         private readonly themeManagerService: ThemeManagerService
     ) {
         this.themeManagerService.applyThemeFromStorage();
     }
-
 }

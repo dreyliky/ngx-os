@@ -1,7 +1,6 @@
 import { Resizer } from './resizer';
 
 export class RightResizer extends Resizer {
-
     public resizeElement(event: MouseEvent): void {
         const width = this.context.originalWidth + (event.pageX - this.context.originalMouseX);
 
@@ -11,5 +10,4 @@ export class RightResizer extends Resizer {
 
         this.onResize();
     }
-
 }

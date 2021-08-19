@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { GridItem } from 'os-angular';
 
 @Component({
@@ -7,8 +7,7 @@ import { GridItem } from 'os-angular';
     styleUrls: ['./grid-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridOverviewComponent implements OnInit {
-
+export class GridOverviewComponent {
     public items: GridItem[] = [
         {
             label: 'Item 1',
@@ -23,9 +22,4 @@ export class GridOverviewComponent implements OnInit {
             iconUrl: '/assets/icons/folder-opened.png'
         }
     ];
-
-    constructor() {}
-
-    public ngOnInit(): void {}
-
 }

@@ -7,7 +7,6 @@ import { OsBaseComponent } from 'os-angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitleBarComponent extends OsBaseComponent {
-
     @Output()
     public osDblClick = new EventEmitter<MouseEvent>();
 
@@ -23,5 +22,4 @@ export class TitleBarComponent extends OsBaseComponent {
     constructor() {
         super();
     }
-
 }

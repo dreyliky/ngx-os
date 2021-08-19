@@ -7,7 +7,6 @@ import { ThemeEnum } from '../enums';
     providedIn: 'root'
 })
 export class ThemeManagerService {
-
     public get appliedTheme$(): Observable<ThemeEnum> {
         return this._appliedTheme$.asObservable();
     }
@@ -37,5 +36,4 @@ export class ThemeManagerService {
         localStorage.setItem(this.themeStorageKey, theme);
         this._appliedTheme$.next(theme);
     }
-
 }

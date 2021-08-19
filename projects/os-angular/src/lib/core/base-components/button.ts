@@ -5,7 +5,6 @@ import { OsBaseComponent } from './element';
     template: ''
 })
 export class OsBaseButtonComponent extends OsBaseComponent {
-
     @Input()
     public isDisabled: boolean;
 
@@ -36,5 +35,4 @@ export class OsBaseButtonComponent extends OsBaseComponent {
     constructor() {
         super();
     }
-
 }

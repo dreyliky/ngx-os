@@ -16,7 +16,6 @@ import { environment } from 'src/environments/environment';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComponentHeaderComponent implements OnInit, OnDestroy {
-
     public readonly libVersion: string = environment.version;
 
     public themes = ThemeArray;
@@ -54,5 +53,4 @@ export class ComponentHeaderComponent implements OnInit, OnDestroy {
                 this.changeDetector.detectChanges();
             });
     }
-
 }

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 export interface Doc {
     pipes: any[];
     interfaces: Interface[];

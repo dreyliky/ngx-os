@@ -8,7 +8,6 @@ import { TreeNode } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeViewComponent extends OsBaseComponent {
-
     @Input()
     public set data(value: TreeNode<any>[]) {
         if (value) {
@@ -40,10 +39,10 @@ export class TreeViewComponent extends OsBaseComponent {
         targetNode.parent = parent;
 
         if (node.children && node.children.length) {
-            targetNode.children = node.children.map((childNode) => {
+            targetNode.children = node.children.map((childNode, nodeIndex) => {
                 childNode.parent = targetNode;
 
-                childNode = this.setParentForNodeAndChildren(childNode, targetNode);
+                node.children[nodeIndex] = this.setParentForNodeAndChildren(childNode, targetNode);
 
                 return childNode;
             });
@@ -51,5 +50,4 @@ export class TreeViewComponent extends OsBaseComponent {
 
         return targetNode;
     }
-
 }

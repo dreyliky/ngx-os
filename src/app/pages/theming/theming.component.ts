@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'demo-theming',
@@ -6,10 +6,4 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['./theming.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ThemingComponent implements OnInit {
-
-    constructor() {}
-
-    public ngOnInit(): void {}
-
-}
+export class ThemingComponent {}

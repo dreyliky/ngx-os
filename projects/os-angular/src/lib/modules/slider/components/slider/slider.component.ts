@@ -1,5 +1,11 @@
 import {
-    ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, Output
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    forwardRef,
+    Input,
+    Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
@@ -18,7 +24,6 @@ import { SliderValueChangeEvent } from '../../interfaces';
     ]
 })
 export class SliderComponent extends OsBaseComponent implements ControlValueAccessor {
-
     @Input()
     public label: string;
 
@@ -43,6 +48,9 @@ export class SliderComponent extends OsBaseComponent implements ControlValueAcce
     @Output()
     public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
 
+    public onChange: (value: number) => any;
+    public onTouched: () => any;
+
     constructor(
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -53,15 +61,15 @@ export class SliderComponent extends OsBaseComponent implements ControlValueAcce
         const targetElement = event.target as HTMLInputElement;
         const sliderValue: number = +targetElement.value;
 
-        this.onChange(sliderValue);
+        this.onChange?.(sliderValue);
         this.osChange.emit({ event, value: this.value });
     }
 
-    public registerOnChange(fn: () => {}): void {
+    public registerOnChange(fn: () => any): void {
         this.onChange = fn;
     }
 
-    public registerOnTouched(fn: () => {}): void {
+    public registerOnTouched(fn: () => any): void {
         this.onTouched = fn;
     }
 
@@ -70,9 +78,4 @@ export class SliderComponent extends OsBaseComponent implements ControlValueAcce
 
         this.changeDetector.detectChanges();
     }
-
-    public onChange: any = (): any => {};
-
-    public onTouched: any = (): any => {};
-
 }

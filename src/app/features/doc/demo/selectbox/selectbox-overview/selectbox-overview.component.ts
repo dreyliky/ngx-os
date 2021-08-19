@@ -13,7 +13,6 @@ interface MyItem {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectboxOverviewComponent implements OnInit {
-
     public items: MyItem[] = [
         { text: 'Option 1', value: 1 },
         { text: 'Option 2', value: 2 },
@@ -21,8 +20,6 @@ export class SelectboxOverviewComponent implements OnInit {
     ];
 
     public formGroup: FormGroup;
-
-    constructor() {}
 
     public ngOnInit(): void {
         this.createFormGroup();
@@ -33,5 +30,4 @@ export class SelectboxOverviewComponent implements OnInit {
             selectedItem: new FormControl(this.items[1])
         });
     }
-
 }

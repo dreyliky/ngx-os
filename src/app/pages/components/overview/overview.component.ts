@@ -2,12 +2,21 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild, ViewContainerRef
+    Component,
+    ComponentFactoryResolver,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+    ViewContainerRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
-    ComponentMetaInfo, ComponentMetaInfoMap,
-    ComponentType, DemoComponentMetaInfo, DocComponent, DocService
+    ComponentMetaInfo,
+    ComponentMetaInfoMap,
+    ComponentType,
+    DemoComponentMetaInfo,
+    DocComponent,
+    DocService
 } from '@Doc/features/doc';
 import { Subscription } from 'rxjs';
 import { DemoBlockComponent } from './demo-block';
@@ -19,10 +28,6 @@ import { DemoBlockComponent } from './demo-block';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
-
-    public metaInfo: ComponentMetaInfo;
-    public components: DocComponent[];
-
     @ViewChild('demoTemplate', { read: ViewContainerRef })
     private readonly demoTemplate: ViewContainerRef;
 
@@ -30,6 +35,9 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
     private set demoBlockComponent(_: DemoBlockComponent) {
         this.initDemoComponent();
     }
+
+    public metaInfo: ComponentMetaInfo;
+    public components: DocComponent[];
 
     private routeParamsSubscription: Subscription;
 
@@ -96,5 +104,4 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
         this.initDocComponents();
         this.initDemoComponent();
     }
-
 }

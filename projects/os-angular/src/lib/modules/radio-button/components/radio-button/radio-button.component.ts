@@ -1,5 +1,10 @@
 import {
-    ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    forwardRef,
+    Input,
+    Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
@@ -18,7 +23,6 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
     ]
 })
 export class RadioButtonComponent<T> extends OsBaseComponent implements ControlValueAccessor {
-
     @Input()
     public label: string;
 
@@ -37,6 +41,9 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
     @Output()
     public osChange = new EventEmitter<RadioButtonValueChangeEvent<T>>();
 
+    public onChange: (value: T) => any;
+    public onTouched: () => any;
+
     constructor() {
         super();
     }
@@ -46,11 +53,11 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
         this.osChange.emit({ event, value: this.value });
     }
 
-    public registerOnChange(fn: () => {}): void {
+    public registerOnChange(fn: () => any): void {
         this.onChange = fn;
     }
 
-    public registerOnTouched(fn: () => {}): void {
+    public registerOnTouched(fn: () => any): void {
         this.onTouched = fn;
     }
 
@@ -59,9 +66,4 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
             this.checked = true;
         }
     }
-
-    public onChange: any = (): any => {};
-
-    public onTouched: any = (): any => {};
-
 }

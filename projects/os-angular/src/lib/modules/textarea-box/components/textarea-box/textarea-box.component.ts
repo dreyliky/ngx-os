@@ -1,6 +1,11 @@
 import {
-    ChangeDetectionStrategy, ChangeDetectorRef, Component,
-    EventEmitter, forwardRef, Input, Output
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    forwardRef,
+    Input,
+    Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from 'os-angular/core';
@@ -19,7 +24,6 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
     ]
 })
 export class TextareaBoxComponent extends OsBaseFieldComponent implements ControlValueAccessor {
-
     @Input()
     public rows: number;
 
@@ -29,6 +33,9 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements Contro
     @Output()
     public osChange: EventEmitter<TextareaBoxChangeEvent> = new EventEmitter();
 
+    public onChange: (value: string) => any;
+    public onTouched: () => any;
+
     constructor(
         private changeDetector: ChangeDetectorRef
     ) {
@@ -37,17 +44,17 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements Contro
 
     public onTextareaBoxValueChange(event: Event): void {
         const targetElement = event.target as HTMLTextAreaElement;
-        const textareaBoxValue: string = targetElement.value;
+        const textareaBoxValue = targetElement.value;
 
-        this.onChange(textareaBoxValue);
+        this.onChange?.(textareaBoxValue);
         this.osChange.emit({ event, value: textareaBoxValue });
     }
 
-    public registerOnChange(fn: () => {}): void {
+    public registerOnChange(fn: () => any): void {
         this.onChange = fn;
     }
 
-    public registerOnTouched(fn: () => {}): void {
+    public registerOnTouched(fn: () => any): void {
         this.onTouched = fn;
     }
 
@@ -56,9 +63,4 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements Contro
 
         this.changeDetector.detectChanges();
     }
-
-    public onChange: any = (): any => {};
-
-    public onTouched: any = (): any => {};
-
 }

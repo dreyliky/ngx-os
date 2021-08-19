@@ -12,7 +12,6 @@ import { GridView } from 'os-angular/modules/grid/types/grid-view.type';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent implements OnInit {
-
     public gridViews: GridView[] = [
         'medium-icons', 'large-icons', 'extra-large-icons',
         'list', 'details', 'tiles'
@@ -46,5 +45,4 @@ export class GridComponent implements OnInit {
 
         this.selectedGridView = view;
     }
-
 }

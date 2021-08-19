@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'demo-lib-description',
@@ -6,10 +6,4 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['./lib-description.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LibDescriptionComponent implements OnInit {
-
-    constructor() {}
-
-    public ngOnInit(): void {}
-
-}
+export class LibDescriptionComponent {}

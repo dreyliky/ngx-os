@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'demo-group-box-overview',
@@ -6,10 +6,4 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['./group-box-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GroupBoxOverviewComponent implements OnInit {
-
-    constructor() {}
-
-    public ngOnInit(): void {}
-
-}
+export class GroupBoxOverviewComponent {}

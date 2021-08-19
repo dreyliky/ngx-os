@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ComponentMetaInfo, DocComponent } from '@Doc/features/doc';
 
 @Component({
@@ -7,16 +7,10 @@ import { ComponentMetaInfo, DocComponent } from '@Doc/features/doc';
     styleUrls: ['./component-block.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ComponentBlockComponent implements OnInit {
-
+export class ComponentBlockComponent {
     @Input()
     public component: DocComponent;
 
     @Input()
     public metaInfo: ComponentMetaInfo;
-
-    constructor() {}
-
-    public ngOnInit(): void {}
-
 }

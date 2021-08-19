@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -6,8 +6,9 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './list.component.html',
     styleUrls: ['./list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
-        'class': 'os-element os-list',
+        class: 'os-element os-list',
         '[class.selected]': 'selected',
         '[class]': 'styleClass',
         '[id]': 'id',
@@ -21,8 +22,7 @@ import { OsBaseComponent } from 'os-angular/core';
         '(wheel)': 'osWheel.emit($event)'
     }
 })
-export class ListComponent extends OsBaseComponent implements OnInit {
-
+export class ListComponent extends OsBaseComponent {
     @Input()
     public scrollViewStyle: object;
 
@@ -32,7 +32,4 @@ export class ListComponent extends OsBaseComponent implements OnInit {
     constructor() {
         super();
     }
-
-    public ngOnInit(): void {}
-
 }

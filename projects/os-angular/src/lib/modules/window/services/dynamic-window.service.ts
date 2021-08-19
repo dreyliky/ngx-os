@@ -1,11 +1,7 @@
 import {
     ApplicationRef, ComponentFactoryResolver,
 
-
-
-
     ComponentRef, EmbeddedViewRef, Injectable,
-
 
     Injector, Type
 } from '@angular/core';
@@ -15,10 +11,8 @@ import { DynamicWindowComponent } from '../components/dynamic-window/dynamic-win
 import { DynamicWindowDiParams, DynamicWindowInputParams } from '../interfaces';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 
-
 @Injectable()
 export class DynamicWindowService {
-
     constructor(
         private readonly injector: Injector,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
@@ -100,5 +94,4 @@ export class DynamicWindowService {
         windowInstance.windowRef = params.windowRef;
         windowInstance.config = params.config;
     }
-
 }

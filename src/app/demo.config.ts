@@ -5,7 +5,6 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class DemoConfig {
-
     constructor(
         private readonly docApiService: DocApiService,
         private readonly docStateService: DocStateService
@@ -35,5 +34,4 @@ export class DemoConfig {
                 tap((doc) => this.docStateService.setDemoDoc(doc))
             );
     }
-
 }

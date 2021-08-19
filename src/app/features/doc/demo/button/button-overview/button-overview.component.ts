@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'demo-button-overview',
@@ -6,13 +6,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['./button-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonOverviewComponent implements OnInit {
-
+export class ButtonOverviewComponent {
     public counter: number = 0;
-
-    constructor() {}
-
-    public ngOnInit(): void {}
 
     public onIncreaseButtonClick(): void {
         this.counter++;
@@ -21,5 +16,4 @@ export class ButtonOverviewComponent implements OnInit {
     public onDecreaseButtonClick(): void {
         this.counter--;
     }
-
 }

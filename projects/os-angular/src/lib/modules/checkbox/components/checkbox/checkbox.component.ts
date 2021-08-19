@@ -1,6 +1,11 @@
 import {
-    ChangeDetectionStrategy, ChangeDetectorRef, Component,
-    EventEmitter, forwardRef, Input, Output
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    forwardRef,
+    Input,
+    Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
@@ -18,7 +23,6 @@ import { OsBaseComponent } from 'os-angular/core';
     ]
 })
 export class CheckboxComponent extends OsBaseComponent implements ControlValueAccessor {
-
     @Input()
     public label: string;
 
@@ -37,6 +41,9 @@ export class CheckboxComponent extends OsBaseComponent implements ControlValueAc
     @Output()
     public checkedChange = new EventEmitter<boolean>();
 
+    public onChange: (value: boolean) => any;
+    public onTouched: () => any;
+
     constructor(
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -48,14 +55,14 @@ export class CheckboxComponent extends OsBaseComponent implements ControlValueAc
 
         this.osChange.emit(event);
         this.checkedChange.emit(target.checked);
-        this.onChange(target.checked);
+        this.onChange?.(target.checked);
     }
 
-    public registerOnChange(fn: () => {}): void {
+    public registerOnChange(fn: () => any): void {
         this.onChange = fn;
     }
 
-    public registerOnTouched(fn: () => {}): void {
+    public registerOnTouched(fn: () => any): void {
         this.onTouched = fn;
     }
 
@@ -64,9 +71,4 @@ export class CheckboxComponent extends OsBaseComponent implements ControlValueAc
 
         this.changeDetector.detectChanges();
     }
-
-    public onChange: any = (): any => {};
-
-    public onTouched: any = (): any => {};
-
 }

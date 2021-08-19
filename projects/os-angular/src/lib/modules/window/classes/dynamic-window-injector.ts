@@ -1,7 +1,6 @@
-import { Injector, Type, InjectionToken, InjectFlags } from '@angular/core';
+import { InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
 
 export class DynamicWindowInjector implements Injector {
-
     constructor(
         private readonly _parentInjector: Injector,
         private readonly _additionalTokens: WeakMap<any, any>
@@ -15,7 +14,7 @@ export class DynamicWindowInjector implements Injector {
 
     public get (token: any, notFoundValue?: any): any;
 
-    public get(token: any, notFoundValue?: any, flags?: any): any {
+    public get(token: any, notFoundValue?: any): any {
         const value = this._additionalTokens.get(token);
 
         if (value) {
@@ -24,5 +23,4 @@ export class DynamicWindowInjector implements Injector {
 
         return this._parentInjector.get<any>(token, notFoundValue);
     }
-
 }

@@ -1,7 +1,4 @@
-import {
-    ChangeDetectionStrategy, Component,
-    EventEmitter, Input, OnInit, Output
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'demo-collapse-button',
@@ -9,20 +6,14 @@ import {
     styleUrls: ['./collapse-button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CollapseButtonComponent implements OnInit {
-
+export class CollapseButtonComponent {
     @Input()
     public isCollapsed: boolean = false;
 
     @Output()
-    public click = new EventEmitter<MouseEvent>();
-
-    constructor() {}
-
-    public ngOnInit(): void {}
+    public pressed = new EventEmitter<MouseEvent>();
 
     public onCollapseButtonClick(): void {
         this.isCollapsed = !this.isCollapsed;
     }
-
 }

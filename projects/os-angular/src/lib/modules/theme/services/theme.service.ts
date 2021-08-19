@@ -7,7 +7,6 @@ import { ThemeColor } from '../types';
     providedIn: 'root'
 })
 export class ThemeService {
-
     constructor(
         @Inject(DOCUMENT) private document: Document
     ) {}
@@ -37,5 +36,4 @@ export class ThemeService {
             `${color.r}, ${color.g}, ${color.b}`
         );
     }
-
 }

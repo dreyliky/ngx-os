@@ -1,14 +1,11 @@
 import {
-    Injectable,
-    ComponentRef
+    ComponentRef, Injectable
 } from '@angular/core';
-
+import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
-import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DynamicWindowControlService {
-
     public get activeWindowId$(): Observable<string> {
         return this._activeWindowId$.asObservable();
     }
@@ -24,8 +21,6 @@ export class DynamicWindowControlService {
     private readonly _activeWindowId$ = new BehaviorSubject<string>(null);
     private readonly _windowIdsOrder$ = new BehaviorSubject<string[]>([]);
     private readonly _windowComponentsRef$ = new BehaviorSubject<ComponentRef<DynamicWindowComponent>[]>([]);
-
-    constructor() {}
 
     public getWindowComponentsRef(): ComponentRef<DynamicWindowComponent>[] {
         return this._windowComponentsRef$.getValue();
@@ -58,5 +53,4 @@ export class DynamicWindowControlService {
 
         this._windowComponentsRef$.next([...filteredWindowComponents]);
     }
-
 }

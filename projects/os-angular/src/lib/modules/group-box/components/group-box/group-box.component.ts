@@ -7,12 +7,10 @@ import { OsBaseComponent } from 'os-angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GroupBoxComponent extends OsBaseComponent {
-
     @Input()
     public label: string;
 
     constructor() {
         super();
     }
-
 }

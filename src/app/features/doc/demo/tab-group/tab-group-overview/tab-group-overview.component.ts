@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 enum TabEnum {
     Tab1,
@@ -12,14 +12,8 @@ enum TabEnum {
     styleUrls: ['./tab-group-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupOverviewComponent implements OnInit {
-
+export class TabGroupOverviewComponent {
     public readonly tabEnum: typeof TabEnum = TabEnum;
 
     public selectedTab: TabEnum = TabEnum.Tab2;
-
-    constructor() {}
-
-    public ngOnInit(): void {}
-
 }

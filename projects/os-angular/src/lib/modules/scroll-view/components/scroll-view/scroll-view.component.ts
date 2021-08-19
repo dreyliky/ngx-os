@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-host-metadata-property */
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
@@ -6,7 +7,7 @@ import { OsBaseComponent } from 'os-angular/core';
     templateUrl: './scroll-view.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
-        'class': 'os-element os-scroll-view',
+        class: 'os-element os-scroll-view',
         '[class]': 'styleClass',
         '[style.overflow-x]': `(horizontalScrollEnabled) ? 'auto' : 'hidden'`,
         '[style.overflow-y]': `(verticalScrollEnabled) ? 'auto' : 'hidden'`,
@@ -15,7 +16,6 @@ import { OsBaseComponent } from 'os-angular/core';
     }
 })
 export class ScrollViewComponent extends OsBaseComponent {
-
     @Input()
     public verticalScrollEnabled: boolean = true;
 
@@ -25,5 +25,4 @@ export class ScrollViewComponent extends OsBaseComponent {
     constructor() {
         super();
     }
-
 }

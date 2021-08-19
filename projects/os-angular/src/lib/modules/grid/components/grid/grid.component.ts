@@ -6,8 +6,9 @@ import { GridView } from '../../types/grid-view.type';
     selector: 'os-grid',
     templateUrl: './grid.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
-        'class': 'os-element os-grid',
+        class: 'os-element os-grid',
         '[class]': `styleClass + ' ' + view`,
         '[id]': 'id',
         '[style]': 'style',
@@ -22,12 +23,10 @@ import { GridView } from '../../types/grid-view.type';
     }
 })
 export class GridComponent extends OsBaseComponent {
-
     @Input()
     public view: GridView = 'medium-icons';
 
     constructor() {
         super();
     }
-
 }

@@ -7,7 +7,6 @@ import { OsBaseComponent } from 'os-angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabComponent extends OsBaseComponent {
-
     @Input()
     public selected: boolean;
 
@@ -32,5 +31,4 @@ export class TabComponent extends OsBaseComponent {
     constructor() {
         super();
     }
-
 }

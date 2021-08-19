@@ -1,7 +1,17 @@
+/* eslint-disable @angular-eslint/no-host-metadata-property */
 import {
-    ChangeDetectionStrategy, ChangeDetectorRef, Component,
-    ContentChildren, ElementRef, EventEmitter, forwardRef,
-    HostListener, Input, OnDestroy, Output, QueryList
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
+    forwardRef,
+    HostListener,
+    Input,
+    OnDestroy,
+    Output,
+    QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from 'os-angular/core';
@@ -22,7 +32,7 @@ import { OptionComponent } from '../option';
         }
     ],
     host: {
-        'class': 'os-element os-selectbox',
+        class: 'os-element os-selectbox',
         '[class]': 'styleClass',
         '[style]': 'style',
         '[id]': 'id',
@@ -38,7 +48,6 @@ import { OptionComponent } from '../option';
 })
 export class SelectboxComponent<T>
     extends OsBaseComponent implements OnDestroy, ControlValueAccessor {
-
     @Input()
     public isOpened: boolean = false;
 
@@ -80,6 +89,9 @@ export class SelectboxComponent<T>
         this.initSelectboxOptions(data);
     }
 
+    public onChange: (value: T) => any;
+    public onTouched: () => any;
+
     private _optionComponentList: QueryList<OptionComponent<T>>;
     private _optionsSelectedEventSubscriptions: Subscription[];
 
@@ -112,15 +124,15 @@ export class SelectboxComponent<T>
         this.osClick.emit(event);
     }
 
-    public trackByFn(optionComponent: OptionComponent<T>, index: number): number {
+    public trackByFn(_: OptionComponent<T>, index: number): number {
         return index;
     }
 
-    public registerOnChange(fn: () => {}): void {
+    public registerOnChange(fn: () => any): void {
         this.onChange = fn;
     }
 
-    public registerOnTouched(fn: () => {}): void {
+    public registerOnTouched(fn: () => any): void {
         this.onTouched = fn;
     }
 
@@ -129,10 +141,6 @@ export class SelectboxComponent<T>
 
         this.changeDetector.detectChanges();
     }
-
-    public onChange: any = (): any => {};
-
-    public onTouched: any = (): any => {};
 
     private getActualValue(value: T): any {
         return (this.valueField) ? value[this.valueField] : value;
@@ -153,7 +161,7 @@ export class SelectboxComponent<T>
 
                     this.valueChange.emit(event.value);
                     this.osChange.emit(event);
-                    this.onChange(event.value);
+                    this.onChange?.(event.value);
                 });
 
             this._optionsSelectedEventSubscriptions.push(subscription);
@@ -164,5 +172,4 @@ export class SelectboxComponent<T>
         this._optionsSelectedEventSubscriptions
             ?.forEach((subscription) => subscription.unsubscribe());
     }
-
 }

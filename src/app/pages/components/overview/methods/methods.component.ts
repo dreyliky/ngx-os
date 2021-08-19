@@ -8,7 +8,6 @@ import { ComponentMetaInfo, DocComponent, DocService, MethodsClass } from '@Doc/
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MethodsComponent implements OnInit {
-
     @Input()
     public readonly metaInfo: ComponentMetaInfo;
 
@@ -30,5 +29,4 @@ export class MethodsComponent implements OnInit {
     public onCollapseButtonClick(): void {
         this.isCollapsed = !this.isCollapsed;
     }
-
 }

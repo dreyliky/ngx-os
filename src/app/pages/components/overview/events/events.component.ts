@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ComponentMetaInfo, DocComponent, DocService, OutputsClass } from '@Doc/features/doc';
 
 @Component({
@@ -7,8 +7,7 @@ import { ComponentMetaInfo, DocComponent, DocService, OutputsClass } from '@Doc/
     styleUrls: ['./events.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EventsComponent implements OnInit {
-
+export class EventsComponent implements OnChanges {
     @Input()
     public readonly metaInfo: ComponentMetaInfo;
 
@@ -23,8 +22,6 @@ export class EventsComponent implements OnInit {
         private readonly docService: DocService
     ) {}
 
-    public ngOnInit(): void {}
-
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.component.previousValue !== changes.component.currentValue) {
             this.outputs = this.docService.getUniqueDocComponentOutputs(this.component);
@@ -34,5 +31,4 @@ export class EventsComponent implements OnInit {
     public onCollapseButtonClick(): void {
         this.isCollapsed = !this.isCollapsed;
     }
-
 }

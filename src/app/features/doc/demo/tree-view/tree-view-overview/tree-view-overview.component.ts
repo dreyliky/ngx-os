@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TreeNode } from 'os-angular';
 
 @Component({
@@ -7,8 +7,7 @@ import { TreeNode } from 'os-angular';
     styleUrls: ['./tree-view-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeViewOverviewComponent implements OnInit {
-
+export class TreeViewOverviewComponent {
     public items: TreeNode<any>[] = [
         { label: 'Item 1' },
         {
@@ -26,9 +25,4 @@ export class TreeViewOverviewComponent implements OnInit {
         },
         { label: 'Item 3' }
     ];
-
-    constructor() {}
-
-    public ngOnInit(): void {}
-
 }

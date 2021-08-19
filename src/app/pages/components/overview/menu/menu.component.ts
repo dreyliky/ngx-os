@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
 import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Doc/features/doc';
@@ -9,8 +9,7 @@ import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Doc/features/doc';
     styleUrls: ['./menu.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuComponent implements OnInit {
-
+export class MenuComponent {
     @Input()
     public openedComponentMetaInfo: ComponentMetaInfo;
 
@@ -20,10 +19,7 @@ export class MenuComponent implements OnInit {
         private readonly router: Router
     ) {}
 
-    public ngOnInit(): void {}
-
     public onComponentOptionSelected(component: ComponentMetaInfo): void {
         this.router.navigateByUrl(`/${DocumentationRouteEnum.Components}/${component.type}`);
     }
-
 }

@@ -1,9 +1,16 @@
 import {
-    AfterViewInit, ChangeDetectionStrategy,
-    ChangeDetectorRef, Component,
-    ComponentFactoryResolver, ComponentRef,
-    ElementRef, HostListener, OnDestroy,
-    OnInit, Type, ViewChild
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ComponentFactoryResolver,
+    ComponentRef,
+    ElementRef,
+    HostListener,
+    OnDestroy,
+    OnInit,
+    Type,
+    ViewChild
 } from '@angular/core';
 import { IdGenerator, OutsideClick } from 'os-angular/helpers';
 import { DragInfo, OsDraggableDirective } from 'os-angular/modules/drag-and-drop';
@@ -12,7 +19,6 @@ import { Subscription } from 'rxjs';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
-import { WindowComponent } from '../window';
 
 @Component({
     selector: 'os-dynamic-window',
@@ -21,6 +27,11 @@ import { WindowComponent } from '../window';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit {
+    @ViewChild(DynamicWindowContentDirective, { static: true })
+    private readonly _dynamicWindowContent: DynamicWindowContentDirective;
+
+    @ViewChild(OsDraggableDirective, { static: true })
+    private readonly _draggableDirective: OsDraggableDirective;
 
     public childComponentType: Type<any>;
     public config: DynamicWindowConfig;
@@ -48,15 +59,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public windowElement: HTMLDivElement;
     public titleBarElement: HTMLDivElement;
     public titleBarButtons: HTMLButtonElement[] = [];
-
-    @ViewChild(DynamicWindowContentDirective, { static: true })
-    private readonly _dynamicWindowContent: DynamicWindowContentDirective;
-
-    @ViewChild(WindowComponent, { static: true })
-    private readonly _windowComponent: WindowComponent;
-
-    @ViewChild(OsDraggableDirective, { static: true })
-    private readonly _draggableDirective: OsDraggableDirective;
 
     private readonly _id: string = IdGenerator.generate('os-window');
     private readonly _baseZIndex: number = 1000;
@@ -318,5 +320,4 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
 
         this._subscriptions.push(subscription);
     }
-
 }

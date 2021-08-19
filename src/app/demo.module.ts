@@ -1,12 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './demo.routing';
-import { DemoComponent } from './demo.component';
-import { SharedModule } from './demo-shared.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { FeaturesModule } from '@Features/features.module';
 import { LayoutsModule } from '@Layouts/layouts.module';
+import { SharedModule } from './demo-shared.module';
+import { DemoComponent } from './demo.component';
 import { DemoConfig } from './demo.config';
+import { AppRoutingModule } from './demo.routing';
 
 @NgModule({
     declarations: [
@@ -25,7 +24,12 @@ import { DemoConfig } from './demo.config';
     ],
     providers: [
         DemoConfig,
-        { provide: APP_INITIALIZER, useFactory: (config: DemoConfig) => () => config.load(), deps: [DemoConfig], multi: true }
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (config: DemoConfig) => () => config.load(),
+            deps: [DemoConfig],
+            multi: true
+        }
     ]
 })
 export class DemoModule {}

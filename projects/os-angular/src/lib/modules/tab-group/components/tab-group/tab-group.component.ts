@@ -1,6 +1,13 @@
-import { Component, ChangeDetectionStrategy, QueryList, ContentChildren, AfterContentInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {
+    AfterContentInit,
+    ChangeDetectionStrategy,
+    Component,
+    ContentChildren,
+    OnDestroy,
+    QueryList
+} from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
+import { Subscription } from 'rxjs';
 import { TabComponent } from '../tab';
 
 @Component({
@@ -9,7 +16,6 @@ import { TabComponent } from '../tab';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabGroupComponent extends OsBaseComponent implements OnDestroy, AfterContentInit {
-
     @ContentChildren(TabComponent)
     public readonly tabComponentList: QueryList<TabComponent>;
 
@@ -46,5 +52,4 @@ export class TabGroupComponent extends OsBaseComponent implements OnDestroy, Aft
             tabComponent.selected = false;
         });
     }
-
 }

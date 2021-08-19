@@ -8,10 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderOverviewComponent implements OnInit {
-
     public formGroup: FormGroup;
-
-    constructor() {}
 
     public ngOnInit(): void {
         this.createFormGroup();
@@ -22,5 +19,4 @@ export class SliderOverviewComponent implements OnInit {
             sliderValue: new FormControl(10)
         });
     }
-
 }

@@ -1,6 +1,4 @@
-import {
-    ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { DynamicWindowConfig, DynamicWindowRef } from 'os-angular/modules/window';
 import { Subscription } from 'rxjs';
 
@@ -11,7 +9,6 @@ import { Subscription } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FullscreenTestAppComponent implements OnInit, OnDestroy {
-
     public isWindowFullscreen: boolean;
 
     private readonly _subscriptions: Subscription[] = [];
@@ -70,5 +67,4 @@ export class FullscreenTestAppComponent implements OnInit, OnDestroy {
 
         this._subscriptions.push(subscription);
     }
-
 }

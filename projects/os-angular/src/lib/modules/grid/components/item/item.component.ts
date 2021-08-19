@@ -1,6 +1,11 @@
 import {
-    ChangeDetectionStrategy, Component, ElementRef,
-    EventEmitter, HostListener, Input, Output
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Input,
+    Output
 } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { OutsideClick } from 'os-angular/helpers';
@@ -10,8 +15,9 @@ import { GridItem } from '../../interfaces/item.interface';
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
-        'class': 'os-element os-grid-item',
+        class: 'os-element os-grid-item',
         '[class]': 'styleClass',
         '[id]': 'id',
         '[style]': 'style',
@@ -27,7 +33,6 @@ import { GridItem } from '../../interfaces/item.interface';
     }
 })
 export class GridItemComponent extends OsBaseComponent {
-
     @Input()
     public data: GridItem;
 
@@ -77,5 +82,4 @@ export class GridItemComponent extends OsBaseComponent {
 
         this.osDblClick.emit(event);
     }
-
 }

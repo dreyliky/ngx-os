@@ -7,7 +7,6 @@ import { Doc } from '../interfaces';
     providedIn: 'root'
 })
 export class DocApiService {
-
     constructor(
         private readonly http: HttpClient
     ) {}
@@ -19,5 +18,4 @@ export class DocApiService {
     public getDemoDoc(): Observable<Doc> {
         return this.http.get<Doc>(`/assets/demo-doc/documentation.json`);
     }
-
 }

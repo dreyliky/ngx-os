@@ -1,15 +1,11 @@
-import {
-    Directive, ElementRef,
-    EventEmitter, Input, OnDestroy, OnInit, Output
-} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { DraggerConfig } from '../classes';
 import { DragInfo } from '../interfaces/drag-info.interface';
 
 @Directive({
     selector: '[os-draggable]'
 })
-export class OsDraggableDirective implements OnInit, OnDestroy {
-
+export class OsDraggableDirective implements OnDestroy {
     @Input('os-draggable')
     public set draggerConfig(config: DraggerConfig) {
         this._draggerConfig = { ...this._draggerConfig, ...config };
@@ -48,8 +44,6 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
     constructor(
         private readonly element: ElementRef<HTMLElement>
     ) {}
-
-    public ngOnInit(): void {}
 
     public ngOnDestroy(): void {
         this._draggableElement.removeEventListener('mousedown', this.elementMouseDownHandler);
@@ -167,5 +161,4 @@ export class OsDraggableDirective implements OnInit, OnDestroy {
 
         return true;
     }
-
 }

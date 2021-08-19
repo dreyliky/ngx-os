@@ -11,7 +11,6 @@ import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Doc/features/doc';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubheaderComponent implements OnInit {
-
     public components: ComponentMetaInfo[];
 
     private readonly componentsCount: number = 5;
@@ -34,5 +33,4 @@ export class SubheaderComponent implements OnInit {
         this.components = ArrayHelper.shuffle(metaInfos)
             .slice(0, this.componentsCount);
     }
-
 }

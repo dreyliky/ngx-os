@@ -1,6 +1,5 @@
-import {
-    ChangeDetectionStrategy, Component, EventEmitter, Input, Output
-} from '@angular/core';
+/* eslint-disable @angular-eslint/no-host-metadata-property */
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { OptionSelectedEvent } from '../../interfaces';
 
@@ -10,7 +9,7 @@ import { OptionSelectedEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         // FIXME: Refactoring (exist os-list-item)
-        'class': 'os-element os-option',
+        class: 'os-element os-option',
         '[class.selected]': 'selected',
         '[class]': 'styleClass',
         '[id]': 'id',
@@ -25,7 +24,6 @@ import { OptionSelectedEvent } from '../../interfaces';
     }
 })
 export class OptionComponent<T> extends OsBaseComponent {
-
     @Input()
     public selected: boolean;
 
@@ -43,5 +41,4 @@ export class OptionComponent<T> extends OsBaseComponent {
         this.osClick.emit(event);
         this.osSelected.emit({ event, value: this.value });
     }
-
 }

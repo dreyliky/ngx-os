@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { GridItemComponent } from './item.component';
 
-
 describe('GridItemComponent', () => {
     let component: GridItemComponent;
     let fixture: ComponentFixture<GridItemComponent>;

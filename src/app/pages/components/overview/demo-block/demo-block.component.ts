@@ -1,7 +1,4 @@
-import {
-    ChangeDetectionStrategy, ChangeDetectorRef,
-    Component, Input, OnInit, Type
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Type } from '@angular/core';
 import { DemoComponentMetaInfo, DocComponent, DocService } from '@Doc/features/doc';
 
 enum SectionEnum {
@@ -17,8 +14,7 @@ enum SectionEnum {
     styleUrls: ['./demo-block.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DemoBlockComponent implements OnInit {
-
+export class DemoBlockComponent {
     @Input()
     public set demoComponentMetaInfo(data: DemoComponentMetaInfo) {
         this._demoComponentMetaInfo = data;
@@ -41,11 +37,8 @@ export class DemoBlockComponent implements OnInit {
         private readonly docService: DocService
     ) {}
 
-    public ngOnInit(): void {}
-
     private initDemoDocComponent(componentType: Type<any>): void {
         this.docComponent = this.docService.getDemoDocComponentByName(componentType);
         this.changeDetector.detectChanges();
     }
-
 }

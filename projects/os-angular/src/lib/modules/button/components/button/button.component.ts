@@ -8,12 +8,10 @@ import { buttonType } from '../../shared';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent extends OsBaseButtonComponent {
-
     @Input()
     public type: buttonType = 'button';
 
     constructor() {
         super();
     }
-
 }

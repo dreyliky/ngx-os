@@ -1,10 +1,8 @@
-import { Observable, Subject } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { filter, first } from 'rxjs/operators';
 import { DynamicWindowConfig } from './dynamic-window-config';
-import { first, filter } from 'rxjs/operators';
 
 export class DynamicWindowRef {
-
     public get isHidden$(): Observable<boolean> {
         return this._isHidden$.asObservable();
     }
@@ -51,8 +49,6 @@ export class DynamicWindowRef {
     private readonly _windowElement$ = new BehaviorSubject<HTMLDivElement>(null);
     private readonly _afterClosed$ = new Subject<any>();
 
-    constructor() {}
-
     public updateConfig(config: DynamicWindowConfig): void {
         this._config$.next({ ...this.config, ...config });
     }
@@ -81,12 +77,11 @@ export class DynamicWindowRef {
         this._isFullscreen$.next(state);
     }
 
-    public close(result?: any): void {
+    public close<T>(result?: T): void {
         this._afterClosed$.next(result);
     }
 
     public _setWindowElement(element: HTMLDivElement): void {
         this._windowElement$.next(element);
     }
-
 }

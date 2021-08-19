@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DynamicWindowConfig, DynamicWindowRef } from 'os-angular/modules/window';
 
 @Component({
@@ -6,8 +6,7 @@ import { DynamicWindowConfig, DynamicWindowRef } from 'os-angular/modules/window
     templateUrl: './hello-world-window.component.html',
     styleUrls: ['./hello-world-window.component.scss']
 })
-export class HelloWorldWindowComponent implements OnInit {
-
+export class HelloWorldWindowComponent {
     public data: string;
 
     constructor(
@@ -17,10 +16,7 @@ export class HelloWorldWindowComponent implements OnInit {
         this.data = this.config.data;
     }
 
-    public ngOnInit(): void {}
-
     public onDestroyButtonClick(): void {
         this.windowRef.close();
     }
-
 }

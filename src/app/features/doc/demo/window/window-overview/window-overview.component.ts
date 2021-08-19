@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DynamicWindowService } from 'os-angular';
 
 @Component({
@@ -7,13 +7,10 @@ import { DynamicWindowService } from 'os-angular';
     styleUrls: ['./window-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WindowOverviewComponent implements OnInit {
-
+export class WindowOverviewComponent {
     constructor(
         private readonly dynamicWindowService: DynamicWindowService
     ) {}
-
-    public ngOnInit(): void {}
 
     public onOpenWindowButtonClick(): void {
         this.dynamicWindowService.open(
@@ -25,5 +22,4 @@ export class WindowOverviewComponent implements OnInit {
             }
         );
     }
-
 }

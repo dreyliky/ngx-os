@@ -1,5 +1,11 @@
 import {
-    ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, Output
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    forwardRef,
+    Input,
+    Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from 'os-angular/core';
@@ -19,12 +25,14 @@ import { textboxType } from '../../shared';
     ]
 })
 export class TextBoxComponent extends OsBaseFieldComponent implements ControlValueAccessor {
-
     @Input()
     public type: textboxType = 'text';
 
     @Output()
     public osChange: EventEmitter<TextBoxChangeEvent> = new EventEmitter();
+
+    public onChange: (value: string) => any;
+    public onTouched: () => any;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef
@@ -36,15 +44,15 @@ export class TextBoxComponent extends OsBaseFieldComponent implements ControlVal
         const targetElement = event.target as HTMLInputElement;
         const textboxValue: string = targetElement.value;
 
-        this.onChange(textboxValue);
+        this.onChange?.(textboxValue);
         this.osChange.emit({ event, value: textboxValue });
     }
 
-    public registerOnChange(fn: () => {}): void {
+    public registerOnChange(fn: () => any): void {
         this.onChange = fn;
     }
 
-    public registerOnTouched(fn: () => {}): void {
+    public registerOnTouched(fn: () => any): void {
         this.onTouched = fn;
     }
 
@@ -53,9 +61,4 @@ export class TextBoxComponent extends OsBaseFieldComponent implements ControlVal
 
         this.changeDetector.detectChanges();
     }
-
-    public onChange: any = (): any => {};
-
-    public onTouched: any = (): any => {};
-
 }

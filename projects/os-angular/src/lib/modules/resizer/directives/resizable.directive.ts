@@ -1,25 +1,23 @@
-import { Directive, ElementRef, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { ResizerEnum } from '../enums';
-import { ResizerConfig } from '../classes';
-
+import { Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import {
-    Resizer,
-    TopResizer,
-    LeftResizer,
-    RightResizer,
-    BottomResizer,
-    TopLeftResizer,
-    TopRightResizer,
     BottomLeftResizer,
-    BottomRightResizer
+    BottomResizer,
+    BottomRightResizer,
+    LeftResizer,
+    Resizer,
+    ResizerConfig,
+    RightResizer,
+    TopLeftResizer,
+    TopResizer,
+    TopRightResizer
 } from '../classes';
+import { ResizerEnum } from '../enums';
 import { ResizeInfo } from '../interfaces';
 
 @Directive({
     selector: '[os-resizable]'
 })
 export class OsResizableDirective implements OnInit, OnDestroy {
-
     @Input('os-resizable')
     public set resizerConfig(config: ResizerConfig) {
         this._resizerConfig = { ...this._resizerConfig, ...config };
@@ -183,6 +181,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         });
     }
 
+    // eslint-disable-next-line max-lines-per-function
     private readonly resizerMouseDownHandler = (event: MouseEvent): void => {
         if (
             !this.resizerConfig.isEnabled
@@ -222,5 +221,4 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
         this.osResizeEnd.emit(this.getResizeInfo());
     }
-
 }

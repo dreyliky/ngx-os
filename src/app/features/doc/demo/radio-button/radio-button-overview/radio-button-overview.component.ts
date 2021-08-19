@@ -12,7 +12,6 @@ interface Item {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonOverviewComponent implements OnInit {
-
     public items: Item[] = [
         { text: 'Item 1' },
         { text: 'Item 2' },
@@ -20,8 +19,6 @@ export class RadioButtonOverviewComponent implements OnInit {
     ];
 
     public formGroup: FormGroup;
-
-    constructor() {}
 
     public ngOnInit(): void {
         this.createFormGroup();
@@ -32,5 +29,4 @@ export class RadioButtonOverviewComponent implements OnInit {
             selectedValue: new FormControl(this.items[1])
         });
     }
-
 }
