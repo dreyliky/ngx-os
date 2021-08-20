@@ -12,14 +12,7 @@
             "@Layouts/*": ["src/app/layouts/*"],
             "@Layouts": ["src/app/layouts"],
             "@Pages/*": ["src/app/pages/*"],
-            "@Pages": ["src/app/pages"],
-            "@lib-core": ["projects/os-angular/src/lib/core"],
-            "@lib-core/*": ["projects/os-angular/src/lib/core/*"],
-            "@lib-helpers": ["projects/os-angular/src/lib/helpers"],
-            "@lib-helpers/*": ["projects/os-angular/src/lib/helpers/*"],
-            "@lib-modules": ["projects/os-angular/src/lib/modules"],
-            "@lib-modules/*": ["projects/os-angular/src/lib/modules/*"],
-            "@lib-shared": ["projects/os-angular/src/lib/shared.module.ts"]
+            "@Pages": ["src/app/pages"]
         }
     },
     "files": [

@@ -16,7 +16,16 @@
             "es2018",
             "dom"
         ],
-        "typeRoots": ["node_modules/@types", "node_modules/@angular"]
+        "typeRoots": ["node_modules/@types", "node_modules/@angular"],
+        "paths": {
+            "@lib-core": ["projects/os-angular/src/lib/core"],
+            "@lib-core/*": ["projects/os-angular/src/lib/core/*"],
+            "@lib-helpers": ["projects/os-angular/src/lib/helpers"],
+            "@lib-helpers/*": ["projects/os-angular/src/lib/helpers/*"],
+            "@lib-modules": ["projects/os-angular/src/lib/modules"],
+            "@lib-modules/*": ["projects/os-angular/src/lib/modules/*"],
+            "@lib-shared": ["projects/os-angular/src/lib/shared.module.ts"]
+        }
     },
     "angularCompilerOptions": {
         "fullTemplateTypeCheck": true,
