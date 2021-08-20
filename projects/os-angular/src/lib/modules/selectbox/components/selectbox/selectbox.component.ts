@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-host-metadata-property */
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -10,6 +9,7 @@ import {
     HostListener,
     Input,
     OnDestroy,
+    OnInit,
     Output,
     QueryList
 } from '@angular/core';
@@ -30,24 +30,11 @@ import { OptionComponent } from '../option';
             useExisting: forwardRef(() => SelectboxComponent),
             multi: true
         }
-    ],
-    host: {
-        class: 'os-element os-selectbox',
-        '[class]': 'styleClass',
-        '[style]': 'style',
-        '[id]': 'id',
-        '(click)': 'onSelectboxClick($event)',
-        '(dblclick)': 'osDblclick.emit($event)',
-        '(mousedown)': 'osMousedown.emit($event)',
-        '(mousemove)': 'osMousemove.emit($event)',
-        '(mouseout)': 'osMouseout.emit($event)',
-        '(mouseover)': 'osMouseover.emit($event)',
-        '(mouseup)': 'osMouseup.emit($event)',
-        '(wheel)': 'osWheel.emit($event)'
-    }
+    ]
 })
 export class SelectboxComponent<T>
-    extends OsBaseComponent implements OnDestroy, ControlValueAccessor {
+    extends OsBaseComponent
+    implements OnInit, OnDestroy, ControlValueAccessor {
     @Input()
     public isOpened: boolean = false;
 
@@ -78,15 +65,15 @@ export class SelectboxComponent<T>
     @Output()
     public valueChange = new EventEmitter<T>();
 
-    public get optionComponentList(): QueryList<OptionComponent<T>> {
-        return this._optionComponentList;
-    }
-
     @ContentChildren(OptionComponent)
     public set optionComponentList(data: QueryList<OptionComponent<T>>) {
         this._optionComponentList = data;
 
         this.initSelectboxOptions(data);
+    }
+
+    public get optionComponentList(): QueryList<OptionComponent<T>> {
+        return this._optionComponentList;
     }
 
     public onChange: (value: T) => any;
@@ -100,6 +87,10 @@ export class SelectboxComponent<T>
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+    }
+
+    public ngOnInit(): void {
+        this.hostClasslistManager.add('os-selectbox');
     }
 
     public ngOnDestroy(): void {
@@ -118,6 +109,7 @@ export class SelectboxComponent<T>
         }
     }
 
+    @HostListener('click', ['$event'])
     public onSelectboxClick(event: MouseEvent): void {
         this.isOpened = !this.isOpened;
 

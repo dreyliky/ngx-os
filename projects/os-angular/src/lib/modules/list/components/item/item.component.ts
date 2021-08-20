@@ -1,5 +1,11 @@
 import {
-    ChangeDetectionStrategy, Component, EventEmitter, Input, Output
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnInit,
+    Output
 } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
@@ -7,26 +13,19 @@ import { OsBaseComponent } from 'os-angular/core';
     selector: 'os-list-item',
     templateUrl: './item.component.html',
     styleUrls: ['./item.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-    host: {
-        class: 'os-element os-option',
-        '[class.selected]': 'selected',
-        '[class]': 'styleClass',
-        '[id]': 'id',
-        '(click)': 'onListItemClick($event)',
-        '(dblclick)': 'osDblclick.emit($event)',
-        '(mousedown)': 'osMousedown.emit($event)',
-        '(mousemove)': 'osMousemove.emit($event)',
-        '(mouseout)': 'osMouseout.emit($event)',
-        '(mouseover)': 'osMouseover.emit($event)',
-        '(mouseup)': 'osMouseup.emit($event)',
-        '(wheel)': 'osWheel.emit($event)'
-    }
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListItemComponent<T> extends OsBaseComponent {
+export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
-    public selected: boolean;
+    public set selected(selected: boolean) {
+        this._selected = selected;
+
+        this.hostClasslistManager.applyAsFlag('selected', selected);
+    }
+
+    public get selected(): boolean {
+        return this._selected;
+    }
 
     @Input()
     public value: T;
@@ -34,10 +33,13 @@ export class ListItemComponent<T> extends OsBaseComponent {
     @Output()
     public osSelected = new EventEmitter<T>();
 
-    constructor() {
-        super();
+    private _selected = false;
+
+    public ngOnInit(): void {
+        this.hostClasslistManager.add('os-list-item');
     }
 
+    @HostListener('click', ['$event'])
     public onListItemClick(event: MouseEvent): void {
         this.osClick.emit(event);
         this.osSelected.emit(this.value);

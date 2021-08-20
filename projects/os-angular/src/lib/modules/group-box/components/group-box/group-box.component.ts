@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -9,8 +9,4 @@ import { OsBaseComponent } from 'os-angular/core';
 export class GroupBoxComponent extends OsBaseComponent {
     @Input()
     public label: string;
-
-    constructor() {
-        super();
-    }
 }

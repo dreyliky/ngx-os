@@ -44,10 +44,6 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
     public onChange: (value: T) => any;
     public onTouched: () => any;
 
-    constructor() {
-        super();
-    }
-
     public onRadioButtonChange(event: Event): void {
         this.onChange(this.value);
         this.osChange.emit({ event, value: this.value });

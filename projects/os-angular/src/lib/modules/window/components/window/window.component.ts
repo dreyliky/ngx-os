@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -63,8 +63,4 @@ export class WindowComponent extends OsBaseComponent {
 
     @Output()
     public osCloseButtonClick = new EventEmitter<MouseEvent>();
-
-    constructor() {
-        super();
-    }
 }

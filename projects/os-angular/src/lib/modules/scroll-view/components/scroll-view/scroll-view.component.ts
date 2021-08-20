@@ -1,28 +1,29 @@
-/* eslint-disable @angular-eslint/no-host-metadata-property */
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
     selector: 'os-scroll-view',
     templateUrl: './scroll-view.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {
-        class: 'os-element os-scroll-view',
-        '[class]': 'styleClass',
-        '[style.overflow-x]': `(horizontalScrollEnabled) ? 'auto' : 'hidden'`,
-        '[style.overflow-y]': `(verticalScrollEnabled) ? 'auto' : 'hidden'`,
-        '[id]': 'id',
-        '[style]': 'style'
-    }
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScrollViewComponent extends OsBaseComponent {
+export class ScrollViewComponent extends OsBaseComponent implements OnInit {
     @Input()
-    public verticalScrollEnabled: boolean = true;
+    public verticalScrollEnabled = true;
 
     @Input()
-    public horizontalScrollEnabled: boolean = false;
+    public horizontalScrollEnabled = false;
 
-    constructor() {
-        super();
+    @HostBinding('style.overflow-x')
+    public get hostOverflowX(): string {
+        return (this.horizontalScrollEnabled) ? 'auto' : 'hidden';
+    }
+
+    @HostBinding('style.overflow-y')
+    public get hostOverflowY(): string {
+        return (this.verticalScrollEnabled) ? 'auto' : 'hidden';
+    }
+
+    public ngOnInit(): void {
+        this.hostClasslistManager.add('os-scroll-view');
     }
 }

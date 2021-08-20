@@ -21,10 +21,6 @@ export class TreeViewComponent extends OsBaseComponent {
 
     private _data: TreeNode<any>[];
 
-    constructor() {
-        super();
-    }
-
     private prepareData(data: TreeNode<any>[]): void {
         this._data = data
             .map((treeNode) => this.setParentForNodeAndChildren(treeNode));

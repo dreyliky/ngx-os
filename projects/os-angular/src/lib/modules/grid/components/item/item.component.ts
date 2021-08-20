@@ -1,72 +1,57 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
-    EventEmitter,
-    HostListener,
+    ElementRef, HostListener,
     Input,
-    Output
+    OnInit
 } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { OutsideClick } from 'os-angular/helpers';
-import { GridItem } from '../../interfaces/item.interface';
+import { GridItem } from '../../interfaces';
 
 @Component({
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-    host: {
-        class: 'os-element os-grid-item',
-        '[class]': 'styleClass',
-        '[id]': 'id',
-        '[style]': 'style',
-        '[class.selected]': 'isSelected',
-        '(click)': 'onClick($event)',
-        '(dblclick)': 'onDblClick($event)',
-        '(mousedown)': 'onMouseDown($event)',
-        '(mousemove)': 'osMousemove.emit($event)',
-        '(mouseout)': 'osMouseout.emit($event)',
-        '(mouseover)': 'osMouseover.emit($event)',
-        '(mouseup)': 'osMouseup.emit($event)',
-        '(wheel)': 'osWheel.emit($event)'
-    }
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridItemComponent extends OsBaseComponent {
+export class GridItemComponent extends OsBaseComponent implements OnInit {
     @Input()
     public data: GridItem;
 
     @Input()
-    public isSelected: boolean = false;
+    public set selected(selected: boolean) {
+        this._selected = selected;
 
-    @Output()
-    public osClick = new EventEmitter<MouseEvent>();
+        this.hostClasslistManager.applyAsFlag('selected', selected);
+    }
 
-    @Output()
-    public osDblClick = new EventEmitter<MouseEvent>();
+    public get selected(): boolean {
+        return this._selected;
+    }
+
+    private _selected = false;
 
     constructor(
-        private readonly hostElement: ElementRef
+        private readonly hostElementRef: ElementRef
     ) {
         super();
     }
 
+    public ngOnInit(): void {
+        this.hostClasslistManager.add('os-grid-item');
+    }
+
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
-        const gridItemElem = this.hostElement.nativeElement;
-        const isClickOutsideWindow = OutsideClick.checkForElement(gridItemElem, event);
+        const hostElement = this.hostElementRef.nativeElement;
+        const isClickOutsideWindow = OutsideClick.checkForElement(hostElement, event);
 
-        if (isClickOutsideWindow && this.isSelected) {
-            this.isSelected = false;
+        if (isClickOutsideWindow && this.selected) {
+            this.selected = false;
         }
     }
 
-    public onMouseDown(event: MouseEvent): void {
-        this.isSelected = true;
-
-        this.osMousedown.emit(event);
-    }
-
+    @HostListener('click', ['$event'])
     public onClick(event: MouseEvent): void {
         if (this.data.onClick) {
             this.data.onClick(event);
@@ -75,11 +60,19 @@ export class GridItemComponent extends OsBaseComponent {
         this.osClick.emit(event);
     }
 
+    @HostListener('dblclick', ['$event'])
     public onDblClick(event: MouseEvent): void {
         if (this.data.onDblClick) {
             this.data.onDblClick(event);
         }
 
-        this.osDblClick.emit(event);
+        this.osDblclick.emit(event);
+    }
+
+    @HostListener('mousedown', ['$event'])
+    public onMouseDown(event: MouseEvent): void {
+        this.selected = true;
+
+        this.osMousedown.emit(event);
     }
 }

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, TemplateRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -27,8 +27,4 @@ export class TabComponent extends OsBaseComponent {
 
     @ViewChild('TabContentTemplate', { static: true })
     public tabContentTemplate: TemplateRef<any>;
-
-    constructor() {
-        super();
-    }
 }

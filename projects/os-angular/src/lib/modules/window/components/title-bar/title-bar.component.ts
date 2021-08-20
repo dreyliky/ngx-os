@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 
 @Component({
@@ -18,8 +18,4 @@ export class TitleBarComponent extends OsBaseComponent {
 
     @Output()
     public osCloseButtonClick = new EventEmitter<MouseEvent>();
-
-    constructor() {
-        super();
-    }
 }

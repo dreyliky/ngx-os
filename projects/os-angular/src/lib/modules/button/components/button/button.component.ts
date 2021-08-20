@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OsBaseButtonComponent } from 'os-angular/core';
 import { buttonType } from '../../shared';
 
@@ -10,8 +10,4 @@ import { buttonType } from '../../shared';
 export class ButtonComponent extends OsBaseButtonComponent {
     @Input()
     public type: buttonType = 'button';
-
-    constructor() {
-        super();
-    }
 }

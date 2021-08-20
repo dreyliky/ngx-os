@@ -1,32 +1,24 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { GridView } from '../../types/grid-view.type';
 
 @Component({
     selector: 'os-grid',
     templateUrl: './grid.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-    host: {
-        class: 'os-element os-grid',
-        '[class]': `styleClass + ' ' + view`,
-        '[id]': 'id',
-        '[style]': 'style',
-        '(click)': 'osClick.emit($event)',
-        '(dblclick)': 'osDblclick.emit($event)',
-        '(mousedown)': 'osMousedown.emit($event)',
-        '(mousemove)': 'osMousemove.emit($event)',
-        '(mouseout)': 'osMouseout.emit($event)',
-        '(mouseover)': 'osMouseover.emit($event)',
-        '(mouseup)': 'osMouseup.emit($event)',
-        '(wheel)': 'osWheel.emit($event)'
-    }
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridComponent extends OsBaseComponent {
+export class GridComponent extends OsBaseComponent implements OnInit {
     @Input()
-    public view: GridView = 'medium-icons';
+    public set view(view: GridView) {
+        this.hostClasslistManager.remove(this.currentView);
+        this.hostClasslistManager.add(view);
 
-    constructor() {
-        super();
+        this.currentView = view;
+    }
+
+    private currentView: GridView = 'medium-icons';
+
+    public ngOnInit(): void {
+        this.hostClasslistManager.add(`os-grid ${this.currentView}`);
     }
 }

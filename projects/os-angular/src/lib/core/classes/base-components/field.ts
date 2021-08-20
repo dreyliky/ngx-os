@@ -31,8 +31,4 @@ export class OsBaseFieldComponent extends OsBaseComponent {
 
     @Output()
     public osBlur: EventEmitter<Event> = new EventEmitter();
-
-    constructor() {
-        super();
-    }
 }

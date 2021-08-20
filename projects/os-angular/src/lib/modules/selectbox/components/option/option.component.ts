@@ -1,31 +1,32 @@
-/* eslint-disable @angular-eslint/no-host-metadata-property */
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnInit,
+    Output
+} from '@angular/core';
 import { OsBaseComponent } from 'os-angular/core';
 import { OptionSelectedEvent } from '../../interfaces';
 
+// FIXME: Refactoring (exist os-list-item)
 @Component({
     selector: 'os-option',
     templateUrl: './option.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {
-        // FIXME: Refactoring (exist os-list-item)
-        class: 'os-element os-option',
-        '[class.selected]': 'selected',
-        '[class]': 'styleClass',
-        '[id]': 'id',
-        '(click)': 'onListItemClick($event)',
-        '(dblclick)': 'osDblclick.emit($event)',
-        '(mousedown)': 'osMousedown.emit($event)',
-        '(mousemove)': 'osMousemove.emit($event)',
-        '(mouseout)': 'osMouseout.emit($event)',
-        '(mouseover)': 'osMouseover.emit($event)',
-        '(mouseup)': 'osMouseup.emit($event)',
-        '(wheel)': 'osWheel.emit($event)'
-    }
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionComponent<T> extends OsBaseComponent {
+export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
-    public selected: boolean;
+    public set selected(value: boolean) {
+        this._selected = value;
+
+        this.hostClasslistManager.applyAsFlag(this.selectedStateClassName, this._selected);
+    }
+
+    public get selected(): boolean {
+        return this._selected;
+    }
 
     @Input()
     public value: T;
@@ -33,12 +34,17 @@ export class OptionComponent<T> extends OsBaseComponent {
     @Output()
     public osSelected = new EventEmitter<OptionSelectedEvent<T>>();
 
-    constructor() {
-        super();
-    }
+    private readonly selectedStateClassName = 'selected';
 
+    private _selected = false;
+
+    @HostListener('click', ['$event'])
     public onListItemClick(event: MouseEvent): void {
         this.osClick.emit(event);
         this.osSelected.emit({ event, value: this.value });
+    }
+
+    public ngOnInit(): void {
+        this.hostClasslistManager.add('os-option');
     }
 }

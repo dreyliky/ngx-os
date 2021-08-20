@@ -1,3 +1,3 @@
-export * from './base-components';
+export * from './classes';
 export * from './enums';
 
