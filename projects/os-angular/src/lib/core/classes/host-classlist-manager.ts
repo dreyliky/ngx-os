@@ -43,7 +43,7 @@ export class HostClasslistManager {
 
     private validateClassName(className: string): void {
         if (!className) {
-            throw new Error('HostClasslistManager recieve incorrect className');
+            throw new Error(`${HostClasslistManager.name} recieve incorrect className`);
         }
     }
 }
