@@ -8,7 +8,7 @@ import {
     Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseFieldComponent } from 'os-angular/core';
+import { OsBaseFieldComponent } from '@core';
 import { TextBoxChangeEvent } from '../../interfaces';
 import { textboxType } from '../../shared';
 

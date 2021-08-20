@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { OsBaseComponent } from 'os-angular/core';
+import { OsBaseComponent } from '@core';
 
 @Component({
     selector: 'os-group-box',

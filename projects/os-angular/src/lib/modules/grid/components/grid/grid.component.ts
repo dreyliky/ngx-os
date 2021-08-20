@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { OsBaseComponent } from 'os-angular/core';
-import { GridView } from '../../types/grid-view.type';
+import { OsBaseComponent } from '@core';
+import { GridView } from '../../types';
 
 @Component({
     selector: 'os-grid',

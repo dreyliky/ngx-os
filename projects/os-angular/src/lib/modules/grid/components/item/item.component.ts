@@ -1,12 +1,13 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef, HostListener,
+    ElementRef,
+    HostListener,
     Input,
     OnInit
 } from '@angular/core';
-import { OsBaseComponent } from 'os-angular/core';
-import { OutsideClick } from 'os-angular/helpers';
+import { OsBaseComponent } from '@core';
+import { OutsideClick } from '@helpers';
 import { GridItem } from '../../interfaces';
 
 @Component({

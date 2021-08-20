@@ -12,13 +12,13 @@ import {
     Type,
     ViewChild
 } from '@angular/core';
-import { IdGenerator, OutsideClick } from 'os-angular/helpers';
-import { DragInfo, OsDraggableDirective } from 'os-angular/modules/drag-and-drop';
-import { ResizeInfo, ResizerEnum } from 'os-angular/modules/resizer';
+import { IdGenerator, OutsideClick } from '@helpers';
 import { Subscription } from 'rxjs';
+import { DragInfo, OsDraggableDirective } from '../../../drag-and-drop';
+import { ResizeInfo, ResizerEnum } from '../../../resizer';
 import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
 import { DynamicWindowContentDirective } from '../../directives';
-import { DynamicWindowControlService } from '../../services/dynamic-window-control.service';
+import { DynamicWindowControlService } from '../../services';
 
 @Component({
     selector: 'os-dynamic-window',

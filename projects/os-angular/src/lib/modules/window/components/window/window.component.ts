@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { OsBaseComponent } from 'os-angular/core';
+import { OsBaseComponent } from '@core';
 
 @Component({
     selector: 'os-window',

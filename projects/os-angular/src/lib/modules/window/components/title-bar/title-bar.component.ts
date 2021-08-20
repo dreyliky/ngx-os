@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { OsBaseComponent } from 'os-angular/core';
+import { OsBaseComponent } from '@core';
 
 @Component({
     selector: 'os-title-bar',

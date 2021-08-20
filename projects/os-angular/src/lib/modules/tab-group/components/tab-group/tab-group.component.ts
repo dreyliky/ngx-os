@@ -6,7 +6,7 @@ import {
     OnDestroy,
     QueryList
 } from '@angular/core';
-import { OsBaseComponent } from 'os-angular/core';
+import { OsBaseComponent } from '@core';
 import { Subscription } from 'rxjs';
 import { TabComponent } from '../tab';
 

@@ -14,8 +14,8 @@ import {
     QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseComponent } from 'os-angular/core';
-import { OutsideClick } from 'os-angular/helpers';
+import { OsBaseComponent } from '@core';
+import { OutsideClick } from '@helpers';
 import { Subscription } from 'rxjs';
 import { OptionSelectedEvent } from '../../interfaces';
 import { OptionComponent } from '../option';

@@ -7,7 +7,7 @@ import {
     OnInit,
     Output
 } from '@angular/core';
-import { OsBaseComponent } from 'os-angular/core';
+import { OsBaseComponent } from '@core';
 import { OptionSelectedEvent } from '../../interfaces';
 
 // FIXME: Refactoring (exist os-list-item)

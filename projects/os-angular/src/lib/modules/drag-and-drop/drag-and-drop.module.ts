@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'os-angular/shared.module';
-
-import {
-    OsDraggableDirective
-} from './directives';
+import { SharedModule } from '@lib';
+import { OsDraggableDirective } from './directives';
 
 @NgModule({
     declarations: [

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'os-angular/shared.module';
-import { ButtonModule } from 'os-angular/modules/button';
-import { TabGroupComponent, TabComponent } from './components';
+import { SharedModule } from '@lib';
+import { ButtonModule } from '../button';
+import { TabComponent, TabGroupComponent } from './components';
 
 @NgModule({
     declarations: [

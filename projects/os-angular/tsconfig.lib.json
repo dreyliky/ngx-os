@@ -9,7 +9,16 @@
         "lib": [
             "dom",
             "es2018"
-        ]
+        ],
+        "paths": {
+            "@core": ["projects/os-angular/src/lib/core"],
+            "@core/*": ["projects/os-angular/src/lib/core/*"],
+            "@helpers": ["projects/os-angular/src/lib/helpers"],
+            "@helpers/*": ["projects/os-angular/src/lib/helpers/*"],
+            "@modules": ["projects/os-angular/src/lib/modules"],
+            "@modules/*": ["projects/os-angular/src/lib/modules/*"],
+            "@lib": ["projects/os-angular/src/lib"]
+        }
     },
     "angularCompilerOptions": {
         "skipTemplateCodegen": true,
