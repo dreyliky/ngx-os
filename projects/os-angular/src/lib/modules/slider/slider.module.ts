@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@lib';
+import { SharedModule } from '@lib-shared';
 import { SliderComponent } from './components';
 
 @NgModule({

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { GridItem } from 'os-angular/modules/grid/interfaces/item.interface';
-import { DynamicWindowService } from 'projects/os-angular/src/lib';
+import { DynamicWindowService, GridItem } from 'os-angular';
 import {
-    DemoWin10WindowComponent, DemoWindowComponent,
-
-    FullscreenTestAppComponent, HelloWorldWindowComponent
+    DemoWin10WindowComponent,
+    DemoWindowComponent,
+    FullscreenTestAppComponent,
+    HelloWorldWindowComponent
 } from '../test';
 
 @Component({

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { OsBaseComponent } from '@core';
+import { OsBaseComponent } from '@lib-core';
 import { TreeNode } from '../../interfaces';
 
 @Component({

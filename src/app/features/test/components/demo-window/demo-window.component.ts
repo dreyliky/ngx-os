@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TreeNode } from 'projects/os-angular/src/lib';
+import { TreeNode } from 'os-angular';
 
 @Component({
     selector: 'app-demo-window',

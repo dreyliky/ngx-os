@@ -6,8 +6,8 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { OsBaseComponent } from '@core';
-import { OutsideClick } from '@helpers';
+import { OsBaseComponent } from '@lib-core';
+import { OutsideClick } from '@lib-helpers';
 import { GridItem } from '../../interfaces';
 
 @Component({

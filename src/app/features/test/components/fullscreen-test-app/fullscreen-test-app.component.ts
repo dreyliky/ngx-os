@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { DynamicWindowConfig, DynamicWindowRef } from 'os-angular/modules/window';
+import { DynamicWindowConfig, DynamicWindowRef } from 'os-angular';
 import { Subscription } from 'rxjs';
 
 @Component({

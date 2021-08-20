@@ -7,7 +7,7 @@ import {
     OnInit,
     Output
 } from '@angular/core';
-import { OsBaseComponent } from '@core';
+import { OsBaseComponent } from '@lib-core';
 
 @Component({
     selector: 'os-list-item',

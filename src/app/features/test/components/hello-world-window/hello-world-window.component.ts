@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicWindowConfig, DynamicWindowRef } from 'os-angular/modules/window';
+import { DynamicWindowConfig, DynamicWindowRef } from 'os-angular';
 
 @Component({
     selector: 'app-hello-world-window',

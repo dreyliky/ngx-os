@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { OsBaseComponent } from '@core';
+import { OsBaseComponent } from '@lib-core';
 import { GridView } from '../../types';
 
 @Component({

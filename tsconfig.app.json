@@ -4,8 +4,7 @@
         "outDir": "./out-tsc/app",
         "types": [],
         "paths": {
-            "os-angular/*": ["projects/os-angular/src/lib/*"],
-            "os-angular": ["projects/os-angular/src/lib"],
+            "os-angular": ["projects/os-angular/src/public-api.ts"],
             "@Doc/*": ["src/app/*"],
             "@Core/*": ["src/app/core/*"],
             "@Features/*": ["src/app/features/*"],
@@ -13,7 +12,14 @@
             "@Layouts/*": ["src/app/layouts/*"],
             "@Layouts": ["src/app/layouts"],
             "@Pages/*": ["src/app/pages/*"],
-            "@Pages": ["src/app/pages"]
+            "@Pages": ["src/app/pages"],
+            "@lib-core": ["projects/os-angular/src/lib/core"],
+            "@lib-core/*": ["projects/os-angular/src/lib/core/*"],
+            "@lib-helpers": ["projects/os-angular/src/lib/helpers"],
+            "@lib-helpers/*": ["projects/os-angular/src/lib/helpers/*"],
+            "@lib-modules": ["projects/os-angular/src/lib/modules"],
+            "@lib-modules/*": ["projects/os-angular/src/lib/modules/*"],
+            "@lib-shared": ["projects/os-angular/src/lib/shared.module.ts"]
         }
     },
     "files": [

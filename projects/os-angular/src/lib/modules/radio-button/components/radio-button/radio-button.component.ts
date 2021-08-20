@@ -7,7 +7,7 @@ import {
     Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseComponent } from '@core';
+import { OsBaseComponent } from '@lib-core';
 import { RadioButtonValueChangeEvent } from '../../interfaces';
 
 @Component({

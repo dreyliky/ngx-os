@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@lib';
+import { SharedModule } from '@lib-shared';
 import { ButtonModule } from '../button';
 import { DragAndDropModule } from '../drag-and-drop';
 import { ResizerModule } from '../resizer';

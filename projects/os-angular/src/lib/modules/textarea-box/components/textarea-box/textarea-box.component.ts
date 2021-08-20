@@ -8,7 +8,7 @@ import {
     Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseFieldComponent } from '@core';
+import { OsBaseFieldComponent } from '@lib-core';
 import { TextareaBoxChangeEvent } from '../../interfaces';
 
 @Component({

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@lib';
+import { SharedModule } from '@lib-shared';
 import { GridComponent, GridItemComponent } from './components';
 
 @NgModule({

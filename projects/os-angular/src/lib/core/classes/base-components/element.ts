@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
-import { IdGenerator } from '@helpers';
+import { IdGenerator } from '@lib-helpers';
 
 class HostClasslistManager {
     private readonly data: string[] = [];

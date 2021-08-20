@@ -12,7 +12,7 @@ import {
     Type,
     ViewChild
 } from '@angular/core';
-import { IdGenerator, OutsideClick } from '@helpers';
+import { IdGenerator, OutsideClick } from '@lib-helpers';
 import { Subscription } from 'rxjs';
 import { DragInfo, OsDraggableDirective } from '../../../drag-and-drop';
 import { ResizeInfo, ResizerEnum } from '../../../resizer';

@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
 import { ComponentMetaInfoMap, ComponentType } from '@Doc/features/doc';
-import { OptionSelectedEvent } from 'os-angular';
-import { GridView } from 'os-angular/modules/grid/types/grid-view.type';
+import { GridView, OptionSelectedEvent } from 'os-angular';
 
 @Component({
     selector: 'demo-list',

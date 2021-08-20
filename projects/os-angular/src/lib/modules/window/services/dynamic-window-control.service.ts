@@ -1,6 +1,4 @@
-import {
-    ComponentRef, Injectable
-} from '@angular/core';
+import { ComponentRef, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
 
