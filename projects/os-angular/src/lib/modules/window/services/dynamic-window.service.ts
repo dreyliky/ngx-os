@@ -1,13 +1,15 @@
 import {
-    ApplicationRef, ComponentFactoryResolver,
-
-    ComponentRef, EmbeddedViewRef, Injectable,
-
-    Injector, Type
+    ApplicationRef,
+    ComponentFactoryResolver,
+    ComponentRef,
+    EmbeddedViewRef,
+    Injectable,
+    Injector,
+    Type
 } from '@angular/core';
 import { delay, first } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
-import { DynamicWindowComponent } from '../components/dynamic-window/dynamic-window.component';
+import { DynamicWindowComponent } from '../components/dynamic-window';
 import { DynamicWindowDiParams, DynamicWindowInputParams } from '../interfaces';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 

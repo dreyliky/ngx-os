@@ -20,5 +20,7 @@
         "extensions": [".ts", ".html"]
     },
     "diffEditor.ignoreTrimWhitespace": false,
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single"
 }
