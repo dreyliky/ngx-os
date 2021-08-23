@@ -42,46 +42,42 @@
 }
 
 os-window {
+    font-size: 11px;
+    font-family: var(--segoe-ui);
+    background: #e6e6e6;
+    border: solid 1px #aaaaaa;
+    -webkit-font-smoothing: none;
+    -webkit-box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
+    box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
+    transition: all 0.15s ease;
+    transition-property: width, height, left, top;
 
-    .os-window {
-        font-size: 11px;
-        font-family: var(--segoe-ui);
-        background: #e6e6e6;
-        border: solid 1px #aaaaaa;
-        -webkit-font-smoothing: none;
-        -webkit-box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
-        -moz-box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
-        box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
-        transition: all 0.15s ease;
-        transition-property: width, height, left, top;
-
-        &.opening {
-            animation: os-window-opening .3s ease forwards;
-        }
-
-        &.hiding {
-            animation: os-window-hiding .6s ease forwards;
-        }
-
-        &.closing {
-            animation: os-window-closing .25s ease forwards;
-        }
-
-        &.dragging,
-        &.resizing {
-            transition: none !important;
-        }
-
-        &.fullscreen {
-            width: 100% !important;
-            height: 100% !important;
-            left: -1px !important;
-            top: -1px !important;
-        }
-        
+    &.opening {
+        animation: os-window-opening .3s ease forwards;
     }
 
-    .os-window.active {
+    &.hiding {
+        animation: os-window-hiding .6s ease forwards;
+    }
+
+    &.closing {
+        animation: os-window-closing .25s ease forwards;
+    }
+
+    &.dragging,
+    &.resizing {
+        transition: none !important;
+    }
+
+    &.fullscreen {
+        width: 100% !important;
+        height: 100% !important;
+        left: -1px !important;
+        top: -1px !important;
+    }
+
+    &.active {
         background: rgba(255, 255, 255, .7);
         backdrop-filter: blur(40px);
         border: solid 1px rgb(var(--os-primary-color));
@@ -119,7 +115,7 @@ os-window {
         }
     }
 
-    .os-window.fullscreen {
+    &.fullscreen {
         &.active {
             .os-title-bar {
                 button[aria-label="Maximize"] {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 
 @Component({
@@ -6,20 +6,24 @@ import { OsBaseComponent } from '@lib-core';
     templateUrl: './window.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WindowComponent extends OsBaseComponent {
+export class WindowComponent extends OsBaseComponent implements OnInit {
     @Input()
     public title: string;
 
     @Input()
+    @HostBinding('style.width')
     public width: string;
 
     @Input()
+    @HostBinding('style.height')
     public height: string;
 
     @Input()
+    @HostBinding('style.zIndex')
     public zIndex: number;
 
     @Input()
+    @HostBinding('class.active')
     public isActive: boolean = false;
 
     @Input()
@@ -63,4 +67,8 @@ export class WindowComponent extends OsBaseComponent {
 
     @Output()
     public osCloseButtonClick = new EventEmitter<MouseEvent>();
+
+    public ngOnInit(): void {
+        this.hostClasslistManager.add('os-window');
+    }
 }

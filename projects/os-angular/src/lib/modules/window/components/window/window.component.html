@@ -1,35 +1,20 @@
-<div
-    class="os-window os-element"
-    [ngStyle]="style"
-    [id]="id"
-    [class]="styleClass"
-    [class.active]="isActive"
-    [style.width]="width"
-    [style.height]="height"
-    [style.zIndex]="zIndex"
-    (click)="osClick.emit($event)"
-    (mousedown)="osMouseDown.emit($event)"
-    (mouseup)="osMouseUp.emit($event)">
+<os-title-bar
+    [hidden]="!isTitleBarVisible"
+    (osClick)="osTitleBarClick.emit($event)"
+    (osDblClick)="osTitleBarDblClick.emit($event)"
+    (osMinimizeButtonClick)="osMinimizeButtonClick.emit($event)"
+    (osMaximizeButtonClick)="osMaximizeButtonClick.emit($event)"
+    (osCloseButtonClick)="osCloseButtonClick.emit($event)">
+    {{ title }}
+</os-title-bar>
 
-    <os-title-bar
-        [hidden]="!isTitleBarVisible"
-        (osClick)="osTitleBarClick.emit($event)"
-        (osDblClick)="osTitleBarDblClick.emit($event)"
-        (osMinimizeButtonClick)="osMinimizeButtonClick.emit($event)"
-        (osMaximizeButtonClick)="osMaximizeButtonClick.emit($event)"
-        (osCloseButtonClick)="osCloseButtonClick.emit($event)">
-        {{ title }}
-    </os-title-bar>
-
-    <div class="os-window-body">
-        <os-scroll-view
-            [verticalScrollEnabled]="true"
-            [horizontalScrollEnabled]="true"
-            [style]="scrollViewStyle"
-            [styleClass]="scrollViewStyleClass">
-            <ng-content>
-            </ng-content>
-        </os-scroll-view>
-    </div>
-
+<div class="os-window-body">
+    <os-scroll-view
+        [verticalScrollEnabled]="true"
+        [horizontalScrollEnabled]="true"
+        [style]="scrollViewStyle"
+        [styleClass]="scrollViewStyleClass">
+        <ng-content>
+        </ng-content>
+    </os-scroll-view>
 </div>
