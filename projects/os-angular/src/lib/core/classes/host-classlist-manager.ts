@@ -10,11 +10,11 @@ export class HostClasslistManager {
     }
 
     public add(className: string): void {
-        this.validateClassName(className);
-
-        this.splitClassNameToArray(className)
-            .filter((targetClassName) => !this.has(targetClassName))
-            .forEach((targetClassName) => this.data.push(targetClassName));
+        if (this.isClassNameValid(className)) {
+            this.splitClassNameToArray(className)
+                .filter((targetClassName) => !this.has(targetClassName))
+                .forEach((targetClassName) => this.data.push(targetClassName));
+        }
     }
 
     public applyAsFlag(className: string, active: boolean): void {
@@ -41,9 +41,7 @@ export class HostClasslistManager {
         return className.split(' ');
     }
 
-    private validateClassName(className: string): void {
-        if (!className) {
-            throw new Error(`${HostClasslistManager.name} recieve incorrect className`);
-        }
+    private isClassNameValid(className: string): boolean {
+        return !!className;
     }
 }
