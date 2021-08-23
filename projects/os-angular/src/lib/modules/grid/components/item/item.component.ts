@@ -23,7 +23,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     public set selected(selected: boolean) {
         this._selected = selected;
 
-        this.hostClasslistManager.applyAsFlag('selected', selected);
+        this.hostClasslistManager.applyOneAsFlag('selected', selected);
     }
 
     public get selected(): boolean {

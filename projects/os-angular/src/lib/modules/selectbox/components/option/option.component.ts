@@ -21,7 +21,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     public set selected(value: boolean) {
         this._selected = value;
 
-        this.hostClasslistManager.applyAsFlag(this.selectedStateClassName, this._selected);
+        this.hostClasslistManager.applyOneAsFlag(this.selectedStateClassName, this._selected);
     }
 
     public get selected(): boolean {

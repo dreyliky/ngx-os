@@ -1,3 +1,5 @@
+import { CssClasslistToArrayHelper } from '@lib-helpers';
+
 export class HostClasslistManager {
     private readonly data: string[] = [];
 
@@ -9,15 +11,15 @@ export class HostClasslistManager {
         return [...this.data];
     }
 
-    public add(className: string): void {
-        if (this.isClassNameValid(className)) {
-            this.splitClassNameToArray(className)
+    public add(classlist: string | string[] | object): void {
+        if (classlist) {
+            CssClasslistToArrayHelper.transform(classlist)
                 .filter((targetClassName) => !this.has(targetClassName))
                 .forEach((targetClassName) => this.data.push(targetClassName));
         }
     }
 
-    public applyAsFlag(className: string, active: boolean): void {
+    public applyOneAsFlag(className: string, active: boolean): void {
         if (active) {
             this.add(className);
         } else {
@@ -35,13 +37,5 @@ export class HostClasslistManager {
 
     public has(className: string): boolean {
         return this.data.includes(className);
-    }
-
-    private splitClassNameToArray(className: string): string[] {
-        return className.split(' ');
-    }
-
-    private isClassNameValid(className: string): boolean {
-        return !!className;
     }
 }
