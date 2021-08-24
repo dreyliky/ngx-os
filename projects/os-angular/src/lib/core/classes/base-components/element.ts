@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 import { IdGenerator } from '@lib-helpers';
-import { HostClasslistManager } from '../host-classlist-manager';
+import { HostClasslistManager } from '../css-classlist-manager';
 
 @Component({
     template: ''
@@ -14,11 +14,13 @@ export abstract class OsBaseComponent {
     public style: object;
 
     /**
-     * String with classes for target internal element
+     * String, Array of strings or object with classlist
      */
     @Input()
-    public set styleClass(className: string) {
-        this.hostClasslistManager.add(className);
+    public set styleClass(classlist: string | string[] | object) {
+        if (classlist) {
+            this.hostClasslistManager.apply(classlist);
+        }
     }
 
     /**

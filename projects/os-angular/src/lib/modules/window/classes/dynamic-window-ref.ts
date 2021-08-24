@@ -31,11 +31,11 @@ export class DynamicWindowRef {
         return this._config$.getValue();
     }
 
-    public get windowElement(): HTMLDivElement {
+    public get windowElement(): HTMLElement {
         return this._windowElement$.getValue();
     }
 
-    public get windowElement$(): Observable<HTMLDivElement> {
+    public get windowElement$(): Observable<HTMLElement> {
         return this._windowElement$.asObservable()
             .pipe(
                 filter((element) => !!element),
@@ -46,7 +46,7 @@ export class DynamicWindowRef {
     private readonly _config$ = new BehaviorSubject<DynamicWindowConfig>({});
     private readonly _isHidden$ = new BehaviorSubject<boolean>(false);
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
-    private readonly _windowElement$ = new BehaviorSubject<HTMLDivElement>(null);
+    private readonly _windowElement$ = new BehaviorSubject<HTMLElement>(null);
     private readonly _afterClosed$ = new Subject<any>();
 
     public updateConfig(config: DynamicWindowConfig): void {
@@ -81,7 +81,7 @@ export class DynamicWindowRef {
         this._afterClosed$.next(result);
     }
 
-    public _setWindowElement(element: HTMLDivElement): void {
+    public _setWindowElement(element: HTMLElement): void {
         this._windowElement$.next(element);
     }
 }

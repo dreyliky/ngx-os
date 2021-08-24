@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 import { OsBaseComponent } from './element';
 
 @Component({
@@ -6,18 +6,23 @@ import { OsBaseComponent } from './element';
 })
 export class OsBaseButtonComponent extends OsBaseComponent {
     @Input()
+    @HostBinding('attr.disabled')
     public isDisabled: boolean;
 
     @Input()
+    @HostBinding('attr.aria-label')
     public ariaLabel: string;
 
     @Input()
+    @HostBinding('attr.aria-controls')
     public ariaControls: string;
 
     @Input()
+    @HostBinding('attr.aria-selected')
     public ariaSelected: string;
 
     @Input()
+    @HostBinding('attr.role')
     public role: string;
 
     /**
@@ -31,4 +36,14 @@ export class OsBaseButtonComponent extends OsBaseComponent {
      */
     @Output()
     public osBlur: EventEmitter<MouseEvent> = new EventEmitter();
+
+    @HostListener('focus', ['$event'])
+    protected onFocus(event: MouseEvent): void {
+        this.osFocus.emit(event);
+    }
+
+    @HostListener('blur', ['$event'])
+    protected onBlur(event: MouseEvent): void {
+        this.osBlur.emit(event);
+    }
 }

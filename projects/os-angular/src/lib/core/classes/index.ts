@@ -1,3 +1,3 @@
 export * from './base-components';
-export * from './host-classlist-manager';
+export * from './css-classlist-manager';
 

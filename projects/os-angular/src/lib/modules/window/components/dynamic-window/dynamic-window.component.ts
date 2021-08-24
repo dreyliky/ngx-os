@@ -59,7 +59,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     public isAllowResizing: boolean = true;
     public isAllowDragging: boolean = true;
 
-    public windowElement: HTMLDivElement;
+    public windowElement: HTMLElement;
     public titleBarElement: HTMLDivElement;
     public titleBarButtons: HTMLButtonElement[] = [];
 
@@ -303,6 +303,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private initIsFullscreenStateObserver(): void {
         const subscription = this.windowRef.isFullscreen$
             .subscribe((state) => {
+                console.log(state);
                 this.isFullscreen = state;
                 this.isAllowDragging = !this.isFullscreen;
                 this.isAllowResizing = !this.isFullscreen;

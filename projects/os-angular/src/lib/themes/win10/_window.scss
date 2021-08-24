@@ -89,7 +89,7 @@ os-window {
             background: rgb(var(--os-primary-color));
             color: #ffffff;
 
-            button[aria-label="Minimize"] {
+            .os-button[aria-label="Minimize"] {
                 background-image: url("./icon/win10_minimize-white.svg");
 
                 &:hover {
@@ -97,7 +97,7 @@ os-window {
                 }
             }
     
-            button[aria-label="Maximize"] {
+            .os-button[aria-label="Maximize"] {
                 background-image: url("./icon/win10_maximize-white.svg");
 
                 &:hover {
@@ -105,7 +105,7 @@ os-window {
                 }
             }
     
-            button[aria-label="Close"] {
+            .os-button[aria-label="Close"] {
                 background-image: url("./icon/win10_close-white.svg");
     
                 &:hover {
@@ -118,14 +118,14 @@ os-window {
     &.fullscreen {
         &.active {
             .os-title-bar {
-                button[aria-label="Maximize"] {
+                .os-button[aria-label="Maximize"] {
                     background-image: url("./icon/win10_restore-down-white.svg") !important;
                 }
             }
         }
 
         .os-title-bar {
-            button[aria-label="Maximize"] {
+            .os-button[aria-label="Maximize"] {
                 background-image: url("./icon/win10_restore-down-grey.svg") !important;
 
                 &:hover {
@@ -135,7 +135,7 @@ os-window {
         }
     }
 
-    button[aria-label="Minimize"] {
+    .os-button[aria-label="Minimize"] {
         background-image: url("./icon/win10_minimize-grey.svg");
 
         &:hover {
@@ -144,7 +144,7 @@ os-window {
         }
     }
 
-    button[aria-label="Maximize"] {
+    .os-button[aria-label="Maximize"] {
         background-image: url("./icon/win10_maximize-grey.svg");
         &:hover {
             background-color: rgba(0, 0, 0, .1);
@@ -152,7 +152,7 @@ os-window {
         }
     }
 
-    button[aria-label="Close"] {
+    .os-button[aria-label="Close"] {
         background-image: url("./icon/win10_close-grey.svg");
 
         &:hover {
@@ -186,11 +186,7 @@ os-title-bar {
         height: 100%;
         display: flex;
 
-        os-button {
-            max-width: 46px;
-        }
-
-        button {
+        .os-button {
             min-width: 46px !important;
             max-width: 46px !important;
             height: 100%;
@@ -205,5 +201,4 @@ os-title-bar {
             -webkit-font-smoothing: none;
         }
     }
-
 }

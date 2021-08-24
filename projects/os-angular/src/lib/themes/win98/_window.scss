@@ -1,47 +1,42 @@
 os-window {
+    font-size: 11px;
+    font-family: var(--sans-serif);
+    box-shadow: var(--border-window-outer), var(--border-window-inner);
+    background: rgb(var(--os-bg-color));
+    padding: 3px;
+    -webkit-font-smoothing: none;
 
-    .os-window {
-        font-size: 11px;
-        font-family: var(--sans-serif);
-        box-shadow: var(--border-window-outer), var(--border-window-inner);
-        background: rgb(var(--os-bg-color));
-        padding: 3px;
-        -webkit-font-smoothing: none;
+    fieldset {
+        margin-bottom: 9px;
+    }
 
-        fieldset {
-            margin-bottom: 9px;
-        }
+    &.hiding {
+        display: none !important;
+    }
 
-        &.hiding {
-            display: none;
-        }
+    &.fullscreen {
+        width: calc(100% + 4px) !important;
+        height: calc(100% + 6px) !important;
+        left: -5px !important;
+        top: -3px !important;
+    }
 
-        &.fullscreen {
-            width: calc(100% + 4px) !important;
-            height: calc(100% + 6px) !important;
-            left: -5px !important;
-            top: -3px !important;
-        }
+    &.closing {
+        display: none !important;
+    }
 
-        &.closing {
-            display: none;
+    &.active {
+        .os-title-bar {
+            background: var(--title-bar-active-bg);
         }
     }
 
     .os-window-body {
         margin: 0px 2px;
     }
-
-    .os-window.active {
-        .os-title-bar {
-            background: var(--title-bar-active-bg);
-        }
-    }
-
 }
 
 os-title-bar {
-
     .os-title-bar {
         background: var(--title-bar-bg);
         font-size: 11px;
@@ -64,7 +59,7 @@ os-title-bar {
     .os-title-bar-controls {
         display: flex;
 
-        button {
+        .os-button {
             padding: 0;
             display: block;
             min-width: 16px;
@@ -75,30 +70,29 @@ os-title-bar {
             }
         }
 
-        button[aria-label="Minimize"] {
+        .os-button[aria-label="Minimize"] {
             background-image: url("./icon/win98_minimize.svg");
             background-repeat: no-repeat;
             background-position: bottom 3px left 4px;
         }
 
-        button[aria-label="Maximize"] {
+        .os-button[aria-label="Maximize"] {
             background-image: url("./icon/win98_maximize.svg");
             background-repeat: no-repeat;
             background-position: top 2px left 3px;
         }
 
-        button[aria-label="Help"] {
+        .os-button[aria-label="Help"] {
             background-image: url("./icon/win98_help.svg");
             background-repeat: no-repeat;
             background-position: top 2px left 5px;
         }
 
-        button[aria-label="Close"] {
+        .os-button[aria-label="Close"] {
             margin-left: 2px;
             background-image: url("./icon/win98_close.svg");
             background-repeat: no-repeat;
             background-position: top 3px left 4px;
         }
     }
-
 }

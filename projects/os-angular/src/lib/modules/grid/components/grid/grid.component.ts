@@ -10,10 +10,12 @@ import { GridView } from '../../types';
 export class GridComponent extends OsBaseComponent implements OnInit {
     @Input()
     public set view(view: GridView) {
-        this.hostClasslistManager.remove(this.currentView);
-        this.hostClasslistManager.add(view);
+        if (view) {
+            this.hostClasslistManager.remove(this.currentView);
+            this.hostClasslistManager.add(view);
 
-        this.currentView = view;
+            this.currentView = view;
+        }
     }
 
     private currentView: GridView = 'medium-icons';
