@@ -109,13 +109,6 @@ export class SelectboxComponent<T>
         }
     }
 
-    @HostListener('click', ['$event'])
-    public onSelectboxClick(event: MouseEvent): void {
-        this.isOpened = !this.isOpened;
-
-        this.osClick.emit(event);
-    }
-
     public trackByFn(_: OptionComponent<T>, index: number): number {
         return index;
     }
@@ -132,6 +125,12 @@ export class SelectboxComponent<T>
         this.value = this.getActualValue(value);
 
         this.changeDetector.detectChanges();
+    }
+
+    protected onClick(event: MouseEvent): void {
+        this.isOpened = !this.isOpened;
+
+        this.osClick.emit(event);
     }
 
     private getActualValue(value: T): any {

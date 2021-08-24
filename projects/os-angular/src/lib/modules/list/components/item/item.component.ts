@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    HostListener,
     Input,
     OnInit,
     Output
@@ -39,8 +38,7 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
         this.hostClasslistManager.add('os-list-item');
     }
 
-    @HostListener('click', ['$event'])
-    public onListItemClick(event: MouseEvent): void {
+    protected onClick(event: MouseEvent): void {
         this.osClick.emit(event);
         this.osSelected.emit(this.value);
     }

@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    HostListener,
     Input,
     OnInit,
     Output
@@ -38,13 +37,12 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
 
     private _selected = false;
 
-    @HostListener('click', ['$event'])
-    public onListItemClick(event: MouseEvent): void {
-        this.osClick.emit(event);
-        this.osSelected.emit({ event, value: this.value });
-    }
-
     public ngOnInit(): void {
         this.hostClasslistManager.add('os-option');
+    }
+
+    protected onClick(event: MouseEvent): void {
+        this.osClick.emit(event);
+        this.osSelected.emit({ event, value: this.value });
     }
 }

@@ -39,7 +39,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnDestroy, Aft
         });
     }
 
-    public trackByFn = (tabComponent: TabComponent, index: number): number => {
+    public trackByFn = (_: TabComponent, index: number): number => {
         return index;
     }
 

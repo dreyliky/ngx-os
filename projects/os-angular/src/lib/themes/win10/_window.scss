@@ -163,14 +163,11 @@ os-window {
 }
 
 os-title-bar {
-
-    .os-title-bar {
-        height: 32px;
-        font-size: 11px;
-        display: flex;
-        align-items: flex-start;
-        background: #ffffff;
-    }
+    height: 32px;
+    font-size: 11px;
+    display: flex;
+    align-items: flex-start;
+    background: #ffffff;
 
     .os-title-bar-text {
         width: 100%;

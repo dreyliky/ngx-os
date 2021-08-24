@@ -26,9 +26,11 @@ export class OsBaseFieldComponent extends OsBaseComponent {
     @Input()
     public value: string = '';
 
+    /** The handler will be fired on the host element in response to an event. */
     @Output()
     public osFocus: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /** The handler will be fired on the host element in response to an event. */
     @Output()
     public osBlur: EventEmitter<Event> = new EventEmitter();
 }

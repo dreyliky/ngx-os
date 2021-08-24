@@ -303,7 +303,6 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private initIsFullscreenStateObserver(): void {
         const subscription = this.windowRef.isFullscreen$
             .subscribe((state) => {
-                console.log(state);
                 this.isFullscreen = state;
                 this.isAllowDragging = !this.isFullscreen;
                 this.isAllowResizing = !this.isFullscreen;

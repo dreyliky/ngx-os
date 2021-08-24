@@ -37,11 +37,13 @@ export class OsBaseButtonComponent extends OsBaseComponent {
     @Output()
     public osBlur: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /** The handler will be fired on the host element in response to an event. */
     @HostListener('focus', ['$event'])
     protected onFocus(event: MouseEvent): void {
         this.osFocus.emit(event);
     }
 
+    /** The handler will be fired on the host element in response to an event. */
     @HostListener('blur', ['$event'])
     protected onBlur(event: MouseEvent): void {
         this.osBlur.emit(event);

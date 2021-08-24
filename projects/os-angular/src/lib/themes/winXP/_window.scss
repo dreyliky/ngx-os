@@ -63,32 +63,30 @@ os-window {
 }
 
 os-title-bar {
-    .os-title-bar {
-        font-size: 11px;
-        font-family: "Trebuchet MS";
-        background: linear-gradient(
-            180deg,
-            #98b2e8 0%,
-            #8aace7 8%,
-            #7999de 40%,
-            #7a96df 88%,
-            #7f9fe6 93%,
-            #81a7e8 95%,
-            #7a93df 96%,
-            #7a93df 100%
-        );
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 3px 5px 3px 3px;
-        border-top: 1px solid #4d6bd1;
-        border-left: 1px solid #5b68cd;
-        border-right: 1px solid #5b68cd;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 7px;
-        font-size: 13px;
-        text-shadow: 1px 1px #758cdd;
-    }
+    font-size: 11px;
+    font-family: "Trebuchet MS";
+    background: linear-gradient(
+        180deg,
+        #98b2e8 0%,
+        #8aace7 8%,
+        #7999de 40%,
+        #7a96df 88%,
+        #7f9fe6 93%,
+        #81a7e8 95%,
+        #7a93df 96%,
+        #7a93df 100%
+    );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 5px 3px 3px;
+    border-top: 1px solid #4d6bd1;
+    border-left: 1px solid #5b68cd;
+    border-right: 1px solid #5b68cd;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 7px;
+    font-size: 13px;
+    text-shadow: 1px 1px #758cdd;
 
     .os-title-bar-text {
         font-weight: bold;

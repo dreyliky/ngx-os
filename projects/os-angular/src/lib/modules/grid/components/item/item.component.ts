@@ -52,8 +52,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
         }
     }
 
-    @HostListener('click', ['$event'])
-    public onClick(event: MouseEvent): void {
+    protected onClick(event: MouseEvent): void {
         if (this.data.onClick) {
             this.data.onClick(event);
         }
@@ -61,19 +60,17 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
         this.osClick.emit(event);
     }
 
-    @HostListener('dblclick', ['$event'])
-    public onDblClick(event: MouseEvent): void {
+    protected onMousedown(event: MouseEvent): void {
+        this.selected = true;
+
+        this.osMousedown.emit(event);
+    }
+
+    protected onDblClick(event: MouseEvent): void {
         if (this.data.onDblClick) {
             this.data.onDblClick(event);
         }
 
         this.osDblclick.emit(event);
-    }
-
-    @HostListener('mousedown', ['$event'])
-    public onMouseDown(event: MouseEvent): void {
-        this.selected = true;
-
-        this.osMousedown.emit(event);
     }
 }

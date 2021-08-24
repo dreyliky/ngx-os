@@ -45,15 +45,6 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public scrollViewStyleClass: any;
 
     @Output()
-    public osClick = new EventEmitter<MouseEvent>();
-
-    @Output()
-    public osMouseDown = new EventEmitter<MouseEvent>();
-
-    @Output()
-    public osMouseUp = new EventEmitter<MouseEvent>();
-
-    @Output()
     public osTitleBarClick = new EventEmitter<MouseEvent>();
 
     @Output()

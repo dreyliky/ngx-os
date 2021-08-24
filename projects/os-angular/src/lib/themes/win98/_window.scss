@@ -37,14 +37,12 @@ os-window {
 }
 
 os-title-bar {
-    .os-title-bar {
-        background: var(--title-bar-bg);
-        font-size: 11px;
-        padding: 3px 2px 3px 3px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    background: var(--title-bar-bg);
+    font-size: 11px;
+    padding: 3px 2px 3px 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .os-title-bar-text {
         font-weight: bold;
