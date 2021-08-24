@@ -1,10 +1,13 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     EventEmitter,
     forwardRef,
+    HostBinding,
     Input,
-    Output
+    Output,
+    ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from '@lib-core';
@@ -24,28 +27,33 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
 })
 export class RadioButtonComponent<T> extends OsBaseComponent implements ControlValueAccessor {
     @Input()
-    public label: string;
+    public readonly label = '';
 
     @Input()
-    public name: string;
+    public readonly name = '';
 
     @Input()
+    @HostBinding('class.checked')
     public checked: boolean;
 
     @Input()
-    public value: T;
+    public readonly value: T;
 
     @Input()
-    public isDisabled: boolean;
+    @HostBinding('class.disabled')
+    public readonly isDisabled: boolean;
 
     @Output()
     public osChange = new EventEmitter<RadioButtonValueChangeEvent<T>>();
+
+    @ViewChild('radioElement')
+    private readonly radioElementRef: ElementRef<HTMLInputElement>;
 
     public onChange: (value: T) => any;
     public onTouched: () => any;
 
     public onRadioButtonChange(event: Event): void {
-        this.onChange(this.value);
+        this.onChange?.(this.value);
         this.osChange.emit({ event, value: this.value });
     }
 
@@ -61,5 +69,11 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
         if (value === this.value) {
             this.checked = true;
         }
+    }
+
+    protected onClick(event: MouseEvent): void {
+        this.radioElementRef.nativeElement.click();
+
+        this.osClick.emit(event);
     }
 }

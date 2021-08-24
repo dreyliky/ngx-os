@@ -1,24 +1,12 @@
 <input
-    class="os-element"
+    #checkboxElement
     type="checkbox"
-    [id]="id"
-    [class]="styleClass"
-    [ngStyle]="style"
+    [style.display]="'none'"
     [name]="name"
     [disabled]="isDisabled"
-    [(checked)]="checked"
-    (click)="osClick.emit($event)"
-    (change)="onCheckboxValueChange($event)"
-    (dblclick)="osDblclick.emit($event)"
-    (mousedown)="osMousedown.emit($event)"
-    (mousemove)="osMousemove.emit($event)"
-    (mouseout)="osMouseout.emit($event)"
-    (mouseover)="osMouseover.emit($event)"
-    (mouseup)="osMouseup.emit($event)"
-    (wheel)="osWheel.emit($event)" />
+    [checked]="checked"
+    (change)="onCheckboxValueChange($event)" />
 
-<label
-    [for]="id"
-    class="os-element">
+<label class="os-element">
     {{ label }}
 </label>

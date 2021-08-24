@@ -2,10 +2,14 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
     forwardRef,
+    HostBinding,
     Input,
-    Output
+    OnInit,
+    Output,
+    ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from '@lib-core';
@@ -22,24 +26,29 @@ import { OsBaseComponent } from '@lib-core';
         }
     ]
 })
-export class CheckboxComponent extends OsBaseComponent implements ControlValueAccessor {
+export class CheckboxComponent extends OsBaseComponent implements OnInit, ControlValueAccessor {
     @Input()
-    public label: string;
+    public readonly label = '';
 
     @Input()
-    public name: string;
+    public readonly name = '';
 
     @Input()
+    @HostBinding('class.checked')
     public checked: boolean;
 
     @Input()
-    public isDisabled: boolean;
+    @HostBinding('class.disabled')
+    public readonly isDisabled: boolean;
 
     @Output()
     public osChange = new EventEmitter<Event>();
 
     @Output()
     public checkedChange = new EventEmitter<boolean>();
+
+    @ViewChild('checkboxElement')
+    private readonly checkboxElementRef: ElementRef<HTMLInputElement>;
 
     public onChange: (value: boolean) => any;
     public onTouched: () => any;
@@ -48,6 +57,10 @@ export class CheckboxComponent extends OsBaseComponent implements ControlValueAc
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+    }
+
+    public ngOnInit(): void {
+        this.hostClasslistManager.add('os-checkbox');
     }
 
     public onCheckboxValueChange(event: Event): void {
@@ -70,5 +83,11 @@ export class CheckboxComponent extends OsBaseComponent implements ControlValueAc
         this.checked = value;
 
         this.changeDetector.detectChanges();
+    }
+
+    protected onClick(event: MouseEvent): void {
+        this.checkboxElementRef.nativeElement.click();
+
+        this.osClick.emit(event);
     }
 }

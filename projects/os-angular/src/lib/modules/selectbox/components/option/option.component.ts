@@ -41,8 +41,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
         this.hostClasslistManager.add('os-option');
     }
 
-    protected onClick(event: MouseEvent): void {
-        this.osClick.emit(event);
+    public onListItemClick(event: MouseEvent): void {
         this.osSelected.emit({ event, value: this.value });
     }
 }

@@ -8,7 +8,7 @@ os-tab-group {
         display: flex;
         padding-left: 3px;
 
-        button {
+        .os-button {
             min-width: 10px;
             font-size: 20px;
             font-weight: 400;
@@ -19,9 +19,6 @@ os-tab-group {
 
             &:hover {
                 color: #333333;
-            }
-
-            &:focus {
             }
 
             &:active {
@@ -35,7 +32,7 @@ os-tab-group {
         }
 
         &.justified {
-            button {
+            .os-button {
                 flex-grow: 1;
                 text-align: center;
             }
