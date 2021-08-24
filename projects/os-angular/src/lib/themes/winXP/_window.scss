@@ -1,41 +1,34 @@
 os-window {
+    font-size: 11px;
+    font-family: var(--sans-serif);
+    box-shadow: inset -1px -1px #5b68cd, inset 1px 1px #5b68cd, inset -2px -2px #758cdd, inset 2px 2px #758cdd,
+        inset -3px -3px #758cdd, inset 3px 3px #758cdd;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: var(--surface);
+    padding: 0 0 3px 0;
+    -webkit-font-smoothing: none;
 
-    .os-window {
-        font-size: 11px;
-        font-family: var(--sans-serif);
-        box-shadow: inset -1px -1px #5b68cd, inset 1px 1px #5b68cd, inset -2px -2px #758cdd, inset 2px 2px #758cdd,
-            inset -3px -3px #758cdd, inset 3px 3px #758cdd;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        background: var(--surface);
-        padding: 0 0 3px 0;
-        -webkit-font-smoothing: none;
-
-        fieldset {
-            margin-bottom: 9px;
-        }
-
-        &.hiding {
-            display: none;
-        }
-
-        &.fullscreen {
-            width: calc(100% + 6px) !important;
-            height: calc(100% + 4px) !important;
-            left: -3px !important;
-            top: -2px !important;
-        }
-
-        &.closing {
-            display: none;
-        }
+    fieldset {
+        margin-bottom: 9px;
     }
 
-    .os-window-body {
-        margin: 0px 3px;
+    &.hiding {
+        display: none;
     }
 
-    .os-window.active {
+    &.fullscreen {
+        width: calc(100% + 6px) !important;
+        height: calc(100% + 4px) !important;
+        left: -3px !important;
+        top: -2px !important;
+    }
+
+    &.closing {
+        display: none;
+    }
+
+    &.active {
         box-shadow: inset -1px -1px #00138c, inset 1px 1px #0831d9, inset -2px -2px #001ea0, inset 2px 2px #166aee,
             inset -3px -3px #003bda, inset 3px 3px #0855dd;
 
@@ -64,10 +57,12 @@ os-window {
         }
     }
 
+    .os-window-body {
+        margin: 0px 3px;
+    }
 }
 
 os-title-bar {
-
     .os-title-bar {
         font-size: 11px;
         font-family: "Trebuchet MS";
@@ -109,7 +104,7 @@ os-title-bar {
     .os-title-bar-controls {
         display: flex;
 
-        button {
+        .os-button {
             padding: 0;
             display: block;
             min-width: 16px;
@@ -133,7 +128,7 @@ os-title-bar {
             }
         }
 
-        button[aria-label="Minimize"] {
+        .os-button[aria-label="Minimize"] {
             background-image: url("./icon/winXP_minimize.svg");
             &:hover {
                 background-image: url("./icon/winXP_minimize-hover.svg");
@@ -142,7 +137,8 @@ os-title-bar {
                 background-image: url("./icon/winXP_minimize-active.svg");
             }
         }
-        button[aria-label="Maximize"] {
+
+        .os-button[aria-label="Maximize"] {
             background-image: url("./icon/winXP_maximize.svg");
             &:hover {
                 background-image: url("./icon/winXP_maximize-hover.svg");
@@ -151,7 +147,8 @@ os-title-bar {
                 background-image: url("./icon/winXP_maximize-active.svg");
             }
         }
-        button[aria-label="Help"] {
+
+        .os-button[aria-label="Help"] {
             background-image: url("./icon/winXP_help.svg");
             &:hover {
                 background-image: url("./icon/winXP_help-hover.svg");
@@ -160,7 +157,8 @@ os-title-bar {
                 background-image: url("./icon/winXP_help-active.svg");
             }
         }
-        button[aria-label="Close"] {
+
+        .os-button[aria-label="Close"] {
             background-image: url("./icon/winXP_close.svg");
             &:hover {
                 background-image: url("./icon/winXP_close-hover.svg");
@@ -170,5 +168,4 @@ os-title-bar {
             }
         }
     }
-
 }

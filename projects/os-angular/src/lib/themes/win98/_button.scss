@@ -1,4 +1,7 @@
 os-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--sans-serif);
     font-size: 11px;
     box-sizing: border-box;
@@ -10,6 +13,8 @@ os-button {
     min-height: 23px;
     padding: 0 12px;
     -webkit-font-smoothing: none;
+    user-select: none;
+    cursor: default;
 
     &:not(:disabled) {
         &:active,

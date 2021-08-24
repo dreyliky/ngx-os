@@ -1,6 +1,9 @@
 os-button {
     min-width: 75px;
     min-height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 6px 18px;
     font-family: var(--segoe-ui);
     -webkit-font-smoothing: antialiased;
@@ -18,6 +21,7 @@ os-button {
     flex-shrink: 0;
     transition: ease transform 0.5s;
     user-select: none;
+    cursor: default;
 
     &:hover {
         border-color: rgba(0, 0, 0, .4);
