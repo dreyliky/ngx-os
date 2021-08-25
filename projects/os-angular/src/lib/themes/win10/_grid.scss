@@ -1,20 +1,17 @@
 os-grid {
-
     .os-grid-item {
-        width: 96px;
-        height: 96px;
         align-items: center;
         justify-content: center;
         display: flex;
         flex-direction: column;
         user-select: none;
 
-        .os-grid-item-image {
-            width: 56px;
-            height: 56px;
-        }
-
         .os-grid-item-text {
+            width: 100%;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             font-family: Arial !important;
             font-size: 13px;
             text-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
@@ -27,7 +24,7 @@ os-grid {
         }
 
         &.selected {
-            .os-grid-item-image-wrapper {
+            .os-grid-item-image {
                 position: relative;
 
                 &:after {
@@ -49,4 +46,80 @@ os-grid {
         }
     }
 
+    &.medium-icons {
+        os-grid-item {
+            width: 64px;
+            height: 64px;
+            padding: 5px;
+        }
+
+        .os-grid-item-image {
+            width: 48px;
+            height: 48px;
+            background-size: contain;
+            background-position: 50%;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &.large-icons {
+        .os-grid-item-image {
+            width: 92px;
+            height: 92px;
+            background-size: contain;
+            background-position: 50%;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &.extra-large-icons {
+        .os-grid-item-image {
+            width: 128px;
+            height: 128px;
+            background-size: contain;
+            background-position: 50%;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &.list {
+        width: auto;
+        display: grid !important;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-auto-flow: column;
+
+        os-grid-item {
+            width: 100px;
+            height: 18px;
+            padding: 0px 6px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: row;
+
+            &.selected {
+                background-color: rgb(var(--os-primary-color));
+                color: rgb(var(--os-white-color));
+            }
+        }
+
+        .os-grid-item-image {
+            width: 16px;
+            height: 16px;
+            min-height: 16px;
+            margin-right: 2px;
+            background-size: contain;
+            background-position: 50%;
+            background-repeat: no-repeat;
+
+            &::after {
+                display: none;
+            }
+        }
+        
+        .os-grid-item-text {
+            width: auto !important;
+            margin-top: 0px;
+        }
+    }
 }

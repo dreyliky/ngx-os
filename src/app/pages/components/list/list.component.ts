@@ -12,8 +12,7 @@ import { GridView, OptionSelectedEvent } from 'os-angular';
 })
 export class GridComponent implements OnInit {
     public gridViews: GridView[] = [
-        'medium-icons', 'large-icons', 'extra-large-icons',
-        'list', 'details', 'tiles'
+        'medium-icons', 'large-icons', 'extra-large-icons', 'list'
     ];
 
     public selectedGridView: GridView;
