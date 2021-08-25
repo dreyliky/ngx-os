@@ -87,8 +87,8 @@ export class OsDraggableDirective implements OnDestroy {
 
         this.osBeforeDragStart.emit(dragInfo);
 
-        this.setShiftX(dragInfo, event);
-        this.setShiftY(dragInfo, event);
+        this.setShiftX(dragInfo);
+        this.setShiftY(dragInfo);
 
         document.addEventListener('mousemove', this.documentMouseMoveHandler);
         document.addEventListener('mouseup', this.documentMouseUpHandler);
@@ -120,27 +120,25 @@ export class OsDraggableDirective implements OnDestroy {
     }
 
     private getDragInfo(event: MouseEvent): DragInfo {
-        const box = this._movableElement.getBoundingClientRect();
-
         return {
-            draggableElementDomRect: box,
+            draggableElementDomRect: this._movableElement.getBoundingClientRect(),
             mouseEvent: event
         };
     }
 
-    private setShiftX(dragInfo: DragInfo, event: MouseEvent): void {
+    private setShiftX({ mouseEvent, draggableElementDomRect }: DragInfo): void {
         if (typeof(this.draggerConfig.shiftX) === 'number') {
             this.shiftX = this.draggerConfig.shiftX;
         } else {
-            this.shiftX = event.clientX - dragInfo.draggableElementDomRect.left + pageXOffset;
+            this.shiftX = mouseEvent.clientX - draggableElementDomRect.left + pageXOffset;
         }
     }
 
-    private setShiftY(dragInfo: DragInfo, event: MouseEvent): void {
+    private setShiftY({ mouseEvent, draggableElementDomRect }: DragInfo): void {
         if (typeof(this.draggerConfig.shiftY) === 'number') {
             this.shiftY = this.draggerConfig.shiftY;
         } else {
-            this.shiftY = event.clientY - dragInfo.draggableElementDomRect.top + pageYOffset;
+            this.shiftY = mouseEvent.clientY - draggableElementDomRect.top + pageYOffset;
         }
     }
 
