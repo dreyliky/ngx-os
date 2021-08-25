@@ -4,6 +4,20 @@
 
 :root {
     --sans-serif: "Pixelated MS Sans Serif", Arial;
+
+    /** Universal color variables */
+    --os-primary-color: 34, 102, 203;
+    --os-secondary-color: 16, 132, 208;
+    --os-danger-color: 232, 17, 35;
+    --os-success-color: 0, 255, 0;
+    --os-warning-color: 255, 140, 0;
+    --os-info-color: 93, 82, 247;
+    --os-light-color: 242, 242, 242;
+    --os-dark-color: 41, 41, 41;
+    --os-white-color: 255, 255, 255;
+    --os-black-color: 0, 0, 0;
+    --os-bg-color: transparent;
+
     /* Color */
     --surface: #ece9d8;
     --button-highlight: #ffffff;
