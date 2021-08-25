@@ -1,4 +1,12 @@
 os-grid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    &.horizontal {
+        flex-direction: row;
+    }
+
     os-grid-item {
         align-items: center;
         justify-content: center;

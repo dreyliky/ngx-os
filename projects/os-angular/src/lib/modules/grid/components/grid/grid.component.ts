@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 import { GridView } from '../../types';
 
@@ -17,6 +17,10 @@ export class GridComponent extends OsBaseComponent implements OnInit {
             this.currentView = view;
         }
     }
+
+    @Input()
+    @HostBinding('class.horizontal')
+    public readonly isHorizontalDirection: boolean = false;
 
     private currentView: GridView = 'medium-icons';
 

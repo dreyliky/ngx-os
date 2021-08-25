@@ -20,7 +20,9 @@
         </os-selectbox>
     </div>
 
-    <os-grid [view]="selectedGridView">
+    <os-grid
+        [view]="selectedGridView"
+        [isHorizontalDirection]="true">
         <os-grid-item
             *ngFor="let component of components"
             [data]="{
