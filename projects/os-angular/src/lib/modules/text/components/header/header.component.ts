@@ -10,8 +10,11 @@ export class HeaderComponent extends OsBaseComponent {
     @Input()
     public set size(value: number) {
         this.validateSize(value);
+        this.hostClasslistManager.remove(`${this.baseHeaderClassName}-${this._size}`);
 
-        this._size = this.getValidSize(value);
+        this._size = value;
+
+        this.hostClasslistManager.add(`${this.baseHeaderClassName}-${this._size}`);
     }
 
     public get size(): number {
@@ -20,23 +23,15 @@ export class HeaderComponent extends OsBaseComponent {
 
     private _size: number = 1;
 
-    private getValidSize(value: number): number {
-        if (value < 1 || typeof(value) !== 'number') {
-            return 1;
-        } else if (value > 6) {
-            return 6;
-        }
-
-        return value;
-    }
+    private readonly baseHeaderClassName = 'os-header';
 
     private validateSize(value: number): void {
         if (typeof(value) !== 'number') {
-            console.warn('os-header size param must be a number!');
+            throw new Error('os-header size param must be a number!');
         }
 
         if (value < 1 || value > 6) {
-            console.warn('os-header size param can\'t be less than 1 and more than 6!');
+            throw new Error('os-header size param can\'t be less than 1 and more than 6!');
         }
     }
 }

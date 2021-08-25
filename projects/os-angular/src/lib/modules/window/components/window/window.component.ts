@@ -39,25 +39,25 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public isTitleBarVisible: boolean = true;
 
     @Input()
-    public scrollViewStyle: any;
+    public scrollViewStyle: object;
 
     @Input()
-    public scrollViewStyleClass: any;
+    public scrollViewStyleClass: string | string[] | object;
 
     @Output()
-    public osTitleBarClick = new EventEmitter<MouseEvent>();
+    public osTitleBarClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     @Output()
-    public osTitleBarDblClick = new EventEmitter<MouseEvent>();
+    public osTitleBarDblClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     @Output()
-    public osMinimizeButtonClick = new EventEmitter<MouseEvent>();
+    public osMinimizeButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     @Output()
-    public osMaximizeButtonClick = new EventEmitter<MouseEvent>();
+    public osMaximizeButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     @Output()
-    public osCloseButtonClick = new EventEmitter<MouseEvent>();
+    public osCloseButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     public ngOnInit(): void {
         this.hostClasslistManager.add('os-window');
