@@ -8,13 +8,15 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class HeaderComponent extends OsBaseComponent {
     @Input()
-    public set size(value: number) {
-        this.validateSize(value);
-        this.hostClasslistManager.remove(`${this.baseHeaderClassName}-${this._size}`);
+    public set size(newSize: number) {
+        this.validateSize(newSize);
 
-        this._size = value;
+        const currentSizeClassName = `${this.baseHeaderClassName}-${this._size}`;
+        const newSizeClassName = `${this.baseHeaderClassName}-${newSize}`;
+        this._size = newSize;
 
-        this.hostClasslistManager.add(`${this.baseHeaderClassName}-${this._size}`);
+        this.hostClasslistManager.remove(currentSizeClassName);
+        this.hostClasslistManager.add(newSizeClassName);
     }
 
     public get size(): number {
