@@ -8,15 +8,14 @@
 }
 
 :host::ng-deep .os-window,
-:host::ng-deep .os-window-body,
-:host::ng-deep os-scroll-view {
+:host::ng-deep .os-window > .os-window-body,
+:host::ng-deep .os-window > .os-window-body > os-scroll-view {
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
 :host::ng-deep .os-window-body,
-:host::ng-deep os-scroll-view,
 :host::ng-deep .os-scroll-view {
     height: 100%;
 }
