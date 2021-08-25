@@ -4,6 +4,10 @@
         [selected]="openedComponentMetaInfo.type === component.type"
         [value]="component"
         (osSelected)="onComponentOptionSelected($event)">
+        <img
+            class="icon"
+            [attr.src]="component.imageUrl" />
+
         {{ component.name }}
     </os-list-item>
 </os-list>

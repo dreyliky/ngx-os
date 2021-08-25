@@ -3,6 +3,11 @@
     display: block;
 }
 
+.icon {
+    height: 100%;
+    margin-right: 3px;
+}
+
 os-tree-view::ng-deep ul {
     border: none !important;
 }
