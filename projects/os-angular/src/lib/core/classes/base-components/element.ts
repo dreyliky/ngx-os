@@ -1,93 +1,71 @@
 import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 import { IdGenerator } from '@lib-helpers';
-import { HostClasslistManager } from '../css-classlist-manager';
+import { ClasslistManager } from '../css-classlist-manager';
 
 @Component({
     template: ''
 })
 export abstract class OsBaseComponent {
-    /**
-     * Object with css styles which will applied for target internal element
-     */
+    /** Object with css styles which will applied for target internal element */
     @Input()
     @HostBinding('style')
     public style: object;
 
-    /**
-     * String, Array of strings or object with classlist
-     */
+    /** String, Array of strings or object with classlist */
     @Input()
     public set styleClass(classlist: string | string[] | object) {
         if (classlist) {
-            this.hostClasslistManager.apply(classlist);
+            this.classlistManager.apply(classlist);
         }
     }
 
-    /**
-     * Id of html element. By default it generates randomly
-     */
+    /** Id of html element. By default it generates randomly */
     @Input()
     @HostBinding('id')
     public id: string = IdGenerator.generate('os-element');
 
-    /**
-     * Target internal element click event
-     */
+    /** Target internal element click event */
     @Output()
     public osClick: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /**
-     * Target internal element dblclick event
-     */
+    /** Target internal element dblclick event */
     @Output()
     public osDblClick: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /**
-     * Target internal element mousedown event
-     */
+    /** Target internal element mousedown event */
     @Output()
     public osMouseDown: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /**
-     * Target internal element mousemove event
-     */
+    /** Target internal element mousemove event */
     @Output()
     public osMouseMove: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /**
-     * Target internal element mouseout event
-     */
+    /** Target internal element mouseout event */
     @Output()
     public osMouseOut: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /**
-     * Target internal element mouseover event
-     */
+    /** Target internal element mouseover event */
     @Output()
     public osMouseOver: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /**
-     * Target internal element mouseup event
-     */
+    /** Target internal element mouseup event */
     @Output()
     public osMouseUp: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /**
-     * Target internal element wheel event>
-     */
+    /** Target internal element wheel event> */
     @Output()
     public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
 
     @HostBinding('class')
     public get hostClass(): string {
-        return this.hostClasslistManager.getAsString();
+        return this.classlistManager.getAsString();
     }
 
     protected readonly baseHostClassName = 'os-element';
-    protected readonly hostClasslistManager = new HostClasslistManager();
+    protected readonly classlistManager = new ClasslistManager();
 
     constructor() {
-        this.hostClasslistManager.add(this.baseHostClassName);
+        this.classlistManager.add(this.baseHostClassName);
     }
 
     /** The handler will be fired on the host element in response to an event. */

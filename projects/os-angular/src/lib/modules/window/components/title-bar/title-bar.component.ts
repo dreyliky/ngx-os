@@ -17,6 +17,6 @@ export class TitleBarComponent extends OsBaseComponent implements OnInit {
     public osCloseButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-title-bar');
+        this.classlistManager.add('os-title-bar');
     }
 }

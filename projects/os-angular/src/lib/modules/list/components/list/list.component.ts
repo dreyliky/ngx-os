@@ -15,6 +15,6 @@ export class ListComponent extends OsBaseComponent implements OnInit {
     public scrollViewStyleClass: string;
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-list');
+        this.classlistManager.add('os-list');
     }
 }

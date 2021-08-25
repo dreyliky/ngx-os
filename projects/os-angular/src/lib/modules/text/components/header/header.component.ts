@@ -15,8 +15,8 @@ export class HeaderComponent extends OsBaseComponent {
         const newSizeClassName = `${this.baseHeaderClassName}-${newSize}`;
         this._size = newSize;
 
-        this.hostClasslistManager.remove(currentSizeClassName);
-        this.hostClasslistManager.add(newSizeClassName);
+        this.classlistManager.remove(currentSizeClassName);
+        this.classlistManager.add(newSizeClassName);
     }
 
     public get size(): number {

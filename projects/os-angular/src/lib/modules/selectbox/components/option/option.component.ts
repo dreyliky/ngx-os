@@ -20,7 +20,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     public set selected(value: boolean) {
         this._selected = value;
 
-        this.hostClasslistManager.applyOneAsFlag(this.selectedStateClassName, this._selected);
+        this.classlistManager.applyOneAsFlag(this.selectedStateClassName, this._selected);
     }
 
     public get selected(): boolean {
@@ -38,7 +38,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     private _selected = false;
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-option');
+        this.classlistManager.add('os-option');
     }
 
     public onListItemClick(event: MouseEvent): void {

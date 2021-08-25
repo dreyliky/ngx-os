@@ -12,6 +12,6 @@ export class ButtonComponent extends OsBaseButtonComponent implements OnInit {
     public type: buttonType = 'button';
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-button');
+        this.classlistManager.add('os-button');
     }
 }

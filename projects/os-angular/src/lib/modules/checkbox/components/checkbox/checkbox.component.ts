@@ -60,7 +60,7 @@ export class CheckboxComponent extends OsBaseComponent implements OnInit, Contro
     }
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-checkbox');
+        this.classlistManager.add('os-checkbox');
     }
 
     public onCheckboxValueChange(event: Event): void {

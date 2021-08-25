@@ -19,7 +19,7 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     public set selected(selected: boolean) {
         this._selected = selected;
 
-        this.hostClasslistManager.applyOneAsFlag('selected', selected);
+        this.classlistManager.applyOneAsFlag('selected', selected);
     }
 
     public get selected(): boolean {
@@ -35,11 +35,12 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     private _selected = false;
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-list-item');
+        this.classlistManager.add('os-list-item');
     }
 
-    protected onClick(event: MouseEvent): void {
-        this.osClick.emit(event);
+    protected onClick(event: PointerEvent): void {
         this.osSelected.emit(this.value);
+
+        super.onClick(event);
     }
 }

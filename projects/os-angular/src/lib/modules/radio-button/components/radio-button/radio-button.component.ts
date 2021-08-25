@@ -71,9 +71,9 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
         }
     }
 
-    protected onClick(event: MouseEvent): void {
+    protected onClick(event: PointerEvent): void {
         this.radioElementRef.nativeElement.click();
 
-        this.osClick.emit(event);
+        super.onClick(event);
     }
 }

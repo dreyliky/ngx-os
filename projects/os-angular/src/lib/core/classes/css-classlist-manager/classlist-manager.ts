@@ -1,6 +1,6 @@
 import { CssClasslistToArrayHelper } from './classlist-to-array';
 
-export class HostClasslistManager {
+export class ClasslistManager {
     private readonly data: string[] = [];
 
     public getAsString(): string {

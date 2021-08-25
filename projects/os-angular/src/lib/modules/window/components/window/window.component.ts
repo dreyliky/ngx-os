@@ -60,6 +60,6 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public osCloseButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-window');
+        this.classlistManager.add('os-window');
     }
 }

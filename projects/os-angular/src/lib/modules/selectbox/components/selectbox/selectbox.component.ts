@@ -90,7 +90,7 @@ export class SelectboxComponent<T>
     }
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-selectbox');
+        this.classlistManager.add('os-selectbox');
     }
 
     public ngOnDestroy(): void {
@@ -127,10 +127,10 @@ export class SelectboxComponent<T>
         this.changeDetector.detectChanges();
     }
 
-    protected onClick(event: MouseEvent): void {
+    protected onClick(event: PointerEvent): void {
         this.isOpened = !this.isOpened;
 
-        this.osClick.emit(event);
+        super.onClick(event);
     }
 
     private getActualValue(value: T): any {

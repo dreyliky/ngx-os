@@ -11,8 +11,8 @@ export class GridComponent extends OsBaseComponent implements OnInit {
     @Input()
     public set view(view: GridView) {
         if (view) {
-            this.hostClasslistManager.remove(this.currentView);
-            this.hostClasslistManager.add(view);
+            this.classlistManager.remove(this.currentView);
+            this.classlistManager.add(view);
 
             this.currentView = view;
         }
@@ -21,6 +21,6 @@ export class GridComponent extends OsBaseComponent implements OnInit {
     private currentView: GridView = 'medium-icons';
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add(`os-grid ${this.currentView}`);
+        this.classlistManager.add(`os-grid ${this.currentView}`);
     }
 }

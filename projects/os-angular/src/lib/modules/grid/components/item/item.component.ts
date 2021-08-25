@@ -23,7 +23,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     public set selected(selected: boolean) {
         this._selected = selected;
 
-        this.hostClasslistManager.applyOneAsFlag('selected', selected);
+        this.classlistManager.applyOneAsFlag('selected', selected);
     }
 
     public get selected(): boolean {
@@ -39,7 +39,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.hostClasslistManager.add('os-grid-item');
+        this.classlistManager.add('os-grid-item');
     }
 
     @HostListener('document:click', ['$event'])
@@ -52,18 +52,18 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
         }
     }
 
-    protected onClick(event: MouseEvent): void {
+    protected onClick(event: PointerEvent): void {
         if (this.data.onClick) {
             this.data.onClick(event);
         }
 
-        this.osClick.emit(event);
+        super.onClick(event);
     }
 
     protected onMouseDown(event: MouseEvent): void {
         this.selected = true;
 
-        this.osMouseDown.emit(event);
+        super.onMouseDown(event);
     }
 
     protected onDblClick(event: MouseEvent): void {
@@ -71,6 +71,6 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
             this.data.onDblClick(event);
         }
 
-        this.osDblClick.emit(event);
+        super.onDblClick(event);
     }
 }

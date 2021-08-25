@@ -5,6 +5,7 @@ import {
     EventEmitter,
     forwardRef,
     Input,
+    OnInit,
     Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -24,7 +25,7 @@ import { textboxType } from '../../shared';
         }
     ]
 })
-export class TextBoxComponent extends OsBaseFieldComponent implements ControlValueAccessor {
+export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, ControlValueAccessor {
     @Input()
     public type: textboxType = 'text';
 
@@ -38,6 +39,10 @@ export class TextBoxComponent extends OsBaseFieldComponent implements ControlVal
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+    }
+
+    public ngOnInit(): void {
+        this.classlistManager.add('os-text-box');
     }
 
     public onTextboxValueChange(event: Event): void {
