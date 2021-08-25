@@ -11,29 +11,29 @@ export class HeaderComponent extends OsBaseComponent {
     public set size(newSize: number) {
         this.validateSize(newSize);
 
-        const currentSizeClassName = `${this.baseHeaderClassName}-${this._size}`;
-        const newSizeClassName = `${this.baseHeaderClassName}-${newSize}`;
         this._size = newSize;
-
-        this.classlistManager.remove(currentSizeClassName);
-        this.classlistManager.add(newSizeClassName);
     }
 
     public get size(): number {
         return this._size;
     }
 
-    private _size: number = 1;
+    public get hostClass(): string {
+        return `${this.classlistManager.getAsString()} os-header-${this.size}`;
+    }
 
-    private readonly baseHeaderClassName = 'os-header';
+    private readonly minSize: number = 1;
+    private readonly maxSize: number = 6;
+
+    private _size: number = this.minSize;
 
     private validateSize(value: number): void {
         if (typeof(value) !== 'number') {
             throw new Error('os-header size param must be a number!');
         }
 
-        if (value < 1 || value > 6) {
-            throw new Error('os-header size param can\'t be less than 1 and more than 6!');
+        if (value < this.minSize || value > this.maxSize) {
+            throw new Error(`os-header size param can't be less than ${this.minSize} and more than ${this.maxSize}!`);
         }
     }
 }
