@@ -60,10 +60,10 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
         this.osClick.emit(event);
     }
 
-    protected onMousedown(event: MouseEvent): void {
+    protected onMouseDown(event: MouseEvent): void {
         this.selected = true;
 
-        this.osMousedown.emit(event);
+        this.osMouseDown.emit(event);
     }
 
     protected onDblClick(event: MouseEvent): void {
@@ -71,6 +71,6 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
             this.data.onDblClick(event);
         }
 
-        this.osDblclick.emit(event);
+        this.osDblClick.emit(event);
     }
 }

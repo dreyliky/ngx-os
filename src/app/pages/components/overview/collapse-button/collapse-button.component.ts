@@ -13,7 +13,9 @@ export class CollapseButtonComponent {
     @Output()
     public pressed = new EventEmitter<MouseEvent>();
 
-    public onCollapseButtonClick(): void {
+    public onCollapseButtonClick(event: MouseEvent): void {
         this.isCollapsed = !this.isCollapsed;
+
+        this.pressed.emit(event);
     }
 }

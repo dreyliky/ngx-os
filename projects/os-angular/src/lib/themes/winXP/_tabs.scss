@@ -4,7 +4,6 @@
 }
 
 os-tab-group {
-
     menu[role="tablist"] {
         position: relative;
         margin: 0 0 -2px 0;
@@ -13,7 +12,7 @@ os-tab-group {
         display: flex;
         padding-left: 3px;
 
-        button {
+        .os-button {
             background: linear-gradient(
                 180deg,
                 rgba(255, 255, 255, 1) 0%,
@@ -75,7 +74,7 @@ os-tab-group {
         }
 
         &.justified {
-            button {
+            .os-button {
                 flex-grow: 1;
                 text-align: center;
             }
@@ -92,5 +91,4 @@ os-tab-group {
         margin-bottom: 9px;
         box-shadow: inset 1px 1px #fcfcfe, inset -1px -1px #fcfcfe, 1px 2px 2px 0px rgba(208, 206, 191, 0.75);
     }
-
 }

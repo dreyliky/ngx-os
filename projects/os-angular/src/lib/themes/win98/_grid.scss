@@ -1,5 +1,4 @@
 os-grid {
-
     os-grid-item {
         align-items: center;
         justify-content: center;
@@ -52,7 +51,7 @@ os-grid {
         os-grid-item {
             width: 64px;
             height: 64px;
-            margin: 5px;
+            padding: 5px;
         }
 
         .os-grid-item-image {
@@ -122,5 +121,4 @@ os-grid {
             margin-top: 0px;
         }
     }
-
 }

@@ -14,7 +14,7 @@ os-window {
     }
 
     &.hiding {
-        display: none;
+        display: none !important;
     }
 
     &.fullscreen {
@@ -25,7 +25,7 @@ os-window {
     }
 
     &.closing {
-        display: none;
+        display: none !important;
     }
 
     &.active {
