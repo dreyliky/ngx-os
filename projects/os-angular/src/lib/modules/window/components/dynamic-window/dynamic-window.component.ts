@@ -5,7 +5,8 @@ import {
     Component,
     ComponentFactoryResolver,
     ElementRef,
-    HostListener, Type,
+    HostListener,
+    Type,
     ViewChild
 } from '@angular/core';
 import { OutsideClick } from '@lib-helpers';
