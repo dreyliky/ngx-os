@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ThemeManagerService } from '@Core/services';
 import { DemoDocProvider, LibDocProvider } from '@Features/doc';
+import { ThemeManagerService } from '@Features/theme';
 
 @Component({
     selector: 'demo-root',

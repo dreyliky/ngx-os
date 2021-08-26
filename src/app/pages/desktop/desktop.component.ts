@@ -28,7 +28,7 @@ export class DesktopComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        this.onOverviewShortcutDblClick();
+        this.onSettingsShortcutDblClick();
     }
 
     public trackByFn = (_: GridItem, index: number): number => {
@@ -40,7 +40,7 @@ export class DesktopComponent implements OnInit {
             OverviewAppComponent,
             {
                 title: 'Angular OS - components overview',
-                minWidth: 700,
+                minWidth: 400,
                 minHeight: 500
             }
         );
@@ -51,7 +51,7 @@ export class DesktopComponent implements OnInit {
             SettingsAppComponent,
             {
                 title: 'Settings',
-                minWidth: 400,
+                minWidth: 600,
                 minHeight: 350
             }
         );

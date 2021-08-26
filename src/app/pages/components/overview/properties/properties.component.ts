@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ComponentMetaInfo, DocComponent, DocService, InputsClass } from '@Doc/features/doc';
+import { ComponentMetaInfo, DocComponent, DocService, InputsClass } from '@Features/doc';
 
 @Component({
     selector: 'demo-properties',

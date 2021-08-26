@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { ComponentMetaInfo, DocComponent, DocService, MethodsClass } from '@Doc/features/doc';
+import { ComponentMetaInfo, DocComponent, DocService, MethodsClass } from '@Features/doc';
 
 @Component({
     selector: 'demo-methods',

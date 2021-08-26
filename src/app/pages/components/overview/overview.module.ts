@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
-import { DocumentationModule } from '@Doc/features/doc';
+import { DocumentationModule } from '@Features/doc';
 import { CollapseButtonComponent } from './collapse-button';
 import { ComponentBlockComponent } from './component-block';
 import { DemoBlockComponent } from './demo-block';

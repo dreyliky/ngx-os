@@ -1,11 +1,12 @@
 import {
-    ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit
 } from '@angular/core';
-import { ThemeArray } from '@Doc/core/data';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
-import { Theme } from '@Doc/core/interfaces';
-import { ThemeManagerService } from '@Doc/core/services';
-import { OptionSelectedEvent } from 'os-angular';
+import { Theme, ThemeManagerService, THEMES } from '@Features/theme';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -18,7 +19,6 @@ import { environment } from 'src/environments/environment';
 export class ComponentHeaderComponent implements OnInit, OnDestroy {
     public readonly libVersion: string = environment.version;
 
-    public themes = ThemeArray;
     public appliedTheme: Theme;
 
     public routeEnum = DocumentationRouteEnum;
@@ -26,8 +26,8 @@ export class ComponentHeaderComponent implements OnInit, OnDestroy {
     private appliedThemeSubscription: Subscription;
 
     constructor(
-        private readonly changeDetector: ChangeDetectorRef,
-        private readonly themeManagerService: ThemeManagerService
+        private readonly themeService: ThemeManagerService,
+        private readonly changeDetector: ChangeDetectorRef
     ) {}
 
     public ngOnInit(): void {
@@ -38,16 +38,14 @@ export class ComponentHeaderComponent implements OnInit, OnDestroy {
         this.appliedThemeSubscription?.unsubscribe();
     }
 
-    public onThemeChanged(event: OptionSelectedEvent<Theme>): void {
-        const theme: Theme = event.value;
-
-        this.themeManagerService.applyTheme(theme.cssName);
+    public onThemeChanged(theme: Theme): void {
+        this.themeService.applyTheme(theme.cssName);
     }
 
     private initAppliedThemeObserver(): void {
-        this.appliedThemeSubscription = this.themeManagerService.appliedTheme$
+        this.appliedThemeSubscription = this.themeService.appliedTheme$
             .subscribe((themeCssName) => {
-                this.appliedTheme = this.themes
+                this.appliedTheme = THEMES
                     .find((currTheme) => currTheme.cssName === themeCssName);
 
                 this.changeDetector.detectChanges();

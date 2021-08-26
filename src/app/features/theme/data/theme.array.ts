@@ -1,7 +1,7 @@
 import { ThemeEnum } from '../enums';
 import { Theme } from '../interfaces';
 
-export const ThemeArray: Theme[] = [
+export const THEMES: Theme[] = [
     {
         name: 'Windows 98',
         cssName: ThemeEnum.Win98

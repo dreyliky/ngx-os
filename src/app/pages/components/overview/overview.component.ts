@@ -17,7 +17,7 @@ import {
     DemoComponentMetaInfo,
     DocComponent,
     DocService
-} from '@Doc/features/doc';
+} from '@Features/doc';
 import { Subscription } from 'rxjs';
 import { DemoBlockComponent } from './demo-block';
 

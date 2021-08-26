@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ComponentMetaInfo, DocComponent } from '@Doc/features/doc';
+import { ComponentMetaInfo, DocComponent } from '@Features/doc';
 
 @Component({
     selector: 'demo-component-block',

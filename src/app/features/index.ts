@@ -1,1 +1,2 @@
-export * from './doc';
+export * from './features.module';
+

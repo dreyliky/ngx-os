@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
-import { ComponentHeaderComponent } from './component-header/component-header.component';
+import { FeaturesModule } from '@Features';
+import { ComponentHeaderComponent } from './component-header';
 
 @NgModule({
     declarations: [
         ComponentHeaderComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        FeaturesModule
     ],
     exports: [
         ComponentHeaderComponent

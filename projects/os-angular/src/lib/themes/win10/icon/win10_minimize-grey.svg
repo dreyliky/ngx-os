@@ -1,3 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 512 512">
+<svg shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 512 512">
   <path id="_" data-name="" class="cls-1" fill="#999999" d="M0,204.593V255.8H511.608V204.593H0Z"/>
 </svg>

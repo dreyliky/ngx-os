@@ -1,38 +1,9 @@
 :host {
-    height: 100%;
-    display: flex;
+    user-select: none;
 }
 
 .wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-
-    .left-side {
-        width: 400px;
-        height: 100%;
-        display: flex;
-
-        .menu-wrapper {
-            width: 100%;
-            height: 2000px;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 5px;
-        }
-    }
-
-    .right-side {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        background: #ffffff;
-
-        .right-side-content {
-            margin: 20px;
-        }
-    }
+    margin: 7px;
 }
 
 .element-wrapper {

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentationRouteEnum } from '@Doc/core/enums';
-import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Doc/features/doc';
+import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/doc';
 
 @Component({
     selector: 'demo-menu',

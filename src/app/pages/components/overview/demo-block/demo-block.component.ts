@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Type } from '@angular/core';
-import { DemoComponentMetaInfo, DocComponent, DocService } from '@Doc/features/doc';
+import { DemoComponentMetaInfo, DocComponent, DocService } from '@Features/doc';
 
 enum SectionEnum {
     Demo,

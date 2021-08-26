@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ComponentMetaInfo, DocComponent, DocService, OutputsClass } from '@Doc/features/doc';
+import { ComponentMetaInfo, DocComponent, DocService, OutputsClass } from '@Features/doc';
 
 @Component({
     selector: 'demo-events',

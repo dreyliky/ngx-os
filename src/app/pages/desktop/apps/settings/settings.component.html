@@ -1,1 +1,10 @@
-<p>settings works!</p>
+<settings-sidebar
+    class="sidebar"
+    [selectedSection]="selectedSection"
+    (sectionChange)="onSectionChange($event)">
+</settings-sidebar>
+
+<settings-content
+    class="content"
+    [selectedSection]="selectedSection">
+</settings-content>
