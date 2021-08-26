@@ -1,17 +1,19 @@
-<div class="wrapper">
-    <os-header>{{ selectedSection.name }}</os-header>
+<os-scroll-view>
+    <div class="wrapper">
+        <os-header>{{ selectedSection.name }}</os-header>
 
-    <ng-container [ngSwitch]="selectedSection.id">
-        <settings-theme-section
-            *ngSwitchCase="sectionEnum.Theme">
-        </settings-theme-section>
+        <ng-container [ngSwitch]="selectedSection.id">
+            <settings-theme-section
+                *ngSwitchCase="sectionEnum.Theme">
+            </settings-theme-section>
 
-        <settings-accent-color-section
-            *ngSwitchCase="sectionEnum.AccentColor">
-        </settings-accent-color-section>
+            <settings-accent-color-section
+                *ngSwitchCase="sectionEnum.AccentColor">
+            </settings-accent-color-section>
 
-        <settings-background-section
-            *ngSwitchCase="sectionEnum.Background">
-        </settings-background-section>
-    </ng-container>
-</div>
+            <settings-background-section
+                *ngSwitchCase="sectionEnum.Background">
+            </settings-background-section>
+        </ng-container>
+    </div>
+</os-scroll-view>

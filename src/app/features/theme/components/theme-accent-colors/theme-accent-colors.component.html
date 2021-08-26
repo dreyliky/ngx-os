@@ -1,0 +1,7 @@
+<div
+    *ngFor="let accentColor of accentColors"
+    class="color-square"
+    [class.selected]="isAccentColorSelected(accentColor)"
+    [style.backgroundColor]="transformAccentColorToCssFormat(accentColor)"
+    (click)="accentColorClick.emit(accentColor)">
+</div>

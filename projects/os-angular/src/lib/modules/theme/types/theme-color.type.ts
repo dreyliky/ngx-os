@@ -1,2 +1,2 @@
-export type ThemeColor = 'primary' | 'secondary' | 'danger' | 'success' |
+export type ThemeColorType = 'primary' | 'secondary' | 'danger' | 'success' |
 'warning' | 'info' | 'light' | 'dark' | 'white' | 'black' | 'bg';

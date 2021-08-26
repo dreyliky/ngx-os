@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ThemeManagerService } from '@Doc/features/theme';
+import { ThemeRgbColor } from '@lib-modules';
 
 @Component({
     selector: 'settings-accent-color-section',
@@ -6,4 +8,21 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./accent-color.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccentColorComponent {}
+export class AccentColorComponent implements OnInit {
+    public selectedColor: ThemeRgbColor;
+
+    constructor(
+        private readonly themeService: ThemeManagerService
+    ) {}
+
+    public ngOnInit(): void {
+        this.selectedColor = this.themeService.getColor('primary');
+        console.log(this.selectedColor);
+    }
+
+    public onAccentColorClick(accentColor: ThemeRgbColor): void {
+        this.selectedColor = accentColor;
+
+        this.themeService.applyColor('primary', accentColor);
+    }
+}

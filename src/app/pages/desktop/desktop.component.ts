@@ -51,8 +51,8 @@ export class DesktopComponent implements OnInit {
             SettingsAppComponent,
             {
                 title: 'Settings',
-                minWidth: 600,
-                minHeight: 350
+                minWidth: 700,
+                minHeight: 400
             }
         );
     }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ThemeService } from 'os-angular';
+import { ThemeColorType, ThemeRgbColor, ThemeService } from 'os-angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ThemeEnum } from '../enums';
 
@@ -24,6 +24,10 @@ export class ThemeManagerService {
         private readonly themeService: ThemeService
     ) {}
 
+    public getColor(colorType: ThemeColorType): ThemeRgbColor {
+        return this.themeService.getColor(colorType);
+    }
+
     public applyThemeFromStorage(): void {
         const theme = <ThemeEnum>localStorage.getItem(this.themeStorageKey) || this.defaultTheme;
 
@@ -35,5 +39,9 @@ export class ThemeManagerService {
         this.themeService.applyTheme(theme);
         localStorage.setItem(this.themeStorageKey, theme);
         this._appliedTheme$.next(theme);
+    }
+
+    public applyColor(colorType: ThemeColorType, color: ThemeRgbColor): void {
+        this.themeService.applyColor(colorType, color);
     }
 }
