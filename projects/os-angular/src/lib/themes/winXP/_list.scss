@@ -6,12 +6,12 @@ os-list {
     cursor: default;
     user-select: none;
 
-    &:hover {
-        os-list-item.selected {
-            background-color: #ffffff;
-            color: #000000;
-        }
-    }
+    // &:hover {
+    //     os-list-item.selected {
+    //         background-color: #ffffff;
+    //         color: #000000;
+    //     }
+    // }
 
     os-list-item {
         height: 15px;
@@ -20,13 +20,12 @@ os-list {
         padding: 0px 2px;
 
         &.selected {
-            background-color: #316ac5;
+            background-color: #316ac5 !important;
             color: #ffffff;
         }
 
         &:hover {
-            background-color: #316ac5 !important;
-            color: #ffffff !important;
+            background-color: rgba(var(--os-secondary-color), .4);
         }
     }
 }
