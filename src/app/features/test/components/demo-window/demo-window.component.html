@@ -1,9 +1,5 @@
 <div class="wrapper">
-    <os-text
-        [style.size]="'24px'"
-        [style.fontWeight]="'bold'">
-        Os Elements
-    </os-text>
+    <os-header>Os Elements</os-header>
 
     <div class="element-wrapper">
         <os-field-row [stacked]="true">
@@ -66,10 +62,10 @@
                 [label]="'Tab 1'">
                 <os-selectbox
                     [placeholder]="'Choose item'">
-                    <os-option>Item 1</os-option>
-                    <os-option>Item 2</os-option>
-                    <os-option [selected]="true">Item 3 - Selected by default</os-option>
-                    <os-option>Item 4</os-option>
+                    <os-option [value]="1">Item 1</os-option>
+                    <os-option [value]="2">Item 2</os-option>
+                    <os-option [selected]="true" [value]="3">Item 3 - Selected by default</os-option>
+                    <os-option [value]="4">Item 4</os-option>
                 </os-selectbox>
             </os-tab>
 
@@ -82,16 +78,6 @@
             </os-tab>
         </os-tab-group>
     </div>
-
-    <div class="element-wrapper">
-        <os-text>
-            Please expand some nodes in tree below to see how it works:
-        </os-text>
-    </div>
-
-    <os-tree-view
-        [data]="treeItems">
-    </os-tree-view>
 
     <div class="element-wrapper">
         <os-button>

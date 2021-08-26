@@ -17,7 +17,6 @@ import {
     TextBoxComponent,
     TextComponent,
     TitleBarComponent,
-    TreeViewComponent,
     WindowComponent
 } from 'os-angular';
 import {
@@ -35,7 +34,6 @@ import {
     TextareaOverviewComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
-    TreeViewOverviewComponent,
     WindowOverviewComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
@@ -312,24 +310,6 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
                 {
                     title: 'Textarea box Overview',
                     component: TextareaOverviewComponent
-                }
-            ]
-        }
-    )
-    .set(
-        'tree-view',
-        {
-            name: 'Tree view',
-            type: 'tree-view',
-            shortInfo: 'Tree view component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
-            libComponents: [
-                TreeViewComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Tree view Overview',
-                    component: TreeViewOverviewComponent
                 }
             ]
         }
