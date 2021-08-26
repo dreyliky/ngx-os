@@ -18,6 +18,7 @@ import { WindowComponent } from '../window';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 import { DynamicWindowInstanceService } from './dynamic-window-instance.service';
 
+// FIXME: Implement state pattern instead of huge amount of boolean flags
 @Component({
     selector: 'os-dynamic-window',
     templateUrl: './dynamic-window.component.html',
