@@ -255,8 +255,8 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private initHtmlElements(): void {
         this.windowElement = this.dynamicWindowElementRef.nativeElement.querySelector('.os-window');
         this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
-        this.titleBarElement.querySelectorAll('button')
-            .forEach((titleBarButton) => this.titleBarButtons.push(titleBarButton));
+        this.titleBarElement.querySelectorAll('.os-button')
+            .forEach((titleBarButton: HTMLButtonElement) => this.titleBarButtons.push(titleBarButton));
     }
 
     private initActiveWindowIdObserver(): void {
