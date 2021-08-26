@@ -1,6 +1,8 @@
-<os-grid>
+<os-grid class="desktop-grid">
     <os-grid-item
         *ngFor="let shortcut of shortcuts; trackBy: trackByFn"
         [data]="shortcut">
     </os-grid-item>
 </os-grid>
+
+<desktop-taskbar></desktop-taskbar>

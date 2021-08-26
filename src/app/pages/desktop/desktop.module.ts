@@ -3,6 +3,7 @@ import { SharedModule } from '@Doc/demo-shared.module';
 import { DesktopAppsModule } from './apps';
 import { DesktopComponent } from './desktop.component';
 import { DesktopRoutingModule } from './desktop.routing';
+import { TaskbarModule } from './modules';
 
 @NgModule({
     declarations: [
@@ -11,6 +12,7 @@ import { DesktopRoutingModule } from './desktop.routing';
     imports: [
         SharedModule,
         DesktopRoutingModule,
+        TaskbarModule,
         DesktopAppsModule
     ]
 })

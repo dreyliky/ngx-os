@@ -1,6 +1,6 @@
-import { ComponentRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DynamicWindowComponent } from '../components';
+import { DynamicWindowRef } from '../classes';
 
 @Injectable()
 export class DynamicWindowControlService {
@@ -12,17 +12,17 @@ export class DynamicWindowControlService {
         return this._windowIdsOrder$.asObservable();
     }
 
-    public get windowComponentsRef$(): Observable<ComponentRef<DynamicWindowComponent>[]> {
-        return this._windowComponentsRef$.asObservable();
+    public get references$(): Observable<DynamicWindowRef[]> {
+        return this._references$.asObservable();
+    }
+
+    public get references(): DynamicWindowRef[] {
+        return this._references$.getValue();
     }
 
     private readonly _activeWindowId$ = new BehaviorSubject<string>(null);
     private readonly _windowIdsOrder$ = new BehaviorSubject<string[]>([]);
-    private readonly _windowComponentsRef$ = new BehaviorSubject<ComponentRef<DynamicWindowComponent>[]>([]);
-
-    public getWindowComponentsRef(): ComponentRef<DynamicWindowComponent>[] {
-        return this._windowComponentsRef$.getValue();
-    }
+    private readonly _references$ = new BehaviorSubject<DynamicWindowRef[]>([]);
 
     public setActiveStateForWindowId(windowId: string): void {
         this._activeWindowId$.next(windowId);
@@ -39,16 +39,14 @@ export class DynamicWindowControlService {
         this._activeWindowId$.next(null);
     }
 
-    public addWindowComponentRef(windowComponentRef: ComponentRef<DynamicWindowComponent>): void {
-        const windowComponents = this.getWindowComponentsRef();
-
-        this._windowComponentsRef$.next([...windowComponents, windowComponentRef]);
+    public addWindowComponentRef(windowComponentRef: DynamicWindowRef): void {
+        this._references$.next([...this.references, windowComponentRef]);
     }
 
-    public removeWindowComponentRef(windowComponentRef: ComponentRef<DynamicWindowComponent>): void {
-        const filteredWindowComponents = this.getWindowComponentsRef()
+    public removeWindowComponentRef(windowComponentRef: DynamicWindowRef): void {
+        const filteredWindowComponents = this.references
             .filter((currComponentRef) => currComponentRef !== windowComponentRef);
 
-        this._windowComponentsRef$.next([...filteredWindowComponents]);
+        this._references$.next([...filteredWindowComponents]);
     }
 }

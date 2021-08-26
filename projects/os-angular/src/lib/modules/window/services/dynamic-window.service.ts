@@ -7,6 +7,7 @@ import {
     Injector,
     Type
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { delay, first } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
 import { DynamicWindowComponent } from '../components/dynamic-window';
@@ -15,6 +16,10 @@ import { DynamicWindowControlService } from './dynamic-window-control.service';
 
 @Injectable()
 export class DynamicWindowService {
+    public get references$(): Observable<DynamicWindowRef[]> {
+        return this.windowControlService.references$;
+    }
+
     constructor(
         private readonly injector: Injector,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
@@ -26,9 +31,8 @@ export class DynamicWindowService {
         const config = new DynamicWindowConfig(params);
         const windowRef = this.createDynamicWindow(config);
 
-        this.applyDataForCreatedWindow({
-            childComponent, config, windowRef
-        });
+        this.applyDataForCreatedWindow({ childComponent, config, windowRef });
+        this.windowControlService.addWindowComponentRef(windowRef);
 
         return windowRef;
     }
@@ -38,9 +42,9 @@ export class DynamicWindowService {
         const windowInjector = this.createWindowInjector({ config, windowRef });
         const componentRef = this.createComponentRef(windowInjector);
 
+        windowRef._setComponentRef(componentRef);
         this.initWindowRefAfterClosedObserver(windowRef, componentRef);
         this.appendWindowComponentToBody(componentRef);
-        this.windowControlService.addWindowComponentRef(componentRef);
 
         return windowRef;
     }
@@ -67,10 +71,6 @@ export class DynamicWindowService {
         document.body.appendChild(domElement);
     }
 
-    private removeWindowComponentFromBody(componentRef: ComponentRef<DynamicWindowComponent>): void {
-        componentRef.destroy();
-    }
-
     private initWindowRefAfterClosedObserver(
         windowRef: DynamicWindowRef,
         componentRef: ComponentRef<DynamicWindowComponent>
@@ -80,15 +80,13 @@ export class DynamicWindowService {
                 delay(1000)
             )
             .subscribe(() => {
-                this.windowControlService.removeWindowComponentRef(componentRef);
-                this.removeWindowComponentFromBody(componentRef);
+                this.windowControlService.removeWindowComponentRef(windowRef);
+                componentRef.destroy();
             });
     }
 
     private applyDataForCreatedWindow(params: DynamicWindowInputParams): void {
-        const windowComponents = this.windowControlService.getWindowComponentsRef();
-        const lastCreatedWindowComponent = windowComponents[windowComponents.length - 1];
-        const { instance: windowInstance } = lastCreatedWindowComponent;
+        const { instance: windowInstance } = params.windowRef.componentRef;
 
         params.windowRef.updateConfig(params.config);
 

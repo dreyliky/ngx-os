@@ -1,0 +1,5 @@
+<os-button
+    *ngFor="let windowRef of windowsRef"
+    (osClick)="onWindowReferenceIconClick(windowRef)">
+    {{ windowRef.config.title }}
+</os-button>

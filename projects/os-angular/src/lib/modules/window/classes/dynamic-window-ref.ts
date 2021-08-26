@@ -1,5 +1,7 @@
+import { ComponentRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
+import { DynamicWindowComponent } from '../components';
 import { DynamicWindowParams } from '../interfaces';
 
 export class DynamicWindowRef {
@@ -43,11 +45,17 @@ export class DynamicWindowRef {
             );
     }
 
+    public get componentRef(): ComponentRef<DynamicWindowComponent> {
+        return this._componentRef;
+    }
+
     private readonly _config$ = new BehaviorSubject<DynamicWindowParams>({});
     private readonly _isHidden$ = new BehaviorSubject<boolean>(false);
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
     private readonly _windowElement$ = new BehaviorSubject<HTMLElement>(null);
     private readonly _afterClosed$ = new Subject<any>();
+
+    private _componentRef: ComponentRef<DynamicWindowComponent>;
 
     public updateConfig(config: DynamicWindowParams): void {
         this._config$.next({ ...this.config, ...config });
@@ -82,6 +90,18 @@ export class DynamicWindowRef {
     }
 
     public _setWindowElement(element: HTMLElement): void {
+        if (this._windowElement$.getValue()) {
+            throw new Error(`Can't change windowElement`);
+        }
+
         this._windowElement$.next(element);
+    }
+
+    public _setComponentRef(componentRef: ComponentRef<DynamicWindowComponent>): void {
+        if (this._componentRef) {
+            throw new Error(`Can't change componentRef`);
+        }
+
+        this._componentRef = componentRef;
     }
 }

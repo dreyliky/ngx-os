@@ -41,6 +41,22 @@
     }
 }
 
+@keyframes os-window-showing {
+    0% {
+        transform: scale(.2);
+        -webkit-transform: scale(.2);
+        top: 100%;
+        left: 0%;
+        opacity: 0;
+        display: none !important;
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}
+
 os-window {
     font-size: 11px;
     font-family: var(--segoe-ui);
@@ -59,6 +75,10 @@ os-window {
 
     &.hiding {
         animation: os-window-hiding .6s ease forwards;
+    }
+
+    &.showing {
+        animation: os-window-showing .6s ease forwards;
     }
 
     &.closing {
