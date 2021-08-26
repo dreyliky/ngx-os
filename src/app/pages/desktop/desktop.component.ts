@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DynamicWindowService, GridItem } from '@lib-modules';
 import { OverviewAppComponent } from './apps/overview';
+import { SettingsAppComponent } from './apps/settings';
 
 @Component({
     selector: 'demo-desktop-page',
@@ -11,9 +12,14 @@ import { OverviewAppComponent } from './apps/overview';
 export class DesktopComponent implements OnInit {
     public shortcuts: GridItem[] = [
         {
-            label: 'Os Elements',
+            label: 'Overview',
             iconUrl: 'assets/icons/my-pc.png',
-            onDblClick: () => this.onOsElementsShortcutDblClick()
+            onDblClick: () => this.onOverviewShortcutDblClick()
+        },
+        {
+            label: 'Settings',
+            iconUrl: 'assets/icons/settings.png',
+            onDblClick: () => this.onSettingsShortcutDblClick()
         }
     ];
 
@@ -22,20 +28,31 @@ export class DesktopComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        this.onOsElementsShortcutDblClick();
+        this.onOverviewShortcutDblClick();
     }
 
     public trackByFn = (_: GridItem, index: number): number => {
         return index;
     }
 
-    private onOsElementsShortcutDblClick(): void {
+    private onOverviewShortcutDblClick(): void {
         this.windowService.open(
             OverviewAppComponent,
             {
                 title: 'Angular OS - components overview',
                 minWidth: 700,
                 minHeight: 500
+            }
+        );
+    }
+
+    private onSettingsShortcutDblClick(): void {
+        this.windowService.open(
+            SettingsAppComponent,
+            {
+                title: 'Settings',
+                minWidth: 400,
+                minHeight: 350
             }
         );
     }
