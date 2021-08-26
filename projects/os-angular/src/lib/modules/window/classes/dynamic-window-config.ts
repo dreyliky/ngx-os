@@ -1,8 +1,9 @@
 import { ResizerEnum } from '../../resizer';
+import { DynamicWindowParams } from '../interfaces/dynamic-window-params.interface';
 
-export class DynamicWindowConfig<D = any> {
+export class DynamicWindowConfig<T = any> implements DynamicWindowParams {
     public title?: string = 'OS dynamic window';
-    public data?: D;
+    public data?: T;
     public width?: number;
     public height?: number;
     public minWidth?: number = 275;
@@ -26,4 +27,28 @@ export class DynamicWindowConfig<D = any> {
     public onMinimizeButtonClick?: () => any;
     public onMaximizeButtonClick?: () => any;
     public onCloseButtonClick?: () => any;
+
+    constructor(params: DynamicWindowParams) {
+        this.applyParams(params);
+        this.initWidth(params);
+        this.initHeight(params);
+    }
+
+    private initWidth(params: DynamicWindowParams): void {
+        if (params.minWidth && !params.width) {
+            this.width = params.minWidth;
+        }
+    }
+
+    private initHeight(params: DynamicWindowParams): void {
+        if (params.minHeight && !params.height) {
+            this.height = params.minHeight;
+        }
+    }
+
+    private applyParams(params: DynamicWindowParams): void {
+        for (const [key, value] of Object.entries(params)) {
+            this[key] = value;
+        }
+    }
 }

@@ -1,8 +1,9 @@
 import { Type } from '@angular/core';
-import { DynamicWindowConfig, DynamicWindowRef } from '../classes';
+import { DynamicWindowRef } from '../classes';
+import { DynamicWindowParams } from './dynamic-window-params.interface';
 
 export interface DynamicWindowInputParams {
     childComponent: Type<any>;
-    config: DynamicWindowConfig;
+    config: DynamicWindowParams;
     windowRef: DynamicWindowRef;
 }

@@ -13,10 +13,11 @@ import {
     ViewChild
 } from '@angular/core';
 import { OutsideClick } from '@lib-helpers';
+import { DynamicWindowParams } from '@lib-modules/window/interfaces';
 import { Subscription } from 'rxjs';
 import { DragInfo, OsDraggableDirective } from '../../../drag-and-drop';
 import { ResizeInfo, ResizerEnum } from '../../../resizer';
-import { DynamicWindowConfig, DynamicWindowRef } from '../../classes';
+import { DynamicWindowRef } from '../../classes';
 import { DynamicWindowContentDirective } from '../../directives';
 import { WindowComponent } from '../window';
 import { DynamicWindowInstanceService } from './dynamic-window-instance.service';
@@ -41,7 +42,7 @@ export class DynamicWindowComponent implements OnInit, OnDestroy, AfterViewInit 
     private readonly windowComponent: WindowComponent;
 
     public childComponentType: Type<any>;
-    public config: DynamicWindowConfig;
+    public config: DynamicWindowParams;
     public windowRef: DynamicWindowRef;
 
     public width: string;

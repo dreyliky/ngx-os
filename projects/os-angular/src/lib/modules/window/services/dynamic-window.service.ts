@@ -10,7 +10,7 @@ import {
 import { delay, first } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
 import { DynamicWindowComponent } from '../components/dynamic-window';
-import { DynamicWindowDiParams, DynamicWindowInputParams } from '../interfaces';
+import { DynamicWindowDiParams, DynamicWindowInputParams, DynamicWindowParams } from '../interfaces';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 
 @Injectable()
@@ -22,8 +22,8 @@ export class DynamicWindowService {
         private readonly windowControlService: DynamicWindowControlService
     ) {}
 
-    public open(childComponent: Type<any>, configuration: DynamicWindowConfig = {}): DynamicWindowRef {
-        const config = { ...new DynamicWindowConfig(), ...configuration };
+    public open(childComponent: Type<any>, params: DynamicWindowParams = {}): DynamicWindowRef {
+        const config = new DynamicWindowConfig(params);
         const windowRef = this.createDynamicWindow(config);
 
         this.applyDataForCreatedWindow({

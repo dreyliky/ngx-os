@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
-import { DesktopModule } from '@Doc/features/desktop';
+import { DesktopAppsModule } from './apps';
 import { DesktopComponent } from './desktop.component';
 import { DesktopRoutingModule } from './desktop.routing';
 
@@ -10,9 +10,8 @@ import { DesktopRoutingModule } from './desktop.routing';
     ],
     imports: [
         SharedModule,
-        DesktopModule,
-
-        DesktopRoutingModule
+        DesktopRoutingModule,
+        DesktopAppsModule
     ]
 })
 export class DesktopPageModule {}

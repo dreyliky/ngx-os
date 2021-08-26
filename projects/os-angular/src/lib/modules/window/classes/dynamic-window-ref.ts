@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
-import { DynamicWindowConfig } from './dynamic-window-config';
+import { DynamicWindowParams } from '../interfaces';
 
 export class DynamicWindowRef {
     public get isHidden$(): Observable<boolean> {
@@ -23,11 +23,11 @@ export class DynamicWindowRef {
         return this._afterClosed$.asObservable();
     }
 
-    public get config$(): Observable<DynamicWindowConfig> {
+    public get config$(): Observable<DynamicWindowParams> {
         return this._config$.asObservable();
     }
 
-    public get config(): DynamicWindowConfig {
+    public get config(): DynamicWindowParams {
         return this._config$.getValue();
     }
 
@@ -43,13 +43,13 @@ export class DynamicWindowRef {
             );
     }
 
-    private readonly _config$ = new BehaviorSubject<DynamicWindowConfig>({});
+    private readonly _config$ = new BehaviorSubject<DynamicWindowParams>({});
     private readonly _isHidden$ = new BehaviorSubject<boolean>(false);
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
     private readonly _windowElement$ = new BehaviorSubject<HTMLElement>(null);
     private readonly _afterClosed$ = new Subject<any>();
 
-    public updateConfig(config: DynamicWindowConfig): void {
+    public updateConfig(config: DynamicWindowParams): void {
         this._config$.next({ ...this.config, ...config });
     }
 

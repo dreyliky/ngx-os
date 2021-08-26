@@ -1,6 +1,7 @@
-import { DynamicWindowRef, DynamicWindowConfig } from '../classes';
+import { DynamicWindowRef } from '../classes';
+import { DynamicWindowParams } from './dynamic-window-params.interface';
 
 export interface DynamicWindowDiParams {
-    config: DynamicWindowConfig;
+    config: DynamicWindowParams;
     windowRef: DynamicWindowRef;
 }

@@ -1,2 +1,6 @@
-<app-desktop>
-</app-desktop>
+<os-grid>
+    <os-grid-item
+        *ngFor="let shortcut of shortcuts; trackBy: trackByFn"
+        [data]="shortcut">
+    </os-grid-item>
+</os-grid>
