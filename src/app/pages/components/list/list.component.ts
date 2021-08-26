@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DocumentationRouteEnum } from '@Doc/core/enums';
+import { AppRouteEnum } from '@Doc/core/enums';
 import { ComponentMetaInfoMap, ComponentType } from '@Features/doc';
 import { GridView, OptionSelectedEvent } from 'os-angular';
 
@@ -34,7 +34,7 @@ export class GridComponent implements OnInit {
     }
 
     public onOpenSectionButtonClick(componentType: ComponentType): void {
-        this.router.navigateByUrl(`/${DocumentationRouteEnum.Components}/${componentType}`);
+        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${componentType}`);
     }
 
     private initSelectedGridView(): void {

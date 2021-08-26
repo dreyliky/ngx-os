@@ -5,7 +5,7 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import { DocumentationRouteEnum } from '@Doc/core/enums';
+import { AppRouteEnum } from '@Doc/core/enums';
 import { Theme, ThemeManagerService, THEMES } from '@Features/theme';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,7 +21,7 @@ export class ComponentHeaderComponent implements OnInit, OnDestroy {
 
     public appliedTheme: Theme;
 
-    public routeEnum = DocumentationRouteEnum;
+    public routeEnum = AppRouteEnum;
 
     private appliedThemeSubscription: Subscription;
 

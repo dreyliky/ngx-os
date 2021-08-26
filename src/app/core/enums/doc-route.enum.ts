@@ -1,4 +1,4 @@
-export enum DocumentationRouteEnum {
+export enum AppRouteEnum {
     Main = 'main',
     Components = 'components',
     Theming = 'theming',

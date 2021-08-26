@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DocumentationRouteEnum } from '@Doc/core/enums';
+import { AppRouteEnum } from '@Doc/core/enums';
 import { ArrayHelper } from '@Doc/core/helpers';
 import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/doc';
 
@@ -24,7 +24,7 @@ export class SubheaderComponent implements OnInit {
     }
 
     public onGridItemClick(component: ComponentMetaInfo): void {
-        this.router.navigateByUrl(`/${DocumentationRouteEnum.Components}/${component.type}`);
+        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${component.type}`);
     }
 
     private initComponents(): void {

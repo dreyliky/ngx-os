@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { DocumentationRouteEnum } from '@Doc/core/enums';
+import { AppRouteEnum } from '@Doc/core/enums';
 import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/doc';
 
 @Component({
@@ -20,6 +20,6 @@ export class MenuComponent {
     ) {}
 
     public onComponentOptionSelected(component: ComponentMetaInfo): void {
-        this.router.navigateByUrl(`/${DocumentationRouteEnum.Components}/${component.type}`);
+        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${component.type}`);
     }
 }
