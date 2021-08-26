@@ -13,7 +13,7 @@ os-window {
         margin-bottom: 9px;
     }
 
-    &.hiding {
+    &.hiding, &.hidden {
         display: none !important;
     }
 

@@ -185,7 +185,22 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         }, this.cssAnimationClassDuration);
     }
 
+    private initIsHidingState(): void {
+        this.isHiding = true;
+        this.isHidden = false;
+        this.isShowing = false;
+
+        setTimeout(() => {
+            this.isHiding = false;
+            this.isHidden = true;
+
+            this.changeDetector.detectChanges();
+        }, this.cssAnimationClassDuration);
+    }
+
     private initIsShowingState(): void {
+        this.isHidden = false;
+        this.isHiding = false;
         this.isShowing = true;
 
         setTimeout(() => {
@@ -248,13 +263,11 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     private initIsHiddenStateObserver(): void {
         const subscription = this.windowRef.isHidden$
-            .pipe(
-                skip(1)
-            )
-            .subscribe((state) => {
-                this.isHidden = state;
-
-                if (!this.isHidden) {
+            .pipe(skip(1))
+            .subscribe((isHidden) => {
+                if (isHidden) {
+                    this.initIsHidingState();
+                } else {
                     this.initIsShowingState();
                 }
 

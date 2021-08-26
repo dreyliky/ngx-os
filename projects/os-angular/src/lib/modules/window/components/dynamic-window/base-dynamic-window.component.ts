@@ -22,6 +22,7 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public isActive: boolean = false;
     public isFullscreen: boolean = false;
     public isHidden: boolean = false;
+    public isHiding: boolean = false;
     public isOpening: boolean = true;
     public isShowing: boolean = false;
     public isDragging: boolean = false;

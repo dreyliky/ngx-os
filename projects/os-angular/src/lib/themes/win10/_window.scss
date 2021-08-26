@@ -77,6 +77,10 @@ os-window {
         animation: os-window-hiding .6s ease forwards;
     }
 
+    &.hidden {
+        display: none !important;
+    }
+
     &.showing {
         animation: os-window-showing .6s ease forwards;
     }
