@@ -1,16 +1,5 @@
 import { Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import {
-    BottomLeftResizer,
-    BottomResizer,
-    BottomRightResizer,
-    LeftResizer,
-    Resizer,
-    ResizerConfig,
-    RightResizer,
-    TopLeftResizer,
-    TopResizer,
-    TopRightResizer
-} from '../classes';
+import { ResizerConfig, ResizerFactory } from '../classes';
 import { ResizerEnum } from '../enums';
 import { ResizeInfo } from '../interfaces';
 
@@ -60,7 +49,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     public originalY = 20;
     public originalMouseX = 20;
     public originalMouseY = 20;
-    public activeResizerName: ResizerEnum;
+    public activeResizerId: ResizerEnum;
 
     private _resizableElement: HTMLElement;
     private _resizersWrapperElement: HTMLElement;
@@ -68,8 +57,6 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
     private _allowedResizers: ResizerEnum[];
     private _resizerConfig: ResizerConfig = new ResizerConfig();
-
-    private readonly _resizerInstanceMap: Map<ResizerEnum, Resizer> = new Map();
 
     constructor(
         private readonly element: ElementRef<HTMLElement>
@@ -79,7 +66,6 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.initAllowedResizers();
         this.initResizersWrapperElement();
         this.initResizerElements();
-        this.initResizerInstances();
         this.updateResizersWrapperDomPlacement();
         this.updateResizersActivity();
     }
@@ -134,7 +120,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
 
             resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
                 if (this.resizerConfig.isEnabled) {
-                    this.activeResizerName = resizerName;
+                    this.activeResizerId = resizerName;
 
                     this.resizerMouseDownHandler(event);
                 }
@@ -143,18 +129,6 @@ export class OsResizableDirective implements OnInit, OnDestroy {
             this._resizerElements.push(resizerElement);
             this._resizersWrapperElement.appendChild(resizerElement);
         });
-    }
-
-    private initResizerInstances(): void {
-        this._resizerInstanceMap
-            .set(ResizerEnum.top, new TopResizer(this))
-            .set(ResizerEnum.left, new LeftResizer(this))
-            .set(ResizerEnum.right, new RightResizer(this))
-            .set(ResizerEnum.bottom, new BottomResizer(this))
-            .set(ResizerEnum.topLeft, new TopLeftResizer(this))
-            .set(ResizerEnum.topRight, new TopRightResizer(this))
-            .set(ResizerEnum.bottomLeft, new BottomLeftResizer(this))
-            .set(ResizerEnum.bottomRight, new BottomRightResizer(this));
     }
 
     private updateResizersWrapperDomPlacement(): void {
@@ -184,10 +158,8 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     // eslint-disable-next-line max-lines-per-function
     private readonly resizerMouseDownHandler = (event: MouseEvent): void => {
         if (
-            !this.resizerConfig.isEnabled
-            ||
-            !this.resizerConfig.allowedMouseButtons
-            ||
+            !this.resizerConfig.isEnabled ||
+            !this.resizerConfig.allowedMouseButtons ||
             !this.resizerConfig.allowedMouseButtons.includes(event.button)
         ) {
             return;
@@ -211,7 +183,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     }
 
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
-        const resizerInstance = this._resizerInstanceMap.get(this.activeResizerName);
+        const resizerInstance = ResizerFactory.create(this.activeResizerId, this);
 
         resizerInstance.resizeElement(event);
     }

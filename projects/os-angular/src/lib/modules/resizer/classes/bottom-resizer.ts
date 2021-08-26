@@ -1,6 +1,9 @@
-import { Resizer } from './resizer';
+import { ResizerEnum } from '../enums';
+import { BaseResizer } from './base-resizer';
 
-export class BottomResizer extends Resizer {
+export class BottomResizer extends BaseResizer {
+    public static id = ResizerEnum.bottom;
+
     public resizeElement(event: MouseEvent): void {
         const height = this.context.originalHeight + (event.pageY - this.context.originalMouseY);
         const docElement = document.documentElement;

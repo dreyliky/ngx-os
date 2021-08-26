@@ -1,6 +1,9 @@
-import { Resizer } from './resizer';
+import { ResizerEnum } from '../enums';
+import { BaseResizer } from './base-resizer';
 
-export class LeftResizer extends Resizer {
+export class LeftResizer extends BaseResizer {
+    public static id = ResizerEnum.left;
+
     public resizeElement(event: MouseEvent): void {
         const width = this.context.originalWidth - (event.pageX - this.context.originalMouseX);
 

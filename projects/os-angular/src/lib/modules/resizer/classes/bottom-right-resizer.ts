@@ -1,7 +1,10 @@
 /* eslint-disable max-lines-per-function */
-import { Resizer } from './resizer';
+import { ResizerEnum } from '../enums';
+import { BaseResizer } from './base-resizer';
 
-export class BottomRightResizer extends Resizer {
+export class BottomRightResizer extends BaseResizer {
+    public static id = ResizerEnum.bottomRight;
+
     public resizeElement(event: MouseEvent): void {
         const width = this.context.originalWidth + (event.pageX - this.context.originalMouseX);
         const height = this.context.originalHeight + (event.pageY - this.context.originalMouseY);

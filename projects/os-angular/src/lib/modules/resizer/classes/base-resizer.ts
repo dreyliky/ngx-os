@@ -1,7 +1,10 @@
 import { OsResizableDirective } from '../directives';
+import { ResizerEnum } from '../enums';
 import { ResizerConfig } from './resizer-config';
 
-export abstract class Resizer {
+export abstract class BaseResizer {
+    public static readonly id: ResizerEnum;
+
     protected config: ResizerConfig;
 
     constructor(
@@ -16,5 +19,5 @@ export abstract class Resizer {
         this.context.osResizing.emit(resizeInfo);
     }
 
-    public abstract resizeElement (event: MouseEvent): void;
+    public abstract resizeElement(event: MouseEvent): void;
 }
