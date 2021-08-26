@@ -17,7 +17,6 @@ export class AccentColorComponent implements OnInit {
 
     public ngOnInit(): void {
         this.selectedColor = this.themeService.getColor('primary');
-        console.log(this.selectedColor);
     }
 
     public onAccentColorClick(accentColor: ThemeRgbColor): void {
