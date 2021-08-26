@@ -13,6 +13,9 @@ export class OsBaseFieldComponent {
     public isReadonly: boolean = false;
 
     @Input()
+    public isAutocompleteEnabled: boolean = false;
+
+    @Input()
     public placeholder: string = '';
 
     @Input()
@@ -83,7 +86,11 @@ export class OsBaseFieldComponent {
     @Output()
     public osBlur: EventEmitter<FocusEvent> = new EventEmitter();
 
-    protected readonly classlistManager: ClasslistManager
+    public get fieldAutocompleteAttrValue(): string {
+        return (this.isAutocompleteEnabled) ? '' : 'off';
+    }
+
+    protected readonly classlistManager: ClasslistManager;
 
     constructor() {
         this.classlistManager = new ClasslistManager();
