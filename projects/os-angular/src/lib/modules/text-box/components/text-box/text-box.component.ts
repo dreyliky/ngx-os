@@ -29,8 +29,15 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Co
     @Input()
     public type: textboxType = 'text';
 
+    @Input()
+    public isAutocompleteEnabled: boolean = false;
+
     @Output()
     public osChange: EventEmitter<TextBoxChangeEvent> = new EventEmitter();
+
+    public get inputAutocompleteAttrValue(): string {
+        return (this.isAutocompleteEnabled) ? '' : 'off';
+    }
 
     public onChange: (value: string) => any;
     public onTouched: () => any;
