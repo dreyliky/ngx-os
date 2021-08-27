@@ -24,7 +24,14 @@ export class TaskbarComponent implements OnInit {
             });
     }
 
-    public onWindowReferenceIconClick(windowRef: DynamicWindowRef): void {
-        windowRef.setIsHiddenState(!windowRef.isHidden);
+    public onWindowReferenceIconClick(event: PointerEvent, windowRef: DynamicWindowRef): void {
+        if (!windowRef.isHidden && !windowRef.isActive) {
+            windowRef.setIsActive(true);
+        } else {
+            windowRef.toggleVisibility();
+        }
+
+        // Disable outside click checking for window (which removes active state)
+        event.stopPropagation();
     }
 }

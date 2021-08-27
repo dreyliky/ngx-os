@@ -22,9 +22,9 @@ export interface IDynamicWindowRef {
     updateConfig(config: DynamicWindowParams): void;
     hide(): void;
     show(): void;
-    setIsHiddenState(state: boolean): void;
+    toggleVisibility(state: boolean): void;
     goFullscreen(): void;
     goWindowed(): void;
-    setFullscreenState(state: boolean): void;
+    toggleFullscreen(state: boolean): void;
     close<T>(result?: T): void;
 }

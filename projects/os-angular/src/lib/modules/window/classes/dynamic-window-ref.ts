@@ -74,14 +74,20 @@ export class DynamicWindowRef implements IDynamicWindowRef {
 
     public hide(): void {
         this._isHidden$.next(true);
+        this.setIsActive(false);
     }
 
     public show(): void {
         this._isHidden$.next(false);
+        this.setIsActive(true);
+    }
+
+    public toggleVisibility(): void {
+        (this.isHidden) ? this.show() : this.hide();
     }
 
     public setIsHiddenState(state: boolean): void {
-        this._isHidden$.next(state);
+        (state) ? this.hide() : this.show();
     }
 
     public goFullscreen(): void {
@@ -92,25 +98,29 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         this._isFullscreen$.next(false);
     }
 
-    public setFullscreenState(state: boolean): void {
-        this._isFullscreen$.next(state);
+    public toggleFullscreen(): void {
+        (this.isFullscreen) ? this.goWindowed() : this.goFullscreen();
+    }
+
+    public setIsFullscreenState(state: boolean): void {
+        (state) ? this.goFullscreen() : this.goWindowed();
     }
 
     public close<T>(result?: T): void {
         this._afterClosed$.next(result);
     }
 
-    public _setIsActive(state: boolean): void {
+    public setIsActive(state: boolean): void {
         if (this.isActive !== state) {
             this._isActive$.next(state);
         }
     }
 
-    public _setOrderIndex(orderIndex: number): void {
+    public setOrderIndex(orderIndex: number): void {
         this._orderIndex$.next(orderIndex);
     }
 
-    public _setWindowElement(element: HTMLElement): void {
+    public setWindowElement(element: HTMLElement): void {
         if (this._windowElement) {
             throw new Error(`Can't change windowElement`);
         }
@@ -118,7 +128,7 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         this._windowElement = element;
     }
 
-    public _setComponentRef(componentRef: ComponentRef<DynamicWindowComponent>): void {
+    public setComponentRef(componentRef: ComponentRef<DynamicWindowComponent>): void {
         if (this._componentRef) {
             throw new Error(`Can't change componentRef`);
         }
@@ -126,7 +136,7 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         this._componentRef = componentRef;
     }
 
-    public _destroy(): void {
+    public destroy(): void {
         this._config$.complete();
         this._isHidden$.complete();
         this._isFullscreen$.complete();

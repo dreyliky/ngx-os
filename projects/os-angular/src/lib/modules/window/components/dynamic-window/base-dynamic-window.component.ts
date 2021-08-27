@@ -1,7 +1,7 @@
 import { Component, ComponentRef, OnDestroy, OnInit, Type } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ResizerEnum } from '../../../resizer';
-import { DynamicWindowRef } from '../../classes';
+import { DynamicStateManager, DynamicWindowRef } from '../../classes';
 import { DynamicStateEnum } from '../../enums';
 import { DynamicWindowParams } from '../../interfaces';
 
@@ -20,7 +20,6 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public positionY: string;
     public zIndex: number;
     public styleObject: object;
-    public isHidden: boolean = false;
     public isDragging: boolean = false;
     public isResizing: boolean = false;
     public windowOrderIndex: number = 0;
@@ -30,6 +29,11 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public titleBarButtons: HTMLButtonElement[] = [];
 
     public readonly dynamicStateEnum = DynamicStateEnum;
+    public readonly dynamicStateManager = new DynamicStateManager();
+
+    public get isHidden(): boolean {
+        return (this.windowRef.isHidden && !this.dynamicStateManager.isHiding);
+    }
 
     public get isAllowResizing(): boolean {
         return !this.windowRef.isFullscreen;
@@ -55,9 +59,9 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public ngOnInit(): void {
         this.positionX = `${this.config.positionX}px`;
         this.positionY = `${this.config.positionY}px`;
-        this.isHidden = this.config.isHidden;
 
-        this.windowRef.setFullscreenState(this.config.isFullscreen);
+        this.windowRef.setIsHiddenState(this.config.isHidden);
+        this.windowRef.setIsFullscreenState(this.config.isFullscreen);
     }
 
     public ngOnDestroy(): void {
@@ -69,6 +73,6 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
             subscription.unsubscribe();
         });
 
-        this.windowRef._destroy();
+        this.windowRef.destroy();
     }
 }

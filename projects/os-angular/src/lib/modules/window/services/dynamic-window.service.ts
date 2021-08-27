@@ -42,7 +42,7 @@ export class DynamicWindowService {
         const windowInjector = this.createWindowInjector({ config, windowRef });
         const componentRef = this.createComponentRef(windowInjector);
 
-        windowRef._setComponentRef(componentRef);
+        windowRef.setComponentRef(componentRef);
         this.initWindowRefAfterClosedObserver(windowRef, componentRef);
         this.appendWindowComponentToBody(componentRef);
 

@@ -1,5 +1,5 @@
 export enum DynamicStateEnum {
-    Opening,
+    Opening = 1,
     Hiding,
     Showing,
     Closing

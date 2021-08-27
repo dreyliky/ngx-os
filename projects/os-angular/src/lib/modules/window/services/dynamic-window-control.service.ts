@@ -1,18 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { DynamicWindowRef } from '../classes';
 
 @Injectable()
 export class DynamicWindowControlService implements OnDestroy {
-    public get activeWindowId$(): Observable<string> {
-        return this._activeWindowId$.asObservable();
-    }
-
-    public get activeWindowId(): string {
-        return this._activeWindowId$.getValue();
-    }
-
     public get windowIdsOrder$(): Observable<string[]> {
         return this._windowIdsOrder$.asObservable();
     }
@@ -29,7 +21,6 @@ export class DynamicWindowControlService implements OnDestroy {
         return this._references$.getValue();
     }
 
-    private readonly _activeWindowId$ = new BehaviorSubject<string>(null);
     private readonly _windowIdsOrder$ = new BehaviorSubject<string[]>([]);
     private readonly _references$ = new BehaviorSubject<DynamicWindowRef[]>([]);
 
@@ -54,8 +45,6 @@ export class DynamicWindowControlService implements OnDestroy {
     }
 
     private updateActiveWindow(windowRef: DynamicWindowRef): void {
-        this._activeWindowId$.next(windowRef.id);
-
         const windowIdsOrder = this.windowIdsOrder
             .filter((currWindowId) => currWindowId !== windowRef.id);
 
@@ -68,22 +57,17 @@ export class DynamicWindowControlService implements OnDestroy {
         this.references.forEach((windowRef) => {
             const orderIndex = this.windowIdsOrder.indexOf(windowRef.id);
 
-            windowRef._setOrderIndex(orderIndex);
+            windowRef.setOrderIndex(orderIndex);
         });
     }
 
     private initWindowRefIsActiveStateObserver(windowRef: DynamicWindowRef): void {
         windowRef.isActive$
             .pipe(
-                takeUntil(this.untilDestroyed$)
+                takeUntil(this.untilDestroyed$),
+                filter((isActive) => isActive)
             )
-            .subscribe((isActive) => {
-                if (isActive) {
-                    this.onWindowRefActive(windowRef);
-                } else {
-                    this.onWindowRefNotActive(windowRef);
-                }
-            });
+            .subscribe(() => this.onWindowRefActive(windowRef));
     }
 
     private onWindowRefActive(windowRef: DynamicWindowRef): void {
@@ -91,14 +75,8 @@ export class DynamicWindowControlService implements OnDestroy {
 
         this.references.forEach((currWindowRef) => {
             if (currWindowRef.id !== windowRef.id) {
-                currWindowRef._setIsActive(false);
+                currWindowRef.setIsActive(false);
             }
         });
-    }
-
-    private onWindowRefNotActive(windowRef: DynamicWindowRef): void {
-        if (this.activeWindowId === windowRef.id) {
-            this._activeWindowId$.next(null);
-        }
     }
 }

@@ -13,12 +13,9 @@ import { OutsideClick } from '@lib-helpers';
 import { skip } from 'rxjs/operators';
 import { DragInfo, OsDraggableDirective } from '../../../drag-and-drop';
 import { ResizeInfo } from '../../../resizer';
-import { DynamicStateManager } from '../../classes';
 import { DynamicWindowContentDirective } from '../../directives';
-import { WindowComponent } from '../window';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 
-// FIXME: Implement state pattern instead of huge amount of boolean flags
 @Component({
     selector: 'os-dynamic-window',
     templateUrl: './dynamic-window.component.html',
@@ -32,11 +29,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     @ViewChild(OsDraggableDirective, { static: true })
     private readonly draggableDirective: OsDraggableDirective;
 
-    @ViewChild(WindowComponent, { static: true })
-    private readonly windowComponent: WindowComponent;
-
-    public readonly dynamicStateManager = new DynamicStateManager(this);
-
     constructor(
         private readonly dynamicWindowElementRef: ElementRef,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
@@ -46,7 +38,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public ngAfterViewInit(): void {
-        this.windowRef._setIsActive(true);
+        this.windowRef.setIsActive(true);
         this.loadChildComponent(this.childComponentType);
         this.initDynamicStateManager();
         this.initHtmlElements();
@@ -56,7 +48,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.initWindowIdOrderObserver();
         this.initConfigObserver();
         this.initWindowSizes();
-        this.windowRef._setWindowElement(this.windowElement);
+        this.windowRef.setWindowElement(this.windowElement);
 
         this.changeDetector.detectChanges();
     }
@@ -66,7 +58,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         const isClickOutsideWindow = OutsideClick.checkForElement(this.windowElement, event);
 
         if (isClickOutsideWindow && this.windowRef.isActive) {
-            this.windowRef._setIsActive(false);
+            this.windowRef.setIsActive(false);
         }
     }
 
@@ -82,7 +74,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         if (this.config.onMaximizeButtonClick) {
             this.config.onMaximizeButtonClick();
         } else {
-            this.windowRef.setFullscreenState(!this.windowRef.isFullscreen);
+            this.windowRef.toggleFullscreen();
         }
     }
 
@@ -95,7 +87,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onWindowMouseDown(): void {
-        this.windowRef._setIsActive(true);
+        this.windowRef.setIsActive(true);
     }
 
     public onBeforeDragStart(): void {
@@ -134,7 +126,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     public onTitleBarDblClick(): void {
         if (this.config.isToggleFullscreenByDblClickTitle) {
-            this.windowRef.setFullscreenState(!this.windowRef.isFullscreen);
+            this.windowRef.toggleFullscreen();
         }
     }
 
@@ -204,7 +196,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private initWindowIdOrderObserver(): void {
         const subscription = this.windowRef.orderIndex$
             .subscribe((orderIndex) => {
-                console.log(orderIndex);
                 this.windowOrderIndex = orderIndex;
 
                 this.updateZIndex();

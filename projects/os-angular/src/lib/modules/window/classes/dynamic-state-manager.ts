@@ -1,4 +1,3 @@
-import { DynamicWindowComponent } from '../components';
 import { DynamicStateEnum } from '../enums';
 
 export class DynamicStateManager {
@@ -28,10 +27,6 @@ export class DynamicStateManager {
     private currentStateTimeoutId: number;
     private readonly cssAnimationClassDuration: number = 500;
 
-    constructor(
-        private readonly window: DynamicWindowComponent
-    ) {}
-
     public initOpeningState(): void {
         this.clearCurrentTimeout();
 
@@ -47,11 +42,9 @@ export class DynamicStateManager {
     public initHidingState(): void {
         this.clearCurrentTimeout();
 
-        this.window.isHidden = false;
         this._state = DynamicStateEnum.Hiding;
 
         this.currentStateTimeoutId = setTimeout(() => {
-            this.window.isHidden = true;
             this._state = null;
 
             this.callback?.();
@@ -61,7 +54,6 @@ export class DynamicStateManager {
     public initShowingState(): void {
         this.clearCurrentTimeout();
 
-        this.window.isHidden = false;
         this._state = DynamicStateEnum.Showing;
 
         this.currentStateTimeoutId = setTimeout(() => {
