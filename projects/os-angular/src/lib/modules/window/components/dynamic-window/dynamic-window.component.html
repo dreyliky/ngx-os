@@ -26,15 +26,15 @@
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     [styleClass]="{
-        'opening': isOpening,
+        'opening': dynamicStateManager.isOpening,
+        'hiding': dynamicStateManager.isHiding,
+        'showing': dynamicStateManager.isShowing,
+        'closing': dynamicStateManager.isClosing,
         'hidden': isHidden,
-        'hiding': isHiding,
-        'showing': isShowing,
         'fullscreen': isFullscreen,
         'windowed': !isFullscreen,
         'dragging': isDragging,
-        'resizing': isResizing,
-        'closing': isClosing
+        'resizing': isResizing
     }"
     [style]="{
         left: positionX,

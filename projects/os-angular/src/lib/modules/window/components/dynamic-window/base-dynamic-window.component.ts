@@ -1,4 +1,5 @@
 import { Component, ComponentRef, OnDestroy, OnInit, Type } from '@angular/core';
+import { DynamicStateEnum } from '@lib-modules/window/enums';
 import { DynamicWindowParams } from '@lib-modules/window/interfaces';
 import { Subscription } from 'rxjs';
 import { ResizerEnum } from '../../../resizer';
@@ -22,12 +23,8 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public isActive: boolean = false;
     public isFullscreen: boolean = false;
     public isHidden: boolean = false;
-    public isHiding: boolean = false;
-    public isOpening: boolean = true;
-    public isShowing: boolean = false;
     public isDragging: boolean = false;
     public isResizing: boolean = false;
-    public isClosing: boolean = false;
     public windowIdOrderIndex: number = 0;
 
     public isAllowResizing: boolean = true;
@@ -36,6 +33,8 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public windowElement: HTMLElement;
     public titleBarElement: HTMLDivElement;
     public titleBarButtons: HTMLButtonElement[] = [];
+
+    public readonly dynamicStateEnum = DynamicStateEnum;
 
     protected readonly baseZIndex: number = 1000;
     protected readonly alwaysOnTopZIndex: number = 5000;

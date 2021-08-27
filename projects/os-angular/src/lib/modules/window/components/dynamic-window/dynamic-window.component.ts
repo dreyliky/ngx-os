@@ -13,6 +13,7 @@ import { OutsideClick } from '@lib-helpers';
 import { skip } from 'rxjs/operators';
 import { DragInfo, OsDraggableDirective } from '../../../drag-and-drop';
 import { ResizeInfo } from '../../../resizer';
+import { DynamicStateManager } from '../../classes';
 import { DynamicWindowContentDirective } from '../../directives';
 import { WindowComponent } from '../window';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
@@ -38,6 +39,8 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     @ViewChild(WindowComponent, { static: true })
     private readonly windowComponent: WindowComponent;
 
+    public readonly dynamicStateManager = new DynamicStateManager(this);
+
     constructor(
         private readonly dynamicWindowElementRef: ElementRef,
         private readonly instance: DynamicWindowInstanceService,
@@ -49,10 +52,8 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     public ngAfterViewInit(): void {
         this.instance.control.setActiveStateForWindowId(this.windowComponent.id);
-
         this.loadChildComponent(this.childComponentType);
-
-        this.initIsOpeningState();
+        this.initDynamicStateManager();
         this.initHtmlElements();
         this.initIsHiddenStateObserver();
         this.initIsFullscreenStateObserver();
@@ -61,7 +62,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.initWindowIdOrderObserver();
         this.initConfigObserver();
         this.initWindowSizes();
-
         this.windowRef._setWindowElement(this.windowElement);
 
         this.changeDetector.detectChanges();
@@ -157,6 +157,13 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.isResizing = false;
     }
 
+    private initDynamicStateManager(): void {
+        this.dynamicStateManager.initOpeningState();
+        this.dynamicStateManager.registerCallback(() => {
+            this.changeDetector.detectChanges();
+        });
+    }
+
     private updateZIndex(): void {
         this.zIndex = (this.baseZIndex + this.windowIdOrderIndex);
 
@@ -174,41 +181,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         viewContainerRef.clear();
 
         this.childComponentRef = viewContainerRef.createComponent(factory);
-    }
-
-    private initIsOpeningState(): void {
-        this.isOpening = true;
-
-        setTimeout(() => {
-            this.isOpening = false;
-
-            this.changeDetector.detectChanges();
-        }, this.cssAnimationClassDuration);
-    }
-
-    private initIsHidingState(): void {
-        this.isHiding = true;
-        this.isHidden = false;
-        this.isShowing = false;
-
-        setTimeout(() => {
-            this.isHiding = false;
-            this.isHidden = true;
-
-            this.changeDetector.detectChanges();
-        }, this.cssAnimationClassDuration);
-    }
-
-    private initIsShowingState(): void {
-        this.isHidden = false;
-        this.isHiding = false;
-        this.isShowing = true;
-
-        setTimeout(() => {
-            this.isShowing = false;
-
-            this.changeDetector.detectChanges();
-        }, this.cssAnimationClassDuration);
     }
 
     private initWindowSizes(): void {
@@ -254,7 +226,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private initAfterClosedStateObserver(): void {
         const subscription = this.windowRef.afterClosed$
             .subscribe(() => {
-                this.isClosing = true;
+                this.dynamicStateManager.initClosingState();
 
                 this.changeDetector.detectChanges();
             });
@@ -267,9 +239,9 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             .pipe(skip(1))
             .subscribe((isHidden) => {
                 if (isHidden) {
-                    this.initIsHidingState();
+                    this.dynamicStateManager.initHidingState();
                 } else {
-                    this.initIsShowingState();
+                    this.dynamicStateManager.initShowingState();
                 }
 
                 this.changeDetector.detectChanges();
