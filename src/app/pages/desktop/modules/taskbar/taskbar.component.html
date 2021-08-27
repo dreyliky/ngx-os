@@ -1,5 +1,12 @@
 <os-button
     *ngFor="let windowRef of windowsRef"
+    class="window-ref-button"
+    [class.active]="(windowRef.isActive$ | async)"
     (osClick)="onWindowReferenceIconClick(windowRef)">
+    <img
+        *ngIf="windowRef.config.iconUrl"
+        class="icon"
+        [attr.src]="windowRef.config.iconUrl" />
+
     {{ windowRef.config.title }}
 </os-button>

@@ -4,3 +4,16 @@
     display: flex;
     background-color: rgba(0, 0, 0, .5);
 }
+
+.window-ref-button {
+    box-sizing: border-box;
+
+    &.active {
+        border-bottom: solid 4px rgb(var(--os-primary-color));
+    }
+
+    .icon {
+        height: 100%;
+        margin-right: 5px;
+    }
+}

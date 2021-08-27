@@ -40,6 +40,7 @@ export class DesktopComponent implements OnInit {
             OverviewAppComponent,
             {
                 title: 'Angular OS - components overview',
+                iconUrl: 'assets/icons/my-pc.png',
                 minWidth: 400,
                 minHeight: 500
             }
@@ -51,6 +52,7 @@ export class DesktopComponent implements OnInit {
             SettingsAppComponent,
             {
                 title: 'Settings',
+                iconUrl: 'assets/icons/settings.png',
                 minWidth: 700,
                 minHeight: 400
             }

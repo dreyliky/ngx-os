@@ -26,7 +26,7 @@ export class DynamicStateManager {
 
     private callback: () => any;
     private currentStateTimeoutId: number;
-    private readonly cssAnimationClassDuration: number = 1000;
+    private readonly cssAnimationClassDuration: number = 500;
 
     constructor(
         private readonly window: DynamicWindowComponent

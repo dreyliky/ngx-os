@@ -17,17 +17,13 @@ import { DynamicStateManager } from '../../classes';
 import { DynamicWindowContentDirective } from '../../directives';
 import { WindowComponent } from '../window';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
-import { DynamicWindowInstanceService } from './dynamic-window-instance.service';
 
 // FIXME: Implement state pattern instead of huge amount of boolean flags
 @Component({
     selector: 'os-dynamic-window',
     templateUrl: './dynamic-window.component.html',
     styleUrls: ['./dynamic-window.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        DynamicWindowInstanceService
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicWindowComponent extends BaseDynamicWindowComponent implements AfterViewInit {
     @ViewChild(DynamicWindowContentDirective, { static: true })
@@ -43,7 +39,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     constructor(
         private readonly dynamicWindowElementRef: ElementRef,
-        private readonly instance: DynamicWindowInstanceService,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -51,12 +46,11 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public ngAfterViewInit(): void {
-        this.instance.control.setActiveStateForWindowId(this.windowComponent.id);
+        this.windowRef._setIsActive(true);
         this.loadChildComponent(this.childComponentType);
         this.initDynamicStateManager();
         this.initHtmlElements();
         this.initIsHiddenStateObserver();
-        this.initIsFullscreenStateObserver();
         this.initAfterClosedStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
@@ -71,8 +65,8 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     public onClickOutside(event: MouseEvent): void {
         const isClickOutsideWindow = OutsideClick.checkForElement(this.windowElement, event);
 
-        if (isClickOutsideWindow && this.isActive) {
-            this.instance.control.resetActiveWindowId();
+        if (isClickOutsideWindow && this.windowRef.isActive) {
+            this.windowRef._setIsActive(false);
         }
     }
 
@@ -88,7 +82,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         if (this.config.onMaximizeButtonClick) {
             this.config.onMaximizeButtonClick();
         } else {
-            this.windowRef.setFullscreenState(!this.isFullscreen);
+            this.windowRef.setFullscreenState(!this.windowRef.isFullscreen);
         }
     }
 
@@ -101,11 +95,11 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onWindowMouseDown(): void {
-        this.instance.control.setActiveStateForWindowId(this.windowComponent.id);
+        this.windowRef._setIsActive(true);
     }
 
     public onBeforeDragStart(): void {
-        if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
+        if (this.config.isExitFullscreenByDragTitle && this.windowRef.isFullscreen) {
             const titleBarDomRect = this.titleBarElement.getBoundingClientRect();
 
             this.draggableDirective.draggerConfig = {
@@ -120,7 +114,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onDragging(): void {
-        if (this.config.isExitFullscreenByDragTitle && this.isFullscreen) {
+        if (this.config.isExitFullscreenByDragTitle && this.windowRef.isFullscreen) {
             this.windowRef.goWindowed();
             this.isAfterExitFullscreenByDragging = true;
         }
@@ -140,7 +134,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     public onTitleBarDblClick(): void {
         if (this.config.isToggleFullscreenByDblClickTitle) {
-            this.windowRef.setFullscreenState(!this.isFullscreen);
+            this.windowRef.setFullscreenState(!this.windowRef.isFullscreen);
         }
     }
 
@@ -165,7 +159,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private updateZIndex(): void {
-        this.zIndex = (this.baseZIndex + this.windowIdOrderIndex);
+        this.zIndex = (this.baseZIndex + this.windowOrderIndex);
 
         if (this.config.isAlwaysOnTop) {
             this.zIndex += this.alwaysOnTopZIndex;
@@ -201,21 +195,17 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initActiveWindowIdObserver(): void {
-        const subscription = this.instance.control.activeWindowId$
-            .subscribe((activeWindowId) => {
-                this.isActive = (activeWindowId === this.windowComponent.id);
-
-                this.updateZIndex();
-            });
+        const subscription = this.windowRef.isActive$
+            .subscribe(() => this.updateZIndex());
 
         this.subscriptions.push(subscription);
     }
 
     private initWindowIdOrderObserver(): void {
-        const subscription = this.instance.control.windowIdsOrder$
-            .subscribe((orderedWindowIds) => {
-                this.windowIdOrderIndex = orderedWindowIds
-                    .findIndex((currWindowId) => currWindowId === this.windowComponent.id);
+        const subscription = this.windowRef.orderIndex$
+            .subscribe((orderIndex) => {
+                console.log(orderIndex);
+                this.windowOrderIndex = orderIndex;
 
                 this.updateZIndex();
             });
@@ -245,19 +235,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
                 }
 
                 this.changeDetector.detectChanges();
-            });
-
-        this.subscriptions.push(subscription);
-    }
-
-    private initIsFullscreenStateObserver(): void {
-        const subscription = this.windowRef.isFullscreen$
-            .subscribe((state) => {
-                this.isFullscreen = state;
-                this.isAllowDragging = !this.isFullscreen;
-                this.isAllowResizing = !this.isFullscreen;
-
-                this.changeDetector.markForCheck();
             });
 
         this.subscriptions.push(subscription);

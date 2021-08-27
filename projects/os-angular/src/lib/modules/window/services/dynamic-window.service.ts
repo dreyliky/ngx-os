@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 import { delay, first, tap } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
 import { DynamicWindowComponent } from '../components/dynamic-window';
-import { DynamicWindowDiParams, DynamicWindowInputParams, DynamicWindowParams } from '../interfaces';
+import { DynamicWindowDiParams, DynamicWindowInputParams, DynamicWindowParams, IDynamicWindowRef } from '../interfaces';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 
 @Injectable()
@@ -27,12 +27,12 @@ export class DynamicWindowService {
         private readonly windowControlService: DynamicWindowControlService
     ) {}
 
-    public open(childComponent: Type<any>, params: DynamicWindowParams = {}): DynamicWindowRef {
+    public open(childComponent: Type<any>, params: DynamicWindowParams = {}): IDynamicWindowRef {
         const config = new DynamicWindowConfig(params);
         const windowRef = this.createDynamicWindow(config);
 
         this.applyDataForCreatedWindow({ childComponent, config, windowRef });
-        this.windowControlService.addWindowComponentRef(windowRef);
+        this.windowControlService.addWindowRef(windowRef);
 
         return windowRef;
     }
@@ -77,7 +77,7 @@ export class DynamicWindowService {
     ): void {
         windowRef.afterClosed$.pipe(first())
             .pipe(
-                tap(() => this.windowControlService.removeWindowComponentRef(windowRef)),
+                tap(() => this.windowControlService.removeWindowRef(windowRef)),
                 delay(1000)
             )
             .subscribe(() => componentRef.destroy());

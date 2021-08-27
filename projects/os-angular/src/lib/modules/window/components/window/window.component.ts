@@ -23,6 +23,9 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public zIndex: number;
 
     @Input()
+    public iconUrl: string;
+
+    @Input()
     @HostBinding('class.active')
     public isActive: boolean = false;
 

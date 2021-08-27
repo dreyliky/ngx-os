@@ -20,21 +20,24 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public positionY: string;
     public zIndex: number;
     public styleObject: object;
-    public isActive: boolean = false;
-    public isFullscreen: boolean = false;
     public isHidden: boolean = false;
     public isDragging: boolean = false;
     public isResizing: boolean = false;
-    public windowIdOrderIndex: number = 0;
-
-    public isAllowResizing: boolean = true;
-    public isAllowDragging: boolean = true;
+    public windowOrderIndex: number = 0;
 
     public windowElement: HTMLElement;
     public titleBarElement: HTMLDivElement;
     public titleBarButtons: HTMLButtonElement[] = [];
 
     public readonly dynamicStateEnum = DynamicStateEnum;
+
+    public get isAllowResizing(): boolean {
+        return !this.windowRef.isFullscreen;
+    }
+
+    public get isAllowDragging(): boolean {
+        return !this.windowRef.isFullscreen;
+    }
 
     protected readonly baseZIndex: number = 1000;
     protected readonly alwaysOnTopZIndex: number = 5000;
@@ -65,5 +68,7 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
         this.subscriptions.forEach((subscription) => {
             subscription.unsubscribe();
         });
+
+        this.windowRef._destroy();
     }
 }

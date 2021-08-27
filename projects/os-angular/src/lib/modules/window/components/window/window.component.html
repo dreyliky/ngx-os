@@ -5,6 +5,11 @@
     (osMinimizeButtonClick)="osMinimizeButtonClick.emit($event)"
     (osMaximizeButtonClick)="osMaximizeButtonClick.emit($event)"
     (osCloseButtonClick)="osCloseButtonClick.emit($event)">
+    <img
+        *ngIf="iconUrl"
+        class="os-title-bar-icon"
+        [attr.src]="iconUrl" />
+
     {{ title }}
 </os-title-bar>
 

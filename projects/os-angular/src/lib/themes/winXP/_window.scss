@@ -63,6 +63,7 @@ os-window {
 }
 
 os-title-bar {
+    height: 28px;
     font-size: 11px;
     font-family: "Trebuchet MS";
     background: linear-gradient(
@@ -87,8 +88,14 @@ os-title-bar {
     border-top-right-radius: 7px;
     font-size: 13px;
     text-shadow: 1px 1px #758cdd;
+    box-sizing: border-box;
 
     .os-title-bar-text {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
         font-weight: bold;
         color: white;
         letter-spacing: 0;
@@ -97,6 +104,11 @@ os-title-bar {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .os-title-bar-icon {
+        height: 100%;
+        margin-right: 5px;
     }
 
     .os-title-bar-controls {

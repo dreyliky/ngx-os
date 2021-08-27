@@ -13,6 +13,7 @@ export class DynamicWindowConfig<T = any> implements DynamicWindowParams {
     public allowedResizers?: ResizerEnum[];
     public positionX?: number = 128;
     public positionY?: number = 128;
+    public iconUrl?: string;
     public isFullscreen?: boolean = false;
     public isHidden?: boolean = false;
     public isMinimizable?: boolean = true;

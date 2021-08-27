@@ -12,6 +12,7 @@ export interface DynamicWindowParams<T = any> {
     allowedResizers?: ResizerEnum[];
     positionX?: number;
     positionY?: number;
+    iconUrl?: string;
     isFullscreen?: boolean;
     isHidden?: boolean;
     isMinimizable?: boolean;
