@@ -74,7 +74,7 @@ os-window {
     }
 
     &.hiding {
-        animation: os-window-hiding .6s ease forwards;
+        animation: os-window-hiding .4s ease forwards;
     }
 
     &.hidden {
@@ -82,7 +82,7 @@ os-window {
     }
 
     &.showing {
-        animation: os-window-showing .6s ease forwards;
+        animation: os-window-showing .4s ease forwards;
     }
 
     &.closing {
