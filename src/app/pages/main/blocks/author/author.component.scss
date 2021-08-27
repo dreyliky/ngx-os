@@ -1,0 +1,33 @@
+:host {
+    width: 100%;
+    display: block;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, .05);
+    box-sizing: border-box;
+}
+
+.title {
+    text-align: center;
+}
+
+.authors {
+    width: 100%;
+    display: flex;
+    padding: 30px;
+    box-sizing: border-box;
+    flex: 1 1 0px;
+}
+
+.author {
+    flex-basis: 100%;
+
+    .author-img {
+        width: 156px;
+        height: 156px;
+        border-radius: 50%;
+    }
+    
+    .author-info {
+        margin-left: 15px;
+    }
+}

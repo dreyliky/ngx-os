@@ -1,0 +1,19 @@
+<os-header class="title">Features</os-header>
+
+<div class="wrapper">
+    <demo-card
+        *ngFor="let card of cards"
+        class="card">
+        <img
+            class="icon"
+            [attr.src]="card.iconUrl" />
+
+        <os-header [size]="4">
+            {{ card.title }}
+        </os-header>
+
+        <os-text>
+            {{ card.description }}
+        </os-text>
+    </demo-card>
+</div>

@@ -1,0 +1,25 @@
+:host {
+    width: 100%;
+    display: block;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.title {
+    text-align: center;
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex: 1 1 0px;
+    padding: 30px;
+    box-sizing: border-box;
+
+    .card {
+        .icon {
+            height: 96px;
+            margin-bottom: 15px;
+        }
+    }
+}

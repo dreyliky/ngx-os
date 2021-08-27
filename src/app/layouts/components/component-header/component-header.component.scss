@@ -24,7 +24,22 @@ a {
 }
 
 .version {
-    margin-right: 15px;
-    font-size: 12px;
+    background-color: red;
+    padding: 6px;
+    border-radius: 6px;
+    margin-right: 5px;
+    font-size: 14px;
+    font-weight: bold;
     color: #fff;
+}
+
+.github {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+
+    .github-icon {
+        width: 24px;
+        height: 24px;
+    }
 }
