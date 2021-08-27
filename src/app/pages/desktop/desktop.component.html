@@ -1,7 +1,8 @@
 <os-grid class="desktop-grid">
     <os-grid-item
-        *ngFor="let shortcut of shortcuts; trackBy: trackByFn"
-        [data]="shortcut">
+        *ngFor="let program of programs"
+        [data]="program.shortcutParams"
+        (osDblClick)="onProgramShortcutDblClick(program)">
     </os-grid-item>
 </os-grid>
 
