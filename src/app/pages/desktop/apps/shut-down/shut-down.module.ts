@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
-import { NotepadAppComponent } from './notepad.component';
+import { ShutDownAppComponent } from './shut-down.component';
 
 @NgModule({
     declarations: [
-        NotepadAppComponent
+        ShutDownAppComponent
     ],
     imports: [
         SharedModule
     ]
 })
-export class NotepadAppModule {}
+export class ShutDownAppModule {}

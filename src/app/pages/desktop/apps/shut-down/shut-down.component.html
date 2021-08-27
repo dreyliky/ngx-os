@@ -1,0 +1,19 @@
+<img
+    class="shutdown-icon"
+    [attr.src]="shutdownIconUrl" />
+
+<os-header class="title">
+    EXIT FROM DESKTOP MODE<br />AND OPEN DOCUMENTATION?
+</os-header>
+
+<div class="action-buttons">
+    <os-button
+        (osClick)="onConfirmButtonClick()">
+        Confirm
+    </os-button>
+    
+    <os-button
+        (osClick)="onCancelButtonClick()">
+        Cancel
+    </os-button>
+</div>

@@ -62,6 +62,10 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     @Output()
     public osCloseButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
+    public get titleBarDisplayAttr(): string {
+        return (this.isTitleBarVisible) ? '' : 'none';
+    }
+
     public ngOnInit(): void {
         this.classlistManager.add('os-window');
     }

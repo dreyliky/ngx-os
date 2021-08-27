@@ -1,5 +1,5 @@
 <os-title-bar
-    [hidden]="!isTitleBarVisible"
+    [style.display]="titleBarDisplayAttr"
     (osClick)="osTitleBarClick.emit($event)"
     (osDblClick)="osTitleBarDblClick.emit($event)"
     (osMinimizeButtonClick)="osMinimizeButtonClick.emit($event)"

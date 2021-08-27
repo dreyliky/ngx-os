@@ -63,27 +63,27 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onMinimizeButtonClick(): void {
-        if (this.config.onMinimizeButtonClick) {
-            this.config.onMinimizeButtonClick();
-        } else {
+        if (this.config.isMinimizable) {
             this.windowRef.hide();
         }
+
+        this.config.onMinimizeButtonClick?.();
     }
 
     public onMaximizeButtonClick(): void {
-        if (this.config.onMaximizeButtonClick) {
-            this.config.onMaximizeButtonClick();
-        } else {
+        if (this.config.isMaximizable) {
             this.windowRef.toggleFullscreen();
         }
+
+        this.config.onMaximizeButtonClick?.();
     }
 
     public onCloseButtonClick(): void {
-        if (this.config.onCloseButtonClick) {
-            this.config.onCloseButtonClick();
-        } else {
+        if (this.config.isClosable) {
             this.windowRef.close();
         }
+
+        this.config.onCloseButtonClick?.();
     }
 
     public onWindowMouseDown(): void {

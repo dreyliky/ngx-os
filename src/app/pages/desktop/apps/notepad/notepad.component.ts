@@ -11,7 +11,7 @@ import {
     styleUrls: ['./notepad.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotepadComponent implements AfterViewInit {
+export class NotepadAppComponent implements AfterViewInit {
     @ViewChild('editor', { static: true })
     private readonly editorElementRef: ElementRef<HTMLDivElement>;
 
