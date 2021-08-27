@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DynamicWindowService, GridItem } from '@lib-modules';
+import { NotepadComponent } from './apps/notepad';
 import { OverviewAppComponent } from './apps/overview';
 import { SettingsAppComponent } from './apps/settings';
 
@@ -15,6 +16,11 @@ export class DesktopComponent implements OnInit {
             label: 'Overview',
             iconUrl: 'assets/icons/my-pc.png',
             onDblClick: () => this.onOverviewShortcutDblClick()
+        },
+        {
+            label: 'Notepad',
+            iconUrl: 'assets/icons/notepad.png',
+            onDblClick: () => this.onNotepadShortcutDblClick()
         },
         {
             label: 'Settings',
@@ -43,6 +49,18 @@ export class DesktopComponent implements OnInit {
                 iconUrl: 'assets/icons/my-pc.png',
                 minWidth: 400,
                 minHeight: 500
+            }
+        );
+    }
+
+    private onNotepadShortcutDblClick(): void {
+        this.windowService.open(
+            NotepadComponent,
+            {
+                title: 'Notepad',
+                iconUrl: 'assets/icons/notepad.png',
+                minWidth: 700,
+                minHeight: 400
             }
         );
     }
