@@ -1,9 +1,9 @@
 import { Component, ComponentRef, OnDestroy, OnInit, Type } from '@angular/core';
-import { DynamicStateEnum } from '@lib-modules/window/enums';
-import { DynamicWindowParams } from '@lib-modules/window/interfaces';
 import { Subscription } from 'rxjs';
 import { ResizerEnum } from '../../../resizer';
 import { DynamicWindowRef } from '../../classes';
+import { DynamicStateEnum } from '../../enums';
+import { DynamicWindowParams } from '../../interfaces';
 
 @Component({
     template: ''
