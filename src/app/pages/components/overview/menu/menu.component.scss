@@ -1,11 +1,25 @@
 :host {
-    margin: 5px;
+    width: inherit;
+    position: sticky;
     display: block;
+    top: 0;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.icon-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, .8);
+    margin-right: 5px;
 }
 
 .icon {
-    height: 100%;
-    margin-right: 3px;
+    height: 70%;
 }
 
 os-tree-view::ng-deep ul {
