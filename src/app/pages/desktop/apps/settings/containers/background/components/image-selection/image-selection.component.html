@@ -1,0 +1,28 @@
+<div class="bg-colors">
+    <div
+        class="bg-square"
+        [style.backgroundImage]="getCustomBackgroundCssUrl()"
+        [class.selected]="isCurrentBackgroundCustomImage">
+    </div>
+
+    <div
+        *ngFor="let backgroundUrl of defaultBackgroundUrls"
+        class="bg-square"
+        [style.backgroundImage]="getCssUrl(backgroundUrl)"
+        [class.selected]="getIsImageSelected(backgroundUrl)"
+        (click)="onBackgroundImageClick(backgroundUrl)">
+    </div>
+</div>
+
+<os-button
+    class="custom-image-button"
+    (osClick)="onUploadButtonClick()">
+    Select custom image
+</os-button>
+
+<input
+    #fileUploader
+    [style.display]="'none'"
+    accept="image/*"
+    type="file"
+    (change)="onCustomBackgroundUploaded($event)" />

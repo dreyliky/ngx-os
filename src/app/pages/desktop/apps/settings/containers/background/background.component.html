@@ -1,33 +1,15 @@
-<os-button
-    (osClick)="onUploadButtonClick()">
-    Upload custom
-</os-button>
+<os-header [size]="4">
+    Image
+</os-header>
 
-<div class="bg-colors">
-    <div
-        *ngIf="isCurrentBackgroundCustomImage"
-        class="bg-square"
-        [style.backgroundImage]="getCssUrl(currentBackground.data)"
-        [class.selected]="isCurrentBackgroundCustomImage">
-    </div>
+<background-image-selection
+    [currentBackground]="currentBackground">
+</background-image-selection>
 
-    <div
-        *ngFor="let backgroundUrl of backgroundImages"
-        class="bg-square"
-        [style.backgroundImage]="getCssUrl(backgroundUrl)"
-        [class.selected]="getIsImageSelected(backgroundUrl)"
-        (click)="onBackgroundImageClick(backgroundUrl)">
-    </div>
-</div>
+<os-header [size]="4">
+    Color
+</os-header>
 
-<theme-accent-colors
-    [selectedColor]="selectedBackgroundColor"
-    (accentColorClick)="onAccentColorClick($event)">
-</theme-accent-colors>
-
-<input
-    #fileUploader
-    [style.display]="'none'"
-    accept="image/*"
-    type="file"
-    (change)="onCustomBackgroundUploaded($event)" />
+<background-color-selection
+    [currentBackground]="currentBackground">
+</background-color-selection>

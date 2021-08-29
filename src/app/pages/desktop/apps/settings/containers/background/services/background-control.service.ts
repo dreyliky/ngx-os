@@ -16,14 +16,10 @@ export class BackgroundControlService {
         });
     }
 
-    public applyCustom(image: File, callback: () => any): void {
-        this.read(image, (imageBase64) => {
-            this.backgroundService.apply({
-                type: BackgroundTypeEnum.CustomImage,
-                data: imageBase64
-            });
-
-            callback();
+    public applyCustom(imageBase64: string): void {
+        this.backgroundService.apply({
+            type: BackgroundTypeEnum.CustomImage,
+            data: imageBase64
         });
     }
 
@@ -32,15 +28,5 @@ export class BackgroundControlService {
             type: BackgroundTypeEnum.Color,
             data: color
         });
-    }
-
-    private read(image: File, callback: (data: string) => any): void {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(image);
-
-        reader.onloadend = () => {
-            callback(reader.result as string);
-        };
     }
 }

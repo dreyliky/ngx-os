@@ -36,7 +36,7 @@ export class BackgroundService {
     }
 
     private applyDefaultIfNotExits(): void {
-        const prefferedColorIndex = 18;
+        const prefferedColorIndex = 25;
         const isAppliedBgExist = !!this.get();
 
         if (!isAppliedBgExist) {

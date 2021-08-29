@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
 import { ThemeRgbColor } from '@lib-modules';
 import { APPS } from './apps';
-import { BackgroundService } from './features/background';
+import { BackgroundMetadata, BackgroundService } from './features/background';
 import { BackgroundTypeEnum } from './features/background/enums';
 import { AppMetadata, ExecService } from './features/exec';
 
@@ -31,18 +31,21 @@ export class DesktopComponent implements OnInit {
         this.execService.run(program);
     }
 
+    private initHostBackground({ type, data }: BackgroundMetadata): void {
+        if (type === BackgroundTypeEnum.Color) {
+            const { r, g, b } = data as ThemeRgbColor;
+
+            this.hostBackground = `rgb(${r}, ${g}, ${b})`;
+        } else {
+            this.hostBackground = `url(${data})`;
+        }
+    }
+
     private initBackgroundObserver(): void {
         this.backgroundService.data$
             .subscribe((backgroundMetadata) => {
-                if (backgroundMetadata.type === BackgroundTypeEnum.Color) {
-                    const { r, g, b } = backgroundMetadata.data as ThemeRgbColor;
-
-                    this.hostBackground = `rgb(${r}, ${g}, ${b})`;
-                } else {
-                    this.hostBackground = `url(${backgroundMetadata.data})`;
-                }
-
-                this.changeDetector.detectChanges();
+                this.initHostBackground(backgroundMetadata);
+                this.changeDetector.markForCheck();
             });
     }
 }
