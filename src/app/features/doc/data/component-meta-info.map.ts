@@ -46,7 +46,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Button',
             type: 'button',
             shortInfo: 'Button component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/button.png',
             libComponents: [
                 ButtonComponent
             ],
@@ -64,7 +64,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Checkbox',
             type: 'checkbox',
             shortInfo: 'Checkbox component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/checkbox.png',
             libComponents: [
                 CheckboxComponent
             ],
@@ -82,7 +82,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Drag and Drop',
             type: 'drag-and-drop',
             shortInfo: 'Drag and Drop component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/drag-and-drop.png',
             libComponents: []
         }
     )
@@ -92,7 +92,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Field row',
             type: 'field-row',
             shortInfo: 'Field row component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/folder.png',
             libComponents: [
                 FieldRowComponent
             ],
@@ -110,7 +110,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Group box',
             type: 'group-box',
             shortInfo: 'Group box component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/folder.png',
             libComponents: [
                 GroupBoxComponent
             ],
@@ -128,7 +128,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Grid',
             type: 'grid',
             shortInfo: 'Grid component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/grid.png',
             libComponents: [
                 GridComponent
             ],
@@ -146,7 +146,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'List',
             type: 'list',
             shortInfo: 'List component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/list.png',
             libComponents: [
                 ListComponent,
                 ListItemComponent
@@ -165,7 +165,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Radio button',
             type: 'radio-button',
             shortInfo: 'Radio button component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/radio-button.png',
             libComponents: [
                 RadioButtonComponent
             ],
@@ -183,7 +183,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Resizer',
             type: 'resizer',
             shortInfo: 'Resizer',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/resizer.png',
             libComponents: []
         }
     )
@@ -193,7 +193,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Scroll View',
             type: 'scroll-view',
             shortInfo: 'Scroll view component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/scroll-view.png',
             libComponents: [
                 ScrollViewComponent
             ],
@@ -211,7 +211,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Selectbox',
             type: 'selectbox',
             shortInfo: 'Selectbox component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/selectbox.png',
             libComponents: [
                 SelectboxComponent
             ],
@@ -229,7 +229,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Slider',
             type: 'slider',
             shortInfo: 'Slider component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/slider.png',
             libComponents: [
                 SliderComponent
             ],
@@ -247,7 +247,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Tab Group',
             type: 'tab-group',
             shortInfo: 'Tab Group component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/tab-group.png',
             libComponents: [
                 TabGroupComponent
             ],
@@ -265,7 +265,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Text',
             type: 'text',
             shortInfo: 'Text component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/text.png',
             libComponents: [
                 TextComponent,
                 HeaderComponent
@@ -284,7 +284,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Text box',
             type: 'text-box',
             shortInfo: 'Text box component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/text-box.png',
             libComponents: [
                 TextBoxComponent
             ],
@@ -302,7 +302,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Textarea box',
             type: 'textarea-box',
             shortInfo: 'Textarea box component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/text-box.png',
             libComponents: [
                 TextareaBoxComponent
             ],
@@ -320,7 +320,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             name: 'Window',
             type: 'window',
             shortInfo: 'Window component short info',
-            imageUrl: '/assets/icons/folder-opened.png',
+            imageUrl: '/assets/icons/components/window.png',
             libComponents: [
                 WindowComponent,
                 TitleBarComponent,
