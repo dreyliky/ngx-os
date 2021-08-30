@@ -23,14 +23,21 @@ os-button {
     user-select: none;
     cursor: default;
 
-    &:hover {
-        border-color: rgba(0, 0, 0, .4);
+    &.disabled {
+        color: #909090;
     }
 
-    &:active {
-        background-color: #999999;
-        border-color: rgba(255,255,255,0.1);
-        transform: scale(0.96);
-        transition: ease all 0.1s;
+    &:not(.disabled) {
+        &:active,
+        &.active {
+            background-color: #999999;
+            border-color: rgba(255,255,255,0.1);
+            transform: scale(0.96);
+            transition: ease all 0.1s;
+        }
+
+        &:hover {
+            border-color: rgba(0, 0, 0, .4);
+        }
     }
 }

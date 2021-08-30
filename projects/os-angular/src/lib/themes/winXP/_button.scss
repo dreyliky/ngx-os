@@ -21,7 +21,11 @@ os-button {
     user-select: none;
     cursor: default;
 
-    &:not(:disabled) {
+    &.disabled {
+        color: #b1b1af;
+    }
+
+    &:not(.disabled) {
         &:active,
         &.active {
             box-shadow: none;

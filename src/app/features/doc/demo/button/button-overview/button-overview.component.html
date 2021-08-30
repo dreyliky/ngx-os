@@ -19,3 +19,25 @@
         Result: {{ counter }}
     </os-text>
 </div>
+
+<os-header
+    [size]="6"
+    class="states-header">
+    States
+</os-header>
+
+<div class="row">
+    <os-button>Default</os-button>
+</div>
+
+<div class="row">
+    <os-button [styleClass]="'active'">Pressed</os-button>
+</div>
+
+<div class="row">
+    <os-button [isDisabled]="true">Disabled</os-button>
+</div>
+
+<div class="row">
+    <os-button [styleClass]="'focused'">Focused</os-button>
+</div>

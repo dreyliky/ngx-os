@@ -6,8 +6,12 @@ import { OsBaseComponent } from './element';
 })
 export class OsBaseButtonComponent extends OsBaseComponent {
     @Input()
-    @HostBinding('attr.disabled')
+    @HostBinding('class.disabled')
     public isDisabled: boolean;
+
+    @Input()
+    @HostBinding('class.focused')
+    public isFocused: boolean;
 
     @Input()
     @HostBinding('attr.aria-label')
@@ -36,6 +40,11 @@ export class OsBaseButtonComponent extends OsBaseComponent {
      */
     @Output()
     public osBlur: EventEmitter<MouseEvent> = new EventEmitter();
+
+    @HostBinding('attr.tabindex')
+    protected get hostTabIndexAttr(): number {
+        return (this.isDisabled) ? null : 0;
+    }
 
     /** The handler will be fired on the host element in response to an event. */
     @HostListener('focus', ['$event'])
