@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import {
+    ButtonCounterComponent,
     ButtonOverviewComponent,
     CheckboxOverviewComponent,
     FieldRowOverviewComponent,
@@ -16,9 +17,10 @@ import {
     TextBoxOverviewComponent,
     TextOverviewComponent,
     TreeViewOverviewComponent,
-    WindowOverviewComponent
+    WindowDynamicOpeningComponent,
+    WindowOverviewComponent,
+    WindowTitleBarComponent
 } from './demo';
-import { ButtonCounterComponent } from './demo/button/button-counter/button-counter.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,9 @@ import { ButtonCounterComponent } from './demo/button/button-counter/button-coun
         TreeViewOverviewComponent,
         WindowOverviewComponent,
         ListOverviewComponent,
-        ButtonCounterComponent
+        ButtonCounterComponent,
+        WindowDynamicOpeningComponent,
+        WindowTitleBarComponent
     ],
     imports: [
         SharedModule
@@ -58,7 +62,9 @@ import { ButtonCounterComponent } from './demo/button/button-counter/button-coun
         TextBoxOverviewComponent,
         TextareaOverviewComponent,
         TreeViewOverviewComponent,
-        WindowOverviewComponent
+        WindowOverviewComponent,
+        WindowDynamicOpeningComponent,
+        WindowTitleBarComponent
     ]
 })
 export class DocumentationModule {}

@@ -28,12 +28,16 @@ export class ApiComponent implements OnChanges {
     private initDocComponents(): void {
         if (this.metaInfo.libComponents) {
             this.components = this.docService.getLibDocComponentsByTypes(this.metaInfo.libComponents);
+        } else {
+            this.components = [];
         }
     }
 
     private initDocServices(): void {
         if (this.metaInfo.libServices) {
             this.services = this.docService.getLibDocInjectablesByTypes(this.metaInfo.libServices);
+        } else {
+            this.services = [];
         }
     }
 }

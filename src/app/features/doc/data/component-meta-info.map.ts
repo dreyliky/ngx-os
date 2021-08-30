@@ -1,6 +1,7 @@
 import {
     ButtonComponent,
-    CheckboxComponent, DynamicWindowService,
+    CheckboxComponent,
+    DynamicWindowService,
     FieldRowComponent,
     GridComponent,
     GroupBoxComponent,
@@ -34,7 +35,9 @@ import {
     TextareaOverviewComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
-    WindowOverviewComponent
+    WindowDynamicOpeningComponent,
+    WindowOverviewComponent,
+    WindowTitleBarComponent
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
 import { ComponentType } from '../types';
@@ -336,6 +339,14 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
                 {
                     title: 'Window Overview',
                     component: WindowOverviewComponent
+                },
+                {
+                    title: 'Dynamic Window',
+                    component: WindowDynamicOpeningComponent
+                },
+                {
+                    title: 'Title Bar Overview',
+                    component: WindowTitleBarComponent
                 }
             ]
         }

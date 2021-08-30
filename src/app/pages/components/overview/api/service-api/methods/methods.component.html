@@ -15,9 +15,12 @@
             <div>
                 <os-text>
                     Arguments:
+                    (
                     <ng-container *ngFor="let arg of method.args; let argInd = index">
-                        {{ arg.name }}: {{ arg.type }}<br />
+                        <ng-container *ngIf="argInd > 0">,&nbsp;</ng-container>
+                        {{ arg.name }}: {{ arg.type }}
                     </ng-container>
+                    )
                 </os-text>
             </div>
 
