@@ -18,6 +18,7 @@ import {
     TreeViewOverviewComponent,
     WindowOverviewComponent
 } from './demo';
+import { ButtonCounterComponent } from './demo/button/button-counter/button-counter.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import {
         TextareaOverviewComponent,
         TreeViewOverviewComponent,
         WindowOverviewComponent,
-        ListOverviewComponent
+        ListOverviewComponent,
+        ButtonCounterComponent
     ],
     imports: [
         SharedModule

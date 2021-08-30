@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { Doc, DocComponent, MethodsClass } from '../interfaces';
+import { Doc, DocComponent, DocInjectable, Method, MethodsClass } from '../interfaces';
 import { DocStateService } from './doc-state.service';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class DocService {
     private libDoc: Doc;
     private demoDoc: Doc;
 
-    private readonly publicMethodModifier: number = 114;
+    private readonly publicMethodModifier: number = 122;
 
     private readonly forbiddenMethodNames: string[] = [
         'ngOnInit', 'ngOnDestroy', 'ngAfterViewInit', 'ngOnChange',
@@ -37,6 +37,14 @@ export class DocService {
             });
     }
 
+    public getLibDocInjectablesByTypes(serviceTypes: Type<any>[]): DocInjectable[] {
+        return serviceTypes
+            .map((serviceType) => {
+                return this.libDoc.injectables
+                    .find((service) => service.name === serviceType.name);
+            });
+    }
+
     public getDemoDocComponentByName(componentType: Type<any>): DocComponent {
         return this.demoDoc.components
             .find((component) => component.name === componentType.name);
@@ -47,6 +55,13 @@ export class DocService {
 
         return docComponent.inputsClass
             .filter((input, index) => inputNames.indexOf(input.name) === index);
+    }
+
+    public getDocInjectableProperties(docInjectable: DocInjectable): any {
+        const propertieNames = docInjectable.properties.map((input) => input.name);
+
+        return docInjectable.properties
+            .filter((input, index) => propertieNames.indexOf(input.name) === index);
     }
 
     public getUniqueDocComponentOutputs(docComponent: DocComponent): any {
@@ -68,6 +83,11 @@ export class DocService {
                         .every((phrase) => !method.name.startsWith(phrase))
                 );
             });
+    }
+
+    public getDocInjectablePublicMethods(docInjectable: DocInjectable): Method[] {
+        return docInjectable.methods
+            .filter((method) => method.modifierKind.includes(this.publicMethodModifier));
     }
 
     private updateLibDocData(): void {

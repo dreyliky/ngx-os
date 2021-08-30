@@ -1,0 +1,13 @@
+<os-header>API:</os-header>
+
+<demo-service-api
+    *ngFor="let service of services"
+    [service]="service"
+    [metaInfo]="metaInfo">
+</demo-service-api>
+
+<demo-component-api
+    *ngFor="let component of components"
+    [component]="component"
+    [metaInfo]="metaInfo">
+</demo-component-api>

@@ -1,7 +1,6 @@
 import {
     ButtonComponent,
-    CheckboxComponent,
-    DynamicWindowComponent,
+    CheckboxComponent, DynamicWindowService,
     FieldRowComponent,
     GridComponent,
     GroupBoxComponent,
@@ -20,6 +19,7 @@ import {
     WindowComponent
 } from 'os-angular';
 import {
+    ButtonCounterComponent,
     ButtonOverviewComponent,
     CheckboxOverviewComponent,
     FieldRowOverviewComponent,
@@ -52,8 +52,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             ],
             demoComponents: [
                 {
-                    title: 'Button Overview',
+                    title: 'Buttons with different states',
                     component: ButtonOverviewComponent
+                },
+                {
+                    title: 'Counter',
+                    component: ButtonCounterComponent
                 }
             ]
         }
@@ -323,8 +327,10 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '/assets/icons/components/window.png',
             libComponents: [
                 WindowComponent,
-                TitleBarComponent,
-                DynamicWindowComponent
+                TitleBarComponent
+            ],
+            libServices: [
+                DynamicWindowService
             ],
             demoComponents: [
                 {

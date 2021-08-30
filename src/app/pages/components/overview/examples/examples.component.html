@@ -1,0 +1,9 @@
+<ng-container *ngIf="metaInfo.demoComponents">
+    <os-header>Examples:</os-header>
+
+    <demo-example
+        *ngFor="let demoComponent of metaInfo.demoComponents"
+        [demoComponentMetaInfo]="demoComponent">
+        <ng-template #demoTemplate></ng-template>
+    </demo-example>
+</ng-container>

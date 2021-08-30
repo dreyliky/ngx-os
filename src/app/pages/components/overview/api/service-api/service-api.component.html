@@ -1,0 +1,16 @@
+<os-header [size]="5">
+    <img height="32" src="/assets/icons/dev/angular-service.svg" />
+    {{ service.name }}
+</os-header>
+
+<div class="service">
+    <!-- <os-text [innerHTML]="service.readme"></os-text> -->
+
+    <api-properties
+        [service]="service">
+    </api-properties>
+
+    <api-methods
+        [service]="service">
+    </api-methods>
+</div>

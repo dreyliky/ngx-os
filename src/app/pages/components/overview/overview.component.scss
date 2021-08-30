@@ -6,7 +6,8 @@
     width: 100%;
     height: 125px;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     color: rgb(var(--os-white-color));
     background-color: rgba(var(--os-primary-color), .8);
 

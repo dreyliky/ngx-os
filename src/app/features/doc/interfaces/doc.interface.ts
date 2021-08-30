@@ -2,7 +2,7 @@
 export interface Doc {
     pipes: any[];
     interfaces: Interface[];
-    injectables: Injectable[];
+    injectables: DocInjectable[];
     classes: Class[];
     directives: Directive[];
     components: DocComponent[];
@@ -430,7 +430,7 @@ interface Property3 {
     modifierKind: number[];
 }
 
-interface Injectable {
+export interface DocInjectable {
     name: string;
     id: string;
     file: string;
@@ -469,7 +469,7 @@ interface ConstructorObj {
     jsdoctags?: Jsdoctag[];
 }
 
-interface Method {
+export interface Method {
     name: string;
     args: (Arg | Arg)[];
     optional: boolean;

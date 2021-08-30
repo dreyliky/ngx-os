@@ -6,14 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./button-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonOverviewComponent {
-    public counter: number = 0;
-
-    public onIncreaseButtonClick(): void {
-        this.counter++;
-    }
-
-    public onDecreaseButtonClick(): void {
-        this.counter--;
-    }
-}
+export class ButtonOverviewComponent {}

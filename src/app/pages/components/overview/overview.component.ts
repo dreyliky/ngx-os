@@ -1,25 +1,16 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component,
-    ComponentFactoryResolver,
-    OnDestroy,
-    OnInit,
-    ViewChild,
-    ViewContainerRef
+    Component, OnDestroy,
+    OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
     ComponentMetaInfo,
     ComponentMetaInfoMap,
-    ComponentType,
-    DemoComponentMetaInfo,
-    DocComponent,
-    DocService
+    ComponentType
 } from '@Features/doc';
 import { Subscription } from 'rxjs';
-import { DemoBlockComponent } from './demo-block';
 
 @Component({
     selector: 'demo-component-overview',
@@ -27,81 +18,47 @@ import { DemoBlockComponent } from './demo-block';
     styleUrls: ['./overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
-    @ViewChild('demoTemplate', { read: ViewContainerRef })
-    private readonly demoTemplate: ViewContainerRef;
-
-    @ViewChild(DemoBlockComponent)
-    private set demoBlockComponent(_: DemoBlockComponent) {
-        this.initDemoComponent();
-    }
-
+export class OverviewComponent implements OnInit, OnDestroy {
     public metaInfo: ComponentMetaInfo;
-    public components: DocComponent[];
 
     private routeParamsSubscription: Subscription;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef,
-        private readonly activatedRoute: ActivatedRoute,
-        private readonly componentFactoryResolver: ComponentFactoryResolver,
-        private readonly docService: DocService
+        private readonly activatedRoute: ActivatedRoute
     ) {}
 
     public ngOnInit(): void {
-        this.initPage();
         this.initRouteParamsObserver();
-    }
-
-    public ngAfterViewInit(): void {
-        this.initDemoComponent();
     }
 
     public ngOnDestroy(): void {
         this.routeParamsSubscription?.unsubscribe();
     }
 
-    private initDescription(): void {
+    private initMetaInfo(): void {
         const componentType: ComponentType = this.activatedRoute.snapshot.params.componentType;
 
         this.metaInfo = ComponentMetaInfoMap.get(componentType);
     }
 
-    private initDocComponents(): void {
-        this.components = this.docService.getLibDocComponentsByTypes(this.metaInfo.libComponents);
-    }
+    // private initDocComponents(): void {
+    //     if (this.metaInfo.libComponents) {
+    //         this.components = this.docService.getLibDocComponentsByTypes(this.metaInfo.libComponents);
+    //     }
+    // }
 
-    private initDemoComponent(): void {
-        const demoComponentMetaInfo = this.getDemoComponentTypeRef();
-
-        if (this.demoTemplate && demoComponentMetaInfo) {
-            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-                demoComponentMetaInfo.component
-            );
-
-            this.demoTemplate.clear();
-            this.demoTemplate.createComponent(componentFactory);
-            this.changeDetector.detectChanges();
-        }
-    }
-
-    private getDemoComponentTypeRef(): DemoComponentMetaInfo {
-        if (this.metaInfo.demoComponents) {
-            return this.metaInfo.demoComponents[0];
-        }
-    }
+    // private initDocServices(): void {
+    //     if (this.metaInfo.libServices) {
+    //         this.services = this.docService.getLibDocInjectablesByTypes(this.metaInfo.libServices);
+    //     }
+    // }
 
     private initRouteParamsObserver(): void {
         this.routeParamsSubscription = this.activatedRoute.params
             .subscribe(() => {
-                this.initPage();
+                this.initMetaInfo();
                 this.changeDetector.detectChanges();
             });
-    }
-
-    private initPage(): void {
-        this.initDescription();
-        this.initDocComponents();
-        this.initDemoComponent();
     }
 }

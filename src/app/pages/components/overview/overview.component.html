@@ -2,6 +2,10 @@
     <os-header [size]="1">
         {{ metaInfo.name }}
     </os-header>
+
+    <os-header [size]="6">
+        {{ metaInfo.shortInfo }}
+    </os-header>
 </div>
 
 <div class="wrapper">
@@ -12,16 +16,12 @@
     </div>
     
     <div class="content">
-        <demonstration-block
-            *ngIf="metaInfo.demoComponents && metaInfo.demoComponents[0]"
-            [demoComponentMetaInfo]="metaInfo.demoComponents[0]">
-            <ng-template #demoTemplate></ng-template>
-        </demonstration-block>
-        
-        <demo-component-block
-            *ngFor="let component of components"
-            [component]="component"
+        <demo-examples
             [metaInfo]="metaInfo">
-        </demo-component-block>
+        </demo-examples>
+
+        <demo-api
+            [metaInfo]="metaInfo">
+        </demo-api>
     </div>
 </div>
