@@ -18,6 +18,7 @@ import {
     TextareaBoxComponent,
     TextBoxComponent,
     TextComponent,
+    ThemeService,
     TitleBarComponent,
     WindowComponent
 } from 'os-angular';
@@ -324,6 +325,18 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
                     title: 'Textarea box Overview',
                     component: TextareaOverviewComponent
                 }
+            ]
+        }
+    )
+    .set(
+        'theme',
+        {
+            name: 'Theme',
+            type: 'theme',
+            shortInfo: 'Theme short info',
+            imageUrl: '/assets/icons/components/folder.png',
+            libServices: [
+                ThemeService
             ]
         }
     )

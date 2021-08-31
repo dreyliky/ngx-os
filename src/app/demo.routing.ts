@@ -19,11 +19,6 @@ const routes: Routes = [
         loadChildren: () => import('./pages/desktop/desktop.module').then((m) => m.DesktopPageModule)
     },
     {
-        path: AppRouteEnum.Theming,
-        component: ComponentLayoutComponent,
-        loadChildren: () => import('./pages/theming/theming.module').then((m) => m.ThemingModule)
-    },
-    {
         path: '',
         redirectTo: AppRouteEnum.Main,
         pathMatch: 'full'
