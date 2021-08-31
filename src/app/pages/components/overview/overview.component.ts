@@ -1,15 +1,12 @@
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component, OnDestroy,
+    Component,
+    OnDestroy,
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {
-    ComponentMetaInfo,
-    ComponentMetaInfoMap,
-    ComponentType
-} from '@Features/doc';
+import { ComponentMetaInfo, ComponentMetaInfoMap, ComponentType } from '@Features/doc';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -41,18 +38,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
         this.metaInfo = ComponentMetaInfoMap.get(componentType);
     }
-
-    // private initDocComponents(): void {
-    //     if (this.metaInfo.libComponents) {
-    //         this.components = this.docService.getLibDocComponentsByTypes(this.metaInfo.libComponents);
-    //     }
-    // }
-
-    // private initDocServices(): void {
-    //     if (this.metaInfo.libServices) {
-    //         this.services = this.docService.getLibDocInjectablesByTypes(this.metaInfo.libServices);
-    //     }
-    // }
 
     private initRouteParamsObserver(): void {
         this.routeParamsSubscription = this.activatedRoute.params

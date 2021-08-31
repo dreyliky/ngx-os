@@ -11,7 +11,7 @@ import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/doc';
 })
 export class MenuComponent {
     @Input()
-    public openedComponentMetaInfo: ComponentMetaInfo;
+    public metaInfo: ComponentMetaInfo;
 
     public components: ComponentMetaInfo[] = [...ComponentMetaInfoMap.values()];
 

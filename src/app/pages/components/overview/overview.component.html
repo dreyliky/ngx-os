@@ -1,20 +1,14 @@
-<div class="header">
-    <os-header [size]="1">
-        {{ metaInfo.name }}
-    </os-header>
-
-    <os-header [size]="6">
-        {{ metaInfo.shortInfo }}
-    </os-header>
-</div>
+<demo-header
+    [metaInfo]="metaInfo">
+</demo-header>
 
 <div class="wrapper">
     <div class="menu">
         <demo-menu
-            [openedComponentMetaInfo]="metaInfo">
+            [metaInfo]="metaInfo">
         </demo-menu>
     </div>
-    
+
     <div class="content">
         <demo-examples
             [metaInfo]="metaInfo">

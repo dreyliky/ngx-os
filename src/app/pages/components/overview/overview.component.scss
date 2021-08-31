@@ -2,20 +2,6 @@
     display: block;
 }
 
-.header {
-    width: 100%;
-    height: 125px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    color: rgb(var(--os-white-color));
-    background-color: rgba(var(--os-primary-color), .8);
-
-    os-header {
-        margin: 0px 0px 0px 30px;
-    }
-}
-
 .wrapper {
     width: 100%;
     display: flex;

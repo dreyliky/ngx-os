@@ -1,7 +1,7 @@
 <os-list>
     <os-list-item
         *ngFor="let component of components"
-        [selected]="openedComponentMetaInfo.type === component.type"
+        [selected]="metaInfo.type === component.type"
         [value]="component"
         (osSelected)="onComponentOptionSelected($event)">
         <div class="icon-wrapper">
