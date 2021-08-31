@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { DocInjectable, InputsClass, LibDocService } from '@Features/doc';
 
 @Component({
-    selector: 'api-properties',
+    selector: 'service-properties',
     templateUrl: './properties.component.html',
     styleUrls: [
         './properties.component.scss',

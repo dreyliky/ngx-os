@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { DocComponent, InputsClass, LibDocService } from '@Features/doc';
 
 @Component({
-    selector: 'component-properties',
+    selector: 'directive-properties',
     templateUrl: './properties.component.html',
     styleUrls: [
         './properties.component.scss',
@@ -12,7 +12,7 @@ import { DocComponent, InputsClass, LibDocService } from '@Features/doc';
 })
 export class PropertiesComponent implements OnChanges {
     @Input()
-    public readonly component: DocComponent;
+    public readonly directive: DocComponent;
 
     public inputs: InputsClass[];
 
@@ -21,8 +21,8 @@ export class PropertiesComponent implements OnChanges {
     ) {}
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.component.previousValue !== changes.component.currentValue) {
-            this.inputs = this.docService.getUniqueDocComponentInputs(this.component);
+        if (changes.directive.previousValue !== changes.directive.currentValue) {
+            this.inputs = this.docService.getUniqueDocComponentInputs(this.directive);
         }
     }
 }

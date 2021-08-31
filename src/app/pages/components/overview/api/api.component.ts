@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ComponentMetaInfo, DocComponent, DocInjectable, LibDocService } from '@Doc/features/doc';
+import { ComponentMetaInfo, DocComponent, DocDirective, DocInjectable, LibDocService } from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-api',
@@ -12,11 +12,16 @@ export class ApiComponent implements OnChanges {
     public readonly metaInfo: ComponentMetaInfo;
 
     public get isSomeApiExist(): boolean {
-        return (!!this.components.length || !!this.services.length);
+        return !!(
+            this.components.length ||
+            this.services.length ||
+            this.directives.length
+        );
     }
 
     public components: DocComponent[] = [];
     public services: DocInjectable[] = [];
+    public directives: DocDirective[] = [];
 
     constructor(
         private readonly docService: LibDocService
@@ -26,6 +31,7 @@ export class ApiComponent implements OnChanges {
         if (changes.metaInfo.currentValue !== changes.metaInfo.previousValue) {
             this.initDocComponents();
             this.initDocServices();
+            this.initDocDirectives();
         }
     }
 
@@ -42,6 +48,14 @@ export class ApiComponent implements OnChanges {
             this.services = this.docService.findDocInjectablesByTypes(this.metaInfo.libServices);
         } else {
             this.services = [];
+        }
+    }
+
+    private initDocDirectives(): void {
+        if (this.metaInfo.libDirectives) {
+            this.directives = this.docService.findDocDirectivesByTypes(this.metaInfo.libDirectives);
+        } else {
+            this.directives = [];
         }
     }
 }

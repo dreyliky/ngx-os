@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DocInjectable, LibDocService, MethodsClass } from '@Features/doc';
+import { DocComponent, LibDocService, MethodsClass } from '@Features/doc';
 
 @Component({
-    selector: 'service-methods',
+    selector: 'directive-methods',
     templateUrl: './methods.component.html',
     styleUrls: [
         './methods.component.scss',
@@ -12,7 +12,7 @@ import { DocInjectable, LibDocService, MethodsClass } from '@Features/doc';
 })
 export class MethodsComponent implements OnChanges {
     @Input()
-    public readonly service: DocInjectable;
+    public readonly directive: DocComponent;
 
     public methods: MethodsClass[];
 
@@ -21,8 +21,8 @@ export class MethodsComponent implements OnChanges {
     ) {}
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.service.previousValue !== changes.service.currentValue) {
-            this.methods = this.docService.getDocInjectablePublicMethods(this.service);
+        if (changes.directive.previousValue !== changes.directive.currentValue) {
+            this.methods = this.docService.getDocComponentActualPublicMethods(this.directive);
         }
     }
 }

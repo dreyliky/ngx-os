@@ -2,14 +2,20 @@
     API
 </os-header>
 
-<demo-service-api
+<service-api
     *ngFor="let service of services"
     [service]="service"
     [metaInfo]="metaInfo">
-</demo-service-api>
+</service-api>
 
-<demo-component-api
+<directive-api
+    *ngFor="let directive of directives"
+    [directive]="directive"
+    [metaInfo]="metaInfo">
+</directive-api>
+
+<component-api
     *ngFor="let component of components"
     [component]="component"
     [metaInfo]="metaInfo">
-</demo-component-api>
+</component-api>

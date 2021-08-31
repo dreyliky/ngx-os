@@ -8,6 +8,8 @@ import {
     HeaderComponent,
     ListComponent,
     ListItemComponent,
+    OsDraggableDirective,
+    OsResizableDirective,
     RadioButtonComponent,
     ScrollViewComponent,
     SelectboxComponent,
@@ -90,7 +92,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'drag-and-drop',
             shortInfo: 'Drag and Drop component short info',
             imageUrl: '/assets/icons/components/drag-and-drop.png',
-            libComponents: []
+            libDirectives: [
+                OsDraggableDirective
+            ]
         }
     )
     .set(
@@ -191,7 +195,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'resizer',
             shortInfo: 'Resizer',
             imageUrl: '/assets/icons/components/resizer.png',
-            libComponents: []
+            libDirectives: [
+                OsResizableDirective
+            ]
         }
     )
     .set(

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { DocComponent, LibDocService, OutputsClass } from '@Features/doc';
 
 @Component({
-    selector: 'component-events',
+    selector: 'directive-events',
     templateUrl: './events.component.html',
     styleUrls: [
         './events.component.scss',
@@ -12,7 +12,7 @@ import { DocComponent, LibDocService, OutputsClass } from '@Features/doc';
 })
 export class EventsComponent implements OnChanges {
     @Input()
-    public readonly component: DocComponent;
+    public readonly directive: DocComponent;
 
     public outputs: OutputsClass[];
 
@@ -21,8 +21,8 @@ export class EventsComponent implements OnChanges {
     ) {}
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes.component.previousValue !== changes.component.currentValue) {
-            this.outputs = this.docService.getUniqueDocComponentOutputs(this.component);
+        if (changes.directive.previousValue !== changes.directive.currentValue) {
+            this.outputs = this.docService.getUniqueDocComponentOutputs(this.directive);
         }
     }
 }

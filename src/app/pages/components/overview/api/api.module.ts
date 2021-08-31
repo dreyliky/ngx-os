@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { ApiComponent } from './api.component';
 import { ComponentApiModule } from './component-api';
+import { DirectiveApiModule } from './directive-api';
 import { ServiceApiModule } from './service-api';
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ServiceApiModule } from './service-api';
     imports: [
         SharedModule,
         ComponentApiModule,
-        ServiceApiModule
+        ServiceApiModule,
+        DirectiveApiModule
     ],
     exports: [
         ApiComponent

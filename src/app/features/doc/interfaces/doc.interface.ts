@@ -4,7 +4,7 @@ export interface Doc {
     interfaces: Interface[];
     injectables: DocInjectable[];
     classes: Class[];
-    directives: Directive[];
+    directives: DocDirective[];
     components: DocComponent[];
     modules: Module[];
     miscellaneous: Miscellaneous;
@@ -189,7 +189,7 @@ interface Decorator {
     stringifiedArguments: string;
 }
 
-interface Directive {
+export interface DocDirective {
     name: string;
     id: string;
     file: string;

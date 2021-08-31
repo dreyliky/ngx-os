@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { DocComponent, LibDocService, MethodsClass } from '@Features/doc';
 
 @Component({
-    selector: 'demo-methods',
+    selector: 'component-methods',
     templateUrl: './methods.component.html',
     styleUrls: [
         './methods.component.scss',
