@@ -16,6 +16,7 @@ import {
     TextareaOverviewComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
+    ThemeOverviewComponent,
     TreeViewOverviewComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
@@ -42,7 +43,8 @@ import {
         ListOverviewComponent,
         ButtonCounterComponent,
         WindowDynamicOpeningComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        ThemeOverviewComponent
     ],
     imports: [
         SharedModule

@@ -1,4 +1,4 @@
-import { ThemeEnum } from '../enums';
+import { ThemeEnum } from '@lib-modules';
 import { Theme } from '../interfaces';
 
 export const THEMES: Theme[] = [

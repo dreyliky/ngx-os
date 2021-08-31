@@ -12,7 +12,10 @@
         [value]="component.selector">
     </os-text-box>
 
-    <os-text [innerHTML]="component.readme"></os-text>
+    <api-readme-info
+        *ngIf="component.readme"
+        [readmeInfo]="component.readme">
+    </api-readme-info>
 
     <component-properties
         [component]="component">

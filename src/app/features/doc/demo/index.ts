@@ -12,6 +12,7 @@ export * from './tab-group';
 export * from './text';
 export * from './text-box';
 export * from './textarea-box';
+export * from './theme';
 export * from './tree-view';
 export * from './window';
 

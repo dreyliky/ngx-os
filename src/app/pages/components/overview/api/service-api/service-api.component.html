@@ -4,7 +4,10 @@
 </os-header>
 
 <div class="service">
-    <!-- <os-text [innerHTML]="service.readme"></os-text> -->
+    <api-readme-info
+        *ngIf="service.readme"
+        [readmeInfo]="service.readme">
+    </api-readme-info>
 
     <service-properties
         [service]="service">

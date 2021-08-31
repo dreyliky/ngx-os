@@ -38,6 +38,7 @@ import {
     TextareaOverviewComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
+    ThemeOverviewComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
     WindowTitleBarComponent
@@ -337,6 +338,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '/assets/icons/components/folder.png',
             libServices: [
                 ThemeService
+            ],
+            demoComponents: [
+                {
+                    title: 'Theme Overview',
+                    component: ThemeOverviewComponent
+                }
             ]
         }
     )

@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
+import { ThemeEnum } from '../enums';
 import { ThemeRgbColor } from '../interfaces';
 import { ThemeColorType } from '../types';
 
@@ -21,7 +22,7 @@ export class ThemeService {
         return null;
     }
 
-    public applyTheme(themeName: string): void {
+    public applyTheme(themeName: ThemeEnum): void {
         const head = this.document.getElementsByTagName('head')[0];
         const themeLink = this.document.getElementById(
             'client-theme'

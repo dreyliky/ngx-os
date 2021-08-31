@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ThemeColorType, ThemeRgbColor, ThemeService } from 'os-angular';
+import { ThemeColorType, ThemeEnum, ThemeRgbColor, ThemeService } from 'os-angular';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ThemeEnum } from '../enums';
 
 @Injectable({
     providedIn: 'root'

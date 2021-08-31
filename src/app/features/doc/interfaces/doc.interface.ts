@@ -205,6 +205,7 @@ export interface DocDirective {
     propertiesClass: Properties4[];
     methodsClass: (Methods2 | MethodsClass2)[];
     constructorObj: ConstructorObj2;
+    readme?: string;
     implements?: string[];
     accessors?: Accessors3;
 }
@@ -436,6 +437,7 @@ export interface DocInjectable {
     file: string;
     properties: Property2[];
     methods: Method[];
+    readme?: string;
     description: string;
     sourceCode: string;
     constructorObj: ConstructorObj;

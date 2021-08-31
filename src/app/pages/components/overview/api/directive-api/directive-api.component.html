@@ -12,7 +12,10 @@
         [value]="directive.selector">
     </os-text-box>
 
-    <!-- <os-text [innerHTML]="directive.readme"></os-text> -->
+    <api-readme-info
+        *ngIf="directive.readme"
+        [readmeInfo]="directive.readme">
+    </api-readme-info>
 
     <directive-properties
         [directive]="directive">
