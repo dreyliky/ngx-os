@@ -9,7 +9,6 @@ export class OsDraggableDirective implements OnDestroy {
     @Input('os-draggable')
     public set draggerConfig(config: DraggerConfig) {
         this._draggerConfig = { ...this._draggerConfig, ...config };
-        console.log(this._draggerConfig);
 
         this.initMovableElement();
         this.initDraggableElement();
