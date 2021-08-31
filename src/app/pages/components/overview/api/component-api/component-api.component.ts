@@ -9,8 +9,8 @@ import { ComponentMetaInfo, DocComponent } from '@Features/doc';
 })
 export class ComponentApiComponent {
     @Input()
-    public component: DocComponent;
+    public readonly component: DocComponent;
 
     @Input()
-    public metaInfo: ComponentMetaInfo;
+    public readonly metaInfo: ComponentMetaInfo;
 }

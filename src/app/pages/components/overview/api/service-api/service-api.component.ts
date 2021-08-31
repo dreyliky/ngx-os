@@ -9,8 +9,8 @@ import { ComponentMetaInfo, DocInjectable } from '@Doc/features/doc';
 })
 export class ServiceApiComponent {
     @Input()
-    public service: DocInjectable;
+    public readonly service: DocInjectable;
 
     @Input()
-    public metaInfo: ComponentMetaInfo;
+    public readonly metaInfo: ComponentMetaInfo;
 }

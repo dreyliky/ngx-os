@@ -1,6 +1,10 @@
-<os-header *ngIf="isSomeApiExist">
-    API
-</os-header>
+<os-header>API</os-header>
+
+<module-api
+    *ngFor="let module of modules"
+    [module]="module"
+    [metaInfo]="metaInfo">
+</module-api>
 
 <service-api
     *ngFor="let service of services"

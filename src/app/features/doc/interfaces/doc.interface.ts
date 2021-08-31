@@ -6,7 +6,7 @@ export interface Doc {
     classes: Class[];
     directives: DocDirective[];
     components: DocComponent[];
-    modules: Module[];
+    modules: DocModule[];
     miscellaneous: Miscellaneous;
     routes: any[];
     coverage: Coverage;
@@ -71,9 +71,10 @@ interface Typealias {
     kind: number;
 }
 
-interface Module {
+export interface DocModule {
     name: string;
     children: Child[];
+    readme?: string;
 }
 
 interface Child {

@@ -3,6 +3,7 @@ import { SharedModule } from '@Doc/demo-shared.module';
 import { ApiComponent } from './api.component';
 import { ComponentApiModule } from './component-api';
 import { DirectiveApiModule } from './directive-api';
+import { ModuleApiModule } from './module-api';
 import { ServiceApiModule } from './service-api';
 import { ApiSharedModule } from './shared';
 
@@ -15,7 +16,8 @@ import { ApiSharedModule } from './shared';
         ApiSharedModule,
         ComponentApiModule,
         ServiceApiModule,
-        DirectiveApiModule
+        DirectiveApiModule,
+        ModuleApiModule
     ],
     exports: [
         ApiComponent

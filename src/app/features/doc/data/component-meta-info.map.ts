@@ -1,26 +1,44 @@
+/* eslint-disable max-lines */
 import {
     ButtonComponent,
+    ButtonModule,
     CheckboxComponent,
+    CheckboxModule,
+    DragAndDropModule,
     DynamicWindowService,
     FieldRowComponent,
+    FieldRowModule,
     GridComponent,
+    GridModule,
     GroupBoxComponent,
+    GroupBoxModule,
     HeaderComponent,
     ListComponent,
     ListItemComponent,
+    ListModule,
     OsDraggableDirective,
     OsResizableDirective,
     RadioButtonComponent,
+    RadioButtonModule,
+    ResizerModule,
     ScrollViewComponent,
+    ScrollViewModule,
     SelectboxComponent,
+    SelectboxModule,
     SliderComponent,
+    SliderModule,
     TabGroupComponent,
+    TabGroupModule,
     TextareaBoxComponent,
+    TextareaBoxModule,
     TextBoxComponent,
+    TextBoxModule,
     TextComponent,
+    TextModule,
     ThemeService,
     TitleBarComponent,
-    WindowComponent
+    WindowComponent,
+    WindowModule
 } from 'os-angular';
 import {
     ButtonCounterComponent,
@@ -48,6 +66,7 @@ import {
 import { ComponentMetaInfo } from '../interfaces';
 import { ComponentType } from '../types';
 
+// FIXME: Refactor (move each MetaInfo into independent file)
 export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
     .set(
         'button',
@@ -56,6 +75,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'button',
             shortInfo: 'Button component short info',
             imageUrl: '/assets/icons/components/button.png',
+            libModules: [
+                ButtonModule
+            ],
             libComponents: [
                 ButtonComponent
             ],
@@ -78,6 +100,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'checkbox',
             shortInfo: 'Checkbox component short info',
             imageUrl: '/assets/icons/components/checkbox.png',
+            libModules: [
+                CheckboxModule
+            ],
             libComponents: [
                 CheckboxComponent
             ],
@@ -96,6 +121,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'drag-and-drop',
             shortInfo: 'Drag and Drop component short info',
             imageUrl: '/assets/icons/components/drag-and-drop.png',
+            libModules: [
+                DragAndDropModule
+            ],
             libDirectives: [
                 OsDraggableDirective
             ],
@@ -114,6 +142,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'field-row',
             shortInfo: 'Field row component short info',
             imageUrl: '/assets/icons/components/folder.png',
+            libModules: [
+                FieldRowModule
+            ],
             libComponents: [
                 FieldRowComponent
             ],
@@ -132,6 +163,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'group-box',
             shortInfo: 'Group box component short info',
             imageUrl: '/assets/icons/components/folder.png',
+            libModules: [
+                GroupBoxModule
+            ],
             libComponents: [
                 GroupBoxComponent
             ],
@@ -150,6 +184,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'grid',
             shortInfo: 'Grid component short info',
             imageUrl: '/assets/icons/components/grid.png',
+            libModules: [
+                GridModule
+            ],
             libComponents: [
                 GridComponent
             ],
@@ -168,6 +205,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'list',
             shortInfo: 'List component short info',
             imageUrl: '/assets/icons/components/list.png',
+            libModules: [
+                ListModule
+            ],
             libComponents: [
                 ListComponent,
                 ListItemComponent
@@ -187,6 +227,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'radio-button',
             shortInfo: 'Radio button component short info',
             imageUrl: '/assets/icons/components/radio-button.png',
+            libModules: [
+                RadioButtonModule
+            ],
             libComponents: [
                 RadioButtonComponent
             ],
@@ -205,6 +248,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'resizer',
             shortInfo: 'Resizer',
             imageUrl: '/assets/icons/components/resizer.png',
+            libModules: [
+                ResizerModule
+            ],
             libDirectives: [
                 OsResizableDirective
             ],
@@ -223,6 +269,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'scroll-view',
             shortInfo: 'Scroll view component short info',
             imageUrl: '/assets/icons/components/scroll-view.png',
+            libModules: [
+                ScrollViewModule
+            ],
             libComponents: [
                 ScrollViewComponent
             ],
@@ -241,6 +290,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'selectbox',
             shortInfo: 'Selectbox component short info',
             imageUrl: '/assets/icons/components/selectbox.png',
+            libModules: [
+                SelectboxModule
+            ],
             libComponents: [
                 SelectboxComponent
             ],
@@ -259,6 +311,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'slider',
             shortInfo: 'Slider component short info',
             imageUrl: '/assets/icons/components/slider.png',
+            libModules: [
+                SliderModule
+            ],
             libComponents: [
                 SliderComponent
             ],
@@ -277,6 +332,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'tab-group',
             shortInfo: 'Tab Group component short info',
             imageUrl: '/assets/icons/components/tab-group.png',
+            libModules: [
+                TabGroupModule
+            ],
             libComponents: [
                 TabGroupComponent
             ],
@@ -295,6 +353,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'text',
             shortInfo: 'Text component short info',
             imageUrl: '/assets/icons/components/text.png',
+            libModules: [
+                TextModule
+            ],
             libComponents: [
                 TextComponent,
                 HeaderComponent
@@ -314,6 +375,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'text-box',
             shortInfo: 'Text box component short info',
             imageUrl: '/assets/icons/components/text-box.png',
+            libModules: [
+                TextBoxModule
+            ],
             libComponents: [
                 TextBoxComponent
             ],
@@ -332,6 +396,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'textarea-box',
             shortInfo: 'Textarea box component short info',
             imageUrl: '/assets/icons/components/text-box.png',
+            libModules: [
+                TextareaBoxModule
+            ],
             libComponents: [
                 TextareaBoxComponent
             ],
@@ -368,6 +435,9 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             type: 'window',
             shortInfo: 'Window component short info',
             imageUrl: '/assets/icons/components/window.png',
+            libModules: [
+                WindowModule
+            ],
             libComponents: [
                 WindowComponent,
                 TitleBarComponent

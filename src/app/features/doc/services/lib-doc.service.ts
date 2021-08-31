@@ -1,7 +1,7 @@
 import { Injectable, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Doc, DocComponent, DocDirective, DocInjectable } from '../interfaces';
+import { Doc, DocComponent, DocDirective, DocInjectable, DocModule } from '../interfaces';
 import { LibDocState } from '../states';
 import { BaseDocService } from './base-doc.service';
 import { LibDocApiService } from './lib-doc-api.service';
@@ -25,11 +25,11 @@ export class LibDocService extends BaseDocService {
             );
     }
 
-    public findDocComponentsByTypes(componentTypes: Type<any>[]): DocComponent[] {
-        return componentTypes
-            .map((componentType) => {
-                return this.state.data.components
-                    .find((component) => component.name === componentType.name);
+    public findDocModulesByTypes(moduleTypes: Type<any>[]): DocModule[] {
+        return moduleTypes
+            .map((moduleType) => {
+                return this.state.data.modules
+                    .find((module) => module.name === moduleType.name);
             });
     }
 
@@ -46,6 +46,14 @@ export class LibDocService extends BaseDocService {
             .map((directiveType) => {
                 return this.state.data.directives
                     .find((directive) => directive.name === directiveType.name);
+            });
+    }
+
+    public findDocComponentsByTypes(componentTypes: Type<any>[]): DocComponent[] {
+        return componentTypes
+            .map((componentType) => {
+                return this.state.data.components
+                    .find((component) => component.name === componentType.name);
             });
     }
 }

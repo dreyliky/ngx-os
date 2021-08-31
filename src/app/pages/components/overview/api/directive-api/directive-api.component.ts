@@ -9,8 +9,8 @@ import { ComponentMetaInfo, DocDirective } from '@Doc/features/doc';
 })
 export class DirectiveApiComponent {
     @Input()
-    public directive: DocDirective;
+    public readonly directive: DocDirective;
 
     @Input()
-    public metaInfo: ComponentMetaInfo;
+    public readonly metaInfo: ComponentMetaInfo;
 }

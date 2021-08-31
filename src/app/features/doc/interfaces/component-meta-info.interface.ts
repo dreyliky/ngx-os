@@ -7,8 +7,9 @@ export interface ComponentMetaInfo {
     type: ComponentType;
     shortInfo: string;
     imageUrl: string;
-    libComponents?: Type<any>[];
+    libModules?: Type<any>[];
     libServices?: Type<any>[];
     libDirectives?: Type<any>[];
+    libComponents?: Type<any>[];
     demoComponents?: DemoComponentMetaInfo[];
 }
