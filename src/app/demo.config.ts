@@ -1,37 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Doc, DocApiService, DocStateService } from '@Features/doc';
-import { forkJoin, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { DemoDocService, LibDocService } from '@Features/doc';
+import { forkJoin } from 'rxjs';
 
 @Injectable()
 export class DemoConfig {
     constructor(
-        private readonly docApiService: DocApiService,
-        private readonly docStateService: DocStateService
+        private readonly libDocService: LibDocService,
+        private readonly demoDocService: DemoDocService
     ) {}
 
     public load(): any {
         return forkJoin([
-            this.updateLibDoc(),
-            this.updateDemoDoc()
+            this.libDocService.update(),
+            this.demoDocService.update()
         ])
             .toPromise()
             .catch(() => {
                 return true;
             });
-    }
-
-    private updateLibDoc(): Observable<Doc> {
-        return this.docApiService.getLibDoc()
-            .pipe(
-                tap((doc) => this.docStateService.setLibDoc(doc))
-            );
-    }
-
-    private updateDemoDoc(): Observable<Doc> {
-        return this.docApiService.getDemoDoc()
-            .pipe(
-                tap((doc) => this.docStateService.setDemoDoc(doc))
-            );
     }
 }

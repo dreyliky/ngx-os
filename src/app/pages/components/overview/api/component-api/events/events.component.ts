@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DocComponent, DocService, OutputsClass } from '@Features/doc';
+import { DocComponent, LibDocService, OutputsClass } from '@Features/doc';
 
 @Component({
     selector: 'demo-events',
@@ -17,7 +17,7 @@ export class EventsComponent implements OnChanges {
     public outputs: OutputsClass[];
 
     constructor(
-        private readonly docService: DocService
+        private readonly docService: LibDocService
     ) {}
 
     public ngOnChanges(changes: SimpleChanges): void {

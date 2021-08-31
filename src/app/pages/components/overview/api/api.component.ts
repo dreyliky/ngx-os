@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ComponentMetaInfo, DocComponent, DocInjectable, DocService } from '@Doc/features/doc';
+import { ComponentMetaInfo, DocComponent, DocInjectable, LibDocService } from '@Doc/features/doc';
 
 @Component({
     selector: 'demo-api',
@@ -15,7 +15,7 @@ export class ApiComponent implements OnChanges {
     public services: DocInjectable[] = [];
 
     constructor(
-        private readonly docService: DocService
+        private readonly docService: LibDocService
     ) {}
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -27,7 +27,7 @@ export class ApiComponent implements OnChanges {
 
     private initDocComponents(): void {
         if (this.metaInfo.libComponents) {
-            this.components = this.docService.getLibDocComponentsByTypes(this.metaInfo.libComponents);
+            this.components = this.docService.findDocComponentsByTypes(this.metaInfo.libComponents);
         } else {
             this.components = [];
         }
@@ -35,7 +35,7 @@ export class ApiComponent implements OnChanges {
 
     private initDocServices(): void {
         if (this.metaInfo.libServices) {
-            this.services = this.docService.getLibDocInjectablesByTypes(this.metaInfo.libServices);
+            this.services = this.docService.findDocInjectablesByTypes(this.metaInfo.libServices);
         } else {
             this.services = [];
         }

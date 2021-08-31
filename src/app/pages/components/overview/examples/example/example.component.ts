@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Type } from '@angular/core';
-import { DemoComponentMetaInfo, DocComponent, DocService } from '@Features/doc';
+import { DemoComponentMetaInfo, DemoDocService, DocComponent } from '@Features/doc';
 
 enum SectionEnum {
     Demo,
@@ -34,11 +34,11 @@ export class ExampleComponent {
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef,
-        private readonly docService: DocService
+        private readonly docService: DemoDocService
     ) {}
 
     private initDemoDocComponent(componentType: Type<any>): void {
-        this.docComponent = this.docService.getDemoDocComponentByName(componentType);
+        this.docComponent = this.docService.findDocComponentByType(componentType);
         this.changeDetector.detectChanges();
     }
 }

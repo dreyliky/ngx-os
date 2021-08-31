@@ -1,4 +1,6 @@
-export * from './doc-api.service';
-export * from './doc-state.service';
-export * from './doc.service';
+export * from './base-doc.service';
+export * from './demo-doc-api.service';
+export * from './demo-doc.service';
+export * from './lib-doc-api.service';
+export * from './lib-doc.service';
 

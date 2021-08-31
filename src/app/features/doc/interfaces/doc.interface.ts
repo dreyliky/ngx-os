@@ -495,7 +495,7 @@ interface Arg {
     type: string;
 }
 
-interface Property2 {
+export interface Property2 {
     name: string;
     defaultValue: string;
     type: string;

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DocInjectable, DocService, MethodsClass } from '@Features/doc';
+import { DocInjectable, LibDocService, MethodsClass } from '@Features/doc';
 
 @Component({
     selector: 'api-methods',
@@ -17,7 +17,7 @@ export class MethodsComponent implements OnChanges {
     public methods: MethodsClass[];
 
     constructor(
-        private readonly docService: DocService
+        private readonly docService: LibDocService
     ) {}
 
     public ngOnChanges(changes: SimpleChanges): void {

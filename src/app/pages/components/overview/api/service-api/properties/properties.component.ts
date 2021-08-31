@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DocInjectable, DocService, InputsClass } from '@Features/doc';
+import { DocInjectable, InputsClass, LibDocService } from '@Features/doc';
 
 @Component({
     selector: 'api-properties',
@@ -17,7 +17,7 @@ export class PropertiesComponent implements OnChanges {
     public properties: InputsClass[];
 
     constructor(
-        private readonly docService: DocService
+        private readonly docService: LibDocService
     ) {}
 
     public ngOnChanges(changes: SimpleChanges): void {
