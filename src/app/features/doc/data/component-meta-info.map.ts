@@ -32,6 +32,7 @@ import {
     GroupBoxOverviewComponent,
     ListOverviewComponent,
     RadioButtonOverviewComponent,
+    ResizerOverviewComponent,
     ScrollViewOverviewComponent,
     SelectboxOverviewComponent,
     SliderOverviewComponent,
@@ -206,6 +207,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '/assets/icons/components/resizer.png',
             libDirectives: [
                 OsResizableDirective
+            ],
+            demoComponents: [
+                {
+                    title: 'Resizer Overview',
+                    component: ResizerOverviewComponent
+                }
             ]
         }
     )

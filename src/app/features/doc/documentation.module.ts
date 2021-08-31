@@ -10,6 +10,7 @@ import {
     GroupBoxOverviewComponent,
     ListOverviewComponent,
     RadioButtonOverviewComponent,
+    ResizerOverviewComponent,
     ScrollViewOverviewComponent,
     SelectboxOverviewComponent,
     SliderOverviewComponent,
@@ -46,7 +47,8 @@ import {
         WindowDynamicOpeningComponent,
         WindowTitleBarComponent,
         ThemeOverviewComponent,
-        DraggerOverviewComponent
+        DraggerOverviewComponent,
+        ResizerOverviewComponent
     ],
     imports: [
         SharedModule
