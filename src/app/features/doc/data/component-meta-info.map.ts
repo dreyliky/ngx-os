@@ -26,6 +26,7 @@ import {
     ButtonCounterComponent,
     ButtonOverviewComponent,
     CheckboxOverviewComponent,
+    DraggerOverviewComponent,
     FieldRowOverviewComponent,
     GridOverviewComponent,
     GroupBoxOverviewComponent,
@@ -96,6 +97,12 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             imageUrl: '/assets/icons/components/drag-and-drop.png',
             libDirectives: [
                 OsDraggableDirective
+            ],
+            demoComponents: [
+                {
+                    title: 'Dragger Overview',
+                    component: DraggerOverviewComponent
+                }
             ]
         }
     )

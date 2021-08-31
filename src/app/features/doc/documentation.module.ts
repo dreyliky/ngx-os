@@ -4,6 +4,7 @@ import {
     ButtonCounterComponent,
     ButtonOverviewComponent,
     CheckboxOverviewComponent,
+    DraggerOverviewComponent,
     FieldRowOverviewComponent,
     GridOverviewComponent,
     GroupBoxOverviewComponent,
@@ -44,7 +45,8 @@ import {
         ButtonCounterComponent,
         WindowDynamicOpeningComponent,
         WindowTitleBarComponent,
-        ThemeOverviewComponent
+        ThemeOverviewComponent,
+        DraggerOverviewComponent
     ],
     imports: [
         SharedModule
