@@ -22,6 +22,10 @@ export class ComponentHeaderComponent implements OnInit, OnDestroy {
 
     public appliedTheme: Theme;
 
+    public get getStartedPagePath(): string {
+        return `/${AppRouteEnum.GetStarted}`;
+    }
+
     public get componentsPagePath(): string {
         return `/${AppRouteEnum.Components}`;
     }

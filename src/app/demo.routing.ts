@@ -10,6 +10,11 @@ const routes: Routes = [
         loadChildren: () => import('./pages/main/main.module').then((m) => m.MainModule)
     },
     {
+        path: AppRouteEnum.GetStarted,
+        component: MainLayoutComponent,
+        loadChildren: () => import('./pages/get-started/get-started.module').then((m) => m.GetStartedModule)
+    },
+    {
         path: AppRouteEnum.Components,
         component: ComponentLayoutComponent,
         loadChildren: () => import('./pages/components/components.module').then((m) => m.ComponentsModule)
