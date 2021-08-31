@@ -11,6 +11,10 @@ export class ApiComponent implements OnChanges {
     @Input()
     public readonly metaInfo: ComponentMetaInfo;
 
+    public get isSomeApiExist(): boolean {
+        return (!!this.components.length || !!this.services.length);
+    }
+
     public components: DocComponent[] = [];
     public services: DocInjectable[] = [];
 

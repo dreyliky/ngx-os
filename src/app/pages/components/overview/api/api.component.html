@@ -1,4 +1,6 @@
-<os-header>API</os-header>
+<os-header *ngIf="isSomeApiExist">
+    API
+</os-header>
 
 <demo-service-api
     *ngFor="let service of services"
