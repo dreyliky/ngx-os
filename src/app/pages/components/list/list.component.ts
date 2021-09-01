@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@Core/enums';
 import { ComponentEnum, ComponentMetaInfoMap } from '@Features/doc';
-import { GridView, OptionSelectedEvent } from 'os-angular';
+import { GridViewType, OptionSelectedEvent } from 'os-angular';
 
 @Component({
     selector: 'demo-list',
@@ -11,11 +11,11 @@ import { GridView, OptionSelectedEvent } from 'os-angular';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent implements OnInit {
-    public gridViews: GridView[] = [
+    public gridViews: GridViewType[] = [
         'medium-icons', 'large-icons', 'extra-large-icons', 'list'
     ];
 
-    public selectedGridView: GridView;
+    public selectedGridView: GridViewType;
 
     public components = [...ComponentMetaInfoMap.values()];
 
@@ -29,7 +29,7 @@ export class GridComponent implements OnInit {
         this.initSelectedGridView();
     }
 
-    public onGridViewChange(event: OptionSelectedEvent<GridView>): void {
+    public onGridViewChange(event: OptionSelectedEvent<GridViewType>): void {
         localStorage.setItem(this.gridViewStorageKey, event.value);
     }
 
@@ -38,7 +38,7 @@ export class GridComponent implements OnInit {
     }
 
     private initSelectedGridView(): void {
-        const view: GridView = <GridView>localStorage
+        const view: GridViewType = <GridViewType>localStorage
             .getItem(this.gridViewStorageKey) ?? 'medium-icons';
 
         this.selectedGridView = view;

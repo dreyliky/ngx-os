@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
-import { GridView } from '../../types';
+import { GridViewType } from '../../types';
 
 @Component({
     selector: 'os-grid',
@@ -9,7 +9,7 @@ import { GridView } from '../../types';
 })
 export class GridComponent extends OsBaseComponent implements OnInit {
     @Input()
-    public set view(view: GridView) {
+    public set view(view: GridViewType) {
         if (view) {
             this.classlistManager.remove(this.currentView);
             this.classlistManager.add(view);
@@ -22,7 +22,7 @@ export class GridComponent extends OsBaseComponent implements OnInit {
     @HostBinding('class.horizontal')
     public readonly isHorizontalDirection: boolean = false;
 
-    private currentView: GridView = 'medium-icons';
+    private currentView: GridViewType = 'medium-icons';
 
     public ngOnInit(): void {
         this.classlistManager.add(`os-grid ${this.currentView}`);

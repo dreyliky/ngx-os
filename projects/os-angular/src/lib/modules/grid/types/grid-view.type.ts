@@ -1,1 +1,1 @@
-export type GridView = 'medium-icons' | 'large-icons' | 'extra-large-icons' | 'list';
+export type GridViewType = 'medium-icons' | 'large-icons' | 'extra-large-icons' | 'list';
