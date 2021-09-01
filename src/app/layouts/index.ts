@@ -1,5 +1,4 @@
-export * from './component-layout';
 export * from './components';
+export * from './containers';
 export * from './layouts.module';
-export * from './main-layout';
 

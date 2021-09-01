@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRouteEnum } from '@Core/enums';
-import { ComponentLayoutComponent, MainLayoutComponent } from '@Layouts';
+import { ComponentOverviewLayoutComponent, MainLayoutComponent } from '@Layouts';
 
 const routes: Routes = [
     {
@@ -16,7 +16,7 @@ const routes: Routes = [
     },
     {
         path: AppRouteEnum.Components,
-        component: ComponentLayoutComponent,
+        component: ComponentOverviewLayoutComponent,
         loadChildren: () => import('./pages/components/components.module').then((m) => m.ComponentsModule)
     },
     {

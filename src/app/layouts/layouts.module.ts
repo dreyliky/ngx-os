@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
-import { ComponentLayoutComponent } from './component-layout';
-import { LayoutComponentsModule } from './components/layout-components.module';
-import { MainLayoutComponent } from './main-layout';
+import { ComponentHeaderComponent } from './components';
+import { ComponentOverviewLayoutComponent, MainLayoutComponent } from './containers';
 
 @NgModule({
     declarations: [
-        ComponentLayoutComponent,
+        ComponentHeaderComponent,
+        ComponentOverviewLayoutComponent,
         MainLayoutComponent
     ],
     imports: [
-        SharedModule,
-        LayoutComponentsModule
+        SharedModule
     ],
     exports: [
-        ComponentLayoutComponent,
+        ComponentOverviewLayoutComponent,
         MainLayoutComponent
     ]
 })
