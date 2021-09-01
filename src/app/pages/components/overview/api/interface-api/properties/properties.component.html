@@ -1,0 +1,24 @@
+<os-header
+    *ngIf="properties.length"
+    class="title"
+    [size]="5">
+    Properties
+</os-header>
+
+<table class="content">
+    <tr *ngFor="let property of properties">
+        <td class="property-name-col">
+            <os-text>{{ property.name }}</os-text>
+        </td>
+
+        <td>
+            <div>
+                <os-text>Type: {{ property.type }}</os-text>
+            </div>
+
+            <os-text>
+                <span [innerHTML]="property?.description"></span>
+            </os-text>
+        </td>
+    </tr>
+</table>

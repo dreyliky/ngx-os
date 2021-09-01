@@ -14,6 +14,9 @@ export const RESIZER_META_INFO: ComponentMetaInfo = {
     libDirectives: [
         OsResizableDirective
     ],
+    libInterfaces: [
+        'ResizeInfo'
+    ],
     demoComponents: [
         {
             title: 'Resizer Overview',

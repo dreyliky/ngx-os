@@ -14,6 +14,9 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
     libDirectives: [
         OsDraggableDirective
     ],
+    libInterfaces: [
+        'DragInfo'
+    ],
     demoComponents: [
         {
             title: 'Dragger Overview',

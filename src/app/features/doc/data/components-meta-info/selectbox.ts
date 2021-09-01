@@ -14,6 +14,9 @@ export const SELECTBOX_META_INFO: ComponentMetaInfo = {
     libComponents: [
         SelectboxComponent
     ],
+    libInterfaces: [
+        'OptionSelectedEvent'
+    ],
     demoComponents: [
         {
             title: 'Selectbox Overview',

@@ -1,7 +1,7 @@
 import { Injectable, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Doc, DocComponent, DocDirective, DocInjectable, DocModule } from '../interfaces';
+import { Doc, DocComponent, DocDirective, DocInjectable, DocInterface, DocModule } from '../interfaces';
 import { LibDocState } from '../states';
 import { BaseDocService } from './base-doc.service';
 import { LibDocApiService } from './lib-doc-api.service';
@@ -54,6 +54,14 @@ export class LibDocService extends BaseDocService {
             .map((componentType) => {
                 return this.state.data.components
                     .find((component) => component.name === componentType.name);
+            });
+    }
+
+    public findDocInterfacesByNames(interfaceNames: string[]): DocInterface[] {
+        return interfaceNames
+            .map((interfaceName) => {
+                return this.state.data.interfaces
+                    .find((docInterface) => docInterface.name === interfaceName);
             });
     }
 }

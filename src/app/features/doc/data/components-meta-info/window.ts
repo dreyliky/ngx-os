@@ -1,4 +1,9 @@
-import { DynamicWindowService, TitleBarComponent, WindowComponent, WindowModule } from '@lib-modules';
+import {
+    DynamicWindowService,
+    TitleBarComponent,
+    WindowComponent,
+    WindowModule
+} from '@lib-modules';
 import { WindowDynamicOpeningComponent, WindowOverviewComponent, WindowTitleBarComponent } from '../../demo';
 import { ComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -17,6 +22,10 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
     ],
     libServices: [
         DynamicWindowService
+    ],
+    libInterfaces: [
+        'IDynamicWindowRef',
+        'DynamicWindowParams'
     ],
     demoComponents: [
         {

@@ -14,6 +14,9 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
     libComponents: [
         TreeViewComponent
     ],
+    libInterfaces: [
+        'TreeNode'
+    ],
     demoComponents: [
         {
             title: 'Tree view Overview',

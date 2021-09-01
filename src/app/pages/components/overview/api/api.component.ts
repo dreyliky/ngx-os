@@ -4,6 +4,7 @@ import {
     DocComponent,
     DocDirective,
     DocInjectable,
+    DocInterface,
     DocModule,
     LibDocService
 } from '@Features/doc';
@@ -22,6 +23,7 @@ export class ApiComponent implements OnChanges {
     public components: DocComponent[] = [];
     public services: DocInjectable[] = [];
     public directives: DocDirective[] = [];
+    public interfaces: DocInterface[] = [];
 
     constructor(
         private readonly docService: LibDocService
@@ -33,6 +35,7 @@ export class ApiComponent implements OnChanges {
             this.initDocServices();
             this.initDocDirectives();
             this.initDocComponents();
+            this.initDocInterfaces();
         }
     }
 
@@ -65,6 +68,14 @@ export class ApiComponent implements OnChanges {
             this.components = this.docService.findDocComponentsByTypes(this.metaInfo.libComponents);
         } else {
             this.components = [];
+        }
+    }
+
+    private initDocInterfaces(): void {
+        if (this.metaInfo.libInterfaces) {
+            this.interfaces = this.docService.findDocInterfacesByNames(this.metaInfo.libInterfaces);
+        } else {
+            this.interfaces = [];
         }
     }
 }

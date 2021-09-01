@@ -11,6 +11,9 @@ export const THEME_META_INFO: ComponentMetaInfo = {
     libServices: [
         ThemeService
     ],
+    libInterfaces: [
+        'ThemeRgbColor'
+    ],
     demoComponents: [
         {
             title: 'Theme Overview',

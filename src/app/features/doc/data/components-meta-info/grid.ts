@@ -14,6 +14,9 @@ export const GRID_META_INFO: ComponentMetaInfo = {
     libComponents: [
         GridComponent
     ],
+    libInterfaces: [
+        'GridItem'
+    ],
     demoComponents: [
         {
             title: 'Grid Overview',

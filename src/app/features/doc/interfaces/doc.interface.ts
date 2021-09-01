@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 export interface Doc {
     pipes: any[];
-    interfaces: Interface[];
+    interfaces: DocInterface[];
     injectables: DocInjectable[];
     classes: Class[];
     directives: DocDirective[];
@@ -508,19 +508,46 @@ export interface Property2 {
     modifierKind: number[];
 }
 
-interface Interface {
+export interface DocInterface {
     name: string;
     id: string;
     file: string;
     type: string;
     sourceCode: string;
-    properties: Property[];
+    properties: DocInterfaceProperty[];
     indexSignatures: any[];
     kind: number;
-    methods: any[];
+    methods: DocInterfaceMethod[];
 }
 
-interface Property {
+export interface DocInterfaceMethod {
+    args: {
+        name: string;
+        type: string;
+        deprecated: boolean;
+        deprecationMessage: string;
+        optional: true;
+    }[];
+    deprecated: boolean;
+    deprecationMessage: string;
+    jsdoctags: {
+        deprecated: boolean;
+        deprecationMessage: string;
+        name: string;
+        optional: boolean;
+        tagName: {
+            text: string;
+        };
+    }[];
+    line: number;
+    name: string;
+    optional: boolean;
+    returnType: string;
+    typeParameters: string[];
+    description?: string;
+}
+
+export interface DocInterfaceProperty {
     name: string;
     type: string;
     optional: boolean;
