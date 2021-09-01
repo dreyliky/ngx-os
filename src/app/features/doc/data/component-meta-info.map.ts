@@ -319,7 +319,7 @@ export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
             ],
             demoComponents: [
                 {
-                    title: 'Selectbox Overview',
+                    title: 'Slider Overview',
                     component: SliderOverviewComponent
                 }
             ]

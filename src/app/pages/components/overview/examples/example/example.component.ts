@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Type } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Type } from '@angular/core';
 import { DemoComponentMetaInfo, DemoDocService, DocComponent } from '@Features/doc';
 
 enum SectionEnum {
@@ -25,6 +25,10 @@ export class ExampleComponent {
         return this._demoComponentMetaInfo;
     }
 
+    public get isScssExist(): boolean {
+        return !!this.docComponent?.styleUrlsData?.[0]?.data;
+    }
+
     public readonly sectionEnum = SectionEnum;
 
     public openedSection = SectionEnum.Demo;
@@ -33,12 +37,10 @@ export class ExampleComponent {
     private _demoComponentMetaInfo: DemoComponentMetaInfo;
 
     constructor(
-        private readonly changeDetector: ChangeDetectorRef,
         private readonly docService: DemoDocService
     ) {}
 
     private initDemoDocComponent(componentType: Type<any>): void {
         this.docComponent = this.docService.findDocComponentByType(componentType);
-        this.changeDetector.detectChanges();
     }
 }
