@@ -1,11 +1,11 @@
 import { TabGroupComponent, TabGroupModule } from '@lib-modules';
 import { TabGroupOverviewComponent } from '../../demo';
-import { ComponentEnum } from '../../enums';
+import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TAB_GROUP_META_INFO: ComponentMetaInfo = {
     name: 'Tab Group',
-    type: ComponentEnum.TabGroup,
+    type: OsComponentEnum.TabGroup,
     shortInfo: 'Tab Group component short info',
     imageUrl: '/assets/icons/components/tab-group.png',
     libModules: [

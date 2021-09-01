@@ -1,4 +1,4 @@
-export enum ComponentEnum {
+export enum OsComponentEnum {
     Button = 'button',
     Checkbox = 'checkbox',
     DragAndDrop = 'drag-and-drop',

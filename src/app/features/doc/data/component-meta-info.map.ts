@@ -1,4 +1,4 @@
-import { ComponentEnum } from '../enums';
+import { OsComponentEnum } from '../enums';
 import { ComponentMetaInfo } from '../interfaces';
 import {
     BUTTON_META_INFO,
@@ -22,80 +22,80 @@ import {
     WINDOW_META_INFO
 } from './components-meta-info';
 
-export const ComponentMetaInfoMap = new Map<ComponentEnum, ComponentMetaInfo>()
+export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>()
     .set(
-        ComponentEnum.Button,
+        OsComponentEnum.Button,
         BUTTON_META_INFO
     )
     .set(
-        ComponentEnum.Checkbox,
+        OsComponentEnum.Checkbox,
         CHECKBOX_META_INFO
     )
     .set(
-        ComponentEnum.DragAndDrop,
+        OsComponentEnum.DragAndDrop,
         DRAG_AND_DROP_META_INFO
     )
     .set(
-        ComponentEnum.FieldRow,
+        OsComponentEnum.FieldRow,
         FIELD_ROW_META_INFO
     )
     .set(
-        ComponentEnum.GroupBox,
+        OsComponentEnum.GroupBox,
         GROUP_BOX_META_INFO
     )
     .set(
-        ComponentEnum.Grid,
+        OsComponentEnum.Grid,
         GRID_META_INFO
     )
     .set(
-        ComponentEnum.List,
+        OsComponentEnum.List,
         LIST_META_INFO
     )
     .set(
-        ComponentEnum.RadioButton,
+        OsComponentEnum.RadioButton,
         RADIO_BUTTON_META_INFO
     )
     .set(
-        ComponentEnum.Resizer,
+        OsComponentEnum.Resizer,
         RESIZER_META_INFO
     )
     .set(
-        ComponentEnum.ScrollView,
+        OsComponentEnum.ScrollView,
         SCROLL_VIEW_META_INFO
     )
     .set(
-        ComponentEnum.Selectbox,
+        OsComponentEnum.Selectbox,
         SELECTBOX_META_INFO
     )
     .set(
-        ComponentEnum.Slider,
+        OsComponentEnum.Slider,
         SLIDER_META_INFO
     )
     .set(
-        ComponentEnum.TabGroup,
+        OsComponentEnum.TabGroup,
         TAB_GROUP_META_INFO
     )
     .set(
-        ComponentEnum.Text,
+        OsComponentEnum.Text,
         TEXT_META_INFO
     )
     .set(
-        ComponentEnum.TextBox,
+        OsComponentEnum.TextBox,
         TEXT_BOX_META_INFO
     )
     .set(
-        ComponentEnum.TextareaBox,
+        OsComponentEnum.TextareaBox,
         TEXTAREA_BOX_META_INFO
     )
     .set(
-        ComponentEnum.Theme,
+        OsComponentEnum.Theme,
         THEME_META_INFO
     )
     .set(
-        ComponentEnum.TreeView,
+        OsComponentEnum.TreeView,
         TREE_VIEW_META_INFO
     )
     .set(
-        ComponentEnum.Window,
+        OsComponentEnum.Window,
         WINDOW_META_INFO
     );

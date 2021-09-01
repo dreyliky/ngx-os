@@ -6,7 +6,7 @@ import {
     OnInit
 } from '@angular/core';
 import { AppRouteEnum } from '@Core/enums';
-import { ComponentEnum } from '@Features/doc';
+import { OsComponentEnum } from '@Features/doc';
 import { Theme, ThemeManagerService, THEMES } from '@Features/theme';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -31,7 +31,7 @@ export class ComponentHeaderComponent implements OnInit, OnDestroy {
     }
 
     public get themePagePath(): string {
-        return `/${AppRouteEnum.Components}/${ComponentEnum.Theme}`;
+        return `/${AppRouteEnum.Components}/${OsComponentEnum.Theme}`;
     }
 
     public get desktopPagePath(): string {

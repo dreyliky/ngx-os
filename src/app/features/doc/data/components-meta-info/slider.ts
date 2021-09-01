@@ -1,11 +1,11 @@
 import { SliderComponent, SliderModule } from '@lib-modules';
 import { SliderOverviewComponent } from '../../demo';
-import { ComponentEnum } from '../../enums';
+import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const SLIDER_META_INFO: ComponentMetaInfo = {
     name: 'Slider',
-    type: ComponentEnum.Slider,
+    type: OsComponentEnum.Slider,
     shortInfo: 'Slider component short info',
     imageUrl: '/assets/icons/components/slider.png',
     libModules: [

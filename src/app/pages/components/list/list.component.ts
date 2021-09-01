@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@Core/enums';
-import { ComponentEnum, ComponentMetaInfoMap } from '@Features/doc';
+import { ComponentMetaInfoMap, OsComponentEnum } from '@Features/doc';
 
 @Component({
     selector: 'demo-list',
@@ -16,7 +16,7 @@ export class GridComponent {
         private readonly router: Router
     ) {}
 
-    public onOpenSectionButtonClick(componentType: ComponentEnum): void {
+    public onOpenSectionButtonClick(componentType: OsComponentEnum): void {
         this.router.navigateByUrl(`/${AppRouteEnum.Components}/${componentType}`);
     }
 }

@@ -1,11 +1,11 @@
 import { ButtonComponent, ButtonModule } from '@lib-modules';
 import { ButtonCounterComponent, ButtonOverviewComponent } from '../../demo';
-import { ComponentEnum } from '../../enums';
+import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const BUTTON_META_INFO: ComponentMetaInfo = {
     name: 'Button',
-    type: ComponentEnum.Button,
+    type: OsComponentEnum.Button,
     shortInfo: 'Button component short info',
     imageUrl: '/assets/icons/components/button.png',
     libModules: [

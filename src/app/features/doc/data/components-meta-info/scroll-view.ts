@@ -1,11 +1,11 @@
 import { ScrollViewComponent, ScrollViewModule } from '@lib-modules';
 import { ScrollViewOverviewComponent } from '../../demo';
-import { ComponentEnum } from '../../enums';
+import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const SCROLL_VIEW_META_INFO: ComponentMetaInfo = {
     name: 'Scroll View',
-    type: ComponentEnum.ScrollView,
+    type: OsComponentEnum.ScrollView,
     shortInfo: 'Scroll view component short info',
     imageUrl: '/assets/icons/components/scroll-view.png',
     libModules: [

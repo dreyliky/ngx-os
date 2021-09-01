@@ -1,11 +1,11 @@
 import { TextareaBoxComponent, TextareaBoxModule } from '@lib-modules';
 import { TextareaOverviewComponent } from '../../demo';
-import { ComponentEnum } from '../../enums';
+import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
     name: 'Textarea Box',
-    type: ComponentEnum.TextareaBox,
+    type: OsComponentEnum.TextareaBox,
     shortInfo: 'Textarea box component short info',
     imageUrl: '/assets/icons/components/text-box.png',
     libModules: [

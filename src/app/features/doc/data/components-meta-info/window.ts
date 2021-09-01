@@ -5,12 +5,12 @@ import {
     WindowModule
 } from '@lib-modules';
 import { WindowDynamicOpeningComponent, WindowOverviewComponent, WindowTitleBarComponent } from '../../demo';
-import { ComponentEnum } from '../../enums';
+import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const WINDOW_META_INFO: ComponentMetaInfo = {
     name: 'Window',
-    type: ComponentEnum.Window,
+    type: OsComponentEnum.Window,
     shortInfo: 'Window component short info',
     imageUrl: '/assets/icons/components/window.png',
     libModules: [
