@@ -1,7 +1,13 @@
-<os-header [size]="1">
-    {{ metaInfo.name }}
-</os-header>
+<img
+    height="48"
+    [attr.src]="metaInfo.imageUrl" />
 
-<os-header [size]="6">
-    {{ metaInfo.shortInfo }}
-</os-header>
+<div class="description">
+    <os-header [size]="1">
+        {{ metaInfo.name }}
+    </os-header>
+    
+    <os-header [size]="6">
+        {{ metaInfo.shortInfo }}
+    </os-header>
+</div>

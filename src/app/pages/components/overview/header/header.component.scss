@@ -2,12 +2,21 @@
     width: 100%;
     height: 125px;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    align-items: center;
     color: rgb(var(--os-white-color));
     background-color: rgba(var(--os-primary-color), .8);
+    padding-left: 30px;
+    box-sizing: border-box;
+}
 
-    os-header {
-        margin: 0px 0px 0px 30px;
-    }
+os-header {
+    margin: 0px;
+}
+
+.description {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 30px;
 }
