@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
+import { FeaturesModule } from '@Features/features.module';
 import { ComponentHeaderComponent } from './components';
 import { ComponentOverviewLayoutComponent, MainLayoutComponent } from './containers';
 
@@ -10,7 +11,8 @@ import { ComponentOverviewLayoutComponent, MainLayoutComponent } from './contain
         MainLayoutComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        FeaturesModule
     ],
     exports: [
         ComponentOverviewLayoutComponent,
