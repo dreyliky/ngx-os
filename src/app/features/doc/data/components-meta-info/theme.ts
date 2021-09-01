@@ -7,7 +7,7 @@ export const THEME_META_INFO: ComponentMetaInfo = {
     name: 'Theme',
     type: ComponentEnum.Theme,
     shortInfo: 'Theme short info',
-    imageUrl: '/assets/icons/components/folder.png',
+    imageUrl: '/assets/icons/components/theme.png',
     libServices: [
         ThemeService
     ],

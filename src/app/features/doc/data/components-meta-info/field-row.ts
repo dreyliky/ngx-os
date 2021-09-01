@@ -7,7 +7,7 @@ export const FIELD_ROW_META_INFO: ComponentMetaInfo = {
     name: 'Field Row',
     type: ComponentEnum.FieldRow,
     shortInfo: 'Field row component short info',
-    imageUrl: '/assets/icons/components/folder.png',
+    imageUrl: '/assets/icons/components/field-row.png',
     libModules: [
         FieldRowModule
     ],
