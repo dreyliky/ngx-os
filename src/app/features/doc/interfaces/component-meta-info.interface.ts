@@ -1,10 +1,10 @@
 import { Type } from '@angular/core';
-import { ComponentType } from '../types';
+import { ComponentEnum } from '../enums';
 import { DemoComponentMetaInfo } from './demo-component-meta-info.interface';
 
 export interface ComponentMetaInfo {
     name: string;
-    type: ComponentType;
+    type: ComponentEnum;
     shortInfo: string;
     imageUrl: string;
     libModules?: Type<any>[];

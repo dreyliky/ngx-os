@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppRouteEnum } from '@Doc/core/enums';
-import { ComponentMetaInfoMap, ComponentType } from '@Features/doc';
+import { AppRouteEnum } from '@Core/enums';
+import { ComponentEnum, ComponentMetaInfoMap } from '@Features/doc';
 import { GridView, OptionSelectedEvent } from 'os-angular';
 
 @Component({
@@ -33,7 +33,7 @@ export class GridComponent implements OnInit {
         localStorage.setItem(this.gridViewStorageKey, event.value);
     }
 
-    public onOpenSectionButtonClick(componentType: ComponentType): void {
+    public onOpenSectionButtonClick(componentType: ComponentEnum): void {
         this.router.navigateByUrl(`/${AppRouteEnum.Components}/${componentType}`);
     }
 

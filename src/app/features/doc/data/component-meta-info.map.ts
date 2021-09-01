@@ -1,400 +1,101 @@
-import {
-    DynamicWindowService,
-    FieldRowComponent,
-    FieldRowModule,
-    GridComponent,
-    GridModule,
-    GroupBoxComponent,
-    GroupBoxModule,
-    HeaderComponent,
-    ListComponent,
-    ListItemComponent,
-    ListModule, OsResizableDirective,
-    RadioButtonComponent,
-    RadioButtonModule,
-    ResizerModule,
-    ScrollViewComponent,
-    ScrollViewModule,
-    SelectboxComponent,
-    SelectboxModule,
-    SliderComponent,
-    SliderModule,
-    TabGroupComponent,
-    TabGroupModule,
-    TextareaBoxComponent,
-    TextareaBoxModule,
-    TextBoxComponent,
-    TextBoxModule,
-    TextComponent,
-    TextModule,
-    ThemeService,
-    TitleBarComponent,
-    WindowComponent,
-    WindowModule
-} from 'os-angular';
-import {
-    FieldRowOverviewComponent,
-    GridOverviewComponent,
-    GroupBoxOverviewComponent,
-    ListOverviewComponent,
-    RadioButtonOverviewComponent,
-    ResizerOverviewComponent,
-    ScrollViewOverviewComponent,
-    SelectboxOverviewComponent,
-    SliderOverviewComponent,
-    TabGroupOverviewComponent,
-    TextareaOverviewComponent,
-    TextBoxOverviewComponent,
-    TextOverviewComponent,
-    ThemeOverviewComponent,
-    WindowDynamicOpeningComponent,
-    WindowOverviewComponent,
-    WindowTitleBarComponent
-} from '../demo';
+import { ComponentEnum } from '../enums';
 import { ComponentMetaInfo } from '../interfaces';
-import { ComponentType } from '../types';
 import {
     BUTTON_META_INFO,
     CHECKBOX_META_INFO,
-    DRAG_AND_DROP_META_INFO
+    DRAG_AND_DROP_META_INFO,
+    FIELD_ROW_META_INFO,
+    GRID_META_INFO,
+    GROUP_BOX_META_INFO,
+    LIST_META_INFO,
+    RADIO_BUTTON_META_INFO,
+    RESIZER_META_INFO,
+    SCROLL_VIEW_META_INFO,
+    SELECTBOX_META_INFO,
+    SLIDER_META_INFO,
+    TAB_GROUP_META_INFO,
+    TEXTAREA_BOX_META_INFO,
+    TEXT_BOX_META_INFO,
+    TEXT_META_INFO,
+    THEME_META_INFO,
+    TREE_VIEW_META_INFO,
+    WINDOW_META_INFO
 } from './components-meta-info';
 
-export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
+export const ComponentMetaInfoMap = new Map<ComponentEnum, ComponentMetaInfo>()
     .set(
-        'button',
+        ComponentEnum.Button,
         BUTTON_META_INFO
     )
     .set(
-        'checkbox',
+        ComponentEnum.Checkbox,
         CHECKBOX_META_INFO
     )
     .set(
-        'drag-and-drop',
+        ComponentEnum.DragAndDrop,
         DRAG_AND_DROP_META_INFO
     )
     .set(
-        'field-row',
-        {
-            name: 'Field row',
-            type: 'field-row',
-            shortInfo: 'Field row component short info',
-            imageUrl: '/assets/icons/components/folder.png',
-            libModules: [
-                FieldRowModule
-            ],
-            libComponents: [
-                FieldRowComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Field row Overview',
-                    component: FieldRowOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.FieldRow,
+        FIELD_ROW_META_INFO
     )
     .set(
-        'group-box',
-        {
-            name: 'Group box',
-            type: 'group-box',
-            shortInfo: 'Group box component short info',
-            imageUrl: '/assets/icons/components/folder.png',
-            libModules: [
-                GroupBoxModule
-            ],
-            libComponents: [
-                GroupBoxComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Group box Overview',
-                    component: GroupBoxOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.GroupBox,
+        GROUP_BOX_META_INFO
     )
     .set(
-        'grid',
-        {
-            name: 'Grid',
-            type: 'grid',
-            shortInfo: 'Grid component short info',
-            imageUrl: '/assets/icons/components/grid.png',
-            libModules: [
-                GridModule
-            ],
-            libComponents: [
-                GridComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Grid Overview',
-                    component: GridOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.Grid,
+        GRID_META_INFO
     )
     .set(
-        'list',
-        {
-            name: 'List',
-            type: 'list',
-            shortInfo: 'List component short info',
-            imageUrl: '/assets/icons/components/list.png',
-            libModules: [
-                ListModule
-            ],
-            libComponents: [
-                ListComponent,
-                ListItemComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'List Overview',
-                    component: ListOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.List,
+        LIST_META_INFO
     )
     .set(
-        'radio-button',
-        {
-            name: 'Radio button',
-            type: 'radio-button',
-            shortInfo: 'Radio button component short info',
-            imageUrl: '/assets/icons/components/radio-button.png',
-            libModules: [
-                RadioButtonModule
-            ],
-            libComponents: [
-                RadioButtonComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Radio button Overview',
-                    component: RadioButtonOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.RadioButton,
+        RADIO_BUTTON_META_INFO
     )
     .set(
-        'resizer',
-        {
-            name: 'Resizer',
-            type: 'resizer',
-            shortInfo: 'Resizer',
-            imageUrl: '/assets/icons/components/resizer.png',
-            libModules: [
-                ResizerModule
-            ],
-            libDirectives: [
-                OsResizableDirective
-            ],
-            demoComponents: [
-                {
-                    title: 'Resizer Overview',
-                    component: ResizerOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.Resizer,
+        RESIZER_META_INFO
     )
     .set(
-        'scroll-view',
-        {
-            name: 'Scroll View',
-            type: 'scroll-view',
-            shortInfo: 'Scroll view component short info',
-            imageUrl: '/assets/icons/components/scroll-view.png',
-            libModules: [
-                ScrollViewModule
-            ],
-            libComponents: [
-                ScrollViewComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Scroll View Overview',
-                    component: ScrollViewOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.ScrollView,
+        SCROLL_VIEW_META_INFO
     )
     .set(
-        'selectbox',
-        {
-            name: 'Selectbox',
-            type: 'selectbox',
-            shortInfo: 'Selectbox component short info',
-            imageUrl: '/assets/icons/components/selectbox.png',
-            libModules: [
-                SelectboxModule
-            ],
-            libComponents: [
-                SelectboxComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Selectbox Overview',
-                    component: SelectboxOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.Selectbox,
+        SELECTBOX_META_INFO
     )
     .set(
-        'slider',
-        {
-            name: 'Slider',
-            type: 'slider',
-            shortInfo: 'Slider component short info',
-            imageUrl: '/assets/icons/components/slider.png',
-            libModules: [
-                SliderModule
-            ],
-            libComponents: [
-                SliderComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Slider Overview',
-                    component: SliderOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.Slider,
+        SLIDER_META_INFO
     )
     .set(
-        'tab-group',
-        {
-            name: 'Tab Group',
-            type: 'tab-group',
-            shortInfo: 'Tab Group component short info',
-            imageUrl: '/assets/icons/components/tab-group.png',
-            libModules: [
-                TabGroupModule
-            ],
-            libComponents: [
-                TabGroupComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Tab Group Overview',
-                    component: TabGroupOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.TabGroup,
+        TAB_GROUP_META_INFO
     )
     .set(
-        'text',
-        {
-            name: 'Text',
-            type: 'text',
-            shortInfo: 'Text component short info',
-            imageUrl: '/assets/icons/components/text.png',
-            libModules: [
-                TextModule
-            ],
-            libComponents: [
-                TextComponent,
-                HeaderComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Text Overview',
-                    component: TextOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.Text,
+        TEXT_META_INFO
     )
     .set(
-        'text-box',
-        {
-            name: 'Text box',
-            type: 'text-box',
-            shortInfo: 'Text box component short info',
-            imageUrl: '/assets/icons/components/text-box.png',
-            libModules: [
-                TextBoxModule
-            ],
-            libComponents: [
-                TextBoxComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Text box Overview',
-                    component: TextBoxOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.TextBox,
+        TEXT_BOX_META_INFO
     )
     .set(
-        'textarea-box',
-        {
-            name: 'Textarea box',
-            type: 'textarea-box',
-            shortInfo: 'Textarea box component short info',
-            imageUrl: '/assets/icons/components/text-box.png',
-            libModules: [
-                TextareaBoxModule
-            ],
-            libComponents: [
-                TextareaBoxComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Textarea box Overview',
-                    component: TextareaOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.TextareaBox,
+        TEXTAREA_BOX_META_INFO
     )
     .set(
-        'theme',
-        {
-            name: 'Theme',
-            type: 'theme',
-            shortInfo: 'Theme short info',
-            imageUrl: '/assets/icons/components/folder.png',
-            libServices: [
-                ThemeService
-            ],
-            demoComponents: [
-                {
-                    title: 'Theme Overview',
-                    component: ThemeOverviewComponent
-                }
-            ]
-        }
+        ComponentEnum.Theme,
+        THEME_META_INFO
     )
     .set(
-        'window',
-        {
-            name: 'Window',
-            type: 'window',
-            shortInfo: 'Window component short info',
-            imageUrl: '/assets/icons/components/window.png',
-            libModules: [
-                WindowModule
-            ],
-            libComponents: [
-                WindowComponent,
-                TitleBarComponent
-            ],
-            libServices: [
-                DynamicWindowService
-            ],
-            demoComponents: [
-                {
-                    title: 'Window Overview',
-                    component: WindowOverviewComponent
-                },
-                {
-                    title: 'Dynamic Window',
-                    component: WindowDynamicOpeningComponent
-                },
-                {
-                    title: 'Title Bar Overview',
-                    component: WindowTitleBarComponent
-                }
-            ]
-        }
+        ComponentEnum.TreeView,
+        TREE_VIEW_META_INFO
+    )
+    .set(
+        ComponentEnum.Window,
+        WINDOW_META_INFO
     );

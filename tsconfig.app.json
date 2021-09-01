@@ -5,7 +5,6 @@
         "types": [],
         "paths": {
             "os-angular": ["projects/os-angular/src/public-api.ts"],
-            "@Doc/*": ["src/app/*"],
             "@Core/*": ["src/app/core/*"],
             "@Features/*": ["src/app/features/*"],
             "@Features": ["src/app/features"],
@@ -13,6 +12,7 @@
             "@Layouts": ["src/app/layouts"],
             "@Pages/*": ["src/app/pages/*"],
             "@Pages": ["src/app/pages"],
+            "@Doc/*": ["src/app/*"],
             "@lib-core": ["projects/os-angular/src/lib/core"],
             "@lib-core/*": ["projects/os-angular/src/lib/core/*"],
             "@lib-helpers": ["projects/os-angular/src/lib/helpers"],

@@ -6,7 +6,7 @@ import {
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ComponentMetaInfo, ComponentMetaInfoMap, ComponentType } from '@Features/doc';
+import { ComponentEnum, ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/doc';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -34,7 +34,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     }
 
     private initMetaInfo(): void {
-        const componentType: ComponentType = this.activatedRoute.snapshot.params.componentType;
+        const componentType: ComponentEnum = this.activatedRoute.snapshot.params.componentType;
 
         this.metaInfo = ComponentMetaInfoMap.get(componentType);
     }
