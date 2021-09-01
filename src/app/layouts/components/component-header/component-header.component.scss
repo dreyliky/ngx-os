@@ -13,6 +13,17 @@
     }
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+
+    .icon {
+        height: 40px;
+        margin-right: 5px;
+    }
+}
+
+
 a {
     text-decoration: none;
 }

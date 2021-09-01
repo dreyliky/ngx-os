@@ -5,14 +5,23 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-image: url('/assets/icons/icon.png');
     background-color: rgba(var(--os-primary-color), .8);
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-size: contain;
     color: #ffffff;
 }
 
 os-header {
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 os-text {
     font-size: 20px;
+}
+
+os-grid {
+    margin-top: 30px;
 }
