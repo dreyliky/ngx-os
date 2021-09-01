@@ -11,7 +11,6 @@ $node-height: 40px;
 }
 
 os-tree-view {
-
     ul.tree-view {
         padding: 10px 0px;
         margin: 0px;
@@ -19,6 +18,7 @@ os-tree-view {
         -webkit-font-smoothing: auto;
         font-size: 15px;
         user-select: none;
+        position: relative;
 
         li {
             line-height: $node-height;
@@ -81,9 +81,9 @@ os-tree-view {
             }
         }
 
-        details summary::-webkit-details-marker {
+        summary::marker {
             display: none;
+            content: '';
         }
     }
-
 }
