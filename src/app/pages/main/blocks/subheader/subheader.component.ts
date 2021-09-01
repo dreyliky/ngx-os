@@ -13,7 +13,7 @@ import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/doc';
 export class SubheaderComponent implements OnInit {
     public components: ComponentMetaInfo[];
 
-    private readonly componentsCount: number = 5;
+    private readonly componentsCount: number = 6;
 
     constructor(
         private readonly router: Router
