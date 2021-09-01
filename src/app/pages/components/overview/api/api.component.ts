@@ -3,9 +3,11 @@ import {
     ComponentMetaInfo,
     DocComponent,
     DocDirective,
+    DocEnum,
     DocInjectable,
     DocInterface,
     DocModule,
+    DocTypealias,
     LibDocService
 } from '@Features/doc';
 
@@ -24,6 +26,8 @@ export class ApiComponent implements OnChanges {
     public services: DocInjectable[] = [];
     public directives: DocDirective[] = [];
     public interfaces: DocInterface[] = [];
+    public enums: DocEnum[] = [];
+    public types: DocTypealias[] = [];
 
     constructor(
         private readonly docService: LibDocService
@@ -36,6 +40,8 @@ export class ApiComponent implements OnChanges {
             this.initDocDirectives();
             this.initDocComponents();
             this.initDocInterfaces();
+            this.initDocEnums();
+            this.initDocTypes();
         }
     }
 
@@ -76,6 +82,22 @@ export class ApiComponent implements OnChanges {
             this.interfaces = this.docService.findDocInterfacesByNames(this.metaInfo.libInterfaces);
         } else {
             this.interfaces = [];
+        }
+    }
+
+    private initDocEnums(): void {
+        if (this.metaInfo.libEnums) {
+            this.enums = this.docService.findDocEnumsByNames(this.metaInfo.libEnums);
+        } else {
+            this.enums = [];
+        }
+    }
+
+    private initDocTypes(): void {
+        if (this.metaInfo.libTypes) {
+            this.types = this.docService.findDocTypesByNames(this.metaInfo.libTypes);
+        } else {
+            this.types = [];
         }
     }
 }

@@ -12,5 +12,7 @@ export interface ComponentMetaInfo {
     libDirectives?: Type<any>[];
     libComponents?: Type<any>[];
     libInterfaces?: string[];
+    libEnums?: string[];
+    libTypes?: string[];
     demoComponents?: DemoComponentMetaInfo[];
 }

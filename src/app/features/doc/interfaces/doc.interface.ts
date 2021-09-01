@@ -31,8 +31,8 @@ interface File {
 interface Miscellaneous {
     variables: any[];
     functions: any[];
-    typealiases: Typealias[];
-    enumerations: Enumeration[];
+    typealiases: DocTypealias[];
+    enumerations: DocEnum[];
     groupedVariables: any;
     groupedFunctions: any;
     groupedEnumerations: GroupedEnumerations;
@@ -40,14 +40,14 @@ interface Miscellaneous {
 }
 
 interface GroupedTypeAliases {
-    [key: string]: Typealias[];
+    [key: string]: DocTypealias[];
 }
 
 interface GroupedEnumerations {
-    [key: string]: Enumeration[];
+    [key: string]: DocEnum[];
 }
 
-interface Enumeration {
+export interface DocEnum {
     name: string;
     childs: Child2[];
     ctype: string;
@@ -61,7 +61,7 @@ interface Child2 {
     value: string;
 }
 
-interface Typealias {
+export interface DocTypealias {
     name: string;
     ctype: string;
     subtype: string;

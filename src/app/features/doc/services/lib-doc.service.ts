@@ -1,7 +1,16 @@
 import { Injectable, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Doc, DocComponent, DocDirective, DocInjectable, DocInterface, DocModule } from '../interfaces';
+import {
+    Doc,
+    DocComponent,
+    DocDirective,
+    DocEnum,
+    DocInjectable,
+    DocInterface,
+    DocModule,
+    DocTypealias
+} from '../interfaces';
 import { LibDocState } from '../states';
 import { BaseDocService } from './base-doc.service';
 import { LibDocApiService } from './lib-doc-api.service';
@@ -62,6 +71,22 @@ export class LibDocService extends BaseDocService {
             .map((interfaceName) => {
                 return this.state.data.interfaces
                     .find((docInterface) => docInterface.name === interfaceName);
+            });
+    }
+
+    public findDocEnumsByNames(enumNames: string[]): DocEnum[] {
+        return enumNames
+            .map((enumName) => {
+                return this.state.data.miscellaneous.enumerations
+                    .find((docEnum) => docEnum.name === enumName);
+            });
+    }
+
+    public findDocTypesByNames(typeNames: string[]): DocTypealias[] {
+        return typeNames
+            .map((typeName) => {
+                return this.state.data.miscellaneous.typealiases
+                    .find((docType) => docType.name === typeName);
             });
     }
 }

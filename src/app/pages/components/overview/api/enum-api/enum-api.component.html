@@ -1,0 +1,15 @@
+<os-header [size]="5">
+    <img height="32" src="/assets/icons/dev/typescript.svg" />
+    {{ enum.name }}
+</os-header>
+
+<div class="enum">
+    <div *ngFor="let property of enum.childs">
+        <os-text>
+            <b>{{ property.name }}</b>
+            <ng-container *ngIf="property.value">
+                = {{ property.value }}
+            </ng-container>
+        </os-text>
+    </div>
+</div>

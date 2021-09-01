@@ -29,3 +29,15 @@
     [interface]="interface"
     [metaInfo]="metaInfo">
 </interface-api>
+
+<enum-api
+    *ngFor="let enum of enums"
+    [enum]="enum"
+    [metaInfo]="metaInfo">
+</enum-api>
+
+<type-api
+    *ngFor="let type of types"
+    [type]="type"
+    [metaInfo]="metaInfo">
+</type-api>

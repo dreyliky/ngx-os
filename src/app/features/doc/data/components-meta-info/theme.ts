@@ -14,6 +14,12 @@ export const THEME_META_INFO: ComponentMetaInfo = {
     libInterfaces: [
         'ThemeRgbColor'
     ],
+    libEnums: [
+        'ThemeEnum'
+    ],
+    libTypes: [
+        'ThemeColorType'
+    ],
     demoComponents: [
         {
             title: 'Theme Overview',

@@ -17,6 +17,14 @@ export const RESIZER_META_INFO: ComponentMetaInfo = {
     libInterfaces: [
         'ResizeInfo'
     ],
+    libEnums: [
+        'ResizerEnum',
+        'MouseButtonEnum'
+    ],
+    libTypes: [
+        'xAxisStyleNameType',
+        'yAxisStyleNameType'
+    ],
     demoComponents: [
         {
             title: 'Resizer Overview',
