@@ -1,10 +1,4 @@
-/* eslint-disable max-lines */
 import {
-    ButtonComponent,
-    ButtonModule,
-    CheckboxComponent,
-    CheckboxModule,
-    DragAndDropModule,
     DynamicWindowService,
     FieldRowComponent,
     FieldRowModule,
@@ -15,9 +9,7 @@ import {
     HeaderComponent,
     ListComponent,
     ListItemComponent,
-    ListModule,
-    OsDraggableDirective,
-    OsResizableDirective,
+    ListModule, OsResizableDirective,
     RadioButtonComponent,
     RadioButtonModule,
     ResizerModule,
@@ -41,10 +33,6 @@ import {
     WindowModule
 } from 'os-angular';
 import {
-    ButtonCounterComponent,
-    ButtonOverviewComponent,
-    CheckboxOverviewComponent,
-    DraggerOverviewComponent,
     FieldRowOverviewComponent,
     GridOverviewComponent,
     GroupBoxOverviewComponent,
@@ -65,75 +53,24 @@ import {
 } from '../demo';
 import { ComponentMetaInfo } from '../interfaces';
 import { ComponentType } from '../types';
+import {
+    BUTTON_META_INFO,
+    CHECKBOX_META_INFO,
+    DRAG_AND_DROP_META_INFO
+} from './components-meta-info';
 
-// FIXME: Refactor (move each MetaInfo into independent file)
 export const ComponentMetaInfoMap = new Map<ComponentType, ComponentMetaInfo>()
     .set(
         'button',
-        {
-            name: 'Button',
-            type: 'button',
-            shortInfo: 'Button component short info',
-            imageUrl: '/assets/icons/components/button.png',
-            libModules: [
-                ButtonModule
-            ],
-            libComponents: [
-                ButtonComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Buttons with different states',
-                    component: ButtonOverviewComponent
-                },
-                {
-                    title: 'Counter',
-                    component: ButtonCounterComponent
-                }
-            ]
-        }
+        BUTTON_META_INFO
     )
     .set(
         'checkbox',
-        {
-            name: 'Checkbox',
-            type: 'checkbox',
-            shortInfo: 'Checkbox component short info',
-            imageUrl: '/assets/icons/components/checkbox.png',
-            libModules: [
-                CheckboxModule
-            ],
-            libComponents: [
-                CheckboxComponent
-            ],
-            demoComponents: [
-                {
-                    title: 'Checkbox Overview',
-                    component: CheckboxOverviewComponent
-                }
-            ]
-        }
+        CHECKBOX_META_INFO
     )
     .set(
         'drag-and-drop',
-        {
-            name: 'Drag and Drop',
-            type: 'drag-and-drop',
-            shortInfo: 'Drag and Drop component short info',
-            imageUrl: '/assets/icons/components/drag-and-drop.png',
-            libModules: [
-                DragAndDropModule
-            ],
-            libDirectives: [
-                OsDraggableDirective
-            ],
-            demoComponents: [
-                {
-                    title: 'Dragger Overview',
-                    component: DraggerOverviewComponent
-                }
-            ]
-        }
+        DRAG_AND_DROP_META_INFO
     )
     .set(
         'field-row',
