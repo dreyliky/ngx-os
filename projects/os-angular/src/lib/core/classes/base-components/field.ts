@@ -5,7 +5,7 @@ import { ClasslistManager } from '../css-classlist-manager';
 @Component({
     template: ''
 })
-export class OsBaseFieldComponent {
+export abstract class OsBaseFieldComponent {
     @Input()
     public isDisabled: boolean = false;
 

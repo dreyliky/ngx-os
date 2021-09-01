@@ -4,7 +4,7 @@ import { OsBaseComponent } from './element';
 @Component({
     template: ''
 })
-export class OsBaseButtonComponent extends OsBaseComponent {
+export abstract class OsBaseButtonComponent extends OsBaseComponent {
     @Input()
     @HostBinding('class.disabled')
     public isDisabled: boolean;
