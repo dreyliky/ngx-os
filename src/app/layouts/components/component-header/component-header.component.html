@@ -28,12 +28,9 @@
     Desktop
 </os-button>
 
-<div class="theme-selector">
-    <theme-dropdown
-        [selectedTheme]="appliedTheme"
-        (themeChanged)="onThemeChanged($event)">
-    </theme-dropdown>
-</div>
+<header-theme-settings
+    class="theme-settings">
+</header-theme-settings>
 
 <div class="version">
     <os-text>version {{ libVersion }}</os-text>

@@ -1,7 +1,8 @@
 os-selectbox {
     width: 100%;
     height: 32px;
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
     cursor: default;
     font-family: var(--segoe-ui);

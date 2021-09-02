@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { OsBaseComponent } from './element';
 
 @Component({
@@ -46,15 +46,26 @@ export abstract class OsBaseButtonComponent extends OsBaseComponent {
         return (this.isDisabled) ? null : 0;
     }
 
+    constructor(
+        elementRef: ElementRef<HTMLElement>
+    ) {
+        super(elementRef);
+
+        this.initButtonEventObservers(this.elementRef.nativeElement);
+    }
+
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('focus', ['$event'])
     protected onFocus(event: MouseEvent): void {
         this.osFocus.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('blur', ['$event'])
     protected onBlur(event: MouseEvent): void {
         this.osBlur.emit(event);
+    }
+
+    private initButtonEventObservers(button: HTMLElement): void {
+        button.onfocus = (event: MouseEvent) => this.onFocus(event);
+        button.onblur = (event: MouseEvent) => this.onBlur(event);
     }
 }

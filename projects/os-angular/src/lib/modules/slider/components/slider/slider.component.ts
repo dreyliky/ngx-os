@@ -2,9 +2,9 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
-    forwardRef,
-    Input,
+    forwardRef, Input,
     Output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -52,9 +52,10 @@ export class SliderComponent extends OsBaseComponent implements ControlValueAcce
     public onTouched: () => any;
 
     constructor(
+        elementRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
+        super(elementRef);
     }
 
     public onSliderValueChange(event: Event): void {

@@ -33,9 +33,9 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     private _selected = false;
 
     constructor(
-        private readonly hostElementRef: ElementRef
+        elementRef: ElementRef<HTMLElement>
     ) {
-        super();
+        super(elementRef);
     }
 
     public ngOnInit(): void {
@@ -44,7 +44,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
 
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
-        const hostElement = this.hostElementRef.nativeElement;
+        const hostElement = this.elementRef.nativeElement;
         const isClickOutsideWindow = OutsideClick.checkForElement(hostElement, event);
 
         if (isClickOutsideWindow && this.selected) {
@@ -53,10 +53,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     protected onClick(event: PointerEvent): void {
-        if (this.data.onClick) {
-            this.data.onClick(event);
-        }
-
+        this.data.onClick?.(event);
         super.onClick(event);
     }
 
@@ -67,10 +64,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     protected onDblClick(event: MouseEvent): void {
-        if (this.data.onDblClick) {
-            this.data.onDblClick(event);
-        }
-
+        this.data.onDblClick?.(event);
         super.onDblClick(event);
     }
 }

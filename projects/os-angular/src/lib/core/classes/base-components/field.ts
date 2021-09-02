@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { IdGenerator } from '@lib-helpers';
 import { ClasslistManager } from '../css-classlist-manager';
 
@@ -85,17 +85,25 @@ export abstract class OsBaseFieldComponent {
 
     protected readonly classlistManager: ClasslistManager;
 
-    constructor() {
+    constructor(
+        protected readonly elementRef: ElementRef<HTMLElement>
+    ) {
         this.classlistManager = new ClasslistManager();
+        this.initFieldEventObservers(this.elementRef.nativeElement);
     }
 
-    @HostListener('focus', ['$event'])
+    /** The handler will be fired on the host element in response to an event. */
     protected onFocus(event: FocusEvent): void {
         this.osFocus.emit(event);
     }
 
-    @HostListener('blur', ['$event'])
+    /** The handler will be fired on the host element in response to an event. */
     protected onBlur(event: FocusEvent): void {
         this.osBlur.emit(event);
+    }
+
+    private initFieldEventObservers(field: HTMLElement): void {
+        field.onfocus = (event: MouseEvent) => this.onFocus(event);
+        field.onblur = (event: MouseEvent) => this.onBlur(event);
     }
 }

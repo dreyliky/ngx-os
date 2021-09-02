@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ThemeManagerService } from '@Features/theme';
+import { AccentColorManagerService, ThemeManagerService } from '@Features/theme';
 
 @Component({
     selector: 'demo-root',
@@ -9,8 +9,10 @@ import { ThemeManagerService } from '@Features/theme';
 })
 export class DemoComponent {
     constructor(
-        private readonly themeManagerService: ThemeManagerService
+        private readonly themeManagerService: ThemeManagerService,
+        private readonly accentColorManagerService: AccentColorManagerService
     ) {
-        this.themeManagerService.applyThemeFromStorage();
+        this.themeManagerService.applyFromStorage();
+        this.accentColorManagerService.applyFromStorage();
     }
 }

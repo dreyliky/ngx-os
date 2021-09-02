@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
     forwardRef,
     Input,
@@ -43,9 +44,10 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Co
     public onTouched: () => any;
 
     constructor(
+        elementRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
+        super(elementRef);
     }
 
     public ngOnInit(): void {

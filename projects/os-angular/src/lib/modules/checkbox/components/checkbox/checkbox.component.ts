@@ -5,8 +5,7 @@ import {
     ElementRef,
     EventEmitter,
     forwardRef,
-    HostBinding,
-    Input,
+    HostBinding, Input,
     OnInit,
     Output,
     ViewChild
@@ -54,9 +53,10 @@ export class CheckboxComponent extends OsBaseComponent implements OnInit, Contro
     public onTouched: () => any;
 
     constructor(
+        elementRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
+        super(elementRef);
     }
 
     public ngOnInit(): void {
@@ -85,9 +85,9 @@ export class CheckboxComponent extends OsBaseComponent implements OnInit, Contro
         this.changeDetector.detectChanges();
     }
 
-    protected onClick(event: MouseEvent): void {
+    protected onClick(event: PointerEvent): void {
         this.checkboxElementRef.nativeElement.click();
 
-        this.osClick.emit(event);
+        super.onClick(event);
     }
 }

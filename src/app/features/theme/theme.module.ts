@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
-import { ThemeAccentColorsComponent, ThemeDropdownComponent } from './components';
+import { ThemeAccentColorDropdownComponent, ThemeAccentColorsComponent, ThemeDropdownComponent } from './components';
 
 @NgModule({
     declarations: [
         ThemeDropdownComponent,
-        ThemeAccentColorsComponent
+        ThemeAccentColorsComponent,
+        ThemeAccentColorDropdownComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
         ThemeDropdownComponent,
-        ThemeAccentColorsComponent
+        ThemeAccentColorsComponent,
+        ThemeAccentColorDropdownComponent
     ]
 })
 export class ThemeModule {}

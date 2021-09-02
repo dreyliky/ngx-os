@@ -1,0 +1,9 @@
+<theme-dropdown
+    [selectedTheme]="appliedTheme"
+    (themeChanged)="onThemeChanged($event)">
+</theme-dropdown>
+
+<theme-accent-color-dropdown
+    [selectedColor]="appliedColor"
+    (colorChanged)="onAccentColorChanged($event)">
+</theme-accent-color-dropdown>

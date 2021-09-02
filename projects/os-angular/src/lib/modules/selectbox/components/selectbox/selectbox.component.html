@@ -1,3 +1,5 @@
+<ng-content select="[os-placeholder]"></ng-content>
+
 <span
     *ngIf="placeholder && !value"
     class="os-placeholder">
@@ -14,9 +16,9 @@
     *ngIf="isOpened"
     [scrollViewStyle]="scrollViewStyle"
     [scrollViewStyleClass]="scrollViewStyleClass">
-    <ng-content select="[options-header]"></ng-content>
+    <ng-content select="[os-options-header]"></ng-content>
 
     <ng-content select="os-option"></ng-content>
 
-    <ng-content select="[options-footer]"></ng-content>
+    <ng-content select="[os-options-footer]"></ng-content>
 </os-list>

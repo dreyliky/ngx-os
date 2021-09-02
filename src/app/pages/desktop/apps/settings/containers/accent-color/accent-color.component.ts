@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ThemeManagerService } from '@Doc/features/theme';
+import { AccentColorManagerService } from '@Doc/features/theme';
 import { ThemeRgbColor } from '@lib-modules';
 
 @Component({
@@ -12,16 +12,16 @@ export class AccentColorComponent implements OnInit {
     public selectedColor: ThemeRgbColor;
 
     constructor(
-        private readonly themeService: ThemeManagerService
+        private readonly accentColorService: AccentColorManagerService
     ) {}
 
     public ngOnInit(): void {
-        this.selectedColor = this.themeService.getColor('primary');
+        this.selectedColor = this.accentColorService.get('primary');
     }
 
     public onAccentColorClick(accentColor: ThemeRgbColor): void {
         this.selectedColor = accentColor;
 
-        this.themeService.applyColor('primary', accentColor);
+        this.accentColorService.apply('primary', accentColor);
     }
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ScrollViewModule } from '@lib-modules/scroll-view';
 import { SharedModule } from '@lib-shared';
 import { ListComponent, ListItemComponent } from './components';
 
@@ -8,7 +9,8 @@ import { ListComponent, ListItemComponent } from './components';
         ListItemComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        ScrollViewModule
     ],
     exports: [
         ListComponent,

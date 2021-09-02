@@ -27,11 +27,11 @@ export class ThemeComponent implements OnInit, OnDestroy {
     }
 
     public onThemeChanged(theme: Theme): void {
-        this.themeService.applyTheme(theme.cssName);
+        this.themeService.apply(theme.cssName);
     }
 
     private initAppliedThemeObserver(): void {
-        this.appliedThemeSubscription = this.themeService.appliedTheme$
+        this.appliedThemeSubscription = this.themeService.applied$
             .subscribe((themeCssName) => {
                 this.appliedTheme = THEMES
                     .find((currTheme) => currTheme.cssName === themeCssName);

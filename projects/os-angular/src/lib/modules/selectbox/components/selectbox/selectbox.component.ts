@@ -6,8 +6,7 @@ import {
     ElementRef,
     EventEmitter,
     forwardRef,
-    HostListener,
-    Input,
+    HostListener, Input,
     OnDestroy,
     OnInit,
     Output,
@@ -83,10 +82,11 @@ export class SelectboxComponent<T>
     private _optionsSelectedEventSubscriptions: Subscription[];
 
     constructor(
+        elementRef: ElementRef<HTMLElement>,
         private readonly selectboxElement: ElementRef,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
+        super(elementRef);
     }
 
     public ngOnInit(): void {
@@ -131,6 +131,7 @@ export class SelectboxComponent<T>
         this.isOpened = !this.isOpened;
 
         super.onClick(event);
+        this.changeDetector.detectChanges();
     }
 
     private getActualValue(value: T): any {

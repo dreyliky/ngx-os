@@ -1,46 +1,38 @@
 import { Injectable } from '@angular/core';
-import { ThemeColorType, ThemeEnum, ThemeRgbColor, ThemeService } from 'os-angular';
+import { ThemeEnum, ThemeService } from 'os-angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ThemeManagerService {
-    public get appliedTheme$(): Observable<ThemeEnum> {
-        return this._appliedTheme$.asObservable();
+    public get applied$(): Observable<ThemeEnum> {
+        return this._applied$.asObservable();
     }
 
-    public get appliedTheme(): ThemeEnum {
-        return this._appliedTheme$.getValue();
+    public get applied(): ThemeEnum {
+        return this._applied$.getValue();
     }
 
     private themeStorageKey = 'theme';
     private defaultTheme = ThemeEnum.Win10;
 
-    private _appliedTheme$ = new BehaviorSubject<ThemeEnum>(this.defaultTheme);
+    private _applied$ = new BehaviorSubject<ThemeEnum>(this.defaultTheme);
 
     constructor(
         private readonly themeService: ThemeService
     ) {}
 
-    public getColor(colorType: ThemeColorType): ThemeRgbColor {
-        return this.themeService.getColor(colorType);
-    }
-
-    public applyThemeFromStorage(): void {
+    public applyFromStorage(): void {
         const theme = <ThemeEnum>localStorage.getItem(this.themeStorageKey) || this.defaultTheme;
 
         this.themeService.applyTheme(theme);
-        this._appliedTheme$.next(theme);
+        this._applied$.next(theme);
     }
 
-    public applyTheme(theme: ThemeEnum): void {
+    public apply(theme: ThemeEnum): void {
         this.themeService.applyTheme(theme);
         localStorage.setItem(this.themeStorageKey, theme);
-        this._appliedTheme$.next(theme);
-    }
-
-    public applyColor(colorType: ThemeColorType, color: ThemeRgbColor): void {
-        this.themeService.applyColor(colorType, color);
+        this._applied$.next(theme);
     }
 }

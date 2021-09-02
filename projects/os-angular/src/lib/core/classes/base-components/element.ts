@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { IdGenerator } from '@lib-helpers';
 import { ClasslistManager } from '../css-classlist-manager';
 
@@ -64,55 +64,61 @@ export abstract class OsBaseComponent {
     protected readonly baseHostClassName = 'os-element';
     protected readonly classlistManager = new ClasslistManager();
 
-    constructor() {
+    constructor(
+        protected readonly elementRef: ElementRef<HTMLElement>
+    ) {
         this.classlistManager.add(this.baseHostClassName);
+        this.initHostEventObservers(this.elementRef.nativeElement);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('click', ['$event'])
     protected onClick(event: PointerEvent): void {
         this.osClick.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('dblclick', ['$event'])
     protected onDblClick(event: MouseEvent): void {
         this.osDblClick.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('mousedown', ['$event'])
     protected onMouseDown(event: MouseEvent): void {
         this.osMouseDown.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('mousemove', ['$event'])
     protected onMouseMove(event: MouseEvent): void {
         this.osMouseMove.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('mouseout', ['$event'])
     protected onMouseOut(event: MouseEvent): void {
         this.osMouseOut.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('mouseover', ['$event'])
     protected onMouseOver(event: MouseEvent): void {
         this.osMouseOver.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('mouseup', ['$event'])
     protected onMouseUp(event: MouseEvent): void {
         this.osMouseUp.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    @HostListener('wheel', ['$event'])
     protected onWheel(event: WheelEvent): void {
         this.osWheel.emit(event);
+    }
+
+    private initHostEventObservers(host: HTMLElement): void {
+        host.onclick = (event: PointerEvent) => this.onClick(event);
+        host.ondblclick = (event: MouseEvent) => this.onDblClick(event);
+        host.onmousedown = (event: MouseEvent) => this.onMouseDown(event);
+        host.onmouseup = (event: MouseEvent) => this.onMouseUp(event);
+        host.onmousemove = (event: MouseEvent) => this.onMouseMove(event);
+        host.onmouseout = (event: MouseEvent) => this.onMouseOut(event);
+        host.onmouseover = (event: MouseEvent) => this.onMouseOver(event);
+        host.onwheel = (event: WheelEvent) => this.onWheel(event);
     }
 }

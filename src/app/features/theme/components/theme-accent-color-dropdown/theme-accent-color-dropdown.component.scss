@@ -1,0 +1,13 @@
+img[os-placeholder] {
+    margin-right: 5px;
+}
+
+.accent-color {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    &.active {
+        border: solid 3px #000000;
+    }
+}

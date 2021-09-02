@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
     forwardRef,
     Input,
@@ -37,9 +38,10 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements Contro
     public onTouched: () => any;
 
     constructor(
+        elementRef: ElementRef<HTMLElement>,
         private changeDetector: ChangeDetectorRef
     ) {
-        super();
+        super(elementRef);
     }
 
     public onTextareaBoxValueChange(event: Event): void {
