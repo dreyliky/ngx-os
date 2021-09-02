@@ -1,9 +1,10 @@
 import { ResizerEnum } from '../../resizer';
 import { DynamicWindowParams } from '../interfaces/dynamic-window-params.interface';
 
-export class DynamicWindowConfig<T = any> implements DynamicWindowParams {
+export class DynamicWindowConfig<D = any, T = any> implements DynamicWindowParams {
     public title?: string = 'OS dynamic window';
-    public data?: T;
+    public data?: D;
+    public type?: T;
     public width?: number;
     public height?: number;
     public minWidth?: number = 275;

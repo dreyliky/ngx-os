@@ -1,8 +1,15 @@
 import { ResizerEnum } from '@lib-modules/resizer';
 
-export interface DynamicWindowParams<T = any> {
+export interface DynamicWindowParams<D = any, T = any> {
     title?: string;
-    data?: T;
+    /** Custom data you can access via the window component */
+    data?: D;
+    /**
+     * Custom data you can use to mark your window somehow you want.
+     * Can be useful when you want to work with a bunch of windows as with a group.
+     * for example, you need to close a group of windows with the type: MY_TYPE1
+     */
+    type?: T;
     width?: number;
     height?: number;
     minWidth?: number;
