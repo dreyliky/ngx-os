@@ -1,21 +1,19 @@
-<demo-header
-    [metaInfo]="metaInfo">
-</demo-header>
+<demo-header></demo-header>
 
 <div class="wrapper">
-    <div class="menu">
-        <demo-menu
-            [metaInfo]="metaInfo">
-        </demo-menu>
+    <div class="side-bar">
+        <demo-side-bar-list>
+        </demo-side-bar-list>
     </div>
 
     <div class="content">
-        <demo-examples
-            [metaInfo]="metaInfo">
-        </demo-examples>
+        <demo-examples></demo-examples>
 
-        <demo-api
-            [metaInfo]="metaInfo">
-        </demo-api>
+        <demo-api></demo-api>
+    </div>
+
+    <div class="side-bar">
+        <demo-side-bar-api-plan>
+        </demo-side-bar-api-plan>
     </div>
 </div>

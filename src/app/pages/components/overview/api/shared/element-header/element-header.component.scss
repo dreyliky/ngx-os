@@ -1,0 +1,16 @@
+.os-header-5 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    font-weight: bold;
+
+    img {
+        margin-right: 5px;
+    }
+
+    &.active {
+        background-color: rgba(var(--os-primary-color), .2);
+    }
+}

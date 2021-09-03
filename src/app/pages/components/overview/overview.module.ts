@@ -4,14 +4,16 @@ import { DocumentationModule } from '@Features/doc';
 import { ApiModule } from './api';
 import { ExamplesModule } from './examples';
 import { HeaderComponent } from './header';
-import { MenuComponent } from './menu';
 import { OverviewComponent } from './overview.component';
+import { SideBarApiPlanComponent } from './side-bar-api-plan';
+import { SideBarListComponent } from './side-bar-list';
 
 @NgModule({
     declarations: [
         OverviewComponent,
-        MenuComponent,
-        HeaderComponent
+        SideBarListComponent,
+        HeaderComponent,
+        SideBarApiPlanComponent
     ],
     imports: [
         SharedModule,

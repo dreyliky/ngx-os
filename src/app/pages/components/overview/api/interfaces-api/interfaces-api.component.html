@@ -1,0 +1,16 @@
+<ng-container *ngFor="let docInterface of (docInterfaces$ | async)">
+    <element-api-header
+        [title]="docInterface.name"
+        [iconUrl]="'/assets/icons/dev/typescript.svg'">
+    </element-api-header>
+    
+    <div class="interface">
+        <interface-properties
+            [interface]="docInterface">
+        </interface-properties>
+    
+        <interface-methods
+            [interface]="docInterface">
+        </interface-methods>
+    </div>
+</ng-container>

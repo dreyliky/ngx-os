@@ -1,0 +1,33 @@
+<ng-container *ngFor="let docComponent of (docComponents$ | async)">
+    <element-api-header
+        [title]="docComponent.name"
+        [iconUrl]="'/assets/icons/dev/angular-component.svg'">
+    </element-api-header>
+
+    <div class="component">
+        <os-text-box
+            [styleClass]="'selector'"
+            [label]="'Selector'"
+            [size]="docComponent.selector.length"
+            [isReadonly]="true"
+            [value]="docComponent.selector">
+        </os-text-box>
+
+        <api-readme-info
+            *ngIf="docComponent.readme"
+            [readmeInfo]="docComponent.readme">
+        </api-readme-info>
+
+        <component-properties
+            [component]="docComponent">
+        </component-properties>
+
+        <component-events
+            [component]="docComponent">
+        </component-events>
+
+        <component-methods
+            [component]="docComponent">
+        </component-methods>
+    </div>
+</ng-container>

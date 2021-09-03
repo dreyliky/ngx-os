@@ -1,0 +1,16 @@
+<os-list>
+    <os-list-item
+        *ngFor="let apiPlanItem of apiPlanItems"
+        class="api-plan-item"
+        [selected]="apiPlanItem.name === routeFragment"
+        [value]="apiPlanItem"
+        (osSelected)="onApiPlanItemSelected(apiPlanItem)">
+        <div class="icon-wrapper">
+            <img
+                class="icon"
+                [attr.src]="apiPlanItem.iconUrl" />
+        </div>
+        
+        {{ apiPlanItem.name }}
+    </os-list-item>
+</os-list>

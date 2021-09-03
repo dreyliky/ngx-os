@@ -1,14 +1,17 @@
 :host {
-    display: block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .wrapper {
     width: 100%;
     display: flex;
 
-    .menu {
-        width: 250px;
-        min-width: 250px;
+    .side-bar {
+        width: 200px;
+        min-width: 200px;
         position: relative;
     }
     
@@ -17,6 +20,6 @@
         display: block;
         overflow: hidden;
         padding: 0px 10px;
-        margin: 30px auto;
+        margin: 15px auto;
     }
 }

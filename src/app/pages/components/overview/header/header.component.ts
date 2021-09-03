@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ComponentMetaInfo } from '@Features/doc';
+import { Observable } from 'rxjs';
+import { OverviewService } from '../overview.service';
 
 @Component({
     selector: 'demo-header',
@@ -7,7 +9,14 @@ import { ComponentMetaInfo } from '@Features/doc';
     styleUrls: ['./header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
-    @Input()
-    public readonly metaInfo: ComponentMetaInfo;
+export class HeaderComponent implements OnInit {
+    public metaInfo$: Observable<ComponentMetaInfo>;
+
+    constructor(
+        private readonly overviewService: OverviewService
+    ) {}
+
+    public ngOnInit(): void {
+        this.metaInfo$ = this.overviewService.metaInfo$;
+    }
 }

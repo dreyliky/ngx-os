@@ -1,0 +1,21 @@
+<ng-container *ngFor="let docService of (docServices$ | async)">
+    <element-api-header
+        [title]="docService.name"
+        [iconUrl]="'/assets/icons/dev/angular-service.svg'">
+    </element-api-header>
+
+    <div class="service">
+        <api-readme-info
+            *ngIf="docService.readme"
+            [readmeInfo]="docService.readme">
+        </api-readme-info>
+
+        <service-properties
+            [service]="docService">
+        </service-properties>
+
+        <service-methods
+            [service]="docService">
+        </service-methods>
+    </div>
+</ng-container>

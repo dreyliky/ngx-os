@@ -7,7 +7,6 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "explorer.compactFolders": false,
     "explorer.confirmDragAndDrop": false,
-    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
     "window.zoomLevel": 2,
     "workbench.sideBar.location": "left",
     "editor.codeActionsOnSave": {

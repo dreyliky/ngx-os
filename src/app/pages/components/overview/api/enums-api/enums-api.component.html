@@ -1,0 +1,17 @@
+<ng-container *ngFor="let docEnum of (docEnums$ | async)">
+    <element-api-header
+        [title]="docEnum.name"
+        [iconUrl]="'/assets/icons/dev/typescript.svg'">
+    </element-api-header>
+    
+    <div class="enum">
+        <div *ngFor="let property of docEnum.childs">
+            <os-text>
+                <b>{{ property.name }}</b>
+                <ng-container *ngIf="property.value">
+                    = {{ property.value }}
+                </ng-container>
+            </os-text>
+        </div>
+    </div>
+</ng-container>

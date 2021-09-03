@@ -4,12 +4,14 @@ import {
     ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
-    Input,
+    OnInit,
     QueryList,
     ViewChildren,
     ViewContainerRef
 } from '@angular/core';
 import { ComponentMetaInfo } from '@Doc/features/doc';
+import { Observable } from 'rxjs';
+import { OverviewService } from '../overview.service';
 
 @Component({
     selector: 'demo-examples',
@@ -17,10 +19,7 @@ import { ComponentMetaInfo } from '@Doc/features/doc';
     styleUrls: ['./examples.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExamplesComponent implements AfterViewInit {
-    @Input()
-    public readonly metaInfo: ComponentMetaInfo;
-
+export class ExamplesComponent implements OnInit, AfterViewInit {
     @ViewChildren('demoTemplate', { read: ViewContainerRef })
     private readonly demoTemplates: QueryList<ViewContainerRef>;
 
@@ -29,29 +28,35 @@ export class ExamplesComponent implements AfterViewInit {
         this.initDemoComponents();
     }
 
+    public metaInfo$: Observable<ComponentMetaInfo>;
+
     constructor(
+        private readonly overviewService: OverviewService,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
+
+    public ngOnInit(): void {
+        this.metaInfo$ = this.overviewService.metaInfo$;
+    }
 
     public ngAfterViewInit(): void {
         this.initDemoComponents();
     }
 
     private initDemoComponents(): void {
-        const demoComponentsMetaInfo = this.metaInfo.demoComponents;
+        const demoComponentsMetaInfo = this.overviewService.metaInfo.demoComponents;
 
         if (this.demoTemplates && demoComponentsMetaInfo) {
             demoComponentsMetaInfo.forEach((metaInfo, metaInfoIndex) => {
                 const demoTemplates = this.demoTemplates.toArray();
-                const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-                    metaInfo.component
-                );
+                const componentFactory = this.componentFactoryResolver.resolveComponentFactory(metaInfo.component);
 
                 demoTemplates[metaInfoIndex]?.clear();
                 demoTemplates[metaInfoIndex]?.createComponent(componentFactory);
-                this.changeDetector.detectChanges();
             });
+
+            this.changeDetector.detectChanges();
         }
     }
 }

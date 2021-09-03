@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { ApiComponent } from './api.component';
-import { ComponentApiModule } from './component-api';
-import { DirectiveApiModule } from './directive-api';
-import { EnumApiModule } from './enum-api';
-import { InterfaceApiModule } from './interface-api';
-import { ModuleApiModule } from './module-api';
-import { ServiceApiModule } from './service-api';
+import { ComponentsApiModule } from './components-api';
+import { DirectivesApiModule } from './directives-api';
+import { EnumsApiModule } from './enums-api';
+import { InterfacesApiModule } from './interfaces-api';
+import { ModulesApiModule } from './modules-api';
+import { ServicesApiModule } from './services-api';
 import { ApiSharedModule } from './shared';
-import { TypeApiModule } from './type-api';
+import { TypesApiModule } from './types-api';
 
 @NgModule({
     declarations: [
@@ -17,13 +17,13 @@ import { TypeApiModule } from './type-api';
     imports: [
         SharedModule,
         ApiSharedModule,
-        ComponentApiModule,
-        ServiceApiModule,
-        DirectiveApiModule,
-        ModuleApiModule,
-        InterfaceApiModule,
-        EnumApiModule,
-        TypeApiModule
+        ComponentsApiModule,
+        ServicesApiModule,
+        DirectivesApiModule,
+        ModulesApiModule,
+        InterfacesApiModule,
+        EnumsApiModule,
+        TypesApiModule
     ],
     exports: [
         ApiComponent

@@ -1,0 +1,16 @@
+.os-text-box::ng-deep {
+    .selector {
+        width: auto !important; 
+        margin-left: 10px;
+        margin-top: 4px;
+        white-space: nowrap;
+        color: rgb(var(--os-primary-color));
+        font-weight: bold;
+        user-select: all !important;
+    }
+}
+
+.component {
+    padding: 10px;
+    margin: 12px 0px;
+}

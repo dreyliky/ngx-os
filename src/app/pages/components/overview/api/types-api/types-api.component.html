@@ -1,0 +1,12 @@
+<ng-container *ngFor="let docType of (docTypes$ | async)">
+    <element-api-header
+        [title]="docType.name"
+        [iconUrl]="'/assets/icons/dev/typescript.svg'">
+    </element-api-header>
+    
+    <div class="type">
+        <os-text>
+            {{ docType.rawtype }}
+        </os-text>
+    </div>
+</ng-container>

@@ -1,0 +1,13 @@
+<ng-container *ngFor="let docModule of (docModules$ | async)">
+    <element-api-header
+        [title]="docModule.name"
+        [iconUrl]="'/assets/icons/dev/angular.svg'">
+    </element-api-header>
+    
+    <div class="module">
+        <api-readme-info
+            *ngIf="docModule.readme"
+            [readmeInfo]="docModule.readme">
+        </api-readme-info>
+    </div>
+</ng-container>

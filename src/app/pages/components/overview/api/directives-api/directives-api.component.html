@@ -1,0 +1,33 @@
+<ng-container *ngFor="let docDirective of (docDirectives$ | async)">
+    <element-api-header
+        [title]="docDirective.name"
+        [iconUrl]="'/assets/icons/dev/angular-directive.svg'">
+    </element-api-header>
+
+    <div class="directive">
+        <os-text-box
+            [styleClass]="'selector'"
+            [label]="'Selector'"
+            [size]="docDirective.selector.length"
+            [isReadonly]="true"
+            [value]="docDirective.selector">
+        </os-text-box>
+
+        <api-readme-info
+            *ngIf="docDirective.readme"
+            [readmeInfo]="docDirective.readme">
+        </api-readme-info>
+
+        <directive-properties
+            [directive]="docDirective">
+        </directive-properties>
+
+        <directive-events
+            [directive]="docDirective">
+        </directive-events>
+
+        <directive-methods
+            [directive]="docDirective">
+        </directive-methods>
+    </div>
+</ng-container>
