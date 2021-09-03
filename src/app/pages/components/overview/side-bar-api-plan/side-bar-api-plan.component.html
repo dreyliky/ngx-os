@@ -1,16 +1,25 @@
-<os-list>
+<os-list [scrollViewStyle]="{ overflowY: 'hidden' }">
+    <os-list-item
+        (osClick)="onScrollTopButtonClick()">
+        <div class="name">Scroll to top</div>
+    </os-list-item>
+
     <os-list-item
         *ngFor="let apiPlanItem of apiPlanItems"
         class="api-plan-item"
         [selected]="apiPlanItem.name === routeFragment"
         [value]="apiPlanItem"
-        (osSelected)="onApiPlanItemSelected(apiPlanItem)">
+        (osClick)="onApiPlanItemSelected(apiPlanItem)">
         <div class="icon-wrapper">
             <img
                 class="icon"
                 [attr.src]="apiPlanItem.iconUrl" />
         </div>
-        
-        {{ apiPlanItem.name }}
+
+        <div
+            [attr.title]="apiPlanItem.name"
+            class="name">
+            {{ apiPlanItem.name }}
+        </div>
     </os-list-item>
 </os-list>

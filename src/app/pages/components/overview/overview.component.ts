@@ -1,13 +1,13 @@
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component,
-    ElementRef,
+    Component, Inject,
     OnDestroy,
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentMetaInfoMap, OsComponentEnum } from '@Features/doc';
+import { ComponentOverviewLayoutComponent, COMPONENT_OVERVIEW_LAYOUT } from '@Layouts/containers';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { OverviewService } from './overview.service';
@@ -25,7 +25,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private routeParamsSubscription: Subscription;
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>,
+        @Inject(COMPONENT_OVERVIEW_LAYOUT) private layoutComponent: ComponentOverviewLayoutComponent,
         private readonly overviewService: OverviewService,
         private readonly changeDetector: ChangeDetectorRef,
         private readonly activatedRoute: ActivatedRoute
@@ -50,6 +50,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private initRouteParamsObserver(): void {
         this.routeParamsSubscription = this.activatedRoute.params
             .subscribe(() => {
+                this.layoutComponent.hostElement.scrollTo(0, 0);
                 this.initMetaInfo();
                 this.changeDetector.detectChanges();
             });

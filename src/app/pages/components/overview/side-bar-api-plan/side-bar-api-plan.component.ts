@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ComponentOverviewLayoutComponent, COMPONENT_OVERVIEW_LAYOUT } from '@Layouts/containers';
 import { OverviewService } from '../overview.service';
 
 interface ApiPlanItem {
@@ -18,6 +19,7 @@ export class SideBarApiPlanComponent implements OnInit {
     public routeFragment: string;
 
     constructor(
+        @Inject(COMPONENT_OVERVIEW_LAYOUT) private layoutComponent: ComponentOverviewLayoutComponent,
         private readonly overviewService: OverviewService,
         private readonly activatedRoute: ActivatedRoute,
         private readonly router: Router,
@@ -27,6 +29,11 @@ export class SideBarApiPlanComponent implements OnInit {
     public ngOnInit(): void {
         this.initMetaInfoObserver();
         this.initRouteFragmentObserver();
+    }
+
+    public onScrollTopButtonClick(): void {
+        this.layoutComponent.hostElement.scrollTo(0, 0);
+        this.router.navigate([], { fragment: null });
     }
 
     public onApiPlanItemSelected(apiPlanItem: ApiPlanItem): void {

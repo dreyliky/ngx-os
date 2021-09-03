@@ -7,20 +7,21 @@
     box-sizing: border-box;
 }
 
-.api-plan-item {
+.name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 11px;
 }
 
 .icon-wrapper {
-    height: 100%;
+    width: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 3px;
     box-sizing: border-box;
-    margin-right: 5px;
+    margin-right: 3px;
 }
 
 .icon {

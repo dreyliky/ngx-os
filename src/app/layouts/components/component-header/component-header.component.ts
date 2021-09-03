@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AppRouteEnum } from '@Core/enums';
-import { OsComponentEnum } from '@Features/doc';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -18,10 +17,6 @@ export class ComponentHeaderComponent {
 
     public get componentsPagePath(): string {
         return `/${AppRouteEnum.Components}`;
-    }
-
-    public get themePagePath(): string {
-        return `/${AppRouteEnum.Components}/${OsComponentEnum.Theme}`;
     }
 
     public get desktopPagePath(): string {
