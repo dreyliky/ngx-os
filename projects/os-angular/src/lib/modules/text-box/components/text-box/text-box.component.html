@@ -3,6 +3,7 @@
 </label>
 
 <input
+    #textbox
     class="os-element"
     [id]="id"
     [class]="styleClass"
@@ -15,14 +16,4 @@
     [type]="type"
     [size]="size"
     [value]="value"
-    (click)="osClick.emit($event)"
-    (dblclick)="osDblClick.emit($event)"
-    (mousedown)="osMouseDown.emit($event)"
-    (mousemove)="osMouseMove.emit($event)"
-    (mouseout)="osMouseOut.emit($event)"
-    (mouseover)="osMouseOver.emit($event)"
-    (mouseup)="osMouseUp.emit($event)"
-    (wheel)="osWheel.emit($event)"
-    (focus)="osFocus.emit($event)"
-    (blur)="osBlur.emit($event)"
     (change)="onTextboxValueChange($event)" />

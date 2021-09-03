@@ -1,11 +1,10 @@
-import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { IdGenerator } from '@lib-helpers';
-import { ClasslistManager } from '../css-classlist-manager';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { OsBaseComponent } from './element';
 
 @Component({
     template: ''
 })
-export abstract class OsBaseFieldComponent {
+export abstract class OsBaseFieldComponent extends OsBaseComponent {
     @Input()
     public isDisabled: boolean = false;
 
@@ -27,54 +26,6 @@ export abstract class OsBaseFieldComponent {
     @Input()
     public value: string = '';
 
-    /** Object with css styles which will applied for target internal element */
-    @Input()
-    public style: object;
-
-    /** String, Array of strings or object with classlist */
-    @Input()
-    public set styleClass(classlist: string | string[] | object) {
-        if (classlist) {
-            this.classlistManager.apply(classlist);
-        }
-    }
-
-    /** Id of html element. By default it generates randomly */
-    @Input()
-    public id: string = IdGenerator.generate('os-element');
-
-    /** Target internal element click event */
-    @Output()
-    public osClick: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element dblclick event */
-    @Output()
-    public osDblClick: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element mousedown event */
-    @Output()
-    public osMouseDown: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element mousemove event */
-    @Output()
-    public osMouseMove: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element mouseout event */
-    @Output()
-    public osMouseOut: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element mouseover event */
-    @Output()
-    public osMouseOver: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element mouseup event */
-    @Output()
-    public osMouseUp: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element wheel event> */
-    @Output()
-    public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
-
     /** The handler will be fired on the host element in response to an event. */
     @Output()
     public osFocus: EventEmitter<FocusEvent> = new EventEmitter();
@@ -82,15 +33,6 @@ export abstract class OsBaseFieldComponent {
     /** The handler will be fired on the host element in response to an event. */
     @Output()
     public osBlur: EventEmitter<FocusEvent> = new EventEmitter();
-
-    protected readonly classlistManager: ClasslistManager;
-
-    constructor(
-        protected readonly elementRef: ElementRef<HTMLElement>
-    ) {
-        this.classlistManager = new ClasslistManager();
-        this.initFieldEventObservers(this.elementRef.nativeElement);
-    }
 
     /** The handler will be fired on the host element in response to an event. */
     protected onFocus(event: FocusEvent): void {
@@ -102,8 +44,10 @@ export abstract class OsBaseFieldComponent {
         this.osBlur.emit(event);
     }
 
-    private initFieldEventObservers(field: HTMLElement): void {
-        field.onfocus = (event: MouseEvent) => this.onFocus(event);
-        field.onblur = (event: MouseEvent) => this.onBlur(event);
+    protected initElementEventObservers(element: HTMLElement): void {
+        element.onfocus = (event: MouseEvent) => this.onFocus(event);
+        element.onblur = (event: MouseEvent) => this.onBlur(event);
+
+        super.initElementEventObservers(element);
     }
 }

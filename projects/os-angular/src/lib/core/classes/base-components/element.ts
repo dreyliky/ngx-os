@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { IdGenerator } from '@lib-helpers';
 import { ClasslistManager } from '../css-classlist-manager';
 
@@ -64,11 +64,8 @@ export abstract class OsBaseComponent {
     protected readonly baseHostClassName = 'os-element';
     protected readonly classlistManager = new ClasslistManager();
 
-    constructor(
-        protected readonly elementRef: ElementRef<HTMLElement>
-    ) {
+    constructor() {
         this.classlistManager.add(this.baseHostClassName);
-        this.initHostEventObservers(this.elementRef.nativeElement);
     }
 
     /** The handler will be fired on the host element in response to an event. */
@@ -111,14 +108,14 @@ export abstract class OsBaseComponent {
         this.osWheel.emit(event);
     }
 
-    private initHostEventObservers(host: HTMLElement): void {
-        host.onclick = (event: PointerEvent) => this.onClick(event);
-        host.ondblclick = (event: MouseEvent) => this.onDblClick(event);
-        host.onmousedown = (event: MouseEvent) => this.onMouseDown(event);
-        host.onmouseup = (event: MouseEvent) => this.onMouseUp(event);
-        host.onmousemove = (event: MouseEvent) => this.onMouseMove(event);
-        host.onmouseout = (event: MouseEvent) => this.onMouseOut(event);
-        host.onmouseover = (event: MouseEvent) => this.onMouseOver(event);
-        host.onwheel = (event: WheelEvent) => this.onWheel(event);
+    protected initElementEventObservers(element: HTMLElement): void {
+        element.onclick = (event: PointerEvent) => this.onClick(event);
+        element.ondblclick = (event: MouseEvent) => this.onDblClick(event);
+        element.onmousedown = (event: MouseEvent) => this.onMouseDown(event);
+        element.onmouseup = (event: MouseEvent) => this.onMouseUp(event);
+        element.onmousemove = (event: MouseEvent) => this.onMouseMove(event);
+        element.onmouseout = (event: MouseEvent) => this.onMouseOut(event);
+        element.onmouseover = (event: MouseEvent) => this.onMouseOver(event);
+        element.onwheel = (event: WheelEvent) => this.onWheel(event);
     }
 }

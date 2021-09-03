@@ -1,11 +1,14 @@
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef, Input,
-    Output
+    forwardRef,
+    Input,
+    Output,
+    ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseComponent } from '@lib-core';
@@ -23,7 +26,7 @@ import { SliderValueChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class SliderComponent extends OsBaseComponent implements ControlValueAccessor {
+export class SliderComponent extends OsBaseComponent implements AfterViewInit, ControlValueAccessor {
     @Input()
     public label: string;
 
@@ -48,14 +51,20 @@ export class SliderComponent extends OsBaseComponent implements ControlValueAcce
     @Output()
     public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
 
+    @ViewChild('slider')
+    private readonly sliderElementRef: ElementRef<HTMLInputElement>;
+
     public onChange: (value: number) => any;
     public onTouched: () => any;
 
     constructor(
-        elementRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(elementRef);
+        super();
+    }
+
+    public ngAfterViewInit(): void {
+        this.initElementEventObservers(this.sliderElementRef.nativeElement);
     }
 
     public onSliderValueChange(event: Event): void {

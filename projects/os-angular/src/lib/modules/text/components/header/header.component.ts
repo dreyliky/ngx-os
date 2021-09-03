@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 
 @Component({
@@ -6,7 +6,7 @@ import { OsBaseComponent } from '@lib-core';
     templateUrl: './header.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent extends OsBaseComponent {
+export class HeaderComponent extends OsBaseComponent implements OnInit {
     @Input()
     public set size(newSize: number) {
         this.validateSize(newSize);
@@ -26,6 +26,16 @@ export class HeaderComponent extends OsBaseComponent {
     private readonly maxSize: number = 6;
 
     private _size: number = this.minSize;
+
+    constructor(
+        private readonly hostElementRef: ElementRef<HTMLElement>
+    ) {
+        super();
+    }
+
+    public ngOnInit(): void {
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
+    }
 
     private validateSize(value: number): void {
         if (typeof(value) !== 'number') {

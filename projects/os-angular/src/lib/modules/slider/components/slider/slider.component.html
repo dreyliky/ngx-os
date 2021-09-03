@@ -8,24 +8,13 @@
 </label>
 
 <input
+    #slider
     type="range"
-    class="os-element os-slider"
-    [class]="styleClass"
-    [id]="id"
-    [ngStyle]="style"
     [disabled]="isDisabled"
     [min]="min"
     [max]="max"
     [value]="value"
-    (change)="onSliderValueChange($event)"
-    (click)="osClick.emit($event)"
-    (dblclick)="osDblClick.emit($event)"
-    (mousedown)="osMouseDown.emit($event)"
-    (mousemove)="osMouseMove.emit($event)"
-    (mouseout)="osMouseOut.emit($event)"
-    (mouseover)="osMouseOver.emit($event)"
-    (mouseup)="osMouseUp.emit($event)"
-    (wheel)="osWheel.emit($event)" />
+    (change)="onSliderValueChange($event)" />
 
 <label class="os-element os-max-val-label">
     {{ maxValueLabel }}

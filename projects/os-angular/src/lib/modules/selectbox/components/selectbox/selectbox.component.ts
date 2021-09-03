@@ -82,15 +82,15 @@ export class SelectboxComponent<T>
     private _optionsSelectedEventSubscriptions: Subscription[];
 
     constructor(
-        elementRef: ElementRef<HTMLElement>,
-        private readonly selectboxElement: ElementRef,
+        private readonly hostElementRef: ElementRef,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(elementRef);
+        super();
     }
 
     public ngOnInit(): void {
         this.classlistManager.add('os-selectbox');
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
     public ngOnDestroy(): void {
@@ -100,7 +100,7 @@ export class SelectboxComponent<T>
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
         if (this.isOpened) {
-            const selectboxElem = this.selectboxElement.nativeElement;
+            const selectboxElem = this.hostElementRef.nativeElement;
             const isClickOutsideWindow = OutsideClick.checkForElement(selectboxElem, event);
 
             if (isClickOutsideWindow) {

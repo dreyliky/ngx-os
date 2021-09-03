@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 
 @Component({
@@ -23,7 +23,14 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
         return (this.verticalScrollEnabled) ? 'auto' : 'hidden';
     }
 
+    constructor(
+        private readonly hostElementRef: ElementRef<HTMLElement>
+    ) {
+        super();
+    }
+
     public ngOnInit(): void {
         this.classlistManager.add('os-scroll-view');
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

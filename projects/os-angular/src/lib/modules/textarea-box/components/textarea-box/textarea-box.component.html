@@ -3,6 +3,7 @@
 </label>
 
 <textarea
+    #textarea
     class="os-element"
     [class]="styleClass"
     [id]="id"
@@ -13,15 +14,5 @@
     [rows]="rows"
     [cols]="cols"
     [value]="value"
-    (click)="osClick.emit($event)"
-    (dblclick)="osDblClick.emit($event)"
-    (mousedown)="osMouseDown.emit($event)"
-    (mousemove)="osMouseMove.emit($event)"
-    (mouseout)="osMouseOut.emit($event)"
-    (mouseover)="osMouseOver.emit($event)"
-    (mouseup)="osMouseUp.emit($event)"
-    (wheel)="osWheel.emit($event)"
-    (focus)="osFocus.emit($event)"
-    (blur)="osBlur.emit($event)"
     (change)="onTextareaBoxValueChange($event)">
 </textarea>

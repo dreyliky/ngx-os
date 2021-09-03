@@ -6,6 +6,7 @@ import {
     forwardRef,
     HostBinding,
     Input,
+    OnInit,
     Output,
     ViewChild
 } from '@angular/core';
@@ -25,7 +26,7 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class RadioButtonComponent<T> extends OsBaseComponent implements ControlValueAccessor {
+export class RadioButtonComponent<T> extends OsBaseComponent implements OnInit, ControlValueAccessor {
     @Input()
     public readonly label = '';
 
@@ -46,11 +47,21 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
     @Output()
     public osChange = new EventEmitter<RadioButtonValueChangeEvent<T>>();
 
-    @ViewChild('radioElement')
+    @ViewChild('radioButton')
     private readonly radioElementRef: ElementRef<HTMLInputElement>;
 
     public onChange: (value: T) => any;
     public onTouched: () => any;
+
+    constructor(
+        private readonly hostElementRef: ElementRef<HTMLElement>
+    ) {
+        super();
+    }
+
+    public ngOnInit(): void {
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
+    }
 
     public onRadioButtonChange(event: Event): void {
         this.onChange?.(this.value);
@@ -73,7 +84,6 @@ export class RadioButtonComponent<T> extends OsBaseComponent implements ControlV
 
     protected onClick(event: PointerEvent): void {
         this.radioElementRef.nativeElement.click();
-
         super.onClick(event);
     }
 }

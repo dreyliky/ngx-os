@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostBinding,
+    Input,
+    OnInit,
+    Output
+} from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 
 @Component({
@@ -66,7 +75,14 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
         return (this.isTitleBarVisible) ? '' : 'none';
     }
 
+    constructor(
+        private readonly hostElementRef: ElementRef<HTMLElement>
+    ) {
+        super();
+    }
+
     public ngOnInit(): void {
         this.classlistManager.add('os-window');
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

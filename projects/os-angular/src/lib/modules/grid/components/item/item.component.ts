@@ -33,18 +33,19 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     private _selected = false;
 
     constructor(
-        elementRef: ElementRef<HTMLElement>
+        private readonly hostElementRef: ElementRef<HTMLElement>
     ) {
-        super(elementRef);
+        super();
     }
 
     public ngOnInit(): void {
         this.classlistManager.add('os-grid-item');
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
-        const hostElement = this.elementRef.nativeElement;
+        const hostElement = this.hostElementRef.nativeElement;
         const isClickOutsideWindow = OutsideClick.checkForElement(hostElement, event);
 
         if (isClickOutsideWindow && this.selected) {

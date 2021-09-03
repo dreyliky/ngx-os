@@ -1,6 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     EventEmitter,
     Input,
     OnInit,
@@ -37,8 +38,15 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
 
     private _selected = false;
 
+    constructor(
+        private readonly hostElementRef: ElementRef<HTMLElement>
+    ) {
+        super();
+    }
+
     public ngOnInit(): void {
         this.classlistManager.add('os-option');
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
     public onListItemClick(event: MouseEvent): void {

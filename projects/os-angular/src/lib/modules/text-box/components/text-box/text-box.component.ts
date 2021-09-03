@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -7,7 +8,8 @@ import {
     forwardRef,
     Input,
     OnInit,
-    Output
+    Output,
+    ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '@lib-core';
@@ -26,7 +28,7 @@ import { TextboxType } from '../../types';
         }
     ]
 })
-export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, ControlValueAccessor {
+export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit, ControlValueAccessor {
     @Input()
     public type: TextboxType = 'text';
 
@@ -36,6 +38,9 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Co
     @Output()
     public osChange: EventEmitter<TextBoxChangeEvent> = new EventEmitter();
 
+    @ViewChild('textbox')
+    private readonly fieldElementRef: ElementRef<HTMLInputElement>;
+
     public get inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
@@ -44,14 +49,17 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Co
     public onTouched: () => any;
 
     constructor(
-        elementRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(elementRef);
+        super();
     }
 
     public ngOnInit(): void {
         this.classlistManager.add('os-text-box');
+    }
+
+    public ngAfterViewInit(): void {
+        this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
     public onTextboxValueChange(event: Event): void {

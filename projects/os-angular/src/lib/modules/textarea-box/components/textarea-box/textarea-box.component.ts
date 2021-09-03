@@ -1,12 +1,13 @@
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
     forwardRef,
-    Input,
-    Output
+    Input, Output,
+    ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '@lib-core';
@@ -24,7 +25,7 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class TextareaBoxComponent extends OsBaseFieldComponent implements ControlValueAccessor {
+export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterViewInit, ControlValueAccessor {
     @Input()
     public rows: number;
 
@@ -34,14 +35,20 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements Contro
     @Output()
     public osChange: EventEmitter<TextareaBoxChangeEvent> = new EventEmitter();
 
+    @ViewChild('textarea')
+    private readonly fieldElementRef: ElementRef<HTMLInputElement>;
+
     public onChange: (value: string) => any;
     public onTouched: () => any;
 
     constructor(
-        elementRef: ElementRef<HTMLElement>,
-        private changeDetector: ChangeDetectorRef
+        private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(elementRef);
+        super();
+    }
+
+    public ngAfterViewInit(): void {
+        this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
     public onTextareaBoxValueChange(event: Event): void {

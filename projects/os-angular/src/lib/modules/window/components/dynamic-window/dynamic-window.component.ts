@@ -146,7 +146,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private initDynamicStateManager(): void {
         this.dynamicStateManager.initOpeningState();
         this.dynamicStateManager.registerCallback(() => {
-            this.changeDetector.detectChanges();
+            this.changeDetector.markForCheck();
         });
     }
 
@@ -157,7 +157,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             this.zIndex += this.alwaysOnTopZIndex;
         }
 
-        this.changeDetector.detectChanges();
+        this.changeDetector.markForCheck();
     }
 
     private loadChildComponent(componentType: Type<any>): void {
@@ -209,7 +209,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             .subscribe(() => {
                 this.dynamicStateManager.initClosingState();
 
-                this.changeDetector.detectChanges();
+                this.changeDetector.markForCheck();
             });
 
         this.subscriptions.push(subscription);
@@ -225,7 +225,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
                     this.dynamicStateManager.initShowingState();
                 }
 
-                this.changeDetector.detectChanges();
+                this.changeDetector.markForCheck();
             });
 
         this.subscriptions.push(subscription);
@@ -236,7 +236,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             .subscribe((updatedConfig) => {
                 this.config = updatedConfig;
 
-                this.changeDetector.detectChanges();
+                this.changeDetector.markForCheck();
             });
 
         this.subscriptions.push(subscription);

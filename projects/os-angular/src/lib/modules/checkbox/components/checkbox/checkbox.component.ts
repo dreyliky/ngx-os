@@ -5,7 +5,8 @@ import {
     ElementRef,
     EventEmitter,
     forwardRef,
-    HostBinding, Input,
+    HostBinding,
+    Input,
     OnInit,
     Output,
     ViewChild
@@ -46,21 +47,22 @@ export class CheckboxComponent extends OsBaseComponent implements OnInit, Contro
     @Output()
     public checkedChange = new EventEmitter<boolean>();
 
-    @ViewChild('checkboxElement')
+    @ViewChild('checkbox')
     private readonly checkboxElementRef: ElementRef<HTMLInputElement>;
 
     public onChange: (value: boolean) => any;
     public onTouched: () => any;
 
     constructor(
-        elementRef: ElementRef<HTMLElement>,
+        private readonly hostElementRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(elementRef);
+        super();
     }
 
     public ngOnInit(): void {
         this.classlistManager.add('os-checkbox');
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
     public onCheckboxValueChange(event: Event): void {
@@ -87,7 +89,6 @@ export class CheckboxComponent extends OsBaseComponent implements OnInit, Contro
 
     protected onClick(event: PointerEvent): void {
         this.checkboxElementRef.nativeElement.click();
-
         super.onClick(event);
     }
 }

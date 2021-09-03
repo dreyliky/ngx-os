@@ -1,6 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     EventEmitter,
     Input,
     OnInit,
@@ -34,8 +35,15 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
 
     private _selected = false;
 
+    constructor(
+        private readonly hostElementRef: ElementRef<HTMLElement>
+    ) {
+        super();
+    }
+
     public ngOnInit(): void {
         this.classlistManager.add('os-list-item');
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
     protected onClick(event: PointerEvent): void {

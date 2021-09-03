@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 
 @Component({
@@ -16,7 +16,14 @@ export class TitleBarComponent extends OsBaseComponent implements OnInit {
     @Output()
     public osCloseButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
+    constructor(
+        private readonly hostElementRef: ElementRef<HTMLElement>
+    ) {
+        super();
+    }
+
     public ngOnInit(): void {
         this.classlistManager.add('os-title-bar');
+        this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }
