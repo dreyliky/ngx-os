@@ -1,27 +1,27 @@
 <os-header
-    *ngIf="inputs.length"
+    *ngIf="properties.length"
     class="title"
     [size]="5">
     Properties
 </os-header>
 
 <table class="content">
-    <tr *ngFor="let inputProp of inputs">
+    <tr *ngFor="let property of properties">
         <td class="property-name-col">
-            <os-text>{{ inputProp.name }}</os-text>
+            <os-text>{{ property.name }}</os-text>
         </td>
 
         <td>
             <div>
-                <os-text>Type: {{ inputProp.type }}</os-text>
+                <os-text>Type: {{ property.type }}</os-text>
             </div>
 
             <div>
-                <os-text>Default: {{ inputProp.defaultValue || 'undefined' }}</os-text>
+                <os-text>Default: {{ property.defaultValue || 'undefined' }}</os-text>
             </div>
 
             <os-text>
-                <span [innerHTML]="inputProp?.description"></span>
+                <span [innerHTML]="property?.description"></span>
             </os-text>
         </td>
     </tr>

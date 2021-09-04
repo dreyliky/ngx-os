@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { DocComponent, InputsClass, LibDocService } from '@Features/doc';
+import { DocDirective, InputsClass, LibDocService } from '@Features/doc';
 
 @Component({
     selector: 'directive-properties',
@@ -12,9 +12,9 @@ import { DocComponent, InputsClass, LibDocService } from '@Features/doc';
 })
 export class PropertiesComponent implements OnChanges {
     @Input()
-    public readonly directive: DocComponent;
+    public readonly directive: DocDirective;
 
-    public inputs: InputsClass[];
+    public properties: InputsClass[];
 
     constructor(
         private readonly docService: LibDocService
@@ -22,7 +22,7 @@ export class PropertiesComponent implements OnChanges {
 
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.directive.previousValue !== changes.directive.currentValue) {
-            this.inputs = this.docService.getUniqueDocComponentInputs(this.directive);
+            this.properties = this.docService.getDocDirectiveProperties(this.directive);
         }
     }
 }

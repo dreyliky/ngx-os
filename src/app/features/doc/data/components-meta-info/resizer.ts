@@ -15,6 +15,7 @@ export const RESIZER_META_INFO: ComponentMetaInfo = {
         OsResizableDirective
     ],
     libInterfaces: [
+        'ResizerParams',
         'ResizeInfo'
     ],
     libEnums: [

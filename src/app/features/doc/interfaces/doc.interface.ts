@@ -104,7 +104,7 @@ export interface DocComponent {
     viewProviders: any[];
     inputsClass: InputsClass[];
     outputsClass: OutputsClass[];
-    propertiesClass: (PropertiesClass | PropertiesClass2 | Property3 | Property2)[];
+    propertiesClass: DocClassProperty[];
     methodsClass: MethodsClass[];
     hostBindings: any[];
     hostListeners: HostListener[];
@@ -119,12 +119,7 @@ export interface DocComponent {
     extends?: string;
     implements: string[];
     templateData: string;
-    accessors?: Accessors4;
-}
-
-interface Accessors4 {
-    size?: DraggerConfig;
-    data?: DraggerConfig;
+    accessors?: DocAccessors;
 }
 
 interface StyleUrlsDatum {
@@ -164,17 +159,7 @@ interface Arg4 {
     defaultValue?: string;
 }
 
-interface PropertiesClass2 {
-    name: string;
-    type: string;
-    optional: boolean;
-    description: string;
-    line: number;
-    decorators: Decorator[];
-    modifierKind: number[];
-}
-
-interface PropertiesClass {
+export interface DocClassProperty {
     name: string;
     defaultValue?: string;
     type: string;
@@ -183,6 +168,7 @@ interface PropertiesClass {
     line: number;
     modifierKind: number[];
     decorators?: Decorator[];
+    inheritance?: Inheritance;
 }
 
 interface Decorator {
@@ -203,34 +189,32 @@ export interface DocDirective {
     outputsClass: OutputsClass[];
     hostBindings: any[];
     hostListeners: any[];
-    propertiesClass: Properties4[];
+    propertiesClass: DocClassProperty[];
     methodsClass: (Methods2 | MethodsClass2)[];
     constructorObj: ConstructorObj2;
     readme?: string;
     implements?: string[];
-    accessors?: Accessors3;
+    accessors?: DocAccessors;
 }
 
-interface Accessors3 {
-    draggerConfig?: DraggerConfig;
-    resizerConfig?: DraggerConfig;
-    resizableElement?: ActiveWindowId;
-    resizerElement?: ActiveWindowId;
+export interface DocAccessors {
+    [key: string]: DocAccessorValue;
 }
 
-interface DraggerConfig {
+interface DocAccessorValue {
     name: string;
-    setSignature: SetSignature;
-    getSignature: GetSignature;
+    setSignature?: DocSetSignature;
+    getSignature?: DocGetSignature;
 }
 
-interface SetSignature {
+export interface DocSetSignature {
     name: string;
     type: string;
     args: Arg[];
     returnType: string;
     line: number;
     jsdoctags: Jsdoctag[];
+    description?: string;
 }
 
 interface ConstructorObj2 {
@@ -275,7 +259,7 @@ interface Class {
     file: string;
     type: string;
     sourceCode: string;
-    properties: (Property3 | Property2 | Properties3 | Properties4)[];
+    properties: DocClassProperty[];
     methods: (Method2 | Methods2 | Methods3 | Methods4 | Methods5 | Methods6)[];
     indexSignatures: any[];
     extends?: string;
@@ -285,19 +269,7 @@ interface Class {
     hostListeners: any[];
     constructorObj?: ConstructorObj;
     implements?: string[];
-    accessors?: Accessors2;
-}
-
-interface Accessors2 {
-    'isHidden$': ActiveWindowId;
-    isHidden: ActiveWindowId;
-    isFullscreen: ActiveWindowId;
-    'isFullscreen$': ActiveWindowId;
-    'afterClosed$': ActiveWindowId;
-    'config$': ActiveWindowId;
-    config: ActiveWindowId;
-    windowElement: ActiveWindowId;
-    'windowElement$': ActiveWindowId;
+    accessors?: DocAccessors;
 }
 
 interface Methods6 {
@@ -399,68 +371,29 @@ interface Arg2 {
     optional?: boolean;
 }
 
-interface Properties4 {
-    name: string;
-    defaultValue?: string;
-    type: string;
-    optional: boolean;
-    description: string;
-    line: number;
-    modifierKind: number[];
-}
-
-interface Properties3 {
-    name: string;
-    type: string;
-    optional: boolean;
-    description: string;
-    line: number;
-    modifierKind: number[];
-    inheritance: Inheritance;
-}
-
 interface Inheritance {
     file: string;
-}
-
-interface Property3 {
-    name: string;
-    type: string;
-    optional: boolean;
-    description: string;
-    line: number;
-    modifierKind: number[];
 }
 
 export interface DocInjectable {
     name: string;
     id: string;
     file: string;
-    properties: Property2[];
+    properties: DocClassProperty[];
     methods: Method[];
     readme?: string;
     description: string;
     sourceCode: string;
     constructorObj: ConstructorObj;
-    accessors?: Accessors;
+    accessors?: DocAccessors;
     type: string;
 }
 
-interface Accessors {
-    'activeWindowId$': ActiveWindowId;
-    'windowIdsOrder$': ActiveWindowId;
-    'windowDocComponentsRef$': ActiveWindowId;
-}
-
-interface ActiveWindowId {
-    name: string;
-    getSignature: GetSignature;
-}
-
-interface GetSignature {
+export interface DocGetSignature {
     name: string;
     type: string;
     returnType: string;
+    description?: string;
     line: number;
 }
 
@@ -496,16 +429,6 @@ interface TagName {
 interface Arg {
     name: string;
     type: string;
-}
-
-export interface Property2 {
-    name: string;
-    defaultValue: string;
-    type: string;
-    optional: boolean;
-    description: string;
-    line: number;
-    modifierKind: number[];
 }
 
 export interface DocInterface {

@@ -1,14 +1,14 @@
 import { Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ResizerConfig, ResizerFactory } from '../classes';
 import { ResizerEnum } from '../enums';
-import { ResizeInfo } from '../interfaces';
+import { ResizeInfo, ResizerParams } from '../interfaces';
 
 @Directive({
     selector: '[os-resizable]'
 })
 export class OsResizableDirective implements OnInit, OnDestroy {
     @Input('os-resizable')
-    public set resizerConfig(config: ResizerConfig) {
+    public set resizerConfig(config: ResizerParams) {
         this._resizerConfig = { ...this._resizerConfig, ...config };
 
         this.initResizableElement();
@@ -16,7 +16,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
         this.updateResizersActivity();
     }
 
-    public get resizerConfig(): ResizerConfig {
+    public get resizerConfig(): ResizerParams {
         return this._resizerConfig;
     }
 

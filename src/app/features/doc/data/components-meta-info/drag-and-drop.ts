@@ -15,6 +15,7 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
         OsDraggableDirective
     ],
     libInterfaces: [
+        'DraggerParams',
         'DragInfo'
     ],
     libEnums: [

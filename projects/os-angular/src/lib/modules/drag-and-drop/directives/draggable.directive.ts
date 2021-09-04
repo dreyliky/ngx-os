@@ -1,20 +1,20 @@
 import { Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { DraggerConfig } from '../classes';
-import { DragInfo } from '../interfaces/drag-info.interface';
+import { DraggerParams, DragInfo } from '../interfaces';
 
 @Directive({
     selector: '[os-draggable]'
 })
 export class OsDraggableDirective implements OnDestroy {
     @Input('os-draggable')
-    public set draggerConfig(config: DraggerConfig) {
+    public set draggerConfig(config: DraggerParams) {
         this._draggerConfig = { ...this._draggerConfig, ...config };
 
         this.initMovableElement();
         this.initDraggableElement();
     }
 
-    public get draggerConfig(): DraggerConfig {
+    public get draggerConfig(): DraggerParams {
         return this._draggerConfig;
     }
 

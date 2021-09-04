@@ -1,0 +1,23 @@
+<ng-container *ngIf="getters?.length">
+    <os-header
+        class="title"
+        [size]="5">
+        Getters
+    </os-header>
+
+    <table class="content">
+        <tr *ngFor="let getter of getters">
+            <td class="property-name-col">
+                <os-text>{{ getter.name }}</os-text>
+            </td>
+    
+            <td>
+                <div>
+                    <os-text>Type: {{ getter.returnType }}</os-text>
+                </div>
+    
+                <os-text [innerHTML]="getter?.description"></os-text>
+            </td>
+        </tr>
+    </table>    
+</ng-container>
