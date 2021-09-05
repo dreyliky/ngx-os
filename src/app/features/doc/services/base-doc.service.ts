@@ -3,20 +3,11 @@ import {
     DocComponent,
     DocDirective,
     DocInjectable,
-    InputsClass,
-    Method,
-    MethodsClass
+    InputsClass
 } from '../interfaces';
 
 export abstract class BaseDocService {
     protected readonly publicModifierId: number = 122;
-
-    protected readonly forbiddenMethodStartsWithPhrase: string[] = [
-        'ng',
-        'on',
-        'registerOn',
-        'writeValue'
-    ];
 
     public getUniqueDocComponentInputs(docComponent: DocComponent): InputsClass[] {
         const inputNames = docComponent.inputsClass.map((input) => input.name);
@@ -35,21 +26,5 @@ export abstract class BaseDocService {
 
         return docInjectable.properties
             .filter((input, index) => propertieNames.indexOf(input.name) === index);
-    }
-
-    public getDocComponentActualPublicMethods(docComponent: DocComponent): MethodsClass[] {
-        return docComponent.methodsClass
-            .filter((method) => {
-                return (
-                    method.modifierKind.includes(this.publicModifierId) &&
-                    this.forbiddenMethodStartsWithPhrase
-                        .every((phrase) => !method.name.startsWith(phrase))
-                );
-            });
-    }
-
-    public getDocInjectablePublicMethods(docInjectable: DocInjectable): Method[] {
-        return docInjectable.methods
-            .filter((method) => method.modifierKind.includes(this.publicModifierId));
     }
 }
