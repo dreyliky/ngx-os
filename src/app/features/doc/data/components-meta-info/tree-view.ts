@@ -6,7 +6,7 @@ import { TreeViewComponent, TreeViewModule } from '@lib-modules';
 export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
     name: 'Tree View',
     type: OsComponentEnum.TreeView,
-    shortInfo: 'Tree view component short info',
+    shortInfo: 'Provides a tree that can be used to display hierarchy data.',
     imageUrl: '/assets/icons/components/tree-view.png',
     libModules: [
         TreeViewModule

@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const RADIO_BUTTON_META_INFO: ComponentMetaInfo = {
     name: 'Radio Button',
     type: OsComponentEnum.RadioButton,
-    shortInfo: 'Radio button component short info',
+    shortInfo: 'Provides the same functionality as a native <input type="radio">.',
     imageUrl: '/assets/icons/components/radio-button.png',
     libModules: [
         RadioButtonModule

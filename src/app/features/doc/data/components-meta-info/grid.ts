@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const GRID_META_INFO: ComponentMetaInfo = {
     name: 'Grid',
     type: OsComponentEnum.Grid,
-    shortInfo: 'Grid component short info',
+    shortInfo: 'Provides grid layout functionality with different views.',
     imageUrl: '/assets/icons/components/grid.png',
     libModules: [
         GridModule

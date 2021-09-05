@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const GROUP_BOX_META_INFO: ComponentMetaInfo = {
     name: 'Group Box',
     type: OsComponentEnum.GroupBox,
-    shortInfo: 'Group Box component short info',
+    shortInfo: 'Allows group a bunch of elements at one block.',
     imageUrl: '/assets/icons/components/group-box.png',
     libModules: [
         GroupBoxModule

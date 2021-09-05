@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
     name: 'Drag and Drop',
     type: OsComponentEnum.DragAndDrop,
-    shortInfo: 'Drag and Drop component short info',
+    shortInfo: 'Provides different features for dragging functionality.',
     imageUrl: '/assets/icons/components/drag-and-drop.png',
     libModules: [
         DragAndDropModule

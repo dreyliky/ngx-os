@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const SELECTBOX_META_INFO: ComponentMetaInfo = {
     name: 'Selectbox',
     type: OsComponentEnum.Selectbox,
-    shortInfo: 'Selectbox component short info',
+    shortInfo: 'Provides functional for selecting a value from a set of options, similar to the native <select>.',
     imageUrl: '/assets/icons/components/selectbox.png',
     libModules: [
         SelectboxModule

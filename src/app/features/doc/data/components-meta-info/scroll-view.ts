@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const SCROLL_VIEW_META_INFO: ComponentMetaInfo = {
     name: 'Scroll View',
     type: OsComponentEnum.ScrollView,
-    shortInfo: 'Scroll view component short info',
+    shortInfo: 'Provides container with scroll bars.',
     imageUrl: '/assets/icons/components/scroll-view.png',
     libModules: [
         ScrollViewModule

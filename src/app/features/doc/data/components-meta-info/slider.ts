@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const SLIDER_META_INFO: ComponentMetaInfo = {
     name: 'Slider',
     type: OsComponentEnum.Slider,
-    shortInfo: 'Slider component short info',
+    shortInfo: 'Provides the same functionality as a native <input type="slider">.',
     imageUrl: '/assets/icons/components/slider.png',
     libModules: [
         SliderModule

@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const TAB_GROUP_META_INFO: ComponentMetaInfo = {
     name: 'Tab Group',
     type: OsComponentEnum.TabGroup,
-    shortInfo: 'Tab Group component short info',
+    shortInfo: 'Allows organizing content into separate views separated by tabs.',
     imageUrl: '/assets/icons/components/tab-group.png',
     libModules: [
         TabGroupModule

@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const RESIZER_META_INFO: ComponentMetaInfo = {
     name: 'Resizer',
     type: OsComponentEnum.Resizer,
-    shortInfo: 'Resizer',
+    shortInfo: 'Provides different features for resizing functionality.',
     imageUrl: '/assets/icons/components/resizer.png',
     libModules: [
         ResizerModule

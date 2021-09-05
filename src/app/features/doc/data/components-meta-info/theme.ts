@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const THEME_META_INFO: ComponentMetaInfo = {
     name: 'Theme',
     type: OsComponentEnum.Theme,
-    shortInfo: 'Theme short info',
+    shortInfo: 'Provides functionality to manipulate different themes and accent colors.',
     imageUrl: '/assets/icons/components/theme.png',
     libServices: [
         ThemeService

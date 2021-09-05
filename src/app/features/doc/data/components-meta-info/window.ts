@@ -11,7 +11,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const WINDOW_META_INFO: ComponentMetaInfo = {
     name: 'Window',
     type: OsComponentEnum.Window,
-    shortInfo: 'Window component short info',
+    shortInfo: 'Provides window functionality.',
     imageUrl: '/assets/icons/components/window.png',
     libModules: [
         WindowModule
