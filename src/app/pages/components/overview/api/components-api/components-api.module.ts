@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { ApiSharedModule } from '../shared';
 import { ComponentsApiComponent } from './components-api.component';
-import { EventsComponent } from './events';
 import { MethodsComponent } from './methods';
 import { PropertiesComponent } from './properties';
 
@@ -10,8 +9,7 @@ import { PropertiesComponent } from './properties';
     declarations: [
         ComponentsApiComponent,
         PropertiesComponent,
-        MethodsComponent,
-        EventsComponent
+        MethodsComponent
     ],
     imports: [
         SharedModule,

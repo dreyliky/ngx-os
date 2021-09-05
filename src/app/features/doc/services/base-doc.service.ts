@@ -37,13 +37,6 @@ export abstract class BaseDocService {
             .filter((input, index) => propertieNames.indexOf(input.name) === index);
     }
 
-    public getUniqueDocComponentOutputs(docComponent: DocComponent): any {
-        const outputNames = docComponent.outputsClass.map((output) => output.name);
-
-        return docComponent.outputsClass
-            .filter((output, index) => outputNames.indexOf(output.name) === index);
-    }
-
     public getDocComponentActualPublicMethods(docComponent: DocComponent): MethodsClass[] {
         return docComponent.methodsClass
             .filter((method) => {

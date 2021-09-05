@@ -1,0 +1,25 @@
+<ng-container *ngIf="outputs?.length">
+    <os-header
+        class="title"
+        [size]="5">
+        Outputs
+    </os-header>
+
+    <table class="content">
+        <tr *ngFor="let outputProp of outputs">
+            <td class="property-name-col">
+                <os-text>{{ outputProp.name }}</os-text>
+            </td>
+
+            <td>
+                <div>
+                    <os-text>Type: {{ outputProp.type }}</os-text>
+                </div>
+
+                <os-text>
+                    <span [innerHTML]="outputProp?.description"></span>
+                </os-text>
+            </td>
+        </tr>
+    </table>
+</ng-container>

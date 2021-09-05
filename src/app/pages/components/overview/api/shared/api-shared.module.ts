@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { ElementHeaderComponent } from './element-header';
 import { GettersComponent } from './getters';
+import { OutputsComponent } from './outputs';
 import { ReadmeInfoComponent } from './readme-info';
 import { SettersComponent } from './setters';
 
@@ -10,7 +11,8 @@ import { SettersComponent } from './setters';
         ReadmeInfoComponent,
         ElementHeaderComponent,
         GettersComponent,
-        SettersComponent
+        SettersComponent,
+        OutputsComponent
     ],
     imports: [
         SharedModule
@@ -19,7 +21,8 @@ import { SettersComponent } from './setters';
         ReadmeInfoComponent,
         ElementHeaderComponent,
         GettersComponent,
-        SettersComponent
+        SettersComponent,
+        OutputsComponent
     ]
 })
 export class ApiSharedModule {}
