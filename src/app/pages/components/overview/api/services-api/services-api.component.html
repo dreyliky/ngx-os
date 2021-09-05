@@ -22,8 +22,8 @@
             [service]="docService">
         </service-properties>
 
-        <service-methods
-            [service]="docService">
-        </service-methods>
+        <shared-methods
+            [classMethods]="docService.methods">
+        </shared-methods>
     </div>
 </ng-container>
