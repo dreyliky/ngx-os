@@ -12,19 +12,16 @@ import {
     DocTypealias
 } from '../interfaces';
 import { LibDocState } from '../states';
-import { BaseDocService } from './base-doc.service';
 import { LibDocApiService } from './lib-doc-api.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class LibDocService extends BaseDocService {
+export class LibDocService {
     constructor(
         private readonly api: LibDocApiService,
         private readonly state: LibDocState
-    ) {
-        super();
-    }
+    ) {}
 
     public update(): Observable<Doc> {
         return this.api.get()

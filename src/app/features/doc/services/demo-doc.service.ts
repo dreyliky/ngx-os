@@ -3,19 +3,16 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Doc, DocComponent } from '../interfaces';
 import { DemoDocState } from '../states';
-import { BaseDocService } from './base-doc.service';
 import { DemoDocApiService } from './demo-doc-api.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class DemoDocService extends BaseDocService {
+export class DemoDocService {
     constructor(
         private readonly api: DemoDocApiService,
         private readonly state: DemoDocState
-    ) {
-        super();
-    }
+    ) {}
 
     public update(): Observable<Doc> {
         return this.api.get()
