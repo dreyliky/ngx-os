@@ -1,20 +1,10 @@
 import {
-    DocClassProperty,
-    DocComponent,
-    DocDirective,
-    DocInjectable,
-    InputsClass
+    DocClassProperty, DocDirective,
+    DocInjectable
 } from '../interfaces';
 
 export abstract class BaseDocService {
     protected readonly publicModifierId: number = 122;
-
-    public getUniqueDocComponentInputs(docComponent: DocComponent): InputsClass[] {
-        const inputNames = docComponent.inputsClass.map((input) => input.name);
-
-        return docComponent.inputsClass
-            .filter((input, index) => inputNames.indexOf(input.name) === index);
-    }
 
     public getDocDirectiveProperties(docDirective: DocDirective): DocClassProperty[] {
         return docDirective.propertiesClass

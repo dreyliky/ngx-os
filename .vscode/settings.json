@@ -22,6 +22,5 @@
     "editor.detectIndentation": false,
     "javascript.preferences.quoteStyle": "single",
     "typescript.preferences.quoteStyle": "single",
-    "angular.view-engine": true,
     "typescript.inlayHints.parameterNames.enabled": "all"
 }

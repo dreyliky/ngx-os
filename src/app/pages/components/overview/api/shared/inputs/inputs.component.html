@@ -1,0 +1,29 @@
+<ng-container *ngIf="inputs?.length">
+    <os-header
+        class="title"
+        [size]="5">
+        Inputs
+    </os-header>
+
+    <table class="content">
+        <tr *ngFor="let inputProp of inputs">
+            <td class="property-name-col">
+                <os-text>{{ inputProp.name }}</os-text>
+            </td>
+
+            <td>
+                <div>
+                    <os-text>Type: {{ inputProp.type }}</os-text>
+                </div>
+
+                <div>
+                    <os-text>Default: {{ inputProp.defaultValue || 'undefined' }}</os-text>
+                </div>
+
+                <os-text>
+                    <span [innerHTML]="inputProp?.description"></span>
+                </os-text>
+            </td>
+        </tr>
+    </table>
+</ng-container>

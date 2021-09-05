@@ -437,7 +437,7 @@ export interface DocInterface {
     file: string;
     type: string;
     sourceCode: string;
-    properties: DocInterfaceProperty[];
+    properties: DocClassProperty[];
     indexSignatures: any[];
     kind: number;
     methods: DocInterfaceMethod[];
@@ -468,12 +468,4 @@ export interface DocInterfaceMethod {
     returnType: string;
     typeParameters: string[];
     description?: string;
-}
-
-export interface DocInterfaceProperty {
-    name: string;
-    type: string;
-    optional: boolean;
-    description: string;
-    line: number;
 }

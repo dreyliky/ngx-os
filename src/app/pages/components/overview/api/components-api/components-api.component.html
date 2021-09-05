@@ -26,13 +26,17 @@
             [accessors]="docComponent.accessors">
         </shared-setters>
 
-        <component-properties
-            [component]="docComponent">
-        </component-properties>
+        <shared-inputs
+            [classInputs]="docComponent.inputsClass">
+        </shared-inputs>
 
         <shared-outputs
             [classOutputs]="docComponent.outputsClass">
         </shared-outputs>
+
+        <shared-properties
+            [classProperties]="docComponent.propertiesClass">
+        </shared-properties>
 
         <shared-methods
             [classMethods]="docComponent.methodsClass">

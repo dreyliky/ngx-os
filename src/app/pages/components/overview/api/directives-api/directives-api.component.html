@@ -26,13 +26,17 @@
             [accessors]="docDirective.accessors">
         </shared-setters>
 
-        <directive-properties
-            [directive]="docDirective">
-        </directive-properties>
+        <shared-inputs
+            [classInputs]="docDirective.inputsClass">
+        </shared-inputs>
 
         <shared-outputs
             [classOutputs]="docDirective.outputsClass">
         </shared-outputs>
+
+        <shared-properties
+            [classProperties]="docDirective.propertiesClass">
+        </shared-properties>
 
         <shared-methods
             [classMethods]="docDirective.methodsClass">
