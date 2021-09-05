@@ -4,7 +4,11 @@ import {
     WindowComponent,
     WindowModule
 } from '@lib-modules';
-import { WindowDynamicOpeningComponent, WindowOverviewComponent, WindowTitleBarComponent } from '../../demo';
+import {
+    WindowDynamicOpeningComponent,
+    WindowOverviewComponent,
+    WindowTitleBarComponent
+} from '../../demo';
 import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
