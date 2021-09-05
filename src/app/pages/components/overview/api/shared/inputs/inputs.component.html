@@ -8,21 +8,14 @@
     <table class="content">
         <tr *ngFor="let inputProp of inputs">
             <td class="property-name-col">
-                <os-text>{{ inputProp.name }}</os-text>
+                <os-text>
+                    @Input()<br />
+                    {{ inputProp.name }}: {{ inputProp.type }}
+                </os-text>
             </td>
 
             <td>
-                <div>
-                    <os-text>Type: {{ inputProp.type }}</os-text>
-                </div>
-
-                <div>
-                    <os-text>Default: {{ inputProp.defaultValue || 'undefined' }}</os-text>
-                </div>
-
-                <os-text>
-                    <span [innerHTML]="inputProp?.description"></span>
-                </os-text>
+                <os-text [innerHTML]="inputProp?.description"></os-text>
             </td>
         </tr>
     </table>

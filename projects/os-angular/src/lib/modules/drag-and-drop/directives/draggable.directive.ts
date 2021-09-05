@@ -7,31 +7,31 @@ import { DraggerParams, DragInfo } from '../interfaces';
 })
 export class OsDraggableDirective implements OnDestroy {
     @Input('os-draggable')
-    public set draggerConfig(config: DraggerParams) {
-        this._draggerConfig = { ...this._draggerConfig, ...config };
+    public set draggerConfig(draggerConfig: DraggerParams) {
+        this._draggerConfig = { ...this._draggerConfig, ...draggerConfig };
 
         this.initMovableElement();
         this.initDraggableElement();
     }
 
-    public get draggerConfig(): DraggerParams {
+    public get draggerConfig(): DraggerConfig {
         return this._draggerConfig;
     }
 
     @Output()
-    public osBeforeDragStart = new EventEmitter<DragInfo>();
+    public osBeforeDragStart: EventEmitter<DragInfo> = new EventEmitter();
 
     @Output()
-    public osDragStart = new EventEmitter<DragInfo>();
+    public osDragStart: EventEmitter<DragInfo> = new EventEmitter();
 
     @Output()
-    public osDragEnd = new EventEmitter<DragInfo>();
+    public osDragEnd: EventEmitter<DragInfo> = new EventEmitter();
 
     @Output()
-    public osDragging = new EventEmitter<DragInfo>();
+    public osDragging: EventEmitter<DragInfo> = new EventEmitter();
 
     @Output()
-    public osAfterDragging = new EventEmitter<DragInfo>();
+    public osAfterDragging: EventEmitter<DragInfo> = new EventEmitter();
 
     private shiftX: number;
     private shiftY: number;

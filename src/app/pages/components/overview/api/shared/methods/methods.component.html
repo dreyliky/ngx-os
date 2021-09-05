@@ -8,23 +8,29 @@
     <table class="content">
         <tr *ngFor="let method of methods">
             <td class="property-name-col">
-                <os-text>{{ method.name }}</os-text>
+                <os-text>
+                    {{ method.name }}
+                    <ng-container *ngIf="method.typeParameters?.length">
+                        <
+                            <ng-container *ngFor="let type of method.typeParameters; let typeInd = index;">{{ type }}
+                                <ng-container *ngIf="typeInd >= 1">,</ng-container>
+                            </ng-container>
+                        >
+                    </ng-container>
+                    (
+                    <br *ngIf="method.args.length >= 1" />
+                    <ng-container *ngFor="let arg of method.args; let argInd = index">
+                        <ng-container *ngIf="argInd > 0">,<br /></ng-container>
+                        <span class="method-arg">{{ arg.name }}
+                            <ng-container *ngIf="arg.optional">?</ng-container>: {{ arg.type }}
+                        </span>
+                    </ng-container>
+                    <br *ngIf="method.args.length >= 1" />
+                    ): {{ method.returnType }}
+                </os-text>
             </td>
 
             <td>
-                <div>
-                    <os-text>
-                        Arguments:
-                        <ng-container *ngFor="let arg of method.args; let argInd = index">
-                            {{ arg.name }}: {{ arg.type }}<br />
-                        </ng-container>
-                    </os-text>
-                </div>
-
-                <div>
-                    <os-text>Return: {{ method.returnType }}</os-text>
-                </div>
-
                 <os-text [innerHTML]="method?.description"></os-text>
             </td>
         </tr>

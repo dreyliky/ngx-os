@@ -8,17 +8,14 @@
     <table class="content">
         <tr *ngFor="let outputProp of outputs">
             <td class="property-name-col">
-                <os-text>{{ outputProp.name }}</os-text>
+                <os-text>
+                    @Output()<br />
+                    {{ outputProp.name }}: {{ outputProp.type }}
+                </os-text>
             </td>
 
             <td>
-                <div>
-                    <os-text>Type: {{ outputProp.type }}</os-text>
-                </div>
-
-                <os-text>
-                    <span [innerHTML]="outputProp?.description"></span>
-                </os-text>
+                <os-text [innerHTML]="outputProp?.description"></os-text>
             </td>
         </tr>
     </table>

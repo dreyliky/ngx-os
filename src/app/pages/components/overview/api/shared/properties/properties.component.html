@@ -9,21 +9,13 @@
     <table class="content">
         <tr *ngFor="let property of properties">
             <td class="property-name-col">
-                <os-text>{{ property.name }}</os-text>
+                <os-text>
+                    {{ property.name }}: {{ property.type }}
+                </os-text>
             </td>
 
             <td>
-                <div>
-                    <os-text>Type: {{ property.type }}</os-text>
-                </div>
-
-                <div>
-                    <os-text>Default: {{ property.defaultValue || 'undefined' }}</os-text>
-                </div>
-
-                <os-text>
-                    <span [innerHTML]="property?.description"></span>
-                </os-text>
+                <os-text [innerHTML]="property?.description"></os-text>
             </td>
         </tr>
     </table>

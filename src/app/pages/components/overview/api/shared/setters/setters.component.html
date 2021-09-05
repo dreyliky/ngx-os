@@ -8,14 +8,12 @@
     <table class="content">
         <tr *ngFor="let setter of setters">
             <td class="property-name-col">
-                <os-text>{{ setter.name }}</os-text>
+                <os-text>
+                    {{ setter.name }}: {{ setter.args[0].type }}
+                </os-text>
             </td>
     
             <td>
-                <div>
-                    <os-text>Type: {{ setter.args[0].type }}</os-text>
-                </div>
-    
                 <os-text [innerHTML]="setter?.description"></os-text>
             </td>
         </tr>
