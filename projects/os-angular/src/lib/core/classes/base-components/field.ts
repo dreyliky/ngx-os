@@ -15,9 +15,6 @@ export abstract class OsBaseFieldComponent extends OsBaseComponent {
     public placeholder: string = '';
 
     @Input()
-    public label: string;
-
-    @Input()
     public name: string;
 
     @Input()
