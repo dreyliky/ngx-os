@@ -12,7 +12,7 @@ os-text-box {
     input[type="password"],
     input[type="email"],
     input[type="number"] {
-        width: 256px;
+        width: 100%;
         padding: 4px 8px;
         outline: 0;
         font-size: 14px;
@@ -20,6 +20,7 @@ os-text-box {
         border-radius: 0;
         transition: ease border 0.1s;
         font-family: sans-serif;
+        box-sizing: border-box;
 
         &:placeholder {
             color: #666666; 

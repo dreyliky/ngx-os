@@ -22,5 +22,6 @@
     "editor.detectIndentation": false,
     "javascript.preferences.quoteStyle": "single",
     "typescript.preferences.quoteStyle": "single",
-    "typescript.inlayHints.parameterNames.enabled": "all"
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "editor.inlayHints.enabled": false
 }

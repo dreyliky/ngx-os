@@ -1,11 +1,12 @@
 os-text-box {
+    width: 100%;
 
     input[type="text"],
     input[type="password"],
     input[type="email"],
     input[type="number"] {
+        width: 100%;
         padding: 3px 4px;
-        border: none;
         background-color: var(--button-highlight);
         box-sizing: border-box;
         -webkit-appearance: none;
@@ -14,6 +15,7 @@ os-text-box {
         border-radius: 0;
         height: 23px;
         line-height: 2;
+        border: solid 1px rgb(var(--os-primary-color));
 
         &:focus {
             outline: none;

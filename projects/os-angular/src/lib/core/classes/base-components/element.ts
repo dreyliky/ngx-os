@@ -56,6 +56,14 @@ export abstract class OsBaseComponent {
     @Output()
     public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /** Target internal element keydown event> */
+    @Output()
+    public osKeyDown: EventEmitter<KeyboardEvent> = new EventEmitter();
+
+    /** Target internal element keyup event> */
+    @Output()
+    public osKeyUp: EventEmitter<KeyboardEvent> = new EventEmitter();
+
     @HostBinding('class')
     public get hostClass(): string {
         return this.classlistManager.getAsString();
@@ -69,7 +77,7 @@ export abstract class OsBaseComponent {
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    protected onClick(event: PointerEvent): void {
+    protected onClick(event: MouseEvent): void {
         this.osClick.emit(event);
     }
 
@@ -108,14 +116,26 @@ export abstract class OsBaseComponent {
         this.osWheel.emit(event);
     }
 
+    /** The handler will be fired on the host element in response to an event. */
+    protected onKeyDown(event: KeyboardEvent): void {
+        this.osKeyDown.emit(event);
+    }
+
+    /** The handler will be fired on the host element in response to an event. */
+    protected onKeyUp(event: KeyboardEvent): void {
+        this.osKeyUp.emit(event);
+    }
+
     protected initElementEventObservers(element: HTMLElement): void {
-        element.onclick = (event: PointerEvent) => this.onClick(event);
-        element.ondblclick = (event: MouseEvent) => this.onDblClick(event);
-        element.onmousedown = (event: MouseEvent) => this.onMouseDown(event);
-        element.onmouseup = (event: MouseEvent) => this.onMouseUp(event);
-        element.onmousemove = (event: MouseEvent) => this.onMouseMove(event);
-        element.onmouseout = (event: MouseEvent) => this.onMouseOut(event);
-        element.onmouseover = (event: MouseEvent) => this.onMouseOver(event);
-        element.onwheel = (event: WheelEvent) => this.onWheel(event);
+        element.onclick = (event) => this.onClick(event);
+        element.ondblclick = (event) => this.onDblClick(event);
+        element.onmousedown = (event) => this.onMouseDown(event);
+        element.onmouseup = (event) => this.onMouseUp(event);
+        element.onmousemove = (event) => this.onMouseMove(event);
+        element.onmouseout = (event) => this.onMouseOut(event);
+        element.onmouseover = (event) => this.onMouseOver(event);
+        element.onwheel = (event) => this.onWheel(event);
+        element.onkeydown = (event) => this.onKeyDown(event);
+        element.onkeyup = (event) => this.onKeyUp(event);
     }
 }

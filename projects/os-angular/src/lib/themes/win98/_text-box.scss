@@ -1,9 +1,11 @@
 os-text-box {
+    width: 100%;
 
     input[type="text"],
     input[type="password"],
     input[type="email"],
     input[type="number"] {
+        width: 100%;
         padding: 3px 4px;
         border: none;
         background-color: var(--button-highlight);
