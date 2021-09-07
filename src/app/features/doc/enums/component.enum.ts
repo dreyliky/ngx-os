@@ -7,6 +7,7 @@ export enum OsComponentEnum {
     GroupBox = 'group-box',
     List = 'list',
     NumberBox = 'number-box',
+    PasswordBox = 'password-box',
     RadioButton = 'radio-button',
     Resizer = 'resizer',
     ScrollView = 'scroll-view',
