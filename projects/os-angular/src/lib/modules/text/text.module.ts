@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@lib-shared';
-import { HeaderComponent, TextComponent } from './components';
+import { HeaderComponent, LabelComponent, TextComponent } from './components';
 
 @NgModule({
     declarations: [
         TextComponent,
-        HeaderComponent
+        HeaderComponent,
+        LabelComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
         TextComponent,
-        HeaderComponent
+        HeaderComponent,
+        LabelComponent
     ]
 })
 export class TextModule {}

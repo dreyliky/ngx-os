@@ -5,13 +5,16 @@
     </element-api-header>
 
     <div class="directive">
-        <os-text-box
-            [styleClass]="'selector'"
-            [label]="'Selector'"
-            [size]="docDirective.selector.length"
-            [isReadonly]="true"
-            [value]="docDirective.selector">
-        </os-text-box>
+        <os-field-row>
+            <os-label>Selector</os-label>
+
+            <os-text-box
+                [styleClass]="'selector'"
+                [size]="docDirective.selector.length"
+                [isReadonly]="true"
+                [value]="docDirective.selector">
+            </os-text-box>
+        </os-field-row>
 
         <api-readme-info
             *ngIf="docDirective.readme"

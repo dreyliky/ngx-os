@@ -10,7 +10,8 @@ os-text-box {
 
     input[type="text"],
     input[type="password"],
-    input[type="email"] {
+    input[type="email"],
+    input[type="number"] {
         width: 256px;
         padding: 4px 8px;
         outline: 0;

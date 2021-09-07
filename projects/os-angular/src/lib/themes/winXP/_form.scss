@@ -1,3 +1,4 @@
+// FIXME: Move to other files
 label.os-element {
     font-family: var(--sans-serif);
     font-size: 11px;
@@ -36,13 +37,25 @@ textarea.os-element::selection {
     color: white;
 }
 
-.field-row.os-element {
-    > * {
-        display: flex;
-        flex-direction: row;
-    }
+.os-field-row {
+    margin: 24px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     
-    &.stacked > * {
-        flex-direction: column;
+    &.stacked {
+        flex-direction: column !important;
+        align-items: flex-start;
+
+        .os-label {
+            margin-bottom: 8px;
+            margin-left: 0px;
+        }
+    }
+
+    .os-label {
+        min-width: 100px;
+        display: flex;
+        margin-right: 8px;
     }
 }

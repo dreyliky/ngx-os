@@ -1,12 +1,23 @@
 import { NgModule } from '@angular/core';
 import {
-    ButtonModule, CheckboxModule,
-    DragAndDropModule, FieldRowModule,
-    GridModule, GroupBoxModule, ListModule,
+    ButtonModule,
+    CheckboxModule,
+    DragAndDropModule,
+    FieldRowModule,
+    GridModule,
+    GroupBoxModule,
+    ListModule,
     RadioButtonModule,
-    ResizerModule, ScrollViewModule, SelectboxModule,
-    SliderModule, TabGroupModule, TextareaBoxModule,
-    TextBoxModule, TextModule, TreeViewModule, WindowModule
+    ResizerModule,
+    ScrollViewModule,
+    SelectboxModule,
+    SliderModule,
+    TabGroupModule,
+    TextareaBoxModule,
+    TextBoxModule,
+    TextModule,
+    TreeViewModule,
+    WindowModule
 } from './modules';
 import { SharedModule } from './shared.module';
 
