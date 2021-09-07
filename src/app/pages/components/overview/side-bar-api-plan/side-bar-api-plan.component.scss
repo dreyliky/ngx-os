@@ -1,7 +1,8 @@
 :host {
     width: inherit;
+    max-height: 100vh;
     position: sticky;
-    display: block;
+    display: flex;
     top: 0;
     padding: 5px;
     box-sizing: border-box;

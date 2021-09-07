@@ -6,8 +6,8 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const FIELD_ROW_META_INFO: ComponentMetaInfo = {
     name: 'Field Row',
     type: OsComponentEnum.FieldRow,
-    shortInfo: 'Field row component short info',
-    imageUrl: '/assets/icons/components/field-row.png',
+    shortInfo: 'Provides component for wrapping several form components to define a form row.',
+    imageUrl: '/assets/icons/components/form-field.png',
     libModules: [
         FieldRowModule
     ],

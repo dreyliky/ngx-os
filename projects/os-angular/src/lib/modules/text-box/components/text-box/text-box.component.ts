@@ -11,10 +11,9 @@ import {
     Output,
     ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '@lib-core';
 import { TextBoxChangeEvent } from '../../interfaces';
-import { TextboxType } from '../../types';
 
 @Component({
     selector: 'os-text-box',
@@ -28,10 +27,7 @@ import { TextboxType } from '../../types';
         }
     ]
 })
-export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit, ControlValueAccessor {
-    @Input()
-    public type: TextboxType = 'text';
-
+export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
@@ -41,12 +37,9 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Af
     @ViewChild('textbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;
 
-    public get inputAutocompleteAttrValue(): string {
+    public get _inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
-
-    public onChange: (value: string) => any;
-    public onTouched: () => any;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef
@@ -62,25 +55,12 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Af
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
-    public onTextboxValueChange(event: Event): void {
-        const targetElement = event.target as HTMLInputElement;
+    protected onFieldValueChange(originalEvent: Event): void {
+        const targetElement = originalEvent.target as HTMLInputElement;
         const textboxValue: string = targetElement.value;
 
         this.onChange?.(textboxValue);
-        this.osChange.emit({ event, value: textboxValue });
-    }
-
-    public registerOnChange(fn: () => any): void {
-        this.onChange = fn;
-    }
-
-    public registerOnTouched(fn: () => any): void {
-        this.onTouched = fn;
-    }
-
-    public writeValue(value: string): void {
-        this.value = value;
-
-        this.changeDetector.detectChanges();
+        this.osChange.emit({ originalEvent, value: textboxValue });
+        this.changeDetector.markForCheck();
     }
 }

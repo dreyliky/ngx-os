@@ -1,10 +1,5 @@
-<label class="os-element">
-    {{ label }}
-</label>
-
 <input
     #textbox
-    class="os-element"
     [id]="id"
     [class]="styleClass"
     [ngStyle]="style"
@@ -12,8 +7,7 @@
     [name]="name"
     [disabled]="isDisabled"
     [readOnly]="isReadonly"
-    [autocomplete]="inputAutocompleteAttrValue"
-    [type]="type"
+    [autocomplete]="_inputAutocompleteAttrValue"
+    [type]="'text'"
     [size]="size"
-    [value]="value"
-    (change)="onTextboxValueChange($event)" />
+    [value]="value" />

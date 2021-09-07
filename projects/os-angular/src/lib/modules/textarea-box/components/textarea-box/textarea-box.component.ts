@@ -38,9 +38,6 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterV
     @ViewChild('textarea')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;
 
-    public onChange: (value: string) => any;
-    public onTouched: () => any;
-
     constructor(
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -51,25 +48,12 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterV
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
-    public onTextareaBoxValueChange(event: Event): void {
-        const targetElement = event.target as HTMLTextAreaElement;
-        const textareaBoxValue = targetElement.value;
+    protected onFieldValueChange(originalEvent: Event): void {
+        const targetElement = originalEvent.target as HTMLTextAreaElement;
+        const value = targetElement.value;
 
-        this.onChange?.(textareaBoxValue);
-        this.osChange.emit({ event, value: textareaBoxValue });
-    }
-
-    public registerOnChange(fn: () => any): void {
-        this.onChange = fn;
-    }
-
-    public registerOnTouched(fn: () => any): void {
-        this.onTouched = fn;
-    }
-
-    public writeValue(value: string): void {
-        this.value = value;
-
-        this.changeDetector.detectChanges();
+        this.onChange?.(value);
+        this.osChange.emit({ originalEvent, value });
+        this.changeDetector.markForCheck();
     }
 }

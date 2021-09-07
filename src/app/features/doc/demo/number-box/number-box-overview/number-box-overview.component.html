@@ -1,0 +1,8 @@
+<form [formGroup]="formGroup">
+    <os-number-box
+        [placeholder]="'Enter some number'"
+        [formControl]="formGroup.controls.textareaBoxValue">
+    </os-number-box>
+</form>
+
+{{ formGroup.value | json }}

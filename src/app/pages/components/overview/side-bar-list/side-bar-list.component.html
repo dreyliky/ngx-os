@@ -1,6 +1,13 @@
 <os-list *ngIf="(metaInfo$ | async) as metaInfo">
+    <os-field-row class="search-container">
+        <os-text-box
+            [placeholder]="'Search'"
+            (osKeyUp)="onSearch($event)">
+        </os-text-box>
+    </os-field-row>
+
     <os-list-item
-        *ngFor="let component of components"
+        *ngFor="let component of (components$ | async)"
         [selected]="metaInfo.type === component.type"
         [value]="component"
         (osSelected)="onComponentOptionSelected($event)">

@@ -1,6 +1,11 @@
-os-text {
-
+.os-text {
     font-family: "Arial";
     -webkit-font-smoothing: antialiased;
+}
 
+.os-label {
+    font-family: var(--sans-serif);
+    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
 }

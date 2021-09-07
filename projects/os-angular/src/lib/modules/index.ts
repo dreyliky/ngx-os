@@ -5,6 +5,7 @@ export * from './field-row';
 export * from './grid';
 export * from './group-box';
 export * from './list';
+export * from './number-box';
 export * from './radio-button';
 export * from './resizer';
 export * from './scroll-view';

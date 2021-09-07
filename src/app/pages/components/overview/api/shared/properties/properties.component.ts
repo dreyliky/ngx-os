@@ -28,6 +28,7 @@ export class PropertiesComponent {
         this.properties = properties
             .filter((property, index) => (
                 (propertyNames.indexOf(property.name) === index) &&
+                !property.name.startsWith('_') &&
                 this.isPropertyModifierValid(property)
             ));
     }

@@ -19,7 +19,7 @@ export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
     ],
     demoComponents: [
         {
-            title: 'Textarea box Overview',
+            title: 'Textarea Box Overview',
             component: TextareaOverviewComponent
         }
     ]

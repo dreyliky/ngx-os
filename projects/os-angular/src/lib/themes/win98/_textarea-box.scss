@@ -1,17 +1,18 @@
 os-textarea-box {
+    width: 100%;
 
     textarea {
+        width: 100%;
         font-family: var(--sans-serif);
         font-size: 11px;
         padding: 3px 4px;
         border: none;
         background-color: var(--button-highlight);
         box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         appearance: none;
         border-radius: 0;
         box-shadow: var(--border-field);
+        -webkit-font-smoothing: none;
 
         &:focus {
             outline: none;

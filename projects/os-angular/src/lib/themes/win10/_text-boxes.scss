@@ -1,17 +1,9 @@
-os-text-box {
+os-text-box,
+os-number-box {
+    width: 100%;
 
-    label.os-element {
-        font-family: var(--segoe-ui);
-        font-size: 13px;
-        margin-bottom: 7px;
-        display: inline-flex;
-        align-items: center;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    input[type="email"] {
-        width: 256px;
+    input {
+        width: 100%;
         padding: 4px 8px;
         outline: 0;
         font-size: 14px;
@@ -19,6 +11,7 @@ os-text-box {
         border-radius: 0;
         transition: ease border 0.1s;
         font-family: sans-serif;
+        box-sizing: border-box;
 
         &:placeholder {
             color: #666666; 
@@ -32,5 +25,4 @@ os-text-box {
             border-color: rgb(var(--os-primary-color));
         }
     }
-
 }

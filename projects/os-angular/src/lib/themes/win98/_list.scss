@@ -6,6 +6,10 @@ os-list {
     cursor: default;
     user-select: none;
 
+    .os-scroll-view {
+        height: 100%;
+    }
+
     os-list-item {
         height: 15px;
         display: flex;

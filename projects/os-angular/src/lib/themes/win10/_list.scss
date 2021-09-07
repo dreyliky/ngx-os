@@ -7,6 +7,10 @@ os-list {
     user-select: none;
     padding: 7px 1px;
 
+    .os-scroll-view {
+        height: 100%;
+    }
+
     os-list-item {
         height: 30px;
         display: flex;
