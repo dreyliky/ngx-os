@@ -10,13 +10,9 @@ os-selectbox {
     border: none;
     background-color: var(--button-highlight);
     box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     border-radius: 0;
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     padding-right: 32px;
     background-image: url("./icon/win98_button-down.svg");
     background-position: top 2px right 2px;
@@ -25,6 +21,7 @@ os-selectbox {
     user-select: none;
     cursor: default;
     box-shadow: var(--border-field);
+    -webkit-font-smoothing: none;
 
     &:focus {
         outline: none;
@@ -54,5 +51,4 @@ os-selectbox {
         display: flex;
         align-items: center;
     }
-
 }

@@ -23,13 +23,9 @@ os-selectbox {
     border: 1px solid #7f9db9;
     background-color: var(--button-highlight);
     box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     border-radius: 0;
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     padding-right: 32px;
     background-image: url("./icon/winXP_dropdown.svg");
     background-size: 15px;
@@ -38,6 +34,7 @@ os-selectbox {
     border-radius: 0;
     cursor: default;
     user-select: none;
+    -webkit-font-smoothing: antialiased;
 
     &:focus {
         outline: none;

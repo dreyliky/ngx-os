@@ -5,7 +5,7 @@ export enum OsComponentEnum {
     FieldRow = 'field-row',
     GroupBox = 'group-box',
     List = 'list',
-    Label = 'label',
+    NumberBox = 'number-box',
     RadioButton = 'radio-button',
     Resizer = 'resizer',
     ScrollView = 'scroll-view',

@@ -8,6 +8,7 @@ import {
     GRID_META_INFO,
     GROUP_BOX_META_INFO,
     LIST_META_INFO,
+    NUMBER_BOX_META_INFO,
     RADIO_BUTTON_META_INFO,
     RESIZER_META_INFO,
     SCROLL_VIEW_META_INFO,
@@ -82,6 +83,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.TextBox,
         TEXT_BOX_META_INFO
+    )
+    .set(
+        OsComponentEnum.NumberBox,
+        NUMBER_BOX_META_INFO
     )
     .set(
         OsComponentEnum.TextareaBox,

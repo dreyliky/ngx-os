@@ -1,4 +1,4 @@
 export interface TextareaBoxChangeEvent {
     value: string;
-    event: Event;
+    originalEvent: Event;
 }

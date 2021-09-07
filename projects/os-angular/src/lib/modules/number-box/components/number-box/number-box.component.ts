@@ -13,28 +13,28 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '@lib-core';
-import { TextBoxChangeEvent } from '../../interfaces';
+import { NumberBoxChangeEvent } from '../../interfaces';
 
 @Component({
-    selector: 'os-text-box',
-    templateUrl: './text-box.component.html',
+    selector: 'os-number-box',
+    templateUrl: './number-box.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TextBoxComponent),
+            useExisting: forwardRef(() => NumberBoxComponent),
             multi: true
         }
     ]
 })
-export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
+export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
     @Output()
-    public osChange: EventEmitter<TextBoxChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<NumberBoxChangeEvent> = new EventEmitter();
 
-    @ViewChild('textbox')
+    @ViewChild('numberbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;
 
     public get _inputAutocompleteAttrValue(): string {
@@ -48,19 +48,35 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Af
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-text-box');
+        this.classlistManager.add('os-number-box');
     }
 
     public ngAfterViewInit(): void {
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
+    public writeValue(value: string): void {
+        this.value = value;
+
+        this.changeDetector.detectChanges();
+    }
+
+    protected onInput(event: Event): void {
+        const inputElement = event.target as HTMLInputElement;
+
+        inputElement.value = inputElement.value
+            .replace(/[^0-9.]/g, '')
+            .replace(/(\..*?)\..*/g, '$1');
+
+        super.onInput(event);
+    }
+
     protected onFieldValueChange(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
-        const textboxValue: string = targetElement.value;
+        const value = +targetElement.value;
 
-        this.onChange?.(textboxValue);
-        this.osChange.emit({ originalEvent, value: textboxValue });
+        this.onChange?.(value);
+        this.osChange.emit({ originalEvent, value });
         this.changeDetector.markForCheck();
     }
 }

@@ -9,11 +9,10 @@ os-textarea-box {
         border: none;
         background-color: var(--button-highlight);
         box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         appearance: none;
         border-radius: 0;
         box-shadow: var(--border-field);
+        -webkit-font-smoothing: none;
 
         &:focus {
             outline: none;

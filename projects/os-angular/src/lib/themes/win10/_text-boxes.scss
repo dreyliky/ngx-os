@@ -1,10 +1,8 @@
-os-text-box {
+os-text-box,
+os-number-box {
     width: 100%;
 
-    input[type="text"],
-    input[type="password"],
-    input[type="email"],
-    input[type="number"] {
+    input {
         width: 100%;
         padding: 4px 8px;
         outline: 0;
@@ -27,5 +25,4 @@ os-text-box {
             border-color: rgb(var(--os-primary-color));
         }
     }
-
 }

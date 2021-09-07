@@ -6,17 +6,20 @@ os-textarea-box {
         font-family: var(--sans-serif);
         font-size: 11px;
         padding: 3px 4px;
-        border: none;
+        border: solid 1px rgb(var(--os-primary-color));
         background-color: var(--button-highlight);
         box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         appearance: none;
         border-radius: 0;
+        -webkit-font-smoothing: antialiased;
 
         &:focus {
             outline: none;
         }
-    }
 
+        &::selection {
+            background: var(--dialog-blue);
+            color: #ffffff;
+        }
+    }
 }
