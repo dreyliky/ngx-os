@@ -13,6 +13,11 @@ $border-resizer-size: 4px;
 }
 
 os-resizers {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+
     .os-resizer {
         opacity: 0;
         position: absolute;
