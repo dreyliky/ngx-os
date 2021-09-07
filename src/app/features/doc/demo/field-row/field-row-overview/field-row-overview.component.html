@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <os-header [size]="5">
+        Stacked
+    </os-header>
+    
+    <os-field-row [stacked]="true">
+        <os-text-box
+            [label]="'Name'"
+            [placeholder]="'Enter your name'">
+        </os-text-box>
+    </os-field-row>
+</div>
+
+<div class="wrapper">
+    <os-header [size]="5">
+        Not stacked
+    </os-header>
+    
+    <os-field-row [stacked]="false">
+        <os-text-box
+            [label]="'Name'"
+            [placeholder]="'Enter your name'">
+        </os-text-box>
+    </os-field-row>
+</div>

@@ -4,6 +4,7 @@ import {
     BUTTON_META_INFO,
     CHECKBOX_META_INFO,
     DRAG_AND_DROP_META_INFO,
+    FIELD_ROW_META_INFO,
     GRID_META_INFO,
     GROUP_BOX_META_INFO,
     LIST_META_INFO,
@@ -13,6 +14,7 @@ import {
     SELECTBOX_META_INFO,
     SLIDER_META_INFO,
     TAB_GROUP_META_INFO,
+    TEXTAREA_BOX_META_INFO,
     TEXT_BOX_META_INFO,
     TEXT_META_INFO,
     THEME_META_INFO,
@@ -32,6 +34,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.DragAndDrop,
         DRAG_AND_DROP_META_INFO
+    )
+    .set(
+        OsComponentEnum.FieldRow,
+        FIELD_ROW_META_INFO
     )
     .set(
         OsComponentEnum.GroupBox,
@@ -76,6 +82,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.TextBox,
         TEXT_BOX_META_INFO
+    )
+    .set(
+        OsComponentEnum.TextareaBox,
+        TEXTAREA_BOX_META_INFO
     )
     .set(
         OsComponentEnum.Theme,

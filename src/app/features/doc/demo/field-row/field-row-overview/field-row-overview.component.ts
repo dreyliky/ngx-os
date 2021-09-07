@@ -6,6 +6,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./field-row-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FieldRowOverviewComponent {
-    public isFieldsStacked = false;
-}
+export class FieldRowOverviewComponent {}

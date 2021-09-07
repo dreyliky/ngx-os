@@ -1,40 +1,29 @@
-import { FieldRowComponent, TextareaBoxComponent, TextBoxComponent, TextBoxModule } from '@lib-modules';
-import { FieldRowOverviewComponent, TextareaOverviewComponent, TextBoxOverviewComponent } from '../../demo';
+import { TextBoxComponent, TextBoxModule } from '@lib-modules';
+import { TextBoxOverviewComponent } from '../../demo';
 import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
     name: 'Text Box',
     type: OsComponentEnum.TextBox,
-    shortInfo: 'Provides different text fields.',
+    shortInfo: 'Provides the same functionality as a native <input type="text">.',
     imageUrl: '/assets/icons/components/text-box.png',
     libModules: [
         TextBoxModule
     ],
     libComponents: [
-        TextBoxComponent,
-        TextareaBoxComponent,
-        FieldRowComponent
+        TextBoxComponent
     ],
     libInterfaces: [
-        'TextBoxChangeEvent',
-        'TextareaBoxChangeEvent'
+        'TextBoxChangeEvent'
     ],
     libTypes: [
         'TextboxType'
     ],
     demoComponents: [
         {
-            title: 'Text Box Overview',
+            title: 'Text box Overview',
             component: TextBoxOverviewComponent
-        },
-        {
-            title: 'Textarea Box Overview',
-            component: TextareaOverviewComponent
-        },
-        {
-            title: 'Field Row Overview',
-            component: FieldRowOverviewComponent
         }
     ]
 };

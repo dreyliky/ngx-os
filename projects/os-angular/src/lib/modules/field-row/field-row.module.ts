@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@lib-shared';
-import { TextBoxComponent } from './components';
+import { FieldRowComponent } from './components';
 
 @NgModule({
     declarations: [
-        TextBoxComponent
+        FieldRowComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        TextBoxComponent
+        FieldRowComponent
     ]
 })
-export class TextBoxModule {}
+export class FieldRowModule {}

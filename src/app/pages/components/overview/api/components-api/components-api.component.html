@@ -5,16 +5,13 @@
     </element-api-header>
 
     <div class="component">
-        <os-field-row>
-            <os-label>Selector</os-label>
-
-            <os-text-box
-                [styleClass]="'selector'"
-                [size]="docComponent.selector.length"
-                [isReadonly]="true"
-                [value]="docComponent.selector">
-            </os-text-box>
-        </os-field-row>
+        <os-text-box
+            [styleClass]="'selector'"
+            [label]="'Selector'"
+            [size]="docComponent.selector.length"
+            [isReadonly]="true"
+            [value]="docComponent.selector">
+        </os-text-box>
 
         <api-readme-info
             *ngIf="docComponent.readme"

@@ -5,6 +5,7 @@ import {
     ButtonOverviewComponent,
     CheckboxOverviewComponent,
     DraggerOverviewComponent,
+    FieldRowOverviewComponent,
     GridOverviewComponent,
     GroupBoxOverviewComponent,
     ListOverviewComponent,
@@ -23,12 +24,12 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './demo';
-import { FieldRowOverviewComponent } from './demo/text-box/field-row-overview/field-row-overview.component';
 
 @NgModule({
     declarations: [
         ButtonOverviewComponent,
         CheckboxOverviewComponent,
+        FieldRowOverviewComponent,
         GroupBoxOverviewComponent,
         GridOverviewComponent,
         RadioButtonOverviewComponent,
@@ -47,8 +48,7 @@ import { FieldRowOverviewComponent } from './demo/text-box/field-row-overview/fi
         WindowTitleBarComponent,
         ThemeOverviewComponent,
         DraggerOverviewComponent,
-        ResizerOverviewComponent,
-        FieldRowOverviewComponent
+        ResizerOverviewComponent
     ],
     imports: [
         SharedModule
@@ -56,6 +56,7 @@ import { FieldRowOverviewComponent } from './demo/text-box/field-row-overview/fi
     exports: [
         ButtonOverviewComponent,
         CheckboxOverviewComponent,
+        FieldRowOverviewComponent,
         GroupBoxOverviewComponent,
         GridOverviewComponent,
         RadioButtonOverviewComponent,

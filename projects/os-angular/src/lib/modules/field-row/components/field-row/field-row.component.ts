@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 
 @Component({
@@ -8,8 +8,7 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class FieldRowComponent extends OsBaseComponent implements OnInit {
     @Input()
-    @HostBinding('class.stacked')
-    public stacked: boolean = true;
+    public stacked: boolean = false;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -18,7 +17,6 @@ export class FieldRowComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-field-row');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

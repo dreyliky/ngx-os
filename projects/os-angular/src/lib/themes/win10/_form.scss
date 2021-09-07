@@ -1,22 +1,12 @@
-.os-field-row {
+.field-row.os-element {
     margin: 24px 0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
-    &.stacked {
-        flex-direction: column !important;
-        align-items: flex-start;
 
-        .os-label {
-            margin-bottom: 8px;
-            margin-left: 0px;
-        }
-    }
-
-    .os-label {
-        min-width: 100px;
+    > * {
         display: flex;
-        margin-right: 8px;
+        flex-direction: row;
+    }
+    
+    &.stacked > * {
+        flex-direction: column;
     }
 }

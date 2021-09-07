@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@lib-shared';
-import { TextBoxComponent } from './components';
+import { TextareaBoxComponent } from './components';
 
 @NgModule({
     declarations: [
-        TextBoxComponent
+        TextareaBoxComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        TextBoxComponent
+        TextareaBoxComponent
     ]
 })
-export class TextBoxModule {}
+export class TextareaBoxModule {}
