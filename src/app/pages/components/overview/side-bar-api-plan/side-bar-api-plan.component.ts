@@ -32,7 +32,7 @@ export class SideBarApiPlanComponent implements OnInit {
     }
 
     public onScrollTopButtonClick(): void {
-        this.layoutComponent.hostElement.scrollTo(0, 0);
+        this.layoutComponent.scrollToTop();
         this.router.navigate([], { fragment: null });
     }
 

@@ -1,7 +1,8 @@
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component, Inject,
+    Component,
+    Inject,
     OnDestroy,
     OnInit
 } from '@angular/core';
@@ -50,7 +51,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private initRouteParamsObserver(): void {
         this.routeParamsSubscription = this.activatedRoute.params
             .subscribe(() => {
-                this.layoutComponent.hostElement.scrollTo(0, 0);
+                this.layoutComponent.scrollToTop();
                 this.initMetaInfo();
                 this.changeDetector.detectChanges();
             });

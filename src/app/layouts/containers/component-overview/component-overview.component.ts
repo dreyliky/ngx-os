@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
 import { COMPONENT_OVERVIEW_LAYOUT } from './component-overview.constants';
 
 @Component({
@@ -14,11 +14,10 @@ import { COMPONENT_OVERVIEW_LAYOUT } from './component-overview.constants';
     ]
 })
 export class ComponentOverviewLayoutComponent {
-    public get hostElement(): HTMLElement {
-        return this.hostElementRef.nativeElement;
-    }
+    @ViewChild('scrollView', { static: true, read: ElementRef })
+    private readonly scrollViewElementRef: ElementRef<HTMLElement>;
 
-    constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
-    ) {}
+    public scrollToTop(): void {
+        this.scrollViewElementRef.nativeElement.scrollTo(0, 0);
+    }
 }
