@@ -4,6 +4,7 @@ import {
     BUTTON_META_INFO,
     CHECKBOX_META_INFO,
     DRAG_AND_DROP_META_INFO,
+    EMAIL_BOX_META_INFO,
     FIELD_ROW_META_INFO,
     GRID_META_INFO,
     GROUP_BOX_META_INFO,
@@ -87,6 +88,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.NumberBox,
         NUMBER_BOX_META_INFO
+    )
+    .set(
+        OsComponentEnum.EmailBox,
+        EMAIL_BOX_META_INFO
     )
     .set(
         OsComponentEnum.TextareaBox,

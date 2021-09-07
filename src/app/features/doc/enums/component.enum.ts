@@ -2,6 +2,7 @@ export enum OsComponentEnum {
     Button = 'button',
     Checkbox = 'checkbox',
     DragAndDrop = 'drag-and-drop',
+    EmailBox = 'email-box',
     FieldRow = 'field-row',
     GroupBox = 'group-box',
     List = 'list',
