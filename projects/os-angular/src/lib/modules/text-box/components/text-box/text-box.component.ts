@@ -14,7 +14,6 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '@lib-core';
 import { TextBoxChangeEvent } from '../../interfaces';
-import { TextboxType } from '../../types';
 
 @Component({
     selector: 'os-text-box',
@@ -29,9 +28,6 @@ import { TextboxType } from '../../types';
     ]
 })
 export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit, ControlValueAccessor {
-    @Input()
-    public type: TextboxType = 'text';
-
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
