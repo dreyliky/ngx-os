@@ -117,8 +117,12 @@ os-title-bar {
     }
 
     .os-title-bar-icon {
-        height: 100%;
+        width: 16px;
+        height: 16px;
         margin-right: 5px;
+        background-position: 50%;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     .os-title-bar-controls {

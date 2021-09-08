@@ -1,14 +1,15 @@
 <os-title-bar
-    [style.display]="titleBarDisplayAttr"
+    [style.display]="_titleBarDisplayAttr"
     (osClick)="osTitleBarClick.emit($event)"
     (osDblClick)="osTitleBarDblClick.emit($event)"
     (osMinimizeButtonClick)="osMinimizeButtonClick.emit($event)"
     (osMaximizeButtonClick)="osMaximizeButtonClick.emit($event)"
     (osCloseButtonClick)="osCloseButtonClick.emit($event)">
-    <img
+    <div
         *ngIf="iconUrl"
         class="os-title-bar-icon"
-        [attr.src]="iconUrl" />
+        [style.backgroundImage]="_titleBarIconCssBackground">
+    </div>
 
     {{ title }}
 </os-title-bar>

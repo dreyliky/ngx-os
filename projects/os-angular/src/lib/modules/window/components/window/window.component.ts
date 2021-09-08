@@ -71,7 +71,11 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     @Output()
     public osCloseButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
-    public get titleBarDisplayAttr(): string {
+    public get _titleBarIconCssBackground(): string {
+        return `url(${this.iconUrl})`;
+    }
+
+    public get _titleBarDisplayAttr(): string {
         return (this.isTitleBarVisible) ? '' : 'none';
     }
 

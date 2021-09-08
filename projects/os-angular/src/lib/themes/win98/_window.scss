@@ -62,8 +62,12 @@ os-title-bar {
     }
 
     .os-title-bar-icon {
-        height: 100%;
+        width: 14px;
+        height: 14px;
         margin-right: 5px;
+        background-position: 50%;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     .os-title-bar-controls {
