@@ -27,7 +27,7 @@ os-window {
 
     &.active {
         .os-title-bar {
-            background: var(--title-bar-active-bg);
+            background: linear-gradient(90deg, rgb(var(--os-primary-color)), rgba(var(--os-primary-color), .5)), #ffffff;
         }
     }
 
@@ -38,7 +38,7 @@ os-window {
 
 os-title-bar {
     height: 20px;
-    background: var(--title-bar-bg);
+    background: linear-gradient(90deg, var(--button-shadow), rgb(var(--os-bg-color)));
     font-size: 11px;
     padding: 3px 2px 3px 3px;
     display: flex;

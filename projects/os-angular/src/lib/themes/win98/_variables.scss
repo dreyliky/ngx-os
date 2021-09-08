@@ -58,7 +58,4 @@
     --border-window-outer: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-face);
     --border-window-inner: inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-highlight);
     --border-field: inset -1px -1px rgb(var(--os-white-color)), inset 1px 1px rgba(var(--os-white-color), .5), inset -2px -2px rgb(var(--os-light-color)), inset 2px 2px rgb(var(--os-black-color));
-
-    --title-bar-active-bg: linear-gradient(90deg, rgb(var(--os-primary-color)), rgb(var(--os-info-color)));
-    --title-bar-bg: linear-gradient(90deg, var(--button-shadow), rgb(var(--os-bg-color)));
 }
