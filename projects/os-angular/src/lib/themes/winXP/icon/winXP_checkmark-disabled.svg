@@ -1,3 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 11 11" shape-rendering="crispEdges">
-<path stroke="#cac8bb" d="M8 2h1M7 3h2M2 4h1M6 4h3M2 5h2M5 5h3M2 6h5M3 7h3M4 8h1" />
+<svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <g>
+   <path d="m402.5,297l1,0m-2,1l2,0m-7,1l1,0m3,0l3,0m-7,1l2,0m1,0l3,0m-6,1l5,0m-4,1l3,0m-2,1l1,0" stroke="#22a122"/>
+  </g>
+  <g>
+   <path d="m8,2.5l1,0m-2,1l2,0m-7,1l1,0m3,0l3,0m-7,1l2,0m1,0l3,0m-6,1l5,0m-4,1l3,0m-2,1l1,0" stroke="#cac8bb"/>
+  </g>
+ </g>
 </svg>

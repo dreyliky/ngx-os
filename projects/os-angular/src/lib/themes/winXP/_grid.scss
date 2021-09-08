@@ -43,12 +43,13 @@ os-grid {
                     position: absolute;
                     left: 0;
                     top: 0;
-                    background-color: rgba(#316ac5, .5);
+                    background-color: rgba(var(--os-primary-color), .5);
                 }
             }
 
             .os-grid-item-text {
-                background-color: #316ac5;
+                background-color: rgba(var(--os-primary-color), .9);
+                color: rgb(var(--os-light-color));
                 text-shadow: none;
             }
         }

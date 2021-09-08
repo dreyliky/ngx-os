@@ -1,7 +1,3 @@
-:root {
-    --checkmark-width: 11px;
-}
-
 os-checkbox {
     display: block;
     margin: 8px 0px;
@@ -47,11 +43,11 @@ os-checkbox {
             &:after {
                 content: "";
                 display: block;
-                width: var(--checkmark-width);
-                height: var(--checkmark-width);
+                width: 11px;
+                height: 11px;
                 background: url("./icon/winXP_checkmark.svg");
                 position: absolute;
-                top: 1px;
+                top: 2px;
                 left: -17px;
             }
         }
