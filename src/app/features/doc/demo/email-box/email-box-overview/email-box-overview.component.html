@@ -1,3 +1,8 @@
-<os-email-box
-    [placeholder]="'Enter your email'">
-</os-email-box>
+<form [formGroup]="formGroup">
+    <os-email-box
+        [placeholder]="'Enter your email'"
+        [formControl]="formGroup.controls.emailBoxValue">
+    </os-email-box>
+</form>
+
+{{ formGroup.value | json }}

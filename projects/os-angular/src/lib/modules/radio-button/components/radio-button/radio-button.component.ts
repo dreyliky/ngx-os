@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -11,7 +12,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseComponent } from '@lib-core';
+import { OsBaseFormControlComponent } from '@lib-core';
 import { RadioButtonValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -26,60 +27,64 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class RadioButtonComponent<T> extends OsBaseComponent implements OnInit, ControlValueAccessor {
+export class RadioButtonComponent<T>
+    extends OsBaseFormControlComponent<T>
+    implements OnInit, ControlValueAccessor {
     @Input()
-    public readonly label = '';
+    public readonly label: string = '';
 
     @Input()
-    public readonly name = '';
+    public readonly name: string = '';
 
     @Input()
     @HostBinding('class.checked')
     public checked: boolean;
 
     @Input()
-    public readonly value: T;
+    public value: T;
 
     @Input()
     @HostBinding('class.disabled')
     public readonly isDisabled: boolean;
 
     @Output()
-    public osChange = new EventEmitter<RadioButtonValueChangeEvent<T>>();
+    public osChange: EventEmitter<RadioButtonValueChangeEvent<T>> = new EventEmitter();
+
+    /** Emits when `checked` state changed. Might be used for two way binding */
+    @Output()
+    public checkedChange: EventEmitter<boolean> = new EventEmitter();
 
     @ViewChild('radioButton')
     private readonly radioElementRef: ElementRef<HTMLInputElement>;
 
-    public onChange: (value: T) => any;
-    public onTouched: () => any;
-
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostElementRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
 
     public ngOnInit(): void {
+        this.classlistManager.add('os-radio-button');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
-    public onRadioButtonChange(event: Event): void {
+    public onRadioButtonChange(originalEvent: Event): void {
+        const inputElement = originalEvent.target as HTMLInputElement;
+
         this.onChange?.(this.value);
-        this.osChange.emit({ event, value: this.value });
-    }
-
-    public registerOnChange(fn: () => any): void {
-        this.onChange = fn;
-    }
-
-    public registerOnTouched(fn: () => any): void {
-        this.onTouched = fn;
+        this.checkedChange.emit(inputElement.checked);
+        this.osChange.emit({
+            originalEvent,
+            value: this.value,
+            checked: inputElement.checked
+        });
     }
 
     public writeValue(value: T): void {
-        if (value === this.value) {
-            this.checked = true;
-        }
+        this.checked = (this.value === value);
+
+        this.changeDetector.detectChanges();
     }
 
     protected onClick(event: PointerEvent): void {

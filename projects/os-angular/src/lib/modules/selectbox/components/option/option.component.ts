@@ -32,7 +32,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     public value: T;
 
     @Output()
-    public osSelected = new EventEmitter<OptionSelectedEvent<T>>();
+    public osSelected: EventEmitter<OptionSelectedEvent<T>> = new EventEmitter();
 
     private readonly selectedStateClassName = 'selected';
 

@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -19,7 +18,7 @@ import { OverviewService } from '../overview.service';
     styleUrls: ['./examples.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExamplesComponent implements OnInit, AfterViewInit {
+export class ExamplesComponent implements OnInit {
     @ViewChildren('demoTemplate', { read: ViewContainerRef })
     private readonly demoTemplates: QueryList<ViewContainerRef>;
 
@@ -38,10 +37,6 @@ export class ExamplesComponent implements OnInit, AfterViewInit {
 
     public ngOnInit(): void {
         this.metaInfo$ = this.overviewService.metaInfo$;
-    }
-
-    public ngAfterViewInit(): void {
-        this.initDemoComponents();
     }
 
     private initDemoComponents(): void {

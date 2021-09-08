@@ -55,6 +55,12 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
+    public writeValue(value: string): void {
+        this.value = value;
+
+        this.changeDetector.detectChanges();
+    }
+
     protected onInput(event: Event): void {
         const inputElement = event.target as HTMLInputElement;
 

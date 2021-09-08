@@ -48,6 +48,12 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterV
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
+    public writeValue(value: string): void {
+        this.value = value;
+
+        this.changeDetector.detectChanges();
+    }
+
     protected onFieldValueChange(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLTextAreaElement;
         const value = targetElement.value;

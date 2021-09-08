@@ -37,11 +37,6 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
 
     public abstract osChange: EventEmitter<any>;
 
-    public writeValue(value: string): void {
-        // FIXME: Probably needs change detection
-        this.value = value;
-    }
-
     /** The handler will be fired on the internal element in response to an event. */
     protected onFocus(event: FocusEvent): void {
         this.osFocus.emit(event);

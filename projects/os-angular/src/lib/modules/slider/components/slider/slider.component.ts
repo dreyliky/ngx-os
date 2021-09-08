@@ -11,7 +11,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseComponent } from '@lib-core';
+import { OsBaseFormControlComponent } from '@lib-core';
 import { SliderValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -26,7 +26,9 @@ import { SliderValueChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class SliderComponent extends OsBaseComponent implements AfterViewInit, ControlValueAccessor {
+export class SliderComponent
+    extends OsBaseFormControlComponent<number>
+    implements AfterViewInit, ControlValueAccessor {
     @Input()
     public label: string;
 
@@ -54,9 +56,6 @@ export class SliderComponent extends OsBaseComponent implements AfterViewInit, C
     @ViewChild('slider')
     private readonly sliderElementRef: ElementRef<HTMLInputElement>;
 
-    public onChange: (value: number) => any;
-    public onTouched: () => any;
-
     constructor(
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -67,20 +66,12 @@ export class SliderComponent extends OsBaseComponent implements AfterViewInit, C
         this.initElementEventObservers(this.sliderElementRef.nativeElement);
     }
 
-    public onSliderValueChange(event: Event): void {
-        const targetElement = event.target as HTMLInputElement;
-        const sliderValue: number = +targetElement.value;
+    public onSliderValueChange(originalEvent: Event): void {
+        const targetElement = originalEvent.target as HTMLInputElement;
+        const value: number = +targetElement.value;
 
-        this.onChange?.(sliderValue);
-        this.osChange.emit({ event, value: this.value });
-    }
-
-    public registerOnChange(fn: () => any): void {
-        this.onChange = fn;
-    }
-
-    public registerOnTouched(fn: () => any): void {
-        this.onTouched = fn;
+        this.onChange?.(value);
+        this.osChange.emit({ originalEvent, value });
     }
 
     public writeValue(value: number): void {

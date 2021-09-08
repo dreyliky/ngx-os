@@ -12,7 +12,8 @@ import {
     ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseComponent } from '@lib-core';
+import { OsBaseFormControlComponent } from '@lib-core';
+import { CheckboxValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-checkbox',
@@ -26,12 +27,14 @@ import { OsBaseComponent } from '@lib-core';
         }
     ]
 })
-export class CheckboxComponent extends OsBaseComponent implements OnInit, ControlValueAccessor {
+export class CheckboxComponent<T>
+    extends OsBaseFormControlComponent<boolean>
+    implements OnInit, ControlValueAccessor {
     @Input()
-    public readonly label = '';
+    public readonly label: string = '';
 
     @Input()
-    public readonly name = '';
+    public readonly name: string = '';
 
     @Input()
     @HostBinding('class.checked')
@@ -41,17 +44,18 @@ export class CheckboxComponent extends OsBaseComponent implements OnInit, Contro
     @HostBinding('class.disabled')
     public readonly isDisabled: boolean;
 
-    @Output()
-    public osChange = new EventEmitter<Event>();
+    @Input()
+    public readonly value: T;
 
     @Output()
-    public checkedChange = new EventEmitter<boolean>();
+    public osChange: EventEmitter<CheckboxValueChangeEvent<T>> = new EventEmitter();
+
+    /** Emits when `checked` state changed. Might be used for two way binding */
+    @Output()
+    public checkedChange: EventEmitter<boolean> = new EventEmitter();
 
     @ViewChild('checkbox')
     private readonly checkboxElementRef: ElementRef<HTMLInputElement>;
-
-    public onChange: (value: boolean) => any;
-    public onTouched: () => any;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>,
@@ -65,20 +69,16 @@ export class CheckboxComponent extends OsBaseComponent implements OnInit, Contro
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
-    public onCheckboxValueChange(event: Event): void {
-        const target = event.target as HTMLInputElement;
+    public onCheckboxValueChange(originalEvent: Event): void {
+        const inputElement = originalEvent.target as HTMLInputElement;
 
-        this.osChange.emit(event);
-        this.checkedChange.emit(target.checked);
-        this.onChange?.(target.checked);
-    }
-
-    public registerOnChange(fn: () => any): void {
-        this.onChange = fn;
-    }
-
-    public registerOnTouched(fn: () => any): void {
-        this.onTouched = fn;
+        this.onChange?.(inputElement.checked);
+        this.checkedChange.emit(inputElement.checked);
+        this.osChange.emit({
+            originalEvent,
+            value: this.value,
+            checked: inputElement.checked
+        });
     }
 
     public writeValue(value: boolean): void {

@@ -6,14 +6,15 @@ import {
     ElementRef,
     EventEmitter,
     forwardRef,
-    HostListener, Input,
+    HostListener,
+    Input,
     OnDestroy,
     OnInit,
     Output,
     QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseComponent } from '@lib-core';
+import { OsBaseFormControlComponent } from '@lib-core';
 import { OutsideClick } from '@lib-helpers';
 import { Subscription } from 'rxjs';
 import { OptionSelectedEvent } from '../../interfaces';
@@ -32,7 +33,7 @@ import { OptionComponent } from '../option';
     ]
 })
 export class SelectboxComponent<T>
-    extends OsBaseComponent
+    extends OsBaseFormControlComponent<T>
     implements OnInit, OnDestroy, ControlValueAccessor {
     @Input()
     public isOpened: boolean = false;
@@ -44,7 +45,7 @@ export class SelectboxComponent<T>
     public placeholder: string = '';
 
     @Input()
-    public value: any;
+    public value: T;
 
     @Input()
     public displayField: keyof T;
@@ -62,7 +63,7 @@ export class SelectboxComponent<T>
     public osChange: EventEmitter<OptionSelectedEvent<T>> = new EventEmitter();
 
     @Output()
-    public valueChange = new EventEmitter<T>();
+    public valueChange: EventEmitter<T> = new EventEmitter();
 
     @ContentChildren(OptionComponent)
     public set optionComponentList(data: QueryList<OptionComponent<T>>) {
@@ -74,9 +75,6 @@ export class SelectboxComponent<T>
     public get optionComponentList(): QueryList<OptionComponent<T>> {
         return this._optionComponentList;
     }
-
-    public onChange: (value: T) => any;
-    public onTouched: () => any;
 
     private _optionComponentList: QueryList<OptionComponent<T>>;
     private _optionsSelectedEventSubscriptions: Subscription[];
@@ -111,14 +109,6 @@ export class SelectboxComponent<T>
 
     public trackByFn(_: OptionComponent<T>, index: number): number {
         return index;
-    }
-
-    public registerOnChange(fn: () => any): void {
-        this.onChange = fn;
-    }
-
-    public registerOnTouched(fn: () => any): void {
-        this.onTouched = fn;
     }
 
     public writeValue(value: T): void {

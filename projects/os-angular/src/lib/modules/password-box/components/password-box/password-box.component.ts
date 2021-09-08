@@ -55,6 +55,12 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
+    public writeValue(value: string): void {
+        this.value = value;
+
+        this.changeDetector.detectChanges();
+    }
+
     protected onFieldValueChange(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
         const value = targetElement.value;

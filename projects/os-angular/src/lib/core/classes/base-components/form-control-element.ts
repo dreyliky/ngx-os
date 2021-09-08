@@ -6,14 +6,14 @@ import { OsBaseComponent } from './element';
     template: ''
 })
 export abstract class OsBaseFormControlComponent<T = any> extends OsBaseComponent implements ControlValueAccessor {
-    public onChange: (value: T) => any;
-    public onTouched: () => any;
+    public onChange: (value: T) => void;
+    public onTouched: () => void;
 
-    public registerOnChange(fn: () => any): void {
+    public registerOnChange(fn: () => void): void {
         this.onChange = fn;
     }
 
-    public registerOnTouched(fn: () => any): void {
+    public registerOnTouched(fn: () => void): void {
         this.onTouched = fn;
     }
 
