@@ -3,31 +3,31 @@
     [(ngModel)]="isFieldsStacked">
 </os-checkbox>
 
-<os-field-row [stacked]="isFieldsStacked">
+<os-form-field [stacked]="isFieldsStacked">
     <os-label>Name</os-label>
 
     <os-text-box
         [placeholder]="'Enter user name'">
     </os-text-box>
-</os-field-row>
+</os-form-field>
 
-<os-field-row [stacked]="isFieldsStacked">
+<os-form-field [stacked]="isFieldsStacked">
     <os-label>BIO</os-label>
 
     <os-textarea-box
         [placeholder]="'Enter user bio'">
     </os-textarea-box>
-</os-field-row>
+</os-form-field>
 
-<os-field-row [stacked]="isFieldsStacked">
+<os-form-field [stacked]="isFieldsStacked">
     <os-label>Adult</os-label>
 
     <os-checkbox
         [label]="'Is user adult?'">
     </os-checkbox>
-</os-field-row>
+</os-form-field>
 
-<os-field-row [stacked]="isFieldsStacked">
+<os-form-field [stacked]="isFieldsStacked">
     <os-label>Gender</os-label>
 
     <os-radio-button
@@ -39,9 +39,9 @@
         [name]="'gender-selection'"
         [label]="'Female'">
     </os-radio-button>
-</os-field-row>
+</os-form-field>
 
-<os-field-row [stacked]="isFieldsStacked">
+<os-form-field [stacked]="isFieldsStacked">
     <os-label>Permission</os-label>
 
     <os-selectbox
@@ -50,9 +50,9 @@
         <os-option>Moderator</os-option>
         <os-option>Admin</os-option>
     </os-selectbox>
-</os-field-row>
+</os-form-field>
 
-<os-field-row [stacked]="isFieldsStacked">
+<os-form-field [stacked]="isFieldsStacked">
     <os-label>Age</os-label>
 
     <os-slider
@@ -61,8 +61,8 @@
         [min]="0"
         [max]="150">
     </os-slider>
-</os-field-row>
+</os-form-field>
 
-<os-field-row>
+<os-form-field>
     <os-button>Submit</os-button>
-</os-field-row>
+</os-form-field>

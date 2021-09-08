@@ -4,19 +4,19 @@
     </os-header>
 
     <form [formGroup]="formGroup">
-        <os-field-row>
+        <os-form-field>
             <os-checkbox
                 [label]="'Checkbox 1'"
                 [formControl]="formGroup.controls.checkbox1">
             </os-checkbox>
-        </os-field-row>
+        </os-form-field>
     
-        <os-field-row>
+        <os-form-field>
             <os-checkbox
                 [label]="'Checkbox 2'"
                 [formControl]="formGroup.controls.checkbox2">
             </os-checkbox>
-        </os-field-row>
+        </os-form-field>
     </form>
 
     <os-text>
@@ -29,19 +29,19 @@
         Simplier approach
     </os-header>
 
-    <os-field-row>
+    <os-form-field>
         <os-checkbox
             [label]="'Checkbox with ngModel'"
             [(ngModel)]="simpleCheckbox1Value">
         </os-checkbox>
-    </os-field-row>
+    </os-form-field>
 
-    <os-field-row>
+    <os-form-field>
         <os-checkbox
             [label]="'Checkbox with two way binding using `checked` field'"
             [(checked)]="simpleCheckbox2Value">
         </os-checkbox>
-    </os-field-row>
+    </os-form-field>
 
     <os-text>
         Checkbox1 value: {{ simpleCheckbox1Value | json }};<br />

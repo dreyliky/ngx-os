@@ -5,7 +5,7 @@ import {
     CHECKBOX_META_INFO,
     DRAG_AND_DROP_META_INFO,
     EMAIL_BOX_META_INFO,
-    FIELD_ROW_META_INFO,
+    FORM_FIELD_META_INFO,
     GRID_META_INFO,
     GROUP_BOX_META_INFO,
     LIST_META_INFO,
@@ -39,8 +39,8 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
         DRAG_AND_DROP_META_INFO
     )
     .set(
-        OsComponentEnum.FieldRow,
-        FIELD_ROW_META_INFO
+        OsComponentEnum.FormField,
+        FORM_FIELD_META_INFO
     )
     .set(
         OsComponentEnum.GroupBox,

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@lib-shared';
-import { FieldRowComponent } from './components';
+import { FormFieldComponent } from './components';
 
 @NgModule({
     declarations: [
-        FieldRowComponent
+        FormFieldComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        FieldRowComponent
+        FormFieldComponent
     ]
 })
-export class FieldRowModule {}
+export class FormFieldModule {}

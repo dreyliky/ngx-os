@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnI
 import { OsBaseComponent } from '@lib-core';
 
 @Component({
-    selector: 'os-field-row',
-    templateUrl: './field-row.component.html',
+    selector: 'os-form-field',
+    templateUrl: './form-field.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FieldRowComponent extends OsBaseComponent implements OnInit {
+export class FormFieldComponent extends OsBaseComponent implements OnInit {
     @Input()
     @HostBinding('class.stacked')
     public stacked: boolean = false;
@@ -18,7 +18,7 @@ export class FieldRowComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-field-row');
+        this.classlistManager.add('os-form-field');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

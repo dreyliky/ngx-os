@@ -2,7 +2,7 @@ export * from './button';
 export * from './checkbox';
 export * from './drag-and-drop';
 export * from './email-box';
-export * from './field-row';
+export * from './form-field';
 export * from './grid';
 export * from './group-box';
 export * from './list';

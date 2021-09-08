@@ -5,7 +5,7 @@
     </element-api-header>
 
     <div class="component">
-        <os-field-row>
+        <os-form-field>
             <os-label>Selector</os-label>
 
             <os-text-box
@@ -14,7 +14,7 @@
                 [isReadonly]="true"
                 [value]="docComponent.selector">
             </os-text-box>
-        </os-field-row>
+        </os-form-field>
 
         <api-readme-info
             *ngIf="docComponent.readme"
