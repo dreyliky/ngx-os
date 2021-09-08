@@ -33,8 +33,11 @@ os-list {
 
         &:active {
             background-color: rgb(0, 0, 0, .2);
-            transform: scale(0.96);
             transition: ease all 0.1s;
+
+            * {
+                transform: scale(0.96);
+            }
         }
     }
 }

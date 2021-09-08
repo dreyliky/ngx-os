@@ -11,12 +11,14 @@
         [selected]="metaInfo.type === component.type"
         [value]="component"
         (osSelected)="onComponentOptionSelected($event)">
-        <div class="icon-wrapper">
-            <img
-                class="icon"
-                [attr.src]="component.imageUrl" />
+        <div class="list-item-wrapper">
+            <div class="icon-wrapper">
+                <img
+                    class="icon"
+                    [attr.src]="component.imageUrl" />
+            </div>
+            
+            {{ component.name }}
         </div>
-        
-        {{ component.name }}
     </os-list-item>
 </os-list>
