@@ -20,6 +20,7 @@ os-checkbox {
             &:before {
                 content: "";
                 position: absolute;
+                top: -1px;
                 left: calc(-1 * (var(--checkbox-total-width-precalc)));
                 display: inline-block;
                 width: var(--checkbox-width);
@@ -47,7 +48,7 @@ os-checkbox {
                 height: 11px;
                 background: url("./icon/winXP_checkmark.svg");
                 position: absolute;
-                top: 2px;
+                top: 1px;
                 left: -17px;
             }
         }

@@ -3,6 +3,7 @@ import { SharedModule } from '@Doc/demo-shared.module';
 import {
     ButtonCounterComponent,
     ButtonOverviewComponent,
+    CheckboxAsFormControlComponent,
     CheckboxOverviewComponent,
     DraggerOverviewComponent,
     EmailBoxOverviewComponent,
@@ -32,6 +33,7 @@ import {
     declarations: [
         ButtonCounterComponent,
         ButtonOverviewComponent,
+        CheckboxAsFormControlComponent,
         CheckboxOverviewComponent,
         DraggerOverviewComponent,
         EmailBoxOverviewComponent,
@@ -62,6 +64,7 @@ import {
     exports: [
         ButtonCounterComponent,
         ButtonOverviewComponent,
+        CheckboxAsFormControlComponent,
         CheckboxOverviewComponent,
         DraggerOverviewComponent,
         EmailBoxOverviewComponent,

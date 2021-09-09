@@ -1,6 +1,6 @@
 import { CheckboxComponent, CheckboxModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { CheckboxOverviewComponent } from '../../examples';
+import { CheckboxAsFormControlComponent, CheckboxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const CHECKBOX_META_INFO: ComponentMetaInfo = {
@@ -18,6 +18,10 @@ export const CHECKBOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Checkbox Overview',
             component: CheckboxOverviewComponent
+        },
+        {
+            title: 'Checkbox as FormControl',
+            component: CheckboxAsFormControlComponent
         }
     ]
 };

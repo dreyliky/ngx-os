@@ -2,8 +2,6 @@ os-checkbox {
     display: block;
     position: relative;
     user-select: none;
-    margin-inline-start: 4px;
-    margin-inline-end: 4px;
     padding-top: 8px;
     padding-bottom: 8px;
     display: flex;
@@ -33,10 +31,6 @@ os-checkbox {
             }
         }
 
-        &:hover + label:before {
-            border: solid 2px #000000 !important;
-        }
-
         &:checked + label {
             &:before {
                 background-color: rgb(var(--os-primary-color));
@@ -56,6 +50,31 @@ os-checkbox {
                 -webkit-transform: translate(0,-50%) rotate(45deg) scale(1.5);
                 -ms-transform: translate(0,-50%) rotate(45deg) scale(1.5);
                 transform: translate(0,-50%) rotate(45deg) scale(1.5);
+            }
+        }
+    }
+
+    &:hover:not(.disabled) label:before {
+        border: solid 2px #000000 !important;
+    }
+
+    &.disabled {
+        color: #acacac;
+
+        input[type="checkbox"] {
+            + label:before {
+                border: solid 2px #acacac;
+            }
+
+            &:checked + label {
+                &:before {
+                    background-color: transparent;
+                }
+
+                &:after {
+                    border: solid #acacac;
+                    border-width: 0 1px 1px 0;
+                }
             }
         }
     }

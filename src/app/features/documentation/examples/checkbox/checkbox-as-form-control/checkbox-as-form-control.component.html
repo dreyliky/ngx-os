@@ -1,0 +1,23 @@
+<os-header [size]="5">
+    Checkbox with reactive form
+</os-header>
+
+<form [formGroup]="formGroup">
+    <os-form-field>
+        <os-checkbox
+            [label]="'Checkbox 1'"
+            [formControl]="formGroup.controls.checkbox1">
+        </os-checkbox>
+    </os-form-field>
+
+    <os-form-field>
+        <os-checkbox
+            [label]="'Checkbox 2'"
+            [formControl]="formGroup.controls.checkbox2">
+        </os-checkbox>
+    </os-form-field>
+</form>
+
+<os-text>
+    {{ formGroup.value | json }}
+</os-text>

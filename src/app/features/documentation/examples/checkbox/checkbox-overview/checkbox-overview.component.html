@@ -1,50 +1,19 @@
-<div class="wrapper">
-    <os-header [size]="5">
-        Checkbox with reactive form
-    </os-header>
+<os-form-field>
+    <os-checkbox
+        [label]="'Default'">
+    </os-checkbox>
+</os-form-field>
 
-    <form [formGroup]="formGroup">
-        <os-form-field>
-            <os-checkbox
-                [label]="'Checkbox 1'"
-                [formControl]="formGroup.controls.checkbox1">
-            </os-checkbox>
-        </os-form-field>
-    
-        <os-form-field>
-            <os-checkbox
-                [label]="'Checkbox 2'"
-                [formControl]="formGroup.controls.checkbox2">
-            </os-checkbox>
-        </os-form-field>
-    </form>
+<os-form-field>
+    <os-checkbox
+        [label]="'Disabled unchecked'"
+        [isDisabled]="true"
+        [checked]="false">
+    </os-checkbox>
 
-    <os-text>
-        {{ formGroup.value | json }}
-    </os-text>
-</div>
-
-<div class="wrapper">
-    <os-header [size]="5">
-        Simplier approach
-    </os-header>
-
-    <os-form-field>
-        <os-checkbox
-            [label]="'Checkbox with ngModel'"
-            [(ngModel)]="simpleCheckbox1Value">
-        </os-checkbox>
-    </os-form-field>
-
-    <os-form-field>
-        <os-checkbox
-            [label]="'Checkbox with two way binding using `checked` field'"
-            [(checked)]="simpleCheckbox2Value">
-        </os-checkbox>
-    </os-form-field>
-
-    <os-text>
-        Checkbox1 value: {{ simpleCheckbox1Value | json }};<br />
-        Checkbox2 value: {{ simpleCheckbox2Value | json }};
-    </os-text>
-</div>
+    <os-checkbox
+        [label]="'Disabled checked'"
+        [isDisabled]="true"
+        [checked]="true">
+    </os-checkbox>
+</os-form-field>
