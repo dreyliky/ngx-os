@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DocAccessors, DocSetSignature } from '@Features/doc';
+import { DocAccessors, DocSetSignature } from '@Features/documentation';
 
 @Component({
     selector: 'shared-setters',

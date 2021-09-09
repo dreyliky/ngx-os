@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MethodsClass } from '@Features/doc';
+import { MethodsClass } from '@Features/documentation';
 
 @Component({
     selector: 'shared-methods',

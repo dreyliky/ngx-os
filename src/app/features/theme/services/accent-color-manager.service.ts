@@ -26,7 +26,7 @@ export class AccentColorManagerService {
         return this.themeService.getColor(colorType);
     }
 
-    public applyFromStorage(): void {
+    public init(): void {
         const accentColorAsJson = localStorage.getItem(this.accentColorStorageKey);
         const accentColor = (accentColorAsJson) ? JSON.parse(accentColorAsJson) : null;
 

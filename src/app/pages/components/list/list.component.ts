@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@Core/enums';
-import { ComponentMetaInfoMap, OsComponentEnum } from '@Features/doc';
+import { ComponentMetaInfoMap, OsComponentEnum } from '@Features/documentation';
 
 @Component({
     selector: 'demo-list',

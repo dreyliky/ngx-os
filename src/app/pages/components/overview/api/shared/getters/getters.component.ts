@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DocAccessors, DocGetSignature } from '@Features/doc';
+import { DocAccessors, DocGetSignature } from '@Features/documentation';
 
 @Component({
     selector: 'shared-getters',

@@ -23,7 +23,7 @@ export class ThemeManagerService {
         private readonly themeService: ThemeService
     ) {}
 
-    public applyFromStorage(): void {
+    public init(): void {
         const theme = <ThemeEnum>localStorage.getItem(this.themeStorageKey) || this.defaultTheme;
 
         this.themeService.applyTheme(theme);

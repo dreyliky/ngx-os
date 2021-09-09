@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, Type } from '@angular/core';
-import { DemoComponentMetaInfo, DemoDocService, DocComponent } from '@Features/doc';
+import { DemoComponentMetaInfo, DocComponent, ExamplesDocumentationService } from '@Features/documentation';
 
 enum SectionEnum {
     Demo,
@@ -37,7 +37,7 @@ export class ExampleComponent {
     private _demoComponentMetaInfo: DemoComponentMetaInfo;
 
     constructor(
-        private readonly docService: DemoDocService
+        private readonly docService: ExamplesDocumentationService
     ) {}
 
     private initDemoDocComponent(componentType: Type<any>): void {

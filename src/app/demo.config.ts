@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
-import { DemoDocService, LibDocService } from '@Features/doc';
+import { ExamplesDocumentationService, LibraryDocumentationService } from '@Features/documentation';
 import { forkJoin } from 'rxjs';
 
 @Injectable()
 export class DemoConfig {
     constructor(
-        private readonly libDocService: LibDocService,
-        private readonly demoDocService: DemoDocService
+        private readonly libDocService: LibraryDocumentationService,
+        private readonly demoDocService: ExamplesDocumentationService
     ) {}
 
-    public load(): any {
+    public load(): Promise<any> {
         return forkJoin([
             this.libDocService.update(),
             this.demoDocService.update()
         ])
-            .toPromise()
-            .catch(() => {
-                return true;
-            });
+            .toPromise();
     }
 }

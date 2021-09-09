@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ComponentMetaInfo } from '@Features/doc';
+import { ComponentMetaInfo } from '@Features/documentation';
 import { Observable } from 'rxjs';
 import { OverviewService } from '../overview.service';
 

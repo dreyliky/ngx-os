@@ -19,6 +19,6 @@
         }
     ],
     "include": [
-        "src/app/features/doc/demo/**/*.ts"
+        "src/app/features/documentation/examples/**/*.ts"
     ]
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { OutputsClass } from '@Features/doc';
+import { OutputsClass } from '@Features/documentation';
 
 @Component({
     selector: 'shared-outputs',

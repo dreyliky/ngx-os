@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { InputsClass } from '@Features/doc';
+import { InputsClass } from '@Features/documentation';
 
 @Component({
     selector: 'shared-inputs',

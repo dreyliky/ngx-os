@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@Doc/core/enums';
-import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/doc';
+import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/documentation';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { OverviewService } from '../overview.service';

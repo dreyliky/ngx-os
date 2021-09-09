@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DocClassProperty } from '@Features/doc';
+import { DocClassProperty } from '@Features/documentation';
 
 @Component({
     selector: 'shared-properties',

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@Doc/core/enums';
 import { ArrayHelper } from '@Doc/core/helpers';
-import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/doc';
+import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/documentation';
 
 @Component({
     selector: 'demo-subheader',

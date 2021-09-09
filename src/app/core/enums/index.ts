@@ -1,2 +1,2 @@
-export * from './doc-route.enum';
+export * from './app-route.enum';
 

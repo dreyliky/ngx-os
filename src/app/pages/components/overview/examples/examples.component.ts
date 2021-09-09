@@ -8,7 +8,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from '@angular/core';
-import { ComponentMetaInfo } from '@Doc/features/doc';
+import { ComponentMetaInfo } from '@Features/documentation';
 import { Observable } from 'rxjs';
 import { OverviewService } from '../overview.service';
 

@@ -7,7 +7,7 @@ import {
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ComponentMetaInfoMap, OsComponentEnum } from '@Features/doc';
+import { ComponentMetaInfoMap, OsComponentEnum } from '@Features/documentation';
 import { ComponentOverviewLayoutComponent, COMPONENT_OVERVIEW_LAYOUT } from '@Layouts/containers';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';

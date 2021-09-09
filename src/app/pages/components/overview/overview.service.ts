@@ -8,8 +8,8 @@ import {
     DocInterface,
     DocModule,
     DocTypealias,
-    LibDocService
-} from '@Features/doc';
+    LibraryDocumentationService
+} from '@Features/documentation';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
@@ -60,7 +60,7 @@ export class OverviewService implements OnDestroy {
     private _docTypes: DocTypealias[] = [];
 
     constructor(
-        private readonly docService: LibDocService
+        private readonly docService: LibraryDocumentationService
     ) {}
 
     public ngOnDestroy(): void {
