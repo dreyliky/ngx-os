@@ -90,6 +90,7 @@ export class CheckboxComponent<T>
 
     protected onClick(event: PointerEvent): void {
         this.checkboxElementRef.nativeElement.click();
+        this.checkboxElementRef.nativeElement.focus();
         super.onClick(event);
     }
 }

@@ -3,6 +3,8 @@ os-checkbox {
     margin: 8px 0px;
 
     input[type="checkbox"] {
+        width: 0px;
+        height: 0px;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -11,6 +13,7 @@ os-checkbox {
         position: fixed;
         opacity: 0;
         border: none;
+
         + {
             label {
                 line-height: 13px;
@@ -29,26 +32,15 @@ os-checkbox {
                 }
             }
         }
-        & + label:before {
-            box-shadow: var(--border-field);
-            background: var(--button-highlight);
+
+        &:focus + label {
+            outline: 1px dotted rgb(var(--os-black-color));
         }
-        &:focus {
-            + {
-                label {
-                    outline: 1px dotted rgb(var(--os-black-color));
-                }
-            }
+
+        &:active + label::before {
+            background: rgb(var(--os-bg-color));
         }
-        &:active {
-            + {
-                label {
-                    &::before {
-                        background: rgb(var(--os-bg-color));
-                    }
-                }
-            }
-        }
+
         &:checked {
             + {
                 label {
