@@ -3,6 +3,7 @@ import {
     Component,
     ElementRef,
     EventEmitter,
+    HostBinding,
     Input,
     OnInit,
     Output
@@ -17,23 +18,14 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
-    public set selected(selected: boolean) {
-        this._selected = selected;
-
-        this.classlistManager.applyOneAsFlag('selected', selected);
-    }
-
-    public get selected(): boolean {
-        return this._selected;
-    }
+    @HostBinding('class.selected')
+    public selected: boolean = false;
 
     @Input()
     public value: T;
 
     @Output()
     public osSelected = new EventEmitter<T>();
-
-    private _selected = false;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>

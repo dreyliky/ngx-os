@@ -1,6 +1,6 @@
 import { ListComponent, ListItemComponent, ListModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { ListOverviewComponent } from '../../examples';
+import { ListCustomTemplateComponent, ListOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const LIST_META_INFO: ComponentMetaInfo = {
@@ -19,6 +19,10 @@ export const LIST_META_INFO: ComponentMetaInfo = {
         {
             title: 'List Overview',
             component: ListOverviewComponent
+        },
+        {
+            title: 'List with custom template',
+            component: ListCustomTemplateComponent
         }
     ]
 };

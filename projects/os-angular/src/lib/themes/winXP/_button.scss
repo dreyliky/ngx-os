@@ -20,6 +20,7 @@ os-button {
     border-radius: 3px;
     user-select: none;
     cursor: default;
+    color: rgb(var(--os-black-color));
 
     &.disabled {
         color: #b1b1af;

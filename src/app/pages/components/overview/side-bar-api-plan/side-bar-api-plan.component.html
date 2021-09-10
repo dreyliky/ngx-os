@@ -11,18 +11,16 @@
         [selected]="apiPlanItem.name === routeFragment"
         [value]="apiPlanItem"
         (osClick)="onApiPlanItemSelected(apiPlanItem)">
-        <div class="list-item-wrapper">
-            <div class="icon-wrapper">
-                <img
-                    class="icon"
-                    [attr.src]="apiPlanItem.iconUrl" />
-            </div>
-    
-            <div
-                [attr.title]="apiPlanItem.name"
-                class="name">
-                {{ apiPlanItem.name }}
-            </div>
+        <div class="icon-wrapper">
+            <img
+                class="icon"
+                [attr.src]="apiPlanItem.iconUrl" />
+        </div>
+
+        <div
+            [attr.title]="apiPlanItem.name"
+            class="name">
+            {{ apiPlanItem.name }}
         </div>
     </os-list-item>
 </os-list>

@@ -20,24 +20,20 @@ os-list {
         margin: 1px 0px;
 
         &.selected {
-            background-color: rgba(var(--os-primary-color), .3);
+            background-color: rgba(var(--os-primary-color), .2);
 
             &:hover {
-                background-color: rgba(var(--os-primary-color), .4);
+                background-color: rgba(var(--os-primary-color), .3);
             }
         }
 
         &:hover {
-            background-color: rgba(var(--os-secondary-color), .3);
+            background-color: rgba(var(--os-secondary-color), .2);
         }
 
         &:active {
             background-color: rgb(0, 0, 0, .2);
             transition: ease all 0.1s;
-
-            * {
-                transform: scale(0.96);
-            }
         }
     }
 }

@@ -1,0 +1,35 @@
+<os-list>
+    <os-list-item [style]="listItemStyles">
+        <os-checkbox
+            [checked]="isAllItemsSelected"
+            (osClick)="onToggleAll()">
+        </os-checkbox>
+
+        <os-text>Toggle all</os-text>
+    </os-list-item>
+
+    <os-list-item
+        *ngFor="let item of items"
+        [style]="listItemStyles"
+        [selected]="item.selected">
+        <os-checkbox
+            [(checked)]="item.selected">
+        </os-checkbox>
+
+        <img
+            class="icon"
+            [attr.src]="item.iconUrl" />
+
+        <os-text>{{ item.text }}</os-text>
+
+        <os-button
+            class="button-open"
+            (osClick)="onOpenButtonClick(item)">
+            Open
+        </os-button>
+    </os-list-item>
+</os-list>
+
+<os-text>
+    Selected items: {{ selectedItemsAsString }}
+</os-text>

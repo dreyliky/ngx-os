@@ -20,6 +20,7 @@ os-button {
     transition: ease transform 0.5s;
     user-select: none;
     cursor: default;
+    color: rgb(var(--os-black-color));
 
     &.disabled {
         color: #909090;

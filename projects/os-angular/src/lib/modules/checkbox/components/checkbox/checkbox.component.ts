@@ -73,12 +73,12 @@ export class CheckboxComponent<T>
         const inputElement = originalEvent.target as HTMLInputElement;
         this.checked = inputElement.checked;
 
-        this.onChange?.(inputElement.checked);
-        this.checkedChange.emit(inputElement.checked);
+        this.onChange?.(this.checked);
+        this.checkedChange.emit(this.checked);
         this.osChange.emit({
             originalEvent,
             value: this.value,
-            checked: inputElement.checked
+            checked: this.checked
         });
     }
 
@@ -89,7 +89,10 @@ export class CheckboxComponent<T>
     }
 
     protected onClick(event: PointerEvent): void {
-        this.checkboxElementRef.nativeElement.click();
+        const currentState = this.checkboxElementRef.nativeElement.checked;
+        this.checkboxElementRef.nativeElement.checked = !currentState;
+
+        this.checkboxElementRef.nativeElement.dispatchEvent(new Event('change'));
         this.checkboxElementRef.nativeElement.focus();
         super.onClick(event);
     }
