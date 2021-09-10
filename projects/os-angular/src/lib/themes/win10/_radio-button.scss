@@ -9,7 +9,7 @@ os-radio-button {
     display: flex;
     align-items: center;
 
-    input[type="radio"] {
+    input {
         position: absolute;
         opacity: 0;
         height: 0;
@@ -28,7 +28,7 @@ os-radio-button {
                 width: 16px;
                 margin-right: 8px;
                 background-color: transparent;
-                border: 2px solid #333333;
+                border: 2px solid #6e6e6e;
                 border-radius: 50%;
                 transition: ease 0.2s all;
             }
@@ -40,6 +40,7 @@ os-radio-button {
 
         &:checked + label {
             &:before {
+                background: rgb(var(--os-primary-color));
                 border: solid 2px rgb(var(--os-primary-color));
             }
 
@@ -47,7 +48,7 @@ os-radio-button {
                 content: "";
                 position: absolute;
                 transition: ease 0.1s all;
-                background-color: #333333;
+                background-color: #ffffff;
                 left: 5px;
                 top: calc(50% - 4px);
                 width: 9px;
@@ -58,4 +59,25 @@ os-radio-button {
         }
     }
 
+    &:hover:not(.disabled) label:before {
+        border: solid 2px #000000 !important;
+    }
+
+    &.disabled {
+        color: #acacac;
+
+        input {
+            + label:before {
+                background: #acacac;
+                border: solid 2px #acacac;
+            }
+
+            &:checked + label {
+                &:after {
+                    border: solid #acacac;
+                    border-width: 0 1px 1px 0;
+                }
+            }
+        }
+    }
 }
