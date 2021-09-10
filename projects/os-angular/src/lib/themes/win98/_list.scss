@@ -17,7 +17,7 @@ os-list {
         padding: 0px 2px;
 
         &.selected {
-            background-color: rgba(var(--os-primary-color)) !important;
+            background-color: rgba(var(--os-primary-color), .6) !important;
             color: rgb(var(--os-light-color));
         }
 

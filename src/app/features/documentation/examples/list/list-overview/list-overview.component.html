@@ -3,7 +3,7 @@
         *ngFor="let item of items"
         [selected]="item === selectedItem"
         (osClick)="onItemClick(item)">
-        {{ item.text }}
+        <os-text>{{ item.text }}</os-text>
     </os-list-item>
 </os-list>
 

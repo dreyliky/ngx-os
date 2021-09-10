@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-enum TabEnum {
-    Tab1,
-    Tab2,
-    Tab3
+interface TabItem {
+    id: number;
+    title: string;
+    content: string;
 }
 
 @Component({
@@ -12,8 +12,28 @@ enum TabEnum {
     styleUrls: ['./tab-group-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupOverviewComponent {
-    public readonly tabEnum: typeof TabEnum = TabEnum;
+export class TabGroupOverviewComponent implements OnInit {
+    public readonly tabs: TabItem[] = [
+        {
+            id: 1,
+            title: 'Tab 1',
+            content: 'Tab content 1'
+        },
+        {
+            id: 2,
+            title: 'Tab 2',
+            content: 'Tab content 2'
+        },
+        {
+            id: 3,
+            title: 'Tab 3',
+            content: 'Tab content 3'
+        }
+    ];
 
-    public selectedTab: TabEnum = TabEnum.Tab2;
+    public selectedTabId: number;
+
+    public ngOnInit(): void {
+        this.selectedTabId = this.tabs[0].id;
+    }
 }

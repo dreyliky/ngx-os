@@ -13,6 +13,7 @@ export class TextComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.classlistManager.add('os-text');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

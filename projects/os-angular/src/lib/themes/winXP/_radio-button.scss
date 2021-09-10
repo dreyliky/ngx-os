@@ -17,6 +17,7 @@ os-radio-button {
                 position: relative;
                 margin-left: 19px;
                 line-height: 16px;
+                display: unset;
 
                 &::before {
                     content: "";

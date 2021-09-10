@@ -2,7 +2,7 @@
     <os-list-item
         (osClick)="onScrollTopButtonClick()">
         <div class="list-item-wrapper">
-            <div class="name">Scroll to top</div>
+            <os-text class="name">Scroll to top</os-text>
         </div>
     </os-list-item>
 
@@ -20,7 +20,7 @@
         <div
             [attr.title]="apiPlanItem.name"
             class="name">
-            {{ apiPlanItem.name }}
+            <os-text>{{ apiPlanItem.name }}</os-text>
         </div>
     </os-list-item>
 </os-list>
