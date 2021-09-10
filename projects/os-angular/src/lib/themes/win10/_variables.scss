@@ -1,8 +1,10 @@
 :root {
-    --segoe-ui: "Segoe UI";
-
-    /** Universal color variables */
+    /** STABLE VARIABLES API */
     --os-primary-color: 0, 120, 215;
+    --os-bg-color: transparent;
+
+    /** UNSTABLE VARIABLES API */
+    --segoe-ui: "Segoe UI";
     --os-secondary-color: 215, 215, 215;
     --os-danger-color: 232, 17, 35;
     --os-success-color: 0, 255, 0;
@@ -12,5 +14,4 @@
     --os-dark-color: 41, 41, 41;
     --os-white-color: 255, 255, 255;
     --os-black-color: 0, 0, 0;
-    --os-bg-color: transparent;
 }

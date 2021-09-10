@@ -1,12 +1,10 @@
-/*-------------------------------------------*\
-    Variables
-\*-------------------------------------------*/
-
 :root {
-    --sans-serif: "Pixelated MS Sans Serif", Arial;
-
-    /** Universal color variables */
+    /** STABLE VARIABLES API */
     --os-primary-color: 34, 102, 203;
+    --os-bg-color: 236, 233, 216;
+
+    /** UNSTABLE VARIABLES API */
+    --sans-serif: "Pixelated MS Sans Serif", Arial;
     --os-secondary-color: 215, 215, 215;
     --os-danger-color: 232, 17, 35;
     --os-success-color: 0, 255, 0;
@@ -16,45 +14,4 @@
     --os-dark-color: 41, 41, 41;
     --os-white-color: 255, 255, 255;
     --os-black-color: 0, 0, 0;
-    --os-bg-color: 236, 233, 216;
-
-    /* Color */
-    --surface: #ece9d8;
-    --button-highlight: #ffffff;
-    --button-face: #dfdfdf;
-    --button-shadow: #808080;
-    --window-frame: #0a0a0a;
-    --dialog-blue: #2267cb;
-    --dialog-blue-light: #1084d0;
-    --link-blue: #0000ff;
-
-    /* Spacing */
-    --element-spacing: 8px;
-    --grouped-button-spacing: 4px;
-    --grouped-element-spacing: 6px;
-    --range-track-height: 4px;
-    --range-spacing: 10px;
-
-    /* Borders */
-    --border-width: 1px;
-    --border-raised-outer: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-highlight);
-    --border-raised-inner: inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-face);
-    --border-sunken-outer: inset -1px -1px var(--button-highlight), inset 1px 1px var(--window-frame);
-    --border-sunken-inner: inset -2px -2px var(--button-face), inset 2px 2px var(--button-shadow);
-    --input-border-color: #789dbc;
-
-    /* Window borders flip button-face and button-highlight */
-    --border-window-outer: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-face);
-    --border-window-inner: inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-highlight);
-    --border-field: inset -1px -1px var(--button-highlight), inset 1px 1px var(--button-shadow),
-        inset -2px -2px var(--button-face), inset 2px 2px var(--window-frame);
-
-    /* Scroll bar */
-    --scrollbar-bg: linear-gradient(
-        90deg,
-        rgba(197, 213, 255, 1) 0%,
-        rgba(181, 211, 255, 1) 86%,
-        rgba(182, 202, 247, 1) 100%
-    );
-    --scrollbar-shadow: inset 1px 1px white, inset -1px -1px white, inset 2px 2px #b9cdfa, inset -2px -2px #b6c9f7;
 }

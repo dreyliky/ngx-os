@@ -3,8 +3,8 @@ os-group-box {
     fieldset {
         border: 1px solid #d0d0bf;
         box-shadow: none;
-        padding: calc(2 * var(--border-width) + var(--element-spacing));
-        padding-block-start: var(--element-spacing);
+        padding: 10px;
+        padding-block-start: 8px;
         margin: 0;
         background: white;
         border-radius: 4px;
@@ -24,7 +24,7 @@ os-group-box {
         > * {
             + {
                 * {
-                    margin-left: var(--grouped-element-spacing);
+                    margin-left: 6px;
                 }
             }
         }
@@ -33,7 +33,7 @@ os-group-box {
     [class^="field-row"] {
         + {
             [class^="field-row"] {
-                margin-top: var(--grouped-element-spacing);
+                margin-top: 6px;
             }
         }
     }
@@ -44,7 +44,7 @@ os-group-box {
         * {
             + {
                 * {
-                    margin-top: var(--grouped-element-spacing);
+                    margin-top: 6px;
                 }
             }
         }

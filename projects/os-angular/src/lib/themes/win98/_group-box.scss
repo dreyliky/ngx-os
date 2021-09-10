@@ -20,7 +20,7 @@ os-group-box {
         > * {
             + {
                 * {
-                    margin-left: var(--grouped-element-spacing);
+                    margin-left: 6px;
                 }
             }
         }
@@ -29,7 +29,7 @@ os-group-box {
     [class^="field-row"] {
         + {
             [class^="field-row"] {
-                margin-top: var(--grouped-element-spacing);
+                margin-top: 6px;
             }
         }
     }
@@ -40,7 +40,7 @@ os-group-box {
         * {
             + {
                 * {
-                    margin-top: var(--grouped-element-spacing);
+                    margin-top: 6px;
                 }
             }
         }

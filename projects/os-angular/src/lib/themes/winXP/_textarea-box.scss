@@ -7,7 +7,7 @@ os-textarea-box {
         font-size: 11px;
         padding: 3px 4px;
         border: 1px solid #7f9db9;
-        background-color: var(--button-highlight);
+        background-color: #ffffff;
         box-sizing: border-box;
         appearance: none;
         border-radius: 0;
@@ -18,7 +18,7 @@ os-textarea-box {
         }
 
         &::selection {
-            background: var(--dialog-blue);
+            background: #2267cb;
             color: #ffffff;
         }
     }

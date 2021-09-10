@@ -11,7 +11,7 @@ os-scroll-view {
     }
 
     &::-webkit-scrollbar-corner {
-        background: var(--button-face);
+        background: #dfdfdf;
     }
 
     &::-webkit-scrollbar-track {
@@ -19,7 +19,7 @@ os-scroll-view {
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: var(--button-face);
+        background-color: #dfdfdf;
         box-shadow: var(--border-raised-outer), var(--border-raised-inner);
     }
 

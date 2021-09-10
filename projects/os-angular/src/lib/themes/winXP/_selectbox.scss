@@ -21,7 +21,7 @@ os-selectbox {
     font-size: 11px;
     padding: 3px 4px;
     border: 1px solid #7f9db9;
-    background-color: var(--button-highlight);
+    background-color: #ffffff;
     box-sizing: border-box;
     appearance: none;
     border-radius: 0;
@@ -38,8 +38,8 @@ os-selectbox {
 
     &:focus {
         outline: none;
-        color: var(--button-highlight);
-        background-color: var(--dialog-blue);
+        color: #ffffff;
+        background-color: #2267cb;
         box-shadow: inset 2px 2px white, inset -2px -2px white;
 
         option {

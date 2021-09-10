@@ -1,8 +1,11 @@
 :root {
+    /** STABLE VARIABLES API */
+    --os-primary-color: 0, 0, 128;
+    --os-bg-color: 192, 192, 192;
+
+    /** UNSTABLE VARIABLES API */
     --sans-serif: "Pixelated MS Sans Serif", Arial;
 
-    /** Universal color variables */
-    --os-primary-color: 0, 0, 128;
     --os-secondary-color: 215, 215, 215;
     --os-danger-color: 232, 17, 35;
     --os-success-color: 0, 255, 0;
@@ -12,31 +15,18 @@
     --os-dark-color: 41, 41, 41;
     --os-white-color: 255, 255, 255;
     --os-black-color: 0, 0, 0;
-    --os-bg-color: 192, 192, 192;
 
-    /* Color */
-    --button-highlight: #ffffff;
-    --button-face: #dfdfdf;
-    --button-shadow: #808080;
-    --window-frame: #0a0a0a;
-    --link-blue: #0000ff;
+    /* CUSTOM WIN98 UNSTABLE VARIABLES API */
+    --border-raised-outer: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff;
+    --border-raised-inner: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+    --border-sunken-outer: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a;
+    --border-sunken-inner: inset -2px -2px #dfdfdf, inset 2px 2px #808080;
 
-    /* Spacing */
-    --element-spacing: 8px;
-    --grouped-button-spacing: 4px;
-    --grouped-element-spacing: 6px;
-    --range-track-height: 4px;
-    --range-spacing: 10px;
-
-    /* Borders */
-    --border-width: 1px;
-    --border-raised-outer: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-highlight);
-    --border-raised-inner: inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-face);
-    --border-sunken-outer: inset -1px -1px var(--button-highlight), inset 1px 1px var(--window-frame);
-    --border-sunken-inner: inset -2px -2px var(--button-face), inset 2px 2px var(--button-shadow);
-
-    /* Window borders flip button-face and button-highlight */
-    --border-window-outer: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-face);
-    --border-window-inner: inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-highlight);
-    --border-field: inset -1px -1px rgb(var(--os-white-color)), inset 1px 1px rgba(var(--os-white-color), .5), inset -2px -2px rgb(var(--os-light-color)), inset 2px 2px rgb(var(--os-black-color));
+    --border-window-outer: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
+    --border-window-inner: inset -2px -2px #808080, inset 2px 2px #ffffff;
+    --border-field:
+        inset -1px -1px rgb(var(--os-white-color)),
+        inset 1px 1px rgba(var(--os-white-color), .5),
+        inset -2px -2px rgb(var(--os-light-color)),
+        inset 2px 2px rgb(var(--os-black-color));
 }
