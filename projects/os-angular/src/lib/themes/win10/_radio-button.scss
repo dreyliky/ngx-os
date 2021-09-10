@@ -52,8 +52,6 @@ os-radio-button {
                 top: calc(50% - 4px);
                 width: 9px;
                 height: 9px;
-                -webkit-transform: translateX(0.5px) translateY(-0.5px);
-                -ms-transform: translateX(0.5px) translateY(-0.5px);
                 transform: translateX(0.5px) translateY(-0.5px);
                 border-radius: 50%;
             }

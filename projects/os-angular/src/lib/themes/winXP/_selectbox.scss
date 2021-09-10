@@ -1,12 +1,10 @@
 @keyframes os-selectbox-opening {
     from {
         transform: scale(.85);
-        -webkit-transform: scale(.85);
         opacity: 0;
     }
     to {
         transform: scale(1);
-        -webkit-transform: scale(1);
         opacity: 1;
     }
 }
@@ -74,5 +72,4 @@ os-selectbox {
         display: flex;
         align-items: center;
     }
-
 }
