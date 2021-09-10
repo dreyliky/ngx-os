@@ -1,16 +1,17 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
+    HostBinding,
     Input,
     OnInit,
     Output
 } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
-import { OptionSelectedEvent } from '../../interfaces';
+import { SelectboxValueChangeEvent } from '../../interfaces';
 
-// FIXME: Refactoring (exist os-list-item)
 @Component({
     selector: 'os-option',
     templateUrl: './option.component.html',
@@ -18,28 +19,18 @@ import { OptionSelectedEvent } from '../../interfaces';
 })
 export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
-    public set selected(value: boolean) {
-        this._selected = value;
-
-        this.classlistManager.applyOneAsFlag(this.selectedStateClassName, this._selected);
-    }
-
-    public get selected(): boolean {
-        return this._selected;
-    }
+    @HostBinding('class.selected')
+    public selected: boolean = false;
 
     @Input()
     public value: T;
 
     @Output()
-    public osSelected: EventEmitter<OptionSelectedEvent<T>> = new EventEmitter();
-
-    private readonly selectedStateClassName = 'selected';
-
-    private _selected = false;
+    public osSelected: EventEmitter<SelectboxValueChangeEvent<T>> = new EventEmitter();
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostElementRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
@@ -47,9 +38,22 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     public ngOnInit(): void {
         this.classlistManager.add('os-option');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initDefaultValueIfAbsent();
     }
 
-    public onListItemClick(event: MouseEvent): void {
-        this.osSelected.emit({ event, value: this.value });
+    public setSelectedState(state: boolean): void {
+        this.selected = state;
+
+        this.changeDetector.markForCheck();
+    }
+
+    public onListItemClick(originalEvent: MouseEvent): void {
+        this.osSelected.emit({ originalEvent, value: this.value });
+    }
+
+    private initDefaultValueIfAbsent(): void {
+        if (!this.value) {
+            this.value = this.hostElementRef.nativeElement.innerText as any;
+        }
     }
 }

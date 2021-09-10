@@ -1,2 +1,2 @@
-export * from './option-selected-event.interface';
+export * from './value-change-event.interface';
 

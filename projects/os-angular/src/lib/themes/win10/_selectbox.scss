@@ -15,7 +15,7 @@ os-selectbox {
     border-radius: 0;
     appearance: none;
     padding-right: 32px;
-    background-image: url("./icon/win10_dropdown.svg");
+    background-image: url("./icon/win10_dropdown-black.svg");
     background-size: 15px;
     background-position: top 7px right 4px;
     background-repeat: no-repeat;
@@ -36,6 +36,13 @@ os-selectbox {
             color: #000;
             background-color: #fff;
         }
+    }
+
+    &.disabled {
+        background-image: url("./icon/win10_dropdown-grey.svg");
+        background-color: #cccccc;
+        color: #919191;
+        border: solid 2px #cccccc;
     }
 
     .os-placeholder {

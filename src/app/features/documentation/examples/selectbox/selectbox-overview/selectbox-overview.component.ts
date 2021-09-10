@@ -1,10 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-
-interface MyItem {
-    text: string;
-    value: number;
-}
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'demo-selectbox-overview',
@@ -12,22 +6,4 @@ interface MyItem {
     styleUrls: ['./selectbox-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectboxOverviewComponent implements OnInit {
-    public items: MyItem[] = [
-        { text: 'Option 1', value: 1 },
-        { text: 'Option 2', value: 2 },
-        { text: 'Option 3', value: 3 }
-    ];
-
-    public formGroup: FormGroup;
-
-    public ngOnInit(): void {
-        this.createFormGroup();
-    }
-
-    public createFormGroup(): void {
-        this.formGroup = new FormGroup({
-            selectedItem: new FormControl(this.items[1])
-        });
-    }
-}
+export class SelectboxOverviewComponent {}

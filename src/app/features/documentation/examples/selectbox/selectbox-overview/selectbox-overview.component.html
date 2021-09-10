@@ -1,16 +1,15 @@
-<form [formGroup]="formGroup">
+<os-form-field>
     <os-selectbox
-        [formControl]="formGroup.controls.selectedItem"
-        [displayField]="'text'">
-        <os-option
-            *ngFor="let item of items"
-            [selected]="formGroup.controls.selectedItem.value === item"
-            [value]="item">
-            {{ item.text }}
-        </os-option>
+        [placeholder]="'Default'">
+        <os-option>Item 1</os-option>
+        <os-option>Item 2</os-option>
+        <os-option>Item 3</os-option>
     </os-selectbox>
-</form>
+</os-form-field>
 
-<div class="form-data">
-    Form data: {{ formGroup.value | json }}
-</div>
+<os-form-field>
+    <os-selectbox
+        [placeholder]="'Disabled'"
+        [isDisabled]="true">
+    </os-selectbox>
+</os-form-field>

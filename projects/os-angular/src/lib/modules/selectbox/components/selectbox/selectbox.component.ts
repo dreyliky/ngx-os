@@ -6,6 +6,7 @@ import {
     ElementRef,
     EventEmitter,
     forwardRef,
+    HostBinding,
     HostListener,
     Input,
     OnDestroy,
@@ -17,7 +18,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFormControlComponent } from '@lib-core';
 import { OutsideClick } from '@lib-helpers';
 import { Subscription } from 'rxjs';
-import { OptionSelectedEvent } from '../../interfaces';
+import { SelectboxValueChangeEvent } from '../../interfaces';
 import { OptionComponent } from '../option';
 
 @Component({
@@ -39,6 +40,7 @@ export class SelectboxComponent<T>
     public isOpened: boolean = false;
 
     @Input()
+    @HostBinding('class.disabled')
     public isDisabled: boolean = false;
 
     @Input()
@@ -60,27 +62,23 @@ export class SelectboxComponent<T>
     public scrollViewStyleClass: string;
 
     @Output()
-    public osChange: EventEmitter<OptionSelectedEvent<T>> = new EventEmitter();
+    public osChange: EventEmitter<SelectboxValueChangeEvent<T>> = new EventEmitter();
 
     @Output()
     public valueChange: EventEmitter<T> = new EventEmitter();
 
     @ContentChildren(OptionComponent)
-    public set optionComponentList(data: QueryList<OptionComponent<T>>) {
-        this._optionComponentList = data;
+    public set _optionComponentQueryList(data: QueryList<OptionComponent<T>>) {
+        this.optionComponentQueryList = data;
 
-        this.initSelectboxOptions(data);
+        this.initOptionComponentsSelectedObserver();
     }
 
-    public get optionComponentList(): QueryList<OptionComponent<T>> {
-        return this._optionComponentList;
-    }
-
-    private _optionComponentList: QueryList<OptionComponent<T>>;
-    private _optionsSelectedEventSubscriptions: Subscription[];
+    private optionComponentQueryList: QueryList<OptionComponent<T>>;
+    private parentSubscription = new Subscription();
 
     constructor(
-        private readonly hostElementRef: ElementRef,
+        private readonly hostElementRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
@@ -92,66 +90,66 @@ export class SelectboxComponent<T>
     }
 
     public ngOnDestroy(): void {
-        this.unsubscribeFromOptionSelectedEvents();
+        this.parentSubscription.unsubscribe();
     }
 
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
         if (this.isOpened) {
-            const selectboxElem = this.hostElementRef.nativeElement;
-            const isClickOutsideWindow = OutsideClick.checkForElement(selectboxElem, event);
+            const selectboxElement = this.hostElementRef.nativeElement;
+            const isClickOutside = OutsideClick.checkForElement(selectboxElement, event);
 
-            if (isClickOutsideWindow) {
+            if (isClickOutside) {
                 this.isOpened = false;
             }
         }
     }
 
-    public trackByFn(_: OptionComponent<T>, index: number): number {
-        return index;
-    }
-
     public writeValue(value: T): void {
-        this.value = this.getActualValue(value);
+        this.value = this.getRealValue(value);
 
         this.changeDetector.detectChanges();
     }
 
     protected onClick(event: PointerEvent): void {
-        this.isOpened = !this.isOpened;
+        if (!this.isDisabled) {
+            this.isOpened = !this.isOpened;
 
-        super.onClick(event);
-        this.changeDetector.detectChanges();
+            super.onClick(event);
+            this.changeDetector.detectChanges();
+        }
     }
 
-    private getActualValue(value: T): any {
+    private getRealValue(value: T): any {
         return (this.valueField) ? value[this.valueField] : value;
     }
 
-    private initSelectboxOptions(options: QueryList<OptionComponent<T>>): void {
-        this.initOptionsSelectedObserver(options);
+    private initOptionComponentsSelectedObserver(): void {
+        this.parentSubscription.unsubscribe();
+        this.parentSubscription = new Subscription();
+
+        this.optionComponentQueryList
+            .forEach((optionComponent) => this.initOptionComponentSelectedStateObserver(optionComponent));
     }
 
-    private initOptionsSelectedObserver(optionComponents: QueryList<OptionComponent<T>>): void {
-        this.unsubscribeFromOptionSelectedEvents();
-        this._optionsSelectedEventSubscriptions = [];
-
-        optionComponents.forEach((optionComponent) => {
-            const subscription = optionComponent.osSelected
-                .subscribe((event: OptionSelectedEvent<T>) => {
-                    this.value = event.value;
-
-                    this.valueChange.emit(event.value);
-                    this.osChange.emit(event);
-                    this.onChange?.(event.value);
-                });
-
-            this._optionsSelectedEventSubscriptions.push(subscription);
-        });
+    private deselectAllOptions(): void {
+        this.optionComponentQueryList
+            .forEach((optionComponent) => optionComponent.setSelectedState(false));
     }
 
-    private unsubscribeFromOptionSelectedEvents(): void {
-        this._optionsSelectedEventSubscriptions
-            ?.forEach((subscription) => subscription.unsubscribe());
+    private initOptionComponentSelectedStateObserver(optionComponent: OptionComponent<T>): void {
+        const subscription = optionComponent.osSelected
+            .subscribe((event: SelectboxValueChangeEvent<T>) => {
+                this.value = event.value;
+
+                this.deselectAllOptions();
+                optionComponent.setSelectedState(true);
+                this.valueChange.emit(event.value);
+                this.osChange.emit(event);
+                this.onChange?.(event.value);
+                this.changeDetector.detectChanges();
+            });
+
+        this.parentSubscription.add(subscription);
     }
 }

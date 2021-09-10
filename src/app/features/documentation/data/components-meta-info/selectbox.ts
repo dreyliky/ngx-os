@@ -1,6 +1,6 @@
 import { SelectboxComponent, SelectboxModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { SelectboxOverviewComponent } from '../../examples';
+import { SelectboxAsFormControlComponent, SelectboxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const SELECTBOX_META_INFO: ComponentMetaInfo = {
@@ -21,6 +21,10 @@ export const SELECTBOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Selectbox Overview',
             component: SelectboxOverviewComponent
+        },
+        {
+            title: 'Selectbox as FormControl',
+            component: SelectboxAsFormControlComponent
         }
     ]
 };
