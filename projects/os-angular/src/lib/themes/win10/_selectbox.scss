@@ -9,7 +9,7 @@ os-selectbox {
     font-size: 11px;
     padding: 3px 4px;
     border: 2px solid #acacac;
-    background-color: var(--button-highlight);
+    background-color: #ffffff;
     box-sizing: border-box;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -32,8 +32,8 @@ os-selectbox {
 
     &:focus {
         outline: none;
-        color: var(--button-highlight);
-        background-color: var(--dialog-blue);
+        color: #ffffff;
+        background-color: #0078d7;
         box-shadow: inset 2px 2px white, inset -2px -2px white;
 
         option {
