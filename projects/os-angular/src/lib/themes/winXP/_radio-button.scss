@@ -1,22 +1,11 @@
-:root {
-    --radio-dot-width: 5px;
-    --radio-dot-top: 5px;
-    --radio-width: 13px;
-    --radio-inner-shadow-hover: inset -2px -2px #f8b636, inset 2px 2px #fedf9c;
-    --radio-bg-active: linear-gradient(135deg, rgba(176, 176, 167, 1) 0%, rgba(227, 225, 210, 1) 100%);
-    --radio-bg: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
-    --radio-border: 1px solid #1d5281;
-    --radio-border-disabled: 1px solid #cac8bb;
-}
-
 os-radio-button {
     display: block;
     margin: 8px 0px;
 
     input[type="radio"] {
+        width: 0;
+        height: 0;
         appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         margin: 0;
         background: 0;
         position: fixed;
@@ -26,21 +15,21 @@ os-radio-button {
         + {
             label {
                 position: relative;
-                margin-left: var(--radio-total-width);
+                margin-left: 19px;
                 line-height: 16px;
 
                 &::before {
                     content: "";
                     position: absolute;
                     top: 0;
-                    left: calc(-1 * (var(--radio-total-width-precalc)));
+                    left: -19px;
                     display: inline-block;
-                    width: var(--radio-width);
-                    height: var(--radio-width);
-                    margin-right: var(--radio-label-spacing);
-                    background: var(--radio-bg);
+                    width: 13px;
+                    height: 13px;
+                    margin-right: 6px;
+                    background: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
                     border-radius: 50%;
-                    border: var(--radio-border);
+                    border: 1px solid #1d5281;
                 }
             }
         }
@@ -48,7 +37,7 @@ os-radio-button {
         &:not([disabled]):not(:active) {
             + label {
                 &:hover:before {
-                    box-shadow: var(--radio-inner-shadow-hover);
+                    box-shadow: inset -2px -2px #f8b636, inset 2px 2px #fedf9c;
                 }
             }
         }
@@ -57,7 +46,7 @@ os-radio-button {
             + {
                 label {
                     &::before {
-                        background: var(--radio-bg-active);
+                        background: linear-gradient(135deg, rgba(176, 176, 167, 1) 0%, rgba(227, 225, 210, 1) 100%);
                     }
                 }
             }
@@ -69,10 +58,10 @@ os-radio-button {
                     &::after {
                         content: "";
                         display: block;
-                        width: var(--radio-dot-width);
-                        height: var(--radio-dot-width);
-                        top: var(--radio-dot-top);
-                        left: var(--radio-dot-left);
+                        width: 5px;
+                        height: 5px;
+                        top: 5px;
+                        left: -14px;
                         position: absolute;
                         background: url("./icon/winXP_radio-dot.svg");
                     }
@@ -93,7 +82,7 @@ os-radio-button {
         + {
             label {
                 &::before {
-                    border: var(--radio-border-disabled);
+                    border: 1px solid #cac8bb;
                     background: white;
                 }
             }
@@ -109,5 +98,4 @@ os-radio-button {
             }
         }
     }
-
 }

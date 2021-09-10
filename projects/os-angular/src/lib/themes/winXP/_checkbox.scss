@@ -3,9 +3,9 @@ os-checkbox {
     margin: 8px 0px;
 
     input[type="checkbox"] {
+        width: 0;
+        height: 0;
         appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         margin: 0;
         background: 0;
         position: fixed;
@@ -15,20 +15,20 @@ os-checkbox {
         + label {
             line-height: 13px;
             position: relative;
-            margin-left: var(--checkbox-total-width);
+            margin-left: 19px;
 
             &:before {
                 content: "";
                 position: absolute;
                 top: -1px;
-                left: calc(-1 * (var(--checkbox-total-width-precalc)));
+                left: -19px;
                 display: inline-block;
-                width: var(--checkbox-width);
-                height: var(--checkbox-width);
-                margin-right: var(--radio-label-spacing);
+                width: 13px;
+                height: 13px;
+                margin-right: 6px;
                 box-shadow: none;
-                border: var(--radio-border);
-                background: var(--radio-bg);
+                border: 1px solid #1d5281;
+                background: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
             }
         }
 
@@ -56,7 +56,7 @@ os-checkbox {
         &:not([disabled]):not(:active) {
             + label {
                 &:hover:before {
-                    box-shadow: var(--radio-inner-shadow-hover);
+                    box-shadow: inset -2px -2px #f8b636, inset 2px 2px #fedf9c;
                 }
             }
         }
@@ -65,7 +65,7 @@ os-checkbox {
             + {
                 label {
                     &::before {
-                        background: var(--radio-bg-active);
+                        background: linear-gradient(135deg, rgba(176, 176, 167, 1) 0%, rgba(227, 225, 210, 1) 100%);
                     }
                 }
             }
@@ -77,7 +77,7 @@ os-checkbox {
             label {
                 &::before {
                     background: white;
-                    border: var(--radio-border-disabled);
+                    border: 1px solid #cac8bb;
                 }
             }
         }

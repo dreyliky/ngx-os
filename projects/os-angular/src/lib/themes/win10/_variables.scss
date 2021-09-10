@@ -43,9 +43,6 @@
     --radio-left: calc(-1 * var(--radio-total-width-precalc));
     --radio-dot-width: 4px;
     --radio-dot-top: calc(var(--radio-width) / 2 - var(--radio-dot-width) / 2);
-    --radio-dot-left: calc(
-        (-1 * (var(--radio-total-width-precalc)) + var(--radio-width) / 2 - var(--radio-dot-width) / 2)
-    );
     --checkbox-total-width-precalc: var(--checkbox-width) + var(--radio-label-spacing);
     --checkbox-total-width: calc(var(--checkbox-total-width-precalc));
     --checkbox-left: calc(-1 * var(--checkbox-total-width-precalc));

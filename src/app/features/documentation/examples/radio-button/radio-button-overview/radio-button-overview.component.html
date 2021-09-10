@@ -1,11 +1,27 @@
-<form [formGroup]="formGroup">
+<os-form-field>
     <os-radio-button
-        *ngFor="let item of items"
-        [label]="item.text"
-        [value]="item"
-        [name]="'radio-group-1'"
-        [formControl]="formGroup.controls.selectedValue">
+        [label]="'Default 1'"
+        [name]="'radio-group-overview-1'">
     </os-radio-button>
-</form>
 
-{{ formGroup.value | json }}
+    <os-radio-button
+        [label]="'Default 2'"
+        [name]="'radio-group-overview-1'">
+    </os-radio-button>
+</os-form-field>
+
+<os-form-field>
+    <os-radio-button
+        [label]="'Disabled unchecked'"
+        [name]="'radio-group-overview-2'"
+        [checked]="false"
+        [isDisabled]="true">
+    </os-radio-button>
+
+    <os-radio-button
+        [label]="'Disabled checked'"
+        [name]="'radio-group-overview-2'"
+        [checked]="true"
+        [isDisabled]="true">
+    </os-radio-button>
+</os-form-field>

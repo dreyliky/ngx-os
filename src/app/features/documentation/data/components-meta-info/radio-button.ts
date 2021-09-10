@@ -1,6 +1,6 @@
 import { RadioButtonComponent, RadioButtonModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { RadioButtonOverviewComponent } from '../../examples';
+import { RadioButtonAsFormControlComponent, RadioButtonOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const RADIO_BUTTON_META_INFO: ComponentMetaInfo = {
@@ -19,8 +19,12 @@ export const RADIO_BUTTON_META_INFO: ComponentMetaInfo = {
     ],
     demoComponents: [
         {
-            title: 'Radio button Overview',
+            title: 'Radio Button Overview',
             component: RadioButtonOverviewComponent
+        },
+        {
+            title: 'Radio Button as FormControl',
+            component: RadioButtonAsFormControlComponent
         }
     ]
 };

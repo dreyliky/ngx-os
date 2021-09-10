@@ -3,9 +3,9 @@ os-radio-button {
     margin: 8px 0px;
 
     input[type="radio"] {
+        width: 0;
+        height: 0;
         appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         margin: 0;
         background: 0;
         position: fixed;
@@ -16,16 +16,16 @@ os-radio-button {
             label {
                 line-height: 13px;
                 position: relative;
-                margin-left: var(--radio-total-width);
+                margin-left: 18px;
                 &::before {
                     content: "";
                     position: absolute;
                     top: 0;
-                    left: calc(-1 * (var(--radio-total-width-precalc)));
+                    left: -18px;
                     display: inline-block;
-                    width: var(--radio-width);
-                    height: var(--radio-width);
-                    margin-right: var(--radio-label-spacing);
+                    width: 12px;
+                    height: 12px;
+                    margin-right: 6px;
                     background: url("./icon/win98_radio-border.svg");
                 }
             }
@@ -47,10 +47,10 @@ os-radio-button {
                     &::after {
                         content: "";
                         display: block;
-                        width: var(--radio-dot-width);
-                        height: var(--radio-dot-width);
-                        top: var(--radio-dot-top);
-                        left: var(--radio-dot-left);
+                        width: 4px;
+                        height: 4px;
+                        top: 4px;
+                        left: -14px;
                         position: absolute;
                         background: url("./icon/win98_radio-dot.svg");
                     }
@@ -66,7 +66,7 @@ os-radio-button {
             }
         }
 
-        input[type="radio"][disabled] {
+        &[disabled] {
             + {
                 label {
                     &::before {
@@ -74,6 +74,7 @@ os-radio-button {
                     }
                 }
             }
+
             &:checked {
                 + {
                     label {

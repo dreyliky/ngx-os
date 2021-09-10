@@ -13,6 +13,7 @@ import {
     ListOverviewComponent,
     NumberBoxOverviewComponent,
     PasswordBoxOverviewComponent,
+    RadioButtonAsFormControlComponent,
     RadioButtonOverviewComponent,
     ResizerOverviewComponent,
     ScrollViewOverviewComponent,
@@ -43,6 +44,7 @@ import {
         ListOverviewComponent,
         NumberBoxOverviewComponent,
         PasswordBoxOverviewComponent,
+        RadioButtonAsFormControlComponent,
         RadioButtonOverviewComponent,
         ResizerOverviewComponent,
         ScrollViewOverviewComponent,
@@ -60,34 +62,6 @@ import {
     ],
     imports: [
         SharedModule
-    ],
-    exports: [
-        ButtonCounterComponent,
-        ButtonOverviewComponent,
-        CheckboxAsFormControlComponent,
-        CheckboxOverviewComponent,
-        DraggerOverviewComponent,
-        EmailBoxOverviewComponent,
-        FormFieldOverviewComponent,
-        GridOverviewComponent,
-        GroupBoxOverviewComponent,
-        ListOverviewComponent,
-        NumberBoxOverviewComponent,
-        PasswordBoxOverviewComponent,
-        RadioButtonOverviewComponent,
-        ResizerOverviewComponent,
-        ScrollViewOverviewComponent,
-        SelectboxOverviewComponent,
-        SliderOverviewComponent,
-        TabGroupOverviewComponent,
-        TextareaOverviewComponent,
-        TextBoxOverviewComponent,
-        TextOverviewComponent,
-        ThemeOverviewComponent,
-        TreeViewOverviewComponent,
-        WindowDynamicOpeningComponent,
-        WindowOverviewComponent,
-        WindowTitleBarComponent
     ]
 })
 export class DocumentationModule {}

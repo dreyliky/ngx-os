@@ -41,11 +41,11 @@ export class RadioButtonComponent<T>
     public checked: boolean;
 
     @Input()
-    public value: T;
-
-    @Input()
     @HostBinding('class.disabled')
     public readonly isDisabled: boolean;
+
+    @Input()
+    public value: T;
 
     @Output()
     public osChange: EventEmitter<RadioButtonValueChangeEvent<T>> = new EventEmitter();
@@ -89,6 +89,7 @@ export class RadioButtonComponent<T>
 
     protected onClick(event: PointerEvent): void {
         this.radioElementRef.nativeElement.click();
+        this.radioElementRef.nativeElement.focus();
         super.onClick(event);
     }
 }
