@@ -1,0 +1,21 @@
+.my-button {
+    color: #ffffff;
+}
+
+:host-context(.win98) {
+    .my-button {
+        background: red;
+    }
+}
+
+:host-context(.winXP) {
+    .my-button {
+        background: green;
+    }
+}
+
+:host-context(.win10) {
+    .my-button {
+        background: blue;
+    }
+}

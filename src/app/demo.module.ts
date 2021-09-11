@@ -1,5 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FeaturesModule } from '@Features/features.module';
 import { LayoutsModule } from '@Layouts';
 import { SharedModule } from './demo-shared.module';
 import { DemoComponent } from './demo.component';
@@ -15,6 +16,7 @@ import { AppRoutingModule } from './demo.routing';
         AppRoutingModule,
 
         SharedModule,
+        FeaturesModule,
         LayoutsModule
     ],
     bootstrap: [

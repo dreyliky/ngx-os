@@ -1,6 +1,6 @@
-import { ThemeService } from '@lib-modules';
+import { AccentColorService, ThemeService } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { ThemeOverviewComponent } from '../../examples';
+import { ThemeDifferentStylingComponent, ThemeOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const THEME_META_INFO: ComponentMetaInfo = {
@@ -9,7 +9,8 @@ export const THEME_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides functionality to manipulate different themes and accent colors.',
     imageUrl: '/assets/icons/components/theme.png',
     libServices: [
-        ThemeService
+        ThemeService,
+        AccentColorService
     ],
     libInterfaces: [
         'ThemeRgbColor'
@@ -24,6 +25,10 @@ export const THEME_META_INFO: ComponentMetaInfo = {
         {
             title: 'Theme Overview',
             component: ThemeOverviewComponent
+        },
+        {
+            title: 'Different styling based on the current theme',
+            component: ThemeDifferentStylingComponent
         }
     ]
 };

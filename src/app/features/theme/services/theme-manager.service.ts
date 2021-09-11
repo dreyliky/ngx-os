@@ -1,38 +1,33 @@
 import { Injectable } from '@angular/core';
 import { ThemeEnum, ThemeService } from 'os-angular';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ThemeManagerService {
     public get applied$(): Observable<ThemeEnum> {
-        return this._applied$.asObservable();
+        return this.themeService.applied$;
     }
 
     public get applied(): ThemeEnum {
-        return this._applied$.getValue();
+        return this.themeService.applied;
     }
 
     private themeStorageKey = 'theme';
-    private defaultTheme = ThemeEnum.Win10;
-
-    private _applied$ = new BehaviorSubject<ThemeEnum>(this.defaultTheme);
 
     constructor(
         private readonly themeService: ThemeService
     ) {}
 
     public init(): void {
-        const theme = <ThemeEnum>localStorage.getItem(this.themeStorageKey) || this.defaultTheme;
+        const theme = <ThemeEnum>localStorage.getItem(this.themeStorageKey) || ThemeEnum.Win10;
 
-        this.themeService.applyTheme(theme);
-        this._applied$.next(theme);
+        this.themeService.apply(theme);
     }
 
     public apply(theme: ThemeEnum): void {
-        this.themeService.applyTheme(theme);
+        this.themeService.apply(theme);
         localStorage.setItem(this.themeStorageKey, theme);
-        this._applied$.next(theme);
     }
 }

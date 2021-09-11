@@ -31,6 +31,7 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
+import { ThemeDifferentStylingComponent } from './examples/theme/theme-different-styling/theme-different-styling.component';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,8 @@ import {
         TreeViewOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        ThemeDifferentStylingComponent
     ],
     imports: [
         SharedModule

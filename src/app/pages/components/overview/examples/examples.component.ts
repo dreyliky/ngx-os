@@ -2,8 +2,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver,
-    OnInit,
+    ComponentFactoryResolver, OnInit,
     QueryList,
     ViewChildren,
     ViewContainerRef
@@ -43,8 +42,9 @@ export class ExamplesComponent implements OnInit {
         const demoComponentsMetaInfo = this.overviewService.metaInfo.demoComponents;
 
         if (this.demoTemplates && demoComponentsMetaInfo) {
+            const demoTemplates = this.demoTemplates.toArray();
+
             demoComponentsMetaInfo.forEach((metaInfo, metaInfoIndex) => {
-                const demoTemplates = this.demoTemplates.toArray();
                 const componentFactory = this.componentFactoryResolver.resolveComponentFactory(metaInfo.component);
 
                 demoTemplates[metaInfoIndex]?.clear();

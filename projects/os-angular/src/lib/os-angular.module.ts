@@ -22,34 +22,8 @@ import {
     TreeViewModule,
     WindowModule
 } from './modules';
-import { SharedModule } from './shared.module';
 
 @NgModule({
-    imports: [
-        SharedModule,
-
-        ButtonModule,
-        CheckboxModule,
-        DragAndDropModule,
-        EmailBoxModule,
-        FormFieldModule,
-        GridModule,
-        GroupBoxModule,
-        ListModule,
-        NumberBoxModule,
-        PasswordBoxModule,
-        RadioButtonModule,
-        ResizerModule,
-        ScrollViewModule,
-        SelectboxModule,
-        SliderModule,
-        TabGroupModule,
-        TextareaBoxModule,
-        TextBoxModule,
-        TextModule,
-        TreeViewModule,
-        WindowModule
-    ],
     exports: [
         ButtonModule,
         CheckboxModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ThemeColorType, ThemeRgbColor, ThemeService } from 'os-angular';
+import { AccentColorService, ThemeColorType, ThemeRgbColor } from 'os-angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -19,11 +19,11 @@ export class AccentColorManagerService {
     private _applied$ = new BehaviorSubject<ThemeRgbColor>(null);
 
     constructor(
-        private readonly themeService: ThemeService
+        private readonly accentColorService: AccentColorService
     ) {}
 
     public get(colorType: ThemeColorType): ThemeRgbColor {
-        return this.themeService.getColor(colorType);
+        return this.accentColorService.get(colorType);
     }
 
     public init(): void {
@@ -31,7 +31,7 @@ export class AccentColorManagerService {
         const accentColor = (accentColorAsJson) ? JSON.parse(accentColorAsJson) : null;
 
         if (accentColor) {
-            this.themeService.applyColor('primary', accentColor);
+            this.accentColorService.apply('primary', accentColor);
             this._applied$.next(accentColor);
         }
     }
@@ -39,7 +39,7 @@ export class AccentColorManagerService {
     public apply(colorType: ThemeColorType, color: ThemeRgbColor): void {
         const colorAsJson = JSON.stringify(color);
 
-        this.themeService.applyColor(colorType, color);
+        this.accentColorService.apply(colorType, color);
         this._applied$.next(color);
         localStorage.setItem(this.accentColorStorageKey, colorAsJson);
     }

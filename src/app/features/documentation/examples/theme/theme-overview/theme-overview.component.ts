@@ -15,6 +15,6 @@ export class ThemeOverviewComponent {
     ) {}
 
     public applyTheme(themeName: ThemeEnum): void {
-        this.themeService.applyTheme(themeName);
+        this.themeService.apply(themeName);
     }
 }
