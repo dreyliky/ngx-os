@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AppRouteEnum } from '@Core/enums';
 import { environment } from 'src/environments/environment';
 
@@ -8,8 +8,12 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./component-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ComponentHeaderComponent {
+export class ComponentHeaderComponent implements OnInit {
     public readonly libVersion: string = environment.version;
+
+    public ngOnInit(): void {
+        console.log(Math.random());
+    }
 
     public get getStartedPagePath(): string {
         return `/${AppRouteEnum.GetStarted}`;

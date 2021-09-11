@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentMetaInfoMap, OsComponentEnum } from '@Features/documentation';
-import { ComponentOverviewLayoutComponent, COMPONENT_OVERVIEW_LAYOUT } from '@Layouts/containers';
+import { MainLayoutComponent, MAIN_LAYOUT } from '@Layouts';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { OverviewService } from './overview.service';
@@ -26,7 +26,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private routeParamsSubscription: Subscription;
 
     constructor(
-        @Inject(COMPONENT_OVERVIEW_LAYOUT) private layoutComponent: ComponentOverviewLayoutComponent,
+        @Inject(MAIN_LAYOUT) private layoutComponent: MainLayoutComponent,
         private readonly overviewService: OverviewService,
         private readonly changeDetector: ChangeDetectorRef,
         private readonly activatedRoute: ActivatedRoute

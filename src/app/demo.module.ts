@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { LayoutsModule } from '@Layouts/layouts.module';
+import { LayoutsModule } from '@Layouts';
 import { SharedModule } from './demo-shared.module';
 import { DemoComponent } from './demo.component';
 import { DemoConfig } from './demo.config';
