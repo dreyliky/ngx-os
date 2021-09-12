@@ -25,13 +25,13 @@ import {
     TextareaOverviewComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
+    ThemeDifferentStylingComponent,
     ThemeOverviewComponent,
     TreeViewOverviewComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
-import { ThemeDifferentStylingComponent } from './examples/theme/theme-different-styling/theme-different-styling.component';
 
 @NgModule({
     declarations: [
@@ -59,12 +59,12 @@ import { ThemeDifferentStylingComponent } from './examples/theme/theme-different
         TextareaOverviewComponent,
         TextBoxOverviewComponent,
         TextOverviewComponent,
+        ThemeDifferentStylingComponent,
         ThemeOverviewComponent,
         TreeViewOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent,
-        ThemeDifferentStylingComponent
+        WindowTitleBarComponent
     ],
     imports: [
         SharedModule
