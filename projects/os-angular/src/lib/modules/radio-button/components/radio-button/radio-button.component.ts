@@ -88,9 +88,10 @@ export class RadioButtonComponent<T>
     }
 
     protected onClick(event: PointerEvent): void {
-        if (!this.isDisabled) {
-            const currentState = this.radioElementRef.nativeElement.checked;
-            this.radioElementRef.nativeElement.checked = !currentState;
+        const currentState = this.radioElementRef.nativeElement.checked;
+
+        if (!this.isDisabled && !currentState) {
+            this.radioElementRef.nativeElement.checked = true;
 
             this.radioElementRef.nativeElement.dispatchEvent(new Event('change'));
             this.radioElementRef.nativeElement.focus();

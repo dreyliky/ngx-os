@@ -1,10 +1,19 @@
-<form [formGroup]="formGroup">
+<os-form-field>
     <os-text-box
-        [placeholder]="'Enter your name'"
-        [formControl]="formGroup.controls.textboxValue">
+        [placeholder]="'Default'">
     </os-text-box>
-</form>
+</os-form-field>
 
-<os-text>
-    {{ formGroup.value | json }}
-</os-text>
+<os-form-field>
+    <os-text-box
+        [value]="'Readonly'"
+        [isReadonly]="true">
+    </os-text-box>
+</os-form-field>
+
+<os-form-field>
+    <os-text-box
+        [placeholder]="'Disabled'"
+        [isDisabled]="true">
+    </os-text-box>
+</os-form-field>

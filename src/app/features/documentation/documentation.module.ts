@@ -12,7 +12,9 @@ import {
     GroupBoxOverviewComponent,
     ListCustomTemplateComponent,
     ListOverviewComponent,
+    NumberBoxAsFormControlComponent,
     NumberBoxOverviewComponent,
+    PasswordBoxAsFormControlComponent,
     PasswordBoxOverviewComponent,
     RadioButtonAsFormControlComponent,
     RadioButtonOverviewComponent,
@@ -22,7 +24,9 @@ import {
     SelectboxOverviewComponent,
     SliderOverviewComponent,
     TabGroupOverviewComponent,
+    TextareaAsFormControlComponent,
     TextareaOverviewComponent,
+    TextBoxAsFormControlComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
     ThemeDifferentStylingComponent,
@@ -32,6 +36,7 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
+import { EmailBoxAsFormControlComponent } from './examples/email-box/email-box-as-form-control/email-box-as-form-control.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +51,9 @@ import {
         GroupBoxOverviewComponent,
         ListCustomTemplateComponent,
         ListOverviewComponent,
+        NumberBoxAsFormControlComponent,
         NumberBoxOverviewComponent,
+        PasswordBoxAsFormControlComponent,
         PasswordBoxOverviewComponent,
         RadioButtonAsFormControlComponent,
         RadioButtonOverviewComponent,
@@ -56,7 +63,9 @@ import {
         SelectboxOverviewComponent,
         SliderOverviewComponent,
         TabGroupOverviewComponent,
+        TextareaAsFormControlComponent,
         TextareaOverviewComponent,
+        TextBoxAsFormControlComponent,
         TextBoxOverviewComponent,
         TextOverviewComponent,
         ThemeDifferentStylingComponent,
@@ -64,7 +73,8 @@ import {
         TreeViewOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        EmailBoxAsFormControlComponent
     ],
     imports: [
         SharedModule

@@ -1,10 +1,19 @@
-<form [formGroup]="formGroup">
+<os-form-field>
     <os-email-box
-        [placeholder]="'Enter your email'"
-        [formControl]="formGroup.controls.emailBoxValue">
+        [placeholder]="'Default'">
     </os-email-box>
-</form>
+</os-form-field>
 
-<os-text>
-    {{ formGroup.value | json }}
-</os-text>
+<os-form-field>
+    <os-email-box
+        [value]="'readonly@gmail.com'"
+        [isReadonly]="true">
+    </os-email-box>
+</os-form-field>
+
+<os-form-field>
+    <os-email-box
+        [placeholder]="'Disabled'"
+        [isDisabled]="true">
+    </os-email-box>
+</os-form-field>

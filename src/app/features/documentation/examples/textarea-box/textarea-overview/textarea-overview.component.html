@@ -1,10 +1,19 @@
-<form [formGroup]="formGroup">
+<os-form-field>
     <os-textarea-box
-        [placeholder]="'Please write about yourself'"
-        [formControl]="formGroup.controls.textareaBoxValue">
+        [placeholder]="'Default'">
     </os-textarea-box>
-</form>
+</os-form-field>
 
-<os-text>
-    {{ formGroup.value | json }}
-</os-text>
+<os-form-field>
+    <os-textarea-box
+        [value]="'Readonly'"
+        [isReadonly]="true">
+    </os-textarea-box>
+</os-form-field>
+
+<os-form-field>
+    <os-textarea-box
+        [placeholder]="'Disabled'"
+        [isDisabled]="true">
+    </os-textarea-box>
+</os-form-field>

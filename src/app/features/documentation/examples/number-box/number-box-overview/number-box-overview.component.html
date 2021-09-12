@@ -1,10 +1,19 @@
-<form [formGroup]="formGroup">
+<os-form-field>
     <os-number-box
-        [placeholder]="'Enter some number'"
-        [formControl]="formGroup.controls.textareaBoxValue">
+        [placeholder]="'Default'">
     </os-number-box>
-</form>
+</os-form-field>
 
-<os-text>
-    {{ formGroup.value | json }}
-</os-text>
+<os-form-field>
+    <os-number-box
+        [value]="'123456'"
+        [isReadonly]="true">
+    </os-number-box>
+</os-form-field>
+
+<os-form-field>
+    <os-number-box
+        [placeholder]="'Disabled'"
+        [isDisabled]="true">
+    </os-number-box>
+</os-form-field>

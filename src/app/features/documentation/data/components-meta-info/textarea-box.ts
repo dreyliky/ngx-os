@@ -1,6 +1,6 @@
 import { TextareaBoxComponent, TextareaBoxModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { TextareaOverviewComponent } from '../../examples';
+import { TextareaAsFormControlComponent, TextareaOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
@@ -21,6 +21,10 @@ export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Textarea Box Overview',
             component: TextareaOverviewComponent
+        },
+        {
+            title: 'Textarea Box as FormControl',
+            component: TextareaAsFormControlComponent
         }
     ]
 };

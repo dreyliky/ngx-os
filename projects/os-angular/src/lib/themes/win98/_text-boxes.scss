@@ -21,5 +21,10 @@ os-password-box {
         &:focus {
             outline: none;
         }
+
+        &[disabled] {
+            background: silver;
+            color: grey;
+        }
     }
 }

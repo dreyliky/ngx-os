@@ -1,6 +1,6 @@
 import { TextBoxComponent, TextBoxModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { TextBoxOverviewComponent } from '../../examples';
+import { TextBoxAsFormControlComponent, TextBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
@@ -21,6 +21,10 @@ export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Text Box Overview',
             component: TextBoxOverviewComponent
+        },
+        {
+            title: 'Text Box as FormControl',
+            component: TextBoxAsFormControlComponent
         }
     ]
 };

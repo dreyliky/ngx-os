@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+    <os-textarea-box
+        [placeholder]="'Please write about yourself'"
+        [formControl]="formGroup.controls.textareaBoxValue">
+    </os-textarea-box>
+</form>
+
+<os-text>
+    {{ formGroup.value | json }}
+</os-text>

@@ -81,6 +81,8 @@ os-radio-button {
     input[type="radio"][disabled] {
         + {
             label {
+                color: #a1a192;
+
                 &::before {
                     border: 1px solid #cac8bb;
                     background: white;

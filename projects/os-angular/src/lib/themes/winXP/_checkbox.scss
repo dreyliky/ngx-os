@@ -75,6 +75,8 @@ os-checkbox {
     input[type="checkbox"][disabled] {
         + {
             label {
+                color: #a1a192;
+
                 &::before {
                     background: white;
                     border: 1px solid #cac8bb;

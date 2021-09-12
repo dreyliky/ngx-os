@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+    <os-text-box
+        [placeholder]="'Enter your name'"
+        [formControl]="formGroup.controls.textboxValue">
+    </os-text-box>
+</form>
+
+<os-text>
+    {{ formGroup.value | json }}
+</os-text>

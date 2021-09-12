@@ -26,5 +26,11 @@ os-password-box {
         &:focus {
             border-color: rgb(var(--os-primary-color));
         }
+
+        &[disabled] {
+            background-color: #cccccc;
+            color: #919191;
+            border: solid 2px #cccccc;
+        }
     }
 }

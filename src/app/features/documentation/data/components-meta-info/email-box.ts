@@ -1,6 +1,6 @@
 import { EmailBoxComponent, EmailBoxModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { EmailBoxOverviewComponent } from '../../examples';
+import { EmailBoxAsFormControlComponent, EmailBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
@@ -21,6 +21,10 @@ export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Email Box Overview',
             component: EmailBoxOverviewComponent
+        },
+        {
+            title: 'Email Box as FormControl',
+            component: EmailBoxAsFormControlComponent
         }
     ]
 };

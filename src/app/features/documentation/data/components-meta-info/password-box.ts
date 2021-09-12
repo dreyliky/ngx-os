@@ -1,6 +1,6 @@
 import { PasswordBoxComponent, PasswordBoxModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { PasswordBoxOverviewComponent } from '../../examples';
+import { PasswordBoxAsFormControlComponent, PasswordBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const PASSWORD_BOX_META_INFO: ComponentMetaInfo = {
@@ -21,6 +21,10 @@ export const PASSWORD_BOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Password Box Overview',
             component: PasswordBoxOverviewComponent
+        },
+        {
+            title: 'Password Box as FormControl',
+            component: PasswordBoxAsFormControlComponent
         }
     ]
 };

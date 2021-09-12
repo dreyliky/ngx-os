@@ -7,8 +7,10 @@ import {
     EventEmitter,
     forwardRef,
     Input,
+    OnChanges,
     OnInit,
     Output,
+    SimpleChanges,
     ViewChild
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -27,7 +29,7 @@ import { NumberBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
+export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, OnChanges, AfterViewInit {
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
@@ -55,8 +57,16 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
     }
 
-    public writeValue(value: string): void {
-        this.value = value;
+    public ngOnChanges(changes: SimpleChanges): void {
+        this.processValueFromSimpleChanges(changes);
+    }
+
+    public writeValue(value: string | number): void {
+        if (typeof(value) === 'number' || typeof(value) === 'string') {
+            this.value = this.processValue(value);
+        } else {
+            this.value = '';
+        }
 
         this.changeDetector.detectChanges();
     }
@@ -64,9 +74,7 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
     protected onInput(event: Event): void {
         const inputElement = event.target as HTMLInputElement;
 
-        inputElement.value = inputElement.value
-            .replace(/[^0-9.]/g, '')
-            .replace(/(\..*?)\..*/g, '$1');
+        inputElement.value = this.processValue(inputElement.value);
 
         super.onInput(event);
     }
@@ -78,5 +86,17 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value });
         this.changeDetector.markForCheck();
+    }
+
+    private processValueFromSimpleChanges(changes: SimpleChanges): void {
+        if (changes.value?.previousValue !== changes.value?.currentValue) {
+            this.value = this.processValue(changes.value.currentValue);
+        }
+    }
+
+    private processValue(value: string | number): string {
+        return value.toString()
+            .replace(/[^0-9.]/g, '')
+            .replace(/(\..*?)\..*/g, '$1');
     }
 }

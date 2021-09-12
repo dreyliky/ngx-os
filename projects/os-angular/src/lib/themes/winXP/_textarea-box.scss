@@ -17,9 +17,10 @@ os-textarea-box {
             outline: none;
         }
 
-        &::selection {
-            background: #2267cb;
-            color: #ffffff;
+        &[disabled] {
+            background-color: #ece9d8;
+            border: solid 1px rgba(0, 0, 0, .2);
+            color: #aca899;
         }
     }
 }

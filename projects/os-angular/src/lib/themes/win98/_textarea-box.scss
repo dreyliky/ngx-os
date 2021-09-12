@@ -17,6 +17,10 @@ os-textarea-box {
         &:focus {
             outline: none;
         }
-    }
 
+        &[disabled] {
+            background: silver;
+            color: grey;
+        }
+    }
 }

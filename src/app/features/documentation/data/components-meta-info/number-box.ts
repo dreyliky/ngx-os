@@ -1,6 +1,6 @@
 import { NumberBoxComponent, NumberBoxModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { NumberBoxOverviewComponent } from '../../examples';
+import { NumberBoxAsFormControlComponent, NumberBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const NUMBER_BOX_META_INFO: ComponentMetaInfo = {
@@ -21,6 +21,10 @@ export const NUMBER_BOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Number Box Overview',
             component: NumberBoxOverviewComponent
+        },
+        {
+            title: 'Number Box as FormControl',
+            component: NumberBoxAsFormControlComponent
         }
     ]
 };
