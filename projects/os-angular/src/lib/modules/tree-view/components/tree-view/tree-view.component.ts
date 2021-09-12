@@ -40,11 +40,9 @@ export class TreeViewComponent extends OsBaseComponent implements OnInit {
         node: TreeNode<any>,
         parent: TreeNode<any> = null
     ): TreeNode<any> {
-        const targetNode = { ...node };
+        const targetNode = { ...node, parent };
 
-        targetNode.parent = parent;
-
-        if (node.children && node.children.length) {
+        if (node.children?.length) {
             targetNode.children = node.children.map((childNode, nodeIndex) => {
                 childNode.parent = targetNode;
 

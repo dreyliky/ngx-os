@@ -5,9 +5,8 @@
     [id]="id">
 
     <ng-container
-        *ngTemplateOutlet="treeNodesTemplate; context:{ nodes: data }">
+        *ngTemplateOutlet="treeNodesTemplate; context: { nodes: data }">
     </ng-container>
-
 </ul>
 
 <ng-template
@@ -26,7 +25,7 @@
 
                 <ul class="os-element">
                     <ng-container
-                        *ngTemplateOutlet="treeNodesTemplate; context:{ nodes: node.children }">
+                        *ngTemplateOutlet="treeNodesTemplate; context: { nodes: node.children }">
                     </ng-container>
                 </ul>
             </details>
