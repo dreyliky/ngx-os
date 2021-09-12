@@ -1,16 +1,16 @@
 <ng-container *ngFor="let docInterface of (docInterfaces$ | async)">
-    <element-api-header
+    <api-element-header
         [title]="docInterface.name"
         [iconUrl]="'/assets/icons/dev/typescript.svg'">
-    </element-api-header>
+    </api-element-header>
     
-    <div class="interface">
-        <shared-properties
+    <div class="content">
+        <api-properties
             [classProperties]="docInterface.properties">
-        </shared-properties>
+        </api-properties>
     
-        <shared-methods
+        <api-methods
             [classMethods]="docInterface.methods">
-        </shared-methods>
+        </api-methods>
     </div>
 </ng-container>

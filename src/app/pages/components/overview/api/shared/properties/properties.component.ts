@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DocClassProperty } from '@Features/documentation';
 
 @Component({
-    selector: 'shared-properties',
+    selector: 'api-properties',
     templateUrl: './properties.component.html',
     styleUrls: [
         './properties.component.scss',

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'element-api-header',
+    selector: 'api-element-header',
     templateUrl: './element-header.component.html',
     styleUrls: ['./element-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

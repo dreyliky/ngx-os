@@ -7,6 +7,7 @@ import { MethodsComponent } from './methods';
 import { OutputsComponent } from './outputs';
 import { PropertiesComponent } from './properties';
 import { ReadmeInfoComponent } from './readme-info';
+import { SelectorComponent } from './selector';
 import { SettersComponent } from './setters';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SettersComponent } from './setters';
         InputsComponent,
         OutputsComponent,
         PropertiesComponent,
-        MethodsComponent
+        MethodsComponent,
+        SelectorComponent
     ],
     imports: [
         SharedModule
@@ -31,7 +33,8 @@ import { SettersComponent } from './setters';
         InputsComponent,
         OutputsComponent,
         PropertiesComponent,
-        MethodsComponent
+        MethodsComponent,
+        SelectorComponent
     ]
 })
 export class ApiSharedModule {}

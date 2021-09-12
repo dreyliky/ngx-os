@@ -52,15 +52,15 @@ export abstract class OsBaseComponent {
     @Output()
     public osMouseUp: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /** Target internal element wheel event> */
+    /** Target internal element wheel event */
     @Output()
     public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
 
-    /** Target internal element keydown event> */
+    /** Target internal element keydown event */
     @Output()
     public osKeyDown: EventEmitter<KeyboardEvent> = new EventEmitter();
 
-    /** Target internal element keyup event> */
+    /** Target internal element keyup event */
     @Output()
     public osKeyUp: EventEmitter<KeyboardEvent> = new EventEmitter();
 

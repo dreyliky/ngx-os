@@ -1,0 +1,9 @@
+.os-text-box {
+    &::ng-deep input {
+        width: auto !important;
+        white-space: nowrap;
+        color: rgb(var(--os-primary-color));
+        font-weight: bold;
+        user-select: all !important;
+    }
+}

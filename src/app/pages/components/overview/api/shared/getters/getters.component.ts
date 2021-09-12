@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DocAccessors, DocGetSignature } from '@Features/documentation';
 
 @Component({
-    selector: 'shared-getters',
+    selector: 'api-getters',
     templateUrl: './getters.component.html',
     styleUrls: [
         './getters.component.scss',

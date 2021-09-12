@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { OutputsClass } from '@Features/documentation';
 
 @Component({
-    selector: 'shared-outputs',
+    selector: 'api-outputs',
     templateUrl: './outputs.component.html',
     styleUrls: [
         './outputs.component.scss',

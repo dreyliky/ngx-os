@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MethodsClass } from '@Features/documentation';
 
 @Component({
-    selector: 'shared-methods',
+    selector: 'api-methods',
     templateUrl: './methods.component.html',
     styleUrls: [
         './methods.component.scss',

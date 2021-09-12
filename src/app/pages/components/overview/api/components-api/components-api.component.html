@@ -1,48 +1,41 @@
 <ng-container *ngFor="let docComponent of (docComponents$ | async)">
-    <element-api-header
+    <api-element-header
         [title]="docComponent.name"
         [iconUrl]="'/assets/icons/dev/angular-component.svg'">
-    </element-api-header>
+    </api-element-header>
 
-    <div class="component">
-        <os-form-field>
-            <os-label>Selector</os-label>
-
-            <os-text-box
-                [styleClass]="'selector'"
-                [size]="docComponent.selector.length"
-                [isReadonly]="true"
-                [value]="docComponent.selector">
-            </os-text-box>
-        </os-form-field>
+    <div class="content">
+        <api-selector
+            [name]="docComponent.selector">
+        </api-selector>
 
         <api-readme-info
             *ngIf="docComponent.readme"
             [readmeInfo]="docComponent.readme">
         </api-readme-info>
 
-        <shared-getters
+        <api-getters
             [accessors]="docComponent.accessors">
-        </shared-getters>
+        </api-getters>
 
-        <shared-setters
+        <api-setters
             [accessors]="docComponent.accessors">
-        </shared-setters>
+        </api-setters>
 
-        <shared-inputs
+        <api-inputs
             [classInputs]="docComponent.inputsClass">
-        </shared-inputs>
+        </api-inputs>
 
-        <shared-outputs
+        <api-outputs
             [classOutputs]="docComponent.outputsClass">
-        </shared-outputs>
+        </api-outputs>
 
-        <shared-properties
+        <api-properties
             [classProperties]="docComponent.propertiesClass">
-        </shared-properties>
+        </api-properties>
 
-        <shared-methods
+        <api-methods
             [classMethods]="docComponent.methodsClass">
-        </shared-methods>
+        </api-methods>
     </div>
 </ng-container>

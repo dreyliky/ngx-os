@@ -1,0 +1,10 @@
+<os-form-field [stacked]="true">
+    <os-label>Selector</os-label>
+
+    <os-text-box
+        [size]="name.length"
+        [isReadonly]="true"
+        [value]="name"
+        (osClick)="onSelectorTextboxClick($event)">
+    </os-text-box>
+</os-form-field>

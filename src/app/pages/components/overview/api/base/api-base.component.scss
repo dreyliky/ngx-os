@@ -12,16 +12,17 @@ table.content {
     border-collapse: collapse;
 
     tr {
-        border-bottom: solid 1px rgba(0, 0, 0, .1);
+        border: solid 1px rgba(0, 0, 0, .05);
     }
 
     td {
         &.property-name-col {
             width: 250px;
-            font-weight: bold;
+            border: solid 1px rgba(0, 0, 0, .05);
         }
 
-        padding: 10px;
-        font-size: 12px;
+        height: 54px;
+        padding: 4px;
+        font-size: 14px;
     }
 }

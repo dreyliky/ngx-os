@@ -1,10 +1,10 @@
 <ng-container *ngFor="let docEnum of (docEnums$ | async)">
-    <element-api-header
+    <api-element-header
         [title]="docEnum.name"
         [iconUrl]="'/assets/icons/dev/typescript.svg'">
-    </element-api-header>
+    </api-element-header>
     
-    <div class="enum">
+    <div class="content">
         <div *ngFor="let property of docEnum.childs">
             <os-text>
                 <b>{{ property.name }}</b>

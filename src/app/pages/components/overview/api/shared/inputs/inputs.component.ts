@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { InputsClass } from '@Features/documentation';
 
 @Component({
-    selector: 'shared-inputs',
+    selector: 'api-inputs',
     templateUrl: './inputs.component.html',
     styleUrls: [
         './inputs.component.scss',
