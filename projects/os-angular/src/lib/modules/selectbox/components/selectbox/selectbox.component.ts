@@ -74,6 +74,18 @@ export class SelectboxComponent<T>
         this.initOptionComponentsSelectedObserver();
     }
 
+    public get _isPlaceholderVisible(): boolean {
+        return (!!this.placeholder && !this.value);
+    }
+
+    public get _isValueExist(): boolean {
+        return (!!this.value || (!!this.displayField && !!this.value[this.displayField]));
+    }
+
+    public get _valueToDisplay(): string {
+        return (this.displayField) ? this.value[this.displayField] as any : this.value;
+    }
+
     private optionComponentQueryList: QueryList<OptionComponent<T>>;
     private parentSubscription = new Subscription();
 

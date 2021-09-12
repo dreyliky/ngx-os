@@ -1,17 +1,15 @@
 <ng-content select="[os-placeholder]"></ng-content>
 
-<!-- FIXME: Make getters for logic in template -->
 <span
-    *ngIf="placeholder && !value"
+    *ngIf="_isPlaceholderVisible"
     class="os-placeholder">
     {{ placeholder }}
 </span>
 
-<!-- FIXME: Make getters for logic in template -->
 <span
-    *ngIf="value || (displayField && value[displayField])"
+    *ngIf="_isValueExist"
     class="os-value">
-    {{ (displayField) ? value[displayField] : value }}
+    {{ _valueToDisplay }}
 </span>
 
 <os-list
