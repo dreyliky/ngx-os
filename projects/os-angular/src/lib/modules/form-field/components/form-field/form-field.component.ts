@@ -9,7 +9,7 @@ import { OsBaseComponent } from '@lib-core';
 export class FormFieldComponent extends OsBaseComponent implements OnInit {
     @Input()
     @HostBinding('class.stacked')
-    public stacked: boolean = false;
+    public isStacked: boolean = false;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>

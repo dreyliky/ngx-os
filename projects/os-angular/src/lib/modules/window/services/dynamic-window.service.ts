@@ -14,7 +14,9 @@ import { DynamicWindowComponent } from '../components/dynamic-window';
 import { DynamicWindowDiParams, DynamicWindowInputParams, DynamicWindowParams, IDynamicWindowRef } from '../interfaces';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DynamicWindowService {
     public get references$(): Observable<DynamicWindowRef[]> {
         return this.windowControlService.references$;

@@ -38,7 +38,7 @@ export class CheckboxComponent<T>
 
     @Input()
     @HostBinding('class.checked')
-    public checked: boolean;
+    public isChecked: boolean;
 
     @Input()
     @HostBinding('class.disabled')
@@ -52,7 +52,7 @@ export class CheckboxComponent<T>
 
     /** Emits when `checked` state changed. Might be used for two way binding */
     @Output()
-    public checkedChange: EventEmitter<boolean> = new EventEmitter();
+    public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
     @ViewChild('checkbox')
     private readonly checkboxElementRef: ElementRef<HTMLInputElement>;
@@ -71,29 +71,31 @@ export class CheckboxComponent<T>
 
     public onCheckboxValueChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
-        this.checked = inputElement.checked;
+        this.isChecked = inputElement.checked;
 
-        this.onChange?.(this.checked);
-        this.checkedChange.emit(this.checked);
+        this.onChange?.(this.isChecked);
+        this.isCheckedChange.emit(this.isChecked);
         this.osChange.emit({
             originalEvent,
             value: this.value,
-            checked: this.checked
+            checked: this.isChecked
         });
     }
 
     public writeValue(value: boolean): void {
-        this.checked = value;
+        this.isChecked = value;
 
         this.changeDetector.detectChanges();
     }
 
     protected onClick(event: PointerEvent): void {
-        const currentState = this.checkboxElementRef.nativeElement.checked;
-        this.checkboxElementRef.nativeElement.checked = !currentState;
+        if (!this.isDisabled) {
+            const currentState = this.checkboxElementRef.nativeElement.checked;
+            this.checkboxElementRef.nativeElement.checked = !currentState;
 
-        this.checkboxElementRef.nativeElement.dispatchEvent(new Event('change'));
-        this.checkboxElementRef.nativeElement.focus();
-        super.onClick(event);
+            this.checkboxElementRef.nativeElement.dispatchEvent(new Event('change'));
+            this.checkboxElementRef.nativeElement.focus();
+            super.onClick(event);
+        }
     }
 }

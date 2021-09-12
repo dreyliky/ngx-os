@@ -1,5 +1,6 @@
 import {
-    AfterContentInit, ChangeDetectionStrategy,
+    AfterContentInit,
+    ChangeDetectionStrategy,
     Component,
     ContentChildren,
     ElementRef,
@@ -38,7 +39,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
                 .subscribe(() => {
                     this.deselectAllTabs();
 
-                    tabComponent.selected = true;
+                    tabComponent.isSelected = true;
                 });
 
             this.tabButtonOnClickSubscriptions.push(tabEventSubscription as any);
@@ -56,7 +57,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
 
     private deselectAllTabs(): void {
         this.tabComponentList.forEach((tabComponent) => {
-            tabComponent.selected = false;
+            tabComponent.isSelected = false;
         });
     }
 }

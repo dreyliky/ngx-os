@@ -6,7 +6,8 @@ import {
     ElementRef,
     EventEmitter,
     forwardRef,
-    Input, Output,
+    Input,
+    Output,
     ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';

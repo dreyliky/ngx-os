@@ -20,7 +20,7 @@ import { SelectboxValueChangeEvent } from '../../interfaces';
 export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
     @HostBinding('class.selected')
-    public selected: boolean = false;
+    public isSelected: boolean = false;
 
     @Input()
     public value: T;
@@ -42,7 +42,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     }
 
     public setSelectedState(state: boolean): void {
-        this.selected = state;
+        this.isSelected = state;
 
         this.changeDetector.markForCheck();
     }

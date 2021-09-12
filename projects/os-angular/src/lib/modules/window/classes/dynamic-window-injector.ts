@@ -6,13 +6,13 @@ export class DynamicWindowInjector implements Injector {
         private readonly _additionalTokens: WeakMap<any, any>
     ) {}
 
-    public get<T> (
+    public get<T>(
         token: Type<T> | InjectionToken<T>,
         notFoundValue?: T,
         flags?: InjectFlags
     ): T;
 
-    public get (token: any, notFoundValue?: any): any;
+    public get(token: any, notFoundValue?: any): any;
 
     public get(token: any, notFoundValue?: any): any {
         const value = this._additionalTokens.get(token);

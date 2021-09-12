@@ -31,7 +31,7 @@ export class DynamicWindowConfig<D = any, T = any> implements DynamicWindowParam
     public onCloseButtonClick?: () => any;
 
     constructor(params: DynamicWindowParams) {
-        this.applyParams(params);
+        Object.assign(this, params);
         this.initWidth(params);
         this.initHeight(params);
     }
@@ -45,12 +45,6 @@ export class DynamicWindowConfig<D = any, T = any> implements DynamicWindowParam
     private initHeight(params: DynamicWindowParams): void {
         if (params.minHeight && !params.height) {
             this.height = params.minHeight;
-        }
-    }
-
-    private applyParams(params: DynamicWindowParams): void {
-        for (const [key, value] of Object.entries(params)) {
-            this[key] = value;
         }
     }
 }

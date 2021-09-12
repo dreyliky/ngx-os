@@ -1,7 +1,7 @@
 <os-list>
     <os-list-item [style]="listItemStyles">
         <os-checkbox
-            [checked]="isAllItemsSelected"
+            [isChecked]="isAllItemsSelected"
             (osClick)="onToggleAll()">
         </os-checkbox>
 
@@ -11,9 +11,9 @@
     <os-list-item
         *ngFor="let item of items"
         [style]="listItemStyles"
-        [selected]="item.selected">
+        [isSelected]="item.selected">
         <os-checkbox
-            [(checked)]="item.selected">
+            [(isChecked)]="item.selected">
         </os-checkbox>
 
         <img

@@ -2,7 +2,7 @@
     <os-tab
         *ngFor="let tab of tabs"
         [label]="tab.title"
-        [selected]="selectedTabId === tab.id">
+        [isSelected]="selectedTabId === tab.id">
         <os-text>{{ tab.content }}</os-text>
     </os-tab>
 </os-tab-group>

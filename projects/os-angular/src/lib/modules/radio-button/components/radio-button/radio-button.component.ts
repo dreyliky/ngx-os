@@ -38,7 +38,7 @@ export class RadioButtonComponent<T>
 
     @Input()
     @HostBinding('class.checked')
-    public checked: boolean;
+    public isChecked: boolean;
 
     @Input()
     @HostBinding('class.disabled')
@@ -52,7 +52,7 @@ export class RadioButtonComponent<T>
 
     /** Emits when `checked` state changed. Might be used for two way binding */
     @Output()
-    public checkedChange: EventEmitter<boolean> = new EventEmitter();
+    public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
     @ViewChild('radioButton')
     private readonly radioElementRef: ElementRef<HTMLInputElement>;
@@ -73,7 +73,7 @@ export class RadioButtonComponent<T>
         const inputElement = originalEvent.target as HTMLInputElement;
 
         this.onChange?.(this.value);
-        this.checkedChange.emit(inputElement.checked);
+        this.isCheckedChange.emit(inputElement.checked);
         this.osChange.emit({
             originalEvent,
             value: this.value,
@@ -82,17 +82,19 @@ export class RadioButtonComponent<T>
     }
 
     public writeValue(value: T): void {
-        this.checked = (this.value === value);
+        this.isChecked = (this.value === value);
 
         this.changeDetector.detectChanges();
     }
 
     protected onClick(event: PointerEvent): void {
-        const currentState = this.radioElementRef.nativeElement.checked;
-        this.radioElementRef.nativeElement.checked = !currentState;
+        if (!this.isDisabled) {
+            const currentState = this.radioElementRef.nativeElement.checked;
+            this.radioElementRef.nativeElement.checked = !currentState;
 
-        this.radioElementRef.nativeElement.dispatchEvent(new Event('change'));
-        this.radioElementRef.nativeElement.focus();
-        super.onClick(event);
+            this.radioElementRef.nativeElement.dispatchEvent(new Event('change'));
+            this.radioElementRef.nativeElement.focus();
+            super.onClick(event);
+        }
     }
 }

@@ -8,7 +8,7 @@
 
     <os-list-item
         *ngFor="let component of (components$ | async)"
-        [selected]="metaInfo.type === component.type"
+        [isSelected]="metaInfo.type === component.type"
         [value]="component"
         (osSelected)="onComponentOptionSelected($event)">
         <div class="icon-wrapper">

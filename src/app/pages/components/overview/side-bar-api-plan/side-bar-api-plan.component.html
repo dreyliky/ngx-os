@@ -8,7 +8,7 @@
 
     <os-list-item
         *ngFor="let apiPlanItem of apiPlanItems"
-        [selected]="apiPlanItem.name === routeFragment"
+        [isSelected]="apiPlanItem.name === routeFragment"
         [value]="apiPlanItem"
         (osClick)="onApiPlanItemSelected(apiPlanItem)">
         <div class="icon-wrapper">

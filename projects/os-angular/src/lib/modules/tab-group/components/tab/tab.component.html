@@ -1,16 +1,16 @@
-<ng-template #TabButtonTemplate>
+<ng-template #tabButtonTemplate>
     <os-button
         [id]="id"
         [style]="tabButtonStyle"
         [styleClass]="tabButtonStyleClass"
         [role]="'tab'"
-        [ariaSelected]="selected"
+        [ariaSelected]="isSelected"
         (osClick)="osTabButtonClick.emit($event)">
         {{ label }}
     </os-button>
 </ng-template>
 
-<ng-template #TabContentTemplate>
+<ng-template #tabContentTemplate>
     <article
         class="os-element"
         [ngStyle]="style"

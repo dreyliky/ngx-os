@@ -5,14 +5,14 @@
 <div class="wrapper">
     <os-tab-group>
         <os-tab
-            [selected]="openedSection === sectionEnum.Demo"
+            [isSelected]="openedSection === sectionEnum.Demo"
             [label]="'Demo'">
             <ng-content></ng-content>
         </os-tab>
 
         <os-tab
             *ngIf="docComponent"
-            [selected]="openedSection === sectionEnum.HTML"
+            [isSelected]="openedSection === sectionEnum.HTML"
             [label]="'HTML'">
             <api-code
                 [language]="'html'"
@@ -22,7 +22,7 @@
 
         <os-tab
             *ngIf="isScssExist"
-            [selected]="openedSection === sectionEnum.SCSS"
+            [isSelected]="openedSection === sectionEnum.SCSS"
             [label]="'SCSS'">
             <api-code
                 [language]="'css'"
@@ -32,7 +32,7 @@
 
         <os-tab
             *ngIf="docComponent"
-            [selected]="openedSection === sectionEnum.TS"
+            [isSelected]="openedSection === sectionEnum.TS"
             [label]="'TypeScript'">
             <api-code
                 [language]="'ts'"

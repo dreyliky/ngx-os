@@ -5,7 +5,7 @@
     (osChange)="onThemeChanged($event)">
     <os-option
         *ngFor="let theme of themes"
-        [selected]="theme === selectedTheme"
+        [isSelected]="theme === selectedTheme"
         [value]="theme">
         {{ theme.name }}
     </os-option>

@@ -20,17 +20,17 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     public data: GridItem;
 
     @Input()
-    public set selected(selected: boolean) {
-        this._selected = selected;
+    public set isSelected(selected: boolean) {
+        this._isSelected = selected;
 
         this.classlistManager.applyOneAsFlag('selected', selected);
     }
 
-    public get selected(): boolean {
-        return this._selected;
+    public get isSelected(): boolean {
+        return this._isSelected;
     }
 
-    private _selected = false;
+    private _isSelected = false;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -48,8 +48,8 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
         const hostElement = this.hostElementRef.nativeElement;
         const isClickOutsideWindow = OutsideClick.checkForElement(hostElement, event);
 
-        if (isClickOutsideWindow && this.selected) {
-            this.selected = false;
+        if (isClickOutsideWindow && this.isSelected) {
+            this.isSelected = false;
         }
     }
 
@@ -59,7 +59,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     protected onMouseDown(event: MouseEvent): void {
-        this.selected = true;
+        this.isSelected = true;
 
         super.onMouseDown(event);
     }

@@ -18,7 +18,6 @@
                 *ngTemplateOutlet="tabContent.tabButtonTemplate">
             </ng-container>
         </ng-template>
-
     </menu>
 
     <ng-template
@@ -26,11 +25,10 @@
         let-tabContent
         [ngForOf]="tabComponentList"
         [ngForTrackBy]="trackByFn">
-        <ng-template [ngIf]="tabContent.selected">
+        <ng-template [ngIf]="tabContent.isSelected">
             <ng-container
                 *ngTemplateOutlet="tabContent.tabContentTemplate">
             </ng-container>
         </ng-template>
     </ng-template>
-
 </section>

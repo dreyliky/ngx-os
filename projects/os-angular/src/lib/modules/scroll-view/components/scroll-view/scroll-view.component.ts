@@ -8,17 +8,17 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class ScrollViewComponent extends OsBaseComponent implements OnInit {
     @Input()
-    public verticalScrollEnabled = true;
+    public isVerticalScrollEnabled = true;
 
     @Input()
-    public horizontalScrollEnabled = false;
+    public isHorizontalScrollEnabled = false;
 
     @HostBinding('style.overflow-x')
     public get hostOverflowX(): string {
         const overrideValue = this.style?.['overflow'] || this.style?.['overflowX'];
 
         if (!overrideValue) {
-            return (this.horizontalScrollEnabled) ? 'auto' : 'hidden';
+            return (this.isHorizontalScrollEnabled) ? 'auto' : 'hidden';
         }
 
         return overrideValue;
@@ -29,7 +29,7 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
         const overrideValue = this.style?.['overflow'] || this.style?.['overflowY'];
 
         if (!overrideValue) {
-            return (this.verticalScrollEnabled) ? 'auto' : 'hidden';
+            return (this.isVerticalScrollEnabled) ? 'auto' : 'hidden';
         }
 
         return overrideValue;

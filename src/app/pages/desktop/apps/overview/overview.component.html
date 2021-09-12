@@ -2,7 +2,7 @@
     <os-header>Os Elements</os-header>
 
     <div class="element-wrapper">
-        <os-form-field [stacked]="true">
+        <os-form-field [isStacked]="true">
             <os-label>Enter your first and last name</os-label>
 
             <os-text-box
@@ -12,7 +12,7 @@
     </div>
 
     <div class="element-wrapper">
-        <os-form-field [stacked]="true">
+        <os-form-field [isStacked]="true">
             <os-label>Description</os-label>
 
             <os-textarea-box
@@ -60,19 +60,19 @@
     <div class="element-wrapper">
         <os-tab-group>
             <os-tab
-                [selected]="true"
+                [isSelected]="true"
                 [label]="'Tab 1'">
                 <os-selectbox
                     [placeholder]="'Choose item'">
                     <os-option [value]="1">Item 1</os-option>
                     <os-option [value]="2">Item 2</os-option>
-                    <os-option [selected]="true" [value]="3">Item 3 - Selected by default</os-option>
+                    <os-option [isSelected]="true" [value]="3">Item 3 - Selected by default</os-option>
                     <os-option [value]="4">Item 4</os-option>
                 </os-selectbox>
             </os-tab>
 
             <os-tab
-                [selected]="false"
+                [isSelected]="false"
                 [label]="'Tab 2'">
                 <os-text>
                     Tab 2 content

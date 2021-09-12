@@ -6,7 +6,6 @@ import { ResizerModule } from '../resizer';
 import { ScrollViewModule } from '../scroll-view';
 import { DynamicWindowComponent, TitleBarComponent, WindowComponent } from './components';
 import { DynamicWindowContentDirective } from './directives';
-import { DynamicWindowControlService, DynamicWindowService } from './services';
 
 @NgModule({
     declarations: [
@@ -25,10 +24,6 @@ import { DynamicWindowControlService, DynamicWindowService } from './services';
     exports: [
         WindowComponent,
         TitleBarComponent
-    ],
-    providers: [
-        DynamicWindowControlService,
-        DynamicWindowService
     ],
     entryComponents: [
         DynamicWindowComponent

@@ -4,7 +4,7 @@
         [displayField]="'text'">
         <os-option
             *ngFor="let item of items"
-            [selected]="formGroup.controls.selectedItem.value === item"
+            [isSelected]="formGroup.controls.selectedItem.value === item"
             [value]="item">
             {{ item.text }}
         </os-option>

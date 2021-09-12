@@ -18,10 +18,10 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class TabComponent extends OsBaseComponent implements OnInit {
     @Input()
-    public selected: boolean;
+    public label: string;
 
     @Input()
-    public label: string;
+    public isSelected: boolean;
 
     @Input()
     public tabButtonStyle: string;
@@ -32,10 +32,10 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     @Output()
     public osTabButtonClick = new EventEmitter<MouseEvent>();
 
-    @ViewChild('TabButtonTemplate', { static: true })
+    @ViewChild('tabButtonTemplate', { static: true })
     public tabButtonTemplate: TemplateRef<HTMLButtonElement>;
 
-    @ViewChild('TabContentTemplate', { static: true })
+    @ViewChild('tabContentTemplate', { static: true })
     public tabContentTemplate: TemplateRef<any>;
 
     constructor(

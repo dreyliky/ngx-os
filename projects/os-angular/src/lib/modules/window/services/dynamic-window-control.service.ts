@@ -3,7 +3,9 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { DynamicWindowRef } from '../classes';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DynamicWindowControlService implements OnDestroy {
     public get windowIdsOrder$(): Observable<string[]> {
         return this._windowIdsOrder$.asObservable();
