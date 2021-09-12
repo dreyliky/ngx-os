@@ -35,7 +35,7 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     public iconUrl: string;
 
     @Input()
-    @HostBinding('class.active')
+    @HostBinding('class.os-active')
     public isActive: boolean = false;
 
     @Input()

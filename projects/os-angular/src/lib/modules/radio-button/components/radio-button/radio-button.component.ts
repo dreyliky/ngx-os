@@ -37,11 +37,11 @@ export class RadioButtonComponent<T>
     public readonly name: string = '';
 
     @Input()
-    @HostBinding('class.checked')
+    @HostBinding('class.os-checked')
     public isChecked: boolean;
 
     @Input()
-    @HostBinding('class.disabled')
+    @HostBinding('class.os-disabled')
     public readonly isDisabled: boolean;
 
     @Input()

@@ -20,7 +20,7 @@ os-list {
             background-color: rgba(var(--os-secondary-color), .4);
         }
 
-        &.selected {
+        &.os-selected {
             background-color: rgba(var(--os-primary-color), .6) !important;
             color: #ffffff;
         }

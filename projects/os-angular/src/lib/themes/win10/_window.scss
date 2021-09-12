@@ -91,7 +91,7 @@ os-window {
         top: -1px !important;
     }
 
-    &.active {
+    &.os-active {
         background: rgba(255, 255, 255, .7);
         backdrop-filter: blur(40px);
         border: solid 1px rgb(var(--os-primary-color));
@@ -128,7 +128,7 @@ os-window {
     }
 
     &.fullscreen {
-        &.active {
+        &.os-active {
             .os-title-bar {
                 .os-button[aria-label="Maximize"] {
                     background-image: url("./icon/win10_restore-down-white.svg") !important;

@@ -25,7 +25,7 @@ os-resizers {
             top: -0px;
             left: -0px;
 
-            &.active {
+            &.os-active {
                 cursor: ns-resize;
             }
         }
@@ -38,7 +38,7 @@ os-resizers {
             top: -0px;
             left: -0px;
 
-            &.active {
+            &.os-active {
                 cursor: ew-resize;
             }
         }
@@ -51,7 +51,7 @@ os-resizers {
             top: -0px;
             right: -0px;
 
-            &.active {
+            &.os-active {
                 cursor: ew-resize;
             }
         }
@@ -64,7 +64,7 @@ os-resizers {
             bottom: -0px;
             left: -0px;
 
-            &.active {
+            &.os-active {
                 cursor: ns-resize;
             }
         }
@@ -75,7 +75,7 @@ os-resizers {
             left: -0px;
             top: -0px;
 
-            &.active {
+            &.os-active {
                 cursor: nwse-resize;
             }
         }
@@ -86,7 +86,7 @@ os-resizers {
             right: -0px;
             top: -0px;
 
-            &.active {
+            &.os-active {
                 cursor: nesw-resize;
             }
         }
@@ -97,7 +97,7 @@ os-resizers {
             left: -0px;
             bottom: -0px;
 
-            &.active {
+            &.os-active {
                 cursor: nesw-resize;
             }
         }
@@ -108,7 +108,7 @@ os-resizers {
             right: -0px;
             bottom: -0px;
 
-            &.active {
+            &.os-active {
                 cursor: nwse-resize;
             }
         }

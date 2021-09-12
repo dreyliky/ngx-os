@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     ElementRef,
+    HostBinding,
     HostListener,
     Input,
     OnInit
@@ -20,17 +21,8 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     public data: GridItem;
 
     @Input()
-    public set isSelected(selected: boolean) {
-        this._isSelected = selected;
-
-        this.classlistManager.applyOneAsFlag('selected', selected);
-    }
-
-    public get isSelected(): boolean {
-        return this._isSelected;
-    }
-
-    private _isSelected = false;
+    @HostBinding('class.os-selected')
+    public isSelected: boolean;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>

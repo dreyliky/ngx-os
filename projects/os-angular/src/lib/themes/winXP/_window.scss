@@ -33,7 +33,7 @@ os-window {
         display: none !important;
     }
 
-    &.active {
+    &.os-active {
         box-shadow:
             inset -1px -1px rgba(var(--os-primary-color), 1),
             inset 1px 1px rgba(var(--os-primary-color), .9),

@@ -25,7 +25,7 @@ os-window {
         display: none !important;
     }
 
-    &.active {
+    &.os-active {
         .os-title-bar {
             background: linear-gradient(90deg, rgb(var(--os-primary-color)), rgba(var(--os-primary-color), .5)), #ffffff;
         }

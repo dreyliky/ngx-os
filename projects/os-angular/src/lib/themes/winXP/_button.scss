@@ -22,13 +22,13 @@ os-button {
     cursor: default;
     color: rgb(var(--os-black-color));
 
-    &.disabled {
+    &.os-disabled {
         color: #b1b1af;
     }
 
-    &:not(.disabled) {
+    &:not(.os-disabled) {
         &:active,
-        &.active {
+        &.os-active {
             box-shadow: none;
             background: linear-gradient(
                 180deg,
@@ -45,7 +45,7 @@ os-button {
     }
 
     &:focus,
-    &.focused {
+    &.os-focused {
         outline: 1px dotted #000000;
         outline-offset: -4px;
         box-shadow: inset -1px 1px #cee7ff, inset 1px 2px #98b8ea, inset -2px 2px #bcd4f6, inset 1px -1px #89ade4,

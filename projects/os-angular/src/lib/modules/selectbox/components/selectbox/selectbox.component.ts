@@ -40,7 +40,7 @@ export class SelectboxComponent<T>
     public isOpened: boolean = false;
 
     @Input()
-    @HostBinding('class.disabled')
+    @HostBinding('class.os-disabled')
     public isDisabled: boolean = false;
 
     @Input()

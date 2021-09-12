@@ -6,11 +6,11 @@ import { OsBaseComponent } from './element';
 })
 export abstract class OsBaseButtonComponent extends OsBaseComponent {
     @Input()
-    @HostBinding('class.disabled')
+    @HostBinding('class.os-disabled')
     public isDisabled: boolean;
 
     @Input()
-    @HostBinding('class.focused')
+    @HostBinding('class.os-focused')
     public isFocused: boolean;
 
     @Input()

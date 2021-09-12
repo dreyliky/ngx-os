@@ -18,7 +18,7 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
-    @HostBinding('class.selected')
+    @HostBinding('class.os-selected')
     public isSelected: boolean = false;
 
     @Input()

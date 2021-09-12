@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { OsBaseFormControlComponent } from './form-control-element';
 
 @Component({
@@ -6,9 +6,11 @@ import { OsBaseFormControlComponent } from './form-control-element';
 })
 export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
     @Input()
+    @HostBinding('class.os-disabled')
     public isDisabled: boolean = false;
 
     @Input()
+    @HostBinding('class.os-readonly')
     public isReadonly: boolean = false;
 
     @Input()

@@ -3,7 +3,7 @@ os-grid {
     flex-direction: column;
     flex-wrap: wrap;
 
-    &.horizontal {
+    &.os-horizontal-direction {
         flex-direction: row;
     }
 
@@ -31,7 +31,7 @@ os-grid {
             -webkit-font-smoothing: antialiased;
         }
 
-        &.selected {
+        &.os-selected {
             .os-grid-item-image {
                 position: relative;
 
@@ -106,7 +106,7 @@ os-grid {
             justify-content: flex-start;
             flex-direction: row;
 
-            &.selected {
+            &.os-selected {
                 background-color: rgb(var(--os-primary-color));
                 color: rgb(var(--os-white-color));
             }

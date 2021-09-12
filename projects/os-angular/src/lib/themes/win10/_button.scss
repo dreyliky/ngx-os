@@ -22,13 +22,13 @@ os-button {
     cursor: default;
     color: rgb(var(--os-black-color));
 
-    &.disabled {
+    &.os-disabled {
         color: #909090;
     }
 
-    &:not(.disabled) {
+    &:not(.os-disabled) {
         &:active,
-        &.active {
+        &.os-active {
             background-color: #999999;
             border-color: rgba(255,255,255,0.1);
             transform: scale(0.96);

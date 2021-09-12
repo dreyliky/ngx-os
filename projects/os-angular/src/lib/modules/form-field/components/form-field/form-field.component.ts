@@ -8,7 +8,7 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class FormFieldComponent extends OsBaseComponent implements OnInit {
     @Input()
-    @HostBinding('class.stacked')
+    @HostBinding('class.os-stacked')
     public isStacked: boolean = false;
 
     constructor(

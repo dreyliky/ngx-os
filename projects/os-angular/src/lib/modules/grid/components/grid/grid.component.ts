@@ -19,7 +19,7 @@ export class GridComponent extends OsBaseComponent implements OnInit {
     }
 
     @Input()
-    @HostBinding('class.horizontal')
+    @HostBinding('class.os-horizontal-direction')
     public readonly isHorizontalDirection: boolean = false;
 
     private currentView: GridViewType = 'medium-icons';

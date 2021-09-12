@@ -24,9 +24,6 @@ import { DynamicWindowContentDirective } from './directives';
     exports: [
         WindowComponent,
         TitleBarComponent
-    ],
-    entryComponents: [
-        DynamicWindowComponent
     ]
 })
 export class WindowModule {}

@@ -19,7 +19,7 @@ import { SelectboxValueChangeEvent } from '../../interfaces';
 })
 export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
-    @HostBinding('class.selected')
+    @HostBinding('class.os-selected')
     public isSelected: boolean = false;
 
     @Input()

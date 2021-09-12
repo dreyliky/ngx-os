@@ -52,11 +52,11 @@ os-checkbox {
         }
     }
 
-    &:hover:not(.disabled) label:before {
+    &:hover:not(.os-disabled) label:before {
         border: solid 2px #000000 !important;
     }
 
-    &.disabled {
+    &.os-disabled {
         color: #acacac;
 
         input[type="checkbox"] {

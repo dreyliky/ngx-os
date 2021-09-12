@@ -19,7 +19,7 @@ os-list {
         padding: 0px 10px;
         margin: 1px 0px;
 
-        &.selected {
+        &.os-selected {
             background-color: rgba(var(--os-primary-color), .2);
 
             &:hover {

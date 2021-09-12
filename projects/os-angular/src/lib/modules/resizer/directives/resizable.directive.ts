@@ -140,7 +140,7 @@ export class OsResizableDirective implements OnInit, OnDestroy {
     }
 
     private updateResizersActivity(): void {
-        const activityClassName: string = 'active';
+        const activityClassName: string = 'os-active';
 
         this._resizerElements.forEach((resizerElement) => {
             if (resizerElement.classList.contains(activityClassName)) {

@@ -17,19 +17,19 @@ os-button {
     cursor: default;
     color: rgb(var(--os-black-color));
 
-    &.disabled {
+    &.os-disabled {
         color: #8b8b8b;
     }
 
-    &:not(.disabled) {
+    &:not(.os-disabled) {
         &:active,
-        &.active {
+        &.os-active {
             box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
         }
     }
 
     &:focus,
-    &.focused {
+    &.os-focused {
         outline: 1px dotted rgb(var(--os-black-color));
         outline-offset: -4px;
     }
