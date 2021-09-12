@@ -61,6 +61,8 @@ os-checkbox {
     input[type="checkbox"][disabled] {
         + {
             label {
+                color: #8b8b8b;
+
                 &::before {
                     background: rgb(var(--os-bg-color));
                 }
@@ -76,5 +78,4 @@ os-checkbox {
             }
         }
     }
-
 }

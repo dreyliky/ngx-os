@@ -46,12 +46,20 @@ os-selectbox {
         }
     }
 
-    &:hover {
-        background-image: url("./icon/winXP_dropdown-hover.svg");
+    &:not(.os-disabled) {
+        &:hover {
+            background-image: url("./icon/winXP_dropdown-hover.svg");
+        }
+    
+        &:active {
+            background-image: url("./icon/winXP_dropdown-active.svg");
+        }
     }
 
-    &:active {
-        background-image: url("./icon/winXP_dropdown-active.svg");
+    &.os-disabled {
+        background-color: transparent;
+        border: solid 1px rgba(0, 0, 0, .2);
+        filter: grayscale(1);
     }
 
     &.opening {

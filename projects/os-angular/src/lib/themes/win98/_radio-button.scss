@@ -70,6 +70,8 @@ os-radio-button {
         &[disabled] {
             + {
                 label {
+                    color: #8b8b8b;
+
                     &::before {
                         background: url("./icon/win98_radio-border-disabled.svg");
                     }

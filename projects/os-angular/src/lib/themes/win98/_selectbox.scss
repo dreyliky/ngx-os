@@ -33,8 +33,14 @@ os-selectbox {
         }
     }
 
-    &:active {
-        background-image: url("./icon/win98_button-down-active.svg");
+    &:not(.os-disabled) {
+        &:active {
+            background-image: url("./icon/win98_button-down-active.svg");
+        }
+    }
+
+    &.os-disabled {
+        background-color: transparent;
     }
 
     os-list {
