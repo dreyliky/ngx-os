@@ -1,0 +1,70 @@
+:host-context(.win10) {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    background-color: rgba(255, 255, 255, .5);
+    backdrop-filter: blur(40px);
+
+    .taskbar-button {
+        $width: 61px;
+
+        width: $width;
+        min-width: $width;
+        max-width: $width;
+        height: 50px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        transition: background 0.3s ease;
+
+        ::before {
+            width: 51px;
+            height: 3px;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 6px;
+            background: rgb(var(--os-primary-color));
+            transition: all 0.15s ease;
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, .5);
+
+            ::before {
+                width: 100%;
+                left: 0px;
+            }
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .text {
+            display: none;
+        }
+
+        &.os-active {
+            background-color: rgba(255, 255, 255, .5);
+            transform: none;
+
+            ::before {
+                width: 100%;
+                left: 0px;
+            }
+
+            &:hover {
+                background-color: rgba(255, 255, 255, .8);
+            }
+        }
+    }
+}

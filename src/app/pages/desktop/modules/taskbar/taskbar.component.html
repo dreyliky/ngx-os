@@ -1,12 +1,15 @@
 <os-button
     *ngFor="let windowRef of windowsRef"
-    class="window-ref-button"
-    [class.active]="(windowRef.isActive$ | async)"
+    class="taskbar-button"
+    [class.os-active]="(windowRef.isActive$ | async)"
     (osClick)="onWindowReferenceIconClick($event, windowRef)">
-    <img
+    <div
         *ngIf="windowRef.config.iconUrl"
         class="icon"
-        [attr.src]="windowRef.config.iconUrl" />
+        [style.backgroundImage]="getTaskbarIconCssUrl(windowRef.config.iconUrl)">
+    </div>
 
-    {{ windowRef.config.title }}
+    <os-text class="text">
+        {{ windowRef.config.title }}
+    </os-text>
 </os-button>

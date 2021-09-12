@@ -1,0 +1,35 @@
+:host-context(.win98) {
+    width: 100%;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    background-color: #d4d0c8;
+
+    .taskbar-button {
+        width: 160px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0px 3px;
+
+        &.os-active {
+            font-weight: bold;
+        }
+
+        .icon {
+            min-width: 16px;
+            min-height: 16px;
+            margin-right: 5px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: "Pixelated MS Sans Serif";
+        }
+    }
+}

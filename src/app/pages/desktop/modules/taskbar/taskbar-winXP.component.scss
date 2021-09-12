@@ -1,0 +1,79 @@
+:host-context(.winXP) {
+    width: 100%;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(
+        180deg,
+        rgba(var(--os-primary-color), .7) 0%,
+        rgba(var(--os-primary-color), .9) 8%,
+        rgba(var(--os-primary-color), .9) 40%,
+        rgba(var(--os-primary-color), .76) 88%,
+        rgba(var(--os-primary-color), .78) 93%,
+        rgba(var(--os-primary-color), .8) 95%,
+        rgba(var(--os-primary-color), 1) 96%,
+        rgba(var(--os-primary-color), 1) 100%
+    ), #ffffff;
+
+    .taskbar-button {
+        width: 160px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background: linear-gradient(
+            180deg,
+            rgba(var(--os-primary-color), .6) 0%,
+            rgba(var(--os-primary-color), .8) 5%,
+            rgba(var(--os-primary-color), .8) 95%,
+            rgba(var(--os-primary-color), .6) 100%
+        ), #ffffff;
+        color: #feffff;
+        border: solid 1px rgb(var(--os-primary-color));
+
+        &:hover {
+            box-shadow: none;
+
+            background: linear-gradient(
+                180deg,
+                rgba(var(--os-primary-color), .4) 0%,
+                rgba(var(--os-primary-color), .6) 5%,
+                rgba(var(--os-primary-color), .6) 95%,
+                rgba(var(--os-primary-color), .4) 100%
+            ), #ffffff;
+        }
+
+        &.os-active {
+            background: linear-gradient(
+                180deg,
+                rgba(var(--os-primary-color), .9),
+                rgba(var(--os-primary-color), .9)
+            ), #000;
+            box-shadow:
+                rgb(0 0 0 / 20%) 0px 0px 1px 1px inset,
+                rgb(0 0 0 / 70%) 1px 0px 1px inset;
+
+            &:hover {
+                background: linear-gradient(
+                    180deg,
+                    rgba(var(--os-primary-color), .96),
+                    rgba(var(--os-primary-color), .96)
+                ), #000;
+            }
+        }
+
+        .icon {
+            min-width: 16px;
+            min-height: 16px;
+            margin-right: 5px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

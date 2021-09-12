@@ -4,7 +4,11 @@ import { DynamicWindowRef, DynamicWindowService } from '@lib-modules';
 @Component({
     selector: 'desktop-taskbar',
     templateUrl: './taskbar.component.html',
-    styleUrls: ['./taskbar.component.scss'],
+    styleUrls: [
+        './taskbar-win98.component.scss',
+        './taskbar-winXP.component.scss',
+        './taskbar-win10.component.scss'
+    ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskbarComponent implements OnInit {
@@ -22,6 +26,10 @@ export class TaskbarComponent implements OnInit {
 
                 this.changeDetector.detectChanges();
             });
+    }
+
+    public getTaskbarIconCssUrl(iconUrl: string): string {
+        return `url(${iconUrl})`;
     }
 
     public onWindowReferenceIconClick(event: PointerEvent, windowRef: DynamicWindowRef): void {
