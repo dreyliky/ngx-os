@@ -1,9 +1,9 @@
 <div
-    class="os-element os-grid-item-image"
-    [style.backgroundImage]="(!!data.iconUrl) ? 'url(' + data.iconUrl + ')' : ''">
+    class="os-element os-icon"
+    [style.backgroundImage]="_iconBackgroundCssUrl">
 </div>
 
 <span
-    class="os-element os-grid-item-text">
+    class="os-element os-label">
     {{ data.label }}
 </span>

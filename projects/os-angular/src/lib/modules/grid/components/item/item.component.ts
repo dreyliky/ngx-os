@@ -24,6 +24,10 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     @HostBinding('class.os-selected')
     public isSelected: boolean;
 
+    public get _iconBackgroundCssUrl(): string {
+        return (this.data.iconUrl) ? 'url(' + this.data.iconUrl + ')' : '';
+    }
+
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {

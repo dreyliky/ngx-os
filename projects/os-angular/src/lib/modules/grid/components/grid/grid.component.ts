@@ -10,12 +10,7 @@ import { GridViewType } from '../../types';
 export class GridComponent extends OsBaseComponent implements OnInit {
     @Input()
     public set view(view: GridViewType) {
-        if (view) {
-            this.classlistManager.remove(this.currentView);
-            this.classlistManager.add(view);
-
-            this.currentView = view;
-        }
+        this.applyNewView(view);
     }
 
     @Input()
@@ -33,5 +28,14 @@ export class GridComponent extends OsBaseComponent implements OnInit {
     public ngOnInit(): void {
         this.classlistManager.add(`os-grid ${this.currentView}`);
         this.initElementEventObservers(this.hostElementRef.nativeElement);
+    }
+
+    private applyNewView(view: GridViewType): void {
+        if (view) {
+            this.classlistManager.remove(this.currentView);
+            this.classlistManager.add(view);
+
+            this.currentView = view;
+        }
     }
 }

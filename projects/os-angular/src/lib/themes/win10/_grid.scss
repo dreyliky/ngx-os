@@ -14,7 +14,7 @@ os-grid {
         flex-direction: column;
         user-select: none;
 
-        .os-grid-item-text {
+        .os-label {
             width: 100%;
             display: block;
             white-space: nowrap;
@@ -32,7 +32,7 @@ os-grid {
         }
 
         &.os-selected {
-            .os-grid-item-image {
+            .os-icon {
                 position: relative;
 
                 &:after {
@@ -47,7 +47,7 @@ os-grid {
                 }
             }
 
-            .os-grid-item-text {
+            .os-label {
                 background-color: rgb(var(--os-primary-color));
                 color: rgb(var(--os-white-color));
                 text-shadow: none;
@@ -62,7 +62,7 @@ os-grid {
             padding: 5px;
         }
 
-        .os-grid-item-image {
+        .os-icon {
             width: 48px;
             height: 48px;
             background-size: contain;
@@ -72,7 +72,7 @@ os-grid {
     }
 
     &.large-icons {
-        .os-grid-item-image {
+        .os-icon {
             width: 92px;
             height: 92px;
             background-size: contain;
@@ -82,7 +82,7 @@ os-grid {
     }
 
     &.extra-large-icons {
-        .os-grid-item-image {
+        .os-icon {
             width: 128px;
             height: 128px;
             background-size: contain;
@@ -112,7 +112,7 @@ os-grid {
             }
         }
 
-        .os-grid-item-image {
+        .os-icon {
             width: 16px;
             height: 16px;
             min-height: 16px;
@@ -126,7 +126,7 @@ os-grid {
             }
         }
         
-        .os-grid-item-text {
+        .os-label {
             width: auto !important;
             margin-top: 0px;
         }
