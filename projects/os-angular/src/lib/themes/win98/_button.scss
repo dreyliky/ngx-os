@@ -18,7 +18,8 @@ os-button {
     color: rgb(var(--os-black-color));
 
     &.os-disabled {
-        color: #8b8b8b;
+        color: grey;
+        text-shadow: 1px 1px 0 #fff;
     }
 
     &:not(.os-disabled) {

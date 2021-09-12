@@ -40,7 +40,9 @@ os-selectbox {
     }
 
     &.os-disabled {
+        color: #808080;
         background-color: transparent;
+        background-image: url("./icon/win98_button-down-grey.svg");
     }
 
     os-list {
