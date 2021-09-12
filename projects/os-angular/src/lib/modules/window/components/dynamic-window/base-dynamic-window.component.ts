@@ -54,7 +54,7 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
 
     protected isAfterExitFullscreenByDragging: boolean = false;
 
-    protected readonly subscriptions: Subscription[] = [];
+    protected readonly parentSubscription = new Subscription();
 
     public ngOnInit(): void {
         this.positionX = `${this.config.positionX}px`;
@@ -65,14 +65,8 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        if (this.childComponentRef) {
-            this.childComponentRef.destroy();
-        }
-
-        this.subscriptions.forEach((subscription) => {
-            subscription.unsubscribe();
-        });
-
+        this.childComponentRef?.destroy();
+        this.parentSubscription.unsubscribe();
         this.windowRef.destroy();
     }
 }
