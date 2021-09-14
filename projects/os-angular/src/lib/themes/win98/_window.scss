@@ -29,6 +29,14 @@ os-window {
         .os-title-bar {
             background: linear-gradient(90deg, rgb(var(--os-primary-color)), rgba(var(--os-primary-color), .5)), #ffffff;
         }
+
+        &.fullscreen {
+            .os-button[aria-label="Maximize"] {
+                background-image: url("./icon/win98_restore-down.png");
+                background-repeat: no-repeat;
+                background-position: top left;
+            }
+        }
     }
 
     .os-window-body {
