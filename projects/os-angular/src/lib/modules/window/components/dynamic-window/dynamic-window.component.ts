@@ -110,9 +110,10 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     public onDragging(): void {
         if (this.config.isExitFullscreenByDragTitle && this.windowRef.isFullscreen) {
-            this.windowRef.goWindowed();
-
             this.isAfterExitFullscreenByDragging = true;
+
+            this.windowRef.goWindowed();
+            this.changeDetector.detectChanges();
         }
     }
 
