@@ -9,7 +9,7 @@ import {
     Type,
     ViewChild
 } from '@angular/core';
-import { OutsideClick } from '@lib-helpers';
+import { EventOutside } from '@lib-helpers';
 import { skip } from 'rxjs/operators';
 import { DragInfo, OsDraggableDirective } from '../../../drag-and-drop';
 import { ResizeInfo } from '../../../resizer';
@@ -55,7 +55,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
         if (this.windowRef.isActive) {
-            const isClickOutsideWindow = OutsideClick.checkForElement(this.windowElement, event);
+            const isClickOutsideWindow = EventOutside.checkForElement(this.windowElement, event);
 
             if (isClickOutsideWindow) {
                 this.windowRef.setIsActive(false);

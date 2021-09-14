@@ -8,7 +8,7 @@ import {
     OnInit
 } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
-import { OutsideClick } from '@lib-helpers';
+import { EventOutside } from '@lib-helpers';
 import { GridItem } from '../../interfaces';
 
 @Component({
@@ -42,7 +42,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
         const hostElement = this.hostElementRef.nativeElement;
-        const isClickOutsideWindow = OutsideClick.checkForElement(hostElement, event);
+        const isClickOutsideWindow = EventOutside.checkForElement(hostElement, event);
 
         if (isClickOutsideWindow && this.isSelected) {
             this.isSelected = false;

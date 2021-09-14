@@ -20,6 +20,7 @@ import {
     TextBoxModule,
     TextModule,
     TreeViewModule,
+    UtilsModule,
     WindowModule
 } from './modules';
 
@@ -45,6 +46,7 @@ import {
         TextBoxModule,
         TextModule,
         TreeViewModule,
+        UtilsModule,
         WindowModule
     ]
 })

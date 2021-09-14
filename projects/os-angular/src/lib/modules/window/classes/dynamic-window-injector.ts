@@ -1,4 +1,5 @@
 import { InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
+import { IS_DYNAMIC_WINDOW_CONTEXT } from '@lib-core';
 import { DynamicWindowDiParams, DynamicWindowParams } from '../interfaces';
 import { DynamicWindowConfig } from './dynamic-window-config';
 import { DynamicWindowRef } from './dynamic-window-ref';
@@ -39,5 +40,6 @@ export class DynamicWindowInjector implements Injector {
 
         this.additionalTokens.set(DynamicWindowConfig, this.config);
         this.additionalTokens.set(DynamicWindowRef, this.windowRef);
+        this.additionalTokens.set(IS_DYNAMIC_WINDOW_CONTEXT, true);
     }
 }

@@ -8,6 +8,7 @@ import {
     forwardRef,
     HostBinding,
     HostListener,
+    Inject,
     Input,
     OnDestroy,
     OnInit,
@@ -15,8 +16,8 @@ import {
     QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseFormControlComponent } from '@lib-core';
-import { OutsideClick } from '@lib-helpers';
+import { IS_DYNAMIC_WINDOW_CONTEXT, OsBaseFormControlComponent } from '@lib-core';
+import { EventOutside } from '@lib-helpers';
 import { Subscription } from 'rxjs';
 import { SelectboxValueChangeEvent } from '../../interfaces';
 import { OptionComponent } from '../option';
@@ -74,6 +75,10 @@ export class SelectboxComponent<T>
         this.initOptionComponentsSelectedObserver();
     }
 
+    public get _isListAppendToBody(): boolean {
+        return !this.isDynamicWindowContext;
+    }
+
     public get _isPlaceholderVisible(): boolean {
         return (!!this.placeholder && !this.value);
     }
@@ -90,6 +95,7 @@ export class SelectboxComponent<T>
     private parentSubscription = new Subscription();
 
     constructor(
+        @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
         private readonly hostElementRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -109,11 +115,8 @@ export class SelectboxComponent<T>
     public onClickOutside(event: MouseEvent): void {
         if (this.isOpened) {
             const selectboxElement = this.hostElementRef.nativeElement;
-            const isClickOutside = OutsideClick.checkForElement(selectboxElement, event);
-
-            if (isClickOutside) {
-                this.isOpened = false;
-            }
+            const isEventOutside = EventOutside.checkForElement(selectboxElement, event);
+            this.isOpened = !isEventOutside;
         }
     }
 
@@ -141,7 +144,10 @@ export class SelectboxComponent<T>
         this.parentSubscription = new Subscription();
 
         this.optionComponentQueryList
-            .forEach((optionComponent) => this.initOptionComponentSelectedStateObserver(optionComponent));
+            .forEach((optionComponent) => {
+                this.initOptionComponentSelectedStateObserver(optionComponent);
+                this.initValueBasedOnSelectedOption(optionComponent);
+            });
     }
 
     private deselectAllOptions(): void {
@@ -163,5 +169,11 @@ export class SelectboxComponent<T>
             });
 
         this.parentSubscription.add(subscription);
+    }
+
+    private initValueBasedOnSelectedOption(optionComponent: OptionComponent<T>): void {
+        if (optionComponent.isSelected) {
+            this.value = optionComponent.value;
+        }
     }
 }

@@ -54,14 +54,13 @@ os-selectbox {
         color: #000000;
         font-size: 16px;
     }
+}
 
-    os-list {
-        position: absolute;
-        z-index: 999;
-        opacity: .999;
-        left: -1px;
-        top: 100%;
-        box-shadow: 0px 7px 13px 3px rgba(0,0,0,0.2);
-    }
-
+os-list.os-part-of-selectbox {
+    position: absolute;
+    z-index: 999;
+    opacity: .999;
+    left: -1px;
+    top: 100%;
+    box-shadow: 0px 7px 13px 3px rgba(0,0,0,0.2);
 }

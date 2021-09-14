@@ -1,4 +1,5 @@
+export * from './event-outside.helper';
 export * from './id-generator.helper';
-export * from './outside-click.helper';
+export * from './interval-checker.helper';
 export * from './random.helper';
 
