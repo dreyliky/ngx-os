@@ -8,6 +8,7 @@
 
     <os-list-item
         *ngFor="let apiPlanItem of apiPlanItems"
+        [style]="{ height: 'auto' }"
         [isSelected]="apiPlanItem.name === routeFragment"
         [value]="apiPlanItem"
         (osClick)="onApiPlanItemSelected(apiPlanItem)">
