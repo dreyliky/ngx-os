@@ -3,6 +3,9 @@ os-textarea-box {
 
     textarea {
         width: 100%;
+        min-width: 70px;
+        max-width: 100%;
+        min-height: 30px;
         padding: 4px 8px;
         outline: 0;
         font-size: 14px;

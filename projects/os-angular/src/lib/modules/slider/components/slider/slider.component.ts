@@ -7,6 +7,7 @@ import {
     EventEmitter,
     forwardRef,
     Input,
+    OnInit,
     Output,
     ViewChild
 } from '@angular/core';
@@ -28,7 +29,7 @@ import { SliderValueChangeEvent } from '../../interfaces';
 })
 export class SliderComponent
     extends OsBaseFormControlComponent<number>
-    implements AfterViewInit, ControlValueAccessor {
+    implements OnInit, AfterViewInit, ControlValueAccessor {
     @Input()
     public label: string;
 
@@ -60,6 +61,10 @@ export class SliderComponent
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+    }
+
+    public ngOnInit(): void {
+        this.classlistManager.add('os-slider');
     }
 
     public ngAfterViewInit(): void {

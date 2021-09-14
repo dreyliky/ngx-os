@@ -7,6 +7,7 @@ import {
     EventEmitter,
     forwardRef,
     Input,
+    OnInit,
     Output,
     ViewChild
 } from '@angular/core';
@@ -26,7 +27,7 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterViewInit, ControlValueAccessor {
+export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit, ControlValueAccessor {
     @Input()
     public rows: number;
 
@@ -43,6 +44,10 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterV
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+    }
+
+    public ngOnInit(): void {
+        this.classlistManager.add('os-textarea-box');
     }
 
     public ngAfterViewInit(): void {
