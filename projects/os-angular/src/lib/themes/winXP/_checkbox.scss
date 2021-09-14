@@ -13,31 +13,27 @@ os-checkbox {
         border: none;
 
         + label {
-            line-height: 13px;
+            height: 13px;
             position: relative;
             margin-left: 19px;
 
             &:before {
-                content: "";
-                position: absolute;
-                top: -1px;
-                left: -19px;
-                display: inline-block;
                 width: 13px;
                 height: 13px;
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                left: -19px;
                 margin-right: 6px;
+                content: "";
                 box-shadow: none;
                 border: 1px solid #1d5281;
                 background: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
             }
         }
 
-        &:focus {
-            + {
-                label.os-element {
-                    outline: 1px dotted #000000;
-                }
-            }
+        &:focus + label.os-has-text {
+            outline: 1px dotted #000000;
         }
 
         &:checked + label {
@@ -48,7 +44,7 @@ os-checkbox {
                 height: 11px;
                 background: url("./icon/winXP_checkmark.svg");
                 position: absolute;
-                top: 1px;
+                top: 2px;
                 left: -17px;
             }
         }

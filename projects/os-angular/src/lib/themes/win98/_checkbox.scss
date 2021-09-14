@@ -14,25 +14,26 @@ os-checkbox {
 
         + {
             label {
-                line-height: 13px;
+                height: 13px;
                 position: relative;
                 margin-left: 19px;
 
                 &::before {
-                    content: "";
-                    position: absolute;
-                    left: -19px;
-                    display: inline-block;
                     width: 13px;
                     height: 13px;
+                    display: inline-block;
+                    position: absolute;
+                    top: 0;
+                    left: -19px;
+                    margin-right: 6px;
+                    content: "";
                     background: #ffffff;
                     box-shadow: var(--border-field);
-                    margin-right: 6px;
                 }
             }
         }
 
-        &:focus + label {
+        &:focus + label.os-has-text {
             outline: 1px dotted rgb(var(--os-black-color));
         }
 

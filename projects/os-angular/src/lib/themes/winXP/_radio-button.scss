@@ -14,19 +14,19 @@ os-radio-button {
 
         + {
             label {
+                height: 13px;
                 position: relative;
                 margin-left: 19px;
-                line-height: 16px;
 
                 &::before {
-                    content: "";
+                    width: 13px;
+                    height: 13px;
+                    display: inline-block;
                     position: absolute;
                     top: 0;
                     left: -19px;
-                    display: inline-block;
-                    width: 13px;
-                    height: 13px;
                     margin-right: 6px;
+                    content: "";
                     background: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
                     border-radius: 50%;
                     border: 1px solid #1d5281;
@@ -56,12 +56,12 @@ os-radio-button {
             + {
                 label {
                     &::after {
-                        content: "";
-                        display: block;
                         width: 5px;
                         height: 5px;
+                        display: block;
                         top: 5px;
                         left: -14px;
+                        content: "";
                         position: absolute;
                         background: url("./icon/winXP_radio-dot.svg");
                     }
@@ -69,12 +69,8 @@ os-radio-button {
             }
         }
 
-        &:focus {
-            + {
-                label {
-                    outline: 1px dotted #000000;
-                }
-            }
+        &:focus + label.os-has-text {
+            outline: 1px dotted #000000;
         }
     }
 

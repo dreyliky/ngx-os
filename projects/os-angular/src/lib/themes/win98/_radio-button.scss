@@ -14,19 +14,19 @@ os-radio-button {
 
         + {
             label {
-                line-height: 13px;
+                height: 12px;
                 position: relative;
                 margin-left: 18px;
 
                 &::before {
-                    content: "";
+                    width: 12px;
+                    height: 12px;
+                    display: inline-block;
                     position: absolute;
                     top: 0;
                     left: -18px;
-                    display: inline-block;
-                    width: 12px;
-                    height: 12px;
                     margin-right: 6px;
+                    content: "";
                     background: url("./icon/win98_radio-border.svg");
                 }
             }
@@ -59,12 +59,8 @@ os-radio-button {
             }
         }
 
-        &:focus {
-            + {
-                label {
-                    outline: 1px dotted rgb(var(--os-black-color));
-                }
-            }
+        &:focus + label.os-has-text {
+            outline: 1px dotted rgb(var(--os-black-color));
         }
 
         &[disabled] {

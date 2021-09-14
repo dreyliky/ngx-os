@@ -1,6 +1,12 @@
 <os-form-field>
     <os-checkbox
-        [label]="'Default'">
+        [label]="'Default 1'"
+        [name]="'checkbox-group-overview-1'">
+    </os-checkbox>
+
+    <os-checkbox
+        [label]="'Default 2'"
+        [name]="'checkbox-group-overview-1'">
     </os-checkbox>
 </os-form-field>
 
@@ -15,5 +21,17 @@
         [label]="'Disabled checked'"
         [isDisabled]="true"
         [isChecked]="true">
+    </os-checkbox>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Without label</os-label>
+
+    <os-checkbox
+        [name]="'checkbox-group-overview-2'">
+    </os-checkbox>
+
+    <os-checkbox
+        [name]="'checkbox-overview-2'">
     </os-checkbox>
 </os-form-field>
