@@ -53,6 +53,7 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit
 
     public ngAfterViewInit(): void {
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
+        this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
     }
 
     public writeValue(value: string): void {

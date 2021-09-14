@@ -55,6 +55,7 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
 
     public ngAfterViewInit(): void {
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
+        this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {

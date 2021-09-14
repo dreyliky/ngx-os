@@ -53,6 +53,7 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, A
 
     public ngAfterViewInit(): void {
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
+        this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
     }
 
     public writeValue(value: string): void {

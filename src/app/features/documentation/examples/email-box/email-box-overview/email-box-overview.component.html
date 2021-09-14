@@ -6,6 +6,13 @@
 
 <os-form-field>
     <os-email-box
+        [placeholder]="'Default & auto focused'"
+        [isAutofocused]="true">
+    </os-email-box>
+</os-form-field>
+
+<os-form-field>
+    <os-email-box
         [value]="'readonly@gmail.com'"
         [isReadonly]="true">
     </os-email-box>

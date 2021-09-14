@@ -11,6 +11,16 @@
     padding: 30px;
 }
 
+.header {
+    width: 100%;
+    display: flex;
+
+    os-text-box {
+        max-width: 300px;
+        margin-left: auto;
+    }
+}
+
 .grid-view {
     width: 100%;
     display: flex;

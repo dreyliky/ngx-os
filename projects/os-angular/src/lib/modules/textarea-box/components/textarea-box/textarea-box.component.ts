@@ -47,6 +47,7 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterV
 
     public ngAfterViewInit(): void {
         this.initElementEventObservers(this.fieldElementRef.nativeElement);
+        this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
     }
 
     public writeValue(value: string): void {

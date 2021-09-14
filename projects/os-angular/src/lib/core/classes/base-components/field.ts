@@ -14,6 +14,9 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
     public isReadonly: boolean = false;
 
     @Input()
+    public isAutofocused: boolean = false;
+
+    @Input()
     public placeholder: string = '';
 
     @Input()
@@ -61,6 +64,12 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
         element.onchange = (event) => this.onFieldValueChange(event);
 
         super.initElementEventObservers(element);
+    }
+
+    protected autoFocusFieldIfNeeded(field: HTMLInputElement): void {
+        if (this.isAutofocused) {
+            field.focus();
+        }
     }
 
     protected abstract onFieldValueChange(event: Event): void;
