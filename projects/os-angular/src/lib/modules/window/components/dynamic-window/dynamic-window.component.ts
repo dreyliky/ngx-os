@@ -192,7 +192,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private initHtmlElements(): void {
         this.windowElement = this.hostElementRef.nativeElement.querySelector('.os-window');
         this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
-        this.titleBarButtons = Array.from(this.titleBarElement.querySelectorAll('.os-button'));
+        this.titleBarButtons = Array.from(this.titleBarElement.querySelectorAll('.os-title-bar-button .os-icon'));
     }
 
     private initActiveWindowIdObserver(): void {

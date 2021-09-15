@@ -101,27 +101,35 @@ os-window {
             background: rgb(var(--os-primary-color));
             color: #ffffff;
 
-            .os-button[aria-label="Minimize"] {
-                background-image: url("./icon/win10_minimize-white.svg");
+            .os-title-bar-button {
+                background-color: rgb(var(--os-primary-color));
 
                 &:hover {
                     background-color: rgba(255, 255, 255, .1);
                 }
-            }
-    
-            .os-button[aria-label="Maximize"] {
-                background-image: url("./icon/win10_maximize-white.svg");
 
-                &:hover {
-                    background-color: rgba(255, 255, 255, .1);
+                &:not(.os-disabled):active {
+                    background-color: rgba(255, 255, 255, .2);
                 }
-            }
-    
-            .os-button[aria-label="Close"] {
-                background-image: url("./icon/win10_close-white.svg");
-    
-                &:hover {
-                    background-color: rgb(var(--os-danger-color));
+
+                &[aria-label="Minimize"] .os-icon {
+                    background-position: 0px 0px;
+                }
+        
+                &[aria-label="Maximize"] .os-icon {
+                    background-position: -45px 0px;
+                }
+        
+                &[aria-label="Close"] .os-icon {
+                    background-position: -135px 0px;
+        
+                    &:hover {
+                        background-color: rgb(var(--os-danger-color));
+                    }
+
+                    &:not(.os-disabled):active {
+                        background-color: rgba(var(--os-danger-color), .8);
+                    }
                 }
             }
         }
@@ -130,18 +138,18 @@ os-window {
     &.fullscreen {
         &.os-active {
             .os-title-bar {
-                .os-button[aria-label="Maximize"] {
-                    background-image: url("./icon/win10_restore-down-white.svg") !important;
+                .os-title-bar-button[aria-label="Maximize"] .os-icon {
+                    background-position: -90px 0px;
                 }
             }
         }
 
-        .os-title-bar {
-            .os-button[aria-label="Maximize"] {
-                background-image: url("./icon/win10_restore-down-grey.svg") !important;
+        &:not(.os-active) .os-title-bar {
+            .os-title-bar-button[aria-label="Maximize"] .os-icon {
+                background-position: -90px -29px;
 
                 &:hover {
-                    background-image: url("./icon/win10_restore-down-black.svg");
+                    background-position: -90px -58px;
                 }
             }
         }
@@ -149,7 +157,7 @@ os-window {
 }
 
 .os-title-bar {
-    height: 32px;
+    height: 30px;
     font-size: 11px;
     display: flex;
     align-items: flex-start;
@@ -182,46 +190,60 @@ os-window {
         width: auto;
         height: 100%;
         display: flex;
+    }
+}
 
-        .os-button[aria-label="Minimize"] {
-            background-image: url("./icon/win10_minimize-grey.svg");
-    
-            &:hover {
-                background-color: rgba(0, 0, 0, .1);
-                background-image: url("./icon/win10_minimize-black.svg");
-            }
+.os-title-bar-button {
+    width: 45px;
+    height: 29px;
+    min-width: 45px;
+    min-height: 29px;
+    padding: 0;
+    display: block;
+    margin: 0px;
+    box-shadow: none;
+    border: none;
+    background-color: #fff;
+
+    .os-icon {
+        width: 100%;
+        height: 100%;
+        background-image: url("./icon/win10_title-bar-button-icons.png");
+        background-position: 999px 999px;
+        background-repeat: no-repeat;
+    }
+
+    &:hover {
+        background-color: #e5e5e5;
+    }
+
+    &[aria-label="Minimize"] .os-icon {
+        background-position: 0px -29px;
+
+        &:hover {
+            background-position: 0px -58px;
         }
-    
-        .os-button[aria-label="Maximize"] {
-            background-image: url("./icon/win10_maximize-grey.svg");
-            &:hover {
-                background-color: rgba(0, 0, 0, .1);
-                background-image: url("./icon/win10_maximize-black.svg");
-            }
+    }
+
+    &[aria-label="Maximize"] .os-icon {
+        background-position: -45px -29px;
+
+        &:hover {
+            background-position: -45px -58px;
         }
-    
-        .os-button[aria-label="Close"] {
-            background-image: url("./icon/win10_close-grey.svg");
-    
-            &:hover {
-                background-color: rgb(var(--os-danger-color));
-                background-image: url("./icon/win10_close-white.svg");
-            }
+    }
+
+    &[aria-label="Close"] {
+        :hover {
+            background-color: rgb(var(--os-danger-color));
         }
 
-        .os-button {
-            min-width: 46px !important;
-            max-width: 46px !important;
-            height: 100%;
-            padding: 0;
-            display: block;
-            margin: 0px;
-            box-shadow: none;
-            border: none;
-            background-color: transparent;
-            background-position: center !important;
-            background-repeat: no-repeat !important;
-            -webkit-font-smoothing: none;
+        .os-icon {
+            background-position: -135px -29px;
+    
+            &:hover {
+                background-position: -135px -58px;
+            }
         }
     }
 }

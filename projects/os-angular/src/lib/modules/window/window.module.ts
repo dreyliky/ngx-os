@@ -4,7 +4,7 @@ import { ButtonModule } from '../button';
 import { DragAndDropModule } from '../drag-and-drop';
 import { ResizerModule } from '../resizer';
 import { ScrollViewModule } from '../scroll-view';
-import { DynamicWindowComponent, TitleBarComponent, WindowComponent } from './components';
+import { DynamicWindowComponent, TitleBarButtonComponent, TitleBarComponent, WindowComponent } from './components';
 import { DynamicWindowContentDirective } from './directives';
 
 @NgModule({
@@ -12,6 +12,7 @@ import { DynamicWindowContentDirective } from './directives';
         DynamicWindowContentDirective,
         WindowComponent,
         TitleBarComponent,
+        TitleBarButtonComponent,
         DynamicWindowComponent
     ],
     imports: [
@@ -23,7 +24,8 @@ import { DynamicWindowContentDirective } from './directives';
     ],
     exports: [
         WindowComponent,
-        TitleBarComponent
+        TitleBarComponent,
+        TitleBarButtonComponent
     ]
 })
 export class WindowModule {}

@@ -5,18 +5,18 @@
 
 <div
     class="os-title-bar-controls os-element">
-    <os-button
+    <os-title-bar-button
         [ariaLabel]="'Minimize'"
         (osClick)="osMinimizeButtonClick.emit($event)">
-    </os-button>
+    </os-title-bar-button>
 
-    <os-button
+    <os-title-bar-button
         [ariaLabel]="'Maximize'"
         (osClick)="osMaximizeButtonClick.emit($event)">
-    </os-button>
+    </os-title-bar-button>
 
-    <os-button
+    <os-title-bar-button
         [ariaLabel]="'Close'"
         (osClick)="osCloseButtonClick.emit($event)">
-    </os-button>
+    </os-title-bar-button>
 </div>

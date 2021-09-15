@@ -6,6 +6,7 @@ import {
     CheckboxAsFormControlComponent,
     CheckboxOverviewComponent,
     DraggerOverviewComponent,
+    EmailBoxAsFormControlComponent,
     EmailBoxOverviewComponent,
     FormFieldOverviewComponent,
     GridOverviewComponent,
@@ -31,12 +32,12 @@ import {
     TextOverviewComponent,
     ThemeDifferentStylingComponent,
     ThemeOverviewComponent,
+    TitleBarButtonOverviewComponent,
     TreeViewOverviewComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
-import { EmailBoxAsFormControlComponent } from './examples/email-box/email-box-as-form-control/email-box-as-form-control.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { EmailBoxAsFormControlComponent } from './examples/email-box/email-box-a
         CheckboxAsFormControlComponent,
         CheckboxOverviewComponent,
         DraggerOverviewComponent,
+        EmailBoxAsFormControlComponent,
         EmailBoxOverviewComponent,
         FormFieldOverviewComponent,
         GridOverviewComponent,
@@ -70,11 +72,11 @@ import { EmailBoxAsFormControlComponent } from './examples/email-box/email-box-a
         TextOverviewComponent,
         ThemeDifferentStylingComponent,
         ThemeOverviewComponent,
+        TitleBarButtonOverviewComponent,
         TreeViewOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent,
-        EmailBoxAsFormControlComponent
+        WindowTitleBarComponent
     ],
     imports: [
         SharedModule

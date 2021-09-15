@@ -6,6 +6,7 @@ import {
 } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import {
+    TitleBarButtonOverviewComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
     WindowTitleBarComponent
@@ -43,6 +44,10 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
         {
             title: 'Title Bar Overview',
             component: WindowTitleBarComponent
+        },
+        {
+            title: 'Title Bar Button Overview',
+            component: TitleBarButtonOverviewComponent
         }
     ]
 };

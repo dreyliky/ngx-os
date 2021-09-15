@@ -60,24 +60,20 @@ os-window {
             text-shadow: 1px 1px rgba(var(--os-primary-color), 1);
         }
 
-        .os-title-bar-controls {
-            .os-button {
-                opacity: 1;
-            }
-        }
-
         &.fullscreen {
-            .os-button[aria-label="Maximize"] {
-                background-image: url("./icon/winXP_restore-down.png");
-
-                &:hover {
-                    background-image: url("./icon/winXP_restore-down-hover.png");
-                }
+            .os-title-bar-button[aria-label="Maximize"] .os-icon {
+                background-position: -42px 0px;
 
                 &:not(:disabled):active {
-                    background-image: url("./icon/winXP_restore-down-active.png");
+                    background-position: -42px -21px;
                 }
             }
+        }
+    }
+
+    &:not(.os-active) {
+        .os-title-bar-button {
+            opacity: .5;
         }
     }
 
@@ -141,68 +137,75 @@ os-title-bar {
 
     .os-title-bar-controls {
         display: flex;
+    }
+}
 
-        .os-button {
-            padding: 0;
-            display: block;
-            min-width: 16px;
-            min-height: 14px;
-            min-width: 21px;
-            min-height: 21px;
-            margin-left: 2px;
-            background-repeat: no-repeat;
-            background-position: center;
-            box-shadow: none;
-            transition: background 100ms;
-            border: none;
-            opacity: .5;
+.os-title-bar-button {
+    width: 21px;
+    height: 21px;
+    min-width: 21px;
+    min-height: 21px;
+    display: block;
+    padding: 0;
+    margin-left: 2px;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(var(--os-primary-color));
+    background-image: url("./icon/winXP_title-bar-button.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
 
-            &:active,
-            &:hover,
-            &:focus {
-                outline: none;
-                box-shadow: none !important;
-            }
+    .os-icon {
+        width: 100%;
+        height: 100%;
+        background-image: url("./icon/winXP_title-bar-button-icons.png");
+        background-repeat: no-repeat;
+        background-position: 999px 999px;
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+        outline: none;
+        box-shadow: none !important;
+    }
+
+    &:hover {
+        background-position: 0px -21px;
+    }
+
+    &:not(.os-disabled):active {
+        background-position: 0px -42px;
+
+        &[aria-label="Minimize"] .os-icon {
+            background-position: 0px -21px;
         }
-
-        .os-button[aria-label="Minimize"] {
-            background-image: url("./icon/winXP_minimize.svg");
-            &:hover {
-                background-image: url("./icon/winXP_minimize-hover.svg");
-            }
-            &:not(:disabled):active {
-                background-image: url("./icon/winXP_minimize-active.svg");
-            }
+    
+        &[aria-label="Maximize"] .os-icon {
+            background-position: -21px -21px;
         }
-
-        .os-button[aria-label="Maximize"] {
-            background-image: url("./icon/winXP_maximize.svg");
-            &:hover {
-                background-image: url("./icon/winXP_maximize-hover.svg");
-            }
-            &:not(:disabled):active {
-                background-image: url("./icon/winXP_maximize-active.svg");
-            }
+    
+        &[aria-label="Close"] .os-icon {
+            background-position: -63px -21px;
         }
+    }
 
-        .os-button[aria-label="Help"] {
-            background-image: url("./icon/winXP_help.svg");
-            &:hover {
-                background-image: url("./icon/winXP_help-hover.svg");
-            }
-            &:not(:disabled):active {
-                background-image: url("./icon/winXP_help-active.svg");
-            }
-        }
+    &[aria-label="Minimize"] .os-icon {
+        background-position: 0px 0px;
+    }
 
-        .os-button[aria-label="Close"] {
-            background-image: url("./icon/winXP_close.svg");
-            &:hover {
-                background-image: url("./icon/winXP_close-hover.svg");
-            }
-            &:not(:disabled):active {
-                background-image: url("./icon/winXP_close-active.svg");
-            }
+    &[aria-label="Maximize"] .os-icon {
+        background-position: -21px 0px;
+    }
+
+    &[aria-label="Close"] {
+        background-color: #d12f00;
+
+        .os-icon {
+            background-position: -63px 0px;
         }
     }
 }
