@@ -20,8 +20,14 @@ import { DynamicWindowControlService } from './dynamic-window-control.service';
     providedIn: 'root'
 })
 export class DynamicWindowService {
+    /** Contains references to windows opened via the service. */
     public get references$(): Observable<DynamicWindowRef[]> {
         return this.windowControlService.references$;
+    }
+
+    /** Contains references to windows opened via the service. */
+    public get references(): DynamicWindowRef[] {
+        return this.windowControlService.references;
     }
 
     constructor(
@@ -32,11 +38,12 @@ export class DynamicWindowService {
         private readonly windowControlService: DynamicWindowControlService
     ) {}
 
-    public open(childComponent: Type<any>, params: DynamicWindowParams = {}): IDynamicWindowRef {
+    /** Opens a window containing the given component. */
+    public open(component: Type<any>, params: DynamicWindowParams = {}): IDynamicWindowRef {
         const config = new DynamicWindowConfig(params);
         const windowRef = this.createDynamicWindow(config);
 
-        this.applyDataForCreatedWindow({ childComponent, config, windowRef });
+        this.applyDataForCreatedWindow({ component, config, windowRef });
         this.windowControlService.addWindowRef(windowRef);
 
         return windowRef;
@@ -80,12 +87,12 @@ export class DynamicWindowService {
             .subscribe(() => componentRef.destroy());
     }
 
-    private applyDataForCreatedWindow({ windowRef, childComponent, config }: DynamicWindowInputParams): void {
+    private applyDataForCreatedWindow({ windowRef, component, config }: DynamicWindowInputParams): void {
         const { instance: windowInstance } = windowRef.componentRef;
 
         windowRef.updateConfig(config);
 
-        windowInstance.childComponentType = childComponent;
+        windowInstance.childComponentType = component;
         windowInstance.windowRef = windowRef;
         windowInstance.config = config;
     }

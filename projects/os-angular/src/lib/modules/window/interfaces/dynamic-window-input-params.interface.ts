@@ -3,7 +3,7 @@ import { DynamicWindowRef } from '../classes';
 import { DynamicWindowParams } from './dynamic-window-params.interface';
 
 export interface DynamicWindowInputParams {
-    childComponent: Type<any>;
+    component: Type<any>;
     config: DynamicWindowParams;
     windowRef: DynamicWindowRef;
 }
