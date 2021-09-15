@@ -22,11 +22,11 @@
                     <ng-container *ngFor="let arg of method.args; let argInd = index">
                         <ng-container *ngIf="argInd > 0">,<br /></ng-container>
                         <span class="method-arg">{{ arg.name }}
-                            <ng-container *ngIf="arg.optional">?</ng-container>: {{ arg.type }}
+                            <ng-container *ngIf="arg.optional">?</ng-container>: <span class="property-type">{{ arg.type }}</span>
                         </span>
                     </ng-container>
                     <br *ngIf="method.args.length >= 1" />
-                    ): {{ method.returnType }}
+                    ): <span class="property-type">{{ method.returnType }}</span>
                 </os-text>
             </td>
 

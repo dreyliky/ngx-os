@@ -10,7 +10,8 @@
         <tr *ngFor="let property of properties">
             <td class="property-name-col">
                 <os-text>
-                    {{ property.name }}: {{ property.type }}
+                    {{ property.name }}:
+                    <span class="property-type">{{ property.type }}</span>
                 </os-text>
             </td>
 

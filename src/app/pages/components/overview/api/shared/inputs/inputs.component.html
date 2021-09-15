@@ -8,7 +8,10 @@
     <table class="content">
         <tr *ngFor="let inputProp of inputs">
             <td class="property-name-col">
-                <os-text>{{ inputProp.name }}: {{ inputProp.type }}</os-text>
+                <os-text>
+                    {{ inputProp.name }}:
+                    <span class="property-type">{{ inputProp.type }}</span>
+                </os-text>
             </td>
 
             <td>

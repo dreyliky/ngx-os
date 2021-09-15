@@ -9,7 +9,8 @@
         <tr *ngFor="let getter of getters">
             <td class="property-name-col">
                 <os-text>
-                    {{ getter.name }}: {{ getter.returnType }}
+                    {{ getter.name }}:
+                    <span class="property-type">{{ getter.returnType }}</span>
                 </os-text>
             </td>
     

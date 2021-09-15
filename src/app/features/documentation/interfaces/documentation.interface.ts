@@ -157,6 +157,7 @@ interface Arg4 {
     name: string;
     type: string;
     defaultValue?: string;
+    optional: boolean;
 }
 
 export interface DocClassProperty {
