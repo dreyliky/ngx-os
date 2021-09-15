@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DynamicWindowService } from '@lib-modules';
+import { ChangeDetectionStrategy, Component, Inject, Optional } from '@angular/core';
+import { IS_DYNAMIC_WINDOW_CONTEXT } from '@lib-core';
+import { DynamicWindowConfig, DynamicWindowService } from '@lib-modules';
 
 @Component({
     selector: 'demo-window-dynamic-opening',
@@ -8,7 +9,13 @@ import { DynamicWindowService } from '@lib-modules';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WindowDynamicOpeningComponent {
+    public get windowData(): number {
+        return this.config?.data;
+    }
+
     constructor(
+        @Inject(IS_DYNAMIC_WINDOW_CONTEXT) public readonly isComponentInsideWindow: boolean,
+        @Inject(DynamicWindowConfig) @Optional() private readonly config: DynamicWindowConfig,
         private readonly dynamicWindowService: DynamicWindowService
     ) {}
 
@@ -18,7 +25,8 @@ export class WindowDynamicOpeningComponent {
             {
                 title: 'Overview window',
                 width: 600,
-                height: 300
+                height: 300,
+                data: Math.random()
             }
         );
     }

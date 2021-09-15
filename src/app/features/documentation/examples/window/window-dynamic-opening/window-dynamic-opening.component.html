@@ -1,3 +1,15 @@
+<os-form-field>
+    <os-text>
+        Is this component inside dynamic window: <b>{{ isComponentInsideWindow }}</b>
+    </os-text>
+</os-form-field>
+
+<os-form-field *ngIf="windowData">
+    <os-text>
+        Random number as data for window is: <b>{{ windowData }}</b>
+    </os-text>
+</os-form-field>
+
 <os-button
     (osClick)="onOpenWindowButtonClick()">
     Open dynamic window
