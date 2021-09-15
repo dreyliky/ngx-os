@@ -7,9 +7,11 @@ import { OsBaseButtonComponent } from '@lib-core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitleBarButtonComponent extends OsBaseButtonComponent implements OnInit {
+    /** Link to the icon */
     @Input()
     public readonly iconUrl: string;
 
+    /** Styles for the icon */
     @Input()
     public readonly iconStyles: object;
 

@@ -20,12 +20,12 @@ import { DynamicWindowControlService } from './dynamic-window-control.service';
     providedIn: 'root'
 })
 export class DynamicWindowService {
-    /** Contains references to windows opened via the service. */
+    /** Contains references to windows opened via the service */
     public get references$(): Observable<DynamicWindowRef[]> {
         return this.windowControlService.references$;
     }
 
-    /** Contains references to windows opened via the service. */
+    /** Contains references to windows opened via the service */
     public get references(): DynamicWindowRef[] {
         return this.windowControlService.references;
     }
@@ -38,7 +38,7 @@ export class DynamicWindowService {
         private readonly windowControlService: DynamicWindowControlService
     ) {}
 
-    /** Opens a window containing the given component. */
+    /** Opens a window containing the given component */
     public open(component: Type<any>, params: DynamicWindowParams = {}): IDynamicWindowRef {
         const config = new DynamicWindowConfig(params);
         const windowRef = this.createDynamicWindow(config);
