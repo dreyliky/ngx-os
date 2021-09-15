@@ -75,7 +75,7 @@ export class DynamicWindowService {
         windowRef.afterClosed$.pipe(first())
             .pipe(
                 tap(() => this.windowControlService.removeWindowRef(windowRef)),
-                delay(1000)
+                delay(300)
             )
             .subscribe(() => componentRef.destroy());
     }
