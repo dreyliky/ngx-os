@@ -15,7 +15,7 @@
     }
 
     &::-webkit-scrollbar-track {
-        background-image: url("./icon/win98_scrollbar-background.svg");
+        background-image: url("./icon/win98_scrollbar-background.png");
     }
 
     &::-webkit-scrollbar-thumb {
@@ -27,32 +27,71 @@
         height: 17px;
         display: block;
 
+        &:start,
+        &:end {
+            background-image: url("./icon/win98_arrow-button.png");
+        }
+
         &:vertical {
             &:start {
-                background-image: url("./icon/win98_button-up.svg");
+                background-position: -32px 0px;
+
+                &:active {
+                    background-position: -32px -17px;
+                }
+
+                &:disabled {
+                    background-position: -32px -34px;
+                }
 
                 &:increment {
                     display: none;
                 }
             }
+
             &:end {
-                background-image: url("./icon/win98_button-down.svg");
+                background-position: 0px 0px;
+
+                &:active {
+                    background-position: 0px -17px;
+                }
+
+                &:disabled {
+                    background-position: 0px -34px;
+                }
 
                 &:decrement {
                     display: none;
                 }
             }
         }
+        
         &:horizontal {
             &:start {
-                background-image: url("./icon/win98_button-left.svg");
+                background-position: -48px 0px;
+
+                &:active {
+                    background-position: -48px -17px;
+                }
+
+                &:disabled {
+                    background-position: -48px -34px;
+                }
 
                 &:increment {
                     display: none;
                 }
             }
             &:end {
-                background-image: url("./icon/win98_button-right.svg");
+                background-position: -16px 0px;
+
+                &:active {
+                    background-position: -16px -17px;
+                }
+
+                &:disabled {
+                    background-position: -16px -34px;
+                }
 
                 &:decrement {
                     display: none;

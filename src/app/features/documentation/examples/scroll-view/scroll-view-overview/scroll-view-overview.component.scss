@@ -30,3 +30,9 @@
     height: 3000px;
     @include gradient;
 }
+
+.small-block {
+    width: 100%;
+    height: 100%;
+    @include gradient;
+}
