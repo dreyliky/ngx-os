@@ -2,7 +2,7 @@ import { ComponentRef } from '@angular/core';
 import { IdGenerator } from '@lib-helpers';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
-import { DynamicWindowParams, IDynamicWindowRef } from '../interfaces';
+import { IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
 
 export class DynamicWindowRef implements IDynamicWindowRef {
     public get isHidden$(): Observable<boolean> {
@@ -37,11 +37,11 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         return this._afterClosed$.asObservable();
     }
 
-    public get config$(): Observable<DynamicWindowParams> {
+    public get config$(): Observable<IDynamicWindowParams> {
         return this._config$.asObservable();
     }
 
-    public get config(): DynamicWindowParams {
+    public get config(): IDynamicWindowParams {
         return this._config$.getValue();
     }
 
@@ -57,7 +57,7 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         return this._componentRef;
     }
 
-    private readonly _config$ = new BehaviorSubject<DynamicWindowParams>({});
+    private readonly _config$ = new BehaviorSubject<IDynamicWindowParams>({});
     private readonly _isHidden$ = new BehaviorSubject<boolean>(false);
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
     private readonly _isActive$ = new BehaviorSubject<boolean>(true);
@@ -68,7 +68,7 @@ export class DynamicWindowRef implements IDynamicWindowRef {
     private _windowElement: HTMLElement;
     private _componentRef: ComponentRef<DynamicWindowComponent>;
 
-    public updateConfig(config: DynamicWindowParams): void {
+    public updateConfig(config: IDynamicWindowParams): void {
         this._config$.next({ ...this.config, ...config });
     }
 

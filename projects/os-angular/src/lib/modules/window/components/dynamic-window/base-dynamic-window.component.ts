@@ -3,14 +3,14 @@ import { Subscription } from 'rxjs';
 import { ResizerEnum } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
 import { DynamicStateEnum } from '../../enums';
-import { DynamicWindowParams } from '../../interfaces';
+import { IDynamicWindowParams } from '../../interfaces';
 
 @Component({
     template: ''
 })
 export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public childComponentType: Type<any>;
-    public config: DynamicWindowParams;
+    public config: IDynamicWindowParams;
     public windowRef: DynamicWindowRef;
 
     public width: string;

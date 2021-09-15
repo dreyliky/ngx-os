@@ -1,6 +1,6 @@
 import { ResizerEnum } from '@lib-modules/resizer';
 
-export interface DynamicWindowParams<D = any, T = any> {
+export interface IDynamicWindowParams<D = any, T = any> {
     title?: string;
     /** Custom data you can access via the window component */
     data?: D;

@@ -1,7 +1,7 @@
 import { ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
-import { DynamicWindowParams } from './dynamic-window-params.interface';
+import { IDynamicWindowParams } from './dynamic-window-params.interface';
 
 /** Public API of DynamicWindowRef */
 export interface IDynamicWindowRef {
@@ -9,17 +9,17 @@ export interface IDynamicWindowRef {
     isFullscreen$: Observable<boolean>;
     isActive$: Observable<boolean>;
     afterClosed$: Observable<any>;
-    config$: Observable<DynamicWindowParams>;
+    config$: Observable<IDynamicWindowParams>;
 
     id: string;
     isHidden: boolean;
     isFullscreen: boolean;
     isActive: boolean;
-    config: DynamicWindowParams;
+    config: IDynamicWindowParams;
     windowElement: HTMLElement;
     componentRef: ComponentRef<DynamicWindowComponent>;
 
-    updateConfig(config: DynamicWindowParams): void;
+    updateConfig(config: IDynamicWindowParams): void;
     hide(): void;
     show(): void;
     toggleVisibility(state: boolean): void;

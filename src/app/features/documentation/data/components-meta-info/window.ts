@@ -30,7 +30,7 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
     ],
     libInterfaces: [
         'IDynamicWindowRef',
-        'DynamicWindowParams'
+        'IDynamicWindowParams'
     ],
     demoComponents: [
         {

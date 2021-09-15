@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 import { delay, first, tap } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
 import { DynamicWindowComponent } from '../components/dynamic-window';
-import { DynamicWindowInputParams, DynamicWindowParams, IDynamicWindowRef } from '../interfaces';
+import { DynamicWindowInputParams, IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 
 @Injectable({
@@ -39,7 +39,7 @@ export class DynamicWindowService {
     ) {}
 
     /** Opens a window containing the given component */
-    public open(component: Type<any>, params: DynamicWindowParams = {}): IDynamicWindowRef {
+    public open(component: Type<any>, params: IDynamicWindowParams = {}): IDynamicWindowRef {
         const config = new DynamicWindowConfig(params);
         const windowRef = this.createDynamicWindow(config);
 
