@@ -1,0 +1,1 @@
+The parameters to set up a dynamic window and pass some custom data for the component which will be rendered inside.

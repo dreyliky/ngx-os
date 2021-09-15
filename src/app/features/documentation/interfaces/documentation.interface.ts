@@ -441,6 +441,7 @@ export interface DocInterface {
     indexSignatures: any[];
     kind: number;
     methods: DocInterfaceMethod[];
+    readme?: string;
 }
 
 export interface DocInterfaceMethod {

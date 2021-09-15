@@ -5,6 +5,11 @@
     </api-element-header>
     
     <div class="content">
+        <api-readme-info
+            *ngIf="docInterface.readme"
+            [readmeInfo]="docInterface.readme">
+        </api-readme-info>
+
         <api-properties
             [classProperties]="docInterface.properties">
         </api-properties>
