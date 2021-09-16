@@ -12,8 +12,8 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public maxWidth?: number = Infinity;
     public maxHeight?: number = Infinity;
     public allowedResizers?: ResizerEnum[];
-    public positionX?: number = 128;
-    public positionY?: number = 128;
+    public positionX?: number;
+    public positionY?: number;
     public iconUrl?: string;
     public isFullscreen?: boolean = false;
     public isHidden?: boolean = false;

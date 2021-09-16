@@ -9,6 +9,7 @@ import {
     Injector,
     Type
 } from '@angular/core';
+import { DynamicWindowConfigControlService } from '@lib-modules';
 import { Observable } from 'rxjs';
 import { delay, first, tap } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
@@ -35,12 +36,13 @@ export class DynamicWindowService {
         private readonly injector: Injector,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly applicationRef: ApplicationRef,
-        private readonly windowControlService: DynamicWindowControlService
+        private readonly windowControlService: DynamicWindowControlService,
+        private readonly configControlService: DynamicWindowConfigControlService
     ) {}
 
     /** Opens a window containing the given component */
     public open(component: Type<any>, params: IDynamicWindowParams = {}): IDynamicWindowRef {
-        const config = new DynamicWindowConfig(params);
+        const config = this.configControlService.process(new DynamicWindowConfig(params));
         const windowRef = this.createDynamicWindow(config);
 
         this.applyDataForCreatedWindow({ component, config, windowRef });
