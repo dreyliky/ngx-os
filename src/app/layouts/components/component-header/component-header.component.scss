@@ -1,6 +1,7 @@
 :host {
     width: 100%;
-    min-height: 50px;
+    height: 50px;
+    max-height: 50px;
     background-color: rgb(var(--os-primary-color));
     display: flex;
     align-items: center;
@@ -33,6 +34,7 @@ a {
 }
 
 .recommended-browser-icon {
+    height: 24px;
     cursor: help;
 }
 
