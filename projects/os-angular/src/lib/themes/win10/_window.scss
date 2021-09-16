@@ -1,51 +1,70 @@
-@keyframes os-window-opening {
+@keyframes opening {
     from {
         transform: scale(.85);
         opacity: 0;
     }
+
     to {
         transform: scale(1);
         opacity: 1;
     }
 }
 
-@keyframes os-window-closing {
+@keyframes closing {
     from {
         transform: scale(1);
         opacity: 1;
     }
+
     to {
         transform: scale(.9);
         opacity: 0;
-        display: none !important;
     }
 }
 
-@keyframes os-window-hiding {
-    0% {
+@keyframes hiding {
+    from {
         transform: scale(1);
         opacity: 1;
     }
-    100% {
+
+    to {
         transform: scale(.2);
         top: 100%;
         left: 0%;
         opacity: 0;
-        display: none !important;
     }
 }
 
-@keyframes os-window-showing {
-    0% {
+@keyframes showing {
+    from {
         transform: scale(.2);
         top: 100%;
         left: 0%;
         opacity: 0;
-        display: none !important;
     }
-    100% {
+
+    to {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+@keyframes entering-fullscreen {
+    to {
+        width: 100%;
+        height: 100%;
+        left: -1px;
+        top: -1px;
+    }
+}
+
+@keyframes entering-windowed {
+    from {
+        width: 100%;
+        height: 29px !important;
+        top: -1px;
+        left: -1px;
     }
 }
 
@@ -56,15 +75,13 @@ os-window {
     border: solid 1px #aaaaaa;
     -webkit-font-smoothing: none;
     box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
-    transition: all 0.15s ease;
-    transition-property: width, height, left, top;
 
     &.opening {
-        animation: os-window-opening .3s ease forwards;
+        animation: opening .3s ease forwards;
     }
 
     &.hiding {
-        animation: os-window-hiding .4s ease forwards;
+        animation: hiding .4s ease forwards;
     }
 
     &.hidden {
@@ -72,19 +89,22 @@ os-window {
     }
 
     &.showing {
-        animation: os-window-showing .4s ease forwards;
+        animation: showing .4s ease forwards;
     }
 
     &.closing {
-        animation: os-window-closing .25s ease forwards;
+        animation: closing .25s ease forwards;
     }
 
-    &.dragging,
-    &.resizing {
-        transition: none !important;
+    &.os-entering-fullscreen {
+        animation: entering-fullscreen .17s ease forwards;
     }
 
-    &.fullscreen {
+    &.os-entering-windowed {
+        animation: entering-windowed .17s ease forwards;
+    }
+
+    &.fullscreen:not(.hiding) {
         width: 100% !important;
         height: 100% !important;
         left: -1px !important;
@@ -135,7 +155,7 @@ os-window {
         }
     }
 
-    &.fullscreen {
+    &.fullscreen, &.os-entering-fullscreen {
         &.os-active {
             .os-title-bar {
                 .os-title-bar-button[aria-label="Maximize"] .os-icon {

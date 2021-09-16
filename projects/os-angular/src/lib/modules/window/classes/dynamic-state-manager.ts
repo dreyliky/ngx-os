@@ -17,6 +17,14 @@ export class DynamicStateManager {
         return (this._state === DynamicStateEnum.Showing);
     }
 
+    public get isEnteringFullscreen(): boolean {
+        return (this._state === DynamicStateEnum.EnteringFullscreen);
+    }
+
+    public get isEnteringWindowed(): boolean {
+        return (this._state === DynamicStateEnum.EnteringWindowed);
+    }
+
     public get isClosing(): boolean {
         return (this._state === DynamicStateEnum.Closing);
     }
@@ -27,48 +35,16 @@ export class DynamicStateManager {
     private currentStateTimeoutId: number;
     private readonly cssAnimationClassDuration: number = 500;
 
-    public initOpeningState(): void {
+    public apply(state: DynamicStateEnum): void {
         this.clearCurrentTimeout();
 
-        this._state = DynamicStateEnum.Opening;
+        this._state = state;
 
         this.currentStateTimeoutId = setTimeout(() => {
             this._state = null;
 
             this.callback?.();
         }, this.cssAnimationClassDuration);
-    }
-
-    public initHidingState(): void {
-        this.clearCurrentTimeout();
-
-        this._state = DynamicStateEnum.Hiding;
-
-        this.currentStateTimeoutId = setTimeout(() => {
-            this._state = null;
-
-            this.callback?.();
-        }, this.cssAnimationClassDuration);
-    }
-
-    public initShowingState(): void {
-        this.clearCurrentTimeout();
-
-        this._state = DynamicStateEnum.Showing;
-
-        this.currentStateTimeoutId = setTimeout(() => {
-            this._state = null;
-
-            this.callback?.();
-        }, this.cssAnimationClassDuration);
-    }
-
-    public initClosingState(): void {
-        this.clearCurrentTimeout();
-
-        this._state = DynamicStateEnum.Closing;
-
-        this.callback?.();
     }
 
     public registerCallback(callback: () => any): void {

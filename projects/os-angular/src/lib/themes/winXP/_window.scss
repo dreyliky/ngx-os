@@ -1,3 +1,66 @@
+@keyframes showing {
+    0% {
+        height: 27px;
+        transform: scale(.2);
+        top: 100%;
+        left: 0%;
+    }
+
+    70% {
+        height: 27px;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes hiding {
+    from {
+        height: 27px;
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        height: 27px;
+        transform: scale(.6);
+        top: 100%;
+        left: 0%;
+        opacity: .3;
+    }
+}
+
+@keyframes entering-fullscreen {
+    0% {
+        height: 27px;
+    }
+
+    99% {
+        height: 27px;
+    }
+
+    100% {
+        width: calc(100% + 6px);
+        height: calc(100% + 4px);
+        top: -2px;
+        left: -3px;
+    }
+}
+
+@keyframes entering-windowed {
+    0% {
+        width: 100%;
+        height: 27px;
+        top: -2px;
+        left: -3px;
+    }
+
+    70% {
+        height: 27px;
+    }
+}
+
 os-window {
     font-size: 11px;
     font-family: var(--sans-serif);
@@ -18,11 +81,27 @@ os-window {
         margin-bottom: 9px;
     }
 
-    &.hiding, &.hidden {
+    &.showing {
+        animation: showing .4s ease forwards;
+    }
+
+    &.os-entering-fullscreen {
+        animation: entering-fullscreen .4s ease forwards;
+    }
+
+    &.os-entering-windowed {
+        animation: entering-windowed .4s ease forwards;
+    }
+
+    &.hiding {
+        animation: hiding .4s ease forwards;
+    }
+
+    &.hidden {
         display: none !important;
     }
 
-    &.fullscreen {
+    &.fullscreen:not(.hiding) {
         width: calc(100% + 6px) !important;
         height: calc(100% + 4px) !important;
         left: -3px !important;
@@ -60,7 +139,7 @@ os-window {
             text-shadow: 1px 1px rgba(var(--os-primary-color), 1);
         }
 
-        &.fullscreen {
+        &.fullscreen, &.os-entering-fullscreen {
             .os-title-bar-button[aria-label="Maximize"] .os-icon {
                 background-position: -42px 0px;
 

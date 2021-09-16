@@ -14,6 +14,7 @@ import { skip } from 'rxjs/operators';
 import { DragInfo, OsDraggableDirective } from '../../../drag-and-drop';
 import { ResizeInfo } from '../../../resizer';
 import { DynamicWindowContentDirective } from '../../directives';
+import { DynamicStateEnum } from '../../enums';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 
 @Component({
@@ -42,6 +43,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.initDynamicStateManager();
         this.initHtmlElements();
         this.initIsHiddenStateObserver();
+        this.initIsFullscreenStateObserver();
         this.initAfterClosedStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
@@ -156,7 +158,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initDynamicStateManager(): void {
-        this.dynamicStateManager.initOpeningState();
+        this.dynamicStateManager.apply(DynamicStateEnum.Opening);
         this.dynamicStateManager.registerCallback(() => {
             this.changeDetector.markForCheck();
         });
@@ -217,10 +219,15 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.parentSubscription.add(subscription);
     }
 
-    private initAfterClosedStateObserver(): void {
-        const subscription = this.windowRef.afterClosed$
-            .subscribe(() => {
-                this.dynamicStateManager.initClosingState();
+    private initIsHiddenStateObserver(): void {
+        const subscription = this.windowRef.isHidden$
+            .pipe(skip(1))
+            .subscribe((isHidden) => {
+                if (isHidden) {
+                    this.dynamicStateManager.apply(DynamicStateEnum.Hiding);
+                } else {
+                    this.dynamicStateManager.apply(DynamicStateEnum.Showing);
+                }
 
                 this.changeDetector.markForCheck();
             });
@@ -228,15 +235,26 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.parentSubscription.add(subscription);
     }
 
-    private initIsHiddenStateObserver(): void {
-        const subscription = this.windowRef.isHidden$
+    private initIsFullscreenStateObserver(): void {
+        const subscription = this.windowRef.isFullscreen$
             .pipe(skip(1))
-            .subscribe((isHidden) => {
-                if (isHidden) {
-                    this.dynamicStateManager.initHidingState();
+            .subscribe((isFullscreen) => {
+                if (isFullscreen) {
+                    this.dynamicStateManager.apply(DynamicStateEnum.EnteringFullscreen);
                 } else {
-                    this.dynamicStateManager.initShowingState();
+                    this.dynamicStateManager.apply(DynamicStateEnum.EnteringWindowed);
                 }
+
+                this.changeDetector.markForCheck();
+            });
+
+        this.parentSubscription.add(subscription);
+    }
+
+    private initAfterClosedStateObserver(): void {
+        const subscription = this.windowRef.afterClosed$
+            .subscribe(() => {
+                this.dynamicStateManager.apply(DynamicStateEnum.Closing);
 
                 this.changeDetector.markForCheck();
             });

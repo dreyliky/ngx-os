@@ -32,9 +32,11 @@
         'hiding': dynamicStateManager.isHiding,
         'showing': dynamicStateManager.isShowing,
         'closing': dynamicStateManager.isClosing,
+        'os-entering-fullscreen': dynamicStateManager.isEnteringFullscreen,
+        'os-entering-windowed': dynamicStateManager.isEnteringWindowed,
         'hidden': isHidden,
-        'fullscreen': windowRef.isFullscreen,
-        'windowed': !windowRef.isFullscreen,
+        'fullscreen': isFullscreen,
+        'windowed': isWindowed,
         'dragging': isDragging,
         'resizing': isResizing
     }"
