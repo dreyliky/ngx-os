@@ -9,12 +9,12 @@ import {
     Injector,
     Type
 } from '@angular/core';
-import { DynamicWindowConfigControlService } from '@lib-modules';
 import { Observable } from 'rxjs';
 import { delay, first, tap } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
 import { DynamicWindowComponent } from '../components/dynamic-window';
 import { DynamicWindowInputParams, IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
+import { DynamicWindowConfigControlService } from './dynamic-window-config-control.service';
 import { DynamicWindowControlService } from './dynamic-window-control.service';
 
 @Injectable({

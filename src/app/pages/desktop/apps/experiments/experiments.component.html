@@ -1,0 +1,22 @@
+<os-header>Spawn empty windows</os-header>
+
+<os-text>Choose amout</os-text>
+
+<os-form-field>
+    <os-button
+        *ngFor="let amountOfWindows of windowAmoutsToSpawn"
+        (osClick)="spawnWindows(amountOfWindows)">
+        {{ amountOfWindows }}
+    </os-button>
+</os-form-field>
+
+<os-form-field>
+    <os-text>Total spawned: {{ totalSpawned }}; Alive: {{ (totalWindowsAlive$ | async) }};</os-text>
+</os-form-field>
+
+<os-form-field>
+    <os-button
+        (osClick)="onCloseAllWindowsButtonClick()">
+        Close all windows
+    </os-button>
+</os-form-field>
