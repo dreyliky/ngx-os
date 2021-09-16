@@ -22,13 +22,13 @@ os-checkbox {
                 height: 13px;
                 display: inline-block;
                 position: absolute;
-                top: 0;
+                top: -1px;
                 left: -19px;
                 margin-right: 6px;
+                background-image: url("./icon/winXP_checkbox.png");
+                background-position: 0px 0px;
                 content: "";
                 box-shadow: none;
-                border: 1px solid #1d5281;
-                background: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
             }
         }
 
@@ -36,58 +36,38 @@ os-checkbox {
             outline: 1px dotted #000000;
         }
 
-        &:checked + label {
-            &:after {
-                content: "";
-                display: block;
-                width: 11px;
-                height: 11px;
-                background: url("./icon/winXP_checkmark.svg");
-                position: absolute;
-                top: 2px;
-                left: -17px;
-            }
+        &:checked + label:after {
+            width: 7px;
+            height: 7px;
+            display: block;
+            position: absolute;
+            top: 2px;
+            left: -16px;
+            content: "";
+            background: url("./icon/winXP_checkmark.png");
+            background-position: 0px 0px;
         }
 
-        &:not([disabled]):not(:active) {
+        &:disabled {
             + label {
-                &:hover:before {
-                    box-shadow: inset -2px -2px #f8b636, inset 2px 2px #fedf9c;
-                }
-            }
-        }
-
-        &:active {
-            + {
-                label {
-                    &::before {
-                        background: linear-gradient(135deg, rgba(176, 176, 167, 1) 0%, rgba(227, 225, 210, 1) 100%);
-                    }
-                }
-            }
-        }
-    }
-    
-    input[type="checkbox"][disabled] {
-        + {
-            label {
                 color: #a1a192;
-
+    
                 &::before {
-                    background: white;
-                    border: 1px solid #cac8bb;
+                    background-position: 0px -39px;
                 }
             }
-        }
-        &:checked {
-            + {
-                label {
-                    &::after {
-                        background: url("./icon/winXP_checkmark-disabled.svg");
-                    }
-                }
+    
+            &:checked + label::after {
+                background-position: 0px -7px;
             }
         }
     }
 
+    &:hover input:not(:disabled) + label:before {
+        background-position: 0px -13px;
+    }
+
+    &:active input + label:before {
+        background-position: 0px -26px !important;
+    }
 }
