@@ -29,7 +29,7 @@ export class TaskbarComponent implements OnInit {
     }
 
     public getTaskbarIconCssUrl(iconUrl: string): string {
-        return `url(${iconUrl})`;
+        return `url(${iconUrl || '/assets/icons/icon.png'})`;
     }
 
     public onWindowReferenceIconClick(event: PointerEvent, windowRef: DynamicWindowRef): void {

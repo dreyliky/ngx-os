@@ -4,7 +4,6 @@
     [class.os-active]="(windowRef.isActive$ | async)"
     (osClick)="onWindowReferenceIconClick($event, windowRef)">
     <div
-        *ngIf="windowRef.config.iconUrl"
         class="icon"
         [style.backgroundImage]="getTaskbarIconCssUrl(windowRef.config.iconUrl)">
     </div>
