@@ -26,30 +26,18 @@ os-radio-button {
                     top: 0;
                     left: -19px;
                     margin-right: 6px;
+                    background-image: url('./icon/winXP_radio-button.png');
                     content: "";
-                    background: linear-gradient(135deg, rgba(220, 220, 215, 1) 0%, rgba(255, 255, 255, 1) 100%);
-                    border-radius: 50%;
-                    border: 1px solid #1d5281;
                 }
             }
         }
 
-        &:not([disabled]):not(:active) {
-            + label {
-                &:hover:before {
-                    box-shadow: inset -2px -2px #f8b636, inset 2px 2px #fedf9c;
-                }
-            }
+        &:not([disabled]):not(:active) + label:hover:before {
+            background-position: 0px -13px;
         }
 
-        &:active {
-            + {
-                label {
-                    &::before {
-                        background: linear-gradient(135deg, rgba(176, 176, 167, 1) 0%, rgba(227, 225, 210, 1) 100%);
-                    }
-                }
-            }
+        &:active + label::before {
+            background-position: 0px -26px;
         }
 
         &:checked {
@@ -59,11 +47,11 @@ os-radio-button {
                         width: 5px;
                         height: 5px;
                         display: block;
-                        top: 5px;
-                        left: -14px;
+                        top: 4px;
+                        left: -15px;
                         content: "";
                         position: absolute;
-                        background: url("./icon/winXP_radio-dot.svg");
+                        background: url("./icon/winXP_radio-button-checkmark.png");
                     }
                 }
             }
@@ -80,20 +68,13 @@ os-radio-button {
                 color: #a1a192;
 
                 &::before {
-                    border: 1px solid #cac8bb;
-                    background: white;
+                    background-position: 0px -39px;
                 }
             }
         }
 
-        &:checked {
-            + {
-                label {
-                    &::after {
-                        background: url("./icon/winXP_radio-dot-disabled.svg");
-                    }
-                }
-            }
+        &:checked + label::after {
+            background-position: 0px -5px;
         }
     }
 }
