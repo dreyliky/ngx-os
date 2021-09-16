@@ -1,8 +1,15 @@
 <os-list>
     <os-list-item
+        [style]="{ height: 'auto' }"
         (osClick)="onScrollTopButtonClick()">
-        <div class="list-item-wrapper">
-            <os-text class="name">Scroll to top</os-text>
+        <div class="icon-wrapper">
+            <img
+                class="icon"
+                src="/assets/icons/dev/examples.svg" />
+        </div>
+
+        <div class="name">
+            <os-text>Examples</os-text>
         </div>
     </os-list-item>
 
