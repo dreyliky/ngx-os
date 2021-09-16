@@ -11,6 +11,9 @@ import { environment } from 'src/environments/environment';
 export class ComponentHeaderComponent {
     public readonly libVersion: string = environment.version;
 
+    public readonly recommendedBrowserText: string = 'The library is on the alpha stage right now. '
+        + 'Recommend using the latest version of Google Chrome to get the best experience.';
+
     public get getStartedPagePath(): string {
         return `/${AppRouteEnum.GetStarted}`;
     }
@@ -21,5 +24,9 @@ export class ComponentHeaderComponent {
 
     public get desktopPagePath(): string {
         return `/${AppRouteEnum.Desktop}`;
+    }
+
+    public onChromeIconClick(): void {
+        alert(this.recommendedBrowserText);
     }
 }
