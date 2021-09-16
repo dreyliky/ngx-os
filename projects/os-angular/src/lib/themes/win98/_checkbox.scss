@@ -12,24 +12,27 @@ os-checkbox {
         opacity: 0;
         border: none;
 
-        + {
-            label {
-                height: 13px;
-                position: relative;
-                margin-left: 19px;
+        + label {
+            height: 13px;
+            position: relative;
+            margin-left: 19px;
 
-                &::before {
-                    width: 13px;
-                    height: 13px;
-                    display: inline-block;
-                    position: absolute;
-                    top: 0;
-                    left: -19px;
-                    margin-right: 6px;
-                    content: "";
-                    background: #ffffff;
-                    box-shadow: var(--border-field);
-                }
+            &::after {
+                background-image: url("./icon/win98_checkmark.png");
+                background-repeat: no-repeat;
+            }
+
+            &::before {
+                width: 13px;
+                height: 13px;
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                left: -19px;
+                margin-right: 6px;
+                content: "";
+                background: #ffffff;
+                box-shadow: var(--border-field);
             }
         }
 
@@ -41,43 +44,30 @@ os-checkbox {
             background: rgb(var(--os-bg-color));
         }
 
-        &:checked {
-            + {
-                label {
-                    &::after {
-                        content: "";
-                        display: block;
-                        width: 7px;
-                        height: 7px;
-                        position: absolute;
-                        background-image: url("./icon/win98_checkmark.svg");
-                        top: 3px;
-                        left: -16px;
-                    }
-                }
-            }
+        &:checked + label::after {
+            content: "";
+            display: block;
+            width: 7px;
+            height: 7px;
+            position: absolute;
+            background-position: 0px 0px;
+            top: 3px;
+            left: -16px;
         }
     }
 
     input[type="checkbox"][disabled] {
-        + {
-            label {
-                color: grey;
-                text-shadow: 1px 1px 0 #fff;
+        + label {
+            color: grey;
+            text-shadow: 1px 1px 0 #fff;
 
-                &::before {
-                    background: rgb(var(--os-bg-color));
-                }
+            &::before {
+                background: rgb(var(--os-bg-color));
             }
         }
-        &:checked {
-            + {
-                label {
-                    &::after {
-                        background: url("./icon/win98_checkmark-disabled.svg");
-                    }
-                }
-            }
+
+        &:checked + label::after {
+            background-position: 0px -7px;
         }
     }
 }
