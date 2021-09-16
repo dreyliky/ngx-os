@@ -13,17 +13,17 @@
 
     &::-webkit-scrollbar-track {
         &:vertical {
-            background-image: url("./icon/winXP_scroll-background.svg");
+            background-image: url("./icon/winXP_scroll-background.png");
         }
         &:horizontal {
-            background-image: url("./icon/winXP_scroll-background-horizontal.svg");
+            background-image: url("./icon/winXP_scroll-background-horizontal.png");
         }
     }
 
     &::-webkit-scrollbar-thumb {
         background-position: center;
         background-repeat: no-repeat;
-        background-color: rgba(var(--os-primary-color), .5);
+        background-color: rgba(var(--os-primary-color), .35);
         background-size: 7px;
         border: 1px solid white;
         border-radius: 2px;
@@ -45,7 +45,9 @@
 
         &:start,
         &:end {
+            border-radius: 3px;
             background-image: url("./icon/winXP_arrow-button.png");
+            background-color: rgb(var(--os-primary-color));
         }
 
         &:vertical {
