@@ -44,6 +44,14 @@ os-window {
     .os-window-body {
         margin: 0px 2px;
     }
+
+    &:hover os-resizers {
+        display: inherit;
+    }
+
+    os-resizers {
+        display: none;
+    }
 }
 
 os-title-bar {

@@ -154,6 +154,14 @@ os-window {
             }
         }
     }
+
+    &:hover os-resizers {
+        display: inherit;
+    }
+
+    os-resizers {
+        display: none;
+    }
 }
 
 .os-title-bar {

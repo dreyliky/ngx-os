@@ -80,6 +80,14 @@ os-window {
     .os-window-body {
         margin: 0px 3px;
     }
+
+    &:hover os-resizers {
+        display: inherit;
+    }
+
+    os-resizers {
+        display: none;
+    }
 }
 
 os-title-bar {
