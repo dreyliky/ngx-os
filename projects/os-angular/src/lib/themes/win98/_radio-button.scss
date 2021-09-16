@@ -12,51 +12,28 @@ os-radio-button {
         opacity: 0;
         border: none;
 
-        + {
-            label {
+        + label {
+            height: 12px;
+            position: relative;
+            margin-left: 18px;
+
+            &::before {
+                width: 12px;
                 height: 12px;
-                position: relative;
-                margin-left: 18px;
-
-                &::before {
-                    width: 12px;
-                    height: 12px;
-                    display: inline-block;
-                    position: absolute;
-                    top: 0;
-                    left: -18px;
-                    margin-right: 6px;
-                    content: "";
-                    background: url("./icon/win98_radio-border.svg");
-                }
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                left: -18px;
+                margin-right: 6px;
+                content: "";
+                background: url("./icon/win98_radio-button.png");
+                background-position: 0px 0px;
+                background-repeat: no-repeat;
             }
         }
 
-        &:active {
-            + {
-                label {
-                    &::before {
-                        background: url("./icon/win98_radio-border-disabled.svg");
-                    }
-                }
-            }
-        }
-
-        &:checked {
-            + {
-                label {
-                    &::after {
-                        content: "";
-                        display: block;
-                        width: 4px;
-                        height: 4px;
-                        top: 4px;
-                        left: -14px;
-                        position: absolute;
-                        background: url("./icon/win98_radio-dot.svg");
-                    }
-                }
-            }
+        &:checked + label::before {
+            background-position: 0px -12px;
         }
 
         &:focus + label.os-has-text {
@@ -64,27 +41,18 @@ os-radio-button {
         }
 
         &[disabled] {
-            + {
-                label {
-                    color: grey;
-                    text-shadow: 1px 1px 0 #fff;
+            + label {
+                color: grey;
+                text-shadow: 1px 1px 0 #fff;
 
-                    &::before {
-                        background: url("./icon/win98_radio-border-disabled.svg");
-                    }
+                &::before {
+                    background-position: 0px -24px;
                 }
             }
 
-            &:checked {
-                + {
-                    label {
-                        &::after {
-                            background: url("./icon/win98_radio-dot-disabled.svg");
-                        }
-                    }
-                }
+            &:checked + label::before {
+                background-position: 0px -36px;
             }
         }
     }
-
 }
