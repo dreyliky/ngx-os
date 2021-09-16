@@ -8,6 +8,7 @@
 
     <os-list-item
         *ngFor="let component of (filteredComponents$ | async)"
+        [style]="{ height: 'auto' }"
         [isSelected]="metaInfo.type === component.type"
         [value]="component"
         (osSelected)="onComponentOptionSelected($event)">
