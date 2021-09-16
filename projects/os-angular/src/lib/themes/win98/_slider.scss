@@ -14,19 +14,21 @@ os-slider {
         }
 
         &::-webkit-slider-thumb {
-            appearance: none;
-            height: 21px;
             width: 11px;
-            background: url("./icon/win98_indicator-horizontal.svg");
+            height: 21px;
+            appearance: none;
+            background: url("./icon/win98_slider.png");
+            background-position: 0px 0px;
             transform: translateY(-8px);
         }
 
         &::-moz-range-thumb {
-            height: 21px;
             width: 11px;
+            height: 21px;
             border: 0;
             border-radius: 0;
-            background: url("./icon/win98_indicator-horizontal.svg");
+            background: url("./icon/win98_slider.png");
+            background-position: 0px 0px;
             transform: translateY(2px);
         }
 
@@ -50,18 +52,6 @@ os-slider {
             border-bottom: 1px solid grey;
             box-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 0 0 darkgrey, -1px -1px 0 darkgrey,
                 0 -1px 0 darkgrey, -1px 1px 0 white, 1px -1px darkgrey;
-        }
-    }
-    
-    input[type="range"].has-box-indicator {
-        &::-webkit-slider-thumb {
-            background: url("./icon/win98_indicator-rectangle-horizontal.svg");
-            transform: translateY(-10px);
-        }
-
-        &::-moz-range-thumb {
-            background: url("./icon/win98_indicator-rectangle-horizontal.svg");
-            transform: translateY(0px);
         }
     }
 
