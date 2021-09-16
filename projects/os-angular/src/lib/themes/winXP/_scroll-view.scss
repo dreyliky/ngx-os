@@ -23,17 +23,19 @@
     &::-webkit-scrollbar-thumb {
         background-position: center;
         background-repeat: no-repeat;
-        background-color: #c8d6fb;
+        background-color: rgba(var(--os-primary-color), .5);
         background-size: 7px;
         border: 1px solid white;
         border-radius: 2px;
-        box-shadow: inset -3px 0 #bad1fc, inset 1px 1px #b7caf5;
+        box-shadow: inset -3px 0 rgba(0, 0, 0, .07), inset 1px 1px rgba(0, 0, 0, .15);
+
         &:vertical {
-            background-image: url("./icon/winXP_scroll-thumb.svg");
+            background-image: url("./icon/winXP_scroll-thumb.png");
         }
+
         &:horizontal {
             background-size: 8px;
-            background-image: url("./icon/winXP_scroll-thumb-horizontal.svg");
+            background-image: url("./icon/winXP_scroll-thumb-horizontal.png");
         }
     }
 
