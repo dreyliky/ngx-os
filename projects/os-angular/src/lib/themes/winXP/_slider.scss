@@ -17,7 +17,7 @@ os-slider {
             width: 11px;
             height: 21px;
             appearance: none;
-            background: url("./icon/winXP_indicator-horizontal.svg");
+            background: url("./icon/winXP_slider.png");
             transform: translateY(-8px);
         }
 
@@ -26,7 +26,7 @@ os-slider {
             height: 21px;
             border: 0;
             border-radius: 0;
-            background: url("./icon/winXP_indicator-horizontal.svg");
+            background: url("./icon/winXP_slider.png");
             transform: translateY(2px);
         }
 
@@ -52,27 +52,6 @@ os-slider {
             border-radius: 2px;
             box-shadow: 1px 0 0 white, 1px 1px 0 white, 0 1px 0 white, -1px 0 0 #9d9c99, -1px -1px 0 #9d9c99,
                 0 -1px 0 #9d9c99, -1px 1px 0 white, 1px -1px #9d9c99;
-        }
-    }
-
-    input[type="range"].has-box-indicator {
-        &::-webkit-slider-thumb {
-            background: url("./icon/winXP_indicator-rectangle-horizontal.svg");
-            transform: translateY(-10px);
-        }
-        &::-moz-range-thumb {
-            background: url("./icon/winXP_indicator-rectangle-horizontal.svg");
-            transform: translateY(0px);
-        }
-    }
-
-    > input[type="range"].has-box-indicator {
-        &::-webkit-slider-thumb {
-            transform: translateY(-10px) scaleX(-1);
-        }
-
-        &::-moz-range-thumb {
-            transform: translateY(0px) scaleX(-1);
         }
     }
 
