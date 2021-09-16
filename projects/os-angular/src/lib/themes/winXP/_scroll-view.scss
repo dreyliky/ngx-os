@@ -41,16 +41,45 @@
         height: 17px;
         display: block;
 
+        &:start,
+        &:end {
+            background-image: url("./icon/winXP_arrow-button.png");
+        }
+
         &:vertical {
             &:start {
-                background-image: url("./icon/winXP_scroll-arrow-up.svg");
+                background-position: -34px 0px;
+
+                &:hover {
+                    background-position: -34px -17px;
+                }
+
+                &:active {
+                    background-position: -34px -34px;
+                }
+
+                &:disabled {
+                    background-position: -34px -51px;
+                }
 
                 &:increment {
                     display: none;
                 }
             }
             &:end {
-                background-image: url("./icon/winXP_scroll-arrow-down.svg");
+                background-position: 0px 0px;
+
+                &:hover {
+                    background-position: 0px -17px;
+                }
+
+                &:active {
+                    background-position: 0px -34px;
+                }
+
+                &:disabled {
+                    background-position: 0px -51px;
+                }
 
                 &:decrement {
                     display: none;
@@ -60,14 +89,38 @@
         }
         &:horizontal {
             &:start {
-                background-image: url("./icon/winXP_scroll-arrow-left.svg");
+                background-position: 17px 0px;
+
+                &:hover {
+                    background-position: 17px -17px;
+                }
+
+                &:active {
+                    background-position: 17px -34px;
+                }
+
+                &:disabled {
+                    background-position: 17px -51px;
+                }
 
                 &:increment {
                     display: none;
                 }
             }
             &:end {
-                background-image: url("./icon/winXP_scroll-arrow-right.svg");
+                background-position: 51px 0px;
+
+                &:hover {
+                    background-position: 51px -17px;
+                }
+
+                &:active {
+                    background-position: 51px -34px;
+                }
+
+                &:disabled {
+                    background-position: 51px -51px;
+                }
 
                 &:decrement {
                     display: none;
@@ -75,5 +128,4 @@
             }
         }
     }
-
 }
