@@ -81,7 +81,7 @@ os-window {
         margin-bottom: 9px;
     }
 
-    &.showing {
+    &.os-showing {
         animation: showing .4s ease forwards;
     }
 
@@ -93,22 +93,22 @@ os-window {
         animation: entering-windowed .4s ease forwards;
     }
 
-    &.hiding {
+    &.os-hiding {
         animation: hiding .4s ease forwards;
     }
 
-    &.hidden {
+    &.os-hidden {
         display: none !important;
     }
 
-    &.fullscreen:not(.hiding) {
+    &.os-fullscreen:not(.os-hiding) {
         width: calc(100% + 6px) !important;
         height: calc(100% + 4px) !important;
         left: -3px !important;
         top: -2px !important;
     }
 
-    &.closing {
+    &.os-closing {
         display: none !important;
     }
 
@@ -139,7 +139,7 @@ os-window {
             text-shadow: 1px 1px rgba(var(--os-primary-color), 1);
         }
 
-        &.fullscreen, &.os-entering-fullscreen {
+        &.os-fullscreen, &.os-entering-fullscreen {
             .os-title-bar-button[aria-label="Maximize"] .os-icon {
                 background-position: -42px 0px;
 

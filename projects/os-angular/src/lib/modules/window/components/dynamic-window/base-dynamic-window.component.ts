@@ -29,6 +29,30 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public readonly dynamicStateEnum = DynamicStateEnum;
     public readonly dynamicStateManager = new DynamicStateManager();
 
+    public get isOpening(): boolean {
+        return this.dynamicStateManager.is(DynamicStateEnum.Opening);
+    }
+
+    public get isHiding(): boolean {
+        return this.dynamicStateManager.is(DynamicStateEnum.Hiding);
+    }
+
+    public get isShowing(): boolean {
+        return this.dynamicStateManager.is(DynamicStateEnum.Showing);
+    }
+
+    public get isClosing(): boolean {
+        return this.dynamicStateManager.is(DynamicStateEnum.Closing);
+    }
+
+    public get isEnteringFullscreen(): boolean {
+        return this.dynamicStateManager.is(DynamicStateEnum.EnteringFullscreen);
+    }
+
+    public get isEnteringWindowed(): boolean {
+        return this.dynamicStateManager.is(DynamicStateEnum.EnteringWindowed);
+    }
+
     public get isHidden(): boolean {
         return (
             this.windowRef.isHidden &&

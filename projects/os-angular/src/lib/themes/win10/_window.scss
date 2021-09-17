@@ -76,23 +76,23 @@ os-window {
     -webkit-font-smoothing: none;
     box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
 
-    &.opening {
+    &.os-opening {
         animation: opening .3s ease forwards;
     }
 
-    &.hiding {
+    &.os-hiding {
         animation: hiding .4s ease forwards;
     }
 
-    &.hidden {
+    &.os-hidden {
         display: none !important;
     }
 
-    &.showing {
+    &.os-showing {
         animation: showing .4s ease forwards;
     }
 
-    &.closing {
+    &.os-closing {
         animation: closing .25s ease forwards;
     }
 
@@ -104,7 +104,7 @@ os-window {
         animation: entering-windowed .17s ease forwards;
     }
 
-    &.fullscreen:not(.hiding) {
+    &.os-fullscreen:not(.os-hiding) {
         width: 100% !important;
         height: 100% !important;
         left: -1px !important;
@@ -155,7 +155,7 @@ os-window {
         }
     }
 
-    &.fullscreen, &.os-entering-fullscreen {
+    &.os-fullscreen, &.os-entering-fullscreen {
         &.os-active {
             .os-title-bar {
                 .os-title-bar-button[aria-label="Maximize"] .os-icon {

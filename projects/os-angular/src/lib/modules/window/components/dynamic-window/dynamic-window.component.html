@@ -14,6 +14,23 @@
         allowedResizers: config.allowedResizers,
         isEnabled: isAllowResizing
     }"
+    [styleClass]="{
+        'os-opening': isOpening,
+        'os-hiding': isHiding,
+        'os-showing': isShowing,
+        'os-closing': isClosing,
+        'os-entering-fullscreen': isEnteringFullscreen,
+        'os-entering-windowed': isEnteringWindowed,
+        'os-hidden': isHidden,
+        'os-fullscreen': isFullscreen,
+        'os-windowed': isWindowed,
+        'os-dragging': isDragging,
+        'os-resizing': isResizing
+    }"
+    [style]="{
+        left: positionX,
+        top: positionY
+    }"
     [id]="windowRef.id"
     [title]="config.title"
     [width]="width"
@@ -27,23 +44,6 @@
     [isTitleBarVisible]="config.isTitleBarVisible"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
-    [styleClass]="{
-        'opening': dynamicStateManager.is(dynamicStateEnum.Opening),
-        'hiding': dynamicStateManager.is(dynamicStateEnum.Hiding),
-        'showing': dynamicStateManager.is(dynamicStateEnum.Showing),
-        'closing': dynamicStateManager.is(dynamicStateEnum.Closing),
-        'os-entering-fullscreen': dynamicStateManager.is(dynamicStateEnum.EnteringFullscreen),
-        'os-entering-windowed': dynamicStateManager.is(dynamicStateEnum.EnteringWindowed),
-        'hidden': isHidden,
-        'fullscreen': isFullscreen,
-        'windowed': isWindowed,
-        'dragging': isDragging,
-        'resizing': isResizing
-    }"
-    [style]="{
-        left: positionX,
-        top: positionY
-    }"
     (osBeforeDragStart)="onBeforeDragStart()"
     (osDragStart)="onDragStart()"
     (osDragging)="onDragging()"
