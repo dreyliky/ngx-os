@@ -15,12 +15,18 @@ os-selectbox {
     border-radius: 0;
     appearance: none;
     padding-right: 32px;
-    background-image: url("./icon/win10_dropdown-black.svg");
-    background-size: 15px;
-    background-position: top 7px right 4px;
-    background-repeat: no-repeat;
     border-radius: 0;
     user-select: none;
+
+    &::before {
+        width: 12px;
+        height: 7px;
+        position: absolute;
+        top: 12px;
+        right: 10px;
+        background-image: url("./icon/win10_selectbox.png");
+        content: '';
+    }
 
     &:active {
         background-color: #d7d7d7;
@@ -39,10 +45,13 @@ os-selectbox {
     }
 
     &.os-disabled {
-        background-image: url("./icon/win10_dropdown-grey.svg");
         background-color: #cccccc;
         color: #919191;
         border: solid 2px #cccccc;
+
+        &::before {
+            background-position: 0px 7px;
+        }
     }
 
     .os-placeholder {
