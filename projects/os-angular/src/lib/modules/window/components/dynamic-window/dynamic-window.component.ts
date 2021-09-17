@@ -39,7 +39,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public ngAfterViewInit(): void {
-        this.loadChildComponent(this.childComponentType);
+        this.initChildComponent(this.childComponentType);
         this.initDynamicStateManager();
         this.initHtmlElements();
         this.initIsHiddenStateObserver();
@@ -49,6 +49,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.initWindowIdOrderObserver();
         this.initConfigObserver();
         this.initWindowSizes();
+        // FIXME: Probably not the component's logic
         this.windowRef.setIsActive(true);
         this.windowRef.setWindowElement(this.windowElement);
         this.changeDetector.detectChanges();
@@ -157,28 +158,20 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.changeDetector.reattach();
     }
 
-    private initDynamicStateManager(): void {
-        this.dynamicStateManager.apply(DynamicStateEnum.Opening);
-        this.dynamicStateManager.registerCallback(() => {
-            this.changeDetector.markForCheck();
-        });
-    }
-
-    private updateZIndex(): void {
-        this.zIndex = (this.baseZIndex + this.windowOrderIndex);
-
-        if (this.config.isAlwaysOnTop) {
-            this.zIndex += this.alwaysOnTopZIndex;
-        }
-    }
-
-    private loadChildComponent(componentType: Type<any>): void {
+    private initChildComponent(componentType: Type<any>): void {
         const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
         const viewContainerRef = this.dynamicWindowContent.viewContainerRef;
 
         viewContainerRef.clear();
 
         this.childComponentRef = viewContainerRef.createComponent(factory);
+    }
+
+    private initDynamicStateManager(): void {
+        this.dynamicStateManager.apply(DynamicStateEnum.Opening);
+        this.dynamicStateManager.registerCallback(() => {
+            this.changeDetector.markForCheck();
+        });
     }
 
     private initWindowSizes(): void {
