@@ -37,25 +37,34 @@
             background-color: #5d5d5d !important;
         }
 
+        &:start,
+        &:end {
+        background-image: url("./icon/win10_scroll-view-chevron.png");
+            background-repeat: no-repeat;
+        }
+
         &:vertical {
             height: 16px;
 
             &:start {
-                background-image: url("./icon/win10_chevron-up-black.svg");
+                background-position: -16px 0px;
 
                 &:active {
-                    background-image: url("./icon/win10_chevron-up-white.svg");
+                    background-position: -16px -16px;
                 }
+
                 &:increment {
                     display: none;
                 }
             }
+
             &:end {
-                background-image: url("./icon/win10_chevron-down-black.svg");
+                background-position: 0px 0px;
 
                 &:active {
-                    background-image: url("./icon/win10_chevron-down-white.svg");
+                    background-position: 0px -16px;
                 }
+
                 &:decrement {
                     display: none;
                 }
@@ -66,21 +75,24 @@
             width: 16px;
 
             &:start {
-                background-image: url("./icon/win10_cheveron-left-black.svg");
+                background-position: -48px 0px;
 
                 &:active {
-                    background-image: url("./icon/win10_cheveron-left-white.svg");
+                    background-position: -48px -16px;
                 }
+
                 &:increment {
                     display: none;
                 }
             }
+
             &:end {
-                background-image: url("./icon/win10_cheveron-right-black.svg");
+                background-position: -32px 0px;
 
                 &:active {
-                    background-image: url("./icon/win10_cheveron-right-white.svg");
+                    background-position: -32px -16px;
                 }
+
                 &:decrement {
                     display: none;
                 }

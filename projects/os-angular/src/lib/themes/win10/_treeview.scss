@@ -52,9 +52,7 @@ os-tree-view {
                         position: absolute;
                         left: 6px;
                         top: 12px;
-                        background-image: url('./icon/win10_cheveron-right-black.svg');
-                        background-position: 50%;
-                        background-size: 12px;
+                        background-image: url('./icon/win10_tree-view-chevron.png');
                         background-repeat: no-repeat;
                     }
 
@@ -68,7 +66,7 @@ os-tree-view {
                 &[open] {
                     > summary {
                         &:before {
-                            background-image: url('./icon/win10_chevron-down-black.svg');
+                            background-position: -16px 0px;
                         }
                     }
                 }
