@@ -30,15 +30,24 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public readonly dynamicStateManager = new DynamicStateManager();
 
     public get isHidden(): boolean {
-        return (this.windowRef.isHidden && !this.dynamicStateManager.isHiding);
+        return (
+            this.windowRef.isHidden &&
+            !this.dynamicStateManager.is(DynamicStateEnum.Hiding)
+        );
     }
 
     public get isFullscreen(): boolean {
-        return (this.windowRef.isFullscreen && !this.dynamicStateManager.isEnteringFullscreen);
+        return (
+            this.windowRef.isFullscreen &&
+            !this.dynamicStateManager.is(DynamicStateEnum.EnteringFullscreen)
+        );
     }
 
     public get isWindowed(): boolean {
-        return (!this.windowRef.isFullscreen && !this.dynamicStateManager.isEnteringWindowed);
+        return (
+            !this.windowRef.isFullscreen &&
+            !this.dynamicStateManager.is(DynamicStateEnum.EnteringWindowed)
+        );
     }
 
     public get isAllowResizing(): boolean {

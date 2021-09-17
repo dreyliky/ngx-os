@@ -28,12 +28,12 @@
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     [styleClass]="{
-        'opening': dynamicStateManager.isOpening,
-        'hiding': dynamicStateManager.isHiding,
-        'showing': dynamicStateManager.isShowing,
-        'closing': dynamicStateManager.isClosing,
-        'os-entering-fullscreen': dynamicStateManager.isEnteringFullscreen,
-        'os-entering-windowed': dynamicStateManager.isEnteringWindowed,
+        'opening': dynamicStateManager.is(dynamicStateEnum.Opening),
+        'hiding': dynamicStateManager.is(dynamicStateEnum.Hiding),
+        'showing': dynamicStateManager.is(dynamicStateEnum.Showing),
+        'closing': dynamicStateManager.is(dynamicStateEnum.Closing),
+        'os-entering-fullscreen': dynamicStateManager.is(dynamicStateEnum.EnteringFullscreen),
+        'os-entering-windowed': dynamicStateManager.is(dynamicStateEnum.EnteringWindowed),
         'hidden': isHidden,
         'fullscreen': isFullscreen,
         'windowed': isWindowed,
