@@ -7,18 +7,14 @@ import { WindowReferencesState } from '../states';
     providedIn: 'root'
 })
 export class DynamicWindowRefOrderingService {
-    public get windowOrderIds(): string[] {
-        return this._windowOrderIds;
-    }
-
-    private readonly _windowOrderIds: string[] = [];
+    private readonly windowOrderIds: string[] = [];
 
     constructor(
         private readonly state: WindowReferencesState
     ) {}
 
     public get(id: string): number {
-        return this._windowOrderIds.indexOf(id);
+        return this.windowOrderIds.indexOf(id);
     }
 
     public updateOrderIndexStateForAll(): void {
@@ -33,20 +29,20 @@ export class DynamicWindowRefOrderingService {
         const targetWindowOrderIdIndex = this.get(id);
 
         if (targetWindowOrderIdIndex !== -1) {
-            this._windowOrderIds.splice(targetWindowOrderIdIndex, 1);
+            this.windowOrderIds.splice(targetWindowOrderIdIndex, 1);
         }
     }
 
     public moveToTop(id: string): void {
         this.remove(id);
-        this._windowOrderIds.push(id);
+        this.windowOrderIds.push(id);
     }
 
     public getHighestOpened(): DynamicWindowRef {
-        let index = (this._windowOrderIds.length - 1);
+        let index = (this.windowOrderIds.length - 1);
 
         while (index >= 0) {
-            const currentWindowRefId = this._windowOrderIds[index];
+            const currentWindowRefId = this.windowOrderIds[index];
             const currentWindowRef = this.state.getById(currentWindowRefId);
 
             if (!currentWindowRef.isHidden) {
