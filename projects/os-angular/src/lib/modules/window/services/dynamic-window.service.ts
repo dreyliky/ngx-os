@@ -10,7 +10,7 @@ import {
     Type
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { delay, first, tap } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
 import { DynamicWindowComponent } from '../components';
 import { DynamicWindowInputParams, IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
@@ -87,10 +87,12 @@ export class DynamicWindowService {
         windowRef: DynamicWindowRef,
         componentRef: ComponentRef<DynamicWindowComponent>
     ): void {
-        windowRef.afterClosed$.pipe(first())
+        const destroyDelayInMs = 300;
+
+        windowRef.afterClosed$
             .pipe(
                 tap(() => this.referencesService.remove(windowRef)),
-                delay(300)
+                delay(destroyDelayInMs)
             )
             .subscribe(() => componentRef.destroy());
     }
