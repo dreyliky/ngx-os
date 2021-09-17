@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DynamicWindowConfig } from '../classes';
 
+/** Private service */
 @Injectable({
     providedIn: 'root'
 })

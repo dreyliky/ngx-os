@@ -12,10 +12,10 @@ import {
 import { Observable } from 'rxjs';
 import { delay, first, tap } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
-import { DynamicWindowComponent } from '../components/dynamic-window';
+import { DynamicWindowComponent } from '../components';
 import { DynamicWindowInputParams, IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
 import { DynamicWindowConfigControlService } from './dynamic-window-config-control.service';
-import { DynamicWindowControlService } from './dynamic-window-control.service';
+import { DynamicWindowReferencesService } from './dynamic-window-references.service';
 
 @Injectable({
     providedIn: 'root'
@@ -23,12 +23,12 @@ import { DynamicWindowControlService } from './dynamic-window-control.service';
 export class DynamicWindowService {
     /** Contains references to windows opened via the service */
     public get references$(): Observable<DynamicWindowRef[]> {
-        return this.windowControlService.references$;
+        return this.referencesService.data$;
     }
 
     /** Contains references to windows opened via the service */
     public get references(): DynamicWindowRef[] {
-        return this.windowControlService.references;
+        return this.referencesService.data;
     }
 
     constructor(
@@ -36,7 +36,7 @@ export class DynamicWindowService {
         private readonly injector: Injector,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly applicationRef: ApplicationRef,
-        private readonly windowControlService: DynamicWindowControlService,
+        private readonly referencesService: DynamicWindowReferencesService,
         private readonly configControlService: DynamicWindowConfigControlService
     ) {}
 
@@ -46,9 +46,15 @@ export class DynamicWindowService {
         const windowRef = this.createDynamicWindow(config);
 
         this.applyDataForCreatedWindow({ component, config, windowRef });
-        this.windowControlService.addWindowRef(windowRef);
+        this.referencesService.add(windowRef);
 
         return windowRef;
+    }
+
+    /** Closes all windows */
+    public closeAll(): void {
+        this.references
+            .forEach((windowRef) => windowRef.close());
     }
 
     private createDynamicWindow(config: DynamicWindowConfig): DynamicWindowRef {
@@ -83,7 +89,7 @@ export class DynamicWindowService {
     ): void {
         windowRef.afterClosed$.pipe(first())
             .pipe(
-                tap(() => this.windowControlService.removeWindowRef(windowRef)),
+                tap(() => this.referencesService.remove(windowRef)),
                 delay(300)
             )
             .subscribe(() => componentRef.destroy());

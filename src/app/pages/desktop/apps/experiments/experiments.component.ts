@@ -70,7 +70,7 @@ export class ExperimentsAppComponent {
         clearInterval(this.currentActionIntervalId);
 
         let currentWindowRefIndex = 0;
-        const windowRefs = this.dynamicWindowService.references;
+        const windowRefs = [...this.dynamicWindowService.references];
 
         this.currentActionIntervalId = setInterval(() => {
             const windowRef = windowRefs[currentWindowRefIndex];
