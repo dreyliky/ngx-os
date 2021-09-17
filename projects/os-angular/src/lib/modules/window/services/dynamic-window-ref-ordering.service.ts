@@ -21,7 +21,7 @@ export class DynamicWindowRefOrderingService {
         return this.windowOrderIds.indexOf(id);
     }
 
-    public updateOrderIndexForAll(): void {
+    public updateOrderIndexStateForAll(): void {
         this.state.data.forEach((windowRef) => {
             const orderIndex = this.get(windowRef.id);
 
@@ -37,12 +37,12 @@ export class DynamicWindowRefOrderingService {
         }
     }
 
-    public makeHighest(id: string): void {
+    public moveToTop(id: string): void {
         this.remove(id);
         this.windowOrderIds.push(id);
     }
 
-    public getHighestOpenedWindowRef(): DynamicWindowRef {
+    public getHighestOpened(): DynamicWindowRef {
         let index = (this.windowOrderIds.length - 1);
 
         while (index >= 0) {

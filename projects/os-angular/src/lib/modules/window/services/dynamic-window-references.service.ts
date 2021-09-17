@@ -1,10 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { merge, Observable, Subject } from 'rxjs';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { DynamicWindowRef } from '../classes';
 import { WindowReferencesState } from '../states';
+import { DynamicWindowActivityService } from './dynamic-window-activity.service';
 import { DynamicWindowRefOrderingService } from './dynamic-window-ref-ordering.service';
 
+/** Private service */
 @Injectable({
     providedIn: 'root'
 })
@@ -21,6 +23,7 @@ export class DynamicWindowReferencesService implements OnDestroy {
 
     constructor(
         private readonly state: WindowReferencesState,
+        private readonly activityService: DynamicWindowActivityService,
         private readonly orderingService: DynamicWindowRefOrderingService
     ) {}
 
@@ -31,10 +34,8 @@ export class DynamicWindowReferencesService implements OnDestroy {
 
     public add(windowRef: DynamicWindowRef): void {
         this.state.add(windowRef);
-
-        this.initIsHiddenStateObserver(windowRef);
+        this.initHighestWindowActivityObserver(windowRef);
         this.initIsActiveStateObserver(windowRef);
-        this.initAfterClosedStateObserver(windowRef);
     }
 
     public remove(windowRef: DynamicWindowRef): void {
@@ -42,49 +43,28 @@ export class DynamicWindowReferencesService implements OnDestroy {
         this.state.remove(windowRef);
     }
 
-    private updateActiveWindow(windowRef: DynamicWindowRef): void {
-        this.orderingService.makeHighest(windowRef.id);
-        this.orderingService.updateOrderIndexForAll();
-    }
-
-    private makeHighestOpenedActive(): void {
-        this.orderingService.getHighestOpenedWindowRef()
-            ?.setIsActive(true);
-    }
-
-    private initIsHiddenStateObserver(windowRef: DynamicWindowRef): void {
-        windowRef.isHidden$
+    private initHighestWindowActivityObserver(windowRef: DynamicWindowRef): void {
+        merge(
+            windowRef.isHidden$.pipe(filter(Boolean)),
+            windowRef.afterClosed$
+        )
             .pipe(
                 takeUntil(this.untilDestroyed$),
-                filter((isHidden) => isHidden)
+                map(() => this.orderingService.getHighestOpened())
             )
-            .subscribe(() => this.makeHighestOpenedActive());
-    }
-
-    private initAfterClosedStateObserver(windowRef: DynamicWindowRef): void {
-        windowRef.afterClosed$
-            .pipe(
-                takeUntil(this.untilDestroyed$)
-            )
-            .subscribe(() => this.makeHighestOpenedActive());
+            .subscribe((highestWindow) => highestWindow?.setIsActive(true));
     }
 
     private initIsActiveStateObserver(windowRef: DynamicWindowRef): void {
         windowRef.isActive$
             .pipe(
                 takeUntil(this.untilDestroyed$),
-                filter((isActive) => isActive)
+                filter(Boolean)
             )
-            .subscribe(() => this.onWindowRefBecameActive(windowRef));
-    }
-
-    private onWindowRefBecameActive(windowRef: DynamicWindowRef): void {
-        this.updateActiveWindow(windowRef);
-
-        this.data.forEach((currWindowRef) => {
-            if (currWindowRef.id !== windowRef.id) {
-                currWindowRef.setIsActive(false);
-            }
-        });
+            .subscribe(() => {
+                this.orderingService.moveToTop(windowRef.id);
+                this.orderingService.updateOrderIndexStateForAll();
+                this.activityService.makeAllInactiveExceptSpecificId(windowRef.id);
+            });
     }
 }
