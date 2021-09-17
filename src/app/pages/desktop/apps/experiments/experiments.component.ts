@@ -69,11 +69,14 @@ export class ExperimentsAppComponent {
     public makeGroupWindowsAction(action: KeysOfType<DynamicWindowRef, () => any>): void {
         clearInterval(this.currentActionIntervalId);
 
-        const windowRefs = this.dynamicWindowService.references;
         let currentWindowRefIndex = 0;
+        const windowRefs = this.dynamicWindowService.references;
+
         this.currentActionIntervalId = setInterval(() => {
-            if (this.windowRef.id !== windowRefs[currentWindowRefIndex].id) {
-                windowRefs[currentWindowRefIndex][action]();
+            const windowRef = windowRefs[currentWindowRefIndex];
+
+            if (windowRef.id !== this.windowRef.id) {
+                windowRef[action]();
             }
 
             if (currentWindowRefIndex >= (windowRefs.length - 1)) {
@@ -82,5 +85,9 @@ export class ExperimentsAppComponent {
 
             currentWindowRefIndex++;
         }, this.actionsDelay);
+    }
+
+    public onStopCurrentActionsButtonClick(): void {
+        clearInterval(this.currentActionIntervalId);
     }
 }

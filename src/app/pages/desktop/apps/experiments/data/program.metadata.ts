@@ -12,6 +12,6 @@ export const EXPERIMENTS_APP: AppMetadata = {
         iconUrl: 'assets/icons/bug.png',
         isAlwaysOnTop: true,
         minWidth: 500,
-        minHeight: 400
+        minHeight: 475
     }
 };
