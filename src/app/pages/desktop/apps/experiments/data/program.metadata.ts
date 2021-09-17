@@ -10,7 +10,8 @@ export const EXPERIMENTS_APP: AppMetadata = {
     windowParams: {
         title: 'Experiments',
         iconUrl: 'assets/icons/bug.png',
+        isAlwaysOnTop: true,
         minWidth: 500,
-        minHeight: 300
+        minHeight: 400
     }
 };

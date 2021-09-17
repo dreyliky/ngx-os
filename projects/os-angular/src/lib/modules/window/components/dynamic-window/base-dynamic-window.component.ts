@@ -16,8 +16,6 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public width: string;
     public height: string;
     public allowedResizers: ResizerEnum[];
-    public positionX: string;
-    public positionY: string;
     public zIndex: number;
     public styleObject: object;
     public isDragging: boolean = false;
@@ -51,6 +49,14 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
         return !this.windowRef.isFullscreen;
     }
 
+    public get positionX(): string {
+        return `${this.config.positionX}px`;
+    }
+
+    public get positionY(): string {
+        return `${this.config.positionY}px`;
+    }
+
     protected readonly baseZIndex: number = 1000;
     protected readonly alwaysOnTopZIndex: number = 5000;
     protected readonly cssAnimationClassDuration: number = 1000;
@@ -65,9 +71,6 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     protected readonly parentSubscription = new Subscription();
 
     public ngOnInit(): void {
-        this.positionX = `${this.config.positionX}px`;
-        this.positionY = `${this.config.positionY}px`;
-
         this.windowRef.setIsHiddenState(this.config.isHidden);
         this.windowRef.setIsFullscreenState(this.config.isFullscreen);
     }

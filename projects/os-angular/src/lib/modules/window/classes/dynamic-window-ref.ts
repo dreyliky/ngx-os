@@ -73,13 +73,17 @@ export class DynamicWindowRef implements IDynamicWindowRef {
     }
 
     public hide(): void {
-        this._isHidden$.next(true);
-        this.setIsActive(false);
+        if (!this.isHidden) {
+            this._isHidden$.next(true);
+            this.setIsActive(false);
+        }
     }
 
     public show(): void {
-        this._isHidden$.next(false);
-        this.setIsActive(true);
+        if (this.isHidden) {
+            this._isHidden$.next(false);
+            this.setIsActive(true);
+        }
     }
 
     public toggleVisibility(): void {
@@ -91,11 +95,15 @@ export class DynamicWindowRef implements IDynamicWindowRef {
     }
 
     public goFullscreen(): void {
-        this._isFullscreen$.next(true);
+        if (!this.isFullscreen) {
+            this._isFullscreen$.next(true);
+        }
     }
 
     public goWindowed(): void {
-        this._isFullscreen$.next(false);
+        if (this.isFullscreen) {
+            this._isFullscreen$.next(false);
+        }
     }
 
     public toggleFullscreen(): void {

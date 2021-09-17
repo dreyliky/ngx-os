@@ -1,6 +1,8 @@
 :host-context(.win98) {
     width: 100%;
     min-height: 30px;
+    padding: 4px;
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -24,6 +26,7 @@
         align-items: center;
         justify-content: flex-start;
         margin: 0px 3px;
+        z-index: 2;
 
         &.os-active {
             font-weight: bold;

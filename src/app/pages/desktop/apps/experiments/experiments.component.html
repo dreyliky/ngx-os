@@ -1,22 +1,62 @@
-<os-header>Spawn empty windows</os-header>
+<os-header>Experiments with windows</os-header>
 
-<os-text>Choose amout</os-text>
+<os-header [size]="5">
+    Total spawned: {{ totalSpawned }}; Alive: {{ (totalWindowsAlive$ | async) }};
+</os-header>
 
-<os-form-field>
-    <os-button
-        *ngFor="let amountOfWindows of windowAmoutsToSpawn"
-        (osClick)="spawnWindows(amountOfWindows)">
-        {{ amountOfWindows }}
-    </os-button>
+<os-form-field [isStacked]="false">
+    <os-label>Actions delay in milliseconds</os-label>
+
+    <os-number-box
+        [placeholder]="'Enter actions delay in milliseconds'"
+        [(ngModel)]="actionsDelay">
+    </os-number-box>
 </os-form-field>
 
-<os-form-field>
-    <os-text>Total spawned: {{ totalSpawned }}; Alive: {{ (totalWindowsAlive$ | async) }};</os-text>
+<os-form-field [isStacked]="false">
+    <os-label>Spawn amount of windows</os-label>
+
+    <div class="buttons-wrapper">
+        <os-button
+            *ngFor="let amountOfWindows of windowAmoutsToSpawn"
+            (osClick)="spawnWindows(amountOfWindows)">
+            {{ amountOfWindows }}
+        </os-button>
+    </div>
 </os-form-field>
 
-<os-form-field>
-    <os-button
-        (osClick)="onCloseAllWindowsButtonClick()">
-        Close all windows
-    </os-button>
+<os-form-field [isStacked]="false">
+    <os-label>Group actions</os-label>
+
+    <div class="buttons-wrapper">
+        <os-button
+            (osClick)="makeGroupWindowsAction('hide')">
+            Hide
+        </os-button>
+
+        <os-button
+            (osClick)="makeGroupWindowsAction('show')">
+            Show
+        </os-button>
+
+        <os-button
+            (osClick)="makeGroupWindowsAction('goFullscreen')">
+            Fullscreen
+        </os-button>
+
+        <os-button
+            (osClick)="makeGroupWindowsAction('goWindowed')">
+            Windowed
+        </os-button>
+
+        <os-button
+            (osClick)="shuffleWindowsPositions()">
+            Shuffle positions
+        </os-button>
+
+        <os-button
+            (osClick)="makeGroupWindowsAction('close')">
+            Close
+        </os-button>
+    </div>
 </os-form-field>

@@ -4,6 +4,12 @@
     user-select: none;
 }
 
-os-button {
-    margin: 0px 3px;
+.buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    os-button {
+        margin: 3px;
+        margin-left: 0px;
+    }
 }
