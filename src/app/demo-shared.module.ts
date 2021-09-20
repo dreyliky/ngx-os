@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { OsAngularModule } from 'os-angular';
+import { NgxOsModule } from 'ngx-os';
 
 @NgModule({
     exports: [
@@ -13,7 +13,7 @@ import { OsAngularModule } from 'os-angular';
         FormsModule,
         ReactiveFormsModule,
 
-        OsAngularModule
+        NgxOsModule
     ]
 })
 export class SharedModule {}

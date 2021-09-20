@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AccentColorService, ThemeColorType, ThemeRgbColor } from 'os-angular';
+import { AccentColorService, ThemeColorType, ThemeRgbColor } from 'ngx-os';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({

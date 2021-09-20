@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ThemeEnum, ThemeService } from 'os-angular';
+import { ThemeEnum, ThemeService } from 'ngx-os';
 import { Observable } from 'rxjs';
 
 @Injectable({

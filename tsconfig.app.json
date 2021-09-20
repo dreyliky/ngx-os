@@ -4,7 +4,7 @@
         "outDir": "./out-tsc/app",
         "types": [],
         "paths": {
-            "os-angular": ["projects/os-angular/src/public-api.ts"],
+            "ngx-os": ["projects/ngx-os/src/public-api.ts"],
             "@Core/*": ["src/app/core/*"],
             "@Features/*": ["src/app/features/*"],
             "@Features": ["src/app/features"],
@@ -13,13 +13,13 @@
             "@Pages/*": ["src/app/pages/*"],
             "@Pages": ["src/app/pages"],
             "@Doc/*": ["src/app/*"],
-            "@lib-core": ["projects/os-angular/src/lib/core"],
-            "@lib-core/*": ["projects/os-angular/src/lib/core/*"],
-            "@lib-helpers": ["projects/os-angular/src/lib/helpers"],
-            "@lib-helpers/*": ["projects/os-angular/src/lib/helpers/*"],
-            "@lib-modules": ["projects/os-angular/src/lib/modules"],
-            "@lib-modules/*": ["projects/os-angular/src/lib/modules/*"],
-            "@lib-shared": ["projects/os-angular/src/lib/shared.module.ts"]
+            "@lib-core": ["projects/ngx-os/src/lib/core"],
+            "@lib-core/*": ["projects/ngx-os/src/lib/core/*"],
+            "@lib-helpers": ["projects/ngx-os/src/lib/helpers"],
+            "@lib-helpers/*": ["projects/ngx-os/src/lib/helpers/*"],
+            "@lib-modules": ["projects/ngx-os/src/lib/modules"],
+            "@lib-modules/*": ["projects/ngx-os/src/lib/modules/*"],
+            "@lib-shared": ["projects/ngx-os/src/lib/shared.module.ts"]
         }
     },
     "files": [

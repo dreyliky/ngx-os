@@ -50,4 +50,4 @@ import {
         WindowModule
     ]
 })
-export class OsAngularModule {}
+export class NgxOsModule {}

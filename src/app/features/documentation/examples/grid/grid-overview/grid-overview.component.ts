@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { GridItem } from 'os-angular';
+import { GridItem } from 'ngx-os';
 
 @Component({
     selector: 'demo-grid-overview',

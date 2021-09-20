@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode } from 'os-angular';
+import { TreeNode } from 'ngx-os';
 
 @Component({
     selector: 'demo-tree-view-overview',

@@ -19,10 +19,10 @@
             "path": "./tsconfig.spec.json"
         },
         {
-            "path": "./projects/os-angular/tsconfig.lib.json"
+            "path": "./projects/ngx-os/tsconfig.lib.json"
         },
         {
-            "path": "./projects/os-angular/tsconfig.spec.json"
+            "path": "./projects/ngx-os/tsconfig.spec.json"
         }
     ]
 }
