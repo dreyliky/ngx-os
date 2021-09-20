@@ -52,7 +52,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     }
 
     private initDefaultValueIfAbsent(): void {
-        if (!this.value) {
+        if (this.value === undefined || this.value === null) {
             this.value = this.hostElementRef.nativeElement.innerText as any;
         }
     }

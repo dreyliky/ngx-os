@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
-import { ThemeRgbColor } from '@lib-modules';
+import { GridDirectionEnum, ThemeRgbColor } from '@lib-modules';
 import { APPS } from './apps';
 import { BackgroundMetadata, BackgroundService } from './features/background';
 import { BackgroundTypeEnum } from './features/background/enums';
@@ -14,6 +14,8 @@ import { AppMetadata, ExecService } from './features/exec';
 export class DesktopComponent implements OnInit {
     @HostBinding('style.background')
     protected hostBackground: string;
+
+    public readonly gridDirection = GridDirectionEnum.Vertical;
 
     public programs = APPS;
 

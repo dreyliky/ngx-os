@@ -6,7 +6,9 @@
     Operating system components for Angular
 </os-text>
 
-<os-grid [isHorizontalDirection]="true">
+<os-grid
+    class="components-showcase"
+    [gridSize]="72">
     <os-grid-item
         *ngFor="let component of components"
         [data]="{

@@ -1,4 +1,6 @@
-<os-grid class="desktop-grid">
+<os-grid
+    class="desktop-grid"
+    [direction]="gridDirection">
     <os-grid-item
         *ngFor="let program of programs"
         [data]="program.shortcutParams"

@@ -80,11 +80,14 @@ export class SelectboxComponent<T>
     }
 
     public get _isPlaceholderVisible(): boolean {
-        return (!!this.placeholder && !this.value);
+        return (!!this.placeholder && (this.value === null || this.value === undefined));
     }
 
     public get _isValueExist(): boolean {
-        return (!!this.value || (!!this.displayField && !!this.value[this.displayField]));
+        return (
+            (this.value !== null || this.value !== undefined) ||
+            (!!this.displayField && !!this.value[this.displayField])
+        );
     }
 
     public get _valueToDisplay(): string {

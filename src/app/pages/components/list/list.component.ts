@@ -5,6 +5,7 @@ import {
     ComponentMetaInfo, LibraryComponentsSearchService,
     OsComponentEnum
 } from '@Features/documentation';
+import { GridDirectionEnum } from '@lib-modules';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,6 +18,7 @@ import { Observable } from 'rxjs';
     ]
 })
 export class GridComponent implements OnInit {
+    public gridDirection = GridDirectionEnum.Horizontal;
     public filteredComponents$: Observable<ComponentMetaInfo[]>;
 
     constructor(

@@ -1,6 +1,42 @@
-<os-grid>
-    <os-grid-item
-        *ngFor="let item of items"
-        [data]="item">
-    </os-grid-item>
-</os-grid>
+<os-form-field [isStacked]="true">
+    <os-label>Direction</os-label>
+    
+    <os-selectbox
+        [placeholder]="'Choose direction'"
+        [(ngModel)]="currentGridDirection">
+        <os-option [value]="gridDirectionEnum.Horizontal">Horizontal</os-option>
+        <os-option [value]="gridDirectionEnum.Vertical">Vertical</os-option>
+    </os-selectbox>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Grid size</os-label>
+
+    <os-number-box
+        [placeholder]="'Enter grid size'"
+        [(ngModel)]="gridSize">
+    </os-number-box>
+</os-form-field>
+
+<os-form-field>
+    <os-button
+        (osClick)="onAddButtonClick()">
+        Add
+    </os-button>
+
+    <os-button
+        (osClick)="onRemoveButtonClick()">
+        Remove
+    </os-button>
+</os-form-field>
+
+<div class="grid-wrapper">
+    <os-grid
+        [direction]="currentGridDirection"
+        [gridSize]="gridSize">
+        <os-grid-item
+            *ngFor="let item of items"
+            [data]="item">
+        </os-grid-item>
+    </os-grid>
+</div>
