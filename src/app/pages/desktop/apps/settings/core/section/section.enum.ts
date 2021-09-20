@@ -1,5 +1,6 @@
 export enum SectionEnum {
     Theme,
     AccentColor,
-    Background
+    Background,
+    Shortcuts
 }

@@ -13,5 +13,9 @@ export const SECTIONS: Section[] = [
     {
         id: SectionEnum.Background,
         name: 'Background'
+    },
+    {
+        id: SectionEnum.Shortcuts,
+        name: 'Shortcuts'
     }
 ];

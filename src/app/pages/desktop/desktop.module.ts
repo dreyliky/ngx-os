@@ -6,7 +6,8 @@ import { DesktopComponent } from './desktop.component';
 import { DesktopRoutingModule } from './desktop.routing';
 import { BackgroundService } from './features/background';
 import { ExecService } from './features/exec';
-import { TaskbarModule } from './modules';
+import { ShortcutSettingsService } from './features/shortcut';
+import { ShortcutsZoneModule, TaskbarModule } from './modules';
 
 @NgModule({
     declarations: [
@@ -16,12 +17,14 @@ import { TaskbarModule } from './modules';
         SharedModule,
         DesktopRoutingModule,
         TaskbarModule,
-        DesktopAppsModule
+        DesktopAppsModule,
+        ShortcutsZoneModule
     ],
     providers: [
         DynamicWindowService,
         ExecService,
-        BackgroundService
+        BackgroundService,
+        ShortcutSettingsService
     ]
 })
 export class DesktopPageModule {}

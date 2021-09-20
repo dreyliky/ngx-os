@@ -1,0 +1,21 @@
+<form [formGroup]="formGroup">
+    <os-form-field [isStacked]="true">
+        <os-label>Direction</os-label>
+        
+        <os-selectbox
+            [placeholder]="'Choose direction'"
+            [formControl]="formGroup.controls.direction">
+            <os-option [value]="gridDirectionEnum.Horizontal">Horizontal</os-option>
+            <os-option [value]="gridDirectionEnum.Vertical">Vertical</os-option>
+        </os-selectbox>
+    </os-form-field>
+    
+    <os-form-field [isStacked]="true">
+        <os-label>Grid size</os-label>
+    
+        <os-number-box
+            [placeholder]="'Enter grid size'"
+            [formControl]="formGroup.controls.gridSize">
+        </os-number-box>
+    </os-form-field>
+</form>

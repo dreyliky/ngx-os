@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
-import { GridDirectionEnum, ThemeRgbColor } from '@lib-modules';
-import { APPS } from './apps';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { ThemeRgbColor } from '@lib-modules';
+import { Subscription } from 'rxjs';
 import { BackgroundMetadata, BackgroundService } from './features/background';
 import { BackgroundTypeEnum } from './features/background/enums';
-import { AppMetadata, ExecService } from './features/exec';
 
 @Component({
     selector: 'demo-desktop-page',
@@ -11,16 +10,13 @@ import { AppMetadata, ExecService } from './features/exec';
     styleUrls: ['./desktop.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DesktopComponent implements OnInit {
+export class DesktopComponent implements OnInit, OnDestroy {
     @HostBinding('style.background')
     protected hostBackground: string;
 
-    public readonly gridDirection = GridDirectionEnum.Vertical;
-
-    public programs = APPS;
+    private backgroundSubscription: Subscription;
 
     constructor(
-        private readonly execService: ExecService,
         private readonly backgroundService: BackgroundService,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
@@ -29,8 +25,8 @@ export class DesktopComponent implements OnInit {
         this.initBackgroundObserver();
     }
 
-    public onProgramShortcutDblClick(program: AppMetadata): void {
-        this.execService.run(program);
+    public ngOnDestroy(): void {
+        this.backgroundSubscription.unsubscribe();
     }
 
     private initHostBackground({ type, data }: BackgroundMetadata): void {
@@ -44,7 +40,7 @@ export class DesktopComponent implements OnInit {
     }
 
     private initBackgroundObserver(): void {
-        this.backgroundService.data$
+        this.backgroundSubscription = this.backgroundService.data$
             .subscribe((backgroundMetadata) => {
                 this.initHostBackground(backgroundMetadata);
                 this.changeDetector.markForCheck();

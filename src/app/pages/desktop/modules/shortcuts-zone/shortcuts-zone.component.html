@@ -1,0 +1,9 @@
+<os-grid
+    [direction]="gridDirection"
+    [gridSize]="gridSize">
+    <os-grid-item
+        *ngFor="let program of programs"
+        [data]="program.shortcutParams"
+        (osDblClick)="onProgramShortcutDblClick(program)">
+    </os-grid-item>
+</os-grid>

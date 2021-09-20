@@ -1,11 +1,2 @@
-<os-grid
-    class="desktop-grid"
-    [direction]="gridDirection">
-    <os-grid-item
-        *ngFor="let program of programs"
-        [data]="program.shortcutParams"
-        (osDblClick)="onProgramShortcutDblClick(program)">
-    </os-grid-item>
-</os-grid>
-
+<desktop-shortcuts-zone></desktop-shortcuts-zone>
 <desktop-taskbar></desktop-taskbar>

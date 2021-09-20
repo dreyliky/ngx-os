@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ACCENT_COLORS } from '@Doc/features/theme';
+import { ACCENT_COLORS } from '@Features/theme';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BackgroundTypeEnum } from '../enums';
 import { BackgroundMetadata } from '../interfaces';
