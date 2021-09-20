@@ -1,168 +1,284 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "max-params-no-constructor"
-    ],
-    "overrides": [
-        {
-            "files": ["*.ts"],
-            "extends": [
-                "eslint:recommended",
-                "plugin:@angular-eslint/recommended",
-                "plugin:@typescript-eslint/recommended"
-            ],
-            "parserOptions": {
-                "project": ["./tsconfig.eslint.json"]
-            },
-            "rules": {
-                "max-len": ["error", { "code": 120, "ignorePattern": "import(.*).then(.*)" }],
-                "no-shadow": "off",
-                "padded-blocks": ["error", { "classes": "never" }],
-                "padding-line-between-statements": [
-                    "error",
-                    { "blankLine": "always", "prev": "*", "next": ["block", "block-like"] }
-                ],
-                "computed-property-spacing": "error",
-                "arrow-spacing": ["error", { "before": true, "after": true }],
-                "space-infix-ops": "error",
-                "no-multi-spaces": "error",
-                "arrow-parens": "error",
-                "eqeqeq": "error",
-                "dot-location": ["error", "property"],
-                "curly": "error",
-                "no-trailing-spaces": "error",
-                "space-before-function-paren": ["error", "never"],
-                "no-mixed-spaces-and-tabs": "error",
-                "array-callback-return": "error",
-                "newline-before-return": "error",
-                "object-curly-spacing": ["error", "always"],
-                "comma-spacing": ["error", { "before": false, "after": true }],
-                "indent": ["error", 4, { "SwitchCase": 1 }],
-                "max-lines-per-function": ["error", { "max": 20, "skipComments": true }],
-                "spaced-comment": ["error", "always"],
-                "space-before-blocks": "error",
-                "keyword-spacing": "error",
-                "max-params-no-constructor/max-params-no-constructor": ["error", 3],
-                "no-eq-null": "error",
-                "no-unreachable": "error",
-                "quotes": ["error", "single", { "allowTemplateLiterals": true }],
-                "no-extra-boolean-cast": "off",
-                "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
-                "radix": ["error", "always"],
-                "yoda": ["error", "never"],
-                "no-useless-return": "error",
-                "no-useless-concat": "error",
-                "no-useless-call": "error",
-                "no-unmodified-loop-condition": "error",
-                "no-throw-literal": "error",
-                "no-self-assign": "error",
-                "no-self-compare": "error",
-                "no-redeclare": "error",
-                "no-proto": "error",
-                "no-octal": "error",
-                "no-param-reassign": "error",
-                "no-new-wrappers": "error",
-                "no-new-func": "error",
-                "no-new": "error",
-                "no-multi-str": "error",
-                "no-implied-eval": "error",
-                "no-global-assign": "error",
-                "no-floating-decimal": "error",
-                "no-extra-label": "error",
-                "no-extend-native": "error",
-                "no-eval": "error",
-                "no-var": "error",
-                "no-lone-blocks": "error",
-                "prefer-const": "error",
-                "semi": "error",
-                "eol-last": ["error", "always"],
-                "comma-dangle": "error",
-                "lines-between-class-members": "off",
-                "no-empty-pattern": "error",
-                "no-else-return": ["error"],
-                "no-constructor-return": "error",
-                "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
-                "no-empty-function": [
-                    "error",
-                    { "allow": ["constructors"] }
-                ],
-                "max-lines": ["error", {"max": 400, "skipComments": true}],
-                "@typescript-eslint/ban-types": "off",
-                "@typescript-eslint/lines-between-class-members": [
-                    "error",
-                    "always",
-                    { "exceptAfterSingleLine": true }
-                ],
-                "@typescript-eslint/explicit-function-return-type": [
-                    "error",
-                    {
-                        "allowTypedFunctionExpressions": true,
-                        "allowExpressions": true
-                    }
-                ],
-                "@typescript-eslint/explicit-member-accessibility": ["error", { "overrides": { "constructors": "no-public" } }],
-                "@typescript-eslint/no-shadow": "error",
-                "@typescript-eslint/type-annotation-spacing": [
-                    "error", {
-                        "before": false,
-                        "after": true,
-                        "overrides": { "arrow": { "before": true, "after": true }}
-                    }],
-                "@typescript-eslint/member-ordering": [
-                    "error",
-                    {
-                        "default": [
-                            "signature",
-
-                            "public-static-field",
-                            "protected-static-field",
-                            "private-static-field",
-                            "public-decorated-field",
-                            "protected-decorated-field",
-                            "private-decorated-field",
-                            "public-instance-field",
-                            "protected-instance-field",
-                            "private-instance-field",
-                            "public-abstract-field",
-                            "protected-abstract-field",
-                            "private-abstract-field",
-
-                            "public-constructor",
-                            "protected-constructor",
-                            "private-constructor",
-
-                            "public-static-method",
-                            "protected-static-method",
-                            "private-static-method",
-                            "public-instance-method",
-                            "protected-instance-method",
-                            "private-instance-method",
-                            "public-abstract-method",
-                            "protected-abstract-method",
-                            "private-abstract-method"
-                        ]
-                    }
-                ],
-                "@typescript-eslint/explicit-module-boundary-types": "off",
-                "@typescript-eslint/no-namespace": "off",
-                "@typescript-eslint/no-inferrable-types": "off",
-                "@typescript-eslint/no-explicit-any": "off"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "max-params-no-constructor"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended--extra"
+      ],
+      "parserOptions": {
+        "project": [
+          "./tsconfig.eslint.json"
+        ]
+      },
+      "rules": {
+        "max-len": [
+          "error",
+          {
+            "code": 120,
+            "ignorePattern": "import(.*).then(.*)"
+          }
+        ],
+        "no-shadow": "off",
+        "padded-blocks": [
+          "error",
+          {
+            "classes": "never"
+          }
+        ],
+        "padding-line-between-statements": [
+          "error",
+          {
+            "blankLine": "always",
+            "prev": "*",
+            "next": [
+              "block",
+              "block-like"
+            ]
+          }
+        ],
+        "computed-property-spacing": "error",
+        "arrow-spacing": [
+          "error",
+          {
+            "before": true,
+            "after": true
+          }
+        ],
+        "space-infix-ops": "error",
+        "no-multi-spaces": "error",
+        "arrow-parens": "error",
+        "eqeqeq": "error",
+        "dot-location": [
+          "error",
+          "property"
+        ],
+        "curly": "error",
+        "no-trailing-spaces": "error",
+        "space-before-function-paren": [
+          "error",
+          "never"
+        ],
+        "no-mixed-spaces-and-tabs": "error",
+        "array-callback-return": "error",
+        "newline-before-return": "error",
+        "object-curly-spacing": [
+          "error",
+          "always"
+        ],
+        "comma-spacing": [
+          "error",
+          {
+            "before": false,
+            "after": true
+          }
+        ],
+        "indent": [
+          "error",
+          4,
+          {
+            "SwitchCase": 1
+          }
+        ],
+        "max-lines-per-function": [
+          "error",
+          {
+            "max": 20,
+            "skipComments": true
+          }
+        ],
+        "spaced-comment": [
+          "error",
+          "always"
+        ],
+        "space-before-blocks": "error",
+        "keyword-spacing": "error",
+        "max-params-no-constructor/max-params-no-constructor": [
+          "error",
+          3
+        ],
+        "no-eq-null": "error",
+        "no-unreachable": "error",
+        "quotes": [
+          "error",
+          "single",
+          {
+            "allowTemplateLiterals": true
+          }
+        ],
+        "no-extra-boolean-cast": "off",
+        "brace-style": [
+          "error",
+          "1tbs",
+          {
+            "allowSingleLine": false
+          }
+        ],
+        "radix": [
+          "error",
+          "always"
+        ],
+        "yoda": [
+          "error",
+          "never"
+        ],
+        "no-useless-return": "error",
+        "no-useless-concat": "error",
+        "no-useless-call": "error",
+        "no-unmodified-loop-condition": "error",
+        "no-throw-literal": "error",
+        "no-self-assign": "error",
+        "no-self-compare": "error",
+        "no-redeclare": "error",
+        "no-proto": "error",
+        "no-octal": "error",
+        "no-param-reassign": "error",
+        "no-new-wrappers": "error",
+        "no-new-func": "error",
+        "no-new": "error",
+        "no-multi-str": "error",
+        "no-implied-eval": "error",
+        "no-global-assign": "error",
+        "no-floating-decimal": "error",
+        "no-extra-label": "error",
+        "no-extend-native": "error",
+        "no-eval": "error",
+        "no-var": "error",
+        "no-lone-blocks": "error",
+        "prefer-const": "error",
+        "semi": "error",
+        "eol-last": [
+          "error",
+          "always"
+        ],
+        "comma-dangle": "error",
+        "lines-between-class-members": "off",
+        "no-empty-pattern": "error",
+        "no-else-return": [
+          "error"
+        ],
+        "no-constructor-return": "error",
+        "no-multiple-empty-lines": [
+          "error",
+          {
+            "max": 1,
+            "maxEOF": 1
+          }
+        ],
+        "no-empty-function": [
+          "error",
+          {
+            "allow": [
+              "constructors"
+            ]
+          }
+        ],
+        "max-lines": [
+          "error",
+          {
+            "max": 400,
+            "skipComments": true
+          }
+        ],
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/lines-between-class-members": [
+          "error",
+          "always",
+          {
+            "exceptAfterSingleLine": true
+          }
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowTypedFunctionExpressions": true,
+            "allowExpressions": true
+          }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "overrides": {
+              "constructors": "no-public"
             }
-        },
-        {
-            "files": ["*.spec.ts"],
-            "rules": {
-                "max-lines-per-function": "off"
+          }
+        ],
+        "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/type-annotation-spacing": [
+          "error",
+          {
+            "before": false,
+            "after": true,
+            "overrides": {
+              "arrow": {
+                "before": true,
+                "after": true
+              }
             }
-        }
-    ]
+          }
+        ],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": [
+              "signature",
+              "public-static-field",
+              "protected-static-field",
+              "private-static-field",
+              "public-decorated-field",
+              "protected-decorated-field",
+              "private-decorated-field",
+              "public-instance-field",
+              "protected-instance-field",
+              "private-instance-field",
+              "public-abstract-field",
+              "protected-abstract-field",
+              "private-abstract-field",
+              "public-constructor",
+              "protected-constructor",
+              "private-constructor",
+              "public-static-method",
+              "protected-static-method",
+              "private-static-method",
+              "public-instance-method",
+              "protected-instance-method",
+              "private-instance-method",
+              "public-abstract-method",
+              "protected-abstract-method",
+              "private-abstract-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    },
+    {
+      "files": [
+        "*.spec.ts"
+      ],
+      "rules": {
+        "max-lines-per-function": "off"
+      }
+    }
+  ]
 }
