@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppRouteEnum } from '@Doc/core/enums';
-import { ArrayHelper } from '@Doc/core/helpers';
-import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/documentation';
+import { AppRouteEnum } from '@Core/enums';
+import { ComponentMetaInfo, ComponentMetaInfoMap, OsComponentEnum } from '@Features/documentation';
 
 @Component({
     selector: 'demo-subheader',
@@ -13,7 +12,14 @@ import { ComponentMetaInfo, ComponentMetaInfoMap } from '@Features/documentation
 export class SubheaderComponent implements OnInit {
     public components: ComponentMetaInfo[];
 
-    private readonly componentsCount: number = 6;
+    private readonly componentsToDisplay: OsComponentEnum[] = [
+        OsComponentEnum.Theme,
+        OsComponentEnum.Window,
+        OsComponentEnum.Grid,
+        OsComponentEnum.List,
+        OsComponentEnum.TabGroup,
+        OsComponentEnum.Button
+    ];
 
     constructor(
         private readonly router: Router
@@ -30,7 +36,7 @@ export class SubheaderComponent implements OnInit {
     private initComponents(): void {
         const metaInfos = [...ComponentMetaInfoMap.values()];
 
-        this.components = ArrayHelper.shuffle(metaInfos)
-            .slice(0, this.componentsCount);
+        this.components = this.componentsToDisplay
+            .map((componentType) => metaInfos.find((metaInfo) => metaInfo.type === componentType));
     }
 }
