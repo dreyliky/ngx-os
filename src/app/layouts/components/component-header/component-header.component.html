@@ -6,19 +6,20 @@
         src="/assets/icons/icon.png" />
 </a>
 
-<a [routerLink]="getStartedPagePath">
-    <os-button>
-        Get Started
-    </os-button>
-</a>
+<os-button
+    [routerLink]="getStartedPagePath"
+    [routerLinkActive]="'os-active'">
+    Get Started
+</os-button>
 
-<a [routerLink]="componentsPagePath">
-    <os-button>
-        Components
-    </os-button>
-</a>
+<os-button
+    [routerLink]="componentsPagePath"
+    [routerLinkActive]="'os-active'">
+    Components
+</os-button>
 
-<os-button [routerLink]="desktopPagePath">
+<os-button
+    [routerLink]="desktopPagePath">
     Desktop
 </os-button>
 
