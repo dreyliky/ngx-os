@@ -21,6 +21,10 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     @HostBinding('class.os-selected')
     public isSelected: boolean = false;
 
+    @HostBinding('class.os-disabled')
+    @Input()
+    public isDisabled: boolean = false;
+
     @Input()
     public value: T;
 
@@ -39,8 +43,10 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     }
 
     protected onClick(event: PointerEvent): void {
-        this.osSelected.emit(this.value);
+        if (!this.isDisabled) {
+            this.osSelected.emit(this.value);
 
-        super.onClick(event);
+            super.onClick(event);
+        }
     }
 }

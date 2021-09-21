@@ -2,6 +2,7 @@
     <os-list-item
         *ngFor="let item of items"
         [isSelected]="item === selectedItem"
+        [isDisabled]="item.isDisabled"
         (osClick)="onItemClick(item)">
         <os-text>{{ item.text }}</os-text>
     </os-list-item>

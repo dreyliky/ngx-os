@@ -1,4 +1,4 @@
-os-list {
+.os-list {
     width: 100%;
     display: block;
     border: solid 1px rgb(var(--os-black-color));
@@ -10,7 +10,7 @@ os-list {
         height: 100%;
     }
 
-    os-list-item {
+    .os-list-item {
         height: 15px;
         display: flex;
         align-items: center;
@@ -21,7 +21,12 @@ os-list {
             color: rgb(var(--os-light-color));
         }
 
-        &:hover {
+        &.os-disabled {
+            color: grey;
+            text-shadow: 1px 1px 0 #fff;
+        }
+
+        &:hover:not(.os-disabled) {
             background-color: rgba(var(--os-secondary-color), .4);
         }
     }
