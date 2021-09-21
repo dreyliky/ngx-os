@@ -7,16 +7,14 @@
     display: flex;
 }
 
-.bg-square {
+.bg-button {
     width: 55px;
     height: 55px;
+    min-width: 55px;
+    min-height: 55px;
     margin: 3px;
     box-sizing: border-box;
     background-size: contain;
-
-    &.selected {
-        border: solid 4px #000000;
-    }
 }
 
 .custom-image-button {

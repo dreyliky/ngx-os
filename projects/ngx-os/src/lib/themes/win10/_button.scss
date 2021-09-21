@@ -38,5 +38,9 @@ os-button {
         &:hover {
             border-color: rgba(0, 0, 0, .4);
         }
+
+        &.os-focused {
+            border: solid 2px #000;
+        }
     }
 }

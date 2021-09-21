@@ -1,17 +1,17 @@
 <div class="bg-colors">
-    <div
-        class="bg-square"
+    <os-button
+        class="bg-button"
         [style.backgroundImage]="getCustomBackgroundCssUrl()"
-        [class.selected]="isCurrentBackgroundCustomImage">
-    </div>
+        [class.os-focused]="isCurrentBackgroundCustomImage">
+    </os-button>
 
-    <div
+    <os-button
         *ngFor="let backgroundUrl of defaultBackgroundUrls"
-        class="bg-square"
+        class="bg-button"
         [style.backgroundImage]="getCssUrl(backgroundUrl)"
-        [class.selected]="getIsImageSelected(backgroundUrl)"
+        [class.os-focused]="getIsImageSelected(backgroundUrl)"
         (click)="onBackgroundImageClick(backgroundUrl)">
-    </div>
+    </os-button>
 </div>
 
 <os-button
