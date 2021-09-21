@@ -63,7 +63,6 @@
 
 os-window {
     font-size: 11px;
-    font-family: var(--sans-serif);
     box-shadow:
         inset -1px -1px rgba(var(--os-primary-color), .6),
         inset 1px 1px rgba(var(--os-primary-color), .5),
@@ -172,7 +171,6 @@ os-window {
 os-title-bar {
     height: 28px;
     font-size: 11px;
-    font-family: "Trebuchet MS";
     background: linear-gradient(
         180deg,
         rgba(var(--os-primary-color), .5) 0%,

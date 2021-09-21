@@ -18,6 +18,14 @@ os-password-box {
         box-shadow: var(--border-field);
         -webkit-font-smoothing: none;
 
+        &::-webkit-input-placeholder {
+            font-size: 11px;
+        }
+
+        &::-moz-placeholder {
+            font-size: 11px;
+        }
+
         &:focus {
             outline: none;
         }

@@ -1,5 +1,6 @@
-os-textarea-box {
+.os-textarea-box {
     width: 100%;
+    font-family: var(--segoe-ui);
 
     textarea {
         width: 100%;
@@ -12,11 +13,16 @@ os-textarea-box {
         border: 2px solid #999999;
         border-radius: 0;
         transition: ease border 0.1s;
-        font-family: sans-serif;
         box-sizing: border-box;
 
-        &:placeholder {
-            color: #666666; 
+        &::-webkit-input-placeholder {
+            color: #666666;
+            font-family: var(--segoe-ui);
+        }
+
+        &::-moz-placeholder {
+            color: #666666;
+            font-family: var(--segoe-ui);
         }
 
         &:hover {

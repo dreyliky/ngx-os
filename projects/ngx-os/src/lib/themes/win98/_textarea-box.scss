@@ -6,7 +6,6 @@ os-textarea-box {
         min-width: 70px;
         max-width: 100%;
         min-height: 30px;
-        font-family: var(--sans-serif);
         font-size: 11px;
         padding: 3px 4px;
         border: none;
@@ -16,6 +15,14 @@ os-textarea-box {
         border-radius: 0;
         box-shadow: var(--border-field);
         -webkit-font-smoothing: none;
+
+        &::-webkit-input-placeholder {
+            font-size: 11px;
+        }
+
+        &::-moz-placeholder {
+            font-size: 11px;
+        }
 
         &:focus {
             outline: none;
