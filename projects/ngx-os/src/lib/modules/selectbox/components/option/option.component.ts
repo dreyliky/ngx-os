@@ -23,6 +23,10 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     public isSelected: boolean = false;
 
     @Input()
+    @HostBinding('class.os-disabled')
+    public isDisabled: boolean = false;
+
+    @Input()
     public value: T;
 
     @Output()
@@ -48,7 +52,9 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
     }
 
     public onListItemClick(originalEvent: MouseEvent): void {
-        this.osSelected.emit({ originalEvent, value: this.value });
+        if (!this.isDisabled) {
+            this.osSelected.emit({ originalEvent, value: this.value });
+        }
     }
 
     private initDefaultValueIfAbsent(): void {
