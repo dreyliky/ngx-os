@@ -24,8 +24,17 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     @HostBinding('class.os-selected')
     public isSelected: boolean;
 
+    public gridSize: number;
+
     public get _iconBackgroundCssUrl(): string {
-        return (this.data.iconUrl) ? 'url(' + this.data.iconUrl + ')' : '';
+        return (this.data.iconUrl) ? `url(${this.data.iconUrl})` : '';
+    }
+
+    public get _hostStyles(): object {
+        return {
+            ...this.style,
+            '--gridSize': this.gridSize
+        };
     }
 
     constructor(

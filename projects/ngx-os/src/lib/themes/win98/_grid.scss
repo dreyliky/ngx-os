@@ -1,0 +1,34 @@
+.os-grid {
+    .os-grid-item {
+        .os-icon {
+            position: relative;
+            background-image: var(--os-icon-url);
+        }
+
+        .os-label {
+            font-size: 11px;
+            text-shadow: 0px 1px 3px rgba(0, 0, 0, 1);
+        }
+
+        &.os-selected {
+            .os-icon:after {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                mask-image: var(--os-icon-url);
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                mask-position: center;
+                filter: opacity(.5);
+                background-color: rgb(var(--os-primary-color));
+                content: '';
+           }
+
+           .os-label {
+                background-color: rgb(var(--os-primary-color));
+                color: rgb(var(--os-white-color));
+                text-shadow: none;
+           }
+       }
+    }
+}

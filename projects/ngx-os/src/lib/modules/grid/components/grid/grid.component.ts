@@ -37,11 +37,11 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     private set gridItemElements(elements: QueryList<ElementRef<HTMLElement>>) {
         this._gridItemElements = elements;
 
-        this.calculateGridItemElementsPositions();
+        this.initRecalculations();
     }
 
     private get hostResizeDelayBeforeCalculation(): number {
-        return this.grid ? this.repaintDelayInMs : 0;
+        return this.grid ? this.repaintDelayInMs : 4;
     }
 
     private _gridItemElements: QueryList<ElementRef<HTMLElement>>;
@@ -64,7 +64,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     public ngOnChanges(): void {
-        this.initCalculationWhenChanges();
+        this.initRecalculations();
     }
 
     public ngOnDestroy(): void {
@@ -99,7 +99,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         this.grid = new Grid({ xAxisCellsCount, yAxisCellsCount, directionType: this.direction });
     }
 
-    private initCalculationWhenChanges(): void {
+    private initRecalculations(): void {
         if (this.grid) {
             this.calculateGridItemElementsPositions();
         }
@@ -120,5 +120,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         cellStyle.height = `${this.gridSize}px`;
         cellStyle.left = `${cell.x * this.gridSize}px`;
         cellStyle.top = `${cell.y * this.gridSize}px`;
+        cellStyle.setProperty('--os-grid-size', `${this.gridSize}px`);
     }
 }

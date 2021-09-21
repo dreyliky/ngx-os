@@ -1,18 +1,21 @@
-os-grid {
+.os-grid {
     width: 100%;
     height: 100%;
     display: flex;
     position: relative;
     user-select: none;
 
+    --os-label-height: 18px;
+    --os-grid-item-padding: 5px;
+
     .os-grid-item {
         position: absolute;
-        padding: 5px;
+        padding: var(--os-grid-item-padding);
         box-sizing: border-box;
 
         .os-icon {
             width: 100%;
-            height: calc(100% - 18px);
+            height: calc(100% - var(--os-label-height));
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -20,7 +23,7 @@ os-grid {
 
         .os-label {
             width: 100%;
-            height: 18px;
+            height: var(--os-label-height);
             position: absolute;
             display: block;
             white-space: nowrap;
@@ -28,8 +31,6 @@ os-grid {
             text-overflow: ellipsis;
             left: 0;
             bottom: 0;
-            font-size: 13px;
-            text-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
             text-align: center;
             font-weight: normal;
             font-style: normal;
@@ -40,29 +41,13 @@ os-grid {
         &.os-selected {
             z-index: 999;
 
-            .os-icon {
-                &:after {
-                    content: '';
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    background-color: rgba(var(--os-primary-color), .5);
-                }
-            }
-
             .os-label {
                 height: auto;
-                top: calc(100% - 18px);
+                top: calc(100% - var(--os-label-height));
                 bottom: unset;
                 margin-top: 0px;
                 overflow: unset;
                 white-space: pre-wrap;
-                background-color: rgb(var(--os-primary-color));
-                color: rgb(var(--os-white-color));
-                text-shadow: none;
             }
         }
     }

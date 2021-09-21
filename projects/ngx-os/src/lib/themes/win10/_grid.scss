@@ -1,0 +1,43 @@
+.os-grid {
+    .os-grid-item {
+        border: solid 1px transparent;
+
+        &:hover {
+            background: linear-gradient(
+                90deg,
+                rgba(var(--os-primary-color), .15),
+                rgba(var(--os-primary-color), .15)
+            ), rgba(255, 255, 255, .25);
+            border: solid 1px rgba(var(--os-primary-color), .01);
+            box-shadow:
+                inset -1px -1px rgba(255, 255, 255, .4),
+                inset 1px 1px rgba(255, 255, 255, .4);
+        }
+
+        &.os-selected {
+            height: auto !important;
+            min-height: var(--os-grid-size) !important;
+            background: linear-gradient(
+                90deg,
+                rgba(var(--os-primary-color), .3),
+                rgba(var(--os-primary-color), .3)
+            ), rgba(255, 255, 255, .4);
+            border: solid 1px rgba(var(--os-primary-color), .02);
+            box-shadow:
+                inset -1px -1px rgba(255, 255, 255, .6),
+                inset 1px 1px rgba(255, 255, 255, .6);
+        }
+
+        .os-icon {
+            height: calc(var(--os-grid-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
+            position: relative;
+            background-image: var(--os-icon-url);
+        }
+
+        .os-label {
+            font-size: 12px;
+            text-shadow: 0px 1px 2px rgb(0, 0, 0);
+            position: static;
+        }
+    }
+}

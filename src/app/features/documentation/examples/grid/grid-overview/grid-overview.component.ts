@@ -16,7 +16,7 @@ export class GridOverviewComponent implements OnInit {
     public gridSize = 72;
 
     private readonly defaultItem: GridItem = {
-        label: 'Item',
+        label: 'My amazing item to display',
         iconUrl: '/assets/icons/folder-opened.png'
     }
 
