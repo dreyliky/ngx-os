@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@lib-shared';
-import { OsDraggableDirective } from './directives';
+import { DraggableDirective } from './directives';
 
 @NgModule({
     declarations: [
-        OsDraggableDirective
+        DraggableDirective
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        OsDraggableDirective
+        DraggableDirective
     ]
 })
 export class DragAndDropModule {}

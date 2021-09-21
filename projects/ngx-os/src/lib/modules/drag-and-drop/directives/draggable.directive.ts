@@ -5,7 +5,7 @@ import { DraggerParams, DragInfo } from '../interfaces';
 @Directive({
     selector: '[os-draggable]'
 })
-export class OsDraggableDirective implements OnDestroy {
+export class DraggableDirective implements OnDestroy {
     @Input('os-draggable')
     public set draggerConfig(draggerConfig: DraggerParams) {
         this._draggerConfig = { ...this._draggerConfig, ...draggerConfig };

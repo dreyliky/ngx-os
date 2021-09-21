@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { EventOutside } from '@lib-helpers';
 import { skip } from 'rxjs/operators';
-import { DragInfo, OsDraggableDirective } from '../../../drag-and-drop';
+import { DraggableDirective, DragInfo } from '../../../drag-and-drop';
 import { ResizeInfo } from '../../../resizer';
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicStateEnum } from '../../enums';
@@ -27,8 +27,8 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     @ViewChild(DynamicWindowContentDirective, { static: true })
     private readonly dynamicWindowContent: DynamicWindowContentDirective;
 
-    @ViewChild(OsDraggableDirective, { static: true })
-    private readonly draggableDirective: OsDraggableDirective;
+    @ViewChild(DraggableDirective, { static: true })
+    private readonly draggableDirective: DraggableDirective;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>,
