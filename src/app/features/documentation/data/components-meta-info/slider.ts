@@ -1,6 +1,6 @@
 import { SliderComponent, SliderModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { SliderOverviewComponent } from '../../examples';
+import { SliderAsFormControlComponent, SliderOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const SLIDER_META_INFO: ComponentMetaInfo = {
@@ -21,6 +21,10 @@ export const SLIDER_META_INFO: ComponentMetaInfo = {
         {
             title: 'Slider Overview',
             component: SliderOverviewComponent
+        },
+        {
+            title: 'Slider as FormControl',
+            component: SliderAsFormControlComponent
         }
     ]
 };

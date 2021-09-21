@@ -6,6 +6,7 @@ import {
     ElementRef,
     EventEmitter,
     forwardRef,
+    HostBinding,
     Input,
     OnInit,
     Output,
@@ -40,6 +41,7 @@ export class SliderComponent
     public maxValueLabel: string;
 
     @Input()
+    @HostBinding('class.os-disabled')
     public isDisabled: boolean;
 
     @Input()

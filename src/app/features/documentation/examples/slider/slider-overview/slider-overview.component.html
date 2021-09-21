@@ -1,15 +1,22 @@
-<form [formGroup]="formGroup">
+<os-form-field>
     <os-slider
-        [label]="'Range'"
+        [label]="'Default'"
+        [min]="0"
+        [max]="25"
+        [value]="10"
+        [minValueLabel]="'From'"
+        [maxValueLabel]="'To'">
+    </os-slider>
+</os-form-field>
+
+<os-form-field>
+    <os-slider
+        [label]="'Disabled'"
         [min]="0"
         [max]="25"
         [value]="10"
         [minValueLabel]="'From'"
         [maxValueLabel]="'To'"
-        [formControl]="formGroup.controls.sliderValue">
+        [isDisabled]="true">
     </os-slider>
-</form>
-
-<os-text>
-    {{ formGroup.value | json }}
-</os-text>
+</os-form-field>

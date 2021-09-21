@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'demo-slider-overview',
@@ -7,16 +6,4 @@ import { FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./slider-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SliderOverviewComponent implements OnInit {
-    public formGroup: FormGroup;
-
-    public ngOnInit(): void {
-        this.createFormGroup();
-    }
-
-    public createFormGroup(): void {
-        this.formGroup = new FormGroup({
-            sliderValue: new FormControl(10)
-        });
-    }
-}
+export class SliderOverviewComponent {}

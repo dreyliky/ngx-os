@@ -55,6 +55,16 @@ os-slider {
         }
     }
 
+    &.os-disabled input[type="range"] {
+        &::-webkit-slider-thumb {
+            background-position: 0px -21px;
+        }
+
+        &::-moz-range-thumb {
+            background-position: 0px -21px;
+        }
+    }
+
     .os-label {
         display: block;
     }

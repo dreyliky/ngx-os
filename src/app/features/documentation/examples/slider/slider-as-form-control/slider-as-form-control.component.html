@@ -1,0 +1,15 @@
+<form [formGroup]="formGroup">
+    <os-slider
+        [label]="'Range'"
+        [min]="0"
+        [max]="25"
+        [value]="10"
+        [minValueLabel]="'From'"
+        [maxValueLabel]="'To'"
+        [formControl]="formGroup.controls.sliderValue">
+    </os-slider>
+</form>
+
+<os-text>
+    {{ formGroup.value | json }}
+</os-text>
