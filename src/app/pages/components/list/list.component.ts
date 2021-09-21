@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@Core/enums';
 import {
@@ -22,11 +23,13 @@ export class GridComponent implements OnInit {
     public filteredComponents$: Observable<ComponentMetaInfo[]>;
 
     constructor(
+        private readonly titleService: Title,
         private readonly componentsSearchService: LibraryComponentsSearchService,
         private readonly router: Router
     ) {}
 
     public ngOnInit(): void {
+        this.titleService.setTitle('ngx-os - Components');
         this.filteredComponents$ = this.componentsSearchService.filteredComponents$;
     }
 

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ThemeRgbColor } from '@lib-modules';
 import { Subscription } from 'rxjs';
 import { BackgroundMetadata, BackgroundService } from './features/background';
@@ -17,11 +18,13 @@ export class DesktopComponent implements OnInit, OnDestroy {
     private backgroundSubscription: Subscription;
 
     constructor(
+        private readonly titleService: Title,
         private readonly backgroundService: BackgroundService,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
     public ngOnInit(): void {
+        this.titleService.setTitle('ngx-os - Desktop');
         this.initBackgroundObserver();
     }
 

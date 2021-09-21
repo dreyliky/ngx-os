@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'demo-main',
@@ -6,4 +7,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./main.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainComponent {}
+export class MainComponent implements OnInit {
+    constructor(
+        private readonly titleService: Title
+    ) {}
+
+    public ngOnInit(): void {
+        this.titleService.setTitle(`ngx-os - Main Page`);
+    }
+}

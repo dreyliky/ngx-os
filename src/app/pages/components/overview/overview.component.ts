@@ -6,8 +6,9 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { ComponentMetaInfoMap, OsComponentEnum } from '@Features/documentation';
+import { ComponentMetaInfo, ComponentMetaInfoMap, OsComponentEnum } from '@Features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@Layouts';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -24,9 +25,11 @@ import { OverviewService } from './overview.service';
 })
 export class OverviewComponent implements OnInit, OnDestroy {
     private routeParamsSubscription: Subscription;
+    private targetComponentMetaInfo: ComponentMetaInfo;
 
     constructor(
         @Inject(MAIN_LAYOUT) private layoutComponent: MainLayoutComponent,
+        private readonly titleService: Title,
         private readonly overviewService: OverviewService,
         private readonly changeDetector: ChangeDetectorRef,
         private readonly activatedRoute: ActivatedRoute
@@ -43,9 +46,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
     private initMetaInfo(): void {
         const componentType: OsComponentEnum = this.activatedRoute.snapshot.params.componentType;
-        const metaInfo = ComponentMetaInfoMap.get(componentType);
+        this.targetComponentMetaInfo = ComponentMetaInfoMap.get(componentType);
 
-        this.overviewService.applyMetaInfo(metaInfo);
+        this.overviewService.applyMetaInfo(this.targetComponentMetaInfo);
     }
 
     private initRouteParamsObserver(): void {
@@ -53,6 +56,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
             .subscribe(() => {
                 this.layoutComponent.scrollToTop();
                 this.initMetaInfo();
+                this.titleService.setTitle(`ngx-os - ${this.targetComponentMetaInfo.name} Documentation`);
                 this.changeDetector.detectChanges();
             });
     }
