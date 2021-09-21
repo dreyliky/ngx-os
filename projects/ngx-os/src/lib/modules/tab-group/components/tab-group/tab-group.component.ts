@@ -19,7 +19,7 @@ import { TabComponent } from '../tab';
 })
 export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDestroy, AfterContentInit {
     @ContentChildren(TabComponent)
-    public readonly tabComponentList: QueryList<TabComponent>;
+    public readonly _tabComponentList: QueryList<TabComponent>;
 
     private readonly tabButtonOnClickSubscriptions: Subscription[] = [];
 
@@ -35,16 +35,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     }
 
     public ngAfterContentInit(): void {
-        this.tabComponentList.forEach((tabComponent) => {
-            const tabEventSubscription = tabComponent.osTabButtonClick
-                .subscribe(() => {
-                    this.deselectAllTabs();
-
-                    tabComponent.isSelected = true;
-                });
-
-            this.tabButtonOnClickSubscriptions.push(tabEventSubscription as any);
-        });
+        this.initTabButtonClickObservers();
     }
 
     public ngOnDestroy(): void {
@@ -56,8 +47,21 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
         return index;
     }
 
+    private initTabButtonClickObservers(): void {
+        this._tabComponentList.forEach((tabComponent) => {
+            const tabEventSubscription = tabComponent.osTabButtonClick
+                .subscribe(() => {
+                    this.deselectAllTabs();
+
+                    tabComponent.isSelected = true;
+                });
+
+            this.tabButtonOnClickSubscriptions.push(tabEventSubscription);
+        });
+    }
+
     private deselectAllTabs(): void {
-        this.tabComponentList.forEach((tabComponent) => {
+        this._tabComponentList.forEach((tabComponent) => {
             tabComponent.isSelected = false;
         });
     }

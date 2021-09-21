@@ -1,11 +1,12 @@
 <ng-template #tabButtonTemplate>
     <os-button
         [id]="id"
+        [isDisabled]="isDisabled"
         [style]="tabButtonStyle"
         [styleClass]="tabButtonStyleClass"
         [role]="'tab'"
         [ariaSelected]="isSelected"
-        (osClick)="osTabButtonClick.emit($event)">
+        (osClick)="onTabButtonClick($event)">
         {{ label }}
     </os-button>
 </ng-template>

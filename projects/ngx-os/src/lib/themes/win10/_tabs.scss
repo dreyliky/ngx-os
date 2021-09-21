@@ -1,5 +1,4 @@
 os-tab-group {
-
     menu[role="tablist"] {
         position: relative;
         margin: 0 0 -2px 0;
@@ -30,12 +29,9 @@ os-tab-group {
                 color: #000000;
                 border-bottom: solid 2px rgb(var(--os-primary-color));
             }
-        }
 
-        &.justified {
-            .os-button {
-                flex-grow: 1;
-                text-align: center;
+            &.os-disabled {
+                color: #cccccc;
             }
         }
     }
@@ -44,5 +40,4 @@ os-tab-group {
         padding: 14px;
         margin-bottom: 9px;
     }
-
 }

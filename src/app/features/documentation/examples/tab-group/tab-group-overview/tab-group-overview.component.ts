@@ -4,6 +4,7 @@ interface TabItem {
     id: number;
     title: string;
     content: string;
+    isDisabled?: boolean;
 }
 
 @Component({
@@ -26,8 +27,9 @@ export class TabGroupOverviewComponent implements OnInit {
         },
         {
             id: 3,
-            title: 'Tab 3',
-            content: 'Tab content 3'
+            title: 'Tab 3 (disabled)',
+            content: 'Tab content 3',
+            isDisabled: true
         }
     ];
 

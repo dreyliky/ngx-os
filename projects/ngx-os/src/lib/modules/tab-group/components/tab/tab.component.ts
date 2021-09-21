@@ -21,7 +21,10 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     public label: string;
 
     @Input()
-    public isSelected: boolean;
+    public isSelected: boolean = false;
+
+    @Input()
+    public isDisabled: boolean = false;
 
     @Input()
     public tabButtonStyle: string;
@@ -47,5 +50,11 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     public ngOnInit(): void {
         this.classlistManager.add('os-tab');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
+    }
+
+    public onTabButtonClick(event: MouseEvent): void {
+        if (!this.isDisabled) {
+            this.osTabButtonClick.emit(event);
+        }
     }
 }

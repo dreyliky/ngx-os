@@ -62,13 +62,6 @@ os-tab-group {
                 outline-offset: -4px;
             }
         }
-
-        &.justified {
-            .os-button {
-                flex-grow: 1;
-                text-align: center;
-            }
-        }
     }
 
     [role="tabpanel"] {
