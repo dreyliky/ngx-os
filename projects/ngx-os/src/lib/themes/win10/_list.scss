@@ -1,8 +1,8 @@
 .os-list {
     width: 100%;
     display: block;
-    border: solid 1px rgb(var(--os-secondary-color));
-    background-color: rgb(var(--os-light-color));
+    border: solid 1px rgb(215, 215, 215);
+    background-color: rgb(242, 242, 242);
     cursor: default;
     user-select: none;
     padding: 7px 1px;
@@ -24,7 +24,7 @@
         }
 
         &:hover:not(.os-disabled) {
-            background-color: rgba(var(--os-secondary-color), .2);
+            background-color: rgba(215, 215, 215, .2);
         }
 
         &:active:not(.os-disabled) {

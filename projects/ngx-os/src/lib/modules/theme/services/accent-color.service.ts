@@ -7,9 +7,13 @@ import { ThemeColorType } from '../types';
     providedIn: 'root'
 })
 export class AccentColorService {
+    private readonly documentElement: HTMLElement;
+
     constructor(
-        @Inject(DOCUMENT) private document: Document
-    ) {}
+        @Inject(DOCUMENT) { documentElement }: Document
+    ) {
+        this.documentElement = documentElement;
+    }
 
     public get(colorType: ThemeColorType): ThemeRgbColor {
         const cssColor = this.getFromCssVariable(colorType);
@@ -24,13 +28,13 @@ export class AccentColorService {
     public apply(colorType: ThemeColorType, { r, g, b }: ThemeRgbColor): void {
         const cssVariableName = this.getColorTypeCssVariableName(colorType);
 
-        this.document.documentElement.style.setProperty(cssVariableName, `${r}, ${g}, ${b}`);
+        this.documentElement.style.setProperty(cssVariableName, `${r}, ${g}, ${b}`);
     }
 
     private getFromCssVariable(colorType: ThemeColorType): string {
         const cssVariableName = this.getColorTypeCssVariableName(colorType);
 
-        return this.document.documentElement.style.getPropertyValue(cssVariableName);
+        return this.documentElement.style.getPropertyValue(cssVariableName);
     }
 
     private getColorTypeCssVariableName(colorType: ThemeColorType): string {

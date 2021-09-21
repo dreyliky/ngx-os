@@ -18,7 +18,7 @@ os-tree-view {
 
         a {
             text-decoration: none;
-            color: rgb(var(--os-black-color));
+            color: rgb(0, 0, 0);
 
             &:focus {
                 background-color: var(--dialog-blue);
@@ -30,7 +30,7 @@ os-tree-view {
             margin-top: 3px;
             margin-left: 16px;
             padding-left: 16px;
-            border-left: 1px dotted rgba(var(--os-black-color), .5);
+            border-left: 1px dotted rgba(0, 0, 0, .5);
 
             > li {
                 position: relative;
@@ -42,7 +42,7 @@ os-tree-view {
                     left: -16px;
                     top: 6px;
                     width: 12px;
-                    border-bottom: 1px dotted rgba(var(--os-black-color), .5);
+                    border-bottom: 1px dotted rgba(0, 0, 0, .5);
                 }
 
                 &:last-child {
@@ -84,13 +84,13 @@ os-tree-view {
                     display: block;
                     float: left;
                     content: "+";
-                    border: 1px solid rgba(var(--os-black-color), .5);
+                    border: 1px solid rgba(0, 0, 0, .5);
                     width: 8px;
                     height: 9px;
                     line-height: 9px;
                     margin-right: 5px;
                     padding-left: 1px;
-                    background-color: rgb(var(--os-white-color));
+                    background-color: rgb(255, 255, 255);
                 }
             }
         }

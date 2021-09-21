@@ -1,8 +1,8 @@
 .os-list {
     width: 100%;
     display: block;
-    border: solid 1px rgb(var(--os-black-color));
-    background-color: rgb(var(--os-white-color));
+    border: solid 1px rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     cursor: default;
     user-select: none;
 
@@ -18,7 +18,7 @@
 
         &.os-selected {
             background-color: rgba(var(--os-primary-color), .6) !important;
-            color: rgb(var(--os-light-color));
+            color: rgb(246, 246, 246);
         }
 
         &.os-disabled {
@@ -27,7 +27,7 @@
         }
 
         &:hover:not(.os-disabled) {
-            background-color: rgba(var(--os-secondary-color), .4);
+            background-color: rgba(215, 215, 215, .4);
         }
     }
 }

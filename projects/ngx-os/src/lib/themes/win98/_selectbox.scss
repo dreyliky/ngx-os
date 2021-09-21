@@ -37,8 +37,8 @@ os-selectbox {
         color: #ffffff;
         background-color: var(--dialog-blue);
         option {
-            color: rgb(var(--os-black-color));
-            background-color: rgb(var(--os-white-color));
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
         }
     }
 

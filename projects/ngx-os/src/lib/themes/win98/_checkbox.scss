@@ -37,11 +37,11 @@ os-checkbox {
         }
 
         &:focus + label.os-has-text {
-            outline: 1px dotted rgb(var(--os-black-color));
+            outline: 1px dotted rgb(0, 0, 0);
         }
 
         &:active + label::before {
-            background: rgb(var(--os-bg-color));
+            background: rgb(var(--os-background-color));
         }
 
         &:checked + label::after {
@@ -62,7 +62,7 @@ os-checkbox {
             text-shadow: 1px 1px 0 #fff;
 
             &::before {
-                background: rgb(var(--os-bg-color));
+                background: rgb(var(--os-background-color));
             }
         }
 

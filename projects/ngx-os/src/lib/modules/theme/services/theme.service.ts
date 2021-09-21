@@ -15,32 +15,28 @@ export class ThemeService {
         return this._applied$.getValue();
     }
 
-    private defaultTheme = ThemeEnum.Win10;
-
-    private _applied$ = new BehaviorSubject<ThemeEnum>(this.defaultTheme);
+    private themeLinkElement: HTMLLinkElement;
+    private _applied$ = new BehaviorSubject<ThemeEnum>(ThemeEnum.Win10);
 
     constructor(
         @Inject(DOCUMENT) private document: Document
-    ) {}
+    ) {
+        this.initThemeLinkElement();
+    }
 
     public apply(themeName: ThemeEnum): void {
-        const head = this.document.getElementsByTagName('head')[0];
-        const themeLink = this.document.getElementById('os-theme') as HTMLLinkElement;
-        const themeHref = `${themeName}.css`;
+        this.themeLinkElement.href = `${themeName}.css`;
 
-        if (themeLink) {
-            themeLink.href = themeHref;
-        } else {
-            const style = this.document.createElement('link');
-            style.id = 'os-theme';
-            style.rel = 'stylesheet';
-            style.href = themeHref;
-
-            head.appendChild(style);
-        }
-
-        this.document.body.classList.remove(this._applied$.getValue());
+        this.document.body.classList.remove(this.applied);
         this.document.body.classList.add(themeName);
         this._applied$.next(themeName);
+    }
+
+    private initThemeLinkElement(): void {
+        const headElement = this.document.getElementsByTagName('head')[0];
+        this.themeLinkElement = this.document.createElement('link');
+        this.themeLinkElement.rel = 'stylesheet';
+
+        headElement.appendChild(this.themeLinkElement);
     }
 }

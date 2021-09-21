@@ -82,7 +82,7 @@ os-window {
     font-size: 11px;
     font-family: var(--sans-serif);
     box-shadow: var(--border-window-outer), var(--border-window-inner);
-    background: rgb(var(--os-bg-color));
+    background: rgb(var(--os-background-color));
     padding: 3px;
     -webkit-font-smoothing: none;
 
@@ -154,7 +154,7 @@ os-window {
 
 os-title-bar {
     height: 20px;
-    background: linear-gradient(90deg, #808080, rgb(var(--os-bg-color)));
+    background: linear-gradient(90deg, #808080, rgb(var(--os-background-color)));
     font-size: 11px;
     padding: 3px 2px 3px 3px;
     display: flex;

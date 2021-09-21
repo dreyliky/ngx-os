@@ -1,17 +1,8 @@
 :root {
     /** STABLE VARIABLES API */
     --os-primary-color: 34, 102, 203;
-    --os-bg-color: 236, 233, 216;
+    --os-background-color: 236, 233, 216;
 
-    /** UNSTABLE VARIABLES API */
+    /** Specific for this theme variables */
     --sans-serif: "Pixelated MS Sans Serif", Arial;
-    --os-secondary-color: 215, 215, 215;
-    --os-danger-color: 232, 17, 35;
-    --os-success-color: 0, 255, 0;
-    --os-warning-color: 255, 140, 0;
-    --os-info-color: 93, 82, 247;
-    --os-light-color: 242, 242, 242;
-    --os-dark-color: 41, 41, 41;
-    --os-white-color: 255, 255, 255;
-    --os-black-color: 0, 0, 0;
 }

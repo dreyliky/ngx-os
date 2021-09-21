@@ -144,11 +144,11 @@ os-window {
                     background-position: -135px 0px;
         
                     &:hover {
-                        background-color: rgb(var(--os-danger-color));
+                        background-color: rgb(232, 17, 35);
                     }
 
                     &:not(.os-disabled):active {
-                        background-color: rgba(var(--os-danger-color), .8);
+                        background-color: rgba(232, 17, 35, .8);
                     }
                 }
             }
@@ -263,7 +263,7 @@ os-window {
 
     &[aria-label="Close"] {
         :hover {
-            background-color: rgb(var(--os-danger-color));
+            background-color: rgb(232, 17, 35);
         }
 
         .os-icon {

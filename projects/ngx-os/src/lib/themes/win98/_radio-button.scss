@@ -37,7 +37,7 @@ os-radio-button {
         }
 
         &:focus + label.os-has-text {
-            outline: 1px dotted rgb(var(--os-black-color));
+            outline: 1px dotted rgb(0, 0, 0);
         }
 
         &[disabled] {

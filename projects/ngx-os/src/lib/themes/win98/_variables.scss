@@ -1,22 +1,10 @@
 :root {
     /** STABLE VARIABLES API */
     --os-primary-color: 0, 0, 128;
-    --os-bg-color: 192, 192, 192;
+    --os-background-color: 192, 192, 192;
 
-    /** UNSTABLE VARIABLES API */
+    /* Specific for this theme variables */
     --sans-serif: "Pixelated MS Sans Serif", Arial;
-
-    --os-secondary-color: 215, 215, 215;
-    --os-danger-color: 232, 17, 35;
-    --os-success-color: 0, 255, 0;
-    --os-warning-color: 255, 140, 0;
-    --os-info-color: 16, 132, 208;
-    --os-light-color: 246, 246, 246;
-    --os-dark-color: 41, 41, 41;
-    --os-white-color: 255, 255, 255;
-    --os-black-color: 0, 0, 0;
-
-    /* CUSTOM WIN98 UNSTABLE VARIABLES API */
     --border-raised-outer: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff;
     --border-raised-inner: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
     --border-sunken-outer: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a;
@@ -25,8 +13,8 @@
     --border-window-outer: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
     --border-window-inner: inset -2px -2px #808080, inset 2px 2px #ffffff;
     --border-field:
-        inset -1px -1px rgb(var(--os-white-color)),
-        inset 1px 1px rgba(var(--os-white-color), .5),
-        inset -2px -2px rgb(var(--os-light-color)),
-        inset 2px 2px rgb(var(--os-black-color));
+        inset -1px -1px rgb(255, 255, 255),
+        inset 1px 1px rgba(255, 255, 255, .5),
+        inset -2px -2px rgb(246, 246, 246),
+        inset 2px 2px rgb(0, 0, 0);
 }

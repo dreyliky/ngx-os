@@ -6,7 +6,7 @@ os-button {
     font-size: 11px;
     box-sizing: border-box;
     border: none;
-    background: rgb(var(--os-bg-color));
+    background: rgb(var(--os-background-color));
     box-shadow: var(--border-raised-outer), var(--border-raised-inner);
     border-radius: 0;
     min-width: 75px;
@@ -15,7 +15,7 @@ os-button {
     -webkit-font-smoothing: none;
     user-select: none;
     cursor: default;
-    color: rgb(var(--os-black-color));
+    color: rgb(0, 0, 0);
 
     &.os-disabled {
         color: grey;
@@ -31,7 +31,7 @@ os-button {
 
     &:focus,
     &.os-focused {
-        outline: 1px dotted rgb(var(--os-black-color));
+        outline: 1px dotted rgb(0, 0, 0);
         outline-offset: -4px;
     }
 
