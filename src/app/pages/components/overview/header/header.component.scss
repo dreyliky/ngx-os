@@ -4,7 +4,11 @@
     display: flex;
     align-items: center;
     color: rgb(var(--os-white-color));
-    background-color: rgba(var(--os-primary-color), .8);
+    background: linear-gradient(
+        180deg,
+        rgba(var(--os-primary-color), 1),
+        rgba(var(--os-primary-color), .7)
+    );
     padding-left: 30px;
     box-sizing: border-box;
 }
