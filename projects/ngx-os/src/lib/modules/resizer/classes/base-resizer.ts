@@ -1,4 +1,4 @@
-import { OsResizableDirective } from '../directives';
+import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
 import { ResizerConfig } from './resizer-config';
 
@@ -8,7 +8,7 @@ export abstract class BaseResizer {
     protected config: ResizerConfig;
 
     constructor(
-        protected readonly context: OsResizableDirective
+        protected readonly context: ResizableDirective
     ) {
         this.config = this.context.resizerConfig;
     }

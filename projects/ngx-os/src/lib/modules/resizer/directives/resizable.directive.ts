@@ -6,7 +6,7 @@ import { ResizeInfo, ResizerParams } from '../interfaces';
 @Directive({
     selector: '[os-resizable]'
 })
-export class OsResizableDirective implements OnInit, OnDestroy {
+export class ResizableDirective implements OnInit, OnDestroy {
     @Input('os-resizable')
     public set resizerConfig(config: ResizerParams) {
         this._resizerConfig = { ...this._resizerConfig, ...config };

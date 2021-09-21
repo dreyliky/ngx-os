@@ -1,4 +1,4 @@
-import { OsResizableDirective } from '../directives';
+import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
 import { BaseResizer } from './base-resizer';
 import { BottomLeftResizer } from './bottom-left-resizer';
@@ -22,7 +22,7 @@ export abstract class ResizerFactory {
         BottomRightResizer
     ];
 
-    public static create(id: ResizerEnum, context: OsResizableDirective): BaseResizer {
+    public static create(id: ResizerEnum, context: ResizableDirective): BaseResizer {
         const ResizerType = this.resizers
             .find((resizer) => resizer.id === id);
 

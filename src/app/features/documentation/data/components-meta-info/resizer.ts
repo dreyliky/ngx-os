@@ -1,4 +1,4 @@
-import { OsResizableDirective, ResizerModule } from '@lib-modules';
+import { ResizableDirective, ResizerModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import { ResizerOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -12,7 +12,7 @@ export const RESIZER_META_INFO: ComponentMetaInfo = {
         ResizerModule
     ],
     libDirectives: [
-        OsResizableDirective
+        ResizableDirective
     ],
     libInterfaces: [
         'ResizerParams',

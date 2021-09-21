@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@lib-shared';
-import { OsResizableDirective } from './directives';
+import { ResizableDirective } from './directives';
 
 @NgModule({
     declarations: [
-        OsResizableDirective
+        ResizableDirective
     ],
     imports: [
         SharedModule
     ],
     exports: [
-        OsResizableDirective
+        ResizableDirective
     ]
 })
 export class ResizerModule {}
