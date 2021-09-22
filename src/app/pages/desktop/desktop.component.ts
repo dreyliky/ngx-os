@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ThemeRgbColor } from '@lib-modules';
+import { IThemeRgbColor } from '@lib-modules';
 import { Subscription } from 'rxjs';
 import { BackgroundMetadata, BackgroundService } from './features/background';
 import { BackgroundTypeEnum } from './features/background/enums';
@@ -34,7 +34,7 @@ export class DesktopComponent implements OnInit, OnDestroy {
 
     private initHostBackground({ type, data }: BackgroundMetadata): void {
         if (type === BackgroundTypeEnum.Color) {
-            const { r, g, b } = data as ThemeRgbColor;
+            const { r, g, b } = data as IThemeRgbColor;
 
             this.hostBackground = `rgb(${r}, ${g}, ${b})`;
         } else {

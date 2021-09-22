@@ -1,4 +1,4 @@
-export interface ThemeRgbColor {
+export interface IThemeRgbColor {
     r: number;
     g: number;
     b: number;

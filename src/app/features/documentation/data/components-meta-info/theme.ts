@@ -13,7 +13,7 @@ export const THEME_META_INFO: ComponentMetaInfo = {
         AccentColorService
     ],
     libInterfaces: [
-        'ThemeRgbColor'
+        'IThemeRgbColor'
     ],
     libEnums: [
         'ThemeEnum'

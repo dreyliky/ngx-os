@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { ThemeRgbColor } from '../interfaces';
+import { IThemeRgbColor } from '../interfaces';
 import { ThemeColorType } from '../types';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AccentColorService {
         this.documentElement = documentElement;
     }
 
-    public get(colorType: ThemeColorType): ThemeRgbColor {
+    public get(colorType: ThemeColorType): IThemeRgbColor {
         const cssColor = this.getFromCssVariable(colorType);
 
         if (cssColor) {
@@ -25,7 +25,7 @@ export class AccentColorService {
         return null;
     }
 
-    public apply(colorType: ThemeColorType, { r, g, b }: ThemeRgbColor): void {
+    public apply(colorType: ThemeColorType, { r, g, b }: IThemeRgbColor): void {
         const cssVariableName = this.getColorTypeCssVariableName(colorType);
 
         this.documentElement.style.setProperty(cssVariableName, `${r}, ${g}, ${b}`);
@@ -41,7 +41,7 @@ export class AccentColorService {
         return `--os-${colorType}-color`;
     }
 
-    private parseCssColor(cssColor: string): ThemeRgbColor {
+    private parseCssColor(cssColor: string): IThemeRgbColor {
         const colorAsArray = cssColor
             .split(',')
             .map((colorPart) => +colorPart.replace( /^\D+/g, ''));

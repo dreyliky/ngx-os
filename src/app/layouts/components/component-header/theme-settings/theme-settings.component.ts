@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AccentColorManagerService, Theme, ThemeManagerService, THEMES } from '@Features/theme';
-import { ThemeRgbColor } from '@lib-modules';
+import { IThemeRgbColor } from '@lib-modules';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class ThemeSettingsComponent implements OnInit, OnDestroy {
     public appliedTheme: Theme;
-    public appliedColor: ThemeRgbColor;
+    public appliedColor: IThemeRgbColor;
 
     private appliedThemeSubscription: Subscription;
     private appliedColorSubscription: Subscription;
@@ -36,7 +36,7 @@ export class ThemeSettingsComponent implements OnInit, OnDestroy {
         this.themeService.apply(theme.cssName);
     }
 
-    public onAccentColorChanged(color: ThemeRgbColor): void {
+    public onAccentColorChanged(color: IThemeRgbColor): void {
         this.accentColorService.apply('primary', color);
     }
 

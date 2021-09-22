@@ -1,6 +1,6 @@
-import { ThemeRgbColor } from '@lib-modules';
+import { IThemeRgbColor } from '@lib-modules';
 
-export const ACCENT_COLORS: ThemeRgbColor[] = [
+export const ACCENT_COLORS: IThemeRgbColor[] = [
     { r: 255, g: 185, b: 0 },
     { r: 255, g: 140, b: 0 },
     { r: 247, g: 99, b: 12 },

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ACCENT_COLORS } from '@Features/theme/data';
-import { ThemeRgbColor } from '@lib-modules';
+import { IThemeRgbColor } from '@lib-modules';
 
 interface AccentColor {
-    value: ThemeRgbColor;
+    value: IThemeRgbColor;
     css: string;
 }
 
@@ -15,10 +15,10 @@ interface AccentColor {
 })
 export class ThemeAccentColorDropdownComponent implements OnInit {
     @Input()
-    public readonly selectedColor: ThemeRgbColor;
+    public readonly selectedColor: IThemeRgbColor;
 
     @Output()
-    public readonly colorChanged = new EventEmitter<ThemeRgbColor>();
+    public readonly colorChanged = new EventEmitter<IThemeRgbColor>();
 
     public accentColors: AccentColor[];
 
@@ -26,7 +26,7 @@ export class ThemeAccentColorDropdownComponent implements OnInit {
         this.initAccentCssColors();
     }
 
-    public isColorSelected({ r, g, b }: ThemeRgbColor): boolean {
+    public isColorSelected({ r, g, b }: IThemeRgbColor): boolean {
         return (
             this.selectedColor?.r === r &&
             this.selectedColor?.g === g &&

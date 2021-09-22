@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BackgroundService } from '@Doc/pages/desktop/features/background';
 import { BackgroundTypeEnum } from '@Doc/pages/desktop/features/background/enums';
-import { ThemeRgbColor } from '@lib-modules';
+import { IThemeRgbColor } from '@lib-modules';
 
 @Injectable()
 export class BackgroundControlService {
@@ -23,7 +23,7 @@ export class BackgroundControlService {
         });
     }
 
-    public applyColor(color: ThemeRgbColor): void {
+    public applyColor(color: IThemeRgbColor): void {
         this.backgroundService.apply({
             type: BackgroundTypeEnum.Color,
             data: color
