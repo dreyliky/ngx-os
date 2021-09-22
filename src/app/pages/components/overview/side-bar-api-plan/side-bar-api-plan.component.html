@@ -1,34 +1,20 @@
 <os-list>
     <os-list-item
+        *ngFor="let listItem of apiPlanItems"
         [style]="{ height: 'auto' }"
-        (osClick)="onScrollTopButtonClick()">
+        [isSelected]="listItem.name === routeFragment"
+        [value]="listItem"
+        (osClick)="onListItemClick(listItem)">
         <div class="icon-wrapper">
             <img
                 class="icon"
-                src="/assets/icons/dev/examples.svg" />
-        </div>
-
-        <div class="name">
-            <os-text>Examples</os-text>
-        </div>
-    </os-list-item>
-
-    <os-list-item
-        *ngFor="let apiPlanItem of apiPlanItems"
-        [style]="{ height: 'auto' }"
-        [isSelected]="apiPlanItem.name === routeFragment"
-        [value]="apiPlanItem"
-        (osClick)="onApiPlanItemSelected(apiPlanItem)">
-        <div class="icon-wrapper">
-            <img
-                class="icon"
-                [attr.src]="apiPlanItem.iconUrl" />
+                [attr.src]="listItem.iconUrl" />
         </div>
 
         <div
-            [attr.title]="apiPlanItem.name"
+            [attr.title]="listItem.name"
             class="name">
-            <os-text>{{ apiPlanItem.name }}</os-text>
+            <os-text>{{ listItem.name }}</os-text>
         </div>
     </os-list-item>
 </os-list>

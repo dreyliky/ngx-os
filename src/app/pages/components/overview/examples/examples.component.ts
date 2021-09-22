@@ -2,13 +2,16 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver, OnInit,
+    ComponentFactoryResolver,
+    OnDestroy,
+    OnInit,
     QueryList,
     ViewChildren,
     ViewContainerRef
 } from '@angular/core';
-import { ComponentMetaInfo } from '@Features/documentation';
-import { Observable } from 'rxjs';
+import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@Features/documentation';
+import { combineLatest, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../overview.service';
 
 @Component({
@@ -17,41 +20,70 @@ import { OverviewService } from '../overview.service';
     styleUrls: ['./examples.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExamplesComponent implements OnInit {
+export class ExamplesComponent implements OnInit, OnDestroy {
     @ViewChildren('demoTemplate', { read: ViewContainerRef })
     private readonly demoTemplates: QueryList<ViewContainerRef>;
 
     @ViewChildren(ExamplesComponent)
     private set demoBlockComponents(_: ExamplesComponent) {
-        this.initDemoComponents();
+        this.renderDemoComponents();
     }
 
-    public metaInfo$: Observable<ComponentMetaInfo>;
+    public demoComponents: DemoComponentMetaInfo[];
+
+    private untilDestroyed$ = new Subject();
 
     constructor(
+        private readonly devExamplesVisibilityService: DevExamplesVisibilityService,
         private readonly overviewService: OverviewService,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
     public ngOnInit(): void {
-        this.metaInfo$ = this.overviewService.metaInfo$;
+        this.initMetaInfoObserver();
     }
 
-    private initDemoComponents(): void {
-        const demoComponentsMetaInfo = this.overviewService.metaInfo.demoComponents;
+    public ngOnDestroy(): void {
+        this.untilDestroyed$.next();
+        this.untilDestroyed$.complete();
+    }
 
-        if (this.demoTemplates && demoComponentsMetaInfo) {
+    private renderDemoComponents(): void {
+        if (this.demoTemplates && this.demoComponents) {
             const demoTemplates = this.demoTemplates.toArray();
 
-            demoComponentsMetaInfo.forEach((metaInfo, metaInfoIndex) => {
-                const componentFactory = this.componentFactoryResolver.resolveComponentFactory(metaInfo.component);
+            this.demoComponents.forEach(({ component }, componentIndex) => {
+                const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
 
-                demoTemplates[metaInfoIndex]?.clear();
-                demoTemplates[metaInfoIndex]?.createComponent(componentFactory);
+                demoTemplates[componentIndex]?.clear();
+                demoTemplates[componentIndex]?.createComponent(componentFactory);
             });
 
             this.changeDetector.detectChanges();
+        }
+    }
+
+    private initMetaInfoObserver(): void {
+        combineLatest([
+            this.overviewService.metaInfo$,
+            this.devExamplesVisibilityService.data$
+        ])
+            .pipe(
+                takeUntil(this.untilDestroyed$)
+            )
+            .subscribe(([{ demoComponents }, isDevExamplesVisible]) => {
+                this.initDemoComponents(demoComponents, isDevExamplesVisible);
+                this.renderDemoComponents();
+            });
+    }
+
+    private initDemoComponents(demoComponents: DemoComponentMetaInfo[], isDevExamplesVisible: boolean): void {
+        if (!isDevExamplesVisible) {
+            this.demoComponents = demoComponents
+                ?.filter((demoComponent) => !demoComponent.isOnlyForDevEnv);
+        } else {
+            this.demoComponents = demoComponents;
         }
     }
 }

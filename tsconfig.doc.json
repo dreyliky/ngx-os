@@ -20,5 +20,8 @@
     ],
     "include": [
         "src/app/features/documentation/examples/**/*.ts"
+    ],
+    "exclude": [
+        "src/app/features/documentation/examples/**/dev/**"
     ]
 }

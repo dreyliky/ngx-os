@@ -1,13 +1,11 @@
-<ng-container *ngIf="(metaInfo$ | async) as metaInfo">
-    <ng-container *ngIf="metaInfo.demoComponents?.length">
-        <os-header>
-            Examples
-        </os-header>
+<ng-container *ngIf="demoComponents?.length">
+    <os-header>
+        Examples
+    </os-header>
 
-        <demo-example
-            *ngFor="let demoComponent of metaInfo.demoComponents"
-            [demoComponentMetaInfo]="demoComponent">
-            <ng-template #demoTemplate></ng-template>
-        </demo-example>
-    </ng-container>
+    <demo-example
+        *ngFor="let demoComponent of demoComponents"
+        [demoComponentMetaInfo]="demoComponent">
+        <ng-template #demoTemplate></ng-template>
+    </demo-example>
 </ng-container>

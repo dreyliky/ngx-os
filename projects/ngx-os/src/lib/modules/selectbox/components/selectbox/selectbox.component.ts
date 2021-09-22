@@ -185,8 +185,9 @@ export class SelectboxComponent<T>
     private initSelectedOption(option: OptionComponent<T>): void {
         this.selectedOptionComponent = option ?? null;
 
+        this.deselectAllOptions();
+
         if (this.selectedOptionComponent) {
-            this.deselectAllOptions();
             this.selectedOptionComponent.setSelectedState(true);
         }
     }

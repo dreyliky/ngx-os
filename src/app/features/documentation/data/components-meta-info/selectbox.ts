@@ -1,6 +1,10 @@
 import { SelectboxComponent, SelectboxModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { SelectboxAsFormControlComponent, SelectboxOverviewComponent } from '../../examples';
+import {
+    SelectboxAsFormControlComponent,
+    SelectboxOverviewComponent,
+    SelectboxWithIntervalValueChangeComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const SELECTBOX_META_INFO: ComponentMetaInfo = {
@@ -25,6 +29,11 @@ export const SELECTBOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Selectbox as FormControl',
             component: SelectboxAsFormControlComponent
+        },
+        {
+            title: 'Selectbox with interval value changing',
+            component: SelectboxWithIntervalValueChangeComponent,
+            isOnlyForDevEnv: true
         }
     ]
 };
