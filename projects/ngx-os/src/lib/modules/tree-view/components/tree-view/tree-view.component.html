@@ -10,6 +10,8 @@
         <div
             class="os-tree-node"
             [style.--os-tree-node-depth]="depth"
+            [class.os-root-node]="!depth"
+            [class.os-disabled]="node.isDisabled"
             [class.os-expandable]="node.children?.length"
             [class.os-flat]="!node.children?.length"
             [class.os-expanded]="isNodeExpanded(node)"
@@ -20,7 +22,17 @@
                 (click)="onToggleExpandButtonClick($event, node)">
             </div>
 
-            <div class="os-label">{{ node.label }}</div>
+            <div
+                *ngIf="!nodeTemplate; else wrapperForNodeTemplate"
+                class="os-label">
+                {{ node.label }}
+            </div>
+
+            <ng-template #wrapperForNodeTemplate>
+                <ng-container
+                    *ngTemplateOutlet="nodeTemplate; context: { node: node }">
+                </ng-container>
+            </ng-template>
         </div>
 
         <ng-container *ngIf="node?.children && isNodeExpanded(node)">

@@ -1,6 +1,10 @@
 import { TreeViewComponent, TreeViewModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { TreeViewOverviewComponent } from '../../examples';
+import {
+    TreeViewOverviewComponent,
+    TreeViewSelectionSetupComponent,
+    TreeViewWithCustomTemplateComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
@@ -15,12 +19,20 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
         TreeViewComponent
     ],
     libInterfaces: [
-        'TreeNode'
+        'ITreeNode'
     ],
     demoComponents: [
         {
-            title: 'Tree view Overview',
+            title: 'Tree View Overview',
             component: TreeViewOverviewComponent
+        },
+        {
+            title: 'Tree View selection setup',
+            component: TreeViewSelectionSetupComponent
+        },
+        {
+            title: 'Tree View with custom template',
+            component: TreeViewWithCustomTemplateComponent
         }
     ]
 };

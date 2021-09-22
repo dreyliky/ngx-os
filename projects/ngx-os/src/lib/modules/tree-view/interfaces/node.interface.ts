@@ -1,13 +1,12 @@
-export interface TreeNode<T> {
+export interface ITreeNode<T = any> {
     label: string;
     data?: T;
-    iconClass?: string;
-    expandedIconClass?: string;
-    collapsedIconClass?: string;
-    children?: TreeNode<T>[];
-    parent?: TreeNode<T>;
-    style?: string;
+    children?: ITreeNode<T>[];
+    iconStyle?: object;
+    iconStyleClass?: string;
+    style?: object;
     styleClass?: string;
-    expanded?: boolean;
-    key?: string;
+    isExpanded?: boolean;
+    isSelected?: boolean;
+    isDisabled?: boolean;
 }

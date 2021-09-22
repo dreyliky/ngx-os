@@ -36,6 +36,8 @@ import {
     ThemeOverviewComponent,
     TitleBarButtonOverviewComponent,
     TreeViewOverviewComponent,
+    TreeViewSelectionSetupComponent,
+    TreeViewWithCustomTemplateComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
     WindowTitleBarComponent
@@ -78,6 +80,8 @@ import {
         ThemeOverviewComponent,
         TitleBarButtonOverviewComponent,
         TreeViewOverviewComponent,
+        TreeViewSelectionSetupComponent,
+        TreeViewWithCustomTemplateComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
         WindowTitleBarComponent

@@ -1,0 +1,27 @@
+<os-form-field [isStacked]="false">
+    <os-label>Selection parameters</os-label>
+
+    <os-checkbox
+        [label]="'Allow selection'"
+        [(isChecked)]="isAllowSelection">
+    </os-checkbox>
+
+    <os-checkbox
+        [label]="'Multiple selection'"
+        [isDisabled]="!isAllowSelection"
+        [(isChecked)]="isAllowMultipleSelection">
+    </os-checkbox>
+
+    <os-checkbox
+        [label]="'Toggle mode'"
+        [isDisabled]="!isAllowSelection"
+        [(isChecked)]="isSelectionInToggleMode">
+    </os-checkbox>
+</os-form-field>
+
+<os-tree-view
+    [data]="data"
+    [isAllowSelection]="isAllowSelection"
+    [isAllowMultipleSelection]="isAllowMultipleSelection"
+    [isSelectionInToggleMode]="isSelectionInToggleMode">
+</os-tree-view>

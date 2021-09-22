@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode } from 'ngx-os';
+import { ITreeNode } from 'ngx-os';
 
 @Component({
     selector: 'demo-tree-view-overview',
@@ -8,7 +8,7 @@ import { TreeNode } from 'ngx-os';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeViewOverviewComponent {
-    public items: TreeNode<any>[] = [
+    public items: ITreeNode<any>[] = [
         { label: 'Item 1' },
         {
             label: 'Item 2',
@@ -23,6 +23,9 @@ export class TreeViewOverviewComponent {
                 { label: 'Child item 2' }
             ]
         },
-        { label: 'Item 3' }
+        {
+            label: 'Item 3 (disabled)',
+            isDisabled: true
+        }
     ];
 }

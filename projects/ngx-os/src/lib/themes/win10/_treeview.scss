@@ -1,6 +1,7 @@
 .os-tree-view {
     display: block;
     background: #fff;
+    border: solid 1px #666666;
     cursor: default;
 
     .os-tree-node {
@@ -9,16 +10,26 @@
         display: flex;
         align-items: center;
 
-        &:hover {
-            background-color: rgba(0, 0, 0, .06);
-        }
-        
-        :first-child {
-            margin-left: calc(40px * var(--os-tree-node-depth));
+        &:not(.os-disabled) {
+            &:hover {
+                background-color: rgba(0, 0, 0, .06);
+            }
+
+            &.os-selected {
+                background-color: rgba(var(--os-primary-color), .2);
+            }
         }
 
-        &.os-selected {
-            background-color: rgba(var(--os-primary-color), .2);
+        &.os-disabled {
+            color: #909090;
+        }
+
+        &.os-root-node :first-child {
+            margin-left: 10px;
+        }
+
+        &:not(.os-root-node) :first-child {
+            margin-left: calc(37px * var(--os-tree-node-depth));
         }
 
         &.os-expandable .os-icon {
