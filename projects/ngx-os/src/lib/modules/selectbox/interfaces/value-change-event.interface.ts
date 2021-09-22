@@ -1,4 +1,4 @@
-export interface SelectboxValueChangeEvent<T> {
+export interface ISelectboxValueChangeEvent<T> {
     value: T;
     originalEvent: MouseEvent | KeyboardEvent;
 }

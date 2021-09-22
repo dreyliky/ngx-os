@@ -1,4 +1,4 @@
-export interface RadioButtonValueChangeEvent<T> {
+export interface IRadioButtonValueChangeEvent<T> {
     checked: boolean;
     value: T;
     originalEvent: Event;

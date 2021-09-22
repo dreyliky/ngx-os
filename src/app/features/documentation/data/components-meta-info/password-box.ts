@@ -15,7 +15,7 @@ export const PASSWORD_BOX_META_INFO: ComponentMetaInfo = {
         PasswordBoxComponent
     ],
     libInterfaces: [
-        'PasswordBoxChangeEvent'
+        'IPasswordBoxChangeEvent'
     ],
     demoComponents: [
         {

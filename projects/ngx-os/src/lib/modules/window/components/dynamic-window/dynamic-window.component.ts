@@ -11,8 +11,8 @@ import {
 } from '@angular/core';
 import { EventOutside } from '@lib-helpers';
 import { skip } from 'rxjs/operators';
-import { DraggableDirective, DragInfo } from '../../../drag-and-drop';
-import { ResizeInfo } from '../../../resizer';
+import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
+import { IResizeInfo } from '../../../resizer';
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicStateEnum } from '../../enums';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
@@ -120,7 +120,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         }
     }
 
-    public onAfterDragging(event: DragInfo): void {
+    public onAfterDragging(event: IDragInfo): void {
         if (this.isAfterExitFullscreenByDragging) {
             this.draggableDirective.updateMovableElementPosition(event.mouseEvent);
 
@@ -147,7 +147,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         setTimeout(() => this.changeDetector.detach());
     }
 
-    public onResizing({ width, height }: ResizeInfo): void {
+    public onResizing({ width, height }: IResizeInfo): void {
         this.widthAtWindowedMode = width;
         this.heightAtWindowedMode = height;
     }

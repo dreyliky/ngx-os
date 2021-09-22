@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '@lib-core';
-import { EmailBoxChangeEvent } from '../../interfaces';
+import { IEmailBoxChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-email-box',
@@ -32,7 +32,7 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, A
     public isAutocompleteEnabled: boolean = false;
 
     @Output()
-    public osChange: EventEmitter<EmailBoxChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<IEmailBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('emailbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;

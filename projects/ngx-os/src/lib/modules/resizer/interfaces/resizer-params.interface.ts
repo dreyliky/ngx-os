@@ -2,7 +2,7 @@ import { MouseButtonEnum } from '../../../core';
 import { ResizerEnum } from '../enums';
 import { xAxisStyleNameType, yAxisStyleNameType } from '../types';
 
-export interface ResizerParams {
+export interface IResizerParams {
     targetElement?: HTMLElement;
     minWidth?: number;
     minHeight?: number;

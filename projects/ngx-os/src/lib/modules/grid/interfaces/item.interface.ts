@@ -1,4 +1,4 @@
-export interface GridItem {
+export interface IGridItem {
     label: string;
     iconUrl: string;
     onDblClick?: (event: MouseEvent) => any;

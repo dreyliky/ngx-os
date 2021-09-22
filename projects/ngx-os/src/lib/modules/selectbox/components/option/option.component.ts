@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 import { isNil } from '@lib-helpers';
-import { SelectboxValueChangeEvent } from '../../interfaces';
+import { ISelectboxValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-option',
@@ -33,7 +33,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit, OnCha
     public value: T;
 
     @Output()
-    public osSelected: EventEmitter<SelectboxValueChangeEvent<T>> = new EventEmitter();
+    public osSelected: EventEmitter<ISelectboxValueChangeEvent<T>> = new EventEmitter();
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>,

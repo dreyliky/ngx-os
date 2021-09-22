@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { GridDirectionEnum, GridItem } from 'ngx-os';
+import { GridDirectionEnum, IGridItem } from 'ngx-os';
 
 @Component({
     selector: 'demo-grid-overview',
@@ -10,12 +10,12 @@ import { GridDirectionEnum, GridItem } from 'ngx-os';
 export class GridOverviewComponent implements OnInit {
     public readonly gridDirectionEnum = GridDirectionEnum;
 
-    public readonly items: GridItem[] = [];
+    public readonly items: IGridItem[] = [];
 
     public currentGridDirection = GridDirectionEnum.Horizontal;
     public gridSize = 72;
 
-    private readonly defaultItem: GridItem = {
+    private readonly defaultItem: IGridItem = {
         label: 'My amazing item to display',
         iconUrl: '/assets/icons/folder-opened.png'
     }

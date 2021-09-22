@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '@lib-core';
-import { PasswordBoxChangeEvent } from '@lib-modules';
+import { IPasswordBoxChangeEvent } from '@lib-modules';
 
 @Component({
     selector: 'os-password-box',
@@ -32,7 +32,7 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit
     public isAutocompleteEnabled: boolean = false;
 
     @Output()
-    public osChange: EventEmitter<PasswordBoxChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<IPasswordBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('passwordbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;

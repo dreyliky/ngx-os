@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFormControlComponent } from '@lib-core';
-import { CheckboxValueChangeEvent } from '../../interfaces';
+import { ICheckboxValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-checkbox',
@@ -48,7 +48,7 @@ export class CheckboxComponent<T>
     public readonly value: T;
 
     @Output()
-    public osChange: EventEmitter<CheckboxValueChangeEvent<T>> = new EventEmitter();
+    public osChange: EventEmitter<ICheckboxValueChangeEvent<T>> = new EventEmitter();
 
     /** Emits when `checked` state changed. Might be used for two way binding */
     @Output()

@@ -1,4 +1,4 @@
-export interface ResizeInfo {
+export interface IResizeInfo {
     width: number;
     height: number;
     positionTop: number;

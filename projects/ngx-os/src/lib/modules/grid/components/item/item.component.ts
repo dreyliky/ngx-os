@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 import { EventOutside } from '@lib-helpers';
-import { GridItem } from '../../interfaces';
+import { IGridItem } from '../../interfaces';
 
 @Component({
     selector: 'os-grid-item',
@@ -18,7 +18,7 @@ import { GridItem } from '../../interfaces';
 })
 export class GridItemComponent extends OsBaseComponent implements OnInit {
     @Input()
-    public data: GridItem;
+    public data: IGridItem;
 
     @Input()
     @HostBinding('class.os-selected')

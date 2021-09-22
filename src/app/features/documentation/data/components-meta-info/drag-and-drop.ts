@@ -15,8 +15,8 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
         DraggableDirective
     ],
     libInterfaces: [
-        'DraggerParams',
-        'DragInfo'
+        'IDraggerParams',
+        'IDragInfo'
     ],
     libEnums: [
         'MouseButtonEnum'

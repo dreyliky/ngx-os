@@ -1,6 +1,6 @@
 import { InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
 import { IS_DYNAMIC_WINDOW_CONTEXT } from '@lib-core';
-import { DynamicWindowDiParams, IDynamicWindowParams } from '../interfaces';
+import { IDynamicWindowDiParams, IDynamicWindowParams } from '../interfaces';
 import { DynamicWindowConfig } from './dynamic-window-config';
 import { DynamicWindowRef } from './dynamic-window-ref';
 
@@ -11,7 +11,7 @@ export class DynamicWindowInjector implements Injector {
     private additionalTokens: WeakMap<object, unknown>;
 
     constructor(
-        { injector, config, windowRef }: DynamicWindowDiParams
+        { injector, config, windowRef }: IDynamicWindowDiParams
     ) {
         this.parentInjector = injector;
         this.config = config;

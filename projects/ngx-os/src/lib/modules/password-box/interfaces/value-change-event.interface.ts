@@ -1,4 +1,4 @@
-export interface PasswordBoxChangeEvent {
+export interface IPasswordBoxChangeEvent {
     value: string;
     originalEvent: Event;
 }

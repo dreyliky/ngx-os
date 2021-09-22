@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowInjector, DynamicWindowRef } from '../classes';
 import { DynamicWindowComponent } from '../components';
-import { DynamicWindowInputParams, IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
+import { IDynamicWindowInputParams, IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
 import { DynamicWindowConfigControlService } from './dynamic-window-config-control.service';
 import { DynamicWindowReferencesService } from './dynamic-window-references.service';
 
@@ -97,7 +97,7 @@ export class DynamicWindowService {
             .subscribe(() => componentRef.destroy());
     }
 
-    private applyDataForCreatedWindow({ windowRef, component, config }: DynamicWindowInputParams): void {
+    private applyDataForCreatedWindow({ windowRef, component, config }: IDynamicWindowInputParams): void {
         const { instance: windowInstance } = windowRef.componentRef;
 
         windowRef.updateConfig(config);

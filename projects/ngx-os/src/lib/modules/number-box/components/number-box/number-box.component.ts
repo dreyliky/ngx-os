@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '@lib-core';
-import { NumberBoxChangeEvent } from '../../interfaces';
+import { INumberBoxChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-number-box',
@@ -34,7 +34,7 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
     public isAutocompleteEnabled: boolean = false;
 
     @Output()
-    public osChange: EventEmitter<NumberBoxChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<INumberBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('numberbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;

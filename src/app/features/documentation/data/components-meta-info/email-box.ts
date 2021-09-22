@@ -15,7 +15,7 @@ export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
         EmailBoxComponent
     ],
     libInterfaces: [
-        'EmailBoxChangeEvent'
+        'IEmailBoxChangeEvent'
     ],
     demoComponents: [
         {

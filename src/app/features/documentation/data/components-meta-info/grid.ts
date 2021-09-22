@@ -15,7 +15,7 @@ export const GRID_META_INFO: ComponentMetaInfo = {
         GridComponent
     ],
     libInterfaces: [
-        'GridItem'
+        'IGridItem'
     ],
     libEnums: [
         'GridDirectionEnum'

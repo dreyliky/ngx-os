@@ -1,13 +1,13 @@
 import { Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { DraggerConfig } from '../classes';
-import { DraggerParams, DragInfo } from '../interfaces';
+import { IDraggerParams, IDragInfo } from '../interfaces';
 
 @Directive({
     selector: '[os-draggable]'
 })
 export class DraggableDirective implements OnDestroy {
     @Input('os-draggable')
-    public set draggerConfig(draggerConfig: DraggerParams) {
+    public set draggerConfig(draggerConfig: IDraggerParams) {
         this._draggerConfig = { ...this._draggerConfig, ...draggerConfig };
 
         this.initMovableElement();
@@ -19,19 +19,19 @@ export class DraggableDirective implements OnDestroy {
     }
 
     @Output()
-    public osBeforeDragStart: EventEmitter<DragInfo> = new EventEmitter();
+    public osBeforeDragStart: EventEmitter<IDragInfo> = new EventEmitter();
 
     @Output()
-    public osDragStart: EventEmitter<DragInfo> = new EventEmitter();
+    public osDragStart: EventEmitter<IDragInfo> = new EventEmitter();
 
     @Output()
-    public osDragEnd: EventEmitter<DragInfo> = new EventEmitter();
+    public osDragEnd: EventEmitter<IDragInfo> = new EventEmitter();
 
     @Output()
-    public osDragging: EventEmitter<DragInfo> = new EventEmitter();
+    public osDragging: EventEmitter<IDragInfo> = new EventEmitter();
 
     @Output()
-    public osAfterDragging: EventEmitter<DragInfo> = new EventEmitter();
+    public osAfterDragging: EventEmitter<IDragInfo> = new EventEmitter();
 
     private shiftX: number;
     private shiftY: number;
@@ -119,14 +119,14 @@ export class DraggableDirective implements OnDestroy {
         this.osDragEnd.emit(dragInfo);
     }
 
-    private getDragInfo(event: MouseEvent): DragInfo {
+    private getDragInfo(event: MouseEvent): IDragInfo {
         return {
             draggableElementDomRect: this._movableElement.getBoundingClientRect(),
             mouseEvent: event
         };
     }
 
-    private setShiftX({ mouseEvent, draggableElementDomRect }: DragInfo): void {
+    private setShiftX({ mouseEvent, draggableElementDomRect }: IDragInfo): void {
         if (typeof(this.draggerConfig.shiftX) === 'number') {
             this.shiftX = this.draggerConfig.shiftX;
         } else {
@@ -134,7 +134,7 @@ export class DraggableDirective implements OnDestroy {
         }
     }
 
-    private setShiftY({ mouseEvent, draggableElementDomRect }: DragInfo): void {
+    private setShiftY({ mouseEvent, draggableElementDomRect }: IDragInfo): void {
         if (typeof(this.draggerConfig.shiftY) === 'number') {
             this.shiftY = this.draggerConfig.shiftY;
         } else {

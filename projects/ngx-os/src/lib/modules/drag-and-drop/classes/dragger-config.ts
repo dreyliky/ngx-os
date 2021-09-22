@@ -1,7 +1,7 @@
 import { MouseButtonEnum } from '@lib-core';
-import { DraggerParams } from '../interfaces';
+import { IDraggerParams } from '../interfaces';
 
-export class DraggerConfig implements DraggerParams {
+export class DraggerConfig implements IDraggerParams {
     public draggableElement?: HTMLElement;
     public movableElement?: HTMLElement;
     public childElementsBlackList?: HTMLElement[] = [];

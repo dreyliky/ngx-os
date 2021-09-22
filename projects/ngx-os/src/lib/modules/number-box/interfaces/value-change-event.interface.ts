@@ -1,4 +1,4 @@
-export interface NumberBoxChangeEvent {
+export interface INumberBoxChangeEvent {
     value: number;
     originalEvent: Event;
 }

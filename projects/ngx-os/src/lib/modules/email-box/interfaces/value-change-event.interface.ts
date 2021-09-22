@@ -1,4 +1,4 @@
-export interface EmailBoxChangeEvent {
+export interface IEmailBoxChangeEvent {
     value: string;
     originalEvent: Event;
 }

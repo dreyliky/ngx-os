@@ -1,8 +1,8 @@
 import { Type } from '@angular/core';
-import { GridItem, IDynamicWindowParams } from '@lib-modules';
+import { IDynamicWindowParams, IGridItem } from '@lib-modules';
 
 export interface AppMetadata {
     component: Type<any>;
-    shortcutParams: GridItem;
+    shortcutParams: IGridItem;
     windowParams: IDynamicWindowParams;
 }

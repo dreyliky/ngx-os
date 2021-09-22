@@ -15,7 +15,7 @@ export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
         TextareaBoxComponent
     ],
     libInterfaces: [
-        'TextareaBoxChangeEvent'
+        'ITextareaBoxChangeEvent'
     ],
     demoComponents: [
         {

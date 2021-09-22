@@ -1,14 +1,14 @@
 import { Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ResizerConfig, ResizerFactory } from '../classes';
 import { ResizerEnum } from '../enums';
-import { ResizeInfo, ResizerParams } from '../interfaces';
+import { IResizeInfo, IResizerParams } from '../interfaces';
 
 @Directive({
     selector: '[os-resizable]'
 })
 export class ResizableDirective implements OnInit, OnDestroy {
     @Input('os-resizable')
-    public set resizerConfig(config: ResizerParams) {
+    public set resizerConfig(config: IResizerParams) {
         this._resizerConfig = { ...this._resizerConfig, ...config };
 
         this.initResizableElement();
@@ -16,7 +16,7 @@ export class ResizableDirective implements OnInit, OnDestroy {
         this.updateResizersActivity();
     }
 
-    public get resizerConfig(): ResizerParams {
+    public get resizerConfig(): IResizerParams {
         return this._resizerConfig;
     }
 
@@ -27,13 +27,13 @@ export class ResizableDirective implements OnInit, OnDestroy {
     public osResizerElementInit = new EventEmitter<HTMLElement>();
 
     @Output()
-    public osResizeStart = new EventEmitter<ResizeInfo>();
+    public osResizeStart = new EventEmitter<IResizeInfo>();
 
     @Output()
-    public osResizeEnd = new EventEmitter<ResizeInfo>();
+    public osResizeEnd = new EventEmitter<IResizeInfo>();
 
     @Output()
-    public osResizing = new EventEmitter<ResizeInfo>();
+    public osResizing = new EventEmitter<IResizeInfo>();
 
     public get resizableElement(): HTMLElement {
         return this._resizableElement;
@@ -74,7 +74,7 @@ export class ResizableDirective implements OnInit, OnDestroy {
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
     }
 
-    public getResizeInfo(): ResizeInfo {
+    public getResizeInfo(): IResizeInfo {
         const domRect = this._resizableElement.getBoundingClientRect();
 
         return {

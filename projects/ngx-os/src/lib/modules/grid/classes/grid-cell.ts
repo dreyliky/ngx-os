@@ -1,4 +1,4 @@
-import { CellParams } from '../interfaces';
+import { ICellParams } from '../interfaces';
 import { Grid } from './grid';
 
 export class Cell<T> {
@@ -8,7 +8,7 @@ export class Cell<T> {
     private data: T;
     private context: Grid<T>;
 
-    constructor(params: CellParams<T>) {
+    constructor(params: ICellParams<T>) {
         Object.assign(this, params);
     }
 

@@ -20,7 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IS_DYNAMIC_WINDOW_CONTEXT, OsBaseFormControlComponent } from '@lib-core';
 import { EventOutside, isNil } from '@lib-helpers';
 import { Subscription } from 'rxjs';
-import { SelectboxValueChangeEvent } from '../../interfaces';
+import { ISelectboxValueChangeEvent } from '../../interfaces';
 import { OptionComponent } from '../option';
 
 @Component({
@@ -70,7 +70,7 @@ export class SelectboxComponent<T>
     public scrollViewStyleClass: string;
 
     @Output()
-    public osChange: EventEmitter<SelectboxValueChangeEvent<T>> = new EventEmitter();
+    public osChange: EventEmitter<ISelectboxValueChangeEvent<T>> = new EventEmitter();
 
     @Output()
     public valueChange: EventEmitter<T> = new EventEmitter();
@@ -204,7 +204,7 @@ export class SelectboxComponent<T>
 
     private initOptionComponentSelectedStateObserver(optionComponent: OptionComponent<T>): void {
         const subscription = optionComponent.osSelected
-            .subscribe((event: SelectboxValueChangeEvent<T>) => {
+            .subscribe((event: ISelectboxValueChangeEvent<T>) => {
                 this.initSelectedOption(optionComponent);
                 this.deselectAllOptions();
                 optionComponent.setSelectedState(true);

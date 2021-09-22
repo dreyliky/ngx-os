@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFormControlComponent } from '@lib-core';
-import { SliderValueChangeEvent } from '../../interfaces';
+import { ISliderValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-slider',
@@ -54,7 +54,7 @@ export class SliderComponent
     public value: number = 0;
 
     @Output()
-    public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<ISliderValueChangeEvent> = new EventEmitter();
 
     @ViewChild('slider')
     private readonly sliderElementRef: ElementRef<HTMLInputElement>;

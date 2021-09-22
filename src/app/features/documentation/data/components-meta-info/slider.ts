@@ -15,7 +15,7 @@ export const SLIDER_META_INFO: ComponentMetaInfo = {
         SliderComponent
     ],
     libInterfaces: [
-        'SliderValueChangeEvent'
+        'ISliderValueChangeEvent'
     ],
     demoComponents: [
         {

@@ -1,16 +1,16 @@
 import { BaseDirectionStrategy, GridDirectionStrategyFactory } from '.';
 import { GridDirectionEnum } from '../enums';
-import { GridParams } from '../interfaces';
+import { IGridParams } from '../interfaces';
 import { Cell } from './grid-cell';
 
-export class Grid<T> implements GridParams {
+export class Grid<T> implements IGridParams {
     public readonly xAxisCellsCount: number = 10;
     public readonly yAxisCellsCount: number = 10;
     public readonly directionType: GridDirectionEnum = GridDirectionEnum.Horizontal;
     public readonly directionStrategy: BaseDirectionStrategy<T>;
     public structure: Cell<T>[][] = [];
 
-    constructor(params: GridParams) {
+    constructor(params: IGridParams) {
         Object.assign(this, params);
         this.validateCellsCount();
 

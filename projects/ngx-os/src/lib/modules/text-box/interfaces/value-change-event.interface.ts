@@ -1,4 +1,4 @@
-export interface TextBoxChangeEvent {
+export interface ITextBoxChangeEvent {
     value: string;
     originalEvent: Event;
 }
