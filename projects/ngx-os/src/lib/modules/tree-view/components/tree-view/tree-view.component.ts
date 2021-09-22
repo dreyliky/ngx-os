@@ -7,19 +7,22 @@ import { TreeNode } from '../../interfaces';
     templateUrl: './tree-view.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeViewComponent extends OsBaseComponent implements OnInit {
+export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
-    public set data(value: TreeNode<any>[]) {
+    public set data(value: TreeNode<T>[]) {
         if (value) {
             this.prepareData(value);
         }
     }
 
-    public get data(): TreeNode<any>[] {
+    public get data(): TreeNode<T>[] {
         return this._data;
     }
 
-    private _data: TreeNode<any>[];
+    private nodesExpandableStateMap: Map<TreeNode<T>, boolean> = new Map();
+    private nodesSelectedStateMap: Map<TreeNode<T>, boolean> = new Map();
+
+    private _data: TreeNode<T>[];
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -32,15 +35,39 @@ export class TreeViewComponent extends OsBaseComponent implements OnInit {
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
-    private prepareData(data: TreeNode<any>[]): void {
+    public onNodeClick(node: TreeNode<T>): void {
+        const isNodeSelected = this.nodesSelectedStateMap.get(node);
+
+        this.nodesSelectedStateMap.set(node, !isNodeSelected);
+    }
+
+    public onToggleExpandButtonClick(event: MouseEvent, node: TreeNode<T>): void {
+        if (node.children?.length) {
+            const isNodeExpanded = this.nodesExpandableStateMap.get(node);
+
+            this.nodesExpandableStateMap.set(node, !isNodeExpanded);
+        }
+
+        event.stopPropagation();
+    }
+
+    public isNodeSelected(node: TreeNode<T>): boolean {
+        return this.nodesSelectedStateMap.get(node);
+    }
+
+    public isNodeExpanded(node: TreeNode<T>): boolean {
+        return this.nodesExpandableStateMap.get(node);
+    }
+
+    private prepareData(data: TreeNode<T>[]): void {
         this._data = data
             .map((treeNode) => this.setParentForNodeAndChildren(treeNode));
     }
 
     private setParentForNodeAndChildren(
-        node: TreeNode<any>,
-        parent: TreeNode<any> = null
-    ): TreeNode<any> {
+        node: TreeNode<T>,
+        parent: TreeNode<T> = null
+    ): TreeNode<T> {
         const targetNode = { ...node, parent };
 
         if (node.children?.length) {

@@ -1,38 +1,32 @@
-<ul
-    class="os-element tree-view"
-    [ngStyle]="style"
-    [class]="styleClass"
-    [id]="id">
-
-    <ng-container
-        *ngTemplateOutlet="treeNodesTemplate; context: { nodes: data }">
-    </ng-container>
-</ul>
+<ng-container
+    *ngTemplateOutlet="treeNodesTemplate; context: { nodes: data, depth: 0 }">
+</ng-container>
 
 <ng-template
     #treeNodesTemplate
-    let-nodes="nodes">
-    <li
-        *ngFor="let node of nodes"
-        class="os-element"
-        [class.os-tree-node-expandable]="node.children?.length"
-        [class.os-tree-node-flat]="!node.children?.length">
-        <ng-template [ngIf]="node.children">
-            <details class="os-element">
-                <summary class="os-element">
-                    {{ node.label }}
-                </summary>
+    let-nodes="nodes"
+    let-depth="depth">
+    <ng-container *ngFor="let node of nodes">
+        <div
+            class="os-tree-node"
+            [style.--os-tree-node-depth]="depth"
+            [class.os-expandable]="node.children?.length"
+            [class.os-flat]="!node.children?.length"
+            [class.os-expanded]="isNodeExpanded(node)"
+            [class.os-selected]="isNodeSelected(node)"
+            (click)="onNodeClick(node)">
+            <div
+                class="os-icon"
+                (click)="onToggleExpandButtonClick($event, node)">
+            </div>
 
-                <ul class="os-element">
-                    <ng-container
-                        *ngTemplateOutlet="treeNodesTemplate; context: { nodes: node.children }">
-                    </ng-container>
-                </ul>
-            </details>
-        </ng-template>
+            <div class="os-label">{{ node.label }}</div>
+        </div>
 
-        <ng-template [ngIf]="!node.children">
-            {{ node.label }}
-        </ng-template>
-    </li>
+        <ng-container *ngIf="node?.children && isNodeExpanded(node)">
+            <ng-container
+                *ngTemplateOutlet="treeNodesTemplate; context: { nodes: node.children, depth: depth + 1 }">
+            </ng-container>
+        </ng-container>
+    </ng-container>
 </ng-template>
