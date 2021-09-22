@@ -33,7 +33,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy {
         const settings = this.shortcutSettingsService.data;
 
         this.formGroup = new FormGroup({
-            direction: new FormControl(settings?.direction ?? GridDirectionEnum.Horizontal),
+            direction: new FormControl(settings?.direction ?? GridDirectionEnum.Vertical),
             gridSize: new FormControl(settings?.gridSize ?? 72)
         });
     }

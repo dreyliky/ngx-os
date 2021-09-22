@@ -13,12 +13,12 @@ export class SubheaderComponent implements OnInit {
     public components: ComponentMetaInfo[];
 
     private readonly componentsToDisplay: OsComponentEnum[] = [
-        OsComponentEnum.Theme,
         OsComponentEnum.Window,
+        OsComponentEnum.Theme,
         OsComponentEnum.Grid,
         OsComponentEnum.List,
-        OsComponentEnum.TabGroup,
-        OsComponentEnum.Button
+        OsComponentEnum.Selectbox,
+        OsComponentEnum.TabGroup
     ];
 
     constructor(

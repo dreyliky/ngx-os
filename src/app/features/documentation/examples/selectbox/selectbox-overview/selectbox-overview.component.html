@@ -9,6 +9,16 @@
 
 <os-form-field>
     <os-selectbox
+        [value]="1"
+        [placeholder]="'Default with selected item'">
+        <os-option [value]="0">Item 1</os-option>
+        <os-option [value]="1">Item 2</os-option>
+        <os-option [value]="2">Item 3 (disabled)</os-option>
+    </os-selectbox>
+</os-form-field>
+
+<os-form-field>
+    <os-selectbox
         [placeholder]="'Disabled'"
         [isDisabled]="true">
     </os-selectbox>

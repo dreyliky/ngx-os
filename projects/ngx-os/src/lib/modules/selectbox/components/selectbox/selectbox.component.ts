@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -17,7 +18,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IS_DYNAMIC_WINDOW_CONTEXT, OsBaseFormControlComponent } from '@lib-core';
-import { EventOutside } from '@lib-helpers';
+import { EventOutside, isNil } from '@lib-helpers';
 import { Subscription } from 'rxjs';
 import { SelectboxValueChangeEvent } from '../../interfaces';
 import { OptionComponent } from '../option';
@@ -36,7 +37,7 @@ import { OptionComponent } from '../option';
 })
 export class SelectboxComponent<T>
     extends OsBaseFormControlComponent<T>
-    implements OnInit, OnDestroy, ControlValueAccessor {
+    implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
     @Input()
     public isOpened: boolean = false;
 
@@ -45,10 +46,16 @@ export class SelectboxComponent<T>
     public isDisabled: boolean = false;
 
     @Input()
+    public isAppendToBody: boolean;
+
+    @Input()
     public placeholder: string = '';
 
     @Input()
-    public value: T;
+    public set value(value: T) {
+        this.setInitialValue(value);
+        this.initSelectedOptionByValue(value);
+    }
 
     @Input()
     public displayField: keyof T;
@@ -76,26 +83,38 @@ export class SelectboxComponent<T>
     }
 
     public get _isListAppendToBody(): boolean {
-        return !this.isDynamicWindowContext;
+        return (!isNil(this.isAppendToBody)) ? this.isAppendToBody : !this.isDynamicWindowContext;
     }
 
     public get _isPlaceholderVisible(): boolean {
-        return (!!this.placeholder && (this.value === null || this.value === undefined));
+        return (!isNil(this.placeholder) && (isNil(this._value) || isNil(this._label)));
     }
 
     public get _isValueExist(): boolean {
-        return (
-            (this.value !== null || this.value !== undefined) ||
-            (!!this.displayField && !!this.value[this.displayField])
-        );
+        return !isNil(this._value);
     }
 
-    public get _valueToDisplay(): string {
-        return (this.displayField) ? this.value[this.displayField] as any : this.value;
+    public get _labelToDisplay(): string {
+        return this._label;
     }
 
+    private get _value(): any {
+        const rawValue = this.selectedOptionComponent?.value as any;
+
+        return (this.valueField) ? rawValue?.[this.valueField] : rawValue;
+    }
+
+    private get _label(): string {
+        const rawValue = this.selectedOptionComponent?.value as any;
+        const rawLabel = this.selectedOptionComponent?.getLabel();
+
+        return (this.displayField) ? rawValue?.[this.displayField] : (rawLabel ?? rawValue);
+    }
+
+    private initialValue: T;
     private optionComponentQueryList: QueryList<OptionComponent<T>>;
-    private parentSubscription = new Subscription();
+    private selectedOptionComponent: OptionComponent<T>;
+    private subscriptions: Subscription[];
 
     constructor(
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
@@ -110,8 +129,13 @@ export class SelectboxComponent<T>
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
+    public ngAfterViewInit(): void {
+        this.initSelectedOptionByValue(this.initialValue);
+        this.changeDetector.detectChanges();
+    }
+
     public ngOnDestroy(): void {
-        this.parentSubscription.unsubscribe();
+        this.unsubscribeFromSubscriptions();
     }
 
     @HostListener('document:click', ['$event'])
@@ -124,9 +148,7 @@ export class SelectboxComponent<T>
     }
 
     public writeValue(value: T): void {
-        this.value = this.getRealValue(value);
-
-        this.changeDetector.detectChanges();
+        this.setInitialValue(value);
     }
 
     protected onClick(event: PointerEvent): void {
@@ -138,13 +160,39 @@ export class SelectboxComponent<T>
         }
     }
 
-    private getRealValue(value: T): any {
-        return (this.valueField) ? value[this.valueField] : value;
+    private setInitialValue(value: T): void {
+        if (!isNil(value) && !this.initialValue) {
+            this.initialValue = value;
+        }
+    }
+
+    private getOptionComponentByValue(value: T): OptionComponent<T> {
+        return this.optionComponentQueryList
+            ?.find((optionComponent) => optionComponent.value === value);
+    }
+
+    private deselectAllOptions(): void {
+        this.optionComponentQueryList
+            ?.forEach((optionComponent) => optionComponent.setSelectedState(false));
+    }
+
+    private initSelectedOptionByValue(value: T): void {
+        const optionComponent = this.getOptionComponentByValue(value);
+
+        this.initSelectedOption(optionComponent);
+    }
+
+    private initSelectedOption(option: OptionComponent<T>): void {
+        this.selectedOptionComponent = option ?? null;
+
+        if (this.selectedOptionComponent) {
+            this.deselectAllOptions();
+            this.selectedOptionComponent.setSelectedState(true);
+        }
     }
 
     private initOptionComponentsSelectedObserver(): void {
-        this.parentSubscription.unsubscribe();
-        this.parentSubscription = new Subscription();
+        this.unsubscribeFromSubscriptions();
 
         this.optionComponentQueryList
             .forEach((optionComponent) => {
@@ -153,30 +201,32 @@ export class SelectboxComponent<T>
             });
     }
 
-    private deselectAllOptions(): void {
-        this.optionComponentQueryList
-            .forEach((optionComponent) => optionComponent.setSelectedState(false));
-    }
-
     private initOptionComponentSelectedStateObserver(optionComponent: OptionComponent<T>): void {
         const subscription = optionComponent.osSelected
             .subscribe((event: SelectboxValueChangeEvent<T>) => {
-                this.value = event.value;
-
+                this.initSelectedOption(optionComponent);
                 this.deselectAllOptions();
                 optionComponent.setSelectedState(true);
                 this.valueChange.emit(event.value);
                 this.osChange.emit(event);
                 this.onChange?.(event.value);
+                console.log(this._value, this._label, this.placeholder, this._isPlaceholderVisible);
                 this.changeDetector.detectChanges();
             });
 
-        this.parentSubscription.add(subscription);
+        this.subscriptions.push(subscription);
     }
 
     private initValueBasedOnSelectedOption(optionComponent: OptionComponent<T>): void {
         if (optionComponent.isSelected) {
-            this.value = optionComponent.value;
+            this.initSelectedOption(optionComponent);
         }
+    }
+
+    private unsubscribeFromSubscriptions(): void {
+        this.subscriptions
+            ?.forEach((subscription) => subscription.unsubscribe());
+
+        this.subscriptions = [];
     }
 }

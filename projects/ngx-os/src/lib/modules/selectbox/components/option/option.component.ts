@@ -6,10 +6,13 @@ import {
     EventEmitter,
     HostBinding,
     Input,
+    OnChanges,
     OnInit,
-    Output
+    Output,
+    SimpleChanges
 } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
+import { isNil } from '@lib-helpers';
 import { SelectboxValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -17,7 +20,7 @@ import { SelectboxValueChangeEvent } from '../../interfaces';
     templateUrl: './option.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OptionComponent<T> extends OsBaseComponent implements OnInit {
+export class OptionComponent<T> extends OsBaseComponent implements OnInit, OnChanges {
     @Input()
     @HostBinding('class.os-selected')
     public isSelected: boolean = false;
@@ -39,16 +42,14 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
         super();
     }
 
+    public ngOnChanges(changes: SimpleChanges): void {
+        this.initValueAfterValueChanged(changes);
+    }
+
     public ngOnInit(): void {
         this.classlistManager.add('os-option');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
         this.initDefaultValueIfAbsent();
-    }
-
-    public setSelectedState(state: boolean): void {
-        this.isSelected = state;
-
-        this.changeDetector.markForCheck();
     }
 
     public onListItemClick(originalEvent: MouseEvent): void {
@@ -57,9 +58,27 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit {
         }
     }
 
+    public setSelectedState(state: boolean): void {
+        this.isSelected = state;
+
+        this.changeDetector.markForCheck();
+    }
+
+    public getLabel(): string {
+        return this.hostElementRef.nativeElement.innerText || null;
+    }
+
+    private initValueAfterValueChanged(changes: SimpleChanges): void {
+        if (this.hostElementRef && (changes?.value?.previousValue !== changes?.value?.currentValue)) {
+            if (isNil(changes.value.currentValue)) {
+                this.initDefaultValueIfAbsent();
+            }
+        }
+    }
+
     private initDefaultValueIfAbsent(): void {
-        if (this.value === undefined || this.value === null) {
-            this.value = this.hostElementRef.nativeElement.innerText as any;
+        if (isNil(this.value)) {
+            this.value = this.getLabel() as any;
         }
     }
 }
