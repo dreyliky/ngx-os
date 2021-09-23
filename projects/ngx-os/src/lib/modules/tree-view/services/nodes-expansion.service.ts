@@ -3,11 +3,10 @@ import { isNil } from '@lib-helpers';
 import { TreeViewComponent } from '../components/tree-view/tree-view.component';
 import { ITreeNode, ITreeNodeExpansionEvent } from '../interfaces';
 
-/** @internal */
 @Injectable()
-export class NodesExpansionService<T> {
-    public osExpanded: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
-    public osCollapsed: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
+export class TreeNodesExpansionService<T> {
+    public _osExpanded: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
+    public _osCollapsed: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
 
     private context: TreeViewComponent<T>;
     private stateMap: Map<ITreeNode<T>, boolean> = new Map();
@@ -18,34 +17,49 @@ export class NodesExpansionService<T> {
         this.initStateMap();
     }
 
+    /** Checks is node expanded */
     public isExpanded(node: ITreeNode<T>): boolean {
         return !!this.stateMap.get(node);
     }
 
+    /** Expands all nodes */
     public expandAll(): void {
         this.setStateForNodesAndChildren(this.context.data, () => true);
     }
 
+    /** Collapses all nodes */
     public collapseAll(): void {
         this.setStateForNodesAndChildren(this.context.data, () => false);
     }
 
+    /**
+     * Expands node
+     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     **/
     public expand(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         this.stateMap.set(node, true);
-        this.osExpanded.emit({
+        this._osExpanded.emit({
             node,
             originalEvent
         });
     }
 
+    /**
+     * Collapses node
+     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     **/
     public collapse(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         this.stateMap.set(node, false);
-        this.osCollapsed.emit({
+        this._osCollapsed.emit({
             node,
             originalEvent
         });
     }
 
+    /**
+     * Expands and collapses node (sets the opposite state)
+     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     **/
     public toggle(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         const isNodeExpanded = this.stateMap.get(node);
 

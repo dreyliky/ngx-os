@@ -28,14 +28,14 @@
             </div>
 
             <div
-                *ngIf="!nodeTemplate; else wrapperForNodeTemplate"
+                *ngIf="!_nodeTemplate; else wrapperForNodeTemplate"
                 class="os-label">
                 {{ node.label }}
             </div>
 
             <ng-template #wrapperForNodeTemplate>
                 <ng-container
-                    *ngTemplateOutlet="nodeTemplate; context: { node: node }">
+                    *ngTemplateOutlet="_nodeTemplate; context: { node: node }">
                 </ng-container>
             </ng-template>
         </div>

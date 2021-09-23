@@ -1,4 +1,4 @@
-import { TreeViewComponent, TreeViewModule } from '@lib-modules';
+import { TreeNodesExpansionService, TreeNodesSelectionService, TreeViewComponent, TreeViewModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import {
     TreeViewOverviewComponent,
@@ -17,6 +17,10 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
     ],
     libComponents: [
         TreeViewComponent
+    ],
+    libServices: [
+        TreeNodesSelectionService,
+        TreeNodesExpansionService
     ],
     libInterfaces: [
         'ITreeNode',
