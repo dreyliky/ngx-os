@@ -211,7 +211,6 @@ export class SelectboxComponent<T>
                 this.valueChange.emit(event.value);
                 this.osChange.emit(event);
                 this.onChange?.(event.value);
-                console.log(this._value, this._label, this.placeholder, this._isPlaceholderVisible);
                 this.changeDetector.detectChanges();
             });
 
