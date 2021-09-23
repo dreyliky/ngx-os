@@ -100,11 +100,11 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
         }
     }
 
-    public onToggleExpandButtonClick(event: MouseEvent, node: ITreeNode<T>): void {
+    public onToggleExpandButtonClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
         if (!node.isDisabled) {
-            this.nodesExpansion.toggle(node);
+            this.nodesExpansion.toggle(node, originalEvent);
         }
 
-        event.stopPropagation();
+        originalEvent.stopPropagation();
     }
 }
