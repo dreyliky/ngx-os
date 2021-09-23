@@ -1,1 +1,1 @@
-Private service. Must be used only via TreeViewComponent, not directly.
+Private service. Must be used only via `TreeViewComponent`, not directly.
