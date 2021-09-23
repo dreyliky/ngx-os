@@ -1,108 +1,76 @@
-os-tree-view {
+.os-tree-view {
+    display: block;
+    background: #fff;
+    box-shadow: var(--border-field);
+    padding: 6px 0px;
+    box-sizing: border-box;
+    cursor: default;
 
-    ul.tree-view {
-        font-size: 11px;
-        display: block;
-        background: #ffffff;
-        padding: 2px 5px;
-        margin: 0;
-        border: 1px solid #7f9db9;
-        -webkit-font-smoothing: auto;
+    .os-tree-node {
+        width: auto;
+        min-height: 16px;
+        display: flex;
+        align-items: center;
 
-        li {
-            list-style-type: none;
-            margin-top: 3px;
+        .os-icon {
+            width: 23px;
+            height: 16px;
         }
 
-        a {
-            text-decoration: none;
-            color: #000;
-
-            &:focus {
-                background-color: #2267cb;
-                color: #ffffff;
-            }
+        .os-label {
+            padding: 1px 6px 1px 2px;
         }
 
-        ul {
-            margin-top: 3px;
-            margin-left: 16px;
-            padding-left: 16px;
-            border-left: 1px dotted #808080;
+        &.os-expandable .os-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            > li {
-                position: relative;
-
-                &::before {
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    left: -16px;
-                    top: 6px;
-                    width: 12px;
-                    border-bottom: 1px dotted #808080;
-                }
-
-                &:last-child {
-                    &::after {
-                        content: "";
-                        display: block;
-                        position: absolute;
-                        left: -20px;
-                        top: 7px;
-                        bottom: 0px;
-                        width: 8px;
-                        background: #ffffff;
-                    }
-                }
-            }
-
-            details {
-                > summary {
-                    &:before {
-                        margin-left: -22px;
-                        position: relative;
-                        z-index: 1;
-                    }
-                }
+            &:before {
+                width: 9px;
+                height: 9px;
+                display: block;
+                background-image: url('./icon/winXP_tree-view-icon.png');
+                background-position: 0px -9px;
+                background-repeat: no-repeat;
+                content: '';
+                opacity: 0.5;
             }
         }
 
-        summary::marker {
-            display: none;
-            content: '';
+        &.os-expanded .os-icon:before {
+            background-position: 0px 0px;
         }
 
-        details {
-            margin-top: 0;
-            > summary {
-                &:before {
-                    text-align: center;
-                    display: block;
-                    float: left;
-                    content: "+";
-                    border: 1px solid #808080;
-                    width: 8px;
-                    height: 9px;
-                    line-height: 9px;
-                    margin-right: 5px;
-                    padding-left: 1px;
-                    background-color: #fff;
-                }
+        &:not(.os-disabled) {
+            &.os-selected .os-label {
+                box-sizing: border-box;
+                background-color: #ece9d8;
+            }
+
+            &.os-selected:focus .os-label {
+                color: #fff;
+                background-color: rgba(var(--os-primary-color), 1);
+                outline: 1px dotted rgb(0, 0, 0);
+            }
+
+            .os-icon:before {
+                opacity: 1;
+                background-position: 0px -9px;
+            }
+
+            &.os-expanded .os-icon:before {
+                opacity: 1;
+                background-position: 0px 0px;
             }
         }
 
-        details[open] {
-            summary {
-                margin-bottom: 0;
-            }
+        &.os-disabled {
+            color: #909090;
+        }
 
-            > summary {
-                &:before {
-                    content: "-";
-                }
-            }
+        &:not(.os-root-node) :first-child {
+            margin-left: calc((16px * var(--os-tree-node-depth)));
         }
     }
-
 }

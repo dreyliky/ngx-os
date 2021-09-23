@@ -9,6 +9,7 @@
     <ng-container *ngFor="let node of nodes">
         <div
             class="os-tree-node"
+            tabindex="0"
             [style.--os-tree-node-depth]="depth"
             [ngStyle]="node.style"
             [ngClass]="node.styleClass"

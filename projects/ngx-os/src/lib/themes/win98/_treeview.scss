@@ -1,5 +1,76 @@
 .os-tree-view {
+    display: block;
+    background: #fff;
+    box-shadow: var(--border-field);
+    padding: 6px 0px;
+    box-sizing: border-box;
     cursor: default;
 
-    
+    .os-tree-node {
+        width: auto;
+        min-height: 16px;
+        display: flex;
+        align-items: center;
+
+        .os-icon {
+            width: 23px;
+            height: 16px;
+        }
+
+        .os-label {
+            padding: 1px 6px 1px 2px;
+        }
+
+        &.os-expandable .os-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:before {
+                width: 9px;
+                height: 9px;
+                display: block;
+                background-image: url('./icon/win98_tree-view-icon.png');
+                background-position: 0px -9px;
+                background-repeat: no-repeat;
+                content: '';
+                opacity: 0.5;
+            }
+        }
+
+        &.os-expanded .os-icon:before {
+            background-position: 0px 0px;
+        }
+
+        &:not(.os-disabled) {
+            &.os-selected .os-label {
+                box-sizing: border-box;
+                background-color: #d4d0c8;
+            }
+
+            &.os-selected:focus .os-label {
+                color: #fff;
+                background-color: rgba(var(--os-primary-color), 1);
+                outline: 1px dotted rgb(0, 0, 0);
+            }
+
+            .os-icon:before {
+                opacity: 1;
+                background-position: 0px -9px;
+            }
+
+            &.os-expanded .os-icon:before {
+                opacity: 1;
+                background-position: 0px 0px;
+            }
+        }
+
+        &.os-disabled {
+            color: #909090;
+        }
+
+        &:not(.os-root-node) :first-child {
+            margin-left: calc((16px * var(--os-tree-node-depth)));
+        }
+    }
 }

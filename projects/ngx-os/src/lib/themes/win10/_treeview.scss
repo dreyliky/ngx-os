@@ -50,7 +50,7 @@
         }
 
         &:not(.os-root-node) :first-child {
-            margin-left: calc(37px * var(--os-tree-node-depth));
+            margin-left: calc(10px + 27px * var(--os-tree-node-depth));
         }
     }
 }
