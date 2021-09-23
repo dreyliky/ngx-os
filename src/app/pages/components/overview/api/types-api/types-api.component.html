@@ -3,7 +3,12 @@
         [title]="docType.name"
         [iconUrl]="'/assets/icons/dev/typescript.svg'">
     </api-element-header>
-    
+
+    <api-readme-info
+        *ngIf="docType.description"
+        [readmeInfo]="docType.description">
+    </api-readme-info>
+
     <div class="content">
         <os-text>{{ docType.rawtype }}</os-text>
     </div>

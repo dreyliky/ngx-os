@@ -3,7 +3,12 @@
         [title]="docEnum.name"
         [iconUrl]="'/assets/icons/dev/typescript.svg'">
     </api-element-header>
-    
+
+    <api-readme-info
+        *ngIf="docEnum.description"
+        [readmeInfo]="docEnum.description">
+    </api-readme-info>
+
     <div class="content">
         <div *ngFor="let property of docEnum.childs">
             <os-text>

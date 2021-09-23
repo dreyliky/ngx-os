@@ -15,6 +15,7 @@ export class AccentColorService {
         this.documentElement = documentElement;
     }
 
+    /** Gets color value from CSS variable */
     public get(colorType: ThemeColorType): IThemeRgbColor {
         const cssColor = this.getFromCssVariable(colorType);
 
@@ -25,6 +26,7 @@ export class AccentColorService {
         return null;
     }
 
+    /** Sets color value into CSS variable. All components immediately change their color */
     public apply(colorType: ThemeColorType, { r, g, b }: IThemeRgbColor): void {
         const cssVariableName = this.getColorTypeCssVariableName(colorType);
 

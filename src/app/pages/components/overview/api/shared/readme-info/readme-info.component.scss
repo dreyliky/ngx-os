@@ -13,8 +13,20 @@
     }
 
     &::ng-deep {
+        :first-child {
+            margin-top: 7px;
+        }
+
+        :last-child {
+            margin-bottom: 7px;
+        }
+
         h1, h2, h3, h4, h5, h6 {
             margin: 0px;
+
+            &:not(:first-child) {
+                margin-top: 14px;
+            }
         }
 
         p {
@@ -23,10 +35,25 @@
 
         code {
             font-family: inherit;
-            background: rgba(var(--os-primary-color), .3);
-            padding: 0px 6px;
+            background: rgba(var(--os-primary-color), .15);
+            padding: 0px 5px;
             box-sizing: border-box;
             border-radius: 3px;
+        }
+
+        pre {
+            &.language-scss {
+                border-radius: 3px;
+                background: rgba(0, 0, 0, .7);
+                padding: 6px;
+                box-sizing: border-box;
+
+                code {
+                    background: transparent;
+                    color: #fff;
+                    border-radius: 0px;
+                }
+            }
         }
     }
 }

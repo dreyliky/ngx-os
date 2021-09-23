@@ -7,10 +7,12 @@ import { ThemeEnum } from '../enums';
     providedIn: 'root'
 })
 export class ThemeService {
+    /** Applied theme */
     public get applied$(): Observable<ThemeEnum> {
         return this._applied$.asObservable();
     }
 
+    /** Applied theme */
     public get applied(): ThemeEnum {
         return this._applied$.getValue();
     }
@@ -24,6 +26,7 @@ export class ThemeService {
         this.initThemeLinkElement();
     }
 
+    /** Applies theme */
     public apply(themeName: ThemeEnum): void {
         this.themeLinkElement.href = `${themeName}.css`;
 
