@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 
+/** @internal */
 export function elementResizingObserver(element: HTMLElement): Observable<HTMLElement> {
     return new Observable((subscriber) => {
         const resizeObserver = new ResizeObserver(() => subscriber.next(element));

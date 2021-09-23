@@ -1,13 +1,16 @@
+/** @internal */
 class Params {
     public delayBetweenChecksInMs: number = 8;
     public maxCheckCount: number = 30;
 }
 
+/** @internal */
 interface StartParams {
     onIteration?: () => void;
     onEnd?: () => void;
 }
 
+/** @internal */
 export class IntervalCheckerHelper {
     private readonly delayBetweenChecksInMs: number;
     private readonly maxCheckCount: number;

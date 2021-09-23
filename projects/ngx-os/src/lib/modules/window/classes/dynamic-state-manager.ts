@@ -1,6 +1,6 @@
 import { DynamicStateEnum } from '../enums';
 
-/** Private class */
+/** @internal */
 export class DynamicStateManager {
     public get state(): DynamicStateEnum {
         return this._state;

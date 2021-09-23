@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
 import { IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
 
+/** @internal */
 export class DynamicWindowRef implements IDynamicWindowRef {
     public get isHidden$(): Observable<boolean> {
         return this._isHidden$.asObservable();

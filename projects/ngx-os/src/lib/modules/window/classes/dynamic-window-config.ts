@@ -1,6 +1,7 @@
 import { ResizerEnum } from '../../resizer';
 import { IDynamicWindowParams } from '../interfaces/dynamic-window-params.interface';
 
+/** @internal */
 export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowParams {
     public title?: string = 'OS dynamic window';
     public data?: D;

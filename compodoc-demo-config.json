@@ -2,5 +2,10 @@
     "exportFormat": "json",
     "output": "src/assets/demo-doc",
     "tsconfig": "tsconfig.doc.json",
-    "silent": true
+    "silent": true,
+    "minimal": true,
+    "disablePrivate": true,
+    "disableProtected": true,
+    "disableInternal": true,
+    "disableLifeCycleHooks": true
 }

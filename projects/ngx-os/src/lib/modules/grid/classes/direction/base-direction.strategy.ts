@@ -1,6 +1,7 @@
 import { Grid } from '../grid';
 import { Cell } from '../grid-cell';
 
+/** @internal */
 export abstract class BaseDirectionStrategy<T> {
     constructor(
         public readonly context: Grid<T>

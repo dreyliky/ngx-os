@@ -2,6 +2,7 @@ import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
 import { ResizerConfig } from './resizer-config';
 
+/** @internal */
 export abstract class BaseResizer {
     public static readonly id: ResizerEnum;
 

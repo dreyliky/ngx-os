@@ -1,6 +1,7 @@
 import { Cell } from '../grid-cell';
 import { BaseDirectionStrategy } from './base-direction.strategy';
 
+/** @internal */
 export class VerticalDirectionStrategy<T> extends BaseDirectionStrategy<T> {
     public next(cell: Cell<T>): Cell<T> {
         if (this.context.structure?.[cell.y + 1]?.[cell.x]) {

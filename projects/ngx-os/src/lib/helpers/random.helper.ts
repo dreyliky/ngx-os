@@ -1,3 +1,4 @@
+/** @internal */
 export abstract class RandomHelper {
     public static getRandomInt(min: number, max: number): number {
         const minN = Math.ceil(min);

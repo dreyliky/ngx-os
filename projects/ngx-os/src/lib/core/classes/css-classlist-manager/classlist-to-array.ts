@@ -1,3 +1,4 @@
+/** @internal */
 export abstract class CssClasslistToArrayHelper {
     public static transform(classlist: string | string[] | object): string[] {
         if (typeof classlist === 'string') {

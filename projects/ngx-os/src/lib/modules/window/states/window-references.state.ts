@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DynamicWindowRef } from '../classes';
 
-/** Private service */
+/** @internal */
 @Injectable({
     providedIn: 'root'
 })

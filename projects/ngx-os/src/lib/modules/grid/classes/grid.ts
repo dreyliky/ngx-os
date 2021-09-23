@@ -3,6 +3,7 @@ import { GridDirectionEnum } from '../enums';
 import { IGridParams } from '../interfaces';
 import { Cell } from './grid-cell';
 
+/** @internal */
 export class Grid<T> implements IGridParams {
     public readonly xAxisCellsCount: number = 10;
     public readonly yAxisCellsCount: number = 10;

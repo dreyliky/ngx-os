@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 
+/** @internal */
 interface Item {
     name: string;
     value: number;
 }
 
+/** @internal */
 @Component({
     selector: 'demo-selectbox-with-interval-value-change',
     templateUrl: './selectbox-with-interval-value-change.component.html',

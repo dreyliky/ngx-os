@@ -3,6 +3,7 @@ import { ResizerEnum } from '../enums';
 import { IResizerParams } from '../interfaces';
 import { xAxisStyleNameType, yAxisStyleNameType } from '../types';
 
+/** @internal */
 export class ResizerConfig implements IResizerParams {
     public targetElement?: HTMLElement;
     public minWidth?: number = 20;

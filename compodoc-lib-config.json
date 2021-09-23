@@ -3,5 +3,10 @@
     "output": "src/assets/lib-doc",
     "tsconfig": "projects/ngx-os/tsconfig.lib.json",
     "silent": true,
-    "disableSourceCode": true
+    "disableSourceCode": true,
+    "minimal": true,
+    "disablePrivate": true,
+    "disableProtected": true,
+    "disableInternal": true,
+    "disableLifeCycleHooks": true
 }

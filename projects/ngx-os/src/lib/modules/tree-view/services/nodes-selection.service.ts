@@ -3,7 +3,7 @@ import { isNil } from '@lib-helpers';
 import { TreeViewComponent } from '../components/tree-view/tree-view.component';
 import { ITreeNode, ITreeNodeSelectionEvent } from '../interfaces';
 
-/** Private service */
+/** @internal */
 @Injectable()
 export class NodesSelectionService<T> {
     public osSelected: EventEmitter<ITreeNodeSelectionEvent<T>> = new EventEmitter();
@@ -28,30 +28,36 @@ export class NodesSelectionService<T> {
         return !!this.stateMap.get(node);
     }
 
-    public select(node: ITreeNode<T>): void {
+    public select(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         this.stateMap.set(node, true);
         this.osSelected.emit({
+            originalEvent,
             target: node,
             allSelected: this.getAllSelected()
         });
     }
 
-    public deselect(node: ITreeNode<T>): void {
+    public deselect(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         this.stateMap.set(node, false);
         this.osDeselected.emit({
+            originalEvent,
             target: node,
             allSelected: this.getAllSelected()
         });
     }
 
-    public toggle(node: ITreeNode<T>): void {
-        (this.isSelected(node)) ? this.deselect(node) : this.select(node);
+    public toggle(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+        if (this.isSelected(node)) {
+            this.deselect(node, originalEvent);
+        } else {
+            this.select(node, originalEvent);
+        }
     }
 
-    public deselectAllExceptSpecific(node: ITreeNode<T>): void {
+    public deselectAllExceptSpecific(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         this.stateMap.forEach((state, currNode) => {
             if (state && currNode !== node) {
-                this.deselect(currNode);
+                this.deselect(currNode, originalEvent);
             }
         });
     }
@@ -62,10 +68,12 @@ export class NodesSelectionService<T> {
     ): void {
         nodes.forEach((node) => {
             if (node?.children?.length) {
-                const state = getState(node);
+                const newState = getState(node);
+                const currentState = this.stateMap.get(node);
 
-                this.stateMap.set(node, state);
-                this.setStateForNodesAndChildren(node.children, getState);
+                if (!isNil(newState) && (newState !== currentState)) {
+                    (newState) ? this.select(node) : this.deselect(node);
+                }
             }
         });
     }

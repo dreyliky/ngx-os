@@ -10,6 +10,7 @@ import { TopLeftResizer } from './top-left-resizer';
 import { TopResizer } from './top-resizer';
 import { TopRightResizer } from './top-right-resizer';
 
+/** @internal */
 export abstract class ResizerFactory {
     private static readonly resizers = [
         TopLeftResizer,

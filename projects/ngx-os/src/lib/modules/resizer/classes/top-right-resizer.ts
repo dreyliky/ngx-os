@@ -2,6 +2,7 @@
 import { ResizerEnum } from '../enums';
 import { BaseResizer } from './base-resizer';
 
+/** @internal */
 export class TopRightResizer extends BaseResizer {
     public static id = ResizerEnum.topRight;
 

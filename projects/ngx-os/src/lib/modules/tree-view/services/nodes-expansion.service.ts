@@ -1,13 +1,13 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { isNil } from '@lib-helpers';
 import { TreeViewComponent } from '../components/tree-view/tree-view.component';
-import { ITreeNode } from '../interfaces';
+import { ITreeNode, ITreeNodeExpansionEvent } from '../interfaces';
 
-/** Private service */
+/** @internal */
 @Injectable()
 export class NodesExpansionService<T> {
-    public osExpanded: EventEmitter<ITreeNode<T>> = new EventEmitter();
-    public osCollapsed: EventEmitter<ITreeNode<T>> = new EventEmitter();
+    public osExpanded: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
+    public osCollapsed: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
 
     private context: TreeViewComponent<T>;
     private stateMap: Map<ITreeNode<T>, boolean> = new Map();
@@ -30,10 +30,30 @@ export class NodesExpansionService<T> {
         this.setStateForNodesAndChildren(this.context.data, () => false);
     }
 
-    public toggle(node: ITreeNode<T>): void {
+    public expand(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+        this.stateMap.set(node, true);
+        this.osExpanded.emit({
+            node,
+            originalEvent
+        });
+    }
+
+    public collapse(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+        this.stateMap.set(node, false);
+        this.osCollapsed.emit({
+            node,
+            originalEvent
+        });
+    }
+
+    public toggle(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         const isNodeExpanded = this.stateMap.get(node);
 
-        this.stateMap.set(node, !isNodeExpanded);
+        if (isNodeExpanded) {
+            this.collapse(node, originalEvent);
+        } else {
+            this.expand(node, originalEvent);
+        }
     }
 
     private setStateForNodesAndChildren(
@@ -42,9 +62,13 @@ export class NodesExpansionService<T> {
     ): void {
         nodes.forEach((node) => {
             if (node?.children?.length) {
-                const state = getState(node);
+                const newState = getState(node);
+                const currentState = this.stateMap.get(node);
 
-                this.stateMap.set(node, state);
+                if (!isNil(newState) && (newState !== currentState)) {
+                    (newState) ? this.expand(node) : this.collapse(node);
+                }
+
                 this.setStateForNodesAndChildren(node.children, getState);
             }
         });

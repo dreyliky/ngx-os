@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DynamicWindowRef } from '../classes';
 import { WindowReferencesState } from '../states';
 
-/** Private service */
+/** @internal */
 @Injectable({
     providedIn: 'root'
 })

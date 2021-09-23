@@ -1,5 +1,6 @@
 import { CssClasslistToArrayHelper } from './classlist-to-array';
 
+/** @internal */
 export class ClasslistManager {
     private readonly data: string[] = [];
 

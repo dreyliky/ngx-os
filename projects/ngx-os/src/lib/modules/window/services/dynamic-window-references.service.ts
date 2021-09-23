@@ -6,7 +6,7 @@ import { WindowReferencesState } from '../states';
 import { DynamicWindowActivityService } from './dynamic-window-activity.service';
 import { DynamicWindowRefOrderingService } from './dynamic-window-ref-ordering.service';
 
-/** Private service */
+/** @internal */
 @Injectable({
     providedIn: 'root'
 })

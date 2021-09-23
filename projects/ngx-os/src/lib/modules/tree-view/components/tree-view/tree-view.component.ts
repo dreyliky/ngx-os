@@ -10,7 +10,7 @@ import {
     TemplateRef
 } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
-import { ITreeNode, ITreeNodeClickEvent, ITreeNodeSelectionEvent } from '../../interfaces';
+import { ITreeNode, ITreeNodeClickEvent, ITreeNodeExpansionEvent, ITreeNodeSelectionEvent } from '../../interfaces';
 import { NodesExpansionService, NodesSelectionService } from '../../services';
 
 @Component({
@@ -52,12 +52,12 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
     }
 
     @Output()
-    public get osNodeExpanded(): EventEmitter<ITreeNode<T>> {
+    public get osNodeExpanded(): EventEmitter<ITreeNodeExpansionEvent<T>> {
         return this.nodesExpansion.osExpanded;
     }
 
     @Output()
-    public get osNodeCollapsed(): EventEmitter<ITreeNode<T>> {
+    public get osNodeCollapsed(): EventEmitter<ITreeNodeExpansionEvent<T>> {
         return this.nodesExpansion.osCollapsed;
     }
 
@@ -90,13 +90,13 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
         }
 
         if (!this.isAllowMultipleSelection) {
-            this.nodesSelection.deselectAllExceptSpecific(node);
+            this.nodesSelection.deselectAllExceptSpecific(node, originalEvent);
         }
 
         if (this.isSelectionInToggleMode) {
-            this.nodesSelection.toggle(node);
+            this.nodesSelection.toggle(node, originalEvent);
         } else {
-            this.nodesSelection.select(node);
+            this.nodesSelection.select(node, originalEvent);
         }
     }
 

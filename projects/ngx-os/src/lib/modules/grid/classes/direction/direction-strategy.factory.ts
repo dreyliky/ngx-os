@@ -4,6 +4,7 @@ import { BaseDirectionStrategy } from './base-direction.strategy';
 import { HorizontalDirectionStrategy } from './horizontal-direction.strategy';
 import { VerticalDirectionStrategy } from './vertical-direction.strategy';
 
+/** @internal */
 export abstract class GridDirectionStrategyFactory {
     public static create<T>(type: GridDirectionEnum, context: Grid<T>): BaseDirectionStrategy<T> {
         switch (type) {

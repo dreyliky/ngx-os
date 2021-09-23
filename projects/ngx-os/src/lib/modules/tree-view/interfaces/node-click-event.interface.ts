@@ -1,6 +1,6 @@
 import { ITreeNode } from './node.interface';
 
 export interface ITreeNodeClickEvent<T = any> {
-    originalEvent: MouseEvent;
+    originalEvent?: MouseEvent;
     node: ITreeNode<T>
 }

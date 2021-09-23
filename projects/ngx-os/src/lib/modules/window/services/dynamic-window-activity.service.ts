@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { WindowReferencesState } from '../states';
 
-/** Private service */
+/** @internal */
 @Injectable({
     providedIn: 'root'
 })

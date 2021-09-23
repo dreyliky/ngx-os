@@ -1,5 +1,6 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
+/** @internal */
 @Directive({
     selector: '[dynamicWindowContent]'
 })

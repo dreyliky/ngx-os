@@ -1,6 +1,7 @@
 import { ICellParams } from '../interfaces';
 import { Grid } from './grid';
 
+/** @internal */
 export class Cell<T> {
     public readonly x: number;
     public readonly y: number;

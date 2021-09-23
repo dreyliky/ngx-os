@@ -4,6 +4,7 @@ import { IDynamicWindowDiParams, IDynamicWindowParams } from '../interfaces';
 import { DynamicWindowConfig } from './dynamic-window-config';
 import { DynamicWindowRef } from './dynamic-window-ref';
 
+/** @internal */
 export class DynamicWindowInjector implements Injector {
     private readonly parentInjector: Injector;
     private readonly config: IDynamicWindowParams;
