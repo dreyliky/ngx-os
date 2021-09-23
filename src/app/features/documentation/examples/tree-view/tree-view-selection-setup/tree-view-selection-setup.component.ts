@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ITreeNode } from '@lib-modules';
+import { ITreeNode, ITreeNodeSelectionEvent } from '@lib-modules';
 
 @Component({
     selector: 'demo-tree-view-selection-setup',
@@ -12,7 +12,7 @@ export class TreeViewSelectionSetupComponent {
     public isAllowMultipleSelection: boolean = true;
     public isSelectionInToggleMode: boolean = true;
 
-    public readonly data: ITreeNode[] = [
+    public readonly nodes: ITreeNode[] = [
         {
             label: 'Fruits',
             children: [
@@ -38,16 +38,32 @@ export class TreeViewSelectionSetupComponent {
                         { label: 'Yellow' },
                         { label: 'White' },
                         { label: 'Purple' }
-                    ]
+                    ],
+                    isDisabled: true
                 }
-            ]
+            ],
+            isSelectedByDefault: true,
+            isExpandedByDefault: true
         },
         {
             label: 'Berries',
-            isDisabled: true,
             children: [
-                { label: 'Strawberry' }
-            ]
+                { label: 'Strawberry', isDisabled: true }
+            ],
+            isExpandedByDefault: true,
+            isDisabled: true
         }
     ];
+
+    public get selectedNodesAsString(): string {
+        return this._selectedNodes
+            .map((node) => node.label)
+            .join(', ');
+    }
+
+    private _selectedNodes: ITreeNode[] = [];
+
+    public onNodeToggleSelection({ allSelected }: ITreeNodeSelectionEvent): void {
+        this._selectedNodes = allSelected;
+    }
 }

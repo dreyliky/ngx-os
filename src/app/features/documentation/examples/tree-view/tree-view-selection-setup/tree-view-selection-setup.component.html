@@ -20,8 +20,14 @@
 </os-form-field>
 
 <os-tree-view
-    [data]="data"
+    [data]="nodes"
     [isAllowSelection]="isAllowSelection"
     [isAllowMultipleSelection]="isAllowMultipleSelection"
-    [isSelectionInToggleMode]="isSelectionInToggleMode">
+    [isSelectionInToggleMode]="isSelectionInToggleMode"
+    (osNodeSelected)="onNodeToggleSelection($event)"
+    (osNodeDeselected)="onNodeToggleSelection($event)">
 </os-tree-view>
+
+<os-text>
+    Selected items: {{ selectedNodesAsString }}
+</os-text>

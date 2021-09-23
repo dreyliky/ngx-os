@@ -10,12 +10,17 @@ import {
     TemplateRef
 } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
-import { ITreeNode } from '../../interfaces';
+import { ITreeNode, ITreeNodeClickEvent, ITreeNodeSelectionEvent } from '../../interfaces';
+import { NodesExpansionService, NodesSelectionService } from '../../services';
 
 @Component({
     selector: 'os-tree-view',
     templateUrl: './tree-view.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        NodesExpansionService,
+        NodesSelectionService
+    ]
 })
 export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
@@ -30,19 +35,41 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
     public isSelectionInToggleMode: boolean = false;
 
-    @Output()
-    public osNodeSelected: EventEmitter<ITreeNode<T>> = new EventEmitter();
+    @Input()
+    public isAllNodesExpandedByDefault: boolean = false;
+
+    @Input()
+    public isAllowMultipleExpansion: boolean = true;
 
     @Output()
-    public osNodeDeselected: EventEmitter<ITreeNode<T>> = new EventEmitter();
+    public get osNodeSelected(): EventEmitter<ITreeNodeSelectionEvent<T>> {
+        return this.nodesSelection.osSelected;
+    }
+
+    @Output()
+    public get osNodeDeselected(): EventEmitter<ITreeNodeSelectionEvent<T>> {
+        return this.nodesSelection.osDeselected;
+    }
+
+    @Output()
+    public get osNodeExpanded(): EventEmitter<ITreeNode<T>> {
+        return this.nodesExpansion.osExpanded;
+    }
+
+    @Output()
+    public get osNodeCollapsed(): EventEmitter<ITreeNode<T>> {
+        return this.nodesExpansion.osCollapsed;
+    }
+
+    @Output()
+    public osNodeClick: EventEmitter<ITreeNodeClickEvent<T>> = new EventEmitter();
 
     @ContentChild('nodeTemplate')
     public nodeTemplate: TemplateRef<any>;
 
-    private nodesExpandableStateMap: Map<ITreeNode<T>, boolean> = new Map();
-    private nodesSelectedStateMap: Map<ITreeNode<T>, boolean> = new Map();
-
     constructor(
+        public readonly nodesSelection: NodesSelectionService<T>,
+        public readonly nodesExpansion: NodesExpansionService<T>,
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {
         super();
@@ -51,64 +78,33 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
     public ngOnInit(): void {
         this.classlistManager.add('os-tree-view');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.nodesSelection._init(this);
+        this.nodesExpansion._init(this);
     }
 
-    public onNodeClick(node: ITreeNode<T>): void {
+    public onNodeClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
+        this.osNodeClick.emit({ originalEvent, node });
+
         if (node.isDisabled || !this.isAllowSelection) {
             return;
         }
 
         if (!this.isAllowMultipleSelection) {
-            this.deselectAllNodesExceptSpecific(node);
+            this.nodesSelection.deselectAllExceptSpecific(node);
         }
 
         if (this.isSelectionInToggleMode) {
-            this.toggleNodeSelection(node);
+            this.nodesSelection.toggle(node);
         } else {
-            this.selectNode(node);
+            this.nodesSelection.select(node);
         }
     }
 
     public onToggleExpandButtonClick(event: MouseEvent, node: ITreeNode<T>): void {
-        if (!node.isDisabled && node.children?.length) {
-            const isNodeExpanded = this.nodesExpandableStateMap.get(node);
-
-            this.nodesExpandableStateMap.set(node, !isNodeExpanded);
+        if (!node.isDisabled) {
+            this.nodesExpansion.toggle(node);
         }
 
         event.stopPropagation();
-    }
-
-    public isNodeSelected(node: ITreeNode<T>): boolean {
-        return this.nodesSelectedStateMap.get(node);
-    }
-
-    public isNodeExpanded(node: ITreeNode<T>): boolean {
-        return this.nodesExpandableStateMap.get(node);
-    }
-
-    public toggleNodeSelection(node: ITreeNode<T>): void {
-        const isNodeSelected = this.nodesSelectedStateMap.get(node);
-
-        this.nodesSelectedStateMap.set(node, !isNodeSelected);
-        this.osNodeSelected.emit(node);
-    }
-
-    public selectNode(node: ITreeNode<T>): void {
-        this.nodesSelectedStateMap.set(node, true);
-        this.osNodeSelected.emit(node);
-    }
-
-    public deselectNode(node: ITreeNode<T>): void {
-        this.nodesSelectedStateMap.set(node, false);
-        this.osNodeDeselected.emit(node);
-    }
-
-    private deselectAllNodesExceptSpecific(node: ITreeNode<T>): void {
-        this.nodesSelectedStateMap.forEach((state, currNode) => {
-            if (state && currNode !== node) {
-                this.deselectNode(currNode);
-            }
-        });
     }
 }

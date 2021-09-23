@@ -14,7 +14,7 @@ export class SubheaderComponent implements OnInit {
 
     private readonly componentsToDisplay: OsComponentEnum[] = [
         OsComponentEnum.Window,
-        OsComponentEnum.Theme,
+        OsComponentEnum.TreeView,
         OsComponentEnum.Grid,
         OsComponentEnum.List,
         OsComponentEnum.Selectbox,

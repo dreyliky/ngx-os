@@ -10,15 +10,19 @@
         <div
             class="os-tree-node"
             [style.--os-tree-node-depth]="depth"
+            [ngStyle]="node.style"
+            [ngClass]="node.styleClass"
             [class.os-root-node]="!depth"
             [class.os-disabled]="node.isDisabled"
             [class.os-expandable]="node.children?.length"
             [class.os-flat]="!node.children?.length"
-            [class.os-expanded]="isNodeExpanded(node)"
-            [class.os-selected]="isNodeSelected(node)"
-            (click)="onNodeClick(node)">
+            [class.os-expanded]="nodesExpansion.isExpanded(node)"
+            [class.os-selected]="nodesSelection.isSelected(node)"
+            (click)="onNodeClick($event, node)">
             <div
                 class="os-icon"
+                [ngClass]="node.iconStyleClass"
+                [ngStyle]="node.iconStyle"
                 (click)="onToggleExpandButtonClick($event, node)">
             </div>
 
@@ -35,7 +39,7 @@
             </ng-template>
         </div>
 
-        <ng-container *ngIf="node?.children && isNodeExpanded(node)">
+        <ng-container *ngIf="node?.children && nodesExpansion.isExpanded(node)">
             <ng-container
                 *ngTemplateOutlet="treeNodesTemplate; context: { nodes: node.children, depth: depth + 1 }">
             </ng-container>
