@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { IThemeRgbColor } from '@lib-modules';
-import { Subscription } from 'rxjs';
-import { BackgroundMetadata, BackgroundService } from './features/background';
-import { BackgroundTypeEnum } from './features/background/enums';
+import { Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { BackgroundMetadata, BackgroundService, BackgroundTypeEnum } from './features/background';
+import { TaskbarPlacementService, TASKBAR_PLACEMENT_ARRAY } from './modules/taskbar';
 
 @Component({
     selector: 'demo-desktop-page',
@@ -13,23 +14,29 @@ import { BackgroundTypeEnum } from './features/background/enums';
 })
 export class DesktopComponent implements OnInit, OnDestroy {
     @HostBinding('style.background')
-    protected hostBackground: string;
+    public hostBackground: string;
 
-    private backgroundSubscription: Subscription;
+    @HostBinding('class')
+    protected hostClasslist: string;
+
+    private untilDestroyed$ = new Subject();
 
     constructor(
         private readonly titleService: Title,
+        private readonly taskbarPlacementService: TaskbarPlacementService,
         private readonly backgroundService: BackgroundService,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
     public ngOnInit(): void {
         this.titleService.setTitle('ngx-os - Desktop');
+        this.initTaskbarPlacementObserver();
         this.initBackgroundObserver();
     }
 
     public ngOnDestroy(): void {
-        this.backgroundSubscription.unsubscribe();
+        this.untilDestroyed$.next();
+        this.untilDestroyed$.complete();
     }
 
     private initHostBackground({ type, data }: BackgroundMetadata): void {
@@ -42,8 +49,24 @@ export class DesktopComponent implements OnInit, OnDestroy {
         }
     }
 
+    private initTaskbarPlacementObserver(): void {
+        this.taskbarPlacementService.data$
+            .pipe(
+                takeUntil(this.untilDestroyed$),
+                map((data) => TASKBAR_PLACEMENT_ARRAY.find((placement) => placement.id === data))
+            )
+            .subscribe((placement) => {
+                this.hostClasslist = placement.cssClassName;
+
+                this.changeDetector.detectChanges();
+            });
+    }
+
     private initBackgroundObserver(): void {
-        this.backgroundSubscription = this.backgroundService.data$
+        this.backgroundService.data$
+            .pipe(
+                takeUntil(this.untilDestroyed$)
+            )
             .subscribe((backgroundMetadata) => {
                 this.initHostBackground(backgroundMetadata);
                 this.changeDetector.markForCheck();

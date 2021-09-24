@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
+import { TaskbarPlacementService } from './services';
 import { TaskbarComponent } from './taskbar.component';
 
 @NgModule({
@@ -11,6 +12,9 @@ import { TaskbarComponent } from './taskbar.component';
     ],
     exports: [
         TaskbarComponent
+    ],
+    providers: [
+        TaskbarPlacementService
     ]
 })
 export class TaskbarModule {}

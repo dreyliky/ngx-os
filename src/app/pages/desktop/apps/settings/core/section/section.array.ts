@@ -17,5 +17,9 @@ export const SECTIONS: Section[] = [
     {
         id: SectionEnum.Shortcuts,
         name: 'Shortcuts'
+    },
+    {
+        id: SectionEnum.Taskbar,
+        name: 'Taskbar'
     }
 ];

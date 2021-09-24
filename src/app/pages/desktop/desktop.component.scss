@@ -2,5 +2,30 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+
+    &.taskbar-bottom {
+        flex-direction: column;
+    }
+
+    &.taskbar-top {
+        flex-direction: column-reverse;
+    }
+
+    &.taskbar-left {
+        flex-direction: row-reverse;
+    }
+
+    &.taskbar-right {
+        flex-direction: row;
+    }
+}
+
+desktop-shortcuts-zone {
+    width: 100%;
+    height: 100%;
+    flex: auto;
+}
+
+desktop-taskbar {
+    flex: 1;
 }

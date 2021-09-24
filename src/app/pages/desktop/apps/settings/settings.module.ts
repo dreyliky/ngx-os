@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { FeaturesModule } from '@Features';
 import { ContentComponent, SidebarComponent } from './components';
-import { AccentColorComponent, BackgroundSectionModule, ShortcutsComponent, ThemeComponent } from './containers';
+import {
+    AccentColorComponent,
+    BackgroundSectionModule,
+    ShortcutsComponent,
+    TaskbarComponent,
+    ThemeComponent
+} from './containers';
 import { SettingsAppComponent } from './settings.component';
 
 @NgModule({
@@ -12,7 +18,8 @@ import { SettingsAppComponent } from './settings.component';
         ContentComponent,
         ThemeComponent,
         AccentColorComponent,
-        ShortcutsComponent
+        ShortcutsComponent,
+        TaskbarComponent
     ],
     imports: [
         SharedModule,

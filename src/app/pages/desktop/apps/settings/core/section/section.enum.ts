@@ -2,5 +2,6 @@ export enum SectionEnum {
     Theme,
     AccentColor,
     Background,
-    Shortcuts
+    Shortcuts,
+    Taskbar
 }
