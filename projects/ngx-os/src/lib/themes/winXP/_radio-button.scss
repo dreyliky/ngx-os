@@ -1,4 +1,4 @@
-os-radio-button {
+.os-radio-button {
     display: block;
     margin: 8px 0px;
 
@@ -12,23 +12,21 @@ os-radio-button {
         opacity: 0;
         border: none;
 
-        + {
-            label {
-                height: 13px;
-                position: relative;
-                margin-left: 19px;
+        + label {
+            height: 13px;
+            position: relative;
+            margin-left: 19px;
 
-                &::before {
-                    width: 13px;
-                    height: 13px;
-                    display: inline-block;
-                    position: absolute;
-                    top: 0;
-                    left: -19px;
-                    margin-right: 6px;
-                    background-image: url('./icon/winXP_radio-button.png');
-                    content: "";
-                }
+            &::before {
+                width: 13px;
+                height: 13px;
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                left: -19px;
+                margin-right: 6px;
+                background-image: url('./icon/winXP_radio-button.png');
+                content: "";
             }
         }
 
@@ -36,45 +34,37 @@ os-radio-button {
             background-position: 0px -13px;
         }
 
-        &:active + label::before {
-            background-position: 0px -26px;
-        }
-
-        &:checked {
-            + {
-                label {
-                    &::after {
-                        width: 5px;
-                        height: 5px;
-                        display: block;
-                        top: 4px;
-                        left: -15px;
-                        content: "";
-                        position: absolute;
-                        background: url("./icon/winXP_radio-button-checkmark.png");
-                    }
-                }
-            }
+        &:checked + label:after {
+            width: 5px;
+            height: 5px;
+            display: block;
+            top: 4px;
+            left: -15px;
+            content: "";
+            position: absolute;
+            background: url("./icon/winXP_radio-button-checkmark.png");
         }
 
         &:focus + label.os-has-text {
             outline: 1px dotted #000000;
         }
-    }
 
-    input[type="radio"][disabled] {
-        + {
-            label {
+        &:disabled {
+            + label {
                 color: #a1a192;
 
                 &::before {
                     background-position: 0px -39px;
                 }
             }
+    
+            &:checked + label::after {
+                background-position: 0px -5px;
+            }
         }
+    }
 
-        &:checked + label::after {
-            background-position: 0px -5px;
-        }
+    &:active:not(.os-disabled) input + label:before {
+        background-position: 0px -26px !important;
     }
 }

@@ -17,11 +17,6 @@ os-checkbox {
             position: relative;
             margin-left: 19px;
 
-            &::after {
-                background-image: url("./icon/win98_checkmark.png");
-                background-repeat: no-repeat;
-            }
-
             &::before {
                 width: 13px;
                 height: 13px;
@@ -30,44 +25,42 @@ os-checkbox {
                 top: 0;
                 left: -19px;
                 margin-right: 6px;
+                background-image: url("./icon/win98_checkbox.png");
                 content: "";
-                background: #ffffff;
-                box-shadow: var(--border-field);
             }
+        }
+
+        &:checked + label::before {
+            background-position: 0px -13px;
         }
 
         &:focus + label.os-has-text {
             outline: 1px dotted rgb(0, 0, 0);
         }
 
-        &:active + label::before {
-            background: rgb(var(--os-background-color));
-        }
+        &[disabled] {
+            + label {
+                color: grey;
+                text-shadow: 1px 1px 0 #fff;
 
-        &:checked + label::after {
-            content: "";
-            display: block;
-            width: 7px;
-            height: 7px;
-            position: absolute;
-            background-position: 0px 0px;
-            top: 3px;
-            left: -16px;
+                &::before {
+                    background-position: 0px -26px;
+                }
+            }
+
+            &:checked + label::before {
+                background-position: 0px -39px;
+            }
         }
     }
 
-    input[type="checkbox"][disabled] {
-        + label {
-            color: grey;
-            text-shadow: 1px 1px 0 #fff;
-
-            &::before {
-                background: rgb(var(--os-background-color));
-            }
+    &:active:not(.os-disabled) {
+        input + label:before {
+            background-position: 0px -26px;
         }
 
-        &:checked + label::after {
-            background-position: 0px -7px;
+        &.os-checked input + label:before {
+            background-position: 0px -52px;
         }
     }
 }

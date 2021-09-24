@@ -63,11 +63,11 @@ os-checkbox {
         }
     }
 
-    &:hover input:not(:disabled) + label:before {
+    &:hover:not(.os-disabled) input + label:before {
         background-position: 0px -13px;
     }
 
-    &:active input + label:before {
+    &:active:not(.os-disabled) input + label:before {
         background-position: 0px -26px !important;
     }
 }

@@ -55,4 +55,14 @@ os-radio-button {
             }
         }
     }
+
+    &:active:not(.os-disabled) {
+        input + label:before {
+            background-position: 0px -24px;
+        }
+
+        &.os-checked input + label:before {
+            background-position: 0px -48px !important;
+        }
+    }
 }
