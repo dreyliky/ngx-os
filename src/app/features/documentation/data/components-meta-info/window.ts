@@ -1,5 +1,6 @@
 import {
     DynamicWindowService,
+    DynamicWindowSharedConfigService,
     TitleBarComponent,
     WindowComponent,
     WindowModule
@@ -26,7 +27,8 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
         TitleBarComponent
     ],
     libServices: [
-        DynamicWindowService
+        DynamicWindowService,
+        DynamicWindowSharedConfigService
     ],
     libInterfaces: [
         'IDynamicWindowRef',
