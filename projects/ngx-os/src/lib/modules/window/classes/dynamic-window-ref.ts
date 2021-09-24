@@ -69,6 +69,12 @@ export class DynamicWindowRef implements IDynamicWindowRef {
     private _windowElement: HTMLElement;
     private _componentRef: ComponentRef<DynamicWindowComponent>;
 
+    public init(config: IDynamicWindowParams): void {
+        this.updateConfig(config);
+        this.setIsHiddenState(config.isHiddenByDefault);
+        this.setIsFullscreenState(config.isFullscreenByDefault);
+    }
+
     public updateConfig(config: IDynamicWindowParams): void {
         this._config$.next({ ...this.config, ...config });
     }

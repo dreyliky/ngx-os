@@ -16,7 +16,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
 import { IResizeInfo } from '../../../resizer';
-import { SHARED_DYNAMIC_WINDOW_CONFIG } from '../../data';
+import { DYNAMIC_WINDOW_SHARED_CONFIG } from '../../data';
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicStateEnum } from '../../enums';
 import { IDynamicWindowParams } from '../../interfaces';
@@ -36,7 +36,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private readonly draggableDirective: DraggableDirective;
 
     constructor(
-        @Inject(SHARED_DYNAMIC_WINDOW_CONFIG) private sharedConfig$: Observable<IDynamicWindowParams>,
+        @Inject(DYNAMIC_WINDOW_SHARED_CONFIG) private sharedConfig$: Observable<IDynamicWindowParams>,
         private readonly hostElementRef: ElementRef<HTMLElement>,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
@@ -200,7 +200,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         const subscription = this.windowRef.isActive$
             .subscribe(() => {
                 this.updateZIndex();
-                this.changeDetector.markForCheck();
+                this.changeDetector.detectChanges();
             });
 
         this.parentSubscription.add(subscription);
@@ -212,7 +212,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
                 this.windowOrderIndex = orderIndex;
 
                 this.updateZIndex();
-                this.changeDetector.markForCheck();
+                this.changeDetector.detectChanges();
             });
 
         this.parentSubscription.add(subscription);
@@ -228,7 +228,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
                     this.dynamicStateManager.apply(DynamicStateEnum.Showing);
                 }
 
-                this.changeDetector.markForCheck();
+                this.changeDetector.detectChanges();
             });
 
         this.parentSubscription.add(subscription);
@@ -244,7 +244,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
                     this.dynamicStateManager.apply(DynamicStateEnum.EnteringWindowed);
                 }
 
-                this.changeDetector.markForCheck();
+                this.changeDetector.detectChanges();
             });
 
         this.parentSubscription.add(subscription);
@@ -255,7 +255,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             .subscribe(() => {
                 this.dynamicStateManager.apply(DynamicStateEnum.Closing);
 
-                this.changeDetector.markForCheck();
+                this.changeDetector.detectChanges();
             });
 
         this.parentSubscription.add(subscription);
@@ -266,11 +266,10 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             this.sharedConfig$,
             this.windowRef.config$
         ])
-            .subscribe(([sharedConfig, config]) => {
-                // FIXME: Continue work on, refactor
-                this.config = mergeConfigs(config, sharedConfig, (config as any).initialParams);
+            .subscribe(([sharedConfig, updatedConfig]) => {
+                this.config = mergeConfigs(this.config, updatedConfig, sharedConfig);
 
-                this.changeDetector.markForCheck();
+                this.changeDetector.detectChanges();
             });
 
         this.parentSubscription.add(subscription);

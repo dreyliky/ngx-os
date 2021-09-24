@@ -1,9 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import { IDynamicWindowParams } from '@lib-modules';
-import { Observable, of } from 'rxjs';
-import { DynamicWindowConfig } from '../classes';
+import { Observable } from 'rxjs';
+import { IDynamicWindowParams } from '../interfaces';
 
-export const SHARED_DYNAMIC_WINDOW_CONFIG = new InjectionToken<Observable<IDynamicWindowParams>>(
-    'SHARED_DYNAMIC_WINDOW_CONFIG',
-    { providedIn: 'root', factory: () => of(new DynamicWindowConfig()) }
+export const DYNAMIC_WINDOW_SHARED_CONFIG = new InjectionToken<Observable<IDynamicWindowParams>>(
+    'DYNAMIC_WINDOW_SHARED_CONFIG'
 );

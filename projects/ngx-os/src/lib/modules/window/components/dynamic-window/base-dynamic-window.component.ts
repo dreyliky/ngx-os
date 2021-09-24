@@ -15,10 +15,9 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public childComponentType: Type<any>;
 
     @Input()
-    public config: IDynamicWindowParams;
-
-    @Input()
     public windowRef: DynamicWindowRef;
+
+    public config: IDynamicWindowParams;
 
     public width: string;
     public height: string;
@@ -78,14 +77,6 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
         return !this.windowRef.isFullscreen;
     }
 
-    public get positionX(): string {
-        return `${this.config.positionX}px`;
-    }
-
-    public get positionY(): string {
-        return `${this.config.positionY}px`;
-    }
-
     public get draggableDirectiveConfig(): DraggerConfig {
         return {
             draggableElement: this.titleBarElement,
@@ -127,8 +118,8 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     public get windowStyle(): object {
         return {
             ...this.config.style,
-            left: this.positionX,
-            top: this.positionY,
+            left: `${this.config.positionX}px`,
+            top: `${this.config.positionY}px`,
             '--os-fullscreen-offset-top': this.config.fullscreenOffset.top,
             '--os-fullscreen-offset-right': this.config.fullscreenOffset.right,
             '--os-fullscreen-offset-bottom': this.config.fullscreenOffset.bottom,
@@ -150,9 +141,7 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     protected readonly parentSubscription = new Subscription();
 
     public ngOnInit(): void {
-        // FIXME: Not the component's logic
-        this.windowRef.setIsHiddenState(this.config.isHiddenByDefault);
-        this.windowRef.setIsFullscreenState(this.config.isFullscreenByDefault);
+        this.config = this.windowRef.config;
     }
 
     public ngOnDestroy(): void {

@@ -5,7 +5,9 @@ import { DragAndDropModule } from '../drag-and-drop';
 import { ResizerModule } from '../resizer';
 import { ScrollViewModule } from '../scroll-view';
 import { DynamicWindowComponent, TitleBarButtonComponent, TitleBarComponent, WindowComponent } from './components';
+import { DYNAMIC_WINDOW_SHARED_CONFIG } from './data';
 import { DynamicWindowContentDirective } from './directives';
+import { DynamicWindowSharedConfigService } from './services';
 
 @NgModule({
     declarations: [
@@ -26,6 +28,13 @@ import { DynamicWindowContentDirective } from './directives';
         WindowComponent,
         TitleBarComponent,
         TitleBarButtonComponent
+    ],
+    providers: [
+        {
+            provide: DYNAMIC_WINDOW_SHARED_CONFIG,
+            useFactory: (service: DynamicWindowSharedConfigService) => service.data$,
+            deps: [DynamicWindowSharedConfigService]
+        }
     ]
 })
 export class WindowModule {}

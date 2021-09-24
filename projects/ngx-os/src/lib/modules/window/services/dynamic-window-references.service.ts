@@ -1,10 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
-import { DynamicWindowRef } from '../classes';
+import { DynamicWindowConfig, DynamicWindowRef } from '../classes';
+import { IDynamicWindowParams } from '../interfaces';
 import { WindowReferencesState } from '../states';
 import { DynamicWindowActivityService } from './dynamic-window-activity.service';
 import { DynamicWindowRefOrderingService } from './dynamic-window-ref-ordering.service';
+import { DynamicWindowsCoordinatesService } from './dynamic-windows-coordinates.service';
 
 /** @internal */
 @Injectable({
@@ -24,7 +26,8 @@ export class DynamicWindowReferencesService implements OnDestroy {
     constructor(
         private readonly state: WindowReferencesState,
         private readonly activityService: DynamicWindowActivityService,
-        private readonly orderingService: DynamicWindowRefOrderingService
+        private readonly orderingService: DynamicWindowRefOrderingService,
+        private readonly coordinatesService: DynamicWindowsCoordinatesService
     ) {}
 
     public ngOnDestroy(): void {
@@ -32,8 +35,10 @@ export class DynamicWindowReferencesService implements OnDestroy {
         this.untilDestroyed$.complete();
     }
 
-    public add(windowRef: DynamicWindowRef): void {
+    public register(windowRef: DynamicWindowRef, config: IDynamicWindowParams): void {
+        windowRef.init(new DynamicWindowConfig(config));
         this.state.add(windowRef);
+        this.coordinatesService.applyDefault(windowRef);
         this.initHighestWindowActivityObserver(windowRef);
         this.initIsActiveStateObserver(windowRef);
     }
