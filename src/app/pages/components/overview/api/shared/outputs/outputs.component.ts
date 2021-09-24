@@ -24,6 +24,7 @@ export class OutputsComponent {
         const outputNames = outputs.map((output) => output.name);
 
         this.outputs = outputs
-            .filter((output, index) => outputNames.indexOf(output.name) === index);
+            .filter((output, index) => outputNames.indexOf(output.name) === index)
+            .sort((a, b) => (!!a.inheritance) ? 1 : (a.line - b.line));
     }
 }

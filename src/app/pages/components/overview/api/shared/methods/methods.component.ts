@@ -37,7 +37,8 @@ export class MethodsComponent {
                     this.forbiddenMethodStartsWithPhrase
                         .every((phrase) => !method.name.startsWith(phrase))
                 );
-            });
+            })
+            .sort((a, b) => (a.line - b.line));
     }
 
     private isMethodModifierValid(method: MethodsClass): boolean {

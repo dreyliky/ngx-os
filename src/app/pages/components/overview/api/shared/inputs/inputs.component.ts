@@ -24,6 +24,7 @@ export class InputsComponent {
         const inputNames = inputs.map((input) => input.name);
 
         this.inputs = inputs
-            .filter((input, index) => inputNames.indexOf(input.name) === index);
+            .filter((input, index) => inputNames.indexOf(input.name) === index)
+            .sort((a, b) => (!!a.inheritance) ? 1 : (a.line - b.line));
     }
 }

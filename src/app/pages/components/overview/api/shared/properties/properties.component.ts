@@ -30,7 +30,8 @@ export class PropertiesComponent {
                 (propertyNames.indexOf(property.name) === index) &&
                 !property.name.startsWith('_') &&
                 this.isPropertyModifierValid(property)
-            ));
+            ))
+            .sort((a, b) => (!!a.inheritance) ? 1 : (a.line - b.line));
     }
 
     private isPropertyModifierValid(property: DocClassProperty): boolean {

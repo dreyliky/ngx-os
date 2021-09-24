@@ -23,6 +23,7 @@ export class GettersComponent {
     private initGetters(accessors: DocAccessors): void {
         this.getters = Object.values(accessors)
             .map((docAccessorValue) => docAccessorValue.getSignature)
-            .filter((getter) => !!getter && !getter.name.startsWith('_'));
+            .filter((getter) => !!getter && !getter.name.startsWith('_'))
+            .sort((a, b) => (a.line - b.line));
     }
 }

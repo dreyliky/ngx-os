@@ -23,6 +23,7 @@ export class SettersComponent {
     private initSetters(accessors: DocAccessors): void {
         this.setters = Object.values(accessors)
             .map((docAccessorValue) => docAccessorValue.setSignature)
-            .filter((setter) => !!setter && !setter.name.startsWith('_'));
+            .filter((setter) => !!setter && !setter.name.startsWith('_'))
+            .sort((a, b) => (a.line - b.line));
     }
 }
