@@ -108,6 +108,7 @@ os-window {
 
     &.os-hiding {
         animation: hiding .4s ease forwards;
+        z-index: 9999 !important;
     }
 
     &.os-hidden {
