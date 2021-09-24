@@ -16,6 +16,13 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public positionX?: number;
     public positionY?: number;
     public iconUrl?: string;
+    public fullscreenOffset? = {
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+        left: '0px'
+    };
+
     public isFullscreenByDefault?: boolean = false;
     public isHiddenByDefault?: boolean = false;
     public isAllowHide?: boolean = true;

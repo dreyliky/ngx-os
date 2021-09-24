@@ -1,80 +1,85 @@
-@keyframes opening {
-    from {
-        transform: scale(.85);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes closing {
-    from {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(.9);
-        opacity: 0;
-    }
-}
-
-@keyframes hiding {
-    from {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(.2);
-        top: 100%;
-        left: 0%;
-        opacity: 0;
-    }
-}
-
-@keyframes showing {
-    from {
-        transform: scale(.2);
-        top: 100%;
-        left: 0%;
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes entering-fullscreen {
-    to {
-        width: 100%;
-        height: 100%;
-        left: -1px;
-        top: -1px;
-    }
-}
-
-@keyframes entering-windowed {
-    from {
-        width: 100%;
-        height: 29px !important;
-        top: -1px;
-        left: -1px;
-    }
-}
-
 os-window {
     font-size: 11px;
     font-family: var(--segoe-ui);
     background: #e6e6e6;
     border: solid 1px #aaaaaa;
     -webkit-font-smoothing: none;
-    box-shadow: 0px 4px 20px -8px rgba(0,0,0,0.5);
+    box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, .5);
+
+    --fullscreen-width: calc(100% - var(--os-fullscreen-offset-right) - var(--os-fullscreen-offset-left));
+    --fullscreen-height: calc(100% - var(--os-fullscreen-offset-bottom) - var(--os-fullscreen-offset-top));
+    --fullscreen-top: calc(-1px + var(--os-fullscreen-offset-top));
+    --fullscreen-left: calc(-1px + var(--os-fullscreen-offset-left));
+
+    @keyframes opening {
+        from {
+            transform: scale(.85);
+            opacity: 0;
+        }
+    
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes closing {
+        from {
+            transform: scale(1);
+            opacity: 1;
+        }
+    
+        to {
+            transform: scale(.9);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes hiding {
+        from {
+            transform: scale(1);
+            opacity: 1;
+        }
+    
+        to {
+            transform: scale(.2);
+            top: 100%;
+            left: 0%;
+            opacity: 0;
+        }
+    }
+    
+    @keyframes showing {
+        from {
+            transform: scale(.2);
+            top: 100%;
+            left: 0%;
+            opacity: 0;
+        }
+    
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes entering-fullscreen {
+        to {
+            width: var(--fullscreen-width);
+            height: var(--fullscreen-height);
+            left: var(--fullscreen-left);
+            top: var(--fullscreen-top);
+        }
+    }
+
+    @keyframes entering-windowed {
+        from {
+            width: var(--fullscreen-width);
+            height: 29px !important;
+            top: var(--fullscreen-top);
+            left: var(--fullscreen-left);
+        }
+    }
 
     &.os-opening {
         animation: opening .3s ease forwards;
@@ -105,10 +110,10 @@ os-window {
     }
 
     &.os-fullscreen:not(.os-hiding) {
-        width: 100% !important;
-        height: 100% !important;
-        left: -1px !important;
-        top: -1px !important;
+        width: var(--fullscreen-width) !important;
+        height: var(--fullscreen-height) !important;
+        left: var(--fullscreen-left) !important;
+        top: var(--fullscreen-top) !important;
     }
 
     &.os-active {

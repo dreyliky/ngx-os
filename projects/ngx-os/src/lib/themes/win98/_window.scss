@@ -1,89 +1,94 @@
-@keyframes showing {
-    0% {
-        height: 20px;
-        transform: scale(.2);
-        top: 100%;
-        left: 0%;
-    }
-
-    70% {
-        height: 20px;
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes hiding {
-    from {
-        height: 20px;
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    to {
-        height: 20px;
-        transform: scale(.6);
-        top: 100%;
-        left: 0%;
-        opacity: .3;
-    }
-}
-
-@keyframes entering-fullscreen {
-    0% {
-        height: 20px;
-    }
-
-    99% {
-        height: 20px;
-    }
-
-    100% {
-        width: calc(100% + 6px);
-        height: calc(100% + 4px);
-        top: -2px;
-        left: -3px;
-    }
-}
-
-@keyframes entering-windowed {
-    0% {
-        width: 100%;
-        height: 20px;
-        top: -2px;
-        left: -3px;
-    }
-
-    70% {
-        height: 20px;
-    }
-}
-
-@keyframes entering-fullscreen {
-    0% {
-        height: 20px;
-    }
-
-    80% {
-        height: 20px;
-    }
-
-    100% {
-        width: calc(100% + 4px);
-        height: calc(100% + 6px);
-        top: -3px;
-        left: -5px;
-    }
-}
-
 os-window {
     font-size: 11px;
     box-shadow: var(--border-window-outer), var(--border-window-inner);
     background: rgb(var(--os-background-color));
     padding: 3px;
     -webkit-font-smoothing: none;
+
+    --fullscreen-width: calc(100% + 1px - var(--os-fullscreen-offset-right) - var(--os-fullscreen-offset-left));
+    --fullscreen-height: calc(100% - 2px - var(--os-fullscreen-offset-bottom) - var(--os-fullscreen-offset-top));
+    --fullscreen-top: calc(-3px + var(--os-fullscreen-offset-top));
+    --fullscreen-left: calc(-5px + var(--os-fullscreen-offset-left));
+
+    @keyframes showing {
+        0% {
+            height: 20px;
+            transform: scale(.2);
+            top: 100%;
+            left: 0%;
+        }
+    
+        70% {
+            height: 20px;
+        }
+    
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes hiding {
+        from {
+            height: 20px;
+            transform: scale(1);
+            opacity: 1;
+        }
+    
+        to {
+            height: 20px;
+            transform: scale(.6);
+            top: 100%;
+            left: 0%;
+            opacity: .3;
+        }
+    }
+    
+    @keyframes entering-fullscreen {
+        0% {
+            height: 20px;
+        }
+    
+        99% {
+            height: 20px;
+        }
+    
+        100% {
+            width: var(--fullscreen-width);
+            height: var(--fullscreen-height);
+            top: var(--fullscreen-top);
+            left: var(--fullscreen-left);
+        }
+    }
+    
+    @keyframes entering-windowed {
+        0% {
+            width: var(--fullscreen-width);
+            height: 20px;
+            top: var(--fullscreen-top);
+            left: var(--fullscreen-left);
+        }
+    
+        70% {
+            height: 20px;
+        }
+    }
+    
+    @keyframes entering-fullscreen {
+        0% {
+            height: 20px;
+        }
+    
+        80% {
+            height: 20px;
+        }
+    
+        100% {
+            width: var(--fullscreen-width);
+            height: var(--fullscreen-height);
+            top: var(--fullscreen-top);
+            left: var(--fullscreen-left);
+        }
+    }
 
     fieldset {
         margin-bottom: 9px;
@@ -110,10 +115,10 @@ os-window {
     }
 
     &.os-fullscreen:not(.os-hiding) {
-        width: calc(100% + 4px) !important;
-        height: calc(100% + 6px) !important;
-        top: -3px !important;
-        left: -5px !important;
+        width: var(--fullscreen-width) !important;
+        height: var(--fullscreen-height) !important;
+        top: var(--fullscreen-top) !important;
+        left: var(--fullscreen-left) !important;
     }
 
     &.os-fullscreen, &.os-entering-fullscreen {

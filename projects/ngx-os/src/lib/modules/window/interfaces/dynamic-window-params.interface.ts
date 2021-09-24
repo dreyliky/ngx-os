@@ -31,6 +31,13 @@ export interface IDynamicWindowParams<D = any, T = any> {
     positionY?: number;
     /** The link to the icon. Will be displayed in the window's title bar */
     iconUrl?: string;
+    /** Parameters of offsets from the edges of the screen in the full-screen mode */
+    fullscreenOffset?: {
+        top: string;
+        right: string;
+        bottom: string;
+        left: string;
+    };
     /** The dynamic window will be at full-screen mode after the creation */
     isFullscreenByDefault?: boolean;
     /** The dynamic window will be hidden after the creation */

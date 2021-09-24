@@ -128,7 +128,11 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
         return {
             ...this.config.style,
             left: this.positionX,
-            top: this.positionY
+            top: this.positionY,
+            '--os-fullscreen-offset-top': this.config.fullscreenOffset.top,
+            '--os-fullscreen-offset-right': this.config.fullscreenOffset.right,
+            '--os-fullscreen-offset-bottom': this.config.fullscreenOffset.bottom,
+            '--os-fullscreen-offset-left': this.config.fullscreenOffset.left
         };
     }
 
