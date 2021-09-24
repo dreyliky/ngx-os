@@ -6,15 +6,20 @@ import {
     ComponentFactoryResolver,
     ElementRef,
     HostListener,
+    Inject,
     Type,
     ViewChild
 } from '@angular/core';
 import { EventOutside } from '@lib-helpers';
+import { mergeConfigs } from '@lib-modules/window/helpers';
+import { combineLatest, Observable } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
 import { IResizeInfo } from '../../../resizer';
+import { SHARED_DYNAMIC_WINDOW_CONFIG } from '../../data';
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicStateEnum } from '../../enums';
+import { IDynamicWindowParams } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 
 @Component({
@@ -31,6 +36,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private readonly draggableDirective: DraggableDirective;
 
     constructor(
+        @Inject(SHARED_DYNAMIC_WINDOW_CONFIG) private sharedConfig$: Observable<IDynamicWindowParams>,
         private readonly hostElementRef: ElementRef<HTMLElement>,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
@@ -256,9 +262,13 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initConfigObserver(): void {
-        const subscription = this.windowRef.config$
-            .subscribe((updatedConfig) => {
-                this.config = updatedConfig;
+        const subscription = combineLatest([
+            this.sharedConfig$,
+            this.windowRef.config$
+        ])
+            .subscribe(([sharedConfig, config]) => {
+                // FIXME: Continue work on, refactor
+                this.config = mergeConfigs(config, sharedConfig, (config as any).initialParams);
 
                 this.changeDetector.markForCheck();
             });

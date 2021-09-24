@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, Optional } from '@angular/core';
-import { IS_DYNAMIC_WINDOW_CONTEXT } from '@lib-core';
-import { DynamicWindowConfig, DynamicWindowService } from '@lib-modules';
+import { DynamicWindowConfig, DynamicWindowService, IS_DYNAMIC_WINDOW_CONTEXT } from '@lib-modules';
 
 @Component({
     selector: 'demo-window-dynamic-opening',

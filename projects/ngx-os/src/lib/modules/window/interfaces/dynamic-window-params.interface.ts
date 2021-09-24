@@ -33,10 +33,10 @@ export interface IDynamicWindowParams<D = any, T = any> {
     iconUrl?: string;
     /** Parameters of offsets from the edges of the screen in the full-screen mode */
     fullscreenOffset?: {
-        top: string;
-        right: string;
-        bottom: string;
-        left: string;
+        top?: string;
+        right?: string;
+        bottom?: string;
+        left?: string;
     };
     /** The dynamic window will be at full-screen mode after the creation */
     isFullscreenByDefault?: boolean;

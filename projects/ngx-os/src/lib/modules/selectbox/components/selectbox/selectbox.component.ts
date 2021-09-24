@@ -17,9 +17,10 @@ import {
     QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { IS_DYNAMIC_WINDOW_CONTEXT, OsBaseFormControlComponent } from '@lib-core';
+import { OsBaseFormControlComponent } from '@lib-core';
 import { EventOutside, isNil } from '@lib-helpers';
 import { Subscription } from 'rxjs';
+import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-window-context.token';
 import { ISelectboxValueChangeEvent } from '../../interfaces';
 import { OptionComponent } from '../option';
 

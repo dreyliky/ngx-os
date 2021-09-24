@@ -1,5 +1,5 @@
 import { InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
-import { IS_DYNAMIC_WINDOW_CONTEXT } from '@lib-core';
+import { IS_DYNAMIC_WINDOW_CONTEXT } from '../data';
 import { IDynamicWindowDiParams, IDynamicWindowParams } from '../interfaces';
 import { DynamicWindowConfig } from './dynamic-window-config';
 import { DynamicWindowRef } from './dynamic-window-ref';

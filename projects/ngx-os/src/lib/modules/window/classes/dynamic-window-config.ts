@@ -16,7 +16,7 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public positionX?: number;
     public positionY?: number;
     public iconUrl?: string;
-    public fullscreenOffset? = {
+    public fullscreenOffset = {
         top: '0px',
         right: '0px',
         bottom: '0px',
@@ -42,10 +42,12 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public onMaximizeButtonClick?: () => void;
     public onCloseButtonClick?: () => void;
 
-    constructor(params: IDynamicWindowParams) {
-        Object.assign(this, params);
-        this.initWidth(params);
-        this.initHeight(params);
+    constructor(
+        public readonly initialParams: IDynamicWindowParams = {}
+    ) {
+        Object.assign(this, initialParams);
+        this.initWidth(initialParams);
+        this.initHeight(initialParams);
     }
 
     private initWidth(params: IDynamicWindowParams): void {
