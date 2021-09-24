@@ -1,5 +1,5 @@
 import { ResizerEnum } from '../../resizer';
-import { IDynamicWindowParams } from '../interfaces/dynamic-window-params.interface';
+import { IDynamicWindowParams } from '../interfaces';
 
 /** @internal */
 export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowParams {
@@ -16,20 +16,24 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public positionX?: number;
     public positionY?: number;
     public iconUrl?: string;
-    public isFullscreen?: boolean = false;
-    public isHidden?: boolean = false;
-    public isMinimizable?: boolean = true;
-    public isMaximizable?: boolean = true;
-    public isClosable?: boolean = true;
+    public isFullscreenByDefault?: boolean = false;
+    public isHiddenByDefault?: boolean = false;
+    public isAllowHide?: boolean = true;
+    public isAllowFullscreen?: boolean = true;
+    public isAllowClose?: boolean = true;
     public isAlwaysOnTop?: boolean = false;
-    public isToggleFullscreenByDblClickTitle?: boolean = true;
-    public isExitFullscreenByDragTitle?: boolean = true;
+    public isToggleFullscreenByDblClickOnTitleBar?: boolean = true;
+    public isExitFullscreenByDragTitleBar?: boolean = true;
     public isTitleBarVisible?: boolean = true;
-    public scrollViewStyle?: any;
-    public scrollViewStyleClass?: any;
-    public onMinimizeButtonClick?: () => any;
-    public onMaximizeButtonClick?: () => any;
-    public onCloseButtonClick?: () => any;
+    public style?: object = {};
+    public styleClass?: string | string[] | object = '';
+    public titleBarStyle: object = {};
+    public titleBarStyleClass: string | string[] | object = '';
+    public scrollViewStyle?: object = {};
+    public scrollViewStyleClass?: string | string[] | object = '';
+    public onMinimizeButtonClick?: () => void;
+    public onMaximizeButtonClick?: () => void;
+    public onCloseButtonClick?: () => void;
 
     constructor(params: IDynamicWindowParams) {
         Object.assign(this, params);

@@ -11,6 +11,6 @@ export const SHUT_DOWN_APP: AppMetadata = {
         title: 'Shut Down (GO TO DOCUMENTATION)',
         iconUrl: 'assets/icons/shutdown.png',
         isTitleBarVisible: false,
-        isFullscreen: true
+        isFullscreenByDefault: true
     }
 };

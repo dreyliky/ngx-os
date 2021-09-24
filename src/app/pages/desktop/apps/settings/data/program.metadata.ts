@@ -1,4 +1,4 @@
-import { AppMetadata } from '@Doc/pages/desktop/features/exec';
+import { AppMetadata } from '../../../features/exec';
 import { SettingsAppComponent } from '../settings.component';
 
 export const SETTINGS_APP: AppMetadata = {

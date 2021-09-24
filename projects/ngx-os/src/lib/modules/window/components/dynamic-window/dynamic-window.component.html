@@ -1,36 +1,8 @@
 <os-window
-    [os-draggable]="{
-        draggableElement: titleBarElement,
-        movableElement: windowElement,
-        childElementsBlackList: titleBarButtons,
-        isAllowMoveElement: isAllowDragging
-    }"
-    [os-resizable]="{
-        targetElement: windowElement,
-        minWidth: config.minWidth,
-        minHeight: config.minHeight,
-        maxWidth: config.maxWidth,
-        maxHeight: config.maxHeight,
-        allowedResizers: config.allowedResizers,
-        isEnabled: isAllowResizing
-    }"
-    [styleClass]="{
-        'os-opening': isOpening,
-        'os-hiding': isHiding,
-        'os-showing': isShowing,
-        'os-closing': isClosing,
-        'os-entering-fullscreen': isEnteringFullscreen,
-        'os-entering-windowed': isEnteringWindowed,
-        'os-hidden': isHidden,
-        'os-fullscreen': isFullscreen,
-        'os-windowed': isWindowed,
-        'os-dragging': isDragging,
-        'os-resizing': isResizing
-    }"
-    [style]="{
-        left: positionX,
-        top: positionY
-    }"
+    [os-draggable]="draggableDirectiveConfig"
+    [os-resizable]="resizableDirectiveConfig"
+    [styleClass]="windowStyleClass"
+    [style]="windowStyle"
     [id]="windowRef.id"
     [title]="config.title"
     [width]="width"
@@ -38,10 +10,12 @@
     [zIndex]="zIndex"
     [iconUrl]="config.iconUrl"
     [isActive]="windowRef.isActive"
-    [isMinimizable]="config.isMinimizable"
-    [isMaximizable]="config.isMaximizable"
-    [isClosable]="config.isClosable"
+    [isAllowHide]="config.isAllowHide"
+    [isAllowFullscreen]="config.isAllowFullscreen"
+    [isAllowClose]="config.isAllowClose"
     [isTitleBarVisible]="config.isTitleBarVisible"
+    [titleBarStyle]="config.titleBarStyle"
+    [titleBarStyleClass]="config.titleBarStyleClass"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     (osBeforeDragStart)="onBeforeDragStart()"

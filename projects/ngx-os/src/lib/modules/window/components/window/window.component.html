@@ -1,5 +1,7 @@
 <os-title-bar
     [style.display]="_titleBarDisplayAttr"
+    [style]="titleBarStyle"
+    [styleClass]="titleBarStyleClass"
     (osClick)="osTitleBarClick.emit($event)"
     (osDblClick)="osTitleBarDblClick.emit($event)"
     (osMinimizeButtonClick)="osMinimizeButtonClick.emit($event)"

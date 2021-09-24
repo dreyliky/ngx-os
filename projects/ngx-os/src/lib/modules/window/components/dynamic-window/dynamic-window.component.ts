@@ -67,7 +67,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onMinimizeButtonClick(): void {
-        if (this.config.isMinimizable) {
+        if (this.config.isAllowHide) {
             setTimeout(() => this.windowRef.hide());
         }
 
@@ -75,7 +75,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onMaximizeButtonClick(): void {
-        if (this.config.isMaximizable) {
+        if (this.config.isAllowFullscreen) {
             setTimeout(() => this.windowRef.toggleFullscreen());
         }
 
@@ -83,7 +83,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onCloseButtonClick(): void {
-        if (this.config.isClosable) {
+        if (this.config.isAllowClose) {
             setTimeout(() => this.windowRef.close());
         }
 
@@ -95,7 +95,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onBeforeDragStart(): void {
-        if (this.config.isExitFullscreenByDragTitle && this.windowRef.isFullscreen) {
+        if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
             const titleBarDomRect = this.titleBarElement.getBoundingClientRect();
 
             this.draggableDirective.draggerConfig = {
@@ -112,7 +112,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onDragging(): void {
-        if (this.config.isExitFullscreenByDragTitle && this.windowRef.isFullscreen) {
+        if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
             this.isAfterExitFullscreenByDragging = true;
 
             this.windowRef.goWindowed();
@@ -136,7 +136,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onTitleBarDblClick(): void {
-        if (this.config.isToggleFullscreenByDblClickTitle) {
+        if (this.config.isToggleFullscreenByDblClickOnTitleBar) {
             this.windowRef.toggleFullscreen();
         }
     }

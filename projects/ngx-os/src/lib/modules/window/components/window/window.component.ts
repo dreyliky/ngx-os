@@ -44,27 +44,35 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     @HostBinding('class.os-active')
     public isActive: boolean = false;
 
-    /** Can the window be hidden */
+    /** Can the window be hidden by the user */
     @Input()
-    public isMinimizable: boolean = true;
+    public isAllowHide: boolean = true;
 
-    /** Can the window be at full-screen */
+    /** Can the window be entered at full-screen mode by the user */
     @Input()
-    public isMaximizable: boolean = true;
+    public isAllowFullscreen: boolean = true;
 
-    /** Can the window be closed */
+    /** Can the window be closed by the user */
     @Input()
-    public isClosable: boolean = true;
+    public isAllowClose: boolean = true;
 
     /** Is the need to display the title bar */
     @Input()
     public isTitleBarVisible: boolean = true;
 
-    /** Styles for scroll view component of the window */
+    /** Stylelist for title bar component of the window */
+    @Input()
+    public titleBarStyle: object;
+
+    /** Classlist for title bar component of the window */
+    @Input()
+    public titleBarStyleClass: string | string[] | object;
+
+    /** Stylelist for scroll view component of the window */
     @Input()
     public scrollViewStyle: object;
 
-    /** Classes for scroll view component of the window */
+    /** Classlist for scroll view component of the window */
     @Input()
     public scrollViewStyleClass: string | string[] | object;
 

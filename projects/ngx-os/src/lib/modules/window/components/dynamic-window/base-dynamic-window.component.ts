@@ -1,5 +1,8 @@
 import { Component, ComponentRef, Input, OnDestroy, OnInit, Type } from '@angular/core';
+import { CssClasslistToObjectHelper as ClasslistToObject } from '@lib-core';
 import { Subscription } from 'rxjs';
+import { DraggerConfig } from '../../../drag-and-drop';
+import { ResizerConfig } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
 import { DynamicStateEnum } from '../../enums';
 import { IDynamicWindowParams } from '../../interfaces';
@@ -83,6 +86,52 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
         return `${this.config.positionY}px`;
     }
 
+    public get draggableDirectiveConfig(): DraggerConfig {
+        return {
+            draggableElement: this.titleBarElement,
+            movableElement: this.windowElement,
+            childElementsBlackList: this.titleBarButtons,
+            isAllowMoveElement: this.isAllowDragging
+        };
+    }
+
+    public get resizableDirectiveConfig(): ResizerConfig {
+        return {
+            targetElement: this.windowElement,
+            minWidth: this.config.minWidth,
+            minHeight: this.config.minHeight,
+            maxWidth: this.config.maxWidth,
+            maxHeight: this.config.maxHeight,
+            allowedResizers: this.config.allowedResizers,
+            isEnabled: this.isAllowResizing
+        };
+    }
+
+    public get windowStyleClass(): object {
+        return {
+            ...ClasslistToObject.transform(this.config.styleClass),
+            'os-opening': this.isOpening,
+            'os-hiding': this.isHiding,
+            'os-showing': this.isShowing,
+            'os-closing': this.isClosing,
+            'os-entering-fullscreen': this.isEnteringFullscreen,
+            'os-entering-windowed': this.isEnteringWindowed,
+            'os-hidden': this.isHidden,
+            'os-fullscreen': this.isFullscreen,
+            'os-windowed': this.isWindowed,
+            'os-dragging': this.isDragging,
+            'os-resizing': this.isResizing
+        };
+    }
+
+    public get windowStyle(): object {
+        return {
+            ...this.config.style,
+            left: this.positionX,
+            top: this.positionY
+        };
+    }
+
     protected readonly baseZIndex: number = 1000;
     protected readonly alwaysOnTopBaseZIndex: number = 5000;
     protected readonly cssAnimationClassDuration: number = 1000;
@@ -98,8 +147,8 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         // FIXME: Not the component's logic
-        this.windowRef.setIsHiddenState(this.config.isHidden);
-        this.windowRef.setIsFullscreenState(this.config.isFullscreen);
+        this.windowRef.setIsHiddenState(this.config.isHiddenByDefault);
+        this.windowRef.setIsFullscreenState(this.config.isFullscreenByDefault);
     }
 
     public ngOnDestroy(): void {

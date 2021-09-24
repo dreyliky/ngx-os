@@ -8,7 +8,7 @@ export interface IDynamicWindowParams<D = any, T = any> {
     /**
      * Custom data you can use to mark your window somehow you want.
      * Can be useful when you want to work with a bunch of windows as with a group.
-     * for example, you need to close a group of windows with the type: MY_TYPE1
+     * For example, you need to close a group of windows with the type: MY_TYPE1
      */
     type?: T;
     /** The width of the dynamic window */
@@ -25,33 +25,41 @@ export interface IDynamicWindowParams<D = any, T = any> {
     maxHeight?: number;
     /** The allowed sides of the dynamic window to resize */
     allowedResizers?: ResizerEnum[];
-    /** The position by X-axis when the dynamic window will be opened */
+    /** The position of the dynamic window by X-axis */
     positionX?: number;
-    /** The position by Y-axis when the dynamic window will be opened */
+    /** The position of the dynamic window by Y-axis */
     positionY?: number;
     /** The link to the icon. Will be displayed in the window's title bar */
     iconUrl?: string;
-    /** Applies full-screen mode for dynamic window */
-    isFullscreen?: boolean;
-    /** Hides dynamic window after creation */
-    isHidden?: boolean;
+    /** The dynamic window will be at full-screen mode after the creation */
+    isFullscreenByDefault?: boolean;
+    /** The dynamic window will be hidden after the creation */
+    isHiddenByDefault?: boolean;
     /** Defines can the dynamic window be hidden by user */
-    isMinimizable?: boolean;
+    isAllowHide?: boolean;
     /** Defines can the dynamic window be switched at full-screen mode and to windowed mode by user */
-    isMaximizable?: boolean;
+    isAllowFullscreen?: boolean;
     /** Defines can the dynamic window be closed by user */
-    isClosable?: boolean;
+    isAllowClose?: boolean;
     /** Dynamic window with this flag will be always above other dynamic windows without this flag */
     isAlwaysOnTop?: boolean;
     /** Allows the switch to full-screen mode and to the windowed mode by double-clicking on title bar */
-    isToggleFullscreenByDblClickTitle?: boolean;
+    isToggleFullscreenByDblClickOnTitleBar?: boolean;
     /** Allows going to the windowed mode from the full-screen mode by dragging dynamic window's title bar */
-    isExitFullscreenByDragTitle?: boolean;
+    isExitFullscreenByDragTitleBar?: boolean;
     /** Is the need to display the title bar */
     isTitleBarVisible?: boolean;
-    /** Styles for scroll view component of the window */
+    /** Stylelist for the dynamic window */
+    style?: object;
+    /** Classlist for the dynamic window */
+    styleClass?: string | string[] | object;
+    /** Stylelist for the title bar of the dynamic window */
+    titleBarStyle?: object;
+    /** Classlist for the title bar of the dynamic window */
+    titleBarStyleClass?: string | string[] | object;
+    /** Stylelist for scroll view component of the window */
     scrollViewStyle?: object;
-    /** Classes for scroll view component of the window */
+    /** Classlist for scroll view component of the window */
     scrollViewStyleClass?: string | string[] | object;
     /** Fires when the "hide window" button in the title bar click */
     onMinimizeButtonClick?: () => void;
