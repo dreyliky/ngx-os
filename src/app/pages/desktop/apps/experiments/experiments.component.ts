@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { KeysOfType } from '@lib-core';
 import { DynamicWindowRef, DynamicWindowService } from '@lib-modules';
 import { Observable } from 'rxjs';
@@ -15,13 +15,8 @@ import { WindowsPositionShuffleService } from './services';
         WindowsPositionShuffleService
     ]
 })
-export class ExperimentsAppComponent {
-    public get totalWindowsAlive$(): Observable<number> {
-        return this.dynamicWindowService.references$
-            .pipe(
-                map((windowRefs) => windowRefs.length)
-            );
-    }
+export class ExperimentsAppComponent implements OnInit {
+    public totalWindowsAlive$: Observable<number>;
 
     public readonly windowAmoutsToSpawn: number[] = [
         5, 10, 25, 50, 100, 200, 400
@@ -38,6 +33,10 @@ export class ExperimentsAppComponent {
         private readonly windowsPositionShuffleService: WindowsPositionShuffleService,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
+
+    public ngOnInit(): void {
+        this.initTotalWindowsAliveObservable();
+    }
 
     public spawnWindows(amount: number): void {
         clearInterval(this.currentActionIntervalId);
@@ -89,5 +88,12 @@ export class ExperimentsAppComponent {
 
     public onStopCurrentActionsButtonClick(): void {
         clearInterval(this.currentActionIntervalId);
+    }
+
+    private initTotalWindowsAliveObservable(): void {
+        this.totalWindowsAlive$ = this.dynamicWindowService.references$
+            .pipe(
+                map((windowRefs) => windowRefs.length)
+            );
     }
 }

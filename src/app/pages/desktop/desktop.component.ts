@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { TaskbarPlacement } from './modules';
 import { DesktopBackgroundService, DesktopTaskbarService } from './services';
 
 @Component({
@@ -20,6 +21,8 @@ export class DesktopComponent implements OnInit, OnDestroy {
     @HostBinding('class')
     public hostClasslist: string;
 
+    public taskbarPlacement$: Observable<TaskbarPlacement>;
+
     private untilDestroyed$ = new Subject();
 
     constructor(
@@ -30,6 +33,8 @@ export class DesktopComponent implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit(): void {
+        this.taskbarPlacement$ = this.taskbar.placement$;
+
         this.titleService.setTitle('ngx-os - Desktop');
         this.initHostBackgroundStylelistObserver();
         this.initHostClasslistObserver();

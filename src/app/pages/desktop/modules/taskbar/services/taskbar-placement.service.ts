@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { TASKBAR_PLACEMENT_ARRAY as PLACEMENTS } from '../data';
 import { TaskbarPlacementEnum } from '../enums';
 import { TaskbarPlacement } from '../interfaces';
@@ -8,40 +7,42 @@ import { TaskbarPlacement } from '../interfaces';
 @Injectable()
 export class TaskbarPlacementService {
     public get data$(): Observable<TaskbarPlacement> {
-        return this._data$
-            .asObservable()
-            .pipe(
-                map((placementId) => PLACEMENTS.find((placement) => placement.id === placementId))
-            );
+        return this._data$.asObservable();
     }
 
     public get data(): TaskbarPlacement {
-        return PLACEMENTS
-            .find((placement) => placement.id === this._data$.getValue());
+        return this._data$.getValue();
     }
 
     private readonly storageKey = 'taskbar-placement';
 
-    private _data$ = new BehaviorSubject<TaskbarPlacementEnum>(TaskbarPlacementEnum.Bottom);
+    private _data$ = new BehaviorSubject<TaskbarPlacement>(null);
 
     constructor() {
         this.initData();
     }
 
-    public change(placement: TaskbarPlacementEnum): void {
-        const dataAsJson = JSON.stringify(placement);
+    public change(id: TaskbarPlacementEnum): void {
+        const idAsJson = JSON.stringify(id);
+        const placement = this.getPlacementById(id);
 
-        localStorage.setItem(this.storageKey, dataAsJson);
+        localStorage.setItem(this.storageKey, idAsJson);
         this._data$.next(placement);
+    }
+
+    private getPlacementById(id: TaskbarPlacementEnum): TaskbarPlacement {
+        return PLACEMENTS
+            .find((placement) => placement.id === id);
     }
 
     private initData(): void {
         const dataAsJson = localStorage.getItem(this.storageKey);
 
         if (dataAsJson) {
-            const data = JSON.parse(dataAsJson);
+            const id = JSON.parse(dataAsJson);
+            const placement = this.getPlacementById(id);
 
-            this._data$.next(data);
+            this._data$.next(placement);
         }
     }
 }

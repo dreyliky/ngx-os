@@ -1,2 +1,6 @@
 <desktop-shortcuts-zone></desktop-shortcuts-zone>
-<desktop-taskbar></desktop-taskbar>
+
+<desktop-taskbar
+    *ngIf="(taskbarPlacement$ | async) as placement"
+    [os-resizable]="placement.resizerConfig">
+</desktop-taskbar>

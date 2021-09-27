@@ -1,4 +1,4 @@
-import { IDynamicWindowParams } from '@lib-modules';
+import { IDynamicWindowParams, IResizerParams } from '@lib-modules';
 import { TaskbarPlacementEnum } from '../enums';
 
 export interface TaskbarPlacement {
@@ -7,4 +7,5 @@ export interface TaskbarPlacement {
     cssClassName: string;
     windowConfigFullscreenOffsetKey: keyof IDynamicWindowParams['fullscreenOffset'];
     targetSizeProperty: keyof HTMLElement;
+    resizerConfig: IResizerParams;
 }

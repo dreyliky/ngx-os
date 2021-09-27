@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TaskbarPlacementService } from '../modules';
+import { TaskbarPlacement, TaskbarPlacementService } from '../modules';
 
 @Injectable()
 export class DesktopTaskbarService {
+    public get placement$(): Observable<TaskbarPlacement> {
+        return this.taskbarPlacementService.data$;
+    }
+
     public get classlist$(): Observable<string> {
         return this.taskbarPlacementService.data$
             .pipe(
