@@ -32,7 +32,9 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
     ],
     libInterfaces: [
         'IDynamicWindowRef',
-        'IDynamicWindowParams'
+        'IDynamicWindowParams',
+        'IDynamicWindowFullscreenOffset',
+        'ICssCoordinate'
     ],
     demoComponents: [
         {

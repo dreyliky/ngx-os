@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
 import { DynamicWindowRef } from '../classes';
-import { IDynamicWindowParams } from './dynamic-window-params.interface';
+import { IDynamicWindowParams } from './params.interface';
 
 /** @internal */
 export interface IDynamicWindowDiParams {

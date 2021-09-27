@@ -1,5 +1,5 @@
 import { ResizerEnum } from '../../resizer';
-import { IDynamicWindowParams } from '../interfaces';
+import { IDynamicWindowFullscreenOffset, IDynamicWindowParams } from '../interfaces';
 
 /** @internal */
 export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowParams {
@@ -16,12 +16,7 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public positionX?: number = null;
     public positionY?: number = null;
     public iconUrl?: string = null;
-    public fullscreenOffset: {
-        top: string;
-        right: string;
-        bottom: string;
-        left: string;
-    } = null;
+    public fullscreenOffset: IDynamicWindowFullscreenOffset = null;
 
     public isFullscreenByDefault?: boolean = false;
     public isHiddenByDefault?: boolean = false;

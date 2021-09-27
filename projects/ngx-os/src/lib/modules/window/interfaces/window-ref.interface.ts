@@ -1,7 +1,7 @@
 import { ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
-import { IDynamicWindowParams } from './dynamic-window-params.interface';
+import { IDynamicWindowParams } from './params.interface';
 
 /** Public API of DynamicWindowRef */
 export interface IDynamicWindowRef {
