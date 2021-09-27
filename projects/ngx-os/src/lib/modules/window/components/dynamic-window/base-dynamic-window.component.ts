@@ -1,4 +1,4 @@
-import { Component, ComponentRef, Input, OnDestroy, OnInit, Type } from '@angular/core';
+import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import { CssClasslistToObjectHelper as ClasslistToObject } from '@lib-core';
 import { Subscription } from 'rxjs';
 import { DraggerConfig } from '../../../drag-and-drop';
@@ -10,7 +10,7 @@ import { IDynamicWindowParams } from '../../interfaces';
 @Component({
     template: ''
 })
-export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
+export abstract class BaseDynamicWindowComponent implements OnDestroy {
     @Input()
     public childComponentType: Type<any>;
 
@@ -120,10 +120,10 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
             ...this.config.style,
             left: `${this.config.positionX}px`,
             top: `${this.config.positionY}px`,
-            '--os-fullscreen-offset-top': this.config.fullscreenOffset?.top ?? '0px',
-            '--os-fullscreen-offset-right': this.config.fullscreenOffset?.right ?? '0px',
-            '--os-fullscreen-offset-bottom': this.config.fullscreenOffset?.bottom ?? '0px',
-            '--os-fullscreen-offset-left': this.config.fullscreenOffset?.left ?? '0px'
+            '--os-fullscreen-offset-top': this.config.fullscreenOffset?.top,
+            '--os-fullscreen-offset-right': this.config.fullscreenOffset?.right,
+            '--os-fullscreen-offset-bottom': this.config.fullscreenOffset?.bottom,
+            '--os-fullscreen-offset-left': this.config.fullscreenOffset?.left
         };
     }
 
@@ -139,10 +139,6 @@ export abstract class BaseDynamicWindowComponent implements OnInit, OnDestroy {
     protected isAfterExitFullscreenByDragging: boolean = false;
 
     protected readonly parentSubscription = new Subscription();
-
-    public ngOnInit(): void {
-        this.config = this.windowRef.config;
-    }
 
     public ngOnDestroy(): void {
         this.childComponentRef?.destroy();

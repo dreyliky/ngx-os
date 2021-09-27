@@ -7,11 +7,11 @@ import {
     ElementRef,
     HostListener,
     Inject,
+    OnInit,
     Type,
     ViewChild
 } from '@angular/core';
 import { EventOutside } from '@lib-helpers';
-import { mergeConfigs } from '@lib-modules/window/helpers';
 import { combineLatest, Observable } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
@@ -19,6 +19,7 @@ import { IResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG } from '../../data';
 import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicStateEnum } from '../../enums';
+import { mergeConfigs } from '../../helpers';
 import { IDynamicWindowParams } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 
@@ -28,7 +29,7 @@ import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
     styleUrls: ['./dynamic-window.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicWindowComponent extends BaseDynamicWindowComponent implements AfterViewInit {
+export class DynamicWindowComponent extends BaseDynamicWindowComponent implements OnInit, AfterViewInit {
     @ViewChild(DynamicWindowContentDirective, { static: true })
     private readonly dynamicWindowContent: DynamicWindowContentDirective;
 
@@ -44,6 +45,10 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         super();
     }
 
+    public ngOnInit(): void {
+        this.initConfigObserver();
+    }
+
     public ngAfterViewInit(): void {
         this.initChildComponent(this.childComponentType);
         this.initDynamicStateManager();
@@ -53,7 +58,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.initAfterClosedStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
-        this.initConfigObserver();
         this.initWindowSizes();
         // FIXME: Probably not the component's logic
         this.windowRef.setIsActive(true);

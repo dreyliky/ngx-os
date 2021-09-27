@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { DynamicWindowConfig } from '../classes';
+import { mergeConfigs } from '../helpers';
 import { IDynamicWindowParams } from '../interfaces';
 
 @Injectable({
@@ -14,10 +16,39 @@ export class DynamicWindowSharedConfigService {
         return this._data$.getValue();
     }
 
-    private _data$ = new BehaviorSubject<IDynamicWindowParams>({});
+    private readonly _data$ = new BehaviorSubject<IDynamicWindowParams>(
+        new DynamicWindowConfig({
+            title: 'OS dynamic window',
+            minWidth: 275,
+            minHeight: 175,
+            maxWidth: Infinity,
+            maxHeight: Infinity,
+            fullscreenOffset: {
+                top: '0px',
+                bottom: '0px',
+                left: '0px',
+                right: '0px'
+            },
+            isFullscreenByDefault: false,
+            isHiddenByDefault: false,
+            isAllowHide: true,
+            isAllowFullscreen: true,
+            isAllowClose: true,
+            isAlwaysOnTop: false,
+            isToggleFullscreenByDblClickOnTitleBar: true,
+            isExitFullscreenByDragTitleBar: true,
+            isTitleBarVisible: true,
+            style: {},
+            styleClass: '',
+            titleBarStyle: {},
+            titleBarStyleClass: '',
+            scrollViewStyle: {},
+            scrollViewStyleClass: ''
+        })
+    );
 
     public update(updatedConfig: IDynamicWindowParams): void {
-        this._data$.next({ ...this.data, ...updatedConfig });
+        this._data$.next(mergeConfigs(updatedConfig, this.data));
     }
 
     public clear(): void {
