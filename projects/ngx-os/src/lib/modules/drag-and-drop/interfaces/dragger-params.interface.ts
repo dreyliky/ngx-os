@@ -7,6 +7,8 @@ export interface IDraggerParams {
     allowedMouseButtons?: MouseButtonEnum[];
     shiftX?: number;
     shiftY?: number;
+    xAxisStyleProperty?: string;
+    yAxisStyleProperty?: string;
     isEnabled?: boolean;
     isAllowMoveElement?: boolean;
 }

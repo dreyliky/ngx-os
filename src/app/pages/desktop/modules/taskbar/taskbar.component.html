@@ -1,5 +1,5 @@
 <os-button
-    *ngFor="let windowRef of windowRefs"
+    *ngFor="let windowRef of (windowRefs$ | async)"
     class="taskbar-button"
     [attr.data-window-ref-id]="windowRef.id"
     [class.os-active]="(windowRef.isActive$ | async)"

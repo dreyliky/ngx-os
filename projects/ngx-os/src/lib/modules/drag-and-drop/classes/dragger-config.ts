@@ -8,6 +8,8 @@ export class DraggerConfig implements IDraggerParams {
     public allowedMouseButtons?: MouseButtonEnum[] = [MouseButtonEnum.left];
     public shiftX?: number;
     public shiftY?: number;
+    public xAxisStyleProperty?: string = 'left';
+    public yAxisStyleProperty?: string = 'top';
     public isEnabled?: boolean = true;
     public isAllowMoveElement?: boolean = true;
 }

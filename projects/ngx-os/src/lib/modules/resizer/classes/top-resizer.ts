@@ -9,13 +9,13 @@ export class TopResizer extends BaseResizer {
         const height = this.context.originalHeight - (event.pageY - this.context.originalMouseY);
 
         if (height > this.config.minHeight && height < this.config.maxHeight) {
-            this.context.resizableElement.style.height = `${height}px`;
+            this.context.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
 
             if (this.config.isAllowChangePosition) {
-                if (this.config.yAxisStyleName === 'top' || this.config.yAxisStyleName === 'marginTop') {
+                if (this.config.yAxisTopStyleProperty) {
                     const position = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
 
-                    this.context.resizableElement.style[this.config.yAxisStyleName] = position;
+                    this.context.resizableElement.style.setProperty(this.config.yAxisTopStyleProperty, position);
                 }
             }
         }

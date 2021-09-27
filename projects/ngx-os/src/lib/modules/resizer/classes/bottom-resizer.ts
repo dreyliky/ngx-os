@@ -10,13 +10,13 @@ export class BottomResizer extends BaseResizer {
         const docElement = document.documentElement;
 
         if (height > this.config.minHeight && height < this.config.maxHeight) {
-            this.context.resizableElement.style.height = `${height}px`;
+            this.context.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
 
             if (this.config.isAllowChangePosition) {
-                if (this.config.yAxisStyleName === 'bottom' || this.config.yAxisStyleName === 'marginBottom') {
+                if (this.config.yAxisBottomStyleProperty) {
                     const position = `${docElement.clientHeight - event.pageY}px`;
 
-                    this.context.resizableElement.style[this.config.yAxisStyleName] = position;
+                    this.context.resizableElement.style.setProperty(this.config.yAxisBottomStyleProperty, position);
                 }
             }
         }

@@ -1,4 +1,8 @@
 os-window {
+    width: var(--os-width);
+    height: var(--os-height);
+    top: var(--os-top);
+    left: var(--os-left);
     font-size: 11px;
     font-family: var(--segoe-ui);
     background: #e6e6e6;
@@ -34,7 +38,7 @@ os-window {
             opacity: 0;
         }
     }
-    
+
     @keyframes hiding {
         from {
             transform: scale(1);
@@ -42,18 +46,18 @@ os-window {
         }
     
         to {
-            transform: scale(.2);
-            top: calc(var(--os-coordinate-y-for-hiding) - (var(--os-height) / 2));
-            left: calc(var(--os-coordinate-x-for-hiding) - (var(--os-width) / 2));
+            transform: scale(.1);
+            top: calc(var(--os-coordinate-y-for-hiding) - var(--os-real-height) / 2);
+            left: calc(var(--os-coordinate-x-for-hiding) - var(--os-real-width) / 2);
             opacity: 0;
         }
     }
 
     @keyframes showing {
         from {
-            transform: scale(.2);
-            top: calc(var(--os-coordinate-y-for-hiding) - (var(--os-height) / 2));
-            left: calc(var(--os-coordinate-x-for-hiding) - (var(--os-width) / 2));
+            transform: scale(.1);
+            top: calc(var(--os-coordinate-y-for-hiding) - var(--os-real-height) / 2);
+            left: calc(var(--os-coordinate-x-for-hiding) - var(--os-real-width) / 2);
             opacity: 0;
         }
     
@@ -79,6 +83,11 @@ os-window {
             top: var(--fullscreen-top);
             left: var(--fullscreen-left);
         }
+    }
+
+    &.os-hiding,
+    &.os-showing {
+        pointer-events: none;
     }
 
     &.os-opening {
@@ -110,11 +119,11 @@ os-window {
         animation: entering-windowed .17s ease forwards;
     }
 
-    &.os-fullscreen:not(.os-hiding) {
-        width: var(--fullscreen-width) !important;
-        height: var(--fullscreen-height) !important;
-        left: var(--fullscreen-left) !important;
-        top: var(--fullscreen-top) !important;
+    &.os-fullscreen {
+        width: var(--fullscreen-width);
+        height: var(--fullscreen-height);
+        left: var(--fullscreen-left);
+        top: var(--fullscreen-top);
     }
 
     &.os-active {

@@ -108,7 +108,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
             const titleBarDomRect = this.titleBarElement.getBoundingClientRect();
 
-            this.draggableDirective.draggerConfig = {
+            this.draggableDirective.config = {
                 shiftX: (this.widthAtWindowedMode / 2),
                 shiftY: (titleBarDomRect.height / 2)
             };
@@ -139,7 +139,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onDragEnd(): void {
-        this.draggableDirective.draggerConfig = { shiftX: null, shiftY: null };
+        this.draggableDirective.config = { shiftX: null, shiftY: null };
         this.isDragging = false;
 
         this.changeDetector.reattach();

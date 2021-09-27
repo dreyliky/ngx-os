@@ -7,15 +7,15 @@ import { IDraggerParams, IDragInfo } from '../interfaces';
 })
 export class DraggableDirective implements OnDestroy {
     @Input('os-draggable')
-    public set draggerConfig(draggerConfig: IDraggerParams) {
-        this._draggerConfig = { ...this._draggerConfig, ...draggerConfig };
+    public set config(draggerConfig: IDraggerParams) {
+        this._config = { ...this._config, ...draggerConfig };
 
         this.initMovableElement();
         this.initDraggableElement();
     }
 
-    public get draggerConfig(): DraggerConfig {
-        return this._draggerConfig;
+    public get config(): DraggerConfig {
+        return this._config;
     }
 
     @Output()
@@ -39,7 +39,7 @@ export class DraggableDirective implements OnDestroy {
     private _draggableElement: HTMLElement;
     private _movableElement: HTMLElement;
 
-    private _draggerConfig: DraggerConfig = new DraggerConfig();
+    private _config: DraggerConfig = new DraggerConfig();
 
     constructor(
         private readonly element: ElementRef<HTMLElement>
@@ -50,17 +50,17 @@ export class DraggableDirective implements OnDestroy {
     }
 
     public updateMovableElementPosition(event: MouseEvent): void {
-        if (this._movableElement && this.draggerConfig.isAllowMoveElement) {
-            this._movableElement.style.left = `${event.clientX - this.shiftX}px`;
-            this._movableElement.style.top = `${event.clientY - this.shiftY}px`;
+        if (this._movableElement && this.config.isAllowMoveElement) {
+            this._movableElement.style.setProperty(this.config.xAxisStyleProperty, `${event.clientX - this.shiftX}px`);
+            this._movableElement.style.setProperty(this.config.yAxisStyleProperty, `${event.clientY - this.shiftY}px`);
         }
     }
 
     private initDraggableElement(): void {
         this._draggableElement?.removeEventListener('mousedown', this.elementMouseDownHandler);
 
-        if (this.draggerConfig?.draggableElement) {
-            this._draggableElement = this.draggerConfig.draggableElement;
+        if (this.config?.draggableElement) {
+            this._draggableElement = this.config.draggableElement;
         } else {
             this._draggableElement = this.element.nativeElement;
         }
@@ -69,8 +69,8 @@ export class DraggableDirective implements OnDestroy {
     }
 
     private initMovableElement(): void {
-        if (this.draggerConfig?.movableElement) {
-            this._movableElement = this.draggerConfig.movableElement;
+        if (this.config?.movableElement) {
+            this._movableElement = this.config.movableElement;
         } else {
             this._movableElement = this.element.nativeElement;
         }
@@ -127,30 +127,30 @@ export class DraggableDirective implements OnDestroy {
     }
 
     private setShiftX({ mouseEvent, draggableElementDomRect }: IDragInfo): void {
-        if (typeof(this.draggerConfig.shiftX) === 'number') {
-            this.shiftX = this.draggerConfig.shiftX;
+        if (typeof(this.config.shiftX) === 'number') {
+            this.shiftX = this.config.shiftX;
         } else {
             this.shiftX = mouseEvent.clientX - draggableElementDomRect.left + pageXOffset;
         }
     }
 
     private setShiftY({ mouseEvent, draggableElementDomRect }: IDragInfo): void {
-        if (typeof(this.draggerConfig.shiftY) === 'number') {
-            this.shiftY = this.draggerConfig.shiftY;
+        if (typeof(this.config.shiftY) === 'number') {
+            this.shiftY = this.config.shiftY;
         } else {
             this.shiftY = mouseEvent.clientY - draggableElementDomRect.top + pageYOffset;
         }
     }
 
     private getIsAvailableDragInteraction(event: MouseEvent): boolean {
-        const childElementsBlackList = this.draggerConfig.childElementsBlackList || [];
+        const childElementsBlackList = this.config.childElementsBlackList || [];
 
         if (
-            !this.draggerConfig.isEnabled
+            !this.config.isEnabled
             ||
-            !this.draggerConfig.allowedMouseButtons
+            !this.config.allowedMouseButtons
             ||
-            !this.draggerConfig.allowedMouseButtons.includes(event.button)
+            !this.config.allowedMouseButtons.includes(event.button)
             ||
             childElementsBlackList.includes(event.target as HTMLElement)
         ) {

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { DraggerConfig } from '../../../drag-and-drop';
 import { ResizerConfig } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
-import { DynamicStateEnum } from '../../enums';
+import { DynamicStateEnum, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
 import { IDynamicWindowParams } from '../../interfaces';
 
 @Component({
@@ -82,7 +82,9 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
             draggableElement: this.titleBarElement,
             movableElement: this.windowElement,
             childElementsBlackList: this.titleBarButtons,
-            isAllowMoveElement: this.isAllowDragging
+            isAllowMoveElement: this.isAllowDragging,
+            xAxisStyleProperty: CssVariable.Left,
+            yAxisStyleProperty: CssVariable.Top
         };
     }
 
@@ -94,7 +96,11 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
             maxWidth: this.config.maxWidth,
             maxHeight: this.config.maxHeight,
             allowedResizers: this.config.allowedResizers,
-            isEnabled: this.isAllowResizing
+            isEnabled: this.isAllowResizing,
+            xAxisLeftStyleProperty: CssVariable.Left,
+            yAxisTopStyleProperty: CssVariable.Top,
+            widthStyleProperty: CssVariable.Width,
+            heightStyleProperty: CssVariable.Height
         };
     }
 
@@ -118,10 +124,12 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     public get windowStyle(): object {
         return {
             ...this.config.style,
-            left: `${this.config.positionX}px`,
-            top: `${this.config.positionY}px`,
-            '--os-width': this.width,
-            '--os-height': this.height,
+            [CssVariable.Left]: `${this.config.positionX}px`,
+            [CssVariable.Top]: `${this.config.positionY}px`,
+            [CssVariable.Width]: this.width,
+            [CssVariable.Height]: this.height,
+            [CssVariable.RealWidth]: `${this.windowElement?.offsetWidth}px`,
+            [CssVariable.RealHeight]: `${this.windowElement?.offsetHeight}px`,
             '--os-coordinate-x-for-hiding': this.config.hidesInto?.x,
             '--os-coordinate-y-for-hiding': this.config.hidesInto?.y,
             '--os-fullscreen-offset-top': this.config.fullscreenOffset?.top,

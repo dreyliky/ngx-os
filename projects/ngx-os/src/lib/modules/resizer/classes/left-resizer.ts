@@ -9,13 +9,13 @@ export class LeftResizer extends BaseResizer {
         const width = this.context.originalWidth - (event.pageX - this.context.originalMouseX);
 
         if (width > this.config.minWidth && width < this.config.maxWidth) {
-            this.context.resizableElement.style.width = `${width}px`;
+            this.context.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
 
             if (this.config.isAllowChangePosition) {
-                if (this.config.xAxisStyleName === 'left' || this.config.xAxisStyleName === 'marginLeft') {
+                if (this.config.xAxisLeftStyleProperty) {
                     const position = `${this.context.originalX + (event.pageX - this.context.originalMouseX)}px`;
 
-                    this.context.resizableElement.style[this.config.xAxisStyleName] = position;
+                    this.context.resizableElement.style.setProperty(this.config.xAxisLeftStyleProperty, position);
                 }
             }
         }

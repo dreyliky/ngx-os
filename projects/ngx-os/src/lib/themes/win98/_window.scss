@@ -1,4 +1,8 @@
 os-window {
+    width: var(--os-width);
+    height: var(--os-height);
+    top: var(--os-top);
+    left: var(--os-left);
     font-size: 11px;
     box-shadow: var(--border-window-outer), var(--border-window-inner);
     background: rgb(var(--os-background-color));
@@ -14,8 +18,8 @@ os-window {
         0% {
             height: 20px;
             transform: scale(.2);
-            top: var(--os-coordinate-y-for-hiding);
-            left: calc(var(--os-coordinate-x-for-hiding) - (var(--os-width) / 2));
+            top: calc(var(--os-coordinate-y-for-hiding) - var(--os-real-height) / 2);
+            left: calc(var(--os-coordinate-x-for-hiding) - var(--os-real-width) / 2);
         }
     
         70% {
@@ -33,13 +37,13 @@ os-window {
             transform: scale(1);
             opacity: 1;
         }
-    
+
         to {
             height: 20px;
-            transform: scale(.6);
-            top: var(--os-coordinate-y-for-hiding);
-            left: calc(var(--os-coordinate-x-for-hiding) - (var(--os-width) / 2));
-            opacity: .3;
+            transform: scale(.2);
+            top: calc(var(--os-coordinate-y-for-hiding) - var(--os-real-height) / 2);
+            left: calc(var(--os-coordinate-x-for-hiding) - var(--os-real-width) / 2);
+            opacity: 0;
         }
     }
     
@@ -72,26 +76,14 @@ os-window {
             height: 20px;
         }
     }
-    
-    @keyframes entering-fullscreen {
-        0% {
-            height: 20px;
-        }
-    
-        80% {
-            height: 20px;
-        }
-    
-        100% {
-            width: var(--fullscreen-width);
-            height: var(--fullscreen-height);
-            top: var(--fullscreen-top);
-            left: var(--fullscreen-left);
-        }
-    }
 
     fieldset {
         margin-bottom: 9px;
+    }
+
+    &.os-hiding,
+    &.os-showing {
+        pointer-events: none;
     }
 
     &.os-showing {
@@ -115,11 +107,11 @@ os-window {
         display: none !important;
     }
 
-    &.os-fullscreen:not(.os-hiding) {
-        width: var(--fullscreen-width) !important;
-        height: var(--fullscreen-height) !important;
-        top: var(--fullscreen-top) !important;
-        left: var(--fullscreen-left) !important;
+    &.os-fullscreen {
+        width: var(--fullscreen-width);
+        height: var(--fullscreen-height);
+        top: var(--fullscreen-top);
+        left: var(--fullscreen-left);
     }
 
     &.os-fullscreen, &.os-entering-fullscreen {
