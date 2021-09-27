@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ISelectboxValueChangeEvent } from '@lib-modules';
-import { TaskbarPlacementEnum, TaskbarPlacementService, TASKBAR_PLACEMENT_ARRAY } from '../../../../modules/taskbar';
+import {
+    TaskbarPlacement,
+    TaskbarPlacementEnum,
+    TaskbarPlacementService,
+    TASKBAR_PLACEMENT_ARRAY
+} from '../../../../modules/taskbar';
 
 @Component({
     selector: 'settings-taskbar-section',
@@ -10,7 +15,7 @@ import { TaskbarPlacementEnum, TaskbarPlacementService, TASKBAR_PLACEMENT_ARRAY 
 })
 export class TaskbarComponent implements OnInit {
     public readonly placements = TASKBAR_PLACEMENT_ARRAY;
-    public selectedPlacement: TaskbarPlacementEnum;
+    public selectedPlacement: TaskbarPlacement;
 
     constructor(
         private readonly taskbarPlacementService: TaskbarPlacementService
@@ -21,8 +26,8 @@ export class TaskbarComponent implements OnInit {
     }
 
     public onPlacementChange({ value }: ISelectboxValueChangeEvent<TaskbarPlacementEnum>): void {
-        this.selectedPlacement = value;
-
         this.taskbarPlacementService.change(value);
+
+        this.selectedPlacement = this.taskbarPlacementService.data;
     }
 }

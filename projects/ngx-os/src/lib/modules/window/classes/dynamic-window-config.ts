@@ -4,24 +4,24 @@ import { IDynamicWindowParams } from '../interfaces';
 /** @internal */
 export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowParams {
     public title?: string = 'OS dynamic window';
-    public data?: D;
-    public type?: T;
-    public width?: number;
-    public height?: number;
+    public data?: D = null;
+    public type?: T = null;
+    public width?: number = null;
+    public height?: number = null;
     public minWidth?: number = 275;
     public minHeight?: number = 175;
     public maxWidth?: number = Infinity;
     public maxHeight?: number = Infinity;
-    public allowedResizers?: ResizerEnum[];
-    public positionX?: number;
-    public positionY?: number;
-    public iconUrl?: string;
-    public fullscreenOffset = {
-        top: '0px',
-        right: '0px',
-        bottom: '0px',
-        left: '0px'
-    };
+    public allowedResizers?: ResizerEnum[] = null;
+    public positionX?: number = null;
+    public positionY?: number = null;
+    public iconUrl?: string = null;
+    public fullscreenOffset: {
+        top: string;
+        right: string;
+        bottom: string;
+        left: string;
+    } = null;
 
     public isFullscreenByDefault?: boolean = false;
     public isHiddenByDefault?: boolean = false;
@@ -38,9 +38,9 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public titleBarStyleClass: string | string[] | object = '';
     public scrollViewStyle?: object = {};
     public scrollViewStyleClass?: string | string[] | object = '';
-    public onMinimizeButtonClick?: () => void;
-    public onMaximizeButtonClick?: () => void;
-    public onCloseButtonClick?: () => void;
+    public onMinimizeButtonClick?: () => void = null;
+    public onMaximizeButtonClick?: () => void = null;
+    public onCloseButtonClick?: () => void = null;
 
     constructor(params: IDynamicWindowParams = {}) {
         Object.assign(this, params);

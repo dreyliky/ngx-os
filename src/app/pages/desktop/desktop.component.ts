@@ -1,37 +1,38 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { IThemeRgbColor } from '@lib-modules';
 import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
-import { BackgroundMetadata, BackgroundService, BackgroundTypeEnum } from './features/background';
-import { TaskbarPlacementService, TASKBAR_PLACEMENT_ARRAY } from './modules/taskbar';
+import { DesktopBackgroundService, DesktopTaskbarService } from './services';
 
 @Component({
     selector: 'demo-desktop-page',
     templateUrl: './desktop.component.html',
     styleUrls: ['./desktop.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        DesktopBackgroundService,
+        DesktopTaskbarService
+    ]
 })
 export class DesktopComponent implements OnInit, OnDestroy {
     @HostBinding('style.background')
-    public hostBackground: string;
+    public hostBackgroundStylelist: string;
 
     @HostBinding('class')
-    protected hostClasslist: string;
+    public hostClasslist: string;
 
     private untilDestroyed$ = new Subject();
 
     constructor(
         private readonly titleService: Title,
-        private readonly taskbarPlacementService: TaskbarPlacementService,
-        private readonly backgroundService: BackgroundService,
+        private readonly taskbar: DesktopTaskbarService,
+        private readonly background: DesktopBackgroundService,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
     public ngOnInit(): void {
         this.titleService.setTitle('ngx-os - Desktop');
-        this.initTaskbarPlacementObserver();
-        this.initBackgroundObserver();
+        this.initHostBackgroundStylelistObserver();
+        this.initHostClasslistObserver();
     }
 
     public ngOnDestroy(): void {
@@ -39,36 +40,20 @@ export class DesktopComponent implements OnInit, OnDestroy {
         this.untilDestroyed$.complete();
     }
 
-    private initHostBackground({ type, data }: BackgroundMetadata): void {
-        if (type === BackgroundTypeEnum.Color) {
-            const { r, g, b } = data as IThemeRgbColor;
+    private initHostBackgroundStylelistObserver(): void {
+        this.background.styles$
+            .subscribe((styles) => {
+                this.hostBackgroundStylelist = styles;
 
-            this.hostBackground = `rgb(${r}, ${g}, ${b})`;
-        } else {
-            this.hostBackground = `url(${data})`;
-        }
-    }
-
-    private initTaskbarPlacementObserver(): void {
-        this.taskbarPlacementService.data$
-            .pipe(
-                takeUntil(this.untilDestroyed$),
-                map((data) => TASKBAR_PLACEMENT_ARRAY.find((placement) => placement.id === data))
-            )
-            .subscribe((placement) => {
-                this.hostClasslist = placement.cssClassName;
-
-                this.changeDetector.detectChanges();
+                this.changeDetector.markForCheck();
             });
     }
 
-    private initBackgroundObserver(): void {
-        this.backgroundService.data$
-            .pipe(
-                takeUntil(this.untilDestroyed$)
-            )
-            .subscribe((backgroundMetadata) => {
-                this.initHostBackground(backgroundMetadata);
+    private initHostClasslistObserver(): void {
+        this.taskbar.classlist$
+            .subscribe((classlist) => {
+                this.hostClasslist = classlist;
+
                 this.changeDetector.markForCheck();
             });
     }

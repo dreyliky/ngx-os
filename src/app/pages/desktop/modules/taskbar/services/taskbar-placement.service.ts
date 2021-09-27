@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { TASKBAR_PLACEMENT_ARRAY as PLACEMENTS } from '../data';
 import { TaskbarPlacementEnum } from '../enums';
+import { TaskbarPlacement } from '../interfaces';
 
 @Injectable()
 export class TaskbarPlacementService {
-    public get data$(): Observable<TaskbarPlacementEnum> {
-        return this._data$.asObservable();
+    public get data$(): Observable<TaskbarPlacement> {
+        return this._data$
+            .asObservable()
+            .pipe(
+                map((placementId) => PLACEMENTS.find((placement) => placement.id === placementId))
+            );
     }
 
-    public get data(): TaskbarPlacementEnum {
-        return this._data$.getValue();
+    public get data(): TaskbarPlacement {
+        return PLACEMENTS
+            .find((placement) => placement.id === this._data$.getValue());
     }
 
     private readonly storageKey = 'taskbar-placement';

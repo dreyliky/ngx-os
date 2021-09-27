@@ -1,7 +1,6 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ElementRef,
     OnDestroy,
@@ -9,8 +8,9 @@ import {
 } from '@angular/core';
 import { elementResizingObserver } from '@lib-helpers';
 import { DynamicWindowRef, DynamicWindowService, DynamicWindowSharedConfigService } from '@lib-modules';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { combineLatest, Observable, Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { TaskbarPlacementService } from './services';
 
 @Component({
     selector: 'desktop-taskbar',
@@ -23,32 +23,30 @@ import { takeUntil } from 'rxjs/operators';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskbarComponent implements OnInit, AfterViewInit, OnDestroy {
-    public windowsRef: DynamicWindowRef[];
+    public windowRefs$: Observable<DynamicWindowRef[]>;
 
     private untilDestroyed$ = new Subject();
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>,
+        private readonly taskbarPlacementService: TaskbarPlacementService,
         private readonly dynamicWindowService: DynamicWindowService,
-        private readonly dynamicWindowSharedConfigService: DynamicWindowSharedConfigService,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly dynamicWindowSharedConfigService: DynamicWindowSharedConfigService
     ) {}
 
     public ngOnInit(): void {
-        this.initWindowReferencesObserver();
+        this.windowRefs$ = this.dynamicWindowService.references$;
     }
 
     public ngAfterViewInit(): void {
-        this.initTaskbarResizeObserver();
+        this.initTaskbarChangesObserver();
     }
 
     public ngOnDestroy(): void {
         this.untilDestroyed$.next();
         this.untilDestroyed$.complete();
 
-        this.dynamicWindowSharedConfigService.update({
-            fullscreenOffset: { bottom: '0px' }
-        });
+        this.clearWindowSharedConfigFullscreenOffset();
     }
 
     public getTaskbarIconCssUrl(iconUrl: string): string {
@@ -66,27 +64,30 @@ export class TaskbarComponent implements OnInit, AfterViewInit, OnDestroy {
         event.stopPropagation();
     }
 
-    private initTaskbarResizeObserver(): void {
-        elementResizingObserver(this.hostElementRef.nativeElement)
+    private initTaskbarChangesObserver(): void {
+        combineLatest([
+            elementResizingObserver(this.hostElementRef.nativeElement),
+            this.taskbarPlacementService.data$
+        ])
             .pipe(
-                takeUntil(this.untilDestroyed$)
+                takeUntil(this.untilDestroyed$),
+                debounceTime(4)
             )
-            .subscribe(({ offsetHeight: taskbarHeight }) => {
+            .subscribe(() => {
+                const placement = this.taskbarPlacementService.data;
+                const elementSize = this.hostElementRef.nativeElement[placement.targetSizeProperty];
+
                 this.dynamicWindowSharedConfigService.update({
-                    fullscreenOffset: { bottom: `${taskbarHeight}px` }
+                    fullscreenOffset: {
+                        [placement.windowConfigFullscreenOffsetKey]: `${elementSize}px`
+                    }
                 });
             });
     }
 
-    private initWindowReferencesObserver(): void {
-        this.dynamicWindowService.references$
-            .pipe(
-                takeUntil(this.untilDestroyed$)
-            )
-            .subscribe((windowsRef) => {
-                this.windowsRef = windowsRef;
-
-                this.changeDetector.detectChanges();
-            });
+    private clearWindowSharedConfigFullscreenOffset(): void {
+        this.dynamicWindowSharedConfigService.update({
+            fullscreenOffset: {}
+        });
     }
 }

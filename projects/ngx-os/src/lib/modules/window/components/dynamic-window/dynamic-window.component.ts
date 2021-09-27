@@ -267,7 +267,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             this.windowRef.config$
         ])
             .subscribe(([sharedConfig, updatedConfig]) => {
-                this.config = mergeConfigs(this.config, updatedConfig, sharedConfig);
+                this.config = mergeConfigs(updatedConfig, sharedConfig);
 
                 this.changeDetector.detectChanges();
             });
