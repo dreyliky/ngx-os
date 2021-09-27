@@ -81,7 +81,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             setTimeout(() => this.windowRef.hide());
         }
 
-        this.config.onMinimizeButtonClick?.();
+        this.config.onHideButtonClick?.();
     }
 
     public onMaximizeButtonClick(): void {
@@ -89,7 +89,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             setTimeout(() => this.windowRef.toggleFullscreen());
         }
 
-        this.config.onMaximizeButtonClick?.();
+        this.config.onToggleFullscreenButtonClick?.();
     }
 
     public onCloseButtonClick(): void {

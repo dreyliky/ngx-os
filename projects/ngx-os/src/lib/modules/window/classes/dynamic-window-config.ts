@@ -33,8 +33,8 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public titleBarStyleClass: string | string[] | object;
     public scrollViewStyle?: object;
     public scrollViewStyleClass?: string | string[] | object;
-    public onMinimizeButtonClick?: () => void;
-    public onMaximizeButtonClick?: () => void;
+    public onHideButtonClick?: () => void;
+    public onToggleFullscreenButtonClick?: () => void;
     public onCloseButtonClick?: () => void;
 
     constructor(params: IDynamicWindowParams = {}) {

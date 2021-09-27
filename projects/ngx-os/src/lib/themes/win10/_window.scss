@@ -43,17 +43,17 @@ os-window {
     
         to {
             transform: scale(.2);
-            top: 100%;
-            left: 0%;
+            top: calc(var(--os-coordinate-y-for-hiding) - (var(--os-height) / 2));
+            left: calc(var(--os-coordinate-x-for-hiding) - (var(--os-width) / 2));
             opacity: 0;
         }
     }
-    
+
     @keyframes showing {
         from {
             transform: scale(.2);
-            top: 100%;
-            left: 0%;
+            top: calc(var(--os-coordinate-y-for-hiding) - (var(--os-height) / 2));
+            left: calc(var(--os-coordinate-x-for-hiding) - (var(--os-width) / 2));
             opacity: 0;
         }
     

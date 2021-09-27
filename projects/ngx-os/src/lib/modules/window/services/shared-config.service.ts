@@ -29,6 +29,10 @@ export class DynamicWindowSharedConfigService {
                 left: '0px',
                 right: '0px'
             },
+            hidesInto: {
+                x: '50%',
+                y: '100%'
+            },
             isFullscreenByDefault: false,
             isHiddenByDefault: false,
             isAllowHide: true,

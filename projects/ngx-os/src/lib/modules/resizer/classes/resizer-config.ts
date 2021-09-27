@@ -15,5 +15,6 @@ export class ResizerConfig implements IResizerParams {
     public xAxisStyleName?: xAxisStyleNameType = 'left';
     public yAxisStyleName?: yAxisStyleNameType = 'top';
     public isAllowChangePosition?: boolean = true;
+    public isAffectsElement?: boolean = true;
     public isEnabled?: boolean = true;
 }

@@ -68,9 +68,9 @@ export interface IDynamicWindowParams<D = any, T = any> {
     /** Classlist for scroll view component of the window */
     scrollViewStyleClass?: string | string[] | object;
     /** Fires when the "hide window" button in the title bar click */
-    onMinimizeButtonClick?: () => void;
+    onHideButtonClick?: () => void;
     /** Fires when the "toggle full-screen for window" button in the title bar click */
-    onMaximizeButtonClick?: () => void;
+    onToggleFullscreenButtonClick?: () => void;
     /** Fires when the "close window" button in the title bar click */
     onCloseButtonClick?: () => void;
 }
