@@ -13,12 +13,12 @@ import {
 } from '@angular/core';
 import { EventOutside } from '@lib-helpers';
 import { combineLatest, Observable } from 'rxjs';
-import { skip } from 'rxjs/operators';
+import { filter, map, skip } from 'rxjs/operators';
 import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
 import { IResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG } from '../../data';
 import { DynamicWindowContentDirective } from '../../directives';
-import { DynamicStateEnum } from '../../enums';
+import { DynamicStateEnum as DynamicState, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
 import { mergeConfigs } from '../../helpers';
 import { IDynamicWindowParams } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
@@ -53,14 +53,13 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.initChildComponent(this.childComponentType);
         this.initDynamicStateManager();
         this.initHtmlElements();
+        this.initBeforeHiddenStateObserver();
         this.initIsHiddenStateObserver();
         this.initIsFullscreenStateObserver();
         this.initAfterClosedStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
         this.initWindowSizes();
-        // FIXME: Probably not the component's logic
-        this.windowRef.setIsActive(true);
         this.windowRef.setWindowElement(this.windowElement);
         this.changeDetector.detectChanges();
     }
@@ -178,20 +177,19 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initDynamicStateManager(): void {
-        this.dynamicStateManager.apply(DynamicStateEnum.Opening);
-        this.dynamicStateManager.registerCallback(() => {
-            this.changeDetector.markForCheck();
-        });
+        this.dynamicStateManager.apply(DynamicState.Opening);
+        this.dynamicStateManager.registerAfterStartCallback(() => this.changeDetector.detectChanges());
+        this.dynamicStateManager.registerAfterEndCallback(() => this.changeDetector.markForCheck());
     }
 
     private initWindowSizes(): void {
-        const windowDomRect = this.windowElement.getBoundingClientRect();
+        const { width, height } = this.windowElement.getBoundingClientRect();
 
-        this.widthAtWindowedMode = (this.config.width || windowDomRect.width);
-        this.heightAtWindowedMode = (this.config.height || windowDomRect.height);
+        this.widthAtWindowedMode = (this.config.width ?? width);
+        this.heightAtWindowedMode = (this.config.height ?? height);
 
-        this.width = `${this.widthAtWindowedMode}px`;
-        this.height = `${this.heightAtWindowedMode}px`;
+        this.windowElement.style.setProperty(CssVariable.Width, `${this.widthAtWindowedMode}px`);
+        this.windowElement.style.setProperty(CssVariable.Height, `${this.heightAtWindowedMode}px`);
     }
 
     private initHtmlElements(): void {
@@ -201,68 +199,49 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initActiveWindowIdObserver(): void {
-        const subscription = this.windowRef.isActive$
+        this.windowRef.isActive$
             .subscribe(() => {
                 this.updateZIndex();
                 this.changeDetector.detectChanges();
             });
-
-        this.parentSubscription.add(subscription);
     }
 
     private initWindowIdOrderObserver(): void {
-        const subscription = this.windowRef.orderIndex$
+        this.windowRef.orderIndex$
             .subscribe((orderIndex) => {
                 this.windowOrderIndex = orderIndex;
 
                 this.updateZIndex();
                 this.changeDetector.detectChanges();
             });
+    }
 
-        this.parentSubscription.add(subscription);
+    private initBeforeHiddenStateObserver(): void {
+        this.windowRef.beforeHidden$
+            .subscribe(() => this.dynamicStateManager.apply(DynamicState.Hiding));
     }
 
     private initIsHiddenStateObserver(): void {
-        const subscription = this.windowRef.isHidden$
-            .pipe(skip(1))
-            .subscribe((isHidden) => {
-                if (isHidden) {
-                    this.dynamicStateManager.apply(DynamicStateEnum.Hiding);
-                } else {
-                    this.dynamicStateManager.apply(DynamicStateEnum.Showing);
-                }
-
-                this.changeDetector.detectChanges();
-            });
-
-        this.parentSubscription.add(subscription);
+        this.windowRef.isHidden$
+            .pipe(
+                skip(1),
+                filter((isHidden) => !isHidden)
+            )
+            .subscribe(() => this.dynamicStateManager.apply(DynamicState.Showing));
     }
 
     private initIsFullscreenStateObserver(): void {
-        const subscription = this.windowRef.isFullscreen$
-            .pipe(skip(1))
-            .subscribe((isFullscreen) => {
-                if (isFullscreen) {
-                    this.dynamicStateManager.apply(DynamicStateEnum.EnteringFullscreen);
-                } else {
-                    this.dynamicStateManager.apply(DynamicStateEnum.EnteringWindowed);
-                }
-
-                this.changeDetector.detectChanges();
-            });
-
-        this.parentSubscription.add(subscription);
+        this.windowRef.isFullscreen$
+            .pipe(
+                skip(1),
+                map((state) => (state) ? DynamicState.EnteringFullscreen : DynamicState.EnteringWindowed)
+            )
+            .subscribe((dynamicState) => this.dynamicStateManager.apply(dynamicState));
     }
 
     private initAfterClosedStateObserver(): void {
-        const subscription = this.windowRef.afterClosed$
-            .subscribe(() => {
-                this.dynamicStateManager.apply(DynamicStateEnum.Closing);
-
-                this.changeDetector.detectChanges();
-            });
-
-        this.parentSubscription.add(subscription);
+        this.windowRef.afterClosed$
+            .subscribe(() => this.dynamicStateManager.apply(DynamicState.Closing));
     }
 
     private initConfigObserver(): void {

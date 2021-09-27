@@ -3,12 +3,15 @@ import { elementResizingObserver } from '@lib-helpers';
 import { DynamicWindowRef, DynamicWindowService, DynamicWindowSharedConfigService } from '@lib-modules';
 import { combineLatest, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { TaskbarPlacement } from './interfaces';
 import { TaskbarPlacementService } from './services';
 
 @Injectable()
 export class TaskbarService implements OnDestroy {
     private windowRefs: DynamicWindowRef[];
     private taskbarChangesSubscription: Subscription;
+
+    private previousPlacement: TaskbarPlacement;
 
     private _windowRefElements: QueryList<ElementRef<HTMLElement>>;
 
@@ -57,9 +60,12 @@ export class TaskbarService implements OnDestroy {
 
         this.windowSharedConfigService.update({
             fullscreenOffset: {
+                [this.previousPlacement?.windowConfigFullscreenOffsetKey]: '0px',
                 [placement.windowConfigFullscreenOffsetKey]: `${elementSize}px`
             }
         });
+
+        this.previousPlacement = placement;
     }
 
     private clearWindowSharedConfig(): void {

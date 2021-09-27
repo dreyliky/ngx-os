@@ -14,6 +14,10 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         return this._isHidden$.getValue();
     }
 
+    public get beforeHidden$(): Observable<unknown> {
+        return this._beforeHidden$.asObservable();
+    }
+
     public get isFullscreen$(): Observable<boolean> {
         return this._isFullscreen$.asObservable();
     }
@@ -63,7 +67,8 @@ export class DynamicWindowRef implements IDynamicWindowRef {
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
     private readonly _isActive$ = new BehaviorSubject<boolean>(true);
     private readonly _orderIndex$ = new BehaviorSubject<number>(0);
-    private readonly _afterClosed$ = new Subject<any>();
+    private readonly _beforeHidden$ = new Subject<unknown>();
+    private readonly _afterClosed$ = new Subject<unknown>();
 
     private readonly _id = IdGenerator.generate();
     private _windowElement: HTMLElement;
@@ -81,6 +86,7 @@ export class DynamicWindowRef implements IDynamicWindowRef {
 
     public hide(): void {
         if (!this.isHidden) {
+            this._beforeHidden$.next();
             this._isHidden$.next(true);
             this.setIsActive(false);
         }
@@ -157,6 +163,7 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         this._isFullscreen$.complete();
         this._isActive$.complete();
         this._orderIndex$.complete();
+        this._beforeHidden$.complete();
         this._afterClosed$.complete();
     }
 }

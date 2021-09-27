@@ -8,7 +8,8 @@ export class DynamicStateManager {
 
     private _state: DynamicStateEnum;
 
-    private callback: () => any;
+    private afterStartCallback: () => void;
+    private afterEndCallback: () => void;
     private currentStateTimeoutId: number;
     private readonly cssAnimationClassDuration: number = 500;
 
@@ -17,6 +18,10 @@ export class DynamicStateManager {
     }
 
     public apply(state: DynamicStateEnum): void {
+        if (this.state === state) {
+            return;
+        }
+
         clearTimeout(this.currentStateTimeoutId);
 
         this._state = state;
@@ -24,11 +29,17 @@ export class DynamicStateManager {
         this.currentStateTimeoutId = setTimeout(() => {
             this._state = null;
 
-            this.callback?.();
+            this.afterEndCallback?.();
         }, this.cssAnimationClassDuration);
+
+        this.afterStartCallback?.();
     }
 
-    public registerCallback(callback: () => any): void {
-        this.callback = callback;
+    public registerAfterStartCallback(callback: () => void): void {
+        this.afterStartCallback = callback;
+    }
+
+    public registerAfterEndCallback(callback: () => void): void {
+        this.afterEndCallback = callback;
     }
 }

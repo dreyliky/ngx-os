@@ -19,8 +19,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
 
     public config: IDynamicWindowParams;
 
-    public width: string;
-    public height: string;
     public zIndex: number;
     public isDragging: boolean = false;
     public isResizing: boolean = false;
@@ -30,7 +28,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     public titleBarElement: HTMLDivElement;
     public titleBarButtons: HTMLButtonElement[] = [];
 
-    public readonly dynamicStateEnum = DynamicStateEnum;
     public readonly dynamicStateManager = new DynamicStateManager();
 
     public get isOpening(): boolean {
@@ -126,8 +123,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
             ...this.config.style,
             [CssVariable.Left]: `${this.config.positionX}px`,
             [CssVariable.Top]: `${this.config.positionY}px`,
-            [CssVariable.Width]: this.width,
-            [CssVariable.Height]: this.height,
             [CssVariable.RealWidth]: `${this.windowElement?.offsetWidth}px`,
             [CssVariable.RealHeight]: `${this.windowElement?.offsetHeight}px`,
             '--os-coordinate-x-for-hiding': this.config.hidesInto?.x,
