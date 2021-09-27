@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IThemeRgbColor } from '@lib-modules';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { BackgroundService, BackgroundTypeEnum } from '../features/background';
 
 @Injectable()
@@ -17,8 +17,7 @@ export class DesktopBackgroundService {
                     }
 
                     return `url(${data})`;
-                }),
-                tap(console.log)
+                })
             );
     }
 
