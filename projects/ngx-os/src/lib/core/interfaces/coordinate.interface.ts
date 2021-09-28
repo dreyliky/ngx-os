@@ -1,4 +1,4 @@
-export interface ICssCoordinate {
-    x: string;
-    y: string;
+export interface ICoordinate {
+    x: number;
+    y: number;
 }

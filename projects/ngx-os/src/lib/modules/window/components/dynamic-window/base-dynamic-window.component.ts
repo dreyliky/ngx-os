@@ -1,7 +1,7 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import { CssClasslistToObjectHelper as ClasslistToObject } from '@lib-core';
 import { Subscription } from 'rxjs';
-import { DraggerConfig, DragStrategyEnum } from '../../../drag-and-drop';
+import { DraggerConfig, DragStrategyByAxisProperties } from '../../../drag-and-drop';
 import { ResizerConfig } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
 import { DynamicStateEnum, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
@@ -80,9 +80,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
             movableElement: this.windowElement,
             childElementsBlackList: this.titleBarButtons,
             isAllowMoveElement: this.isAllowDragging,
-            xAxisStyleProperty: CssVariable.Left,
-            yAxisStyleProperty: CssVariable.Top,
-            strategy: DragStrategyEnum.ByAxisProperties
+            strategy: this.draggableDirectiveStrategy
         };
     }
 
@@ -147,6 +145,11 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     protected isAfterExitFullscreenByDragging: boolean = false;
 
     protected readonly parentSubscription = new Subscription();
+
+    private readonly draggableDirectiveStrategy = new DragStrategyByAxisProperties({
+        xAxisStyleProperty: CssVariable.Left,
+        yAxisStyleProperty: CssVariable.Top
+    });
 
     public ngOnDestroy(): void {
         this.childComponentRef?.destroy();

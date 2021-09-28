@@ -1,15 +1,18 @@
 import { BaseDragStrategy } from './base-drag.strategy';
+import { DragStrategyByAxisProperties } from './by-axis-properties-drag.strategy';
 
 /** @internal */
-export class ByAxisPropertyDragStrategy extends BaseDragStrategy {
+export class DragStrategyByAxisPropertyImpl extends BaseDragStrategy {
     public updateElementPosition(event: MouseEvent): void {
+        const strategyConfig = this.context.config.strategy as DragStrategyByAxisProperties;
+
         this.context.movableElement.style.setProperty(
-            this.context.config.xAxisStyleProperty,
+            strategyConfig.xAxisStyleProperty,
             `${event.clientX - this.context.shiftX}px`
         );
 
         this.context.movableElement.style.setProperty(
-            this.context.config.yAxisStyleProperty,
+            strategyConfig.yAxisStyleProperty,
             `${event.clientY - this.context.shiftY}px`
         );
     }

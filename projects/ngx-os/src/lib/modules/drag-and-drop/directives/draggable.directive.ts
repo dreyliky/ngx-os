@@ -1,8 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { isNil } from '@lib-helpers';
-import { DraggerConfig } from '../classes';
-import { BaseDragStrategy } from '../classes/base-drag.strategy';
-import { DragStrategyFactory } from '../classes/drag-strategy.factory';
+import { BaseDragStrategy, DraggerConfig, DragStrategyFactory } from '../classes';
 import { IDraggerParams, IDragInfo } from '../interfaces';
 
 @Directive({
@@ -102,9 +100,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
-        const isDragAvailable = this.getIsAvailableDragInteraction(event);
-
-        if (!isDragAvailable) {
+        if (!this.isDragAllowed(event)) {
             return;
         }
 
@@ -114,6 +110,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
 
         this.setShiftX(dragInfo);
         this.setShiftY(dragInfo);
+        this._strategy.registerMouseDownEvent(event);
 
         document.addEventListener('mousemove', this.documentMouseMoveHandler);
         document.addEventListener('mouseup', this.documentMouseUpHandler);
@@ -167,7 +164,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         }
     }
 
-    private getIsAvailableDragInteraction(event: MouseEvent): boolean {
+    private isDragAllowed(event: MouseEvent): boolean {
         const childElementsBlackList = this.config.childElementsBlackList || [];
 
         return !!(
@@ -175,7 +172,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
             ||
             this.config.allowedMouseButtons
             ||
-            this.config.allowedMouseButtons.includes(event.button)
+            this.config.allowedMouseButtons?.includes(event.button)
             ||
             !childElementsBlackList.includes(event.target as HTMLElement)
         );

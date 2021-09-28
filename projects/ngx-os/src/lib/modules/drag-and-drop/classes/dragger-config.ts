@@ -1,6 +1,7 @@
 import { MouseButtonEnum } from '@lib-core';
-import { DragStrategyEnum } from '../enums';
+import { DragStrategyByTranslate3d } from '../classes';
 import { IDraggerParams } from '../interfaces';
+import { DragStrategyType } from '../types';
 
 export class DraggerConfig implements IDraggerParams {
     public draggableElement?: HTMLElement;
@@ -9,9 +10,7 @@ export class DraggerConfig implements IDraggerParams {
     public allowedMouseButtons?: MouseButtonEnum[] = [MouseButtonEnum.left];
     public shiftX?: number;
     public shiftY?: number;
-    public strategy?: DragStrategyEnum = DragStrategyEnum.ByTranslate3d;
-    public xAxisStyleProperty?: string = 'left';
-    public yAxisStyleProperty?: string = 'top';
+    public strategy?: DragStrategyType = new DragStrategyByTranslate3d();
     public isEnabled?: boolean = true;
     public isAllowMoveElement?: boolean = true;
 }

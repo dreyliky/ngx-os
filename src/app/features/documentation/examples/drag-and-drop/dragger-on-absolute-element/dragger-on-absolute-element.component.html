@@ -1,0 +1,11 @@
+<os-button
+    (osClick)="onButtonClick()">
+    {{ buttonLabel }}
+</os-button>
+
+<div
+    *ngIf="isContainerVisible"
+    os-append-to-body
+    [os-draggable]="draggerConfig"
+    class="container">
+</div>
