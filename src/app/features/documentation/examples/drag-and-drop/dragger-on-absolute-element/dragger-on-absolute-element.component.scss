@@ -1,7 +1,10 @@
 .container {
     width: 150px;
     height: 150px;
+    top: calc(50% - 150px / 2);
+    left: calc(50% - 150px / 2);
     background-color: rgb(var(--os-primary-color));
     cursor: move;
     user-select: none;
+    box-shadow: 0px 0px 30px 15px rgba(0, 0, 0, .5);
 }

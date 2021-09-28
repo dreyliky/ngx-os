@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
-import { AppendToBodyDirective } from './directives';
+import { AppendToBodyDirective, FixedToParentDirective } from './directives';
 
 @NgModule({
     declarations: [
-        AppendToBodyDirective
+        AppendToBodyDirective,
+        FixedToParentDirective
     ],
     exports: [
-        AppendToBodyDirective
+        AppendToBodyDirective,
+        FixedToParentDirective
     ]
 })
 export class UtilsModule {}

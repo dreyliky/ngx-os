@@ -1,6 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, HostListener, Inject, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { EventOutside, IntervalCheckerHelper as IntervalChecker } from '@lib-helpers';
+import { Directive, ElementRef, Inject, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { AppendToBodyConfig } from '../classes';
 
 @Directive({
@@ -12,14 +11,11 @@ export class AppendToBodyDirective implements OnInit, OnDestroy, OnChanges {
         this._config = { ...this._config, ...config };
     }
 
-    private _config = new AppendToBodyConfig();
-
     private targetElement: HTMLElement;
     private parentElement: HTMLElement;
-
-    private readonly intervalChecker = new IntervalChecker();
-
     private initialStylePosition: string;
+
+    private _config = new AppendToBodyConfig();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
@@ -43,41 +39,14 @@ export class AppendToBodyDirective implements OnInit, OnDestroy, OnChanges {
         }
     }
 
-    @HostListener('document:wheel', ['$event'])
-    public onDocumentWheel(event: WheelEvent): void {
-        if (this._config.isEnabled) {
-            const isEventOutsideTargetElement = EventOutside.checkForElement(this.targetElement, event);
-
-            if (isEventOutsideTargetElement) {
-                this.intervalChecker.start({
-                    onIteration: () => this.adjustCoordinates()
-                });
-            }
-        }
-    }
-
     private processElement(): void {
         if (this._config.isEnabled) {
             this.applyNeededStyles();
             this.appendElementToBody();
         } else {
             this.resetAppliedNeededStyles();
-            this.appendElementToInitialPlace();
+            this.appendElementToParent();
         }
-    }
-
-    private appendElementToBody(): void {
-        this.parentElement.removeChild(this.targetElement);
-        this.document.body.appendChild(this.targetElement);
-        this.adjustCoordinates();
-    }
-
-    private adjustCoordinates(): void {
-        const { left, top, width, height } = this.parentElement.getBoundingClientRect();
-
-        this.targetElement.style.left = `${left}px`;
-        this.targetElement.style.top = `${(top + height)}px`;
-        this.targetElement.style.width = `${width}px`;
     }
 
     private applyNeededStyles(): void {
@@ -85,11 +54,14 @@ export class AppendToBodyDirective implements OnInit, OnDestroy, OnChanges {
         this.targetElement.style.position = 'absolute';
     }
 
-    private appendElementToInitialPlace(): void {
-        try {
-            this.document.body.removeChild(this.targetElement);
-            this.parentElement.appendChild(this.targetElement);
-        } catch (error) {}
+    private appendElementToBody(): void {
+        this.parentElement.removeChild(this.targetElement);
+        this.document.body.appendChild(this.targetElement);
+    }
+
+    private appendElementToParent(): void {
+        this.document.body?.removeChild(this.targetElement);
+        this.parentElement?.appendChild(this.targetElement);
     }
 
     private resetAppliedNeededStyles(): void {
