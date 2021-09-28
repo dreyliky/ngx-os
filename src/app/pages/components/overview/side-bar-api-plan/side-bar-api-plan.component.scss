@@ -9,7 +9,6 @@
 }
 
 .icon-wrapper {
-    width: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +18,8 @@
 }
 
 .icon {
-    height: 100%;
+    width: 20px;
+    height: 20px;
 }
 
 .name {
