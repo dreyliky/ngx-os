@@ -9,4 +9,5 @@
     height: 150px;
     background-color: rgb(var(--os-primary-color));
     cursor: move;
+    user-select: none;
 }

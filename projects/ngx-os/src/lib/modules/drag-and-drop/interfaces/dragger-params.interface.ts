@@ -1,4 +1,5 @@
 import { MouseButtonEnum } from '@lib-core';
+import { DragStrategyEnum } from '../enums';
 
 export interface IDraggerParams {
     draggableElement?: HTMLElement;
@@ -7,6 +8,7 @@ export interface IDraggerParams {
     allowedMouseButtons?: MouseButtonEnum[];
     shiftX?: number;
     shiftY?: number;
+    strategy?: DragStrategyEnum;
     xAxisStyleProperty?: string;
     yAxisStyleProperty?: string;
     isEnabled?: boolean;

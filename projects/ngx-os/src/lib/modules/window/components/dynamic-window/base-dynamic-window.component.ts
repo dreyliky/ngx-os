@@ -1,7 +1,7 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import { CssClasslistToObjectHelper as ClasslistToObject } from '@lib-core';
 import { Subscription } from 'rxjs';
-import { DraggerConfig } from '../../../drag-and-drop';
+import { DraggerConfig, DragStrategyEnum } from '../../../drag-and-drop';
 import { ResizerConfig } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
 import { DynamicStateEnum, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
@@ -81,7 +81,8 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
             childElementsBlackList: this.titleBarButtons,
             isAllowMoveElement: this.isAllowDragging,
             xAxisStyleProperty: CssVariable.Left,
-            yAxisStyleProperty: CssVariable.Top
+            yAxisStyleProperty: CssVariable.Top,
+            strategy: DragStrategyEnum.ByAxisProperties
         };
     }
 

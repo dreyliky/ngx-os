@@ -1,11 +1,14 @@
-import { Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { isNil } from '@lib-helpers';
 import { DraggerConfig } from '../classes';
+import { BaseDragStrategy } from '../classes/base-drag.strategy';
+import { DragStrategyFactory } from '../classes/drag-strategy.factory';
 import { IDraggerParams, IDragInfo } from '../interfaces';
 
 @Directive({
     selector: '[os-draggable]'
 })
-export class DraggableDirective implements OnDestroy {
+export class DraggableDirective implements AfterViewInit, OnDestroy {
     @Input('os-draggable')
     public set config(draggerConfig: IDraggerParams) {
         this._config = { ...this._config, ...draggerConfig };
@@ -33,17 +36,36 @@ export class DraggableDirective implements OnDestroy {
     @Output()
     public osAfterDragging: EventEmitter<IDragInfo> = new EventEmitter();
 
-    private shiftX: number;
-    private shiftY: number;
+    public get shiftX(): number {
+        return this._shiftX;
+    }
 
+    public get shiftY(): number {
+        return this._shiftY;
+    }
+
+    public get draggableElement(): HTMLElement {
+        return this._draggableElement;
+    }
+
+    public get movableElement(): HTMLElement {
+        return this._movableElement;
+    }
+
+    private _shiftX: number;
+    private _shiftY: number;
     private _draggableElement: HTMLElement;
     private _movableElement: HTMLElement;
-
     private _config: DraggerConfig = new DraggerConfig();
+    private _strategy: BaseDragStrategy;
 
     constructor(
         private readonly element: ElementRef<HTMLElement>
     ) {}
+
+    public ngAfterViewInit(): void {
+        this.initStrategy();
+    }
 
     public ngOnDestroy(): void {
         this._draggableElement.removeEventListener('mousedown', this.elementMouseDownHandler);
@@ -51,9 +73,12 @@ export class DraggableDirective implements OnDestroy {
 
     public updateMovableElementPosition(event: MouseEvent): void {
         if (this._movableElement && this.config.isAllowMoveElement) {
-            this._movableElement.style.setProperty(this.config.xAxisStyleProperty, `${event.clientX - this.shiftX}px`);
-            this._movableElement.style.setProperty(this.config.yAxisStyleProperty, `${event.clientY - this.shiftY}px`);
+            this._strategy.updateElementPosition(event);
         }
+    }
+
+    private initStrategy(): void {
+        this._strategy = DragStrategyFactory.create(this._config.strategy, this);
     }
 
     private initDraggableElement(): void {
@@ -127,36 +152,32 @@ export class DraggableDirective implements OnDestroy {
     }
 
     private setShiftX({ mouseEvent, draggableElementDomRect }: IDragInfo): void {
-        if (typeof(this.config.shiftX) === 'number') {
-            this.shiftX = this.config.shiftX;
+        if (!isNil(this.config.shiftX)) {
+            this._shiftX = this.config.shiftX;
         } else {
-            this.shiftX = mouseEvent.clientX - draggableElementDomRect.left + pageXOffset;
+            this._shiftX = mouseEvent.clientX - draggableElementDomRect.left + scrollX;
         }
     }
 
     private setShiftY({ mouseEvent, draggableElementDomRect }: IDragInfo): void {
-        if (typeof(this.config.shiftY) === 'number') {
-            this.shiftY = this.config.shiftY;
+        if (!isNil(this.config.shiftY)) {
+            this._shiftY = this.config.shiftY;
         } else {
-            this.shiftY = mouseEvent.clientY - draggableElementDomRect.top + pageYOffset;
+            this._shiftY = mouseEvent.clientY - draggableElementDomRect.top + scrollY;
         }
     }
 
     private getIsAvailableDragInteraction(event: MouseEvent): boolean {
         const childElementsBlackList = this.config.childElementsBlackList || [];
 
-        if (
-            !this.config.isEnabled
+        return !!(
+            this.config.isEnabled
             ||
-            !this.config.allowedMouseButtons
+            this.config.allowedMouseButtons
             ||
-            !this.config.allowedMouseButtons.includes(event.button)
+            this.config.allowedMouseButtons.includes(event.button)
             ||
-            childElementsBlackList.includes(event.target as HTMLElement)
-        ) {
-            return false;
-        }
-
-        return true;
+            !childElementsBlackList.includes(event.target as HTMLElement)
+        );
     }
 }
