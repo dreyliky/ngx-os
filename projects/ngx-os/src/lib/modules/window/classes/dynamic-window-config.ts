@@ -1,3 +1,4 @@
+import { Type } from '@angular/core';
 import { ResizerEnum } from '../../resizer';
 import { IDynamicWindowFullscreenOffset, IDynamicWindowParams } from '../interfaces';
 
@@ -6,6 +7,7 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public title?: string;
     public data?: D;
     public type?: T;
+    public titleBarCustomContent?: Type<any>;
     public width?: number;
     public height?: number;
     public minWidth?: number;

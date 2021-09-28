@@ -203,7 +203,7 @@ os-window {
     height: 30px;
     font-size: 11px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     font-size: 11px;
     font-family: var(--segoe-ui);
     background: #ffffff;
@@ -239,8 +239,6 @@ os-window {
 .os-title-bar-button {
     width: 45px;
     height: 29px;
-    min-width: 45px;
-    min-height: 29px;
     padding: 0;
     display: block;
     margin: 0px;

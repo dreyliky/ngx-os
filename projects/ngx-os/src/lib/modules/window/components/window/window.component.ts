@@ -6,7 +6,8 @@ import {
     HostBinding,
     Input,
     OnInit,
-    Output
+    Output,
+    Type
 } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 
@@ -67,6 +68,9 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     /** Classlist for title bar component of the window */
     @Input()
     public titleBarStyleClass: string | string[] | object;
+
+    @Input()
+    public titleBarCustomContent: Type<any>;
 
     /** Stylelist for scroll view component of the window */
     @Input()

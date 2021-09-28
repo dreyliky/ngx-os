@@ -1,3 +1,4 @@
+import { Type } from '@angular/core';
 import { ICssCoordinate } from '@lib-core';
 import { ResizerEnum } from '../../resizer';
 import { IDynamicWindowFullscreenOffset } from './fullscreen-offset.interface';
@@ -13,6 +14,7 @@ export interface IDynamicWindowParams<D = any, T = any> {
      * For example, you need to close a group of windows with the type: MY_TYPE1
      */
     type?: T;
+    titleBarCustomContent?: Type<any>;
     /** The width of the dynamic window */
     width?: number;
     /** The height of the dynamic window */
