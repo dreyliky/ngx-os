@@ -115,9 +115,13 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onDragStart(): void {
+        // FIXME: Remove this flag
+        // Move feature of adding class "os-dragging" to directive
+        // After that, detectChanges here might be removed
         this.isDragging = true;
 
-        setTimeout(() => this.changeDetector.detach());
+        this.changeDetector.detectChanges();
+        this.changeDetector.detach();
     }
 
     public onDragging(): void {
@@ -141,7 +145,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.draggableDirective.config = { shiftX: null, shiftY: null };
         this.isDragging = false;
 
-        this.changeDetector.reattach();
+        setTimeout(() => this.changeDetector.reattach());
     }
 
     public onTitleBarDblClick(): void {
@@ -151,9 +155,13 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onResizeStart(): void {
+        // FIXME: Remove this flag
+        // Move feature of adding class "os-resizing" to directive
+        // After that, detectChanges here might be removed
         this.isResizing = true;
 
-        setTimeout(() => this.changeDetector.detach());
+        this.changeDetector.detectChanges();
+        this.changeDetector.detach();
     }
 
     public onResizing({ width, height }: IResizeInfo): void {
@@ -164,7 +172,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     public onResizeEnd(): void {
         this.isResizing = false;
 
-        this.changeDetector.reattach();
+        setTimeout(() => this.changeDetector.reattach());
     }
 
     private initChildComponent(componentType: Type<any>): void {

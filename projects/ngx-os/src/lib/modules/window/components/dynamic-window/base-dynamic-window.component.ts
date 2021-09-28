@@ -101,6 +101,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     }
 
     public get windowStyleClass(): object {
+        // FIXME: Replace all hardcode classNames into enum
         return {
             ...ClasslistToObject.transform(this.config.styleClass),
             'os-opening': this.isOpening,
@@ -118,6 +119,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     }
 
     public get windowStyle(): object {
+        // FIXME: Replace all hardcode styleNames into enum
         return {
             ...this.config.style,
             [CssVariable.Left]: `${this.config.positionX}px`,
