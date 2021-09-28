@@ -1,17 +1,17 @@
 import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { EventOutside, IntervalCheckerHelper as IntervalChecker } from '@lib-helpers';
-import { AppendToBodyConfig } from '../classes';
+import { FixedToParentConfig } from '../classes';
 
 @Directive({
     selector: '[os-fixed-to-parent]'
 })
 export class FixedToParentDirective implements OnInit {
     @Input('os-fixed-to-parent')
-    public set config(config: AppendToBodyConfig) {
+    public set config(config: FixedToParentConfig) {
         this._config = { ...this._config, ...config };
     }
 
-    private _config = new AppendToBodyConfig();
+    private _config = new FixedToParentConfig();
 
     private targetElement: HTMLElement;
     private parentElement: HTMLElement;

@@ -1,2 +1,3 @@
-export * from './append-to-body-params.interface';
+export * from './append-to-body-config';
+export * from './fixed-to-parent-config';
 
