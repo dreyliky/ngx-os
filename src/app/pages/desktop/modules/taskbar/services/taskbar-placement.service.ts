@@ -43,6 +43,10 @@ export class TaskbarPlacementService {
             const placement = this.getPlacementById(id);
 
             this._data$.next(placement);
+        } else {
+            const placement = this.getPlacementById(TaskbarPlacementEnum.Bottom);
+
+            this._data$.next(placement);
         }
     }
 }

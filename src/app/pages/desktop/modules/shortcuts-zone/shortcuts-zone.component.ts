@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { APPS } from '../../apps';
 import { AppMetadata, ExecService } from '../../features/exec';
-import { ShortcutSettingsData, ShortcutSettingsService } from '../../features/shortcut';
+import { ShortcutSettingsService } from '../../features/shortcut';
 
 @Component({
     selector: 'desktop-shortcuts-zone',
@@ -41,9 +41,9 @@ export class ShortcutsZoneComponent implements OnInit, OnDestroy {
     private initShortcutSettingsObserver(): void {
         this.shortcutSettingsSubscription = this.shortcutSettingsService.data$
             .pipe(
-                filter(Boolean)
+                filter((settings) => !!settings)
             )
-            .subscribe(({ direction, gridSize }: ShortcutSettingsData) => {
+            .subscribe(({ direction, gridSize }) => {
                 this.gridDirection = direction;
                 this.gridSize = gridSize;
 
