@@ -44,7 +44,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-grid-item');
+        this.classListManager.add('os-grid-item');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

@@ -44,7 +44,7 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-scroll-view');
+        this.classListManager.add('os-scroll-view');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

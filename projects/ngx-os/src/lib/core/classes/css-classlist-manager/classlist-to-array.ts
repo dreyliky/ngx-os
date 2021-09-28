@@ -1,23 +1,23 @@
 /** @internal */
 export abstract class CssClasslistToArrayHelper {
-    public static transform(classlist: string | string[] | object): string[] {
-        if (typeof classlist === 'string') {
-            return this.fromString(classlist);
-        } else if (classlist === Object(classlist)) {
-            return this.fromObject(classlist);
-        } else if (Array.isArray(classlist)) {
-            return classlist;
+    public static transform(classList: string | string[] | object): string[] {
+        if (typeof classList === 'string') {
+            return this.fromString(classList);
+        } else if (classList === Object(classList)) {
+            return this.fromObject(classList);
+        } else if (Array.isArray(classList)) {
+            return classList;
         }
 
-        throw new Error('Unsupported format for classlist');
+        throw new Error('Unsupported format for classList');
     }
 
-    private static fromString(classlist: string): string[] {
-        return classlist.split(' ');
+    private static fromString(classList: string): string[] {
+        return classList.split(' ');
     }
 
-    private static fromObject(classlist: object): string[] {
-        return Object.entries(classlist)
+    private static fromObject(classList: object): string[] {
+        return Object.entries(classList)
             .filter(([, active]) => !!active)
             .map(([key]) => key);
     }

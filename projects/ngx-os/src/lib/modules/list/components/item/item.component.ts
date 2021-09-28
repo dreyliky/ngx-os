@@ -38,7 +38,7 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-list-item');
+        this.classListManager.add('os-list-item');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

@@ -18,7 +18,7 @@ export class FormFieldComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-form-field');
+        this.classListManager.add('os-form-field');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

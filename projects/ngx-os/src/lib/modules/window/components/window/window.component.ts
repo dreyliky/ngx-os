@@ -111,7 +111,7 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-window');
+        this.classListManager.add('os-window');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

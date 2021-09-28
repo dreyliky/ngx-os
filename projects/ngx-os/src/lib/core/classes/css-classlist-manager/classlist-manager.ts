@@ -1,4 +1,4 @@
-import { CssClasslistToArrayHelper } from './classlist-to-array';
+import { CssClasslistToArrayHelper } from './classList-to-array';
 
 /** @internal */
 export class ClasslistManager {
@@ -12,18 +12,18 @@ export class ClasslistManager {
         return [...this.data];
     }
 
-    public add(classlist: string | string[] | object): void {
-        CssClasslistToArrayHelper.transform(classlist)
+    public add(classList: string | string[] | object): void {
+        CssClasslistToArrayHelper.transform(classList)
             .filter((targetClassName) => !this.has(targetClassName))
             .forEach((targetClassName) => this.data.push(targetClassName));
     }
 
-    public apply(classlist: string | string[] | object): void {
-        if (classlist === Object(classlist)) {
-            Object.entries(classlist)
+    public apply(classList: string | string[] | object): void {
+        if (classList === Object(classList)) {
+            Object.entries(classList)
                 .forEach(([className, active]) => this.applyOneAsFlag(className, active));
         } else {
-            this.add(classlist);
+            this.add(classList);
         }
     }
 

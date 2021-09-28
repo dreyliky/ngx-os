@@ -50,7 +50,7 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-number-box');
+        this.classListManager.add('os-number-box');
     }
 
     public ngAfterViewInit(): void {

@@ -14,7 +14,7 @@ export class LabelComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-label os-text');
+        this.classListManager.add('os-label os-text');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

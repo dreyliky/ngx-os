@@ -20,7 +20,7 @@ export class ListComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-list');
+        this.classListManager.add('os-list');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

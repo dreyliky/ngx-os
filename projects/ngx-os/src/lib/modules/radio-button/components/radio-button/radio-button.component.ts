@@ -65,7 +65,7 @@ export class RadioButtonComponent<T>
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-radio-button');
+        this.classListManager.add('os-radio-button');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

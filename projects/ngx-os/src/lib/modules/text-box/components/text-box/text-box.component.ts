@@ -48,7 +48,7 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Af
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-text-box');
+        this.classListManager.add('os-text-box');
     }
 
     public ngAfterViewInit(): void {

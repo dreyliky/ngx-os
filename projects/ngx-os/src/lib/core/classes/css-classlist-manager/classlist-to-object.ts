@@ -1,24 +1,24 @@
 /** @internal */
 export abstract class CssClasslistToObjectHelper {
-    public static transform(classlist: string | string[] | object): object {
-        if (typeof classlist === 'string') {
-            return this.fromString(classlist);
-        } else if (Array.isArray(classlist)) {
-            return this.fromArray(classlist);
-        } else if (classlist === Object(classlist)) {
-            return classlist;
+    public static transform(classList: string | string[] | object): object {
+        if (typeof classList === 'string') {
+            return this.fromString(classList);
+        } else if (Array.isArray(classList)) {
+            return this.fromArray(classList);
+        } else if (classList === Object(classList)) {
+            return classList;
         }
 
-        throw new Error('Unsupported format for classlist');
+        throw new Error('Unsupported format for classList');
     }
 
-    private static fromString(classlist: string): object {
-        return { [classlist]: true };
+    private static fromString(classList: string): object {
+        return { [classList]: true };
     }
 
-    private static fromArray(classlist: string[]): object {
-        const classlistAsString = classlist.join(' ');
+    private static fromArray(classList: string[]): object {
+        const classListAsString = classList.join(' ');
 
-        return { [classlistAsString]: true };
+        return { [classListAsString]: true };
     }
 }

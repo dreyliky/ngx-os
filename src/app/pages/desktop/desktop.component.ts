@@ -55,9 +55,9 @@ export class DesktopComponent implements OnInit, OnDestroy {
     }
 
     private initHostClasslistObserver(): void {
-        this.taskbar.classlist$
-            .subscribe((classlist) => {
-                this.hostClasslist = classlist;
+        this.taskbar.classList$
+            .subscribe((classList) => {
+                this.hostClasslist = classList;
 
                 this.changeDetector.markForCheck();
             });

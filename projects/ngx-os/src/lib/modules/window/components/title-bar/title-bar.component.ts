@@ -26,7 +26,7 @@ export class TitleBarComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-title-bar');
+        this.classListManager.add('os-title-bar');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

@@ -30,7 +30,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-tab-group');
+        this.classListManager.add('os-tab-group');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

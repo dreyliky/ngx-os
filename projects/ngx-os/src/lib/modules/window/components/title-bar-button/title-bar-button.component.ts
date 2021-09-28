@@ -32,7 +32,7 @@ export class TitleBarButtonComponent extends OsBaseButtonComponent implements On
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-title-bar-button');
+        this.classListManager.add('os-title-bar-button');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

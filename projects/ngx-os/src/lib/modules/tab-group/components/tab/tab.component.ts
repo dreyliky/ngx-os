@@ -48,7 +48,7 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-tab');
+        this.classListManager.add('os-tab');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

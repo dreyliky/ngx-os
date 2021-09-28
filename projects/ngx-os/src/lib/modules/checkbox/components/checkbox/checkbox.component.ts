@@ -65,7 +65,7 @@ export class CheckboxComponent<T>
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-checkbox');
+        this.classListManager.add('os-checkbox');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

@@ -89,7 +89,7 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-tree-view');
+        this.classListManager.add('os-tree-view');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
         this.nodesSelection._init(this);
         this.nodesExpansion._init(this);

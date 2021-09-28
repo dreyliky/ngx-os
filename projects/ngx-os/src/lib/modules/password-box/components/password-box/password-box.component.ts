@@ -48,7 +48,7 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-password-box');
+        this.classListManager.add('os-password-box');
     }
 
     public ngAfterViewInit(): void {

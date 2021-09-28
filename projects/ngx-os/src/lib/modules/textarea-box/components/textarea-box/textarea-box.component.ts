@@ -47,7 +47,7 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-textarea-box');
+        this.classListManager.add('os-textarea-box');
     }
 
     public ngAfterViewInit(): void {

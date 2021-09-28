@@ -1,4 +1,4 @@
-export * from './classlist-manager';
-export * from './classlist-to-array';
-export * from './classlist-to-object';
+export * from './classList-manager';
+export * from './classList-to-array';
+export * from './classList-to-object';
 

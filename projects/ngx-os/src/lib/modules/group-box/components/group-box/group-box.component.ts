@@ -17,7 +17,7 @@ export class GroupBoxComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-group-box');
+        this.classListManager.add('os-group-box');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

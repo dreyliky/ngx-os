@@ -48,7 +48,7 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, A
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-email-box');
+        this.classListManager.add('os-email-box');
     }
 
     public ngAfterViewInit(): void {

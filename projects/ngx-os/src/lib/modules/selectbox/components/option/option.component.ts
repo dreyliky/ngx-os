@@ -47,7 +47,7 @@ export class OptionComponent<T> extends OsBaseComponent implements OnInit, OnCha
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-option');
+        this.classListManager.add('os-option');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
         this.initDefaultValueIfAbsent();
     }

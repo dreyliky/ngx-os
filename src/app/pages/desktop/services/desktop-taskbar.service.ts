@@ -9,7 +9,7 @@ export class DesktopTaskbarService {
         return this.taskbarPlacementService.data$;
     }
 
-    public get classlist$(): Observable<string> {
+    public get classList$(): Observable<string> {
         return this.taskbarPlacementService.data$
             .pipe(
                 map((placement) => placement.cssClassName)

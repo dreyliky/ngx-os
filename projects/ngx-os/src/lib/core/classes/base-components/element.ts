@@ -11,11 +11,11 @@ export abstract class OsBaseComponent {
     @HostBinding('style')
     public style: object;
 
-    /** Target internal element classlist */
+    /** Target internal element classList */
     @Input()
-    public set styleClass(classlist: string | string[] | object) {
-        if (classlist) {
-            this.classlistManager.apply(classlist);
+    public set styleClass(classList: string | string[] | object) {
+        if (classList) {
+            this.classListManager.apply(classList);
         }
     }
 
@@ -66,14 +66,14 @@ export abstract class OsBaseComponent {
 
     @HostBinding('class')
     public get hostClass(): string {
-        return this.classlistManager.getAsString();
+        return this.classListManager.getAsString();
     }
 
     protected readonly baseHostClassName = 'os-element';
-    protected readonly classlistManager = new ClasslistManager();
+    protected readonly classListManager = new ClasslistManager();
 
     constructor() {
-        this.classlistManager.add(this.baseHostClassName);
+        this.classListManager.add(this.baseHostClassName);
     }
 
     /** The handler will be fired on the target internal element in response to an event. */

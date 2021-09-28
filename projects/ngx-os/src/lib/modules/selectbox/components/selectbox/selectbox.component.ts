@@ -126,7 +126,7 @@ export class SelectboxComponent<T>
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-selectbox');
+        this.classListManager.add('os-selectbox');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

@@ -66,7 +66,7 @@ export class SliderComponent
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-slider');
+        this.classListManager.add('os-slider');
     }
 
     public ngAfterViewInit(): void {

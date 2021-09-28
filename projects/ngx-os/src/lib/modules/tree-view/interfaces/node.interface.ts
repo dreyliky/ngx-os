@@ -11,11 +11,11 @@ export interface ITreeNode<T = any> {
     children?: ITreeNode<T>[];
     /** Node element stylelist */
     style?: object;
-    /** Node element classlist */
+    /** Node element classList */
     styleClass?: string;
     /** Node expand button element stylelist */
     iconStyle?: object;
-    /** Node expand button element classlist */
+    /** Node expand button element classList */
     iconStyleClass?: string;
     /** Is node disabled */
     isDisabled?: boolean;

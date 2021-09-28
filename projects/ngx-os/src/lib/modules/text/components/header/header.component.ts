@@ -19,7 +19,7 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
     }
 
     public get hostClass(): string {
-        return `${this.classlistManager.getAsString()} os-header-${this.size}`;
+        return `${this.classListManager.getAsString()} os-header-${this.size}`;
     }
 
     private readonly minSize: number = 1;
@@ -34,7 +34,7 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classlistManager.add('os-header');
+        this.classListManager.add('os-header');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
