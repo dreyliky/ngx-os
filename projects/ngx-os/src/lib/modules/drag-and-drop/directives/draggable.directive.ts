@@ -1,5 +1,4 @@
 import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { isNil } from '@lib-helpers';
 import { BaseDragStrategy, DraggerConfig, DragStrategyFactory } from '../classes';
 import { IDraggerParams, IDragInfo } from '../interfaces';
 
@@ -34,14 +33,6 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     @Output()
     public osAfterDragging: EventEmitter<IDragInfo> = new EventEmitter();
 
-    public get shiftX(): number {
-        return this._shiftX;
-    }
-
-    public get shiftY(): number {
-        return this._shiftY;
-    }
-
     public get draggableElement(): HTMLElement {
         return this._draggableElement;
     }
@@ -50,19 +41,17 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         return this._movableElement;
     }
 
-    private _shiftX: number;
-    private _shiftY: number;
     private _draggableElement: HTMLElement;
     private _movableElement: HTMLElement;
     private _config: DraggerConfig = new DraggerConfig();
     private _strategy: BaseDragStrategy;
 
     constructor(
-        private readonly element: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
     public ngAfterViewInit(): void {
-        this.initStrategy();
+        this._strategy = DragStrategyFactory.create(this._config.strategy, this);
     }
 
     public ngOnDestroy(): void {
@@ -75,28 +64,16 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         }
     }
 
-    private initStrategy(): void {
-        this._strategy = DragStrategyFactory.create(this._config.strategy, this);
-    }
-
     private initDraggableElement(): void {
         this._draggableElement?.removeEventListener('mousedown', this.elementMouseDownHandler);
 
-        if (this.config?.draggableElement) {
-            this._draggableElement = this.config.draggableElement;
-        } else {
-            this._draggableElement = this.element.nativeElement;
-        }
+        this._draggableElement = (this.config?.draggableElement ?? this.hostRef.nativeElement);
 
         this._draggableElement.addEventListener('mousedown', this.elementMouseDownHandler);
     }
 
     private initMovableElement(): void {
-        if (this.config?.movableElement) {
-            this._movableElement = this.config.movableElement;
-        } else {
-            this._movableElement = this.element.nativeElement;
-        }
+        this._movableElement = this.config?.movableElement ?? this.hostRef.nativeElement;
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
@@ -107,14 +84,9 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         const dragInfo = this.getDragInfo(event);
 
         this.osBeforeDragStart.emit(dragInfo);
-
-        this.setShiftX(dragInfo);
-        this.setShiftY(dragInfo);
-        this._strategy.registerMouseDownEvent(event);
-
+        this._strategy.registerMouseDown(dragInfo);
         document.addEventListener('mousemove', this.documentMouseMoveHandler);
         document.addEventListener('mouseup', this.documentMouseUpHandler);
-
         this.osDragStart.emit(dragInfo);
     }
 
@@ -137,44 +109,23 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
 
         document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
-
         this.osDragEnd.emit(dragInfo);
     }
 
-    private getDragInfo(event: MouseEvent): IDragInfo {
+    private getDragInfo(mouseEvent: MouseEvent): IDragInfo {
         return {
-            draggableElementDomRect: this._movableElement.getBoundingClientRect(),
-            mouseEvent: event
+            movableElement: this._movableElement,
+            mouseEvent
         };
     }
 
-    private setShiftX({ mouseEvent, draggableElementDomRect }: IDragInfo): void {
-        if (!isNil(this.config.shiftX)) {
-            this._shiftX = this.config.shiftX;
-        } else {
-            this._shiftX = mouseEvent.clientX - draggableElementDomRect.left + scrollX;
-        }
-    }
-
-    private setShiftY({ mouseEvent, draggableElementDomRect }: IDragInfo): void {
-        if (!isNil(this.config.shiftY)) {
-            this._shiftY = this.config.shiftY;
-        } else {
-            this._shiftY = mouseEvent.clientY - draggableElementDomRect.top + scrollY;
-        }
-    }
-
     private isDragAllowed(event: MouseEvent): boolean {
-        const childElementsBlackList = this.config.childElementsBlackList || [];
-
-        return !!(
+        return (
             this.config.isEnabled
-            ||
-            this.config.allowedMouseButtons
             ||
             this.config.allowedMouseButtons?.includes(event.button)
             ||
-            !childElementsBlackList.includes(event.target as HTMLElement)
+            !this.config.childElementsBlackList?.includes(event.target as HTMLElement)
         );
     }
 }

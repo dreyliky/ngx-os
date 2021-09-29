@@ -1,4 +1,4 @@
 export interface IDragInfo {
-    draggableElementDomRect: DOMRect;
+    movableElement: HTMLElement;
     mouseEvent: MouseEvent;
 }

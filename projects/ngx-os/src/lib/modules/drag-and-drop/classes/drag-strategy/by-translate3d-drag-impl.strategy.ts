@@ -1,4 +1,5 @@
 import { ICoordinate } from '@lib-core';
+import { IDragInfo } from '../../interfaces';
 import { BaseDragStrategy } from './base-drag.strategy';
 import { DragStrategyByTranslate3d } from './by-translate3d-drag.strategy';
 
@@ -11,9 +12,9 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategy {
         y: 0
     };
 
-    public registerMouseDownEvent(event: MouseEvent): void {
-        super.registerMouseDownEvent(event);
-        this.calculateTotalParentCoordinates(event);
+    public registerMouseDown(dragInfo: IDragInfo): void {
+        super.registerMouseDown(dragInfo);
+        this.calculateTotalParentCoordinates(dragInfo.mouseEvent);
     }
 
     public updateElementPosition(event: MouseEvent): void {
@@ -39,7 +40,7 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategy {
             return '0px';
         }
 
-        return `${event.clientX - this.initialDomRect.x - this.context.shiftX + this.totalParentCoordinates.x}px`;
+        return `${event.clientX - this.initialDomRect.x - this.shiftX + this.totalParentCoordinates.x}px`;
     }
 
     private calculateElementPositionY(event: MouseEvent): string {
@@ -47,6 +48,6 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategy {
             return '0px';
         }
 
-        return `${event.clientY - this.initialDomRect.y - this.context.shiftY + this.totalParentCoordinates.y}px`;
+        return `${event.clientY - this.initialDomRect.y - this.shiftY + this.totalParentCoordinates.y}px`;
     }
 }

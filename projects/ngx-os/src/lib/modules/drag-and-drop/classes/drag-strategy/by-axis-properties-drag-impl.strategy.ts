@@ -8,12 +8,12 @@ export class DragStrategyByAxisPropertyImpl extends BaseDragStrategy {
 
         this.context.movableElement.style.setProperty(
             strategyConfig.xAxisStyleProperty,
-            `${event.clientX - this.context.shiftX}px`
+            `${event.clientX - this.shiftX}px`
         );
 
         this.context.movableElement.style.setProperty(
             strategyConfig.yAxisStyleProperty,
-            `${event.clientY - this.context.shiftY}px`
+            `${event.clientY - this.shiftY}px`
         );
     }
 }
