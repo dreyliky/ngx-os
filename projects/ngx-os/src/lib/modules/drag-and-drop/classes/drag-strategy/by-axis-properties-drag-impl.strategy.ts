@@ -2,7 +2,7 @@ import { BaseDragStrategy } from './base-drag.strategy';
 import { DragStrategyByAxisProperties } from './by-axis-properties-drag.strategy';
 
 /** @internal */
-export class DragStrategyByAxisPropertyImpl extends BaseDragStrategy {
+export class DragStrategyByAxisPropertiesImpl extends BaseDragStrategy {
     public updateElementPosition(event: MouseEvent): void {
         const strategyConfig = this.context.config.strategy as DragStrategyByAxisProperties;
 

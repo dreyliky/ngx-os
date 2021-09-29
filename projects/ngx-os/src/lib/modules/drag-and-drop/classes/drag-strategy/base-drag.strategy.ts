@@ -1,7 +1,10 @@
 import { isNil } from '@lib-helpers';
-import { DragStrategyType, IDragInfo } from '@lib-modules';
+import { first } from 'rxjs/operators';
 import { DraggableDirective } from '../../directives/draggable.directive';
+import { IDragInfo } from '../../interfaces';
+import { DragStrategyType } from '../../types';
 
+/** @internal */
 export abstract class BaseDragStrategy {
     protected initialDomRect: DOMRect;
     protected mouseDownEvent: MouseEvent;
@@ -12,8 +15,9 @@ export abstract class BaseDragStrategy {
     constructor(
         protected readonly context: DraggableDirective
     ) {
-        this.initialDomRect = this.context.movableElement.getBoundingClientRect();
         this.config = this.context.config.strategy;
+
+        this.initAfterViewInitObserver();
     }
 
     public registerMouseDown({ mouseEvent, movableElement }: IDragInfo): void {
@@ -38,6 +42,12 @@ export abstract class BaseDragStrategy {
         } else {
             this.shiftY = event.clientY - elementDomRect.top + scrollY;
         }
+    }
+
+    private initAfterViewInitObserver(): void {
+        this.context.whenViewInit$
+            .pipe(first())
+            .subscribe(() => this.initialDomRect = this.context.movableElement.getBoundingClientRect());
     }
 
     public abstract updateElementPosition(event: MouseEvent): void;

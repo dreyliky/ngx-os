@@ -8,9 +8,15 @@ import { DragStrategyByTranslate3d, IDraggerParams } from '@lib-modules';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DraggerWithLockedAxisComponent {
-    public draggerConfig: IDraggerParams = {
+    public firstDraggerConfig: IDraggerParams = {
         strategy: new DragStrategyByTranslate3d({
             isLockAxisY: true
+        })
+    };
+
+    public secondDraggerConfig: IDraggerParams = {
+        strategy: new DragStrategyByTranslate3d({
+            isLockAxisX: true
         })
     };
 }

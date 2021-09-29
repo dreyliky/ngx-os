@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    ViewChild
+} from '@angular/core';
 import { DragStrategyByAxisProperties, IDraggerParams } from '@lib-modules';
 
 @Component({
@@ -7,20 +14,40 @@ import { DragStrategyByAxisProperties, IDraggerParams } from '@lib-modules';
     styleUrls: ['./dragger-on-absolute-element.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DraggerOnAbsoluteElementComponent {
-    public readonly draggerConfig: IDraggerParams = {
-        strategy: new DragStrategyByAxisProperties()
-    };
+export class DraggerOnAbsoluteElementComponent implements AfterViewInit {
+    @ViewChild('containerHideButton', { read: ElementRef })
+    private readonly containerHideButton: ElementRef<HTMLElement>;
+
+    public draggerConfig: IDraggerParams;
 
     public isContainerVisible = false;
 
-    public get buttonLabel(): string {
+    public get labelOfToggleVisibilityButton(): string {
         const action = (this.isContainerVisible) ? 'Hide' : 'Show';
 
         return `${action} container`;
     }
 
-    public onButtonClick(): void {
+    public get containerStyles(): object {
+        return {
+            display: (this.isContainerVisible) ? '' : 'none'
+        };
+    }
+
+    constructor(
+        private readonly changeDetector: ChangeDetectorRef
+    ) {}
+
+    public ngAfterViewInit(): void {
+        this.draggerConfig = {
+            strategy: new DragStrategyByAxisProperties(),
+            childElementsBlackList: [this.containerHideButton.nativeElement]
+        };
+
+        this.changeDetector.detectChanges();
+    }
+
+    public onToggleContainerVisibilityButtonClick(): void {
         this.isContainerVisible = !this.isContainerVisible;
     }
 }

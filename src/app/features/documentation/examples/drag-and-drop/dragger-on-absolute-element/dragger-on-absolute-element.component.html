@@ -1,11 +1,22 @@
 <os-button
-    (osClick)="onButtonClick()">
-    {{ buttonLabel }}
+    (osClick)="onToggleContainerVisibilityButtonClick()">
+    {{ labelOfToggleVisibilityButton }}
 </os-button>
 
 <div
-    *ngIf="isContainerVisible"
+    [ngStyle]="containerStyles"
     os-append-to-body
     [os-draggable]="draggerConfig"
     class="container">
+    <os-text>
+        I'm placed inside the body element!<br />
+        I change my "left" and "top" properties while dragging.<br />
+        <b>You can't drag by button below!</b>
+    </os-text>
+
+    <os-button
+        #containerHideButton
+        (osClick)="onToggleContainerVisibilityButtonClick()">
+        {{ labelOfToggleVisibilityButton }}
+    </os-button>
 </div>

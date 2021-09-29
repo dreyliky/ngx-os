@@ -1,4 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Observable, ReplaySubject } from 'rxjs';
 import { BaseDragStrategy, DraggerConfig, DragStrategyFactory } from '../classes';
 import { DraggerCssClassEnum as CssClass } from '../enums';
 import { IDraggerParams, IDragInfo } from '../interfaces';
@@ -13,6 +14,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
 
         this.initMovableElement();
         this.initDraggableElement();
+        this.initStrategy();
     }
 
     public get config(): DraggerConfig {
@@ -42,26 +44,42 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         return this._movableElement;
     }
 
+    public get strategy(): BaseDragStrategy {
+        return this._strategy;
+    }
+
+    public get whenViewInit$(): Observable<unknown> {
+        return this._whenViewInit$.asObservable();
+    }
+
     private _draggableElement: HTMLElement;
     private _movableElement: HTMLElement;
-    private _config: DraggerConfig = new DraggerConfig();
     private _strategy: BaseDragStrategy;
+    private _config = new DraggerConfig();
+    private _whenViewInit$ = new ReplaySubject();
 
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
     public ngAfterViewInit(): void {
-        this._strategy = DragStrategyFactory.create(this._config.strategy, this);
+        this._whenViewInit$.next();
     }
 
     public ngOnDestroy(): void {
         this._draggableElement.removeEventListener('mousedown', this.elementMouseDownHandler);
+        this._whenViewInit$.complete();
     }
 
     public updateMovableElementPosition(event: MouseEvent): void {
         if (this._movableElement && this.config.isAllowMoveElement) {
             this._strategy.updateElementPosition(event);
+        }
+    }
+
+    private initStrategy(): void {
+        if (DragStrategyFactory.isDifferent(this._config.strategy, this)) {
+            this._strategy = DragStrategyFactory.create(this._config.strategy, this);
         }
     }
 
@@ -124,10 +142,8 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
 
     private isDragAllowed(event: MouseEvent): boolean {
         return (
-            this.config.isEnabled
-            ||
-            this.config.allowedMouseButtons?.includes(event.button)
-            ||
+            this.config.isEnabled &&
+            this.config.allowedMouseButtons?.includes(event.button) &&
             !this.config.childElementsBlackList?.includes(event.target as HTMLElement)
         );
     }
