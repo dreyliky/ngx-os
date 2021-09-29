@@ -70,7 +70,9 @@ export class TaskbarService implements OnDestroy {
 
     private clearWindowSharedConfig(): void {
         this.windowSharedConfigService.update({
-            fullscreenOffset: {}
+            fullscreenOffset: {
+                [this.previousPlacement.windowConfigFullscreenOffsetKey]: '0px'
+            }
         });
     }
 
@@ -78,9 +80,12 @@ export class TaskbarService implements OnDestroy {
         this._windowRefElements.forEach(({ nativeElement: element }) => {
             const windowRefId = element.getAttribute('data-window-ref-id');
             const windowRef = this.windowRefs
-                .find((currWindowRef) => currWindowRef.id === windowRefId);
+                ?.find((currWindowRef) => currWindowRef.id === windowRefId);
 
-            this.updateWindowRefHidesIntoCoordinate(windowRef, element);
+            if (windowRef) {
+                this.updateWindowRefHidesIntoCoordinate(windowRef, element);
+
+            }
         });
     }
 
