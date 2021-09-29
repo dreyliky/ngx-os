@@ -19,5 +19,6 @@ export * from './text-box';
 export * from './textarea-box';
 export * from './theme';
 export * from './tree-view';
+export * from './utils';
 export * from './window';
 

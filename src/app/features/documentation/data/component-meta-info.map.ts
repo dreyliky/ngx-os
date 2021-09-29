@@ -22,6 +22,7 @@ import {
     TEXT_META_INFO,
     THEME_META_INFO,
     TREE_VIEW_META_INFO,
+    UTILS_META_INFO,
     WINDOW_META_INFO
 } from './components-meta-info';
 
@@ -113,4 +114,8 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.Window,
         WINDOW_META_INFO
+    )
+    .set(
+        OsComponentEnum.Utils,
+        UTILS_META_INFO
     );

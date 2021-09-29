@@ -7,7 +7,7 @@ import { AppendToBodyConfig } from '../classes';
 })
 export class AppendToBodyDirective implements OnInit, OnDestroy, OnChanges {
     @Input('os-append-to-body')
-    public set appendToBodyConfig(config: AppendToBodyConfig) {
+    public set config(config: AppendToBodyConfig) {
         this._config = { ...this._config, ...config };
     }
 

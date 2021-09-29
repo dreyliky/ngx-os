@@ -20,5 +20,6 @@ export enum OsComponentEnum {
     TreeView = 'tree-view',
     Window = 'window',
     Grid = 'grid',
-    Theme = 'theme'
+    Theme = 'theme',
+    Utils = 'utils'
 }
