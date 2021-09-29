@@ -1,4 +1,5 @@
 $border-resizer-size: 4px;
+$border-offset: 0px;
 
 @mixin corner-resizer {
     width: 5px;
@@ -13,7 +14,7 @@ $border-resizer-size: 4px;
 }
 
 os-resizers {
-    .os-resizer {
+    os-resizer {
         opacity: 0;
         position: absolute;
 
@@ -22,12 +23,8 @@ os-resizers {
 
             width: 100%;
             height: $border-resizer-size;
-            top: -0px;
-            left: -0px;
-
-            &.os-active {
-                cursor: ns-resize;
-            }
+            top: $border-offset;
+            left: $border-offset;
         }
 
         &.left {
@@ -35,12 +32,8 @@ os-resizers {
 
             width: $border-resizer-size;
             height: 100%;
-            top: -0px;
-            left: -0px;
-
-            &.os-active {
-                cursor: ew-resize;
-            }
+            top: $border-offset;
+            left: $border-offset;
         }
 
         &.right {
@@ -48,12 +41,8 @@ os-resizers {
 
             width: $border-resizer-size;
             height: 100%;
-            top: -0px;
-            right: -0px;
-
-            &.os-active {
-                cursor: ew-resize;
-            }
+            top: $border-offset;
+            right: $border-offset;
         }
 
         &.bottom {
@@ -61,56 +50,58 @@ os-resizers {
 
             width: 100%;
             height: $border-resizer-size;
-            bottom: -0px;
-            left: -0px;
-
-            &.os-active {
-                cursor: ns-resize;
-            }
+            bottom: $border-offset;
+            left: $border-offset;
         }
 
         &.topLeft {
             @include corner-resizer;
     
-            left: -0px;
-            top: -0px;
-
-            &.os-active {
-                cursor: nwse-resize;
-            }
+            left: $border-offset;
+            top: $border-offset;
         }
         
         &.topRight {
             @include corner-resizer;
     
-            right: -0px;
-            top: -0px;
-
-            &.os-active {
-                cursor: nesw-resize;
-            }
+            right: $border-offset;
+            top: $border-offset;
         }
         
         &.bottomLeft {
             @include corner-resizer;
     
-            left: -0px;
-            bottom: -0px;
-
-            &.os-active {
-                cursor: nesw-resize;
-            }
+            left: $border-offset;
+            bottom: $border-offset;
         }
         
         &.bottomRight {
             @include corner-resizer;
     
-            right: -0px;
-            bottom: -0px;
+            right: $border-offset;
+            bottom: $border-offset;
+        }
+    }
 
-            &.os-active {
-                cursor: nwse-resize;
-            }
+    &.os-active {
+        os-resizer.top,
+        os-resizer.bottom {
+            cursor: ns-resize;
+        }
+
+        os-resizer.left,
+        os-resizer.right {
+            cursor: ew-resize;
+        }
+
+        os-resizer.topLeft,
+        os-resizer.bottomRight {
+            cursor: nwse-resize;
+        }
+
+        os-resizer.topRight,
+        os-resizer.bottomLeft {
+            cursor: nesw-resize;
         }
     }
 }

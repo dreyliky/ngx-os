@@ -6,15 +6,15 @@ export class TopResizer extends BaseResizer {
     public static readonly id = ResizerEnum.top;
 
     public resizeElement(event: MouseEvent): void {
-        const height = this.context.originalHeight - (event.pageY - this.context.originalMouseY);
+        const height = this.originalHeight - (event.pageY - this.originalMouseY);
 
         if (height > this.config.minHeight && height < this.config.maxHeight) {
-            this.context.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
+            this.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
 
             if (this.config.isAllowChangePosition && this.config.yAxisTopStyleProperty) {
-                const position = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
+                const position = `${this.originalY + (event.pageY - this.originalMouseY)}px`;
 
-                this.context.resizableElement.style.setProperty(this.config.yAxisTopStyleProperty, position);
+                this.resizableElement.style.setProperty(this.config.yAxisTopStyleProperty, position);
             }
         }
     }

@@ -10,8 +10,7 @@ import { IDraggerParams, IDragInfo } from '../interfaces';
 export class DraggableDirective implements AfterViewInit, OnDestroy {
     @Input('os-draggable')
     public set config(config: IDraggerParams) {
-        this._config = { ...this._config, ...config };
-
+        this.updateConfigWithoutChanges(config);
         this.initMovableElement();
         this.initDraggableElement();
         this.initStrategy();
@@ -69,6 +68,10 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     public ngOnDestroy(): void {
         this._draggableElement.removeEventListener('mousedown', this.elementMouseDownHandler);
         this._whenViewInit$.complete();
+    }
+
+    public updateConfigWithoutChanges(config: IDraggerParams): void {
+        this._config = { ...this._config, ...config };
     }
 
     public updateMovableElementPosition(event: MouseEvent): void {

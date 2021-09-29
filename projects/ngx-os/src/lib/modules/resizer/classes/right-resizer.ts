@@ -6,10 +6,10 @@ export class RightResizer extends BaseResizer {
     public static readonly id = ResizerEnum.right;
 
     public resizeElement(event: MouseEvent): void {
-        const width = this.context.originalWidth + (event.pageX - this.context.originalMouseX);
+        const width = this.originalWidth + (event.pageX - this.originalMouseX);
 
         if (width > this.config.minWidth && width < this.config.maxWidth) {
-            this.context.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
+            this.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
         }
     }
 }

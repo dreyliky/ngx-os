@@ -4,5 +4,11 @@ export enum DynamicWindowCssVariableEnum {
     RealWidth = '--os-real-width',
     RealHeight = '--os-real-height',
     Top = '--os-top',
-    Left = '--os-left'
+    Left = '--os-left',
+    CoordinateForHidingX = '--os-coordinate-x-for-hiding',
+    CoordinateForHidingY = '--os-coordinate-y-for-hiding',
+    FullscreenOffsetTop = '--os-fullscreen-offset-top',
+    FullscreenOffsetRight = '--os-fullscreen-offset-right',
+    FullscreenOffsetBottom = '--os-fullscreen-offset-bottom',
+    FullscreenOffsetLeft = '--os-fullscreen-offset-left'
 }

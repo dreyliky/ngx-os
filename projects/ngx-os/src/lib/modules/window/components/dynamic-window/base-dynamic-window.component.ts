@@ -1,10 +1,14 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import { CssClasslistToObjectHelper as ClasslistToObject } from '@lib-core';
 import { Subscription } from 'rxjs';
-import { DraggerConfig, DragStrategyByAxisProperties } from '../../../drag-and-drop';
-import { ResizerConfig } from '../../../resizer';
+import { DragStrategyByAxisProperties, IDraggerParams } from '../../../drag-and-drop';
+import { IResizerParams } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
-import { DynamicStateEnum, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
+import {
+    DynamicStateEnum,
+    DynamicWindowCssClassEnum as CssClass,
+    DynamicWindowCssVariableEnum as CssVariable
+} from '../../enums';
 import { IDynamicWindowParams } from '../../interfaces';
 
 @Component({
@@ -16,17 +20,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
 
     @Input()
     public windowRef: DynamicWindowRef;
-
-    public config: IDynamicWindowParams;
-
-    public zIndex: number;
-    public windowOrderIndex: number = 0;
-
-    public windowElement: HTMLElement;
-    public titleBarElement: HTMLDivElement;
-    public titleBarButtons: HTMLButtonElement[] = [];
-
-    public readonly dynamicStateManager = new DynamicStateManager();
 
     public get isOpening(): boolean {
         return this.dynamicStateManager.is(DynamicStateEnum.Opening);
@@ -68,69 +61,51 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
         return !this.windowRef.isFullscreen;
     }
 
-    public get isAllowDragging(): boolean {
-        return !this.windowRef.isFullscreen;
-    }
-
-    public get draggableDirectiveConfig(): DraggerConfig {
-        return {
-            draggableElement: this.titleBarElement,
-            movableElement: this.windowElement,
-            childElementsBlackList: this.titleBarButtons,
-            isAllowMoveElement: this.isAllowDragging,
-            strategy: this.draggableDirectiveStrategy
-        };
-    }
-
-    public get resizableDirectiveConfig(): ResizerConfig {
-        return {
-            targetElement: this.windowElement,
-            minWidth: this.config.minWidth,
-            minHeight: this.config.minHeight,
-            maxWidth: this.config.maxWidth,
-            maxHeight: this.config.maxHeight,
-            allowedResizers: this.config.allowedResizers,
-            isEnabled: this.isAllowResizing,
-            xAxisLeftStyleProperty: CssVariable.Left,
-            yAxisTopStyleProperty: CssVariable.Top,
-            widthStyleProperty: CssVariable.Width,
-            heightStyleProperty: CssVariable.Height
-        };
-    }
-
-    public get windowStyleClass(): object {
-        // FIXME: Replace all hardcode classNames into enum
-        return {
-            ...ClasslistToObject.transform(this.config.styleClass),
-            'os-opening': this.isOpening,
-            'os-hiding': this.isHiding,
-            'os-showing': this.isShowing,
-            'os-closing': this.isClosing,
-            'os-entering-fullscreen': this.isEnteringFullscreen,
-            'os-entering-windowed': this.isEnteringWindowed,
-            'os-hidden': this.isHidden,
-            'os-fullscreen': this.isFullscreen,
-            'os-windowed': this.isWindowed
-        };
-    }
-
     public get windowStyle(): object {
-        // FIXME: Replace all hardcode styleNames into enum
         return {
             ...this.config.style,
             [CssVariable.Left]: `${this.config.positionX}px`,
             [CssVariable.Top]: `${this.config.positionY}px`,
             [CssVariable.RealWidth]: `${this.windowElement?.offsetWidth}px`,
             [CssVariable.RealHeight]: `${this.windowElement?.offsetHeight}px`,
-            '--os-coordinate-x-for-hiding': this.config.hidesInto?.x,
-            '--os-coordinate-y-for-hiding': this.config.hidesInto?.y,
-            '--os-fullscreen-offset-top': this.config.fullscreenOffset?.top,
-            '--os-fullscreen-offset-right': this.config.fullscreenOffset?.right,
-            '--os-fullscreen-offset-bottom': this.config.fullscreenOffset?.bottom,
-            '--os-fullscreen-offset-left': this.config.fullscreenOffset?.left
+            [CssVariable.CoordinateForHidingX]: this.config.hidesInto?.x,
+            [CssVariable.CoordinateForHidingY]: this.config.hidesInto?.y,
+            [CssVariable.FullscreenOffsetTop]: this.config.fullscreenOffset?.top,
+            [CssVariable.FullscreenOffsetRight]: this.config.fullscreenOffset?.right,
+            [CssVariable.FullscreenOffsetBottom]: this.config.fullscreenOffset?.bottom,
+            [CssVariable.FullscreenOffsetLeft]: this.config.fullscreenOffset?.left
         };
     }
 
+    public get windowStyleClass(): object {
+        return {
+            ...ClasslistToObject.transform(this.config.styleClass),
+            [CssClass.Opening]: this.isOpening,
+            [CssClass.Hiding]: this.isHiding,
+            [CssClass.Showing]: this.isShowing,
+            [CssClass.Closing]: this.isClosing,
+            [CssClass.EnteringFullscreen]: this.isEnteringFullscreen,
+            [CssClass.EnteringWindowed]: this.isEnteringWindowed,
+            [CssClass.Hidden]: this.isHidden,
+            [CssClass.Fullscreen]: this.isFullscreen,
+            [CssClass.Windowed]: this.isWindowed
+        };
+    }
+
+    public isViewInitialized: boolean = false;
+
+    public config: IDynamicWindowParams;
+    public draggerConfig: IDraggerParams;
+    public resizerConfig: IResizerParams;
+
+    public zIndex: number;
+    public windowOrderIndex: number = 0;
+
+    public windowElement: HTMLElement;
+    public titleBarElement: HTMLDivElement;
+    public titleBarButtons: HTMLButtonElement[] = [];
+
+    protected readonly dynamicStateManager = new DynamicStateManager();
     protected readonly baseZIndex: number = 1000;
     protected readonly alwaysOnTopBaseZIndex: number = 5000;
     protected readonly cssAnimationClassDuration: number = 1000;
@@ -144,7 +119,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
 
     protected readonly parentSubscription = new Subscription();
 
-    private readonly draggableDirectiveStrategy = new DragStrategyByAxisProperties({
+    private readonly draggerStrategy = new DragStrategyByAxisProperties({
         xAxisStyleProperty: CssVariable.Left,
         yAxisStyleProperty: CssVariable.Top
     });
@@ -161,5 +136,37 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
         if (this.config.isAlwaysOnTop) {
             this.zIndex += this.alwaysOnTopBaseZIndex;
         }
+    }
+
+    protected updateComplexStructures(): void {
+        if (this.isViewInitialized) {
+            this.updateDraggerConfig();
+            this.updateResizerConfig();
+        }
+    }
+
+    protected updateDraggerConfig(): void {
+        this.draggerConfig = {
+            draggableElement: this.titleBarElement,
+            movableElement: this.windowElement,
+            childElementsBlackList: this.titleBarButtons,
+            strategy: this.draggerStrategy
+        };
+    }
+
+    protected updateResizerConfig(): void {
+        this.resizerConfig = {
+            targetElement: this.windowElement,
+            minWidth: this.config.minWidth,
+            minHeight: this.config.minHeight,
+            maxWidth: this.config.maxWidth,
+            maxHeight: this.config.maxHeight,
+            allowedResizers: this.config.allowedResizers,
+            isEnabled: this.isAllowResizing,
+            xAxisLeftStyleProperty: CssVariable.Left,
+            yAxisTopStyleProperty: CssVariable.Top,
+            widthStyleProperty: CssVariable.Width,
+            heightStyleProperty: CssVariable.Height
+        };
     }
 }

@@ -1,3 +1,4 @@
 export enum ResizerCssClassEnum {
-    Resizing = 'os-resizing'
+    Resizing = 'os-resizing',
+    Active = 'os-active'
 }

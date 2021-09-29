@@ -5,14 +5,13 @@ import {
     Component,
     ComponentFactoryResolver,
     ElementRef,
-    HostListener,
     Inject,
     OnInit,
     Type,
     ViewChild
 } from '@angular/core';
 import { EventOutside } from '@lib-helpers';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { filter, map, skip } from 'rxjs/operators';
 import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
 import { IResizeInfo } from '../../../resizer';
@@ -47,32 +46,25 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     public ngOnInit(): void {
         this.initConfigObserver();
-    }
-
-    public ngAfterViewInit(): void {
-        this.initChildComponent(this.childComponentType);
         this.initDynamicStateManager();
-        this.initHtmlElements();
         this.initBeforeHiddenStateObserver();
         this.initIsHiddenStateObserver();
         this.initIsFullscreenStateObserver();
         this.initAfterClosedStateObserver();
         this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
-        this.initWindowSizes();
-        this.windowRef.setWindowElement(this.windowElement);
-        this.changeDetector.detectChanges();
+        this.initOutsideClickObserver();
     }
 
-    @HostListener('document:click', ['$event'])
-    public onClickOutside(event: MouseEvent): void {
-        if (this.windowRef.isActive) {
-            const isClickOutsideWindow = EventOutside.checkForElement(this.windowElement, event);
+    public ngAfterViewInit(): void {
+        this.isViewInitialized = true;
 
-            if (isClickOutsideWindow) {
-                this.windowRef.setIsActive(false);
-            }
-        }
+        this.initChildComponent(this.childComponentType);
+        this.initHtmlElements();
+        this.initWindowSizes();
+        this.updateComplexStructures();
+        this.windowRef.setWindowElement(this.windowElement);
+        this.changeDetector.detectChanges();
     }
 
     public onMinimizeButtonClick(): void {
@@ -107,10 +99,10 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
             const titleBarDomRect = this.titleBarElement.getBoundingClientRect();
 
-            this.draggableDirective.config = {
+            this.draggableDirective.updateConfigWithoutChanges({
                 shiftX: (this.widthAtWindowedMode / 2),
                 shiftY: (titleBarDomRect.height / 2)
-            };
+            });
         }
     }
 
@@ -123,7 +115,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             this.isAfterExitFullscreenByDragging = true;
 
             this.windowRef.goWindowed();
-            this.changeDetector.detectChanges();
         }
     }
 
@@ -136,7 +127,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onDragEnd(): void {
-        this.draggableDirective.config = { shiftX: null, shiftY: null };
+        this.draggableDirective.updateConfigWithoutChanges({ shiftX: null, shiftY: null });
 
         setTimeout(() => this.changeDetector.reattach());
     }
@@ -152,10 +143,9 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onResizing({ resizableElement }: IResizeInfo): void {
-        // FIXME: Try replace to something static
-        const { width, height } = resizableElement.getBoundingClientRect();
-        this.widthAtWindowedMode = width;
-        this.heightAtWindowedMode = height;
+        const { offsetWidth, offsetHeight } = resizableElement;
+        this.widthAtWindowedMode = offsetWidth;
+        this.heightAtWindowedMode = offsetHeight;
     }
 
     public onResizeEnd(): void {
@@ -178,10 +168,10 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initWindowSizes(): void {
-        const { width, height } = this.windowElement.getBoundingClientRect();
+        const { offsetWidth, offsetHeight } = this.windowElement;
 
-        this.widthAtWindowedMode = (this.config.width ?? width);
-        this.heightAtWindowedMode = (this.config.height ?? height);
+        this.widthAtWindowedMode = (this.config.width ?? offsetWidth);
+        this.heightAtWindowedMode = (this.config.height ?? offsetHeight);
 
         this.windowElement.style.setProperty(CssVariable.Width, `${this.widthAtWindowedMode}px`);
         this.windowElement.style.setProperty(CssVariable.Height, `${this.heightAtWindowedMode}px`);
@@ -193,11 +183,22 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.titleBarButtons = Array.from(this.titleBarElement.querySelectorAll('.os-title-bar-button .os-icon'));
     }
 
+    private initOutsideClickObserver(): void {
+        const subscription = fromEvent(document, 'click')
+            .pipe(
+                filter(() => this.windowRef.isActive),
+                filter((event: MouseEvent) => EventOutside.checkForElement(this.windowElement, event))
+            )
+            .subscribe(() => this.windowRef.setIsActive(false));
+
+        this.parentSubscription.add(subscription);
+    }
+
     private initActiveWindowIdObserver(): void {
         this.windowRef.isActive$
             .subscribe(() => {
                 this.updateZIndex();
-                this.changeDetector.detectChanges();
+                this.changeDetector.markForCheck();
             });
     }
 
@@ -207,7 +208,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
                 this.windowOrderIndex = orderIndex;
 
                 this.updateZIndex();
-                this.changeDetector.detectChanges();
+                this.changeDetector.markForCheck();
             });
     }
 
@@ -246,8 +247,9 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         ])
             .subscribe(([sharedConfig, updatedConfig]) => {
                 this.config = mergeConfigs(updatedConfig, sharedConfig);
+                this.updateComplexStructures();
 
-                this.changeDetector.detectChanges();
+                this.changeDetector.markForCheck();
             });
 
         this.parentSubscription.add(subscription);

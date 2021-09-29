@@ -11,30 +11,30 @@ export class TopRightResizer extends BaseResizer {
     }
 
     private processAxisX(event: MouseEvent): void {
-        const width = this.context.originalWidth + (event.pageX - this.context.originalMouseX);
+        const width = this.originalWidth + (event.pageX - this.originalMouseX);
         const { documentElement } = document;
 
         if (width > this.config.minWidth && width < this.config.maxWidth) {
-            this.context.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
+            this.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
 
             if (this.config.isAllowChangePosition && this.config.xAxisRightStyleProperty) {
                 const position = `${(documentElement.clientWidth - event.clientX)}px`;
 
-                this.context.resizableElement.style.setProperty(this.config.xAxisRightStyleProperty, position);
+                this.resizableElement.style.setProperty(this.config.xAxisRightStyleProperty, position);
             }
         }
     }
 
     private processAxisY(event: MouseEvent): void {
-        const height = this.context.originalHeight - (event.pageY - this.context.originalMouseY);
+        const height = this.originalHeight - (event.pageY - this.originalMouseY);
 
         if (height > this.config.minHeight && height < this.config.maxHeight) {
-            this.context.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
+            this.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
 
             if (this.config.isAllowChangePosition && this.config.yAxisTopStyleProperty) {
-                const position = `${this.context.originalY + (event.pageY - this.context.originalMouseY)}px`;
+                const position = `${this.originalY + (event.pageY - this.originalMouseY)}px`;
 
-                this.context.resizableElement.style.setProperty(this.config.yAxisTopStyleProperty, position);
+                this.resizableElement.style.setProperty(this.config.yAxisTopStyleProperty, position);
             }
         }
     }

@@ -1,107 +1,101 @@
-import { Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {
+    AfterViewInit,
+    Directive,
+    ElementRef,
+    EventEmitter,
+    Inject,
+    Input,
+    OnDestroy,
+    Output
+} from '@angular/core';
+import { ReplaySubject } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { BaseResizer, ResizerConfig, ResizerFactory } from '../classes';
-import { ResizerCssClassEnum as CssClass, ResizerEnum } from '../enums';
+import { ResizerCssClassEnum as CssClass, ResizerElementTagEnum as ElementTag, ResizerEnum } from '../enums';
 import { IResizeInfo, IResizerParams } from '../interfaces';
 
 @Directive({
     selector: '[os-resizable]'
 })
-export class ResizableDirective implements OnInit, OnDestroy {
+export class ResizableDirective implements AfterViewInit, OnDestroy {
     @Input('os-resizable')
-    public set resizerConfig(config: IResizerParams) {
-        this._resizerConfig = { ...this._resizerConfig, ...config };
-
-        this.initResizableElement();
-        this.updateResizersWrapperDomPlacement();
-        this.updateResizersActivity();
+    public set config(config: IResizerParams) {
+        this.updateConfigWithoutChanges(config);
+        this._whenViewInit$
+            .pipe(first())
+            .subscribe(() => {
+                this.initResizableElement();
+                this.updateResizersWrapperDomPlacement();
+                this.updateResizersWrapperActivity();
+                this.initResizerElements();
+            });
     }
 
-    public get resizerConfig(): IResizerParams {
-        return this._resizerConfig;
+    public get config(): IResizerParams {
+        return this._config;
     }
 
     @Output()
-    public osResizableElementInit = new EventEmitter<HTMLElement>();
+    public osResizableElementInit: EventEmitter<HTMLElement> = new EventEmitter();
 
     @Output()
-    public osResizerElementInit = new EventEmitter<HTMLElement>();
+    public osResizersWrapperElementInit: EventEmitter<HTMLElement> = new EventEmitter();
 
     @Output()
-    public osResizeStart = new EventEmitter<IResizeInfo>();
+    public osResizeStart: EventEmitter<IResizeInfo> = new EventEmitter();
 
     @Output()
-    public osResizeEnd = new EventEmitter<IResizeInfo>();
+    public osResizeEnd: EventEmitter<IResizeInfo> = new EventEmitter();
 
     @Output()
-    public osResizing = new EventEmitter<IResizeInfo>();
-
-    public get resizableElement(): HTMLElement {
-        return this._resizableElement;
-    }
-
-    public originalWidth = 20;
-    public originalHeight = 20;
-    public originalX = 20;
-    public originalY = 20;
-    public originalMouseX = 20;
-    public originalMouseY = 20;
-    public activeResizerId: ResizerEnum;
+    public osResizing: EventEmitter<IResizeInfo> = new EventEmitter();
 
     private _resizableElement: HTMLElement;
     private _resizersWrapperElement: HTMLElement;
-    private readonly _resizerElements: HTMLElement[] = [];
-
     private _resizerInstance: BaseResizer;
-    private _allowedResizers: ResizerEnum[];
-    private _resizerConfig = new ResizerConfig();
+    private _config = new ResizerConfig();
+    private _whenViewInit$ = new ReplaySubject();
 
     constructor(
+        @Inject(DOCUMENT) private readonly document: Document,
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
-    public ngOnInit(): void {
-        this.initAllowedResizers();
+    public ngAfterViewInit(): void {
         this.initResizersWrapperElement();
-        this.initResizerElements();
-        this.updateResizersWrapperDomPlacement();
-        this.updateResizersActivity();
+        this._whenViewInit$.next();
     }
 
     public ngOnDestroy(): void {
-        document.removeEventListener('mouseup', this.documentMouseUpHandler);
+        this.document.removeEventListener('mouseup', this.documentMouseUpHandler);
+        this._whenViewInit$.complete();
     }
 
-    private initAllowedResizers(): void {
-        this._allowedResizers = this.resizerConfig.allowedResizers;
+    public updateConfigWithoutChanges(config: IResizerParams): void {
+        this._config = { ...this._config, ...config };
     }
 
     private initResizableElement(): void {
-        this._resizableElement = this.resizerConfig?.targetElement ?? this.hostRef.nativeElement;
+        this._resizableElement = this.config?.targetElement ?? this.hostRef.nativeElement;
 
         this.osResizableElementInit.emit(this._resizableElement);
     }
 
     private initResizersWrapperElement(): void {
-        this._resizersWrapperElement = document.createElement(`os-resizers`);
+        this._resizersWrapperElement = this.document.createElement(ElementTag.Resizers);
 
-        this.osResizerElementInit.emit(this._resizersWrapperElement);
+        this.osResizersWrapperElementInit.emit(this._resizersWrapperElement);
     }
 
     private initResizerElements(): void {
-        this._allowedResizers.forEach((resizerName) => {
-            const resizerElement = document.createElement('div');
+        this.config.allowedResizers.forEach((resizerName) => {
+            const resizerElement = this.document.createElement(ElementTag.Resizer);
 
-            resizerElement.classList.add('os-resizer', resizerName);
-
+            resizerElement.classList.add(resizerName);
             resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
-                if (this.resizerConfig.isEnabled) {
-                    this.activeResizerId = resizerName;
-
-                    this.resizerMouseDownHandler(event);
-                }
+                this.resizerMouseDownHandler(event, resizerName);
             });
-
-            this._resizerElements.push(resizerElement);
             this._resizersWrapperElement.appendChild(resizerElement);
         });
     }
@@ -114,40 +108,23 @@ export class ResizableDirective implements OnInit, OnDestroy {
         }
     }
 
-    private updateResizersActivity(): void {
-        const activityClassName: string = 'os-active';
+    private updateResizersWrapperActivity(): void {
+        const classList = this._resizersWrapperElement.classList;
 
-        this._resizerElements.forEach((resizerElement) => {
-            if (resizerElement.classList.contains(activityClassName)) {
-                if (!this._resizerConfig.isEnabled) {
-                    resizerElement.classList.remove(activityClassName);
-                }
-            } else {
-                if (this._resizerConfig.isEnabled) {
-                    resizerElement.classList.add(activityClassName);
-                }
-            }
-        });
+        (this.config.isEnabled) ? classList.add(CssClass.Active) : classList.remove(CssClass.Active);
     }
 
-    private readonly resizerMouseDownHandler = (event: MouseEvent): void => {
+    private resizerMouseDownHandler(event: MouseEvent, resizerId: ResizerEnum): void {
         if (!this.isResizeAllowed(event)) {
             return;
         }
 
-        const { width, height, left, top } = this._resizableElement.getBoundingClientRect();
-        this.originalWidth = width;
-        this.originalHeight = height;
-        this.originalX = left;
-        this.originalY = top;
-        this.originalMouseX = event.pageX;
-        this.originalMouseY = event.pageY;
-
         event.preventDefault();
-        this._resizerInstance = ResizerFactory.create(this.activeResizerId, this);
+        this._resizerInstance = ResizerFactory.create(resizerId, this);
+        this._resizerInstance.init(this._resizableElement, event);
         this._resizableElement.classList.add(CssClass.Resizing);
-        document.addEventListener('mousemove', this.documentMouseMoveHandler);
-        document.addEventListener('mouseup', this.documentMouseUpHandler);
+        this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
+        this.document.addEventListener('mouseup', this.documentMouseUpHandler);
         this.osResizeStart.emit(this.getResizeInfo(event));
     }
 
@@ -158,7 +135,7 @@ export class ResizableDirective implements OnInit, OnDestroy {
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {
         this._resizableElement.classList.remove(CssClass.Resizing);
-        document.removeEventListener('mousemove', this.documentMouseMoveHandler);
+        this.document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         this.osResizeEnd.emit(this.getResizeInfo(event));
     }
 
@@ -171,8 +148,8 @@ export class ResizableDirective implements OnInit, OnDestroy {
 
     private isResizeAllowed(event: MouseEvent): boolean {
         return (
-            this.resizerConfig.isEnabled &&
-            this.resizerConfig.allowedMouseButtons?.includes(event.button)
+            this.config.isEnabled &&
+            this.config.allowedMouseButtons?.includes(event.button)
         );
     }
 }
