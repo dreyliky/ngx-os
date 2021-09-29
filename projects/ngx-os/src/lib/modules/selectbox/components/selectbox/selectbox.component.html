@@ -14,10 +14,8 @@
 
 <os-list
     *ngIf="isOpened"
-    os-fixed-to-parent
-    [os-append-to-body]="{
-        isEnabled: _isListAppendToBody
-    }"
+    [os-fixed-to-parent]="{ isEnabled: _isListAppendToBody }"
+    [os-append-to-body]="{ isEnabled: _isListAppendToBody }"
     class="os-part-of-selectbox"
     [scrollViewStyle]="scrollViewStyle"
     [scrollViewStyleClass]="scrollViewStyleClass">

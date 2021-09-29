@@ -171,6 +171,10 @@
         ],
         "comma-dangle": "error",
         "lines-between-class-members": "off",
+        "no-empty": [
+            "error",
+            { "allowEmptyCatch": true }
+        ],
         "no-empty-pattern": "error",
         "no-else-return": [
           "error"

@@ -42,11 +42,13 @@ export class FixedToParentDirective implements OnInit {
         }
     }
 
-    protected adjustCoordinates(): void {
-        const { left, top, width, height } = this.parentElement.getBoundingClientRect();
+    private adjustCoordinates(): void {
+        if (this._config.isEnabled) {
+            const { left, top, width, height } = this.parentElement.getBoundingClientRect();
 
-        this.targetElement.style.left = `${left}px`;
-        this.targetElement.style.top = `${(top + height)}px`;
-        this.targetElement.style.width = `${width}px`;
+            this.targetElement.style.left = `${left}px`;
+            this.targetElement.style.top = `${(top + height)}px`;
+            this.targetElement.style.width = `${width}px`;
+        }
     }
 }

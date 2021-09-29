@@ -60,8 +60,10 @@ export class AppendToBodyDirective implements OnInit, OnDestroy, OnChanges {
     }
 
     private appendElementToParent(): void {
-        this.document.body?.removeChild(this.targetElement);
-        this.parentElement?.appendChild(this.targetElement);
+        try {
+            this.document.body?.removeChild?.(this.targetElement);
+            this.parentElement?.appendChild?.(this.targetElement);
+        } catch (error) {}
     }
 
     private resetAppliedNeededStyles(): void {
