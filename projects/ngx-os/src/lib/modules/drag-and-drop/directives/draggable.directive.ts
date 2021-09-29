@@ -1,5 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { BaseDragStrategy, DraggerConfig, DragStrategyFactory } from '../classes';
+import { DraggerCssClassEnum as CssClass } from '../enums';
 import { IDraggerParams, IDragInfo } from '../interfaces';
 
 @Directive({
@@ -84,6 +85,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         const dragInfo = this.getDragInfo(event);
 
         this.osBeforeDragStart.emit(dragInfo);
+        this._movableElement.classList.add(CssClass.Dragging);
         this._strategy.registerMouseDown(dragInfo);
         document.addEventListener('mousemove', this.documentMouseMoveHandler);
         document.addEventListener('mouseup', this.documentMouseUpHandler);
@@ -107,6 +109,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {
         const dragInfo = this.getDragInfo(event);
 
+        this._movableElement.classList.remove(CssClass.Dragging);
         document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         document.removeEventListener('mouseup', this.documentMouseUpHandler);
         this.osDragEnd.emit(dragInfo);
