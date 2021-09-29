@@ -93,6 +93,7 @@ export class SideBarApiPlanComponent implements OnInit {
             ...this.docServicesToApiPlanItems(),
             ...this.docDirectivesToApiPlanItems(),
             ...this.docComponentsToApiPlanItems(),
+            ...this.docClassesToApiPlanItems(),
             ...this.docInterfacesToApiPlanItems(),
             ...this.docEnumsToApiPlanItems(),
             ...this.docTypesToApiPlanItems()
@@ -124,6 +125,13 @@ export class SideBarApiPlanComponent implements OnInit {
         return this.overviewService.docComponents.map(({ name }) => ({
             name,
             iconUrl: '/assets/icons/dev/angular-component.svg'
+        }));
+    }
+
+    private docClassesToApiPlanItems(): ListItem[] {
+        return this.overviewService.docClasses.map(({ name }) => ({
+            name,
+            iconUrl: '/assets/icons/dev/typescript.svg'
         }));
     }
 

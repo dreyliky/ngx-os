@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import {
     ComponentMetaInfo,
+    DocClass,
     DocComponent,
     DocDirective,
     DocEnum,
@@ -42,6 +43,10 @@ export class OverviewService implements OnDestroy {
         return [...this._docInterfaces];
     }
 
+    public get docClasses(): DocClass[] {
+        return [...this._docClasses];
+    }
+
     public get docEnums(): DocEnum[] {
         return [...this._docEnums];
     }
@@ -56,6 +61,7 @@ export class OverviewService implements OnDestroy {
     private _docServices: DocInjectable[] = [];
     private _docDirectives: DocDirective[] = [];
     private _docInterfaces: DocInterface[] = [];
+    private _docClasses: DocClass[] = [];
     private _docEnums: DocEnum[] = [];
     private _docTypes: DocTypealias[] = [];
 
@@ -72,6 +78,7 @@ export class OverviewService implements OnDestroy {
         this.initDocServices(metaInfo);
         this.initDocDirectives(metaInfo);
         this.initDocComponents(metaInfo);
+        this.initDocClasses(metaInfo);
         this.initDocInterfaces(metaInfo);
         this.initDocEnums(metaInfo);
         this.initDocTypes(metaInfo);
@@ -97,6 +104,10 @@ export class OverviewService implements OnDestroy {
 
     private initDocInterfaces({ libInterfaces = [] }: ComponentMetaInfo): void {
         this._docInterfaces = this.docService.findDocInterfacesByNames(libInterfaces);
+    }
+
+    private initDocClasses({ libClasses = [] }: ComponentMetaInfo): void {
+        this._docClasses = this.docService.findDocClassesByTypes(libClasses);
     }
 
     private initDocEnums({ libEnums = [] }: ComponentMetaInfo): void {

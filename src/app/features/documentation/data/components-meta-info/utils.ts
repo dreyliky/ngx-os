@@ -1,4 +1,10 @@
-import { AppendToBodyDirective, FixedToParentDirective, UtilsModule } from '@lib-modules';
+import {
+    AppendToBodyConfig,
+    AppendToBodyDirective,
+    FixedToParentConfig,
+    FixedToParentDirective,
+    UtilsModule
+} from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
@@ -13,6 +19,10 @@ export const UTILS_META_INFO: ComponentMetaInfo = {
     libDirectives: [
         AppendToBodyDirective,
         FixedToParentDirective
+    ],
+    libClasses: [
+        AppendToBodyConfig,
+        FixedToParentConfig
     ],
     demoComponents: []
 };

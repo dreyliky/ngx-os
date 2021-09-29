@@ -1,4 +1,9 @@
-import { DragAndDropModule, DraggableDirective } from '@lib-modules';
+import {
+    DragAndDropModule,
+    DraggableDirective,
+    DragStrategyByAxisProperties,
+    DragStrategyByTranslate3d
+} from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import {
     DraggerOnAbsoluteElementComponent, DraggerOverviewComponent,
@@ -16,6 +21,10 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
     ],
     libDirectives: [
         DraggableDirective
+    ],
+    libClasses: [
+        DragStrategyByTranslate3d,
+        DragStrategyByAxisProperties
     ],
     libInterfaces: [
         'IDraggerParams',

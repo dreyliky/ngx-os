@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@Doc/demo-shared.module';
 import { ApiComponent } from './api.component';
+import { ClassesApiModule } from './classes-api';
 import { ComponentsApiModule } from './components-api';
 import { DirectivesApiModule } from './directives-api';
 import { EnumsApiModule } from './enums-api';
@@ -22,6 +23,7 @@ import { TypesApiModule } from './types-api';
         DirectivesApiModule,
         ModulesApiModule,
         InterfacesApiModule,
+        ClassesApiModule,
         EnumsApiModule,
         TypesApiModule
     ],

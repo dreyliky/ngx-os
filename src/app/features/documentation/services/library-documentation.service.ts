@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {
     Doc,
+    DocClass,
     DocComponent,
     DocDirective,
     DocEnum,
@@ -60,6 +61,14 @@ export class LibraryDocumentationService {
             .map((componentType) => {
                 return this.state.data.components
                     .find((component) => component.name === componentType.name);
+            });
+    }
+
+    public findDocClassesByTypes(classTypes: Type<any>[]): DocClass[] {
+        return classTypes
+            .map((classType) => {
+                return this.state.data.classes
+                    .find((currentClass) => currentClass.name === classType.name);
             });
     }
 

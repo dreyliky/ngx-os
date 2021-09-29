@@ -1,9 +1,12 @@
 /* eslint-disable max-lines */
+// FIXME: All interfaces were auto-generated.
+// Need to reduce the number of duplicate interfaces.
+// Each exported interface should have a "Doc" prefix.
 export interface Doc {
     pipes: any[];
     interfaces: DocInterface[];
     injectables: DocInjectable[];
-    classes: Class[];
+    classes: DocClass[];
     directives: DocDirective[];
     components: DocComponent[];
     modules: DocModule[];
@@ -254,7 +257,7 @@ export interface InputsClass {
     inheritance?: Inheritance;
 }
 
-interface Class {
+export interface DocClass {
     name: string;
     id: string;
     file: string;
@@ -271,6 +274,7 @@ interface Class {
     constructorObj?: ConstructorObj;
     implements?: string[];
     accessors?: DocAccessors;
+    readme?: string;
 }
 
 interface Methods6 {
