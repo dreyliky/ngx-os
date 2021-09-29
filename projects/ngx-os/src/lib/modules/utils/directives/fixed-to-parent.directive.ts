@@ -25,6 +25,8 @@ export class FixedToParentDirective implements OnInit {
     public ngOnInit(): void {
         this.targetElement = this.hostElementRef.nativeElement;
         this.parentElement = this.targetElement.parentElement;
+
+        this.adjustCoordinates();
     }
 
     @HostListener('document:wheel', ['$event'])
