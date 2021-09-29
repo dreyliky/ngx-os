@@ -107,7 +107,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onDragStart(): void {
-        this.changeDetector.detach();
+        setTimeout(() => this.changeDetector.detach());
     }
 
     public onDragging(): void {
