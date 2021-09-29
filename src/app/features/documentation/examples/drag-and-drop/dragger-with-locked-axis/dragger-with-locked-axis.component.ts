@@ -10,13 +10,13 @@ import { DragStrategyByTranslate3d, IDraggerParams } from '@lib-modules';
 export class DraggerWithLockedAxisComponent {
     public firstDraggerConfig: IDraggerParams = {
         strategy: new DragStrategyByTranslate3d({
-            isLockAxisY: true
+            isLockAxisX: true
         })
     };
 
     public secondDraggerConfig: IDraggerParams = {
         strategy: new DragStrategyByTranslate3d({
-            isLockAxisX: true
+            isLockAxisY: true
         })
     };
 }
