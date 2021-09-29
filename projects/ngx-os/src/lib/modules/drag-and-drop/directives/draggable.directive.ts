@@ -9,8 +9,8 @@ import { IDraggerParams, IDragInfo } from '../interfaces';
 })
 export class DraggableDirective implements AfterViewInit, OnDestroy {
     @Input('os-draggable')
-    public set config(draggerConfig: IDraggerParams) {
-        this._config = { ...this._config, ...draggerConfig };
+    public set config(config: IDraggerParams) {
+        this._config = { ...this._config, ...config };
 
         this.initMovableElement();
         this.initDraggableElement();

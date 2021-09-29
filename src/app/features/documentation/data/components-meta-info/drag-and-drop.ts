@@ -6,7 +6,9 @@ import {
 } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import {
-    DraggerOnAbsoluteElementComponent, DraggerOverviewComponent,
+    DraggerOnAbsoluteElementComponent,
+    DraggerOverviewComponent,
+    DraggerViaHandleComponent,
     DraggerWithLockedAxisComponent
 } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -41,6 +43,10 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
         {
             title: 'Dragger with locked axis',
             component: DraggerWithLockedAxisComponent
+        },
+        {
+            title: 'Dragger via handle',
+            component: DraggerViaHandleComponent
         },
         {
             title: 'Dragger on absolute element which append to body',
