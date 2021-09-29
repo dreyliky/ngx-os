@@ -1,5 +1,5 @@
 import { isNil } from '@lib-helpers';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { DraggableDirective } from '../../directives/draggable.directive';
 import { IDragInfo } from '../../interfaces';
 import { DragStrategyType } from '../../types';
@@ -46,7 +46,7 @@ export abstract class BaseDragStrategy {
 
     private initAfterViewInitObserver(): void {
         this.context.whenViewInit$
-            .pipe(first())
+            .pipe(take(1))
             .subscribe(() => this.initialDomRect = this.context.movableElement.getBoundingClientRect());
     }
 

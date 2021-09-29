@@ -53,10 +53,11 @@ export class ExamplesComponent implements OnInit, OnDestroy {
         if (this.demoTemplates && this.demoComponents) {
             const demoTemplates = this.demoTemplates.toArray();
 
+            demoTemplates.forEach((demoTemplate) => demoTemplate.clear());
+
             this.demoComponents.forEach(({ component }, componentIndex) => {
                 const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
 
-                demoTemplates[componentIndex]?.clear();
                 demoTemplates[componentIndex]?.createComponent(componentFactory);
             });
 
@@ -74,7 +75,7 @@ export class ExamplesComponent implements OnInit, OnDestroy {
             )
             .subscribe(([{ demoComponents }, isDevExamplesVisible]) => {
                 this.initDemoComponents(demoComponents, isDevExamplesVisible);
-                this.renderDemoComponents();
+                this.changeDetector.detectChanges();
             });
     }
 
