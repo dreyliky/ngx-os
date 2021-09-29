@@ -20,7 +20,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     public config: IDynamicWindowParams;
 
     public zIndex: number;
-    public isDragging: boolean = false;
     public isResizing: boolean = false;
     public windowOrderIndex: number = 0;
 
@@ -113,7 +112,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
             'os-hidden': this.isHidden,
             'os-fullscreen': this.isFullscreen,
             'os-windowed': this.isWindowed,
-            'os-dragging': this.isDragging,
             'os-resizing': this.isResizing
         };
     }

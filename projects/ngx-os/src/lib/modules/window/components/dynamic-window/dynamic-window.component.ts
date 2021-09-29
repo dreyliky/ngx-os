@@ -115,12 +115,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onDragStart(): void {
-        // FIXME: Remove this flag
-        // Move feature of adding class "os-dragging" to directive
-        // After that, detectChanges here might be removed
-        this.isDragging = true;
-
-        this.changeDetector.detectChanges();
         this.changeDetector.detach();
     }
 
@@ -143,7 +137,6 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     public onDragEnd(): void {
         this.draggableDirective.config = { shiftX: null, shiftY: null };
-        this.isDragging = false;
 
         setTimeout(() => this.changeDetector.reattach());
     }
