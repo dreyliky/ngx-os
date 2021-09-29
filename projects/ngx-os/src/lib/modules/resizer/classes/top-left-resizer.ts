@@ -33,7 +33,5 @@ export class TopLeftResizer extends BaseResizer {
                 }
             }
         }
-
-        this.onResize();
     }
 }

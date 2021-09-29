@@ -148,23 +148,17 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public onResizeStart(): void {
-        // FIXME: Remove this flag
-        // Move feature of adding class "os-resizing" to directive
-        // After that, detectChanges here might be removed
-        this.isResizing = true;
-
-        this.changeDetector.detectChanges();
         this.changeDetector.detach();
     }
 
-    public onResizing({ width, height }: IResizeInfo): void {
+    public onResizing({ resizableElement }: IResizeInfo): void {
+        // FIXME: Try replace to something static
+        const { width, height } = resizableElement.getBoundingClientRect();
         this.widthAtWindowedMode = width;
         this.heightAtWindowedMode = height;
     }
 
     public onResizeEnd(): void {
-        this.isResizing = false;
-
         setTimeout(() => this.changeDetector.reattach());
     }
 

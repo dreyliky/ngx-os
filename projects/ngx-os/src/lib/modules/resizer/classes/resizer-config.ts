@@ -1,4 +1,5 @@
 import { MouseButtonEnum } from '../../../core';
+import { RESIZERS_ARRAY } from '../data';
 import { ResizerEnum } from '../enums';
 import { IResizerParams } from '../interfaces';
 
@@ -9,7 +10,7 @@ export class ResizerConfig implements IResizerParams {
     public minHeight?: number = 20;
     public maxWidth?: number = Infinity;
     public maxHeight?: number = Infinity;
-    public allowedResizers?: ResizerEnum[];
+    public allowedResizers?: ResizerEnum[] = [...RESIZERS_ARRAY];
     public allowedMouseButtons?: MouseButtonEnum[] = [MouseButtonEnum.left];
     public xAxisLeftStyleProperty?: string = 'left';
     public xAxisRightStyleProperty?: string;

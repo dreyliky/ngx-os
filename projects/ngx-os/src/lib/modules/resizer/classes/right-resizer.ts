@@ -11,7 +11,5 @@ export class RightResizer extends BaseResizer {
         if (width > this.config.minWidth && width < this.config.maxWidth) {
             this.context.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
         }
-
-        this.onResize();
     }
 }

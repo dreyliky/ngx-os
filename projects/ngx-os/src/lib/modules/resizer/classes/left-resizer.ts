@@ -19,7 +19,5 @@ export class LeftResizer extends BaseResizer {
                 }
             }
         }
-
-        this.onResize();
     }
 }

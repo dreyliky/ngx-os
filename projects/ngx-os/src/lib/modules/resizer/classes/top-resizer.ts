@@ -19,7 +19,5 @@ export class TopResizer extends BaseResizer {
                 }
             }
         }
-
-        this.onResize();
     }
 }

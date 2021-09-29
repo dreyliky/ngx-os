@@ -34,7 +34,5 @@ export class BottomLeftResizer extends BaseResizer {
                 }
             }
         }
-
-        this.onResize();
     }
 }

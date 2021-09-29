@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { RESIZERS_ARRAY } from '../../resizer';
 import { DynamicWindowConfig } from '../classes';
 import { mergeConfigs } from '../helpers';
 import { IDynamicWindowParams } from '../interfaces';
@@ -33,6 +34,7 @@ export class DynamicWindowSharedConfigService {
                 x: '50%',
                 y: '100%'
             },
+            allowedResizers: [...RESIZERS_ARRAY],
             isFullscreenByDefault: false,
             isHiddenByDefault: false,
             isAllowHide: true,

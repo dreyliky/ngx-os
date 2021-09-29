@@ -14,11 +14,5 @@ export abstract class BaseResizer {
         this.config = this.context.resizerConfig;
     }
 
-    protected onResize(): void {
-        const resizeInfo = this.context.getResizeInfo();
-
-        this.context.osResizing.emit(resizeInfo);
-    }
-
     public abstract resizeElement(event: MouseEvent): void;
 }

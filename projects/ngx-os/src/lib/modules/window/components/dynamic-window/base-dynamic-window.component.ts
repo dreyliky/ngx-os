@@ -20,7 +20,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     public config: IDynamicWindowParams;
 
     public zIndex: number;
-    public isResizing: boolean = false;
     public windowOrderIndex: number = 0;
 
     public windowElement: HTMLElement;
@@ -111,8 +110,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
             'os-entering-windowed': this.isEnteringWindowed,
             'os-hidden': this.isHidden,
             'os-fullscreen': this.isFullscreen,
-            'os-windowed': this.isWindowed,
-            'os-resizing': this.isResizing
+            'os-windowed': this.isWindowed
         };
     }
 
