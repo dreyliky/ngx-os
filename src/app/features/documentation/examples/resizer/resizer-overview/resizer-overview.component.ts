@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { IResizerParams } from '@lib-modules';
 
 @Component({
     selector: 'demo-resizer-overview',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./resizer-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ResizerOverviewComponent {}
+export class ResizerOverviewComponent {
+    public readonly resizerConfig: IResizerParams = {
+        isAllowChangePosition: false
+    };
+}

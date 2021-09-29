@@ -8,7 +8,7 @@ export class LeftResizer extends BaseResizer {
     public resizeElement(event: MouseEvent): void {
         const width = this.originalWidth - (event.pageX - this.originalMouseX);
 
-        if (width > this.config.minWidth && width < this.config.maxWidth) {
+        if (width > this.minWidth && width < this.maxWidth) {
             this.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
 
             if (this.config.isAllowChangePosition && this.config.xAxisLeftStyleProperty) {

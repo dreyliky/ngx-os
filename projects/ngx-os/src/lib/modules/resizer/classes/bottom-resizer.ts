@@ -9,7 +9,7 @@ export class BottomResizer extends BaseResizer {
         const height = this.originalHeight + (event.pageY - this.originalMouseY);
         const { documentElement } = document;
 
-        if (height > this.config.minHeight && height < this.config.maxHeight) {
+        if (height > this.minHeight && height < this.maxHeight) {
             this.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
 
             if (this.config.isAllowChangePosition && this.config.yAxisBottomStyleProperty) {

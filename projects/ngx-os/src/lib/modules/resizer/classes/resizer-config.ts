@@ -6,8 +6,8 @@ import { IResizerParams } from '../interfaces';
 /** @internal */
 export class ResizerConfig implements IResizerParams {
     public targetElement?: HTMLElement;
-    public minWidth?: number = 20;
-    public minHeight?: number = 20;
+    public minWidth?: number;
+    public minHeight?: number;
     public maxWidth?: number = Infinity;
     public maxHeight?: number = Infinity;
     public allowedResizers?: ResizerEnum[] = [...RESIZERS_ARRAY];
@@ -19,6 +19,5 @@ export class ResizerConfig implements IResizerParams {
     public widthStyleProperty?: string = 'width';
     public heightStyleProperty?: string = 'height';
     public isAllowChangePosition?: boolean = true;
-    public isAffectsElement?: boolean = true;
     public isEnabled?: boolean = true;
 }

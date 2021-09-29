@@ -1,6 +1,10 @@
 import { ResizableDirective, ResizerModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
-import { ResizerOverviewComponent } from '../../examples';
+import {
+    ResizerOnAbsoluteElementComponent,
+    ResizerOverviewComponent,
+    ResizerSpecificSidesComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const RESIZER_META_INFO: ComponentMetaInfo = {
@@ -30,6 +34,14 @@ export const RESIZER_META_INFO: ComponentMetaInfo = {
         {
             title: 'Resizer Overview',
             component: ResizerOverviewComponent
+        },
+        {
+            title: 'Resizer with specific sides',
+            component: ResizerSpecificSidesComponent
+        },
+        {
+            title: 'Resizer on absolute element which append to body',
+            component: ResizerOnAbsoluteElementComponent
         }
     ]
 };

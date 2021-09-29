@@ -8,7 +8,7 @@ export class TopResizer extends BaseResizer {
     public resizeElement(event: MouseEvent): void {
         const height = this.originalHeight - (event.pageY - this.originalMouseY);
 
-        if (height > this.config.minHeight && height < this.config.maxHeight) {
+        if (height > this.minHeight && height < this.maxHeight) {
             this.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
 
             if (this.config.isAllowChangePosition && this.config.yAxisTopStyleProperty) {

@@ -15,7 +15,7 @@ export class BottomRightResizer extends BaseResizer {
     private processAxisX(event: MouseEvent): void {
         const width = this.originalWidth + (event.pageX - this.originalMouseX);
 
-        if (width > this.config.minWidth && width < this.config.maxWidth) {
+        if (width > this.minWidth && width < this.maxWidth) {
             this.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
 
             if (this.config.isAllowChangePosition && this.config.xAxisRightStyleProperty) {
@@ -29,7 +29,7 @@ export class BottomRightResizer extends BaseResizer {
     private processAxisY(event: MouseEvent): void {
         const height = this.originalHeight + (event.pageY - this.originalMouseY);
 
-        if (height > this.config.minHeight && height < this.config.maxHeight) {
+        if (height > this.minHeight && height < this.maxHeight) {
             this.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
 
             if (this.config.isAllowChangePosition && this.config.yAxisBottomStyleProperty) {

@@ -22,7 +22,9 @@ import {
     PasswordBoxOverviewComponent,
     RadioButtonAsFormControlComponent,
     RadioButtonOverviewComponent,
+    ResizerOnAbsoluteElementComponent,
     ResizerOverviewComponent,
+    ResizerSpecificSidesComponent,
     ScrollViewOverviewComponent,
     SelectboxAsFormControlComponent,
     SelectboxOverviewComponent,
@@ -69,6 +71,7 @@ import {
         PasswordBoxOverviewComponent,
         RadioButtonAsFormControlComponent,
         RadioButtonOverviewComponent,
+        ResizerOnAbsoluteElementComponent,
         ResizerOverviewComponent,
         ScrollViewOverviewComponent,
         SelectboxAsFormControlComponent,
@@ -90,7 +93,8 @@ import {
         TreeViewWithCustomTemplateComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        ResizerSpecificSidesComponent
     ],
     imports: [
         SharedModule

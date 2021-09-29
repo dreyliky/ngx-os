@@ -13,6 +13,10 @@ $border-offset: 0px;
     z-index: 998;
 }
 
+.os-resizable {
+    position: relative;
+}
+
 os-resizers {
     os-resizer {
         opacity: 0;

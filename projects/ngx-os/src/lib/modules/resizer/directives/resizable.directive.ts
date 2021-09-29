@@ -77,8 +77,11 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     }
 
     private initResizableElement(): void {
+        this._resizableElement?.classList.remove(CssClass.Resizable);
+
         this._resizableElement = this.config?.targetElement ?? this.hostRef.nativeElement;
 
+        this._resizableElement?.classList.add(CssClass.Resizable);
         this.osResizableElementInit.emit(this._resizableElement);
     }
 

@@ -1,0 +1,21 @@
+<os-button
+    (osClick)="onToggleContainerVisibilityButtonClick()">
+    {{ labelOfToggleVisibilityButton }}
+</os-button>
+
+<div
+    os-append-to-body
+    os-resizable
+    [ngStyle]="containerStyles"
+    class="container">
+    <os-text>
+        I'm placed inside the body element!<br />
+        I change my "left" and "top" properties while resizing.<br />
+    </os-text>
+
+    <os-button
+        #containerHideButton
+        (osClick)="onToggleContainerVisibilityButtonClick()">
+        {{ labelOfToggleVisibilityButton }}
+    </os-button>
+</div>
