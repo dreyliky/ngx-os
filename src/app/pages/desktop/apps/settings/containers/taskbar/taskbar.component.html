@@ -3,7 +3,7 @@
 
     <os-selectbox
         [placeholder]="'Choose taskbar placement'"
-        [(ngModel)]="selectedPlacement"
+        [(ngModel)]="selectedPlacement.id"
         (osChange)="onPlacementChange($event)">
         <os-option
             *ngFor="let placement of placements"

@@ -150,6 +150,8 @@ export class SelectboxComponent<T>
 
     public writeValue(value: T): void {
         this.setInitialValue(value);
+        this.initSelectedOptionByValue(value);
+        this.changeDetector.detectChanges();
     }
 
     protected onClick(event: PointerEvent): void {
