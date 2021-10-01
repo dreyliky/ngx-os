@@ -1,4 +1,4 @@
-import { TabGroupComponent, TabGroupModule } from '@lib-modules';
+import { TabComponent, TabGroupComponent, TabGroupModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import { TabGroupOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -12,7 +12,8 @@ export const TAB_GROUP_META_INFO: ComponentMetaInfo = {
         TabGroupModule
     ],
     libComponents: [
-        TabGroupComponent
+        TabGroupComponent,
+        TabComponent
     ],
     demoComponents: [
         {
