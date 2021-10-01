@@ -1,15 +1,15 @@
-<os-selectbox [placeholder]="'Color'">
+<os-dropdown [placeholder]="'Color'">
     <img
         os-placeholder
         height="100%"
         src="/assets/icons/components/theme.png" />
 
-    <os-option *ngFor="let accentColor of accentColors">
+    <os-dropdown-item *ngFor="let accentColor of accentColors">
         <div
             class="accent-color"
             [class.active]="isColorSelected(accentColor.value)"
             [style.backgroundColor]="accentColor.css"
             (click)="colorChanged.emit(accentColor.value)">
         </div>
-    </os-option>
-</os-selectbox>
+    </os-dropdown-item>
+</os-dropdown>

@@ -1,0 +1,25 @@
+<os-form-field>
+    <os-dropdown
+        [placeholder]="'Default'">
+        <os-dropdown-item>Item 1</os-dropdown-item>
+        <os-dropdown-item>Item 2</os-dropdown-item>
+        <os-dropdown-item [isDisabled]="true">Item 3 (disabled)</os-dropdown-item>
+    </os-dropdown>
+</os-form-field>
+
+<os-form-field>
+    <os-dropdown
+        [value]="1"
+        [placeholder]="'Default with selected item'">
+        <os-dropdown-item [value]="0">Item 1</os-dropdown-item>
+        <os-dropdown-item [value]="1">Item 2</os-dropdown-item>
+        <os-dropdown-item [value]="2">Item 3 (disabled)</os-dropdown-item>
+    </os-dropdown>
+</os-form-field>
+
+<os-form-field>
+    <os-dropdown
+        [placeholder]="'Disabled'"
+        [isDisabled]="true">
+    </os-dropdown>
+</os-form-field>

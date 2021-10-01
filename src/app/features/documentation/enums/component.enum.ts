@@ -11,7 +11,7 @@ export enum OsComponentEnum {
     RadioButton = 'radio-button',
     Resizer = 'resizer',
     ScrollView = 'scroll-view',
-    Selectbox = 'selectbox',
+    Dropdown = 'dropdown',
     Slider = 'slider',
     TabGroup = 'tab-group',
     Text = 'text',

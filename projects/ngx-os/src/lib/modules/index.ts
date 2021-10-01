@@ -1,6 +1,7 @@
 export * from './button';
 export * from './checkbox';
 export * from './drag-and-drop';
+export * from './dropdown';
 export * from './email-box';
 export * from './form-field';
 export * from './grid';
@@ -11,7 +12,6 @@ export * from './password-box';
 export * from './radio-button';
 export * from './resizer';
 export * from './scroll-view';
-export * from './selectbox';
 export * from './slider';
 export * from './tab-group';
 export * from './text';

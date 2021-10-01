@@ -2,12 +2,12 @@
     <os-form-field [isStacked]="true">
         <os-label>Direction</os-label>
         
-        <os-selectbox
+        <os-dropdown
             [placeholder]="'Choose direction'"
             [formControl]="formGroup.controls.direction">
-            <os-option [value]="gridDirectionEnum.Horizontal">Horizontal</os-option>
-            <os-option [value]="gridDirectionEnum.Vertical">Vertical</os-option>
-        </os-selectbox>
+            <os-dropdown-item [value]="gridDirectionEnum.Horizontal">Horizontal</os-dropdown-item>
+            <os-dropdown-item [value]="gridDirectionEnum.Vertical">Vertical</os-dropdown-item>
+        </os-dropdown>
     </os-form-field>
     
     <os-form-field [isStacked]="true">

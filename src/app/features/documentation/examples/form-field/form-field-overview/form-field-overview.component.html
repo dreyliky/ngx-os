@@ -44,12 +44,12 @@
 <os-form-field [isStacked]="isFieldsStacked">
     <os-label>Permission</os-label>
 
-    <os-selectbox
+    <os-dropdown
         [placeholder]="'Choose user permission'">
-        <os-option>User</os-option>
-        <os-option>Moderator</os-option>
-        <os-option>Admin</os-option>
-    </os-selectbox>
+        <os-dropdown-item>User</os-dropdown-item>
+        <os-dropdown-item>Moderator</os-dropdown-item>
+        <os-dropdown-item>Admin</os-dropdown-item>
+    </os-dropdown>
 </os-form-field>
 
 <os-form-field>

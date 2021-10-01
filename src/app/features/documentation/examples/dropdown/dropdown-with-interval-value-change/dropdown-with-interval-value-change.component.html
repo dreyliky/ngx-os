@@ -1,0 +1,16 @@
+<os-button (osClick)="onToggleIntervalButtonClick()">
+    Toggle interval of dropdown value assignment&nbsp;
+    <b>({{ _currentIntervalStateLabel }})</b>
+</os-button>
+
+<os-form-field>
+    <os-dropdown
+        [placeholder]="'Placeholder'"
+        [value]="selectedItem">
+        <os-dropdown-item
+            *ngFor="let item of items"
+            [value]="item">
+            {{ item.name }}
+        </os-dropdown-item>
+    </os-dropdown>
+</os-form-field>

@@ -1,0 +1,27 @@
+<ng-content select="[os-placeholder]"></ng-content>
+
+<span
+    *ngIf="_isPlaceholderVisible"
+    class="os-placeholder">
+    {{ placeholder }}
+</span>
+
+<span
+    *ngIf="_isValueExist"
+    class="os-value">
+    {{ _labelToDisplay }}
+</span>
+
+<os-list
+    *ngIf="isOpened"
+    [os-fixed-to-parent]="{ isEnabled: _isListAppendToBody }"
+    [os-append-to-body]="{ isEnabled: _isListAppendToBody }"
+    class="os-part-of-dropdown"
+    [scrollViewStyle]="scrollViewStyle"
+    [scrollViewStyleClass]="scrollViewStyleClass">
+    <ng-content select="[os-dropdown-items-header]"></ng-content>
+
+    <ng-content select="os-dropdown-item"></ng-content>
+
+    <ng-content select="[os-dropdown-items-footer]"></ng-content>
+</os-list>

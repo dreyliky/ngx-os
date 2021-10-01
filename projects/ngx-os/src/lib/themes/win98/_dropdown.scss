@@ -1,0 +1,73 @@
+os-dropdown {
+    width: 100%;
+    height: 21px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 11px;
+    padding: 3px 4px;
+    border: none;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    appearance: none;
+    border-radius: 0;
+    appearance: none;
+    padding-right: 32px;
+    border-radius: 0;
+    user-select: none;
+    cursor: default;
+    box-shadow: var(--border-field);
+    -webkit-font-smoothing: none;
+
+    &::after {
+        width: 16px;
+        height: 17px;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        content: '';
+        background-image: url("./icon/win98_arrow-button.png");
+        background-position: 0px 0px;
+        background-repeat: no-repeat;
+    }
+
+    &:focus {
+        outline: none;
+        color: #ffffff;
+        background-color: var(--dialog-blue);
+        option {
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+        }
+    }
+
+    &:not(.os-disabled) {
+        &:active::after {
+            background-position: 0px -17px;
+        }
+    }
+
+    &.os-disabled {
+        color: #808080;
+        background-color: silver;
+
+        &::after {
+            background-position: 0px -34px;
+        }
+    }
+
+    .os-placeholder, .os-value {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+}
+
+os-list.os-part-of-dropdown {
+    position: absolute;
+    z-index: 999;
+    opacity: .999;
+    left: -1px;
+    top: 100%;
+}

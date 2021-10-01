@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ISelectboxValueChangeEvent } from '@lib-modules';
+import { IDropdownValueChangeEvent } from '@lib-modules';
 import {
     TaskbarPlacement,
     TaskbarPlacementEnum,
@@ -25,7 +25,7 @@ export class TaskbarComponent implements OnInit {
         this.selectedPlacement = this.taskbarPlacementService.data;
     }
 
-    public onPlacementChange({ value }: ISelectboxValueChangeEvent<TaskbarPlacementEnum>): void {
+    public onPlacementChange({ value }: IDropdownValueChangeEvent<TaskbarPlacementEnum>): void {
         this.taskbarPlacementService.change(value);
 
         this.selectedPlacement = this.taskbarPlacementService.data;

@@ -3,8 +3,7 @@ import { ComponentMetaInfo } from '../interfaces';
 import {
     BUTTON_META_INFO,
     CHECKBOX_META_INFO,
-    DRAG_AND_DROP_META_INFO,
-    EMAIL_BOX_META_INFO,
+    DRAG_AND_DROP_META_INFO, DROPDOWN_META_INFO, EMAIL_BOX_META_INFO,
     FORM_FIELD_META_INFO,
     GRID_META_INFO,
     GROUP_BOX_META_INFO,
@@ -13,9 +12,7 @@ import {
     PASSWORD_BOX_META_INFO,
     RADIO_BUTTON_META_INFO,
     RESIZER_META_INFO,
-    SCROLL_VIEW_META_INFO,
-    SELECTBOX_META_INFO,
-    SLIDER_META_INFO,
+    SCROLL_VIEW_META_INFO, SLIDER_META_INFO,
     TAB_GROUP_META_INFO,
     TEXTAREA_BOX_META_INFO,
     TEXT_BOX_META_INFO,
@@ -68,8 +65,8 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
         SCROLL_VIEW_META_INFO
     )
     .set(
-        OsComponentEnum.Selectbox,
-        SELECTBOX_META_INFO
+        OsComponentEnum.Dropdown,
+        DROPDOWN_META_INFO
     )
     .set(
         OsComponentEnum.Slider,

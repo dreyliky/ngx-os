@@ -17,7 +17,7 @@ export class SubheaderComponent implements OnInit {
         OsComponentEnum.TreeView,
         OsComponentEnum.Grid,
         OsComponentEnum.List,
-        OsComponentEnum.Selectbox,
+        OsComponentEnum.Dropdown,
         OsComponentEnum.TabGroup
     ];
 

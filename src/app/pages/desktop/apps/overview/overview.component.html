@@ -20,12 +20,12 @@
     <os-form-field [isStacked]="true">
         <os-label>Role</os-label>
 
-        <os-selectbox
+        <os-dropdown
             [placeholder]="'Choose item'">
-            <os-option>User</os-option>
-            <os-option>Moderator</os-option>
-            <os-option [isSelected]="true">Admin</os-option>
-        </os-selectbox>
+            <os-dropdown-item>User</os-dropdown-item>
+            <os-dropdown-item>Moderator</os-dropdown-item>
+            <os-dropdown-item [isSelected]="true">Admin</os-dropdown-item>
+        </os-dropdown>
     </os-form-field>
 
     <os-group-box

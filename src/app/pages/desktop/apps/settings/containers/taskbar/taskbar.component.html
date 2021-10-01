@@ -1,14 +1,14 @@
 <os-form-field [isStacked]="true">
     <os-label>Placement</os-label>
 
-    <os-selectbox
+    <os-dropdown
         [placeholder]="'Choose taskbar placement'"
         [(ngModel)]="selectedPlacement.id"
         (osChange)="onPlacementChange($event)">
-        <os-option
+        <os-dropdown-item
             *ngFor="let placement of placements"
             [value]="placement.id">
             {{ placement.name }}
-        </os-option>
-    </os-selectbox>
+        </os-dropdown-item>
+    </os-dropdown>
 </os-form-field>

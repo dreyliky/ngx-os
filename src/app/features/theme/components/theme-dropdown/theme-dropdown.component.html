@@ -1,12 +1,12 @@
-<os-selectbox
+<os-dropdown
     [placeholder]="'Choose theme'"
     [value]="selectedTheme"
     [displayField]="'name'"
     (osChange)="onThemeChanged($event)">
-    <os-option
+    <os-dropdown-item
         *ngFor="let theme of themes"
         [isSelected]="theme === selectedTheme"
         [value]="theme">
         {{ theme.name }}
-    </os-option>
-</os-selectbox>
+    </os-dropdown-item>
+</os-dropdown>
