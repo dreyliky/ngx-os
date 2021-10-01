@@ -61,6 +61,10 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
         return !this.windowRef.isFullscreen;
     }
 
+    public get _titleBarDisplayAttr(): string {
+        return (this.config.isTitleBarVisible) ? '' : 'none';
+    }
+
     public get windowStyle(): object {
         return {
             ...this.config.style,

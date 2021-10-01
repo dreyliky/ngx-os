@@ -51,20 +51,20 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
             component: WindowOverviewComponent
         },
         {
-            title: 'Dynamic Window',
-            component: WindowDynamicOpeningComponent
-        },
-        {
-            title: 'Dynamic Window customization',
-            component: DynamicWindowCustomizationComponent
-        },
-        {
             title: 'Title Bar Overview',
             component: WindowTitleBarComponent
         },
         {
             title: 'Title Bar Button Overview',
             component: TitleBarButtonOverviewComponent
+        },
+        {
+            title: 'Dynamic Window',
+            component: WindowDynamicOpeningComponent
+        },
+        {
+            title: 'Dynamic Window customization',
+            component: DynamicWindowCustomizationComponent
         }
     ]
 };

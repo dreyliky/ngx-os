@@ -8,7 +8,8 @@ import {
     Inject,
     OnInit,
     Type,
-    ViewChild
+    ViewChild,
+    ViewContainerRef
 } from '@angular/core';
 import { EventOutside } from '@lib-helpers';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
@@ -16,7 +17,6 @@ import { filter, map, skip } from 'rxjs/operators';
 import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
 import { IResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG } from '../../data';
-import { DynamicWindowContentDirective } from '../../directives';
 import { DynamicStateEnum as DynamicState, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
 import { mergeConfigs } from '../../helpers';
 import { IDynamicWindowParams } from '../../interfaces';
@@ -29,8 +29,8 @@ import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicWindowComponent extends BaseDynamicWindowComponent implements OnInit, AfterViewInit {
-    @ViewChild(DynamicWindowContentDirective, { static: true })
-    private readonly dynamicWindowContent: DynamicWindowContentDirective;
+    @ViewChild('content', { read: ViewContainerRef, static: true })
+    private readonly contentViewRef: ViewContainerRef;
 
     @ViewChild(DraggableDirective, { static: true })
     private readonly draggableDirective: DraggableDirective;
@@ -153,12 +153,10 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initChildComponent(componentType: Type<any>): void {
+        this.contentViewRef.clear();
+
         const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-        const viewContainerRef = this.dynamicWindowContent.viewContainerRef;
-
-        viewContainerRef.clear();
-
-        this.childComponentRef = viewContainerRef.createComponent(factory);
+        this.childComponentRef = this.contentViewRef.createComponent(factory);
     }
 
     private initDynamicStateManager(): void {

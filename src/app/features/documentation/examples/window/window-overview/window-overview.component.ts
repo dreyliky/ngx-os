@@ -6,4 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./window-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WindowOverviewComponent {}
+export class WindowOverviewComponent {
+    public readonly isWindowActive = true;
+}

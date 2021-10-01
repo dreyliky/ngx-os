@@ -1,23 +1,4 @@
-<os-title-bar
-    [isActive]="isActive"
-    [style.display]="_titleBarDisplayAttr"
-    [style]="titleBarStyle"
-    [styleClass]="titleBarStyleClass"
-    (osClick)="osTitleBarClick.emit($event)"
-    (osDblClick)="osTitleBarDblClick.emit($event)"
-    (osHideButtonClick)="osHideButtonClick.emit($event)"
-    (osFullscreenButtonClick)="osFullscreenButtonClick.emit($event)"
-    (osCloseButtonClick)="osCloseButtonClick.emit($event)">
-    <ng-container *ngIf="titleBarCustomContent; else defaultTitleBarContentTemplateOutlet">
-        <ng-container *ngComponentOutlet="titleBarCustomContent"></ng-container>
-    </ng-container>
-
-    <ng-template #defaultTitleBarContentTemplateOutlet>
-        <ng-container
-            *ngTemplateOutlet="defaultTitleBarContent">
-        </ng-container>
-    </ng-template>
-</os-title-bar>
+<ng-content select="os-title-bar"></ng-content>
 
 <div class="os-window-body">
     <os-scroll-view
@@ -28,31 +9,3 @@
         <ng-content></ng-content>
     </os-scroll-view>
 </div>
-
-<ng-template #defaultTitleBarContent>
-    <os-title-bar-content>
-        <os-title-bar-icon
-            *ngIf="iconUrl"
-            [url]="iconUrl">
-        </os-title-bar-icon>
-
-        <span class="os-text">{{ title }}</span>
-    </os-title-bar-content>
-
-    <os-title-bar-controls>
-        <os-title-bar-button
-            [ariaLabel]="'Hide'"
-            (osClick)="osHideButtonClick.emit($event)">
-        </os-title-bar-button>
-
-        <os-title-bar-button
-            [ariaLabel]="'Fullscreen'"
-            (osClick)="osFullscreenButtonClick.emit($event)">
-        </os-title-bar-button>
-
-        <os-title-bar-button
-            [ariaLabel]="'Close'"
-            (osClick)="osCloseButtonClick.emit($event)">
-        </os-title-bar-button>
-    </os-title-bar-controls>
-</ng-template>

@@ -14,12 +14,10 @@ import {
     WindowComponent
 } from './components';
 import { DYNAMIC_WINDOW_SHARED_CONFIG } from './data';
-import { DynamicWindowContentDirective } from './directives';
 import { DynamicWindowSharedConfigService } from './services';
 
 @NgModule({
     declarations: [
-        DynamicWindowContentDirective,
         DynamicWindowComponent,
         TitleBarButtonComponent,
         TitleBarComponent,

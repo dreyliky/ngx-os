@@ -12,13 +12,13 @@ export class TitleBarComponent extends OsBaseComponent implements OnInit {
     public readonly isActive: boolean = true;
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        protected readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
         this.classListManager.add('os-title-bar');
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 }

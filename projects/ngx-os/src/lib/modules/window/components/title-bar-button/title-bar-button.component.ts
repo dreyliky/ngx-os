@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
-import { CommonCssClassEnum as CommonCssClass, OsBaseButtonComponent } from '@lib-core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { OsBaseButtonComponent } from '@lib-core';
 
 @Component({
     selector: 'os-title-bar-button',
@@ -11,32 +11,18 @@ export class TitleBarButtonComponent extends OsBaseButtonComponent implements On
     @Input()
     public readonly iconUrl: string;
 
-    /** Label for the button */
-    @Input()
-    public readonly label: string;
-
     /** Styles for the icon */
     @Input()
-    public readonly iconStyles: object;
+    public readonly iconStyle: object;
 
-    public get _styles(): object {
+    public get _iconStyle(): object {
         return (!this.iconUrl) ? null : {
             backgroundImage: `url(${this.iconUrl})`,
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '0px 0px',
-            ...this.iconStyles
+            ...this.iconStyle
         };
-    }
-
-    @HostBinding(`class.${CommonCssClass.HasLabel}`)
-    public get _isHasLabel(): boolean {
-        return !!this.label;
-    }
-
-    @HostBinding(`class.${CommonCssClass.HasIcon}`)
-    public get _isHasIcon(): boolean {
-        return (!!this.ariaLabel || !!this.iconUrl);
     }
 
     constructor(

@@ -1,34 +1,67 @@
 <os-window
-    [os-draggable]="draggerConfig"
     [os-resizable]="resizerConfig"
     [styleClass]="windowStyleClass"
     [style]="windowStyle"
-    [titleBarCustomContent]="config.titleBarCustomContent"
     [id]="windowRef.id"
     [title]="config.title"
     [zIndex]="zIndex"
-    [iconUrl]="config.iconUrl"
     [isActive]="windowRef.isActive"
-    [isAllowHide]="config.isAllowHide"
-    [isAllowFullscreen]="config.isAllowFullscreen"
-    [isAllowClose]="config.isAllowClose"
-    [isTitleBarVisible]="config.isTitleBarVisible"
-    [titleBarStyle]="config.titleBarStyle"
-    [titleBarStyleClass]="config.titleBarStyleClass"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
-    (osBeforeDragStart)="onBeforeDragStart()"
-    (osDragStart)="onDragStart()"
-    (osDragging)="onDragging()"
-    (osAfterDragging)="onAfterDragging($event)"
-    (osDragEnd)="onDragEnd()"
     (osMouseDown)="onWindowMouseDown()"
     (osResizeStart)="onResizeStart()"
     (osResizing)="onResizing($event)"
-    (osResizeEnd)="onResizeEnd()"
-    (osTitleBarDblClick)="onTitleBarDblClick()"
-    (osHideButtonClick)="onHideButtonClick()"
-    (osFullscreenButtonClick)="onFullscreenButtonClick()"
-    (osCloseButtonClick)="onCloseButtonClick()">
-    <ng-template dynamicWindowContent></ng-template>
+    (osResizeEnd)="onResizeEnd()">
+    <os-title-bar
+        [os-draggable]="draggerConfig"
+        [isActive]="windowRef.isActive"
+        [style.display]="_titleBarDisplayAttr"
+        [style]="config.titleBarStyle"
+        [styleClass]="config.titleBarStyleClass"
+        (osDblClick)="onTitleBarDblClick()"
+        (osBeforeDragStart)="onBeforeDragStart()"
+        (osDragStart)="onDragStart()"
+        (osDragging)="onDragging()"
+        (osAfterDragging)="onAfterDragging($event)"
+        (osDragEnd)="onDragEnd()">
+        <ng-container *ngIf="config.titleBarCustomContent; else defaultTitleBarContentTemplateOutlet">
+            <ng-container *ngComponentOutlet="config.titleBarCustomContent"></ng-container>
+        </ng-container>
+
+        <ng-template #defaultTitleBarContentTemplateOutlet>
+            <ng-container
+                *ngTemplateOutlet="defaultTitleBarContent">
+            </ng-container>
+        </ng-template>
+    </os-title-bar>
+
+    <ng-template #content></ng-template>
 </os-window>
+
+<ng-template #defaultTitleBarContent>
+    <os-title-bar-content>
+        <os-title-bar-icon
+            *ngIf="config.iconUrl"
+            [url]="config.iconUrl">
+        </os-title-bar-icon>
+
+        <span class="os-text">{{ config.title }}</span>
+    </os-title-bar-content>
+
+    <os-title-bar-controls>
+        <os-title-bar-button
+            [ariaLabel]="'Hide'"
+            (osClick)="onHideButtonClick()">
+        </os-title-bar-button>
+
+        <os-title-bar-button
+            [ariaLabel]="'Fullscreen'"
+            (osClick)="onFullscreenButtonClick()">
+        </os-title-bar-button>
+
+        <os-title-bar-button
+            [ariaLabel]="'Close'"
+            (osClick)="onCloseButtonClick()">
+        </os-title-bar-button>
+    </os-title-bar-controls>
+</ng-template>

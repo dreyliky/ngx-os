@@ -1,7 +1,10 @@
-<os-window
-    [title]="'Simple OS window'"
-    [width]="'400px'"
-    [isActive]="true">
+<os-window [isActive]="isWindowActive">
+    <os-title-bar [isActive]="isWindowActive">
+        <os-title-bar-content>
+            <os-text>Simple OS window</os-text>
+        </os-title-bar-content>
+    </os-title-bar>
+
     <div class="content">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
