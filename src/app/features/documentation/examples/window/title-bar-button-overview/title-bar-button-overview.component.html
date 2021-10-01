@@ -3,11 +3,11 @@
 
     <div class="buttons">
         <os-title-bar-button
-            [ariaLabel]="'Minimize'">
+            [ariaLabel]="'Hide'">
         </os-title-bar-button>
 
         <os-title-bar-button
-            [ariaLabel]="'Maximize'">
+            [ariaLabel]="'Fullscreen'">
         </os-title-bar-button>
 
         <os-title-bar-button
@@ -21,6 +21,6 @@
 
     <os-title-bar-button
         [iconUrl]="'/assets/examples/dynamic-window/title-bar-button-custom-icon.png'"
-        [iconStyles]="{ backgroundSize: '80%', backgroundPosition: 'center top' }">
+        [style]="{ backgroundSize: '80%', backgroundPosition: 'center top' }">
     </os-title-bar-button>
 </os-form-field>

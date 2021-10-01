@@ -1,4 +1,11 @@
 <div
+    *ngIf="_isHasIcon"
     class="os-icon"
     [ngStyle]="_styles">
 </div>
+
+<span
+    *ngIf="label"
+    class="os-text">
+    {{ label }}
+</span>

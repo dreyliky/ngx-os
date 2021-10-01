@@ -115,7 +115,7 @@ os-window {
     }
 
     &.os-fullscreen, &.os-entering-fullscreen {
-        .os-title-bar-button[aria-label="Maximize"] {
+        .os-title-bar-button[aria-label="Fullscreen"] {
             .os-icon {
                 background-position: -32px 0px;
             }
@@ -128,12 +128,6 @@ os-window {
 
     &.os-closing {
         display: none !important;
-    }
-
-    &.os-active {
-        .os-title-bar {
-            background: linear-gradient(90deg, rgb(var(--os-primary-color)), rgba(var(--os-primary-color), .5)), #ffffff;
-        }
     }
 
     .os-window-body {
@@ -150,6 +144,7 @@ os-window {
 }
 
 os-title-bar {
+    width: 100%;
     height: 20px;
     background: linear-gradient(90deg, #808080, rgb(var(--os-background-color)));
     font-size: 11px;
@@ -159,7 +154,11 @@ os-title-bar {
     align-items: center;
     box-sizing: border-box;
 
-    .os-title-bar-text {
+    &.os-active {
+        background: linear-gradient(90deg, rgb(var(--os-primary-color)), rgba(var(--os-primary-color), .5)), #ffffff;
+    }
+
+    .os-title-bar-content {
         width: 100%;
         height: 100%;
         font-weight: bold;
@@ -172,15 +171,15 @@ os-title-bar {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
 
-    .os-title-bar-icon {
-        width: 14px;
-        height: 14px;
-        margin-right: 5px;
-        background-position: 50%;
-        background-size: contain;
-        background-repeat: no-repeat;
+        .os-title-bar-icon {
+            width: 14px;
+            height: 14px;
+            margin-right: 5px;
+            background-position: 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
     }
 
     .os-title-bar-controls {
@@ -198,10 +197,14 @@ os-title-bar {
     min-width: 16px;
     min-height: 14px;
     padding: 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-image: url("./icon/win98_title-bar-button.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
+    cursor: default;
+    user-select: none;
 
     .os-icon {
         width: 100%;
@@ -214,11 +217,11 @@ os-title-bar {
     &:not(.os-disabled):active {
         background-position: 0px -14px;
 
-        &[aria-label="Minimize"] .os-icon {
+        &[aria-label="Hide"] .os-icon {
             background-position: 0px -14px;
         }
 
-        &[aria-label="Maximize"] .os-icon {
+        &[aria-label="Fullscreen"] .os-icon {
             background-position: -16px -14px;
         }
 
@@ -231,11 +234,11 @@ os-title-bar {
         outline: none;
     }
 
-    &[aria-label="Minimize"] .os-icon {
+    &[aria-label="Hide"] .os-icon {
         background-position: 0px 0px;
     }
 
-    &[aria-label="Maximize"] .os-icon {
+    &[aria-label="Fullscreen"] .os-icon {
         background-position: -16px 0px;
     }
 

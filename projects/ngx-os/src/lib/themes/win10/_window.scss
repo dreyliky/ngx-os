@@ -73,6 +73,7 @@ os-window {
             height: var(--fullscreen-height);
             left: var(--fullscreen-left);
             top: var(--fullscreen-top);
+            box-shadow: none;
         }
     }
 
@@ -124,6 +125,7 @@ os-window {
         height: var(--fullscreen-height);
         left: var(--fullscreen-left);
         top: var(--fullscreen-top);
+        box-shadow: none;
     }
 
     &.os-active {
@@ -132,55 +134,22 @@ os-window {
         border: solid 1px rgb(var(--os-primary-color));
         box-shadow: 0px 5px 24px -3px rgba(0,0,0,0.35);
 
-        .os-title-bar {
-            background: rgb(var(--os-primary-color));
-            color: #ffffff;
-
-            .os-title-bar-button {
-                background-color: rgb(var(--os-primary-color));
-
-                &:hover {
-                    background-color: rgba(255, 255, 255, .1);
-                }
-
-                &:not(.os-disabled):active {
-                    background-color: rgba(255, 255, 255, .2);
-                }
-
-                &[aria-label="Minimize"] .os-icon {
-                    background-position: 0px 0px;
-                }
-        
-                &[aria-label="Maximize"] .os-icon {
-                    background-position: -45px 0px;
-                }
-        
-                &[aria-label="Close"] .os-icon {
-                    background-position: -135px 0px;
-        
-                    &:hover {
-                        background-color: rgb(232, 17, 35);
-                    }
-
-                    &:not(.os-disabled):active {
-                        background-color: rgba(232, 17, 35, .8);
-                    }
-                }
-            }
+        &.os-fullscreen {
+            box-shadow: none;
         }
     }
 
     &.os-fullscreen, &.os-entering-fullscreen {
         &.os-active {
             .os-title-bar {
-                .os-title-bar-button[aria-label="Maximize"] .os-icon {
+                .os-title-bar-button[aria-label="Fullscreen"] .os-icon {
                     background-position: -90px 0px;
                 }
             }
         }
 
         &:not(.os-active) .os-title-bar {
-            .os-title-bar-button[aria-label="Maximize"] .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"] .os-icon {
                 background-position: -90px -29px;
 
                 &:hover {
@@ -200,6 +169,7 @@ os-window {
 }
 
 .os-title-bar {
+    width: 100%;
     height: 30px;
     font-size: 11px;
     display: flex;
@@ -208,7 +178,44 @@ os-window {
     font-family: var(--segoe-ui);
     background: #ffffff;
 
-    .os-title-bar-text {
+    &.os-active {
+        background: rgb(var(--os-primary-color));
+        color: #ffffff;
+
+        .os-title-bar-button {
+            background-color: rgb(var(--os-primary-color));
+
+            &:hover {
+                background-color: rgba(255, 255, 255, .1);
+            }
+
+            &:not(.os-disabled):active {
+                background-color: rgba(255, 255, 255, .2);
+            }
+
+            &[aria-label="Hide"] .os-icon {
+                background-position: 0px 0px;
+            }
+    
+            &[aria-label="Fullscreen"] .os-icon {
+                background-position: -45px 0px;
+            }
+    
+            &[aria-label="Close"] .os-icon {
+                background-position: -135px 0px;
+    
+                &:hover {
+                    background-color: rgb(232, 17, 35);
+                }
+
+                &:not(.os-disabled):active {
+                    background-color: rgba(232, 17, 35, .8);
+                }
+            }
+        }
+    }
+
+    .os-title-bar-content {
         width: 100%;
         height: 100%;
         padding: 8px;
@@ -218,15 +225,15 @@ os-window {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
 
-    .os-title-bar-icon {
-        width: 16px;
-        height: 16px;
-        margin-right: 5px;
-        background-position: 50%;
-        background-size: contain;
-        background-repeat: no-repeat;
+        .os-title-bar-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            background-position: 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
     }
 
     .os-title-bar-controls {
@@ -240,11 +247,15 @@ os-window {
     width: 45px;
     height: 29px;
     padding: 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0px;
     box-shadow: none;
     border: none;
     background-color: #fff;
+    cursor: default;
+    user-select: none;
 
     .os-icon {
         width: 100%;
@@ -258,7 +269,7 @@ os-window {
         background-color: #e5e5e5;
     }
 
-    &[aria-label="Minimize"] .os-icon {
+    &[aria-label="Hide"] .os-icon {
         background-position: 0px -29px;
 
         &:hover {
@@ -266,7 +277,7 @@ os-window {
         }
     }
 
-    &[aria-label="Maximize"] .os-icon {
+    &[aria-label="Fullscreen"] .os-icon {
         background-position: -45px -29px;
 
         &:hover {

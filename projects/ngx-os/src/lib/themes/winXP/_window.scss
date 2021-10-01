@@ -135,26 +135,8 @@ os-window {
             inset -3px -3px rgba(var(--os-primary-color), .8),
             inset 3px 3px rgba(var(--os-primary-color), .7);
 
-        .os-title-bar {
-            background: linear-gradient(
-                180deg,
-                rgba(var(--os-primary-color), .7) 0%,
-                rgba(var(--os-primary-color), .9) 8%,
-                rgba(var(--os-primary-color), .9) 40%,
-                rgba(var(--os-primary-color), .76) 88%,
-                rgba(var(--os-primary-color), .78) 93%,
-                rgba(var(--os-primary-color), .8) 95%,
-                rgba(var(--os-primary-color), 1) 96%,
-                rgba(var(--os-primary-color), 1) 100%
-            ), #ffffff;
-            border-top: 1px solid rgba(var(--os-primary-color), .8);
-            border-left: 1px solid rgba(var(--os-primary-color), .9);
-            border-right: 1px solid rgba(var(--os-primary-color), 1);
-            text-shadow: 1px 1px rgba(var(--os-primary-color), 1);
-        }
-
         &.os-fullscreen, &.os-entering-fullscreen {
-            .os-title-bar-button[aria-label="Maximize"] .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"] .os-icon {
                 background-position: -42px 0px;
 
                 &:not(:disabled):active {
@@ -184,6 +166,7 @@ os-window {
 }
 
 os-title-bar {
+    width: 100%;
     height: 28px;
     font-size: 11px;
     background: linear-gradient(
@@ -210,7 +193,25 @@ os-title-bar {
     text-shadow: 1px 1px rgba(var(--os-primary-color), .8);
     box-sizing: border-box;
 
-    .os-title-bar-text {
+    &.os-active {
+        background: linear-gradient(
+            180deg,
+            rgba(var(--os-primary-color), .7) 0%,
+            rgba(var(--os-primary-color), .9) 8%,
+            rgba(var(--os-primary-color), .9) 40%,
+            rgba(var(--os-primary-color), .76) 88%,
+            rgba(var(--os-primary-color), .78) 93%,
+            rgba(var(--os-primary-color), .8) 95%,
+            rgba(var(--os-primary-color), 1) 96%,
+            rgba(var(--os-primary-color), 1) 100%
+        ), #ffffff;
+        border-top: 1px solid rgba(var(--os-primary-color), .8);
+        border-left: 1px solid rgba(var(--os-primary-color), .9);
+        border-right: 1px solid rgba(var(--os-primary-color), 1);
+        text-shadow: 1px 1px rgba(var(--os-primary-color), 1);
+    }
+
+    .os-title-bar-content {
         width: 100%;
         height: 100%;
         display: flex;
@@ -224,15 +225,15 @@ os-title-bar {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
 
-    .os-title-bar-icon {
-        width: 16px;
-        height: 16px;
-        margin-right: 5px;
-        background-position: 50%;
-        background-size: contain;
-        background-repeat: no-repeat;
+        .os-title-bar-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            background-position: 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
     }
 
     .os-title-bar-controls {
@@ -245,7 +246,9 @@ os-title-bar {
     height: 21px;
     min-width: 21px;
     min-height: 21px;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0;
     margin-left: 2px;
     background-repeat: no-repeat;
@@ -257,6 +260,8 @@ os-title-bar {
     background-image: url("./icon/winXP_title-bar-button.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
+    cursor: default;
+    user-select: none;
 
     .os-icon {
         width: 100%;
@@ -280,11 +285,11 @@ os-title-bar {
     &:not(.os-disabled):active {
         background-position: 0px -42px;
 
-        &[aria-label="Minimize"] .os-icon {
+        &[aria-label="Hide"] .os-icon {
             background-position: 0px -21px;
         }
     
-        &[aria-label="Maximize"] .os-icon {
+        &[aria-label="Fullscreen"] .os-icon {
             background-position: -21px -21px;
         }
     
@@ -293,11 +298,11 @@ os-title-bar {
         }
     }
 
-    &[aria-label="Minimize"] .os-icon {
+    &[aria-label="Hide"] .os-icon {
         background-position: 0px 0px;
     }
 
-    &[aria-label="Maximize"] .os-icon {
+    &[aria-label="Fullscreen"] .os-icon {
         background-position: -21px 0px;
     }
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
 
 @Component({
@@ -7,6 +7,10 @@ import { OsBaseComponent } from '@lib-core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitleBarComponent extends OsBaseComponent implements OnInit {
+    @Input()
+    @HostBinding('class.os-active')
+    public readonly isActive: boolean = true;
+
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {

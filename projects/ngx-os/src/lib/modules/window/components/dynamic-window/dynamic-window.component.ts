@@ -67,7 +67,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.changeDetector.detectChanges();
     }
 
-    public onMinimizeButtonClick(): void {
+    public onHideButtonClick(): void {
         if (this.config.isAllowHide) {
             setTimeout(() => this.windowRef.hide());
         }
@@ -75,7 +75,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.config.onHideButtonClick?.();
     }
 
-    public onMaximizeButtonClick(): void {
+    public onFullscreenButtonClick(): void {
         if (this.config.isAllowFullscreen) {
             setTimeout(() => this.windowRef.toggleFullscreen());
         }

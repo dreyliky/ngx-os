@@ -90,19 +90,15 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
 
     /** Fires when the "hide window" button in the title bar click */
     @Output()
-    public osMinimizeButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
+    public osHideButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Fires when the "toggle full-screen for window" button in the title bar click */
     @Output()
-    public osMaximizeButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
+    public osFullscreenButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Fires when the "close window" button in the title bar click */
     @Output()
     public osCloseButtonClick: EventEmitter<MouseEvent> = new EventEmitter();
-
-    public get _titleBarIconCssBackground(): string {
-        return `url(${this.iconUrl})`;
-    }
 
     public get _titleBarDisplayAttr(): string {
         return (this.isTitleBarVisible) ? '' : 'none';

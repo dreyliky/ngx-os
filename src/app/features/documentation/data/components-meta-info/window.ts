@@ -1,13 +1,18 @@
 import {
     DynamicWindowService,
     DynamicWindowSharedConfigService,
+    TitleBarButtonComponent,
     TitleBarComponent,
+    TitleBarContentComponent,
+    TitleBarControlsComponent,
+    TitleBarIconComponent,
     WindowComponent,
     WindowModule
 } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import {
-    DynamicWindowCustomizationComponent, TitleBarButtonOverviewComponent,
+    DynamicWindowCustomizationComponent,
+    TitleBarButtonOverviewComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
     WindowTitleBarComponent
@@ -24,7 +29,11 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
     ],
     libComponents: [
         WindowComponent,
-        TitleBarComponent
+        TitleBarComponent,
+        TitleBarContentComponent,
+        TitleBarControlsComponent,
+        TitleBarButtonComponent,
+        TitleBarIconComponent
     ],
     libServices: [
         DynamicWindowService,

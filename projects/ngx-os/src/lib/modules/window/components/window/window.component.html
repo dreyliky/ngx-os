@@ -1,11 +1,12 @@
 <os-title-bar
+    [isActive]="isActive"
     [style.display]="_titleBarDisplayAttr"
     [style]="titleBarStyle"
     [styleClass]="titleBarStyleClass"
     (osClick)="osTitleBarClick.emit($event)"
     (osDblClick)="osTitleBarDblClick.emit($event)"
-    (osMinimizeButtonClick)="osMinimizeButtonClick.emit($event)"
-    (osMaximizeButtonClick)="osMaximizeButtonClick.emit($event)"
+    (osHideButtonClick)="osHideButtonClick.emit($event)"
+    (osFullscreenButtonClick)="osFullscreenButtonClick.emit($event)"
     (osCloseButtonClick)="osCloseButtonClick.emit($event)">
     <ng-container *ngIf="titleBarCustomContent; else defaultTitleBarContentTemplateOutlet">
         <ng-container *ngComponentOutlet="titleBarCustomContent"></ng-container>
@@ -29,32 +30,29 @@
 </div>
 
 <ng-template #defaultTitleBarContent>
-    <div class="os-title-bar-text">
-        <div
+    <os-title-bar-content>
+        <os-title-bar-icon
             *ngIf="iconUrl"
-            class="os-title-bar-icon"
-            [style.backgroundImage]="_titleBarIconCssBackground">
-        </div>
+            [url]="iconUrl">
+        </os-title-bar-icon>
 
-        <span class="os-title">
-            {{ title }}
-        </span>
-    </div>
+        <span class="os-text">{{ title }}</span>
+    </os-title-bar-content>
 
-    <div class="os-title-bar-controls">
+    <os-title-bar-controls>
         <os-title-bar-button
-            [ariaLabel]="'Minimize'"
-            (osClick)="osMinimizeButtonClick.emit($event)">
+            [ariaLabel]="'Hide'"
+            (osClick)="osHideButtonClick.emit($event)">
         </os-title-bar-button>
 
         <os-title-bar-button
-            [ariaLabel]="'Maximize'"
-            (osClick)="osMaximizeButtonClick.emit($event)">
+            [ariaLabel]="'Fullscreen'"
+            (osClick)="osFullscreenButtonClick.emit($event)">
         </os-title-bar-button>
 
         <os-title-bar-button
             [ariaLabel]="'Close'"
             (osClick)="osCloseButtonClick.emit($event)">
         </os-title-bar-button>
-    </div>
+    </os-title-bar-controls>
 </ng-template>
