@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
-import { OsBaseComponent } from '@lib-core';
+import { CommonCssClassEnum, OsBaseComponent } from '@lib-core';
 
 @Component({
     selector: 'os-title-bar',
@@ -8,7 +8,7 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class TitleBarComponent extends OsBaseComponent implements OnInit {
     @Input()
-    @HostBinding('class.os-active')
+    @HostBinding(`class.${CommonCssClassEnum.Active}`)
     public readonly isActive: boolean = true;
 
     constructor(

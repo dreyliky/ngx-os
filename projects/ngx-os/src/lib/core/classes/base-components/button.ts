@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { CommonCssClassEnum } from '@lib-core';
 import { OsBaseComponent } from './element';
 
 @Component({
@@ -6,11 +7,11 @@ import { OsBaseComponent } from './element';
 })
 export abstract class OsBaseButtonComponent extends OsBaseComponent {
     @Input()
-    @HostBinding('class.os-disabled')
+    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean;
 
     @Input()
-    @HostBinding('class.os-focused')
+    @HostBinding(`class.${CommonCssClassEnum.Focused}`)
     public isFocused: boolean;
 
     @Input()

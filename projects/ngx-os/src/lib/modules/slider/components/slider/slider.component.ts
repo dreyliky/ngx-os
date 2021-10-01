@@ -13,7 +13,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseFormControlComponent } from '@lib-core';
+import { CommonCssClassEnum, OsBaseFormControlComponent } from '@lib-core';
 import { ISliderValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -41,7 +41,7 @@ export class SliderComponent
     public maxValueLabel: string;
 
     @Input()
-    @HostBinding('class.os-disabled')
+    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean;
 
     @Input()

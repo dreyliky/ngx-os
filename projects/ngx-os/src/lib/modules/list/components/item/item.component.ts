@@ -8,7 +8,7 @@ import {
     OnInit,
     Output
 } from '@angular/core';
-import { OsBaseComponent } from '@lib-core';
+import { CommonCssClassEnum, OsBaseComponent } from '@lib-core';
 
 @Component({
     selector: 'os-list-item',
@@ -18,10 +18,10 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     @Input()
-    @HostBinding('class.os-selected')
+    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean = false;
 
-    @HostBinding('class.os-disabled')
+    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     @Input()
     public isDisabled: boolean = false;
 

@@ -17,7 +17,7 @@ import {
     QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseFormControlComponent } from '@lib-core';
+import { CommonCssClassEnum, OsBaseFormControlComponent } from '@lib-core';
 import { EventOutside, isNil } from '@lib-helpers';
 import { Subscription } from 'rxjs';
 import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-window-context.token';
@@ -43,7 +43,7 @@ export class SelectboxComponent<T>
     public isOpened: boolean = false;
 
     @Input()
-    @HostBinding('class.os-disabled')
+    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
     @Input()

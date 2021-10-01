@@ -6,7 +6,7 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { OsBaseComponent } from '@lib-core';
+import { CommonCssClassEnum, OsBaseComponent } from '@lib-core';
 
 @Component({
     selector: 'os-window',
@@ -31,7 +31,7 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
 
     /** Marks window as active (means user works with it right now) */
     @Input()
-    @HostBinding('class.os-active')
+    @HostBinding(`class.${CommonCssClassEnum.Active}`)
     public isActive: boolean = false;
 
     /** Stylelist for scroll view component of the window */

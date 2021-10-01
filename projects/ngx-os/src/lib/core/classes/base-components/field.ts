@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { CommonCssClassEnum } from '@lib-core';
 import { OsBaseFormControlComponent } from './form-control-element';
 
 @Component({
@@ -6,11 +7,11 @@ import { OsBaseFormControlComponent } from './form-control-element';
 })
 export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
     @Input()
-    @HostBinding('class.os-disabled')
+    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
     @Input()
-    @HostBinding('class.os-readonly')
+    @HostBinding(`class.${CommonCssClassEnum.Readonly}`)
     public isReadonly: boolean = false;
 
     @Input()

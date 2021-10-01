@@ -11,7 +11,7 @@ import {
     Output,
     SimpleChanges
 } from '@angular/core';
-import { OsBaseComponent } from '@lib-core';
+import { CommonCssClassEnum, OsBaseComponent } from '@lib-core';
 import { isNil } from '@lib-helpers';
 import { ISelectboxValueChangeEvent } from '../../interfaces';
 
@@ -22,11 +22,11 @@ import { ISelectboxValueChangeEvent } from '../../interfaces';
 })
 export class OptionComponent<T> extends OsBaseComponent implements OnInit, OnChanges {
     @Input()
-    @HostBinding('class.os-selected')
+    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean = false;
 
     @Input()
-    @HostBinding('class.os-disabled')
+    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
     @Input()

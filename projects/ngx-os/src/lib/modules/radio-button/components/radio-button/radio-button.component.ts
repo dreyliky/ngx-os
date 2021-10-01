@@ -12,7 +12,7 @@ import {
     ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OsBaseFormControlComponent } from '@lib-core';
+import { CommonCssClassEnum, OsBaseFormControlComponent } from '@lib-core';
 import { IRadioButtonValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -37,11 +37,11 @@ export class RadioButtonComponent<T>
     public readonly name: string = '';
 
     @Input()
-    @HostBinding('class.os-checked')
+    @HostBinding(`class.${CommonCssClassEnum.Checked}`)
     public isChecked: boolean;
 
     @Input()
-    @HostBinding('class.os-disabled')
+    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public readonly isDisabled: boolean;
 
     @Input()

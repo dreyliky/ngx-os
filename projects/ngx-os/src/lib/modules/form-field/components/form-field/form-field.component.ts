@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { OsBaseComponent } from '@lib-core';
+import { FormFieldCssClassEnum as CssClass } from '../../enums';
 
 @Component({
     selector: 'os-form-field',
@@ -8,7 +9,7 @@ import { OsBaseComponent } from '@lib-core';
 })
 export class FormFieldComponent extends OsBaseComponent implements OnInit {
     @Input()
-    @HostBinding('class.os-stacked')
+    @HostBinding(`class.${CssClass.Stacked}`)
     public isStacked: boolean = false;
 
     constructor(

@@ -7,7 +7,7 @@ import {
     Input,
     OnInit
 } from '@angular/core';
-import { OsBaseComponent } from '@lib-core';
+import { CommonCssClassEnum, OsBaseComponent } from '@lib-core';
 import { EventOutside } from '@lib-helpers';
 import { IGridItem } from '../../interfaces';
 
@@ -21,7 +21,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     public data: IGridItem;
 
     @Input()
-    @HostBinding('class.os-selected')
+    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean;
 
     public gridSize: number;
