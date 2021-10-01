@@ -19,9 +19,11 @@
     class="os-part-of-dropdown"
     [scrollViewStyle]="scrollViewStyle"
     [scrollViewStyleClass]="scrollViewStyleClass">
-    <ng-content select="[os-dropdown-items-header]"></ng-content>
+    <ng-content select="[os-dropdown-header]"></ng-content>
+
+    <ng-content select="[os-dropdown-content]"></ng-content>
 
     <ng-content select="os-dropdown-item"></ng-content>
 
-    <ng-content select="[os-dropdown-items-footer]"></ng-content>
+    <ng-content select="[os-dropdown-footer]"></ng-content>
 </os-list>

@@ -35,6 +35,9 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
     libEnums: [
         'MouseButtonEnum'
     ],
+    libTypes: [
+        'DragStrategyType'
+    ],
     demoComponents: [
         {
             title: 'Dragger Overview',

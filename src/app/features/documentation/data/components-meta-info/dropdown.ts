@@ -1,8 +1,9 @@
-import { DropdownComponent, DropdownModule } from '@lib-modules';
+import { DropdownComponent, DropdownItemComponent, DropdownModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import {
     DropdownAsFormControlComponent,
     DropdownOverviewComponent,
+    DropdownWithCustomContentComponent,
     DropdownWithIntervalValueChangeComponent
 } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -16,7 +17,8 @@ export const DROPDOWN_META_INFO: ComponentMetaInfo = {
         DropdownModule
     ],
     libComponents: [
-        DropdownComponent
+        DropdownComponent,
+        DropdownItemComponent
     ],
     libInterfaces: [
         'IDropdownValueChangeEvent'
@@ -29,6 +31,10 @@ export const DROPDOWN_META_INFO: ComponentMetaInfo = {
         {
             title: 'Dropdown as FormControl',
             component: DropdownAsFormControlComponent
+        },
+        {
+            title: 'Dropdown with custom content',
+            component: DropdownWithCustomContentComponent
         },
         {
             title: 'Dropdown with interval value changing',

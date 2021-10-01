@@ -1,4 +1,4 @@
-import { GridComponent, GridModule } from '@lib-modules';
+import { GridComponent, GridItemComponent, GridModule } from '@lib-modules';
 import { OsComponentEnum } from '../../enums';
 import { GridOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -12,7 +12,8 @@ export const GRID_META_INFO: ComponentMetaInfo = {
         GridModule
     ],
     libComponents: [
-        GridComponent
+        GridComponent,
+        GridItemComponent
     ],
     libInterfaces: [
         'IGridItem'
