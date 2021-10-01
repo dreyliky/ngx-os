@@ -1,10 +1,11 @@
 <ng-content select="os-title-bar"></ng-content>
 
-<os-scroll-view
-    class="os-window-body"
-    [isVerticalScrollEnabled]="true"
-    [isHorizontalScrollEnabled]="true"
-    [style]="scrollViewStyle"
-    [styleClass]="scrollViewStyleClass">
-    <ng-content></ng-content>
-</os-scroll-view>
+<div class="os-window-body">
+    <os-scroll-view
+        [isVerticalScrollEnabled]="true"
+        [isHorizontalScrollEnabled]="true"
+        [style]="scrollViewStyle"
+        [styleClass]="scrollViewStyleClass">
+        <ng-content></ng-content>
+    </os-scroll-view>
+</div>
