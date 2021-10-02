@@ -26,7 +26,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/app/library/docs/",
+                "output": "assets/docs/"
+              }
             ],
             "styles": [
               "src/styles.scss",
@@ -46,7 +51,9 @@
                 "inject": false
               }
             ],
-            "scripts": [],
+            "scripts": [
+                "node_modules/prismjs/prism.js"
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,

@@ -1,0 +1,22 @@
+@import "../core/index.scss";
+
+:root {
+    /** STABLE VARIABLES API */
+    --os-primary-color: 0, 120, 215;
+    --os-background-color: transparent;
+
+    /** Specific for this theme variables */
+    --segoe-ui: "Segoe UI";
+}
+
+@font-face {
+    font-family: "Segoe UI";
+    src: url("./fonts/segoe-ui.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.os-element {
+    font-family: Segoe UI, Arial;
+}
+

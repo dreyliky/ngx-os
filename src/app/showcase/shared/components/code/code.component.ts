@@ -1,13 +1,17 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
-import * as Prism from 'prismjs';
+import { Grammar } from 'prismjs';
+import 'prismjs/components/prism-scss.min';
+import 'prismjs/components/prism-typescript.min';
+
+declare const Prism: any;
 
 interface LanguageInfo {
-    definition: Prism.Grammar;
-    name: any;
+    definition: Grammar;
+    name: string;
 }
 
 @Component({
-    selector: 'api-code',
+    selector: 'showcase-code',
     templateUrl: './code.component.html',
     styleUrls: ['./code.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -30,17 +34,17 @@ export class CodeComponent implements OnChanges {
             }
         )
         .set(
-            'css',
+            'scss',
             {
-                definition: Prism.languages.css,
-                name: 'css'
+                definition: Prism.languages.scss,
+                name: 'scss'
             }
         )
         .set(
             'ts',
             {
-                definition: Prism.languages.js,
-                name: 'js'
+                definition: Prism.languages.typescript,
+                name: 'typescript'
             }
         );
 

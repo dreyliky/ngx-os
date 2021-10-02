@@ -1,7 +1,9 @@
-<os-header>
-    Get started
-</os-header>
+<showcase-markdown-viewer
+    *ngIf="(content$ | async) as content; else loaderTemplate"
+    class="content"
+    [data]="content">
+</showcase-markdown-viewer>
 
-<os-text>
-    In developing...
-</os-text>
+<ng-template #loaderTemplate>
+    Loading...
+</ng-template>

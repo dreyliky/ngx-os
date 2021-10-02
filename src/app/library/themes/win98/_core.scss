@@ -1,3 +1,5 @@
+@import "../core/index.scss";
+
 :root {
     /** STABLE VARIABLES API */
     --os-primary-color: 0, 0, 128;
@@ -16,4 +18,26 @@
         inset 1px 1px rgba(255, 255, 255, .5),
         inset -2px -2px rgb(246, 246, 246),
         inset 2px 2px rgb(0, 0, 0);
+}
+
+@font-face {
+    font-family: Tahoma;
+    src: url("../core/fonts/tahoma.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media (not(hover)) {
+    button.os-element:not(:disabled):hover {
+        box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    }
+}
+
+pre.os-element {
+    box-shadow: var(--border-field);
+}
+
+.os-element {
+    font-size: 12px;
+    font-family: Tahoma;
 }

@@ -15,30 +15,30 @@
             *ngIf="docComponent"
             [isSelected]="openedSection === sectionEnum.HTML"
             [label]="'HTML'">
-            <api-code
+            <showcase-code
                 [language]="'html'"
                 [code]="docComponent.templateData">
-            </api-code>
+            </showcase-code>
         </os-tab>
 
         <os-tab
             *ngIf="isScssExist"
             [isSelected]="openedSection === sectionEnum.SCSS"
             [label]="'SCSS'">
-            <api-code
-                [language]="'css'"
+            <showcase-code
+                [language]="'scss'"
                 [code]="docComponent.styleUrlsData[0].data">
-            </api-code>
+            </showcase-code>
         </os-tab>
 
         <os-tab
             *ngIf="docComponent"
             [isSelected]="openedSection === sectionEnum.TS"
             [label]="'TypeScript'">
-            <api-code
+            <showcase-code
                 [language]="'ts'"
                 [code]="docComponent.sourceCode">
-            </api-code>
+            </showcase-code>
         </os-tab>
     </os-tab-group>
 </div>

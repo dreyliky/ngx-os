@@ -4,11 +4,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxOsModule } from 'ngx-os';
-import { CodeComponent } from './components';
+import { CodeComponent, MarkdownViewerComponent } from './components';
 
 @NgModule({
     declarations: [
-        CodeComponent
+        CodeComponent,
+        MarkdownViewerComponent
     ],
     imports: [
         CommonModule,
@@ -26,7 +27,8 @@ import { CodeComponent } from './components';
         ReactiveFormsModule,
         NgxOsModule,
 
-        CodeComponent
+        CodeComponent,
+        MarkdownViewerComponent
     ]
 })
 export class SharedModule {}
