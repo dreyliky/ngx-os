@@ -18,13 +18,8 @@
         ],
         "typeRoots": ["node_modules/@types", "node_modules/@angular"],
         "paths": {
-            "@lib-core": ["projects/ngx-os/src/lib/core"],
-            "@lib-core/*": ["projects/ngx-os/src/lib/core/*"],
-            "@lib-helpers": ["projects/ngx-os/src/lib/helpers"],
-            "@lib-helpers/*": ["projects/ngx-os/src/lib/helpers/*"],
-            "@lib-modules": ["projects/ngx-os/src/lib/modules"],
-            "@lib-modules/*": ["projects/ngx-os/src/lib/modules/*"],
-            "@lib-shared": ["projects/ngx-os/src/lib/shared.module.ts"]
+            "ngx-os": ["src/app/library/src"],
+            "ngx-os/*": ["src/app/library/src/*"]
         }
     },
     "angularCompilerOptions": {

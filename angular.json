@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-os": {
+    "ngx-os-showcase": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -19,7 +19,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-os",
+            "outputPath": "dist/ngx-os-showcase",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,17 +31,17 @@
             "styles": [
               "src/styles.scss",
               {
-                "input": "projects/ngx-os/src/lib/themes/win98/index.scss",
+                "input": "src/app/library/themes/win98/index.scss",
                 "bundleName": "win98",
                 "inject": false
               },
               {
-                "input": "projects/ngx-os/src/lib/themes/winXP/index.scss",
+                "input": "src/app/library/themes/winXP/index.scss",
                 "bundleName": "winXP",
                 "inject": false
               },
               {
-                "input": "projects/ngx-os/src/lib/themes/win10/index.scss",
+                "input": "src/app/library/themes/win10/index.scss",
                 "bundleName": "win10",
                 "inject": false
               }
@@ -88,18 +88,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-os:build"
+            "browserTarget": "ngx-os-showcase:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-os:build:production"
+              "browserTarget": "ngx-os-showcase:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-os:build"
+            "browserTarget": "ngx-os-showcase:build"
           }
         },
         "test": {
@@ -136,17 +136,17 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-os:serve"
+            "devServerTarget": "ngx-os-showcase:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-os:serve:production"
+              "devServerTarget": "ngx-os-showcase:serve:production"
             }
           }
         }
       }
     },
-    "ngx-os": {
+    "library": {
       "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
@@ -155,49 +155,36 @@
           "prefix": "os"
         }
       },
-      "root": "projects/ngx-os",
-      "sourceRoot": "projects/ngx-os/src",
+      "root": "src/app/library",
+      "sourceRoot": "src/app/library/src",
       "prefix": "os",
       "architect": {
         "build": {
-          "builder": "@linnenschmidt/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ngx-os/tsconfig.lib.json",
-            "project": "projects/ngx-os/ng-package.json",
-            "assets": [
-                "src",
-                {
-                    "glob": "**/*",
-                    "input": "font",
-                    "output": "font"
-                },
-                {
-                    "glob": "**/*",
-                    "input": "icon",
-                    "output": "icon"
-                }
-            ]
+            "tsConfig": "src/app/library/tsconfig.lib.json",
+            "project": "src/app/library/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-os/tsconfig.lib.prod.json"
+              "tsConfig": "src/app/library/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-os/src/test.ts",
-            "tsConfig": "projects/ngx-os/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-os/karma.conf.js"
+            "main": "src/app/library/src/test.ts",
+            "tsConfig": "src/app/library/tsconfig.spec.json",
+            "karmaConfig": "src/app/library/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-os/tsconfig.lib.json",
-              "projects/ngx-os/tsconfig.spec.json"
+              "src/app/library/tsconfig.lib.json",
+              "src/app/library/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -207,7 +194,7 @@
       }
     }
   },
-  "defaultProject": "ngx-os",
+  "defaultProject": "ngx-os-showcase",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"

@@ -1,0 +1,12 @@
+{
+  "name": "ngx-os",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^12.2.6",
+    "@angular/core": "^12.2.6",
+    "rxjs": "^6.6.7"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

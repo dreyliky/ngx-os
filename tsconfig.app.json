@@ -4,22 +4,16 @@
         "outDir": "./out-tsc/app",
         "types": [],
         "paths": {
-            "ngx-os": ["projects/ngx-os/src/public-api.ts"],
-            "@Core/*": ["src/app/core/*"],
-            "@Features/*": ["src/app/features/*"],
-            "@Features": ["src/app/features"],
-            "@Layouts/*": ["src/app/layouts/*"],
-            "@Layouts": ["src/app/layouts"],
-            "@Pages/*": ["src/app/pages/*"],
-            "@Pages": ["src/app/pages"],
-            "@Doc/*": ["src/app/*"],
-            "@lib-core": ["projects/ngx-os/src/lib/core"],
-            "@lib-core/*": ["projects/ngx-os/src/lib/core/*"],
-            "@lib-helpers": ["projects/ngx-os/src/lib/helpers"],
-            "@lib-helpers/*": ["projects/ngx-os/src/lib/helpers/*"],
-            "@lib-modules": ["projects/ngx-os/src/lib/modules"],
-            "@lib-modules/*": ["projects/ngx-os/src/lib/modules/*"],
-            "@lib-shared": ["projects/ngx-os/src/lib/shared.module.ts"]
+            "@Core/*": ["src/app/showcase/core/*"],
+            "@Features/*": ["src/app/showcase/features/*"],
+            "@Features": ["src/app/showcase/features"],
+            "@Layouts/*": ["src/app/showcase/layouts/*"],
+            "@Layouts": ["src/app/showcase/layouts"],
+            "@Pages/*": ["src/app/showcase/pages/*"],
+            "@Pages": ["src/app/showcase/pages"],
+            "@Doc/*": ["src/app/showcase/*"],
+            "ngx-os": ["src/app/library"],
+            "ngx-os/*": ["src/app/library/*"]
         }
     },
     "files": [

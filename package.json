@@ -1,6 +1,6 @@
 {
   "name": "ngx-os",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "eslint-check": "eslint **/*.ts --ignore-pattern node_modules",
     "eslint-fix": "eslint --fix **/*.ts --ignore-pattern node_modules",
-    "build-lib": "ng build ngx-os",
+    "build-lib": "ng build library --configuration production",
     "doc": "npm run build-lib-doc && npm run build-demo-doc",
     "build-lib-doc": "compodoc -c compodoc-lib-config.json",
     "build-demo-doc": "compodoc -c compodoc-demo-config.json"
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.2.6",
-    "@angular-devkit/build-ng-packagr": "^0.1000.8",
+    "@angular-devkit/build-ng-packagr": "^0.1002.0",
     "@angular-eslint/builder": "^12.0.0",
     "@angular-eslint/eslint-plugin": "^12.0.0",
     "@angular-eslint/eslint-plugin-template": "^12.0.0",
