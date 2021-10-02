@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Theme, ThemeManagerService, THEMES } from '@Features/theme';
+import { Theme, ThemeManagerService, THEMES } from '@features/theme';
 import { Subscription } from 'rxjs';
 
 @Component({

@@ -9,7 +9,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from '@angular/core';
-import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@Features/documentation';
+import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@features/documentation';
 import { combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../overview.service';

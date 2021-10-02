@@ -12,7 +12,6 @@ import { NgxOsModule } from 'ngx-os';
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-
         NgxOsModule
     ]
 })

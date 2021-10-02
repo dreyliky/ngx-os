@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/demo-shared.module';
+import { SharedModule } from '@shared';
 import { ApiComponent } from './api.component';
 import { ClassesApiModule } from './classes-api';
 import { ComponentsApiModule } from './components-api';

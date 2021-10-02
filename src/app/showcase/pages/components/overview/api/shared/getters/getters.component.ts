@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DocAccessors, DocGetSignature } from '@Features/documentation';
+import { DocAccessors, DocGetSignature } from '@features/documentation';
 
 @Component({
     selector: 'api-getters',

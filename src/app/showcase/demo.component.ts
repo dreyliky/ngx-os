@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AccentColorManagerService, ThemeManagerService } from '@Features/theme';
+import { AccentColorManagerService, ThemeManagerService } from '@features/theme';
 
 @Component({
     selector: 'demo-root',

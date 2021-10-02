@@ -10,7 +10,7 @@ import {
     DocModule,
     DocTypealias,
     LibraryDocumentationService
-} from '@Features/documentation';
+} from '@features/documentation';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()

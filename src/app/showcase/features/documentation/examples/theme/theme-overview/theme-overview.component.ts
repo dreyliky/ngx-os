@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ThemeEnum } from '@Features/theme';
+import { ThemeEnum } from '@features/theme';
 import { ThemeService } from 'ngx-os/modules';
 
 @Component({

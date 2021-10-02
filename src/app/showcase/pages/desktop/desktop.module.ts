@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/demo-shared.module';
+import { SharedModule } from '@shared';
 import { DynamicWindowService } from 'ngx-os/modules';
 import { DesktopAppsModule } from './apps';
 import { DesktopComponent } from './desktop.component';

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AccentColorManagerService } from '@Doc/features/theme';
+import { AccentColorManagerService } from '@features/theme';
 import { IThemeRgbColor } from 'ngx-os/modules';
 
 @Component({

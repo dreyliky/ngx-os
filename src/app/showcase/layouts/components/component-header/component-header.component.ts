@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AppRouteEnum } from '@Core/enums';
+import { AppRouteEnum } from '@core/enums';
 import { environment } from 'src/environments/environment';
 
 @Component({

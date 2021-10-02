@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ExamplesDocumentationService, LibraryDocumentationService } from '@Features/documentation';
+import { ExamplesDocumentationService, LibraryDocumentationService } from '@features/documentation';
 import { forkJoin } from 'rxjs';
 
 @Injectable()

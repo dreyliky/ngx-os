@@ -6,7 +6,7 @@ import {
     Input,
     ViewChild
 } from '@angular/core';
-import { FileReaderService } from '@Core/services';
+import { FileReaderService } from '@core/services';
 import {
     BackgroundMetadata,
     BackgroundTypeEnum,

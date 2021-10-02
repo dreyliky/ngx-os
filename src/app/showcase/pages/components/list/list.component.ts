@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AppRouteEnum } from '@Core/enums';
+import { AppRouteEnum } from '@core/enums';
 import {
     ComponentMetaInfo, LibraryComponentsSearchService,
     OsComponentEnum
-} from '@Features/documentation';
+} from '@features/documentation';
 import { GridDirectionEnum } from 'ngx-os/modules';
 import { Observable } from 'rxjs';
 

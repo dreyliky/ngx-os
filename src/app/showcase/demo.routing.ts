@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppRouteEnum } from '@Core/enums';
-import { MainLayoutComponent } from '@Layouts';
+import { AppRouteEnum } from '@core/enums';
+import { MainLayoutComponent } from '@layouts';
 
 const routes: Routes = [
     {

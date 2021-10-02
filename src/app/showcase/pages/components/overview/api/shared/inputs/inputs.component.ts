@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { InputsClass } from '@Features/documentation';
+import { InputsClass } from '@features/documentation';
 
 @Component({
     selector: 'api-inputs',

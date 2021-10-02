@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DevExamplesVisibilityService } from '@Features/documentation';
-import { MainLayoutComponent, MAIN_LAYOUT } from '@Layouts';
+import { DevExamplesVisibilityService } from '@features/documentation';
+import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
 import { environment } from 'src/environments/environment';
 import { OverviewService } from '../overview.service';
 

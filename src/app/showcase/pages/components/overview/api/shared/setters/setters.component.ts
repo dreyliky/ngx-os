@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DocAccessors, DocSetSignature } from '@Features/documentation';
+import { DocAccessors, DocSetSignature } from '@features/documentation';
 
 @Component({
     selector: 'api-setters',

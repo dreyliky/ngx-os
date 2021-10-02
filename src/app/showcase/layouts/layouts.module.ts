@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/demo-shared.module';
-import { FeaturesModule } from '@Features/features.module';
+import { FeaturesModule } from '@features/features.module';
+import { SharedModule } from '@shared';
 import { ComponentHeaderModule } from './components';
 import { MainLayoutComponent } from './containers';
 

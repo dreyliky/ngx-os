@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ACCENT_COLORS } from '@Features/theme/data';
+import { ACCENT_COLORS } from '@features/theme/data';
 import { IThemeRgbColor } from 'ngx-os/modules';
 
 interface AccentColor {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/demo-shared.module';
-import { FeaturesModule } from '@Features';
+import { FeaturesModule } from '@features';
+import { SharedModule } from '@shared';
 import { BackgroundComponent } from './background.component';
 import { ColorSelectionComponent, ImageSelectionComponent } from './components';
 

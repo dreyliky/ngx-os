@@ -4,14 +4,12 @@
         "outDir": "./out-tsc/app",
         "types": [],
         "paths": {
-            "@Core/*": ["src/app/showcase/core/*"],
-            "@Features/*": ["src/app/showcase/features/*"],
-            "@Features": ["src/app/showcase/features"],
-            "@Layouts/*": ["src/app/showcase/layouts/*"],
-            "@Layouts": ["src/app/showcase/layouts"],
-            "@Pages/*": ["src/app/showcase/pages/*"],
-            "@Pages": ["src/app/showcase/pages"],
-            "@Doc/*": ["src/app/showcase/*"],
+            "@core/*": ["src/app/showcase/core/*"],
+            "@features/*": ["src/app/showcase/features/*"],
+            "@features": ["src/app/showcase/features"],
+            "@layouts/*": ["src/app/showcase/layouts/*"],
+            "@layouts": ["src/app/showcase/layouts"],
+            "@shared": ["src/app/showcase/shared"],
             "ngx-os": ["src/app/library"],
             "ngx-os/*": ["src/app/library/*"]
         }

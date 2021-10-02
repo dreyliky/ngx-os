@@ -1,4 +1,4 @@
-import { AppMetadata } from '@Doc/pages/desktop/features/exec';
+import { AppMetadata } from '../../../features/exec';
 import { ShutDownAppComponent } from '../shut-down.component';
 
 export const SHUT_DOWN_APP: AppMetadata = {

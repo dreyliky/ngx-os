@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/demo-shared.module';
-import { DocumentationModule } from '@Features/documentation';
+import { DocumentationModule } from '@features/documentation';
+import { SharedModule } from '@shared';
 import { ApiModule } from './api';
 import { ExamplesModule } from './examples';
 import { HeaderComponent } from './header';

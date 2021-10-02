@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DocClassProperty } from '@Features/documentation';
+import { DocClassProperty } from '@features/documentation';
 
 @Component({
     selector: 'api-properties',

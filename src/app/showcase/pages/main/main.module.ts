@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/demo-shared.module';
+import { SharedModule } from '@shared';
 import { CardComponent } from './components';
 import { AuthorComponent, FeaturesComponent, SubheaderComponent } from './containers';
 import { MainComponent } from './main.component';

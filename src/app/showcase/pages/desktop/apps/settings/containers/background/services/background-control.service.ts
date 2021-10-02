@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BackgroundService } from '@Doc/pages/desktop/features/background';
-import { BackgroundTypeEnum } from '@Doc/pages/desktop/features/background/enums';
 import { IThemeRgbColor } from 'ngx-os/modules';
+import { BackgroundService, BackgroundTypeEnum } from '../../../../../features/background';
 
 @Injectable()
 export class BackgroundControlService {

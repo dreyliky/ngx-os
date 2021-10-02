@@ -1,11 +1,11 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FeaturesModule } from '@Features/features.module';
-import { LayoutsModule } from '@Layouts';
-import { SharedModule } from './demo-shared.module';
+import { FeaturesModule } from '@features/features.module';
+import { LayoutsModule } from '@layouts';
 import { DemoComponent } from './demo.component';
 import { DemoConfig } from './demo.config';
 import { AppRoutingModule } from './demo.routing';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [

@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { ComponentMetaInfo, ComponentMetaInfoMap, OsComponentEnum } from '@Features/documentation';
-import { MainLayoutComponent, MAIN_LAYOUT } from '@Layouts';
+import { ComponentMetaInfo, ComponentMetaInfoMap, OsComponentEnum } from '@features/documentation';
+import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { OverviewService } from './overview.service';

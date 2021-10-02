@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@Doc/demo-shared.module';
-import { FeaturesModule } from '@Features';
+import { FeaturesModule } from '@features';
+import { SharedModule } from '@shared';
 import { ContentComponent, SidebarComponent } from './components';
 import {
     AccentColorComponent,
