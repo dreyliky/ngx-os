@@ -5,7 +5,7 @@ import { TaskbarPlacement } from './modules';
 import { DesktopBackgroundService, DesktopTaskbarService } from './services';
 
 @Component({
-    selector: 'demo-desktop-page',
+    selector: 'showcase-desktop-page',
     templateUrl: './desktop.component.html',
     styleUrls: ['./desktop.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

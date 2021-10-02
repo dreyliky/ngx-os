@@ -6,7 +6,7 @@ interface MyNodeData {
 }
 
 @Component({
-    selector: 'demo-tree-view-with-custom-template',
+    selector: 'showcase-tree-view-with-custom-template',
     templateUrl: './tree-view-with-custom-template.component.html',
     styleUrls: ['./tree-view-with-custom-template.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

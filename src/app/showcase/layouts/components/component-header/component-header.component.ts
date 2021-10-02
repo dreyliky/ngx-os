@@ -3,7 +3,7 @@ import { AppRouteEnum } from '@core/enums';
 import { environment } from 'src/environments/environment';
 
 @Component({
-    selector: 'demo-component-header',
+    selector: 'showcase-component-header',
     templateUrl: './component-header.component.html',
     styleUrls: ['./component-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

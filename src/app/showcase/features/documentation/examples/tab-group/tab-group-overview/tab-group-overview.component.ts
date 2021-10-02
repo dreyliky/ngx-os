@@ -8,7 +8,7 @@ interface TabItem {
 }
 
 @Component({
-    selector: 'demo-tab-group-overview',
+    selector: 'showcase-tab-group-overview',
     templateUrl: './tab-group-overview.component.html',
     styleUrls: ['./tab-group-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

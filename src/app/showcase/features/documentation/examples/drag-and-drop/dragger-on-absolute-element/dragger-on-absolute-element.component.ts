@@ -9,7 +9,7 @@ import {
 import { DragStrategyByAxisProperties, IDraggerParams } from 'ngx-os/modules';
 
 @Component({
-    selector: 'demo-dragger-on-absolute-element',
+    selector: 'showcase-dragger-on-absolute-element',
     templateUrl: './dragger-on-absolute-element.component.html',
     styleUrls: ['./dragger-on-absolute-element.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

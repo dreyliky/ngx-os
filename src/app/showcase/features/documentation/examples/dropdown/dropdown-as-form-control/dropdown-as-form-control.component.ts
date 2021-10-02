@@ -7,7 +7,7 @@ interface MyItem {
 }
 
 @Component({
-    selector: 'demo-dropdown-as-form-control',
+    selector: 'showcase-dropdown-as-form-control',
     templateUrl: './dropdown-as-form-control.component.html',
     styleUrls: ['./dropdown-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

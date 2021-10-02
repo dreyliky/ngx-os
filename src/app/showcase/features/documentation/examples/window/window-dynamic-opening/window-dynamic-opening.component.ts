@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, Optional } from '@angular/c
 import { DynamicWindowConfig, DynamicWindowService, IS_DYNAMIC_WINDOW_CONTEXT } from 'ngx-os/modules';
 
 @Component({
-    selector: 'demo-window-dynamic-opening',
+    selector: 'showcase-window-dynamic-opening',
     templateUrl: './window-dynamic-opening.component.html',
     styleUrls: ['./window-dynamic-opening.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

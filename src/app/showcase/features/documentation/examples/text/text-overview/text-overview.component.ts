@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-    selector: 'demo-text-overview',
+    selector: 'showcase-text-overview',
     templateUrl: './text-overview.component.html',
     styleUrls: ['./text-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

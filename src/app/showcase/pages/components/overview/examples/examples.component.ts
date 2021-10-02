@@ -15,7 +15,7 @@ import { takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../overview.service';
 
 @Component({
-    selector: 'demo-examples',
+    selector: 'showcase-examples',
     templateUrl: './examples.component.html',
     styleUrls: ['./examples.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -51,14 +51,14 @@ export class ExamplesComponent implements OnInit, OnDestroy {
 
     private renderDemoComponents(): void {
         if (this.demoTemplates && this.demoComponents) {
-            const demoTemplates = this.demoTemplates.toArray();
+            const showcaseTemplates = this.demoTemplates.toArray();
 
-            demoTemplates.forEach((demoTemplate) => demoTemplate.clear());
+            showcaseTemplates.forEach((showcaseTemplate) => showcaseTemplate.clear());
 
             this.demoComponents.forEach(({ component }, componentIndex) => {
                 const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
 
-                demoTemplates[componentIndex]?.createComponent(componentFactory);
+                showcaseTemplates[componentIndex]?.createComponent(componentFactory);
             });
 
             this.changeDetector.detectChanges();
@@ -74,15 +74,15 @@ export class ExamplesComponent implements OnInit, OnDestroy {
                 takeUntil(this.untilDestroyed$)
             )
             .subscribe(([{ demoComponents }, isDevExamplesVisible]) => {
-                this.initDemoComponents(demoComponents, isDevExamplesVisible);
+                this.initShowcaseComponents(demoComponents, isDevExamplesVisible);
                 this.changeDetector.detectChanges();
             });
     }
 
-    private initDemoComponents(demoComponents: DemoComponentMetaInfo[], isDevExamplesVisible: boolean): void {
+    private initShowcaseComponents(demoComponents: DemoComponentMetaInfo[], isDevExamplesVisible: boolean): void {
         if (!isDevExamplesVisible) {
             this.demoComponents = demoComponents
-                ?.filter((demoComponent) => !demoComponent.isOnlyForDevEnv);
+                ?.filter((showcaseComponent) => !showcaseComponent.isOnlyForDevEnv);
         } else {
             this.demoComponents = demoComponents;
         }

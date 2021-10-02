@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-    selector: 'demo-author',
+    selector: 'showcase-author',
     templateUrl: './author.component.html',
     styleUrls: ['./author.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

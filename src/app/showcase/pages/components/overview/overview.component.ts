@@ -15,7 +15,7 @@ import { filter } from 'rxjs/operators';
 import { OverviewService } from './overview.service';
 
 @Component({
-    selector: 'demo-component-overview',
+    selector: 'showcase-component-overview',
     templateUrl: './overview.component.html',
     styleUrls: ['./overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

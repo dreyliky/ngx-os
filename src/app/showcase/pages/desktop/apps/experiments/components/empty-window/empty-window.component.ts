@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-    selector: 'demo-empty-window',
+    selector: 'showcase-empty-window',
     templateUrl: './empty-window.component.html',
     styleUrls: ['./empty-window.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

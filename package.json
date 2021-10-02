@@ -11,9 +11,9 @@
     "eslint-check": "eslint **/*.ts --ignore-pattern node_modules",
     "eslint-fix": "eslint --fix **/*.ts --ignore-pattern node_modules",
     "build-lib": "ng build library --configuration production",
-    "doc": "npm run build-lib-doc && npm run build-demo-doc",
+    "doc": "npm run build-lib-doc && npm run build-showcase-doc",
     "build-lib-doc": "compodoc -c compodoc-lib-config.json",
-    "build-demo-doc": "compodoc -c compodoc-demo-config.json"
+    "build-showcase-doc": "compodoc -c compodoc-showcase-config.json"
   },
   "private": true,
   "dependencies": {

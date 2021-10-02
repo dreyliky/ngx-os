@@ -2,14 +2,14 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FeaturesModule } from '@features/features.module';
 import { LayoutsModule } from '@layouts';
-import { DemoComponent } from './demo.component';
-import { DemoConfig } from './demo.config';
-import { AppRoutingModule } from './demo.routing';
 import { SharedModule } from './shared/shared.module';
+import { ShowcaseComponent } from './showcase.component';
+import { ShowcaseConfig } from './showcase.config';
+import { AppRoutingModule } from './showcase.routing';
 
 @NgModule({
     declarations: [
-        DemoComponent
+        ShowcaseComponent
     ],
     imports: [
         BrowserModule,
@@ -20,16 +20,16 @@ import { SharedModule } from './shared/shared.module';
         LayoutsModule
     ],
     bootstrap: [
-        DemoComponent
+        ShowcaseComponent
     ],
     providers: [
-        DemoConfig,
+        ShowcaseConfig,
         {
             provide: APP_INITIALIZER,
-            useFactory: (config: DemoConfig) => () => config.load(),
-            deps: [DemoConfig],
+            useFactory: (config: ShowcaseConfig) => () => config.load(),
+            deps: [ShowcaseConfig],
             multi: true
         }
     ]
 })
-export class DemoModule {}
+export class ShowcaseModule {}

@@ -4,7 +4,7 @@ import { AppRouteEnum } from '@core/enums';
 import { ComponentMetaInfo, ComponentMetaInfoMap, OsComponentEnum } from '@features/documentation';
 
 @Component({
-    selector: 'demo-subheader',
+    selector: 'showcase-subheader',
     templateUrl: './subheader.component.html',
     styleUrls: ['./subheader.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

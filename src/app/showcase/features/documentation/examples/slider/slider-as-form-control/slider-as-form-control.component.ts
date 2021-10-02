@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'demo-slider-as-form-control',
+    selector: 'showcase-slider-as-form-control',
     templateUrl: './slider-as-form-control.component.html',
     styleUrls: ['./slider-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

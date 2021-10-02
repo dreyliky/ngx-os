@@ -7,7 +7,7 @@ interface Card {
 }
 
 @Component({
-    selector: 'demo-features',
+    selector: 'showcase-features',
     templateUrl: './features.component.html',
     styleUrls: ['./features.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

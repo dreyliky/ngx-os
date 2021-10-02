@@ -9,7 +9,7 @@
         "@schematics/angular:component": {
           "changeDetection": "OnPush",
           "style": "scss",
-          "prefix": "demo"
+          "prefix": "showcase"
         }
       },
       "root": "",

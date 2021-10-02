@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angu
 import { MAIN_LAYOUT } from './main-layout.constants';
 
 @Component({
-    selector: 'demo-main-layout',
+    selector: 'showcase-main-layout',
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

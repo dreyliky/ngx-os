@@ -3,16 +3,16 @@ import { ExamplesDocumentationService, LibraryDocumentationService } from '@feat
 import { forkJoin } from 'rxjs';
 
 @Injectable()
-export class DemoConfig {
+export class ShowcaseConfig {
     constructor(
         private readonly libDocService: LibraryDocumentationService,
-        private readonly demoDocService: ExamplesDocumentationService
+        private readonly showcaseDocService: ExamplesDocumentationService
     ) {}
 
     public load(): Promise<any> {
         return forkJoin([
             this.libDocService.update(),
-            this.demoDocService.update()
+            this.showcaseDocService.update()
         ])
             .toPromise();
     }

@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 @Component({
-    selector: 'demo-resizer-on-absolute-element',
+    selector: 'showcase-resizer-on-absolute-element',
     templateUrl: './resizer-on-absolute-element.component.html',
     styleUrls: ['./resizer-on-absolute-element.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

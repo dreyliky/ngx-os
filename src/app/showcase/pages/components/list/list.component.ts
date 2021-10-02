@@ -10,7 +10,7 @@ import { GridDirectionEnum } from 'ngx-os/modules';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'demo-list',
+    selector: 'showcase-list',
     templateUrl: './list.component.html',
     styleUrls: ['./list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

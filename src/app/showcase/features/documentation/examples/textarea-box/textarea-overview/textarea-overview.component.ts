@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'demo-textarea-overview',
+    selector: 'showcase-textarea-overview',
     templateUrl: './textarea-overview.component.html',
     styleUrls: ['./textarea-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -12,13 +12,13 @@
             "path": "./tsconfig.spec.json"
         },
         {
-            "path": "./projects/ngx-os/tsconfig.lib.json"
+            "path": "./src/app/library/tsconfig.lib.json"
         },
         {
-            "path": "./projects/ngx-os/tsconfig.spec.json"
+            "path": "./src/app/library/tsconfig.spec.json"
         }
     ],
     "include": [
-        "src/app/features/documentation/examples/**/*.ts"
+        "src/app/showcase/features/documentation/examples/**/*.ts"
     ]
 }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { OverviewService } from '../overview.service';
 
 @Component({
-    selector: 'demo-header',
+    selector: 'showcase-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

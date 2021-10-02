@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { GridDirectionEnum, IGridItem } from 'ngx-os';
 
 @Component({
-    selector: 'demo-grid-overview',
+    selector: 'showcase-grid-overview',
     templateUrl: './grid-overview.component.html',
     styleUrls: ['./grid-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

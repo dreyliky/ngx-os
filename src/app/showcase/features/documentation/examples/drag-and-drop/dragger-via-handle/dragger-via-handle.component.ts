@@ -9,7 +9,7 @@ import {
 import { IDraggerParams } from 'ngx-os/modules';
 
 @Component({
-    selector: 'demo-dragger-via-handle',
+    selector: 'showcase-dragger-via-handle',
     templateUrl: './dragger-via-handle.component.html',
     styleUrls: ['./dragger-via-handle.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

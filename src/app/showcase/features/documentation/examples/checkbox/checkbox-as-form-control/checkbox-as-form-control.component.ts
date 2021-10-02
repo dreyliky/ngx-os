@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'demo-checkbox-as-form-control',
+    selector: 'showcase-checkbox-as-form-control',
     templateUrl: './checkbox-as-form-control.component.html',
     styleUrls: ['./checkbox-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -13,7 +13,7 @@ interface ListItem {
 }
 
 @Component({
-    selector: 'demo-side-bar-api-plan',
+    selector: 'showcase-side-bar-api-plan',
     templateUrl: './side-bar-api-plan.component.html',
     styleUrls: ['./side-bar-api-plan.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

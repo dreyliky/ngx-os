@@ -4,7 +4,7 @@ import { ThemeService } from 'ngx-os/modules';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'demo-theme-different-styling',
+    selector: 'showcase-theme-different-styling',
     templateUrl: './theme-different-styling.component.html',
     styleUrls: ['./theme-different-styling.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

@@ -12,6 +12,6 @@ export class LibraryDocumentationApiService {
     ) {}
 
     public get(): Observable<Doc> {
-        return this.http.get<Doc>(`/assets/lib-doc/documentation.json`);
+        return this.http.get<Doc>(`/assets/library-doc/documentation.json`);
     }
 }

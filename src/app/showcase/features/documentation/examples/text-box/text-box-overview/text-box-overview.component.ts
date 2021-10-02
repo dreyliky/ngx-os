@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'demo-text-box-overview',
+    selector: 'showcase-text-box-overview',
     templateUrl: './text-box-overview.component.html',
     styleUrls: ['./text-box-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

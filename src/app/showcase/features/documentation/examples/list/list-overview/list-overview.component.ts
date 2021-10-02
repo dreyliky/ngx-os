@@ -6,7 +6,7 @@ interface Item {
 }
 
 @Component({
-    selector: 'demo-list-overview',
+    selector: 'showcase-list-overview',
     templateUrl: './list-overview.component.html',
     styleUrls: ['./list-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

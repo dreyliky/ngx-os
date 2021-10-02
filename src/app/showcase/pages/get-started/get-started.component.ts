@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'demo-get-started',
+    selector: 'showcase-get-started',
     templateUrl: './get-started.component.html',
     styleUrls: ['./get-started.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

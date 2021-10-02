@@ -1,7 +1,7 @@
 {
     "exportFormat": "json",
-    "output": "src/assets/lib-doc",
-    "tsconfig": "projects/ngx-os/tsconfig.lib.json",
+    "output": "src/assets/library-doc",
+    "tsconfig": "src/app/library/tsconfig.lib.json",
     "silent": true,
     "disableSourceCode": true,
     "minimal": true,

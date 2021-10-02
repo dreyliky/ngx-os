@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'demo-email-box-overview',
+    selector: 'showcase-email-box-overview',
     templateUrl: './email-box-overview.component.html',
     styleUrls: ['./email-box-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

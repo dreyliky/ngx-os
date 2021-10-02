@@ -12,6 +12,6 @@ export class ExamplesDocumentationApiService {
     ) {}
 
     public get(): Observable<Doc> {
-        return this.http.get<Doc>(`/assets/demo-doc/documentation.json`);
+        return this.http.get<Doc>(`/assets/showcase-doc/documentation.json`);
     }
 }

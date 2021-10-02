@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'demo-text-box-as-form-control',
+    selector: 'showcase-text-box-as-form-control',
     templateUrl: './text-box-as-form-control.component.html',
     styleUrls: ['./text-box-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

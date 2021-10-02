@@ -7,7 +7,7 @@ interface Item {
 }
 
 @Component({
-    selector: 'demo-list-custom-template',
+    selector: 'showcase-list-custom-template',
     templateUrl: './list-custom-template.component.html',
     styleUrls: ['./list-custom-template.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

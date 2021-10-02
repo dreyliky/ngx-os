@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ITreeNode } from 'ngx-os';
 
 @Component({
-    selector: 'demo-tree-view-overview',
+    selector: 'showcase-tree-view-overview',
     templateUrl: './tree-view-overview.component.html',
     styleUrls: ['./tree-view-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

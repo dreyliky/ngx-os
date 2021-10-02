@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DynamicWindowRef } from 'ngx-os/modules';
 
 @Component({
-    selector: 'demo-shut-down',
+    selector: 'showcase-shut-down',
     templateUrl: './shut-down.component.html',
     styleUrls: ['./shut-down.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

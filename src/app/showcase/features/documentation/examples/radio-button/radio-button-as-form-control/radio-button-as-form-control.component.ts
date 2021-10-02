@@ -6,7 +6,7 @@ interface Item {
 }
 
 @Component({
-    selector: 'demo-radio-button-as-form-control',
+    selector: 'showcase-radio-button-as-form-control',
     templateUrl: './radio-button-as-form-control.component.html',
     styleUrls: ['./radio-button-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

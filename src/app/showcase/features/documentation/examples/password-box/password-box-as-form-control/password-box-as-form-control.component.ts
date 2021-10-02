@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'demo-password-box-as-form-control',
+    selector: 'showcase-password-box-as-form-control',
     templateUrl: './password-box-as-form-control.component.html',
     styleUrls: ['./password-box-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

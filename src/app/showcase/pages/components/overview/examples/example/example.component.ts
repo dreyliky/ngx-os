@@ -9,7 +9,7 @@ enum SectionEnum {
 }
 
 @Component({
-    selector: 'demo-example',
+    selector: 'showcase-example',
     templateUrl: './example.component.html',
     styleUrls: ['./example.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -18,7 +18,7 @@ export class ExampleComponent {
     @Input()
     public set demoComponentMetaInfo(data: DemoComponentMetaInfo) {
         this._demoComponentMetaInfo = data;
-        this.initDemoDocComponent(data.component);
+        this.initShowcaseDocComponent(data.component);
     }
 
     public get demoComponentMetaInfo(): DemoComponentMetaInfo {
@@ -40,7 +40,7 @@ export class ExampleComponent {
         private readonly docService: ExamplesDocumentationService
     ) {}
 
-    private initDemoDocComponent(componentType: Type<any>): void {
+    private initShowcaseDocComponent(componentType: Type<any>): void {
         this.docComponent = this.docService.findDocComponentByType(componentType);
     }
 }

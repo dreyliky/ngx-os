@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@
 import { DynamicWindowRef, DynamicWindowService } from 'ngx-os/modules';
 
 @Component({
-    selector: 'demo-dynamic-window-customization',
+    selector: 'showcase-dynamic-window-customization',
     templateUrl: './dynamic-window-customization.component.html',
     styleUrls: ['./dynamic-window-customization.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

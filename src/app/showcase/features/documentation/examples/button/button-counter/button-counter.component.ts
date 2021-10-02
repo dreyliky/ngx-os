@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-    selector: 'demo-button-counter',
+    selector: 'showcase-button-counter',
     templateUrl: './button-counter.component.html',
     styleUrls: ['./button-counter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

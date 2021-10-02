@@ -3,7 +3,7 @@ import { ThemeEnum } from '@features/theme';
 import { ThemeService } from 'ngx-os/modules';
 
 @Component({
-    selector: 'demo-theme-overview',
+    selector: 'showcase-theme-overview',
     templateUrl: './theme-overview.component.html',
     styleUrls: ['./theme-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

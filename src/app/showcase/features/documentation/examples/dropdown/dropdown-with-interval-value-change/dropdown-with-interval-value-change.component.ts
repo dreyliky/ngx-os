@@ -8,7 +8,7 @@ interface Item {
 
 /** @internal */
 @Component({
-    selector: 'demo-dropdown-with-interval-value-change',
+    selector: 'showcase-dropdown-with-interval-value-change',
     templateUrl: './dropdown-with-interval-value-change.component.html',
     styleUrls: ['./dropdown-with-interval-value-change.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

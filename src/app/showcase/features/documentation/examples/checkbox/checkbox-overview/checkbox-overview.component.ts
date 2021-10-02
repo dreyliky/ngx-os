@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-    selector: 'demo-checkbox-overview',
+    selector: 'showcase-checkbox-overview',
     templateUrl: './checkbox-overview.component.html',
     styleUrls: ['./checkbox-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

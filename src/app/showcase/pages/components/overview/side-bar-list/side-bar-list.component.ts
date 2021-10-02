@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { OverviewService } from '../overview.service';
 
 @Component({
-    selector: 'demo-side-bar-list',
+    selector: 'showcase-side-bar-list',
     templateUrl: './side-bar-list.component.html',
     styleUrls: ['./side-bar-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
