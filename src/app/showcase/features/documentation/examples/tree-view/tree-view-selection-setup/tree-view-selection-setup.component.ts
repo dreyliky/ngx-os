@@ -42,15 +42,15 @@ export class TreeViewSelectionSetupComponent {
                     isDisabled: true
                 }
             ],
-            isSelectedByDefault: true,
-            isExpandedByDefault: true
+            isSelected: true,
+            isExpanded: true
         },
         {
             label: 'Berries',
             children: [
                 { label: 'Strawberry', isDisabled: true }
             ],
-            isExpandedByDefault: true,
+            isExpanded: true,
             isDisabled: true
         }
     ];

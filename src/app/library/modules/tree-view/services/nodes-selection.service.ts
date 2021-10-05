@@ -1,32 +1,27 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { isNil } from '../../../core';
-import { TreeViewComponent } from '../components/tree-view/tree-view.component';
 import { ITreeNode, ITreeNodeSelectionEvent } from '../interfaces';
+import { TreeNodesState } from '../states';
 
 @Injectable()
 export class TreeNodesSelectionService<T> {
     public _osSelected: EventEmitter<ITreeNodeSelectionEvent<T>> = new EventEmitter();
     public _osDeselected: EventEmitter<ITreeNodeSelectionEvent<T>> = new EventEmitter();
 
-    private context: TreeViewComponent<T>;
-    private stateMap: Map<ITreeNode, boolean> = new Map();
+    constructor(
+        private readonly state: TreeNodesState<T>
+    ) {}
 
-    public _init(context: TreeViewComponent<T>): void {
-        this.context = context;
-
-        this.initStateMap();
+    public _initDefaultStateForAll(): void {
+        this.setStateForNodes((node) => (
+            (!isNil(node.isSelected)) ? node.isSelected : false
+        ));
     }
 
     /** Returns all selected nodes */
     public getAllSelected(): ITreeNode<T>[] {
-        return [...this.stateMap.entries()]
-            .filter(([, state]) => state)
-            .map(([node]) => node);
-    }
-
-    /** Checks is node selected */
-    public isSelected(node: ITreeNode<T>): boolean {
-        return !!this.stateMap.get(node);
+        return this.state.flatData
+            .filter(({ isSelected }) => isSelected);
     }
 
     /**
@@ -34,7 +29,8 @@ export class TreeNodesSelectionService<T> {
      * @param originalEvent - MouseEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
     public select(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
-        this.stateMap.set(node, true);
+        node.isSelected = true;
+
         this._osSelected.emit({
             originalEvent,
             node: node,
@@ -47,7 +43,8 @@ export class TreeNodesSelectionService<T> {
      * @param originalEvent - Event which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
     public deselect(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
-        this.stateMap.set(node, false);
+        node.isSelected = false;
+
         this._osDeselected.emit({
             originalEvent,
             node: node,
@@ -60,7 +57,7 @@ export class TreeNodesSelectionService<T> {
      * @param originalEvent - MouseEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
     public toggle(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
-        if (this.isSelected(node)) {
+        if (node.isSelected) {
             this.deselect(node, originalEvent);
         } else {
             this.select(node, originalEvent);
@@ -69,32 +66,20 @@ export class TreeNodesSelectionService<T> {
 
     /** Deselects all nodes except specific one */
     public deselectAllExceptSpecific(node: ITreeNode<T>): void {
-        this.stateMap.forEach((state, currNode) => {
-            if (state && currNode !== node) {
-                this.deselect(currNode);
+        this.state.flatData.forEach((currentNode) => {
+            if (currentNode.isSelected && currentNode !== node) {
+                this.deselect(currentNode);
             }
         });
     }
 
-    private setStateForNodesAndChildren(
-        nodes: ITreeNode<T>[],
-        getState: (node: ITreeNode<T>) => boolean
-    ): void {
-        nodes.forEach((node) => {
-            if (node?.children?.length) {
-                const newState = getState(node);
-                const currentState = this.stateMap.get(node);
+    private setStateForNodes(getState: (node: ITreeNode<T>) => boolean): void {
+        this.state.flatData.forEach((node) => {
+            const newState = getState(node);
 
-                if (!isNil(newState) && (newState !== currentState)) {
-                    (newState) ? this.select(node) : this.deselect(node);
-                }
+            if (!isNil(newState) && (newState !== node.isSelected)) {
+                (newState) ? this.select(node) : this.deselect(node);
             }
-        });
-    }
-
-    private initStateMap(): void {
-        this.setStateForNodesAndChildren(this.context.data, (node) => {
-            return (!isNil(node.isSelectedByDefault)) ? node.isSelectedByDefault : false;
         });
     }
 }

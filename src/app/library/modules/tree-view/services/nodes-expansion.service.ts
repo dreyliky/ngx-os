@@ -1,35 +1,31 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { isNil } from '../../../core';
-import { TreeViewComponent } from '../components/tree-view/tree-view.component';
 import { ITreeNode, ITreeNodeExpansionEvent } from '../interfaces';
+import { TreeNodesState } from '../states';
 
 @Injectable()
 export class TreeNodesExpansionService<T> {
     public _osExpanded: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
     public _osCollapsed: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
 
-    private context: TreeViewComponent<T>;
-    private stateMap: Map<ITreeNode<T>, boolean> = new Map();
+    constructor(
+        private readonly state: TreeNodesState<T>
+    ) {}
 
-    public _init(context: TreeViewComponent<T>): void {
-        this.context = context;
-
-        this.initStateMap();
-    }
-
-    /** Checks is node expanded */
-    public isExpanded(node: ITreeNode<T>): boolean {
-        return !!this.stateMap.get(node);
+    public _initDefaultStateForAll(commonDefaultState: boolean): void {
+        this.setStateForAll((node) => (
+            (!isNil(node.isExpanded)) ? node.isExpanded : commonDefaultState
+        ));
     }
 
     /** Expands all nodes */
     public expandAll(): void {
-        this.setStateForNodesAndChildren(this.context.data, () => true);
+        this.setStateForAll(() => true);
     }
 
     /** Collapses all nodes */
     public collapseAll(): void {
-        this.setStateForNodesAndChildren(this.context.data, () => false);
+        this.setStateForAll(() => false);
     }
 
     /**
@@ -37,11 +33,9 @@ export class TreeNodesExpansionService<T> {
      * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
     public expand(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
-        this.stateMap.set(node, true);
-        this._osExpanded.emit({
-            node,
-            originalEvent
-        });
+        node.isExpanded = true;
+
+        this._osExpanded.emit({ node, originalEvent });
     }
 
     /**
@@ -49,11 +43,9 @@ export class TreeNodesExpansionService<T> {
      * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
     public collapse(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
-        this.stateMap.set(node, false);
-        this._osCollapsed.emit({
-            node,
-            originalEvent
-        });
+        node.isExpanded = false;
+
+        this._osCollapsed.emit({ node, originalEvent });
     }
 
     /**
@@ -61,40 +53,20 @@ export class TreeNodesExpansionService<T> {
      * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
     public toggle(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
-        const isNodeExpanded = this.stateMap.get(node);
-
-        if (isNodeExpanded) {
+        if (node.isExpanded) {
             this.collapse(node, originalEvent);
         } else {
             this.expand(node, originalEvent);
         }
     }
 
-    private setStateForNodesAndChildren(
-        nodes: ITreeNode<T>[],
-        getState: (node: ITreeNode<T>) => boolean
-    ): void {
-        nodes.forEach((node) => {
-            if (node?.children?.length) {
-                const newState = getState(node);
-                const currentState = this.stateMap.get(node);
+    private setStateForAll(getState: (node: ITreeNode<T>) => boolean): void {
+        this.state.flatData.forEach((node) => {
+            const newState = getState(node);
 
-                if (!isNil(newState) && (newState !== currentState)) {
-                    (newState) ? this.expand(node) : this.collapse(node);
-                }
-
-                this.setStateForNodesAndChildren(node.children, getState);
+            if (!isNil(newState) && (newState !== node.isExpanded)) {
+                (newState) ? this.expand(node) : this.collapse(node);
             }
-        });
-    }
-
-    private initStateMap(): void {
-        this.setStateForNodesAndChildren(this.context.data, (node) => {
-            if (!isNil(node.isExpandedByDefault)) {
-                return node.isExpandedByDefault;
-            }
-
-            return this.context.isAllNodesExpandedByDefault;
         });
     }
 }

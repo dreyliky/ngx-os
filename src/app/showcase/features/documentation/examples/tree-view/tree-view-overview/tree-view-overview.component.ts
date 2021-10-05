@@ -19,7 +19,7 @@ export class TreeViewOverviewComponent {
                         { label: 'Another child element 1' },
                         { label: 'Another child element 2' }
                     ],
-                    isExpandedByDefault: false
+                    isExpanded: false
                 },
                 { label: 'Child item 2' }
             ]

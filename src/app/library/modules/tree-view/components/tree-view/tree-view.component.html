@@ -17,8 +17,8 @@
             [class.os-disabled]="node.isDisabled"
             [class.os-expandable]="node.children?.length"
             [class.os-flat]="!node.children?.length"
-            [class.os-expanded]="nodesExpansion.isExpanded(node)"
-            [class.os-selected]="nodesSelection.isSelected(node)"
+            [class.os-expanded]="node.isExpanded"
+            [class.os-selected]="node.isSelected"
             (click)="onNodeClick($event, node)">
             <div
                 class="os-icon"
@@ -40,7 +40,7 @@
             </ng-template>
         </div>
 
-        <ng-container *ngIf="node?.children && nodesExpansion.isExpanded(node)">
+        <ng-container *ngIf="node?.children && node.isExpanded">
             <ng-container
                 *ngTemplateOutlet="treeNodesTemplate; context: { nodes: node.children, depth: depth + 1 }">
             </ng-container>

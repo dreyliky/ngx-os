@@ -5,24 +5,28 @@ import {
     ElementRef,
     EventEmitter,
     Input,
+    OnChanges,
     OnInit,
     Output,
+    SimpleChanges,
     TemplateRef
 } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 import { ITreeNode, ITreeNodeClickEvent, ITreeNodeExpansionEvent, ITreeNodeSelectionEvent } from '../../interfaces';
 import { TreeNodesExpansionService, TreeNodesSelectionService } from '../../services';
+import { TreeNodesState } from '../../states';
 
 @Component({
     selector: 'os-tree-view',
     templateUrl: './tree-view.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
+        TreeNodesState,
         TreeNodesExpansionService,
         TreeNodesSelectionService
     ]
 })
-export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
+export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnChanges {
     /** An array of tree nodes */
     @Input()
     public data: ITreeNode<T>[];
@@ -41,7 +45,7 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
 
     /** Should all nodes be expanded when the component is first rendered? */
     @Input()
-    public isAllNodesExpandedByDefault: boolean = false;
+    public isAllNodesExpanded: boolean = false;
 
     /** Can the user expand multiple nodes at the same time? */
     @Input()
@@ -83,16 +87,19 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
         public readonly nodesSelection: TreeNodesSelectionService<T>,
         /** The service for manipulating of nodes expansion states */
         public readonly nodesExpansion: TreeNodesExpansionService<T>,
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly nodesState: TreeNodesState<T>,
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
+    public ngOnChanges(changes: SimpleChanges): void {
+        this.processDataAfterValueChanged(changes);
+    }
+
     public ngOnInit(): void {
         this.classListManager.add('os-tree-view');
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
-        this.nodesSelection._init(this);
-        this.nodesExpansion._init(this);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     public onNodeClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
@@ -119,5 +126,13 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit {
         }
 
         originalEvent.stopPropagation();
+    }
+
+    private processDataAfterValueChanged(changes: SimpleChanges): void {
+        if (changes.data?.previousValue !== changes.data?.currentValue) {
+            this.nodesState.set(changes.data.currentValue);
+            this.nodesSelection._initDefaultStateForAll();
+            this.nodesExpansion._initDefaultStateForAll(this.isAllNodesExpanded);
+        }
     }
 }

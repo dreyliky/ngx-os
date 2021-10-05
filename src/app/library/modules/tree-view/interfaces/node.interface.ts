@@ -19,10 +19,10 @@ export interface ITreeNode<T = any> {
     iconStyleClass?: string;
     /** Is node disabled */
     isDisabled?: boolean;
-    /** Is node need to be expanded when TreeViewComponent will be rendered first time */
-    isExpandedByDefault?: boolean;
-    /** Is node need to be selected when TreeViewComponent will be rendered first time */
-    isSelectedByDefault?: boolean;
+    /** Is node expanded */
+    isExpanded?: boolean;
+    /** Is node selected */
+    isSelected?: boolean;
     /** Callback which fires when the user clicks on the node element */
     onClick?: (event: ITreeNodeClickEvent<T>) => void;
     /** Callback which fires when node expands */
