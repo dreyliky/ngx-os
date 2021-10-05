@@ -14,8 +14,8 @@ export class TreeNodesState<T> {
         return this._flatData;
     }
 
-    private _data: ITreeNode<T>[];
-    private _flatData: ITreeNode<T>[];
+    private _data: ITreeNode<T>[] = [];
+    private _flatData: ITreeNode<T>[] = [];
 
     public set(data: ITreeNode<T>[]): void {
         this._data = data;

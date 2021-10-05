@@ -1,22 +1,36 @@
-<os-list *ngIf="(metaInfo$ | async) as metaInfo">
-    <os-form-field class="search-container">
-        <os-text-box
-            [placeholder]="'Search'"
-            (osKeyUp)="onSearch($event)">
-        </os-text-box>
-    </os-form-field>
+<ng-container *ngIf="(metaInfo$ | async) as metaInfo">
+    <os-tree-view [isAllowSelection]="true">
+        <os-form-field
+            os-tree-view-header
+            class="search-container">
+            <os-text-box
+                [placeholder]="'Search'"
+                (osKeyUp)="onSearch($event)">
+            </os-text-box>
+        </os-form-field>
 
-    <os-list-item
-        *ngFor="let component of (filteredComponents$ | async)"
-        [isSelected]="metaInfo.type === component.type"
-        [value]="component"
-        (osSelected)="onComponentOptionSelected($event)">
-        <div class="icon-wrapper">
-            <img
-                class="icon"
-                [attr.src]="component.imageUrl" />
+        <div os-tree-view-content>
+            <ng-container *ngFor="let component of (filteredComponents$ | async)">
+                <os-tree-node
+                    (osSelected)="onComponentNodeSelected($event)">
+                    <ng-template #nodeTemplate>
+                        <div class="icon-wrapper">
+                            <img
+                                *ngIf="component.imageUrl"
+                                class="icon"
+                                [attr.src]="component.imageUrl" />
+                        </div>
+    
+                        <os-text>{{ component.name }}</os-text>
+                    </ng-template>
+                </os-tree-node>
+    
+                <os-tree-node
+                    *ngFor="let componentSection of componentSections"
+                    [data]="componentSection"
+                    [depth]="1">
+                </os-tree-node>
+            </ng-container>
         </div>
-        
-        <os-text>{{ component.name }}</os-text>
-    </os-list-item>
-</os-list>
+    </os-tree-view>
+</ng-container>

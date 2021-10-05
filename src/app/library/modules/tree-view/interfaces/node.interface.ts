@@ -4,7 +4,7 @@ import { ITreeNodeSelectionEvent } from './node-selection-event.interface';
 
 export interface ITreeNode<T = any> {
     /** Text of the node to display for the user */
-    label: string;
+    label?: string;
     /** Custom data that node represents */
     data?: T;
     /** An array of children nodes which can be expanded or collapsed in the tree */

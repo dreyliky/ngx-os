@@ -45,11 +45,11 @@
             color: #909090;
         }
 
-        &.os-root-node :first-child {
+        &.os-root-node > :first-child {
             margin-left: 10px;
         }
 
-        &:not(.os-root-node) :first-child {
+        &:not(.os-root-node) > :first-child {
             margin-left: calc(10px + 27px * var(--os-tree-node-depth));
         }
     }

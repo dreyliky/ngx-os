@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
 import { ComponentMetaInfo, LibraryComponentsSearchService } from '@features/documentation';
+import { ITreeNode, ITreeNodeSelectionEvent as Selection } from 'ngx-os';
 import { Observable } from 'rxjs';
+import { ComponentOverviewRouteEnum as RouteEnum } from '../../enums';
 import { OverviewService } from '../../overview.service';
 
 @Component({
@@ -17,6 +19,21 @@ import { OverviewService } from '../../overview.service';
 export class SideBarListComponent implements OnInit {
     public metaInfo$: Observable<ComponentMetaInfo>;
     public filteredComponents$: Observable<ComponentMetaInfo[]>;
+
+    public readonly componentSections: ITreeNode[] = [
+        {
+            label: 'Documentation',
+            data: RouteEnum.Documentation
+        },
+        {
+            label: 'Examples',
+            data: RouteEnum.Examples
+        },
+        {
+            label: 'Api',
+            data: RouteEnum.Api
+        }
+    ];
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
@@ -35,7 +52,11 @@ export class SideBarListComponent implements OnInit {
         this.componentsSearchService.search(inputElement.value);
     }
 
-    public onComponentOptionSelected(component: ComponentMetaInfo): void {
-        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${component.type}`);
+    public onComponentNodeSelected({ node }: Selection<ComponentMetaInfo>): void {
+        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${node.data.type}`);
+    }
+
+    public onComponentSectionSelected({ node }: Selection<ComponentMetaInfo>, section: ITreeNode<RouteEnum>): void {
+        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${node.data.type}/${section}`);
     }
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { IdGenerator } from '../../helpers';
 import { ClasslistManager } from '../css-classlist-manager';
+import { StyleListManager } from '../css-stylelist-manager';
 
 @Component({
     template: ''
@@ -8,8 +9,11 @@ import { ClasslistManager } from '../css-classlist-manager';
 export abstract class OsBaseComponent {
     /** Target internal element stylelist */
     @Input()
-    @HostBinding('style')
-    public style: object;
+    public set style(styleList: object) {
+        if (styleList) {
+            this.styleListManager.apply(styleList);
+        }
+    }
 
     /** Target internal element classList */
     @Input()
@@ -65,11 +69,17 @@ export abstract class OsBaseComponent {
     public osKeyUp: EventEmitter<KeyboardEvent> = new EventEmitter();
 
     @HostBinding('class')
-    public get hostClass(): string {
+    public get _hostClass(): string {
         return this.classListManager.getAsString();
     }
 
+    @HostBinding('style')
+    public get _hostStyle(): object {
+        return this.styleListManager.get();
+    }
+
     protected readonly baseHostClassName = 'os-element';
+    protected readonly styleListManager = new StyleListManager();
     protected readonly classListManager = new ClasslistManager();
 
     constructor() {

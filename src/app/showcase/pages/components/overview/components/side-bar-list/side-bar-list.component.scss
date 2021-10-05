@@ -18,11 +18,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3px;
+    padding: 3px 3px 3px 0px;
     box-sizing: border-box;
     margin-right: 5px;
-}
 
-.icon {
-    height: 100%;
+    .icon {
+        height: 100%;
+    }
 }

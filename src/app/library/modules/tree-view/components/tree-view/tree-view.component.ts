@@ -51,6 +51,12 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
     @Input()
     public isAllowMultipleExpansion: boolean = true;
 
+    @Input()
+    public scrollViewStyle: object;
+
+    @Input()
+    public scrollViewStyleClass: string | string[] | object;
+
     /** Fires when the node selected */
     @Output()
     public get osNodeSelected(): EventEmitter<ITreeNodeSelectionEvent<T>> {
@@ -100,33 +106,6 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
     public ngOnInit(): void {
         this.classListManager.add('os-tree-view');
         this.initElementEventObservers(this.hostRef.nativeElement);
-    }
-
-    public onNodeClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
-        this.osNodeClick.emit({ originalEvent, node });
-        node.onClick?.({ originalEvent, node });
-
-        if (node.isDisabled || !this.isAllowSelection) {
-            return;
-        }
-
-        if (!this.isAllowMultipleSelection) {
-            this.nodesSelection.deselectAllExceptSpecific(node);
-        }
-
-        if (this.isSelectionInToggleMode) {
-            this.nodesSelection.toggle(node, originalEvent);
-        } else {
-            this.nodesSelection.select(node, originalEvent);
-        }
-    }
-
-    public onToggleExpandButtonClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
-        if (!node.isDisabled) {
-            this.nodesExpansion.toggle(node, originalEvent);
-        }
-
-        originalEvent.stopPropagation();
     }
 
     private processDataAfterValueChanged(changes: SimpleChanges): void {

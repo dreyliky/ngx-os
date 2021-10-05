@@ -1,0 +1,18 @@
+<div
+    class="os-icon"
+    [ngClass]="data?.iconStyleClass"
+    [ngStyle]="data?.iconStyle"
+    (click)="onToggleExpandButtonClick($event, data)">
+</div>
+
+<div
+    *ngIf="!_nodeTemplate; else wrapperFordataTemplate"
+    class="os-label">
+    {{ data?.label }}
+</div>
+
+<ng-template #wrapperFordataTemplate>
+    <ng-container
+        *ngTemplateOutlet="_nodeTemplate; context: { data: data }">
+    </ng-container>
+</ng-template>
