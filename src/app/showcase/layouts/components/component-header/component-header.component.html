@@ -6,11 +6,11 @@
         src="/assets/showcase/icons/icon.png" />
 </a>
 
-<os-button
-    [routerLink]="getStartedPagePath"
-    [routerLinkActive]="'os-focused'">
-    Get Started
-</os-button>
+<a
+    target="_blank"
+    [attr.href]="getStartedPagePath">
+    <os-button>Get Started</os-button>
+</a>
 
 <os-button
     [routerLink]="componentsPagePath"

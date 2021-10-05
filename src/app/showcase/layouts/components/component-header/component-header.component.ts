@@ -15,7 +15,7 @@ export class ComponentHeaderComponent {
         + 'Recommend using the latest version of Google Chrome to get the best experience.';
 
     public get getStartedPagePath(): string {
-        return `/${AppRouteEnum.GetStarted}`;
+        return 'https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/get-started.md';
     }
 
     public get componentsPagePath(): string {

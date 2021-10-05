@@ -1,9 +1,0 @@
-<showcase-markdown-viewer
-    *ngIf="(content$ | async) as content; else loaderTemplate"
-    class="content"
-    [data]="content">
-</showcase-markdown-viewer>
-
-<ng-template #loaderTemplate>
-    Loading...
-</ng-template>
