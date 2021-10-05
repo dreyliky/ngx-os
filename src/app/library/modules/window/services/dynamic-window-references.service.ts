@@ -68,7 +68,7 @@ export class DynamicWindowReferencesService implements OnDestroy {
             )
             .subscribe(() => {
                 this.orderingService.moveToTop(windowRef.id);
-                this.orderingService.updateOrderIndexStateForAll();
+                this.orderingService.updateForAll();
                 this.activityService.makeAllInactiveExceptSpecificId(windowRef.id);
             });
     }
