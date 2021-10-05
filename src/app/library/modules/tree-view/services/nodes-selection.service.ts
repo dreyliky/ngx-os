@@ -30,12 +30,10 @@ export class TreeNodesSelectionService<T> {
      **/
     public select(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         node.isSelected = true;
+        const allSelected = this.getAllSelected();
 
-        this._osSelected.emit({
-            originalEvent,
-            node: node,
-            allSelected: this.getAllSelected()
-        });
+        this._osSelected.emit({ originalEvent, node, allSelected });
+        node.onSelected?.({ originalEvent, node, allSelected });
     }
 
     /**
@@ -44,12 +42,10 @@ export class TreeNodesSelectionService<T> {
      **/
     public deselect(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
         node.isSelected = false;
+        const allSelected = this.getAllSelected();
 
-        this._osDeselected.emit({
-            originalEvent,
-            node: node,
-            allSelected: this.getAllSelected()
-        });
+        this._osDeselected.emit({ originalEvent, node, allSelected });
+        node.onDeselected?.({ originalEvent, node, allSelected });
     }
 
     /**

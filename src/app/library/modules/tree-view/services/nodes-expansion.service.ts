@@ -36,6 +36,7 @@ export class TreeNodesExpansionService<T> {
         node.isExpanded = true;
 
         this._osExpanded.emit({ node, originalEvent });
+        node.onExpanded?.({ node, originalEvent });
     }
 
     /**
@@ -46,6 +47,7 @@ export class TreeNodesExpansionService<T> {
         node.isExpanded = false;
 
         this._osCollapsed.emit({ node, originalEvent });
+        node.onCollapsed?.({ node, originalEvent });
     }
 
     /**

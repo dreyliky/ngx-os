@@ -104,6 +104,7 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
 
     public onNodeClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
         this.osNodeClick.emit({ originalEvent, node });
+        node.onClick?.({ originalEvent, node });
 
         if (node.isDisabled || !this.isAllowSelection) {
             return;
