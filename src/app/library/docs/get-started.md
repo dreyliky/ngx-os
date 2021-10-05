@@ -10,7 +10,7 @@
 
 **Quick start. Import everything at once:**
 
-`app.module.ts`
+In your `app.module.ts`:
 ```typescript
 import { NgxOsModule } from 'ngx-os';
 
@@ -24,7 +24,7 @@ export class AppModule {}
 
 **To import specific modules you need:**
 
-`app.module.ts`
+In your `app.module.ts`:
 ```typescript
 import { ButtonModule, DropdownModule, ListModule WindowModule } from 'ngx-os';
 
@@ -41,20 +41,18 @@ export class AppModule {}
 
 Now, let's try to display some component:
 
-`app.component.html`
+In your `app.component.html`:
 ```html
 <os-button>Hello world!</os-button>
 ```
 
 You won't see any styles applied at this time. Let's fix it!
 
----
-
 ### Setup styling
 
 **Quick start. Add everything at once:**
 
-In `angular.json` you need to define path to themes you want to use in your project.
+In your `angular.json` you need to define path to themes you want to use in your project.
 You can check list of all available themes in `Theme` section.
 ```json
 {
@@ -91,7 +89,7 @@ You can apply theme, using this name.
 In this case, you can define somewhere manually `scss` file.
 In this file, you can import exactly the things you need. For example:
 
-`src/app/styles/win10.scss`
+In your `src/app/styles/win10.scss`:
 ```scss
 // All component styles
 @import "ngx-os/themes/win10/_index.scss";
@@ -106,18 +104,16 @@ In this file, you can import exactly the things you need. For example:
 
 After that, just like in case above, add this file to `angular.json`:
 
-`angular.json`
+In your `angular.json`:
 ```json
 {
-    // ...
     "styles": [
         {
             "input": "src/app/styles/win10.scss",
             "bundleName": "win10",
             "inject": false
         }
-    ],
-    // ...
+    ]
 }
 ```
 
