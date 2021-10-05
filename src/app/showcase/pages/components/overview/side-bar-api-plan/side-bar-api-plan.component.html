@@ -1,19 +1,22 @@
 <os-list>
-    <os-list-item
-        *ngFor="let listItem of apiPlanItems"
-        [isSelected]="listItem.name === routeFragment"
-        [value]="listItem"
-        (osClick)="onListItemClick(listItem)">
-        <div class="icon-wrapper">
-            <img
-                class="icon"
-                [attr.src]="listItem.iconUrl" />
-        </div>
+    <ng-container
+        *ngFor="let listItem of apiPlanItems">
+        <os-list-item
+            *ngIf="!listItem.isHidden"
+            [isSelected]="listItem.name === routeFragment"
+            [value]="listItem"
+            (osClick)="onListItemClick(listItem)">
+            <div class="icon-wrapper">
+                <img
+                    class="icon"
+                    [attr.src]="listItem.iconUrl" />
+            </div>
 
-        <div
-            [attr.title]="listItem.name"
-            class="name">
-            <os-text>{{ listItem.name }}</os-text>
-        </div>
-    </os-list-item>
+            <div
+                [attr.title]="listItem.name"
+                class="name">
+                <os-text>{{ listItem.name }}</os-text>
+            </div>
+        </os-list-item>
+    </ng-container>
 </os-list>
