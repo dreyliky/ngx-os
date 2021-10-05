@@ -1,36 +1,31 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
-import {
-    ComponentMetaInfo,
-    LibraryComponentsSearchService,
-    OsComponentEnum
-} from '@features/documentation';
-import { GridDirectionEnum } from 'ngx-os';
+import { ComponentMetaInfo, LibraryComponentsSearchService } from '@features/documentation';
 import { Observable } from 'rxjs';
+import { OverviewService } from '../../overview.service';
 
 @Component({
-    selector: 'showcase-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss'],
+    selector: 'showcase-side-bar-list',
+    templateUrl: './side-bar-list.component.html',
+    styleUrls: ['./side-bar-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         LibraryComponentsSearchService
     ]
 })
-export class ListComponent implements OnInit {
-    public gridDirection = GridDirectionEnum.Horizontal;
+export class SideBarListComponent implements OnInit {
+    public metaInfo$: Observable<ComponentMetaInfo>;
     public filteredComponents$: Observable<ComponentMetaInfo[]>;
 
     constructor(
-        private readonly titleService: Title,
         private readonly componentsSearchService: LibraryComponentsSearchService,
+        private readonly overviewService: OverviewService,
         private readonly router: Router
     ) {}
 
     public ngOnInit(): void {
-        this.titleService.setTitle('ngx-os - Components');
+        this.metaInfo$ = this.overviewService.metaInfo$;
         this.filteredComponents$ = this.componentsSearchService.filteredComponents$;
     }
 
@@ -40,7 +35,7 @@ export class ListComponent implements OnInit {
         this.componentsSearchService.search(inputElement.value);
     }
 
-    public onOpenSectionButtonClick(componentType: OsComponentEnum): void {
-        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${componentType}`);
+    public onComponentOptionSelected(component: ComponentMetaInfo): void {
+        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${component.type}`);
     }
 }

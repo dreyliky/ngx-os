@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GridComponent } from './list';
-import { OverviewComponent } from './overview';
+import { ListComponent } from './list';
 
 const routes: Routes = [
     {
         path: '',
-        component: GridComponent
+        component: ListComponent
     },
     {
         path: ':componentType',
-        component: OverviewComponent
+        loadChildren: () => import('./overview/overview.module').then((m) => m.OverviewModule)
     },
     {
         path: '**',

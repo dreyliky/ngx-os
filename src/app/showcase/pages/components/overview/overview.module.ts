@@ -1,25 +1,20 @@
 import { NgModule } from '@angular/core';
 import { DocumentationModule } from '@features/documentation';
 import { SharedModule } from '@shared';
-import { ApiModule } from './api';
-import { ExamplesModule } from './examples';
-import { HeaderComponent } from './header';
+import { HeaderComponent, SideBarListComponent } from './components';
 import { OverviewComponent } from './overview.component';
-import { SideBarApiPlanComponent } from './side-bar-api-plan';
-import { SideBarListComponent } from './side-bar-list';
+import { ComponentOverviewRoutingModule } from './overview.routing';
 
 @NgModule({
     declarations: [
         OverviewComponent,
         SideBarListComponent,
-        HeaderComponent,
-        SideBarApiPlanComponent
+        HeaderComponent
     ],
     imports: [
+        ComponentOverviewRoutingModule,
         SharedModule,
-        DocumentationModule,
-        ExamplesModule,
-        ApiModule
+        DocumentationModule
     ]
 })
 export class OverviewModule {}
