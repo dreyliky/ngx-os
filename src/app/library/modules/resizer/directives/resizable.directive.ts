@@ -10,7 +10,7 @@ import {
     Output
 } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { BaseResizer, ResizerConfig, ResizerFactory } from '../classes';
 import { ResizerCssClassEnum as CssClass, ResizerElementTagEnum as ElementTag, ResizerEnum } from '../enums';
 import { IResizeInfo, IResizerParams } from '../interfaces';
@@ -25,7 +25,7 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     public set config(config: IResizerParams) {
         this.updateConfigWithoutChanges(config);
         this._whenViewInit$
-            .pipe(take(1))
+            .pipe(first())
             .subscribe(() => {
                 this.initResizableElement();
                 this.updateResizersWrapperDomPlacement();
