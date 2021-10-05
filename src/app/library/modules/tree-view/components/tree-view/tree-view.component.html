@@ -1,6 +1,10 @@
+<ng-content select="[os-tree-view-header]"></ng-content>
+
 <ng-container
     *ngTemplateOutlet="treeNodesTemplate; context: { nodes: data, depth: 0 }">
 </ng-container>
+
+<ng-content select="[os-tree-view-footer]"></ng-content>
 
 <ng-template
     #treeNodesTemplate
