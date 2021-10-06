@@ -20,7 +20,7 @@ export class PropertiesComponent {
 
     public properties: DocClassProperty[];
 
-    private readonly publicModifierId: number = 122;
+    private readonly publicModifierIds = [122, 123];
 
     private processProperties(properties: DocClassProperty[]): void {
         const propertyNames = properties.map((input) => input.name);
@@ -36,7 +36,8 @@ export class PropertiesComponent {
 
     private isPropertyModifierValid(property: DocClassProperty): boolean {
         if (property.modifierKind) {
-            return property.modifierKind.includes(this.publicModifierId);
+            return this.publicModifierIds
+                .some((modifierId) => property.modifierKind.includes(modifierId));
         }
 
         return true;
