@@ -20,9 +20,10 @@ export class MethodsComponent {
 
     public methods: MethodsClass[];
 
-    private readonly publicModifierId: number = 122;
+    private readonly publicModifierIds = [122, 123];
 
     private readonly forbiddenMethodStartsWithPhrase: string[] = [
+        '_',
         'ng',
         'on',
         'registerOn',
@@ -39,11 +40,13 @@ export class MethodsComponent {
                 );
             })
             .sort((a, b) => (a.line - b.line));
+        console.log(this.methods);
     }
 
     private isMethodModifierValid(method: MethodsClass): boolean {
         if (method.modifierKind) {
-            return method.modifierKind.includes(this.publicModifierId);
+            return this.publicModifierIds
+                .some((modifierId) => method.modifierKind.includes(modifierId));
         }
 
         return true;

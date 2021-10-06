@@ -21,6 +21,10 @@ export class ModulesApiComponent implements OnInit {
         this.initDocModulesObservable();
     }
 
+    public getImportCode(module: DocModule): string {
+        return `import { ${module.name} } from 'ngx-os';`;
+    }
+
     private initDocModulesObservable(): void {
         this.docModules$ = this.overviewService.metaInfo$
             .pipe(

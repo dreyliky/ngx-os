@@ -1,9 +1,10 @@
 .os-tree-view {
+    width: 100%;
     display: block;
     background: #fff;
     box-shadow: var(--border-field);
     padding: 6px 0px;
-    box-sizing: border-box;
+    border: solid 1px #7f9db9;
     cursor: default;
 
     .os-tree-node {

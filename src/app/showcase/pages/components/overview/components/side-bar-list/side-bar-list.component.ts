@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppRouteEnum } from '@core/enums';
 import { ComponentMetaInfo, LibraryComponentsSearchService } from '@features/documentation';
-import { ITreeNode, ITreeNodeSelectionEvent as Selection } from 'ngx-os';
+import { ITreeNode, ITreeNodeSelectionEvent as Selection, TreeViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
-import { ComponentOverviewRouteEnum as RouteEnum } from '../../enums';
 import { OverviewService } from '../../overview.service';
+import { SideBarItem } from './side-bar-item.interface';
+import { SideBarItemsService } from './side-bar-items.service';
 
 @Component({
     selector: 'showcase-side-bar-list',
@@ -13,37 +13,32 @@ import { OverviewService } from '../../overview.service';
     styleUrls: ['./side-bar-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
-        LibraryComponentsSearchService
+        LibraryComponentsSearchService,
+        SideBarItemsService
     ]
 })
-export class SideBarListComponent implements OnInit {
-    public metaInfo$: Observable<ComponentMetaInfo>;
-    public filteredComponents$: Observable<ComponentMetaInfo[]>;
+export class SideBarListComponent implements OnInit, AfterViewInit {
+    @ViewChild(TreeViewComponent)
+    private readonly treeView: TreeViewComponent<SideBarItem>;
 
-    public readonly componentSections: ITreeNode[] = [
-        {
-            label: 'Documentation',
-            data: RouteEnum.Documentation
-        },
-        {
-            label: 'Examples',
-            data: RouteEnum.Examples
-        },
-        {
-            label: 'Api',
-            data: RouteEnum.Api
-        }
-    ];
+    public metaInfo$: Observable<ComponentMetaInfo>;
+    public nodes$: Observable<ITreeNode<SideBarItem>[]>;
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
         private readonly overviewService: OverviewService,
-        private readonly router: Router
+        private readonly itemsService: SideBarItemsService,
+        private readonly router: Router,
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
     public ngOnInit(): void {
         this.metaInfo$ = this.overviewService.metaInfo$;
-        this.filteredComponents$ = this.componentsSearchService.filteredComponents$;
+        this.nodes$ = this.itemsService.data$;
+    }
+
+    public ngAfterViewInit(): void {
+        this.scrollToSelectedNode();
     }
 
     public onSearch(event: KeyboardEvent): void {
@@ -52,11 +47,19 @@ export class SideBarListComponent implements OnInit {
         this.componentsSearchService.search(inputElement.value);
     }
 
-    public onComponentNodeSelected({ node }: Selection<ComponentMetaInfo>): void {
-        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${node.data.type}`);
+    public onNodeSelected({ node }: Selection<SideBarItem>): void {
+        this.router.navigateByUrl(node.data.sectionUrl);
+        this.treeView.nodesExpansion.expand(node);
     }
 
-    public onComponentSectionSelected({ node }: Selection<ComponentMetaInfo>, section: ITreeNode<RouteEnum>): void {
-        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${node.data.type}/${section}`);
+    private scrollToSelectedNode(): void {
+        const selectedNodes = this.treeView.nodesSelection.getAllSelected();
+        const selectedNode = selectedNodes[0];
+
+        if (selectedNode) {
+            const nodeElement = this.hostRef.nativeElement.querySelector(`#${selectedNode.id}`) as HTMLElement;
+
+            this.treeView.scrollView.scrollTo(0, nodeElement.offsetTop);
+        }
     }
 }

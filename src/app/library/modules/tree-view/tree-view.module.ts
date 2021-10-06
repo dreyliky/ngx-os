@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { ScrollViewModule } from '../scroll-view';
 import { SharedModule } from '../shared.module';
-import { TreeNodeComponent, TreeViewComponent } from './components';
+import { TreeViewComponent } from './components';
 
 @NgModule({
     declarations: [
-        TreeViewComponent,
-        TreeNodeComponent
+        TreeViewComponent
     ],
     imports: [
         SharedModule,
         ScrollViewModule
     ],
     exports: [
-        TreeViewComponent,
-        TreeNodeComponent
+        TreeViewComponent
     ]
 })
 export class TreeViewModule {}

@@ -28,7 +28,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private targetComponentMetaInfo: ComponentMetaInfo;
 
     constructor(
-        @Inject(MAIN_LAYOUT) private layoutComponent: MainLayoutComponent,
+        @Inject(MAIN_LAYOUT) private readonly mainLayout: MainLayoutComponent,
         private readonly titleService: Title,
         private readonly overviewService: OverviewService,
         private readonly changeDetector: ChangeDetectorRef,
@@ -54,7 +54,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     private initRouteParamsObserver(): void {
         this.routeParamsSubscription = this.activatedRoute.params
             .subscribe(() => {
-                this.layoutComponent.scrollToTop();
+                this.mainLayout.scrollView.scrollTo(0, 0);
                 this.initMetaInfo();
                 this.titleService.setTitle(`ngx-os - ${this.targetComponentMetaInfo.name} Documentation`);
                 this.changeDetector.detectChanges();

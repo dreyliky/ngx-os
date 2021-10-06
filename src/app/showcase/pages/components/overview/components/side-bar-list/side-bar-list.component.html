@@ -1,5 +1,8 @@
 <ng-container *ngIf="(metaInfo$ | async) as metaInfo">
-    <os-tree-view [isAllowSelection]="true">
+    <os-tree-view
+        [data]="(nodes$ | async)"
+        [isAllowSelection]="true"
+        (osNodeSelected)="onNodeSelected($event)">
         <os-form-field
             os-tree-view-header
             class="search-container">
@@ -9,28 +12,19 @@
             </os-text-box>
         </os-form-field>
 
-        <div os-tree-view-content>
-            <ng-container *ngFor="let component of (filteredComponents$ | async)">
-                <os-tree-node
-                    (osSelected)="onComponentNodeSelected($event)">
-                    <ng-template #nodeTemplate>
-                        <div class="icon-wrapper">
-                            <img
-                                *ngIf="component.imageUrl"
-                                class="icon"
-                                [attr.src]="component.imageUrl" />
-                        </div>
-    
-                        <os-text>{{ component.name }}</os-text>
-                    </ng-template>
-                </os-tree-node>
-    
-                <os-tree-node
-                    *ngFor="let componentSection of componentSections"
-                    [data]="componentSection"
-                    [depth]="1">
-                </os-tree-node>
-            </ng-container>
-        </div>
+        <ng-template
+            #nodeTemplate
+            let-node="node">
+            <div class="node-content">
+                <os-label>{{ node.label }}</os-label>
+
+                <div class="icon-wrapper">
+                    <img
+                        *ngIf="node.data?.imageUrl"
+                        class="icon"
+                        [attr.src]="node.data.imageUrl" />
+                </div>
+            </div>
+        </ng-template>
     </os-tree-view>
 </ng-container>

@@ -38,13 +38,17 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
     }
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
         this.classListManager.add('os-scroll-view');
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
+    }
+
+    public scrollTo(left: number, top: number): void {
+        this.hostRef.nativeElement.scrollTo({ left, top });
     }
 }

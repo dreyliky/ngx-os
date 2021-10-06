@@ -1,6 +1,6 @@
 :host {
     width: inherit;
-    max-height: 100vh;
+    max-height: calc(100vh - 175px);
     position: sticky;
     display: flex;
     top: 0;
@@ -8,21 +8,37 @@
     box-sizing: border-box;
 }
 
+.os-tree-view::ng-deep {
+    .os-tree-node {
+        &.os-selected {
+            font-weight: bold;
+        }
+    }
+}
+
 .search-container {
     margin: 7px;
     box-sizing: border-box;
 }
 
-.icon-wrapper {
-    height: 30px;
+.node-content {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 3px 3px 3px 0px;
-    box-sizing: border-box;
-    margin-right: 5px;
 
-    .icon {
-        height: 100%;
+    .icon-wrapper {
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        padding: 3px 3px 3px 0px;
+        box-sizing: border-box;
+        margin-right: 5px;
+        opacity: .7;
+    
+        .icon {
+            height: 100%;
+        }
     }
 }

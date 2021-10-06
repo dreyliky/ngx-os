@@ -9,22 +9,42 @@
 }
 
 .icon-wrapper {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3px;
     box-sizing: border-box;
-    margin-right: 3px;
+    margin-left: auto;
+    opacity: .7;
+
+    .icon {
+        height: 20px;
+    }
 }
 
-.icon {
-    width: 20px;
-    height: 20px;
+.os-list {
+    padding: 4px 0px;
 }
 
 .name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 12px !important;
+    width: 100%;
+    min-height: 25px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+
+    &.header .os-text {
+        font-size: 16px !important;
+    }
+
+    &:not(.header) .os-text {
+        font-size: 12px !important;
+        padding-left: 14px;
+    }
+
+    os-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

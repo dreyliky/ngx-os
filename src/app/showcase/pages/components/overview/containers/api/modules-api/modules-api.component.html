@@ -9,5 +9,10 @@
             *ngIf="docModule.readme"
             [readmeInfo]="docModule.readme">
         </api-readme-info>
+
+        <showcase-code
+            [code]="getImportCode(docModule)"
+            [language]="'ts'">
+        </showcase-code>
     </div>
 </ng-container>

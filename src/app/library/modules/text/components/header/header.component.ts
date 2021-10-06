@@ -18,7 +18,7 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
         return this._size;
     }
 
-    public get hostClass(): string {
+    public get _hostClass(): string {
         return `${this.classListManager.getAsString()} os-header-${this.size}`;
     }
 

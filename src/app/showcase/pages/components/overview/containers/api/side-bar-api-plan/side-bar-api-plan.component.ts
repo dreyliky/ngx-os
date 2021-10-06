@@ -2,18 +2,23 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit }
 import { ActivatedRoute, Router } from '@angular/router';
 import { DevExamplesVisibilityService } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
-import { environment } from 'src/environments/environment';
+import { KeysOfType } from 'ngx-os';
 import { OverviewService } from '../../../overview.service';
 
 interface ListItem {
-    iconUrl: string;
     name: string;
-    isHidden?: boolean;
-    onClick?: () => void;
+    iconUrl?: string;
+    isHeader?: boolean;
+}
+
+interface ApiElement {
+    name: string;
+    iconUrl: string;
+    serviceDataPropName: KeysOfType<OverviewService, { name: string }[]>;
 }
 
 @Component({
-    selector: 'showcase-side-bar-api-plan',
+    selector: 'api-side-bar-plan',
     templateUrl: './side-bar-api-plan.component.html',
     styleUrls: ['./side-bar-api-plan.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -22,22 +27,51 @@ export class SideBarApiPlanComponent implements OnInit {
     public apiPlanItems: ListItem[] = [];
     public routeFragment: string;
 
-    private readonly customItems: ListItem[] = [
+    private readonly apiElements: ApiElement[] = [
         {
-            name: 'DEV: Toggle internal examples',
-            iconUrl: '/assets/showcase/icons/dev/powershell.svg',
-            isHidden: environment.production,
-            onClick: () => this.onToggleShowInternalExamplesButtonClick()
+            name: 'Modules',
+            iconUrl: '/assets/showcase/icons/dev/angular.svg',
+            serviceDataPropName: 'docModules'
         },
         {
-            name: 'Examples',
-            iconUrl: '/assets/showcase/icons/dev/examples.svg',
-            onClick: () => this.onExamplesButtonClick()
+            name: 'Services',
+            iconUrl: '/assets/showcase/icons/dev/angular-service.svg',
+            serviceDataPropName: 'docServices'
+        },
+        {
+            name: 'Directives',
+            iconUrl: '/assets/showcase/icons/dev/angular-directive.svg',
+            serviceDataPropName: 'docDirectives'
+        },
+        {
+            name: 'Components',
+            iconUrl: '/assets/showcase/icons/dev/angular-component.svg',
+            serviceDataPropName: 'docComponents'
+        },
+        {
+            name: 'Classes',
+            iconUrl: '/assets/showcase/icons/dev/typescript.svg',
+            serviceDataPropName: 'docClasses'
+        },
+        {
+            name: 'Interfaces',
+            iconUrl: '/assets/showcase/icons/dev/typescript.svg',
+            serviceDataPropName: 'docInterfaces'
+        },
+        {
+            name: 'Enums',
+            iconUrl: '/assets/showcase/icons/dev/typescript.svg',
+            serviceDataPropName: 'docEnums'
+        },
+        {
+            name: 'Types',
+            iconUrl: '/assets/showcase/icons/dev/typescript.svg',
+            serviceDataPropName: 'docTypes'
         }
     ];
 
     constructor(
-        @Inject(MAIN_LAYOUT) private layoutComponent: MainLayoutComponent,
+        @Inject(MAIN_LAYOUT) private mainLayout: MainLayoutComponent,
         private readonly devExamplesVisibilityService: DevExamplesVisibilityService,
         private readonly overviewService: OverviewService,
         private readonly activatedRoute: ActivatedRoute,
@@ -57,14 +91,12 @@ export class SideBarApiPlanComponent implements OnInit {
     }
 
     public onExamplesButtonClick(): void {
-        this.layoutComponent.scrollToTop();
+        this.mainLayout.scrollView.scrollTo(0, 0);
         this.router.navigate([], { fragment: null });
     }
 
     public onListItemClick(item: ListItem): void {
-        if (item.onClick) {
-            item.onClick();
-        } else {
+        if (!item.isHeader) {
             this.router.navigate([], { fragment: item.name });
         }
     }
@@ -87,72 +119,16 @@ export class SideBarApiPlanComponent implements OnInit {
     }
 
     private initApiPlanItems(): void {
-        this.apiPlanItems = [
-            ...this.customItems,
-            ...this.docModulesToApiPlanItems(),
-            ...this.docServicesToApiPlanItems(),
-            ...this.docDirectivesToApiPlanItems(),
-            ...this.docComponentsToApiPlanItems(),
-            ...this.docClassesToApiPlanItems(),
-            ...this.docInterfacesToApiPlanItems(),
-            ...this.docEnumsToApiPlanItems(),
-            ...this.docTypesToApiPlanItems()
-        ];
-    }
-
-    private docModulesToApiPlanItems(): ListItem[] {
-        return this.overviewService.docModules.map(({ name }) => ({
-            name,
-            iconUrl: '/assets/showcase/icons/dev/angular.svg'
-        }));
-    }
-
-    private docServicesToApiPlanItems(): ListItem[] {
-        return this.overviewService.docServices.map(({ name }) => ({
-            name,
-            iconUrl: '/assets/showcase/icons/dev/angular-service.svg'
-        }));
-    }
-
-    private docDirectivesToApiPlanItems(): ListItem[] {
-        return this.overviewService.docDirectives.map(({ name }) => ({
-            name,
-            iconUrl: '/assets/showcase/icons/dev/angular-directive.svg'
-        }));
-    }
-
-    private docComponentsToApiPlanItems(): ListItem[] {
-        return this.overviewService.docComponents.map(({ name }) => ({
-            name,
-            iconUrl: '/assets/showcase/icons/dev/angular-component.svg'
-        }));
-    }
-
-    private docClassesToApiPlanItems(): ListItem[] {
-        return this.overviewService.docClasses.map(({ name }) => ({
-            name,
-            iconUrl: '/assets/showcase/icons/dev/typescript.svg'
-        }));
-    }
-
-    private docInterfacesToApiPlanItems(): ListItem[] {
-        return this.overviewService.docInterfaces.map(({ name }) => ({
-            name,
-            iconUrl: '/assets/showcase/icons/dev/typescript.svg'
-        }));
-    }
-
-    private docEnumsToApiPlanItems(): ListItem[] {
-        return this.overviewService.docEnums.map(({ name }) => ({
-            name,
-            iconUrl: '/assets/showcase/icons/dev/typescript.svg'
-        }));
-    }
-
-    private docTypesToApiPlanItems(): ListItem[] {
-        return this.overviewService.docTypes.map(({ name }) => ({
-            name,
-            iconUrl: '/assets/showcase/icons/dev/typescript.svg'
-        }));
+        this.apiPlanItems = this.apiElements
+            .map(({ name: elementName, iconUrl, serviceDataPropName }) => (<ListItem[]>[
+                {
+                    name: elementName,
+                    iconUrl,
+                    isHeader: true
+                },
+                ...this.overviewService[serviceDataPropName].map(({ name }) => ({ name }))
+            ]))
+            .filter((items) => items.length > 1)
+            .flat();
     }
 }

@@ -9,6 +9,8 @@ export interface ITreeNode<T = any> {
     data?: T;
     /** An array of children nodes which can be expanded or collapsed in the tree */
     children?: ITreeNode<T>[];
+    /** Node element id */
+    id?: string;
     /** Node element stylelist */
     style?: object;
     /** Node element classList */

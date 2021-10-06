@@ -11,9 +11,9 @@
         "moduleResolution": "node",
         "importHelpers": true,
         "allowSyntheticDefaultImports": true,
-        "target": "es2015",
+        "target": "es5",
         "lib": [
-            "es2018",
+            "es2019",
             "dom"
         ],
         "typeRoots": ["node_modules/@types", "node_modules/@angular"],

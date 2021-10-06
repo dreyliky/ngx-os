@@ -9,9 +9,11 @@ import {
     OnInit,
     Output,
     SimpleChanges,
-    TemplateRef
+    TemplateRef,
+    ViewChild
 } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
+import { ScrollViewComponent } from '../../../scroll-view';
 import { ITreeNode, ITreeNodeClickEvent, ITreeNodeExpansionEvent, ITreeNodeSelectionEvent } from '../../interfaces';
 import { TreeNodesExpansionService, TreeNodesSelectionService } from '../../services';
 import { TreeNodesState } from '../../states';
@@ -85,6 +87,9 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
     @Output()
     public osNodeClick: EventEmitter<ITreeNodeClickEvent<T>> = new EventEmitter();
 
+    @ViewChild(ScrollViewComponent)
+    public readonly scrollView: ScrollViewComponent;
+
     @ContentChild('nodeTemplate')
     public readonly _nodeTemplate: TemplateRef<any>;
 
@@ -106,6 +111,33 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
     public ngOnInit(): void {
         this.classListManager.add('os-tree-view');
         this.initElementEventObservers(this.hostRef.nativeElement);
+    }
+
+    public onNodeClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
+        this.osNodeClick.emit({ originalEvent, node });
+        node.onClick?.({ originalEvent, node });
+
+        if (node.isDisabled || !this.isAllowSelection) {
+            return;
+        }
+
+        if (!this.isAllowMultipleSelection) {
+            this.nodesSelection.deselectAllExceptSpecific(node);
+        }
+
+        if (this.isSelectionInToggleMode) {
+            this.nodesSelection.toggle(node, originalEvent);
+        } else {
+            this.nodesSelection.select(node, originalEvent);
+        }
+    }
+
+    public onToggleExpandButtonClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
+        if (!node.isDisabled) {
+            this.nodesExpansion.toggle(node, originalEvent);
+        }
+
+        originalEvent.stopPropagation();
     }
 
     private processDataAfterValueChanged(changes: SimpleChanges): void {

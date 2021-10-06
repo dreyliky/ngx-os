@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ScrollViewComponent } from 'ngx-os';
 import { MAIN_LAYOUT } from './main-layout.constants';
 
 @Component({
@@ -14,10 +15,6 @@ import { MAIN_LAYOUT } from './main-layout.constants';
     ]
 })
 export class MainLayoutComponent {
-    @ViewChild('scrollView', { static: true, read: ElementRef })
-    private readonly scrollViewElementRef: ElementRef<HTMLElement>;
-
-    public scrollToTop(): void {
-        this.scrollViewElementRef.nativeElement.scrollTo(0, 0);
-    }
+    @ViewChild(ScrollViewComponent, { static: true })
+    public readonly scrollView: ScrollViewComponent;
 }
