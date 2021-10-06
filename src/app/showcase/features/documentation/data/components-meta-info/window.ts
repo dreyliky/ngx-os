@@ -45,6 +45,10 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
         'IDynamicWindowFullscreenOffset',
         'ICssCoordinate'
     ],
+    libVariables: [
+        'DYNAMIC_WINDOW_SHARED_CONFIG',
+        'IS_DYNAMIC_WINDOW_CONTEXT'
+    ],
     demoComponents: [
         {
             title: 'Window Overview',

@@ -10,7 +10,8 @@ import {
     DocInjectable,
     DocInterface,
     DocModule,
-    DocTypealias
+    DocTypealias,
+    DocVariable
 } from '../interfaces';
 import { LibraryDocumentationState } from '../states';
 import { LibraryDocumentationApiService } from './library-documentation-api.service';
@@ -93,6 +94,14 @@ export class LibraryDocumentationService {
             .map((typeName) => {
                 return this.state.data.miscellaneous.typealiases
                     .find((docType) => docType.name === typeName);
+            });
+    }
+
+    public findDocVariablesByNames(variableNames: string[]): DocVariable[] {
+        return variableNames
+            .map((variableName) => {
+                return this.state.data.miscellaneous.variables
+                    .find((docVar) => docVar.name === variableName);
             });
     }
 }

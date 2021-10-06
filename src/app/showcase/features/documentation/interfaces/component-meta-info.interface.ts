@@ -15,5 +15,6 @@ export interface ComponentMetaInfo {
     libInterfaces?: string[];
     libEnums?: string[];
     libTypes?: string[];
+    libVariables?: string[];
     demoComponents?: DemoComponentMetaInfo[];
 }

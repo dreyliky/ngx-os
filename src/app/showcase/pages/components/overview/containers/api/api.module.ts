@@ -12,6 +12,7 @@ import { ServicesApiModule } from './services-api';
 import { ApiSharedModule } from './shared';
 import { SideBarApiPlanComponent } from './side-bar-api-plan';
 import { TypesApiModule } from './types-api';
+import { VariablesApiModule } from './variables-api';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { TypesApiModule } from './types-api';
         InterfacesApiModule,
         ClassesApiModule,
         EnumsApiModule,
-        TypesApiModule
+        TypesApiModule,
+        VariablesApiModule
     ],
     exports: [
         ApiComponent

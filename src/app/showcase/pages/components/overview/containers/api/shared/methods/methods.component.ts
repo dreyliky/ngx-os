@@ -40,7 +40,6 @@ export class MethodsComponent {
                 );
             })
             .sort((a, b) => (a.line - b.line));
-        console.log(this.methods);
     }
 
     private isMethodModifierValid(method: MethodsClass): boolean {

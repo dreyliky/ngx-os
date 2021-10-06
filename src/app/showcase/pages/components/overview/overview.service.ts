@@ -9,6 +9,7 @@ import {
     DocInterface,
     DocModule,
     DocTypealias,
+    DocVariable,
     LibraryDocumentationService
 } from '@features/documentation';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -55,6 +56,10 @@ export class OverviewService implements OnDestroy {
         return [...this._docTypes];
     }
 
+    public get docVariables(): DocVariable[] {
+        return [...this._docVariables];
+    }
+
     private _metaInfo$ = new BehaviorSubject<ComponentMetaInfo>(null);
     private _docModules: DocModule[] = [];
     private _docComponents: DocComponent[] = [];
@@ -64,6 +69,7 @@ export class OverviewService implements OnDestroy {
     private _docClasses: DocClass[] = [];
     private _docEnums: DocEnum[] = [];
     private _docTypes: DocTypealias[] = [];
+    private _docVariables: DocVariable[] = [];
 
     constructor(
         private readonly docService: LibraryDocumentationService
@@ -82,6 +88,7 @@ export class OverviewService implements OnDestroy {
         this.initDocInterfaces(metaInfo);
         this.initDocEnums(metaInfo);
         this.initDocTypes(metaInfo);
+        this.initDocVariables(metaInfo);
 
         this._metaInfo$.next(metaInfo);
     }
@@ -116,5 +123,9 @@ export class OverviewService implements OnDestroy {
 
     private initDocTypes({ libTypes = [] }: ComponentMetaInfo): void {
         this._docTypes = this.docService.findDocTypesByNames(libTypes);
+    }
+
+    private initDocVariables({ libVariables = [] }: ComponentMetaInfo): void {
+        this._docVariables = this.docService.findDocVariablesByNames(libVariables);
     }
 }

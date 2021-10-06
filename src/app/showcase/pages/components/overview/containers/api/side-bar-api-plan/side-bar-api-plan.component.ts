@@ -67,6 +67,11 @@ export class SideBarApiPlanComponent implements OnInit {
             name: 'Types',
             iconUrl: '/assets/showcase/icons/dev/typescript.svg',
             serviceDataPropName: 'docTypes'
+        },
+        {
+            name: 'Constants',
+            iconUrl: '/assets/showcase/icons/dev/typescript.svg',
+            serviceDataPropName: 'docVariables'
         }
     ];
 

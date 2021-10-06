@@ -1,0 +1,18 @@
+<ng-container *ngFor="let docVar of (docVariables$ | async)">
+    <api-element-header
+        [title]="docVar.name"
+        [iconUrl]="'/assets/showcase/icons/dev/typescript.svg'">
+    </api-element-header>
+
+    <api-readme-info
+        *ngIf="docVar.description"
+        [readmeInfo]="docVar.description">
+    </api-readme-info>
+
+    <div class="content">
+        <os-text>
+            {{ docVar.name }}:
+            <span class="property-type">{{ docVar.type }}</span>
+        </os-text>
+    </div>
+</ng-container>

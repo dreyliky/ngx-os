@@ -32,7 +32,7 @@ interface File {
 }
 
 interface Miscellaneous {
-    variables: any[];
+    variables: DocVariable[];
     functions: any[];
     typealiases: DocTypealias[];
     enumerations: DocEnum[];
@@ -123,6 +123,13 @@ export interface DocComponent {
     implements: string[];
     templateData: string;
     accessors?: DocAccessors;
+}
+
+export interface DocVariable {
+    name: string;
+    type: string;
+    defaultValue: string;
+    description?: string;
 }
 
 interface StyleUrlsDatum {

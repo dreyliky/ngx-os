@@ -22,7 +22,7 @@ export class SideBarItemsService implements OnDestroy {
             }
         },
         {
-            label: 'Api',
+            label: 'API',
             data: {
                 sectionUrl: RouteEnum.Api
             }
