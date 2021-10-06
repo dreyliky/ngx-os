@@ -1,6 +1,6 @@
 <os-header [size]="6">Choose preferred theme</os-header>
 
 <theme-dropdown
-    [selectedTheme]="appliedTheme"
+    [selectedTheme]="(appliedTheme$ | async)"
     (themeChanged)="onThemeChanged($event)">
 </theme-dropdown>

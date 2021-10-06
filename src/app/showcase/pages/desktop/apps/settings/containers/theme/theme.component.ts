@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Theme, ThemeManagerService, THEMES } from '@features/theme';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'settings-theme-section',
@@ -8,10 +9,8 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./theme.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ThemeComponent implements OnInit, OnDestroy {
-    public appliedTheme: Theme;
-
-    private appliedThemeSubscription: Subscription;
+export class ThemeComponent implements OnInit {
+    public appliedTheme$: Observable<Theme>;
 
     constructor(
         private readonly themeService: ThemeManagerService,
@@ -19,24 +18,17 @@ export class ThemeComponent implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit(): void {
-        this.initAppliedThemeObserver();
-    }
-
-    public ngOnDestroy(): void {
-        this.appliedThemeSubscription?.unsubscribe();
+        this.initAppliedThemeObservable();
     }
 
     public onThemeChanged(theme: Theme): void {
         this.themeService.apply(theme.cssName);
     }
 
-    private initAppliedThemeObserver(): void {
-        this.appliedThemeSubscription = this.themeService.applied$
-            .subscribe((themeCssName) => {
-                this.appliedTheme = THEMES
-                    .find((currTheme) => currTheme.cssName === themeCssName);
-
-                this.changeDetector.detectChanges();
-            });
+    private initAppliedThemeObservable(): void {
+        this.appliedTheme$ = this.themeService.applied$
+            .pipe(
+                map((themeName) => THEMES.find((theme) => theme.cssName === themeName))
+            );
     }
 }

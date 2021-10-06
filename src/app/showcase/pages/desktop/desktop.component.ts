@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Observable, Subject } from 'rxjs';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
+import { Observable, Subscription } from 'rxjs';
 import { TaskbarPlacement } from './modules';
 import { DesktopBackgroundService, DesktopTaskbarService } from './services';
 
@@ -14,7 +15,7 @@ import { DesktopBackgroundService, DesktopTaskbarService } from './services';
         DesktopTaskbarService
     ]
 })
-export class DesktopComponent implements OnInit, OnDestroy {
+export class DesktopComponent implements OnInit {
     @HostBinding('style.background')
     public hostBackgroundStylelist: string;
 
@@ -22,8 +23,6 @@ export class DesktopComponent implements OnInit, OnDestroy {
     public hostClasslist: string;
 
     public taskbarPlacement$: Observable<TaskbarPlacement>;
-
-    private untilDestroyed$ = new Subject();
 
     constructor(
         private readonly titleService: Title,
@@ -40,13 +39,9 @@ export class DesktopComponent implements OnInit, OnDestroy {
         this.initHostClasslistObserver();
     }
 
-    public ngOnDestroy(): void {
-        this.untilDestroyed$.next();
-        this.untilDestroyed$.complete();
-    }
-
-    private initHostBackgroundStylelistObserver(): void {
-        this.background.styles$
+    @AutoUnsubscribe()
+    private initHostBackgroundStylelistObserver(): Subscription {
+        return this.background.styles$
             .subscribe((styles) => {
                 this.hostBackgroundStylelist = styles;
 
@@ -54,8 +49,9 @@ export class DesktopComponent implements OnInit, OnDestroy {
             });
     }
 
-    private initHostClasslistObserver(): void {
-        this.taskbar.classList$
+    @AutoUnsubscribe()
+    private initHostClasslistObserver(): Subscription {
+        return this.taskbar.classList$
             .subscribe((classList) => {
                 this.hostClasslist = classList;
 

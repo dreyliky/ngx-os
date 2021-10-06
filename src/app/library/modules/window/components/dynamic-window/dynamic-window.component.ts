@@ -11,7 +11,8 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { combineLatest, fromEvent, Observable } from 'rxjs';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
+import { combineLatest, fromEvent, Observable, Subscription } from 'rxjs';
 import { filter, map, skip } from 'rxjs/operators';
 import { EventOutside } from '../../../../core';
 import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
@@ -181,15 +182,14 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.titleBarButtons = Array.from(this.titleBarElement.querySelectorAll('.os-title-bar-button .os-icon'));
     }
 
-    private initOutsideClickObserver(): void {
-        const subscription = fromEvent(document, 'click')
+    @AutoUnsubscribe()
+    private initOutsideClickObserver(): Subscription {
+        return fromEvent(document, 'click')
             .pipe(
                 filter(() => this.windowRef.isActive),
                 filter((event: MouseEvent) => EventOutside.checkForElement(this.windowElement, event))
             )
             .subscribe(() => this.windowRef.setIsActive(false));
-
-        this.parentSubscription.add(subscription);
     }
 
     private initActiveWindowIdObserver(): void {
@@ -238,8 +238,9 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             .subscribe(() => this.dynamicStateManager.apply(DynamicState.Closing));
     }
 
-    private initConfigObserver(): void {
-        const subscription = combineLatest([
+    @AutoUnsubscribe()
+    private initConfigObserver(): Subscription {
+        return combineLatest([
             this.sharedConfig$,
             this.windowRef.config$
         ])
@@ -249,7 +250,5 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
                 this.changeDetector.markForCheck();
             });
-
-        this.parentSubscription.add(subscription);
     }
 }

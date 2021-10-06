@@ -1,9 +1,8 @@
 import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
+    ChangeDetectionStrategy, Component,
     OnInit
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BackgroundMetadata, BackgroundService } from '../../../../features/background';
 import { BackgroundControlService } from './services';
 
@@ -17,23 +16,13 @@ import { BackgroundControlService } from './services';
     ]
 })
 export class BackgroundComponent implements OnInit {
-    public currentBackground: BackgroundMetadata;
+    public currentBackground$: Observable<BackgroundMetadata>;
 
     constructor(
-        private readonly backgroundService: BackgroundService,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly backgroundService: BackgroundService
     ) {}
 
     public ngOnInit(): void {
-        this.initBackgroundObserver();
-    }
-
-    private initBackgroundObserver(): void {
-        this.backgroundService.data$
-            .subscribe((currentBackground) => {
-                this.currentBackground = currentBackground;
-
-                this.changeDetector.detectChanges();
-            });
+        this.currentBackground$ = this.backgroundService.data$;
     }
 }

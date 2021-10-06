@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AccentColorManagerService, Theme, ThemeManagerService, THEMES } from '@features/theme';
 import { IThemeRgbColor } from 'ngx-os/modules';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'header-theme-settings',
@@ -9,12 +10,9 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./theme-settings.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ThemeSettingsComponent implements OnInit, OnDestroy {
-    public appliedTheme: Theme;
-    public appliedColor: IThemeRgbColor;
-
-    private appliedThemeSubscription: Subscription;
-    private appliedColorSubscription: Subscription;
+export class ThemeSettingsComponent implements OnInit {
+    public appliedTheme$: Observable<Theme>;
+    public appliedColor$: Observable<IThemeRgbColor>;
 
     constructor(
         private readonly themeService: ThemeManagerService,
@@ -23,13 +21,9 @@ export class ThemeSettingsComponent implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit(): void {
-        this.initAppliedThemeObserver();
-        this.initAppliedColorObserver();
-    }
+        this.appliedColor$ = this.accentColorService.applied$;
 
-    public ngOnDestroy(): void {
-        this.appliedThemeSubscription.unsubscribe();
-        this.appliedColorSubscription.unsubscribe();
+        this.initAppliedThemeObservable();
     }
 
     public onThemeChanged(theme: Theme): void {
@@ -40,22 +34,10 @@ export class ThemeSettingsComponent implements OnInit, OnDestroy {
         this.accentColorService.apply('primary', color);
     }
 
-    private initAppliedThemeObserver(): void {
-        this.appliedThemeSubscription = this.themeService.applied$
-            .subscribe((themeCssName) => {
-                this.appliedTheme = THEMES
-                    .find((currTheme) => currTheme.cssName === themeCssName);
-
-                this.changeDetector.detectChanges();
-            });
-    }
-
-    private initAppliedColorObserver(): void {
-        this.appliedColorSubscription = this.accentColorService.applied$
-            .subscribe((color) => {
-                this.appliedColor = color;
-
-                this.changeDetector.detectChanges();
-            });
+    private initAppliedThemeObservable(): void {
+        this.appliedTheme$ = this.themeService.applied$
+            .pipe(
+                map((themeName) => THEMES.find((theme) => theme.cssName === themeName))
+            );
     }
 }

@@ -1,7 +1,8 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
 import { ComponentMetaInfo, LibraryComponentsSearchService, OsComponentEnum } from '@features/documentation';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { ITreeNode } from 'ngx-os';
 import { Observable, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -9,7 +10,7 @@ import { ComponentOverviewRouteEnum as RouteEnum } from '../../enums';
 import { SideBarItem } from './side-bar-item.interface';
 
 @Injectable()
-export class SideBarItemsService implements OnDestroy {
+export class SideBarItemsService {
     public data$: Observable<ITreeNode<SideBarItem>[]>;
 
     private currentRoute: string;
@@ -29,26 +30,13 @@ export class SideBarItemsService implements OnDestroy {
         }
     ];
 
-    private routerEventsSubscription: Subscription;
-
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
         private readonly router: Router,
         private readonly activatedRoute: ActivatedRoute
     ) {
         this.initRouteUrlObserver();
-        this.initItems();
-    }
-
-    public ngOnDestroy(): void {
-        this.routerEventsSubscription.unsubscribe();
-    }
-
-    private initItems(): void {
-        this.data$ = this.componentsSearchService.filteredComponents$
-            .pipe(
-                map((metaInfos) => this.mapMetaInfosToTreeNodes(metaInfos))
-            );
+        this.initDataObservable();
     }
 
     private mapMetaInfosToTreeNodes(metaInfos: ComponentMetaInfo[]): ITreeNode<SideBarItem>[] {
@@ -80,8 +68,16 @@ export class SideBarItemsService implements OnDestroy {
         });
     }
 
-    private initRouteUrlObserver(): void {
-        this.routerEventsSubscription = this.router.events
+    private initDataObservable(): void {
+        this.data$ = this.componentsSearchService.filteredComponents$
+            .pipe(
+                map((metaInfos) => this.mapMetaInfosToTreeNodes(metaInfos))
+            );
+    }
+
+    @AutoUnsubscribe()
+    private initRouteUrlObserver(): Subscription {
+        return this.router.events
             .pipe(
                 filter<NavigationEnd>((event) => event instanceof NavigationEnd)
             )

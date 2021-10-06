@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^12.2.6",
     "@angular/router": "^12.2.6",
     "marked": "^3.0.4",
+    "ngx-auto-unsubscribe-decorator": "0.0.9",
     "prismjs": "^1.9.0",
     "rxjs": "^6.6.7",
     "tslib": "^2.3.1",

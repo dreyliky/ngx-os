@@ -1,6 +1,7 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { merge, Observable, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
+import { merge, Observable, Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowRef } from '../classes';
 import { IDynamicWindowParams } from '../interfaces';
 import { WindowReferencesState } from '../states';
@@ -12,7 +13,7 @@ import { DynamicWindowsCoordinatesService } from './dynamic-windows-coordinates.
 @Injectable({
     providedIn: 'root'
 })
-export class DynamicWindowReferencesService implements OnDestroy {
+export class DynamicWindowReferencesService {
     public get data$(): Observable<DynamicWindowRef[]> {
         return this.state.data$;
     }
@@ -21,19 +22,12 @@ export class DynamicWindowReferencesService implements OnDestroy {
         return this.state.data;
     }
 
-    private readonly untilDestroyed$ = new Subject();
-
     constructor(
         private readonly state: WindowReferencesState,
         private readonly activityService: DynamicWindowActivityService,
         private readonly orderingService: DynamicWindowRefOrderingService,
         private readonly coordinatesService: DynamicWindowsCoordinatesService
     ) {}
-
-    public ngOnDestroy(): void {
-        this.untilDestroyed$.next();
-        this.untilDestroyed$.complete();
-    }
 
     public register(windowRef: DynamicWindowRef, config: IDynamicWindowParams): void {
         windowRef.init(new DynamicWindowConfig(config));
@@ -48,24 +42,22 @@ export class DynamicWindowReferencesService implements OnDestroy {
         this.state.remove(windowRef);
     }
 
-    private initHighestWindowActivityObserver(windowRef: DynamicWindowRef): void {
-        merge(
+    @AutoUnsubscribe()
+    private initHighestWindowActivityObserver(windowRef: DynamicWindowRef): Subscription {
+        return merge(
             windowRef.isHidden$.pipe(filter(Boolean)),
             windowRef.afterClosed$
         )
             .pipe(
-                takeUntil(this.untilDestroyed$),
                 map(() => this.orderingService.getHighestOpened())
             )
             .subscribe((highestWindow) => highestWindow?.setIsActive(true));
     }
 
-    private initIsActiveStateObserver(windowRef: DynamicWindowRef): void {
-        windowRef.isActive$
-            .pipe(
-                takeUntil(this.untilDestroyed$),
-                filter(Boolean)
-            )
+    @AutoUnsubscribe()
+    private initIsActiveStateObserver(windowRef: DynamicWindowRef): Subscription {
+        return windowRef.isActive$
+            .pipe(filter(Boolean))
             .subscribe(() => {
                 this.orderingService.moveToTop(windowRef.id);
                 this.orderingService.updateForAll();

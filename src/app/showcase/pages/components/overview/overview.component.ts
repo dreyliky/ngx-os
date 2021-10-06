@@ -2,16 +2,15 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    Inject,
-    OnDestroy,
-    OnInit
+    Inject, OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentMetaInfo, ComponentMetaInfoMap, OsComponentEnum } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { OverviewService } from './overview.service';
 
 @Component({
@@ -23,8 +22,7 @@ import { OverviewService } from './overview.service';
         OverviewService
     ]
 })
-export class OverviewComponent implements OnInit, OnDestroy {
-    private routeParamsSubscription: Subscription;
+export class OverviewComponent implements OnInit {
     private targetComponentMetaInfo: ComponentMetaInfo;
 
     constructor(
@@ -40,10 +38,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.initRouteFragmentObserver();
     }
 
-    public ngOnDestroy(): void {
-        this.routeParamsSubscription?.unsubscribe();
-    }
-
     private initMetaInfo(): void {
         const componentType: OsComponentEnum = this.activatedRoute.snapshot.params.componentType;
         this.targetComponentMetaInfo = ComponentMetaInfoMap.get(componentType);
@@ -51,8 +45,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.overviewService.applyMetaInfo(this.targetComponentMetaInfo);
     }
 
-    private initRouteParamsObserver(): void {
-        this.routeParamsSubscription = this.activatedRoute.params
+    @AutoUnsubscribe()
+    private initRouteParamsObserver(): Subscription {
+        return this.activatedRoute.params
             .subscribe(() => {
                 this.mainLayout.scrollView.scrollTo(0, 0);
                 this.initMetaInfo();
@@ -61,15 +56,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
             });
     }
 
-    private initRouteFragmentObserver(): void {
-        this.routeParamsSubscription = this.activatedRoute.fragment
+    @AutoUnsubscribe()
+    private initRouteFragmentObserver(): Subscription {
+        return this.activatedRoute.fragment
             .pipe(
-                filter((fragment) => !!fragment)
+                filter((fragment) => !!fragment),
+                map((fragment) => document.getElementById(fragment))
             )
-            .subscribe((fragment) => {
-                const targetElement = document.getElementById(fragment);
-
-                targetElement.scrollIntoView();
-            });
+            .subscribe((targetElement) => targetElement.scrollIntoView());
     }
 }

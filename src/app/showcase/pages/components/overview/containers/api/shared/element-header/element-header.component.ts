@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'api-element-header',
@@ -29,8 +31,9 @@ export class ElementHeaderComponent implements OnInit {
         this.initRouteFragmentObserver();
     }
 
-    private initRouteFragmentObserver(): void {
-        this.activatedRoute.fragment
+    @AutoUnsubscribe()
+    private initRouteFragmentObserver(): Subscription {
+        return this.activatedRoute.fragment
             .subscribe((fragment) => {
                 this.routeFragment = fragment;
 

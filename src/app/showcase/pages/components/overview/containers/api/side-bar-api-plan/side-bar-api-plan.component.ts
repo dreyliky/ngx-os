@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit }
 import { ActivatedRoute, Router } from '@angular/router';
 import { DevExamplesVisibilityService } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { KeysOfType } from 'ngx-os';
+import { Subscription } from 'rxjs';
 import { OverviewService } from '../../../overview.service';
 
 interface ListItem {
@@ -106,23 +108,6 @@ export class SideBarApiPlanComponent implements OnInit {
         }
     }
 
-    private initMetaInfoObserver(): void {
-        this.overviewService.metaInfo$
-            .subscribe(() => {
-                this.initApiPlanItems();
-                this.changeDetector.detectChanges();
-            });
-    }
-
-    private initRouteFragmentObserver(): void {
-        this.activatedRoute.fragment
-            .subscribe((fragment) => {
-                this.routeFragment = fragment;
-
-                this.changeDetector.detectChanges();
-            });
-    }
-
     private initApiPlanItems(): void {
         this.apiPlanItems = this.apiElements
             .map(({ name: elementName, iconUrl, serviceDataPropName }) => (<ListItem[]>[
@@ -135,5 +120,24 @@ export class SideBarApiPlanComponent implements OnInit {
             ]))
             .filter((items) => items.length > 1)
             .flat();
+    }
+
+    @AutoUnsubscribe()
+    private initMetaInfoObserver(): Subscription {
+        return this.overviewService.metaInfo$
+            .subscribe(() => {
+                this.initApiPlanItems();
+                this.changeDetector.detectChanges();
+            });
+    }
+
+    @AutoUnsubscribe()
+    private initRouteFragmentObserver(): Subscription {
+        return this.activatedRoute.fragment
+            .subscribe((fragment) => {
+                this.routeFragment = fragment;
+
+                this.changeDetector.detectChanges();
+            });
     }
 }

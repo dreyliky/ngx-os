@@ -6,12 +6,12 @@ import {
     ElementRef,
     Input,
     OnChanges,
-    OnDestroy,
     OnInit,
     QueryList
 } from '@angular/core';
-import { Subject, timer } from 'rxjs';
-import { debounce, takeUntil } from 'rxjs/operators';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
+import { Subscription, timer } from 'rxjs';
+import { debounce } from 'rxjs/operators';
 import { elementResizingObserver, OsBaseComponent } from '../../../../core';
 import { Cell, Grid } from '../../classes';
 import { GridDirectionEnum } from '../../enums';
@@ -22,7 +22,7 @@ import { GridItemComponent } from '../item';
     templateUrl: './grid.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridComponent extends OsBaseComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class GridComponent extends OsBaseComponent implements OnInit, OnChanges, AfterViewInit {
     @Input()
     public readonly direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
 
@@ -45,7 +45,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     private _gridItemElements: QueryList<ElementRef<HTMLElement>>;
     private grid: Grid<ElementRef<HTMLElement>>;
-    private untilDestroyed$ = new Subject();
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -64,11 +63,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     public ngOnChanges(): void {
         this.initRecalculations();
-    }
-
-    public ngOnDestroy(): void {
-        this.untilDestroyed$.next();
-        this.untilDestroyed$.complete();
     }
 
     private calculateGridItemElementsPositions(): void {
@@ -104,10 +98,10 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         }
     }
 
-    private initHostSizeChangeObserver(): void {
-        elementResizingObserver(this.hostElementRef.nativeElement)
+    @AutoUnsubscribe()
+    private initHostSizeChangeObserver(): Subscription {
+        return elementResizingObserver(this.hostElementRef.nativeElement)
             .pipe(
-                takeUntil(this.untilDestroyed$),
                 debounce(() => timer(this.hostResizeDelayBeforeCalculation))
             )
             .subscribe(() => this.calculateGridItemElementsPositions());

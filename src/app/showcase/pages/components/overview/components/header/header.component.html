@@ -1,23 +1,25 @@
-<img
-    height="48"
-    [attr.src]="metaInfo.imageUrl" />
+<ng-container *ngIf="(metaInfo$ | async) as metaInfo">
+    <img
+        height="48"
+        [attr.src]="metaInfo.imageUrl" />
 
-<div class="description">
-    <os-header [size]="1">
-        {{ metaInfo.name }}
-    </os-header>
-    
-    <os-header [size]="6">
-        {{ metaInfo.shortInfo }}
-    </os-header>
-</div>
+    <div class="description">
+        <os-header [size]="1">
+            {{ metaInfo.name }}
+        </os-header>
+        
+        <os-header [size]="6">
+            {{ metaInfo.shortInfo }}
+        </os-header>
+    </div>
 
-<div class="action-buttons">
-    <a
-        target="_blank"
-        [attr.href]="sourceCodeLink">
-        <os-button class="source-code">
-            Source code
-        </os-button>
-    </a>
-</div>
+    <div class="action-buttons">
+        <a
+            target="_blank"
+            [attr.href]="sourceCodeLink">
+            <os-button class="source-code">
+                Source code
+            </os-button>
+        </a>
+    </div>
+</ng-container>

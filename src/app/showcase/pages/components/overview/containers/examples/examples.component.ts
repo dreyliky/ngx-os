@@ -3,15 +3,14 @@ import {
     ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
-    OnDestroy,
     OnInit,
     QueryList,
     ViewChildren,
     ViewContainerRef
 } from '@angular/core';
 import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@features/documentation';
-import { combineLatest, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
+import { combineLatest, Subscription } from 'rxjs';
 import { OverviewService } from '../../overview.service';
 
 @Component({
@@ -20,7 +19,7 @@ import { OverviewService } from '../../overview.service';
     styleUrls: ['./examples.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExamplesComponent implements OnInit, OnDestroy {
+export class ExamplesComponent implements OnInit {
     @ViewChildren('demoTemplate', { read: ViewContainerRef })
     private readonly demoTemplates: QueryList<ViewContainerRef>;
 
@@ -31,8 +30,6 @@ export class ExamplesComponent implements OnInit, OnDestroy {
 
     public demoComponents: DemoComponentMetaInfo[];
 
-    private untilDestroyed$ = new Subject();
-
     constructor(
         private readonly devExamplesVisibilityService: DevExamplesVisibilityService,
         private readonly overviewService: OverviewService,
@@ -42,11 +39,6 @@ export class ExamplesComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.initMetaInfoObserver();
-    }
-
-    public ngOnDestroy(): void {
-        this.untilDestroyed$.next();
-        this.untilDestroyed$.complete();
     }
 
     private renderDemoComponents(): void {
@@ -65,14 +57,12 @@ export class ExamplesComponent implements OnInit, OnDestroy {
         }
     }
 
-    private initMetaInfoObserver(): void {
-        combineLatest([
+    @AutoUnsubscribe()
+    private initMetaInfoObserver(): Subscription {
+        return combineLatest([
             this.overviewService.metaInfo$,
             this.devExamplesVisibilityService.data$
         ])
-            .pipe(
-                takeUntil(this.untilDestroyed$)
-            )
             .subscribe(([{ demoComponents }, isDevExamplesVisible]) => {
                 this.initShowcaseComponents(demoComponents, isDevExamplesVisible);
                 this.changeDetector.detectChanges();

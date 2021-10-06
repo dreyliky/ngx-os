@@ -2,9 +2,11 @@
     Apply Theme
 </os-header>
 
-<os-button
-    *ngFor="let theme of themes"
-    [class.os-active]="theme === appliedTheme"
-    (osClick)="applyTheme(theme)">
-    {{ theme }}
-</os-button>
+<ng-container *ngIf="(appliedTheme$ | async) as appliedTheme">
+    <os-button
+        *ngFor="let theme of themes"
+        [class.os-active]="theme === appliedTheme"
+        (osClick)="applyTheme(theme)">
+        {{ theme }}
+    </os-button>
+</ng-container>

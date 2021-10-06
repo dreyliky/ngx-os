@@ -1,9 +1,9 @@
 <theme-dropdown
-    [selectedTheme]="appliedTheme"
+    [selectedTheme]="(appliedTheme$ | async)"
     (themeChanged)="onThemeChanged($event)">
 </theme-dropdown>
 
 <theme-accent-color-dropdown
-    [selectedColor]="appliedColor"
+    [selectedColor]="(appliedColor$ | async)"
     (colorChanged)="onAccentColorChanged($event)">
 </theme-accent-color-dropdown>

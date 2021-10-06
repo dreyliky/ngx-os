@@ -1,5 +1,4 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { CssClasslistToObjectHelper as ClasslistToObject } from '../../../../core';
 import { DragStrategyByAxisProperties, IDraggerParams } from '../../../drag-and-drop';
 import { IResizerParams } from '../../../resizer';
@@ -121,8 +120,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
 
     protected isAfterExitFullscreenByDragging: boolean = false;
 
-    protected readonly parentSubscription = new Subscription();
-
     private readonly draggerStrategy = new DragStrategyByAxisProperties({
         xAxisStyleProperty: CssVariable.Left,
         yAxisStyleProperty: CssVariable.Top
@@ -130,7 +127,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
 
     public ngOnDestroy(): void {
         this.childComponentRef?.destroy();
-        this.parentSubscription.unsubscribe();
         this.windowRef.destroy();
     }
 

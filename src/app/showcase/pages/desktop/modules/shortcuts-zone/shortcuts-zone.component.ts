@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { GridDirectionEnum } from 'ngx-os/modules';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -12,13 +13,11 @@ import { ShortcutSettingsService } from '../../features/shortcut';
     styleUrls: ['./shortcuts-zone.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShortcutsZoneComponent implements OnInit, OnDestroy {
+export class ShortcutsZoneComponent implements OnInit {
     public gridDirection = GridDirectionEnum.Vertical;
     public gridSize = 72;
 
     public programs = APPS;
-
-    private shortcutSettingsSubscription: Subscription;
 
     constructor(
         private readonly execService: ExecService,
@@ -30,16 +29,13 @@ export class ShortcutsZoneComponent implements OnInit, OnDestroy {
         this.initShortcutSettingsObserver();
     }
 
-    public ngOnDestroy(): void {
-        this.shortcutSettingsSubscription.unsubscribe();
-    }
-
     public onProgramShortcutDblClick(program: AppMetadata): void {
         this.execService.run(program);
     }
 
-    private initShortcutSettingsObserver(): void {
-        this.shortcutSettingsSubscription = this.shortcutSettingsService.data$
+    @AutoUnsubscribe()
+    private initShortcutSettingsObserver(): Subscription {
+        return this.shortcutSettingsService.data$
             .pipe(
                 filter((settings) => !!settings)
             )

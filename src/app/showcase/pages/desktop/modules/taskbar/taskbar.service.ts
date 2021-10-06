@@ -1,4 +1,5 @@
 import { ElementRef, Injectable, OnDestroy, QueryList } from '@angular/core';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { elementResizingObserver } from 'ngx-os/core';
 import { DynamicWindowRef, DynamicWindowService, DynamicWindowSharedConfigService } from 'ngx-os/modules';
 import { combineLatest, Subscription } from 'rxjs';
@@ -9,7 +10,6 @@ import { TaskbarPlacementService } from './services';
 @Injectable()
 export class TaskbarService implements OnDestroy {
     private windowRefs: DynamicWindowRef[];
-    private taskbarChangesSubscription: Subscription;
 
     private previousPlacement: TaskbarPlacement;
 
@@ -22,7 +22,6 @@ export class TaskbarService implements OnDestroy {
     ) {}
 
     public ngOnDestroy(): void {
-        this.taskbarChangesSubscription.unsubscribe();
         this.clearWindowSharedConfig();
     }
 
@@ -37,13 +36,15 @@ export class TaskbarService implements OnDestroy {
         this.updateWindowRefsHidesIntoCoordinate();
     }
 
-    private initWindowRefsObserver(): void {
-        this.dynamicWindowService.references$
+    @AutoUnsubscribe()
+    private initWindowRefsObserver(): Subscription {
+        return this.dynamicWindowService.references$
             .subscribe((windowRefs) => this.windowRefs = windowRefs);
     }
 
-    private initChangesObserver(taskbarElement: HTMLElement): void {
-        this.taskbarChangesSubscription = combineLatest([
+    @AutoUnsubscribe()
+    private initChangesObserver(taskbarElement: HTMLElement): Subscription {
+        return combineLatest([
             elementResizingObserver(taskbarElement),
             this.placementService.data$
         ])

@@ -1,15 +1,17 @@
-<os-header [size]="4">
-    Image
-</os-header>
-
-<background-image-selection
-    [currentBackground]="currentBackground">
-</background-image-selection>
-
-<os-header [size]="4">
-    Color
-</os-header>
-
-<background-color-selection
-    [currentBackground]="currentBackground">
-</background-color-selection>
+<ng-container *ngIf="(currentBackground$ | async) as currentBackground">
+    <os-header [size]="4">
+        Image
+    </os-header>
+    
+    <background-image-selection
+        [currentBackground]="currentBackground">
+    </background-image-selection>
+    
+    <os-header [size]="4">
+        Color
+    </os-header>
+    
+    <background-color-selection
+        [currentBackground]="currentBackground">
+    </background-color-selection>
+</ng-container>

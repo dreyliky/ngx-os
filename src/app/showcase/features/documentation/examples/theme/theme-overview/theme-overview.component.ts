@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ThemeEnum } from '@features/theme';
 import { ThemeService } from 'ngx-os/modules';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'showcase-theme-overview',
@@ -15,27 +16,17 @@ export class ThemeOverviewComponent implements OnInit {
         ThemeEnum.Win10
     ];
 
-    public appliedTheme: ThemeEnum;
+    public appliedTheme$: Observable<ThemeEnum>;
 
     constructor(
-        private readonly themeService: ThemeService<ThemeEnum>,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly themeService: ThemeService<ThemeEnum>
     ) {}
 
     public ngOnInit(): void {
-        this.initAppliedThemeObserver();
+        this.appliedTheme$ = this.themeService.applied$;
     }
 
     public applyTheme(themeName: ThemeEnum): void {
         this.themeService.apply(themeName);
-    }
-
-    private initAppliedThemeObserver(): void {
-        this.themeService.applied$
-            .subscribe((appliedTheme) => {
-                this.appliedTheme = appliedTheme;
-
-                this.changeDetector.detectChanges();
-            });
     }
 }
