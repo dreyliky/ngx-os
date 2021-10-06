@@ -7,6 +7,7 @@ import { OsBaseComponent } from '../../../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitleBarIconComponent extends OsBaseComponent implements OnInit {
+    /** The URL to the icon */
     @Input()
     public set url(value: string) {
         if (value) {

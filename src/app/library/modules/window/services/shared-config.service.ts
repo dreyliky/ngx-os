@@ -9,10 +9,12 @@ import { IDynamicWindowParams } from '../interfaces';
     providedIn: 'root'
 })
 export class DynamicWindowSharedConfigService {
+    /** Contains shared config */
     public get data$(): Observable<IDynamicWindowParams> {
         return this._data$.asObservable();
     }
 
+    /** Contains shared config */
     public get data(): IDynamicWindowParams {
         return this._data$.getValue();
     }
@@ -53,10 +55,12 @@ export class DynamicWindowSharedConfigService {
         })
     );
 
-    public update(updatedConfig: IDynamicWindowParams): void {
-        this._data$.next(mergeConfigs(updatedConfig, this.data));
+    /** Overrides some part of config on the new one */
+    public update(config: IDynamicWindowParams): void {
+        this._data$.next(mergeConfigs(config, this.data));
     }
 
+    /** Cleans the shared config completely */
     public clear(): void {
         this._data$.next({});
     }

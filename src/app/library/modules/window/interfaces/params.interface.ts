@@ -14,6 +14,7 @@ export interface IDynamicWindowParams<D = any, T = any> {
      * For example, you need to close a group of windows with the type: MY_TYPE1
      */
     type?: T;
+    /** The component for the title bar with content which will be rendered instead of default content */
     titleBarCustomContent?: Type<any>;
     /** The width of the dynamic window */
     width?: number;
