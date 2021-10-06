@@ -13,9 +13,7 @@ export class TreeNodesSelectionService<T> {
     ) {}
 
     public _initDefaultStateForAll(): void {
-        this.setStateForNodes((node) => (
-            (!isNil(node.isSelected)) ? node.isSelected : false
-        ));
+        this.setStateForNodes((node) => !!node.isSelected);
     }
 
     /** Returns all selected nodes */

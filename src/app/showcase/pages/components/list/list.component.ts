@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AppRouteEnum } from '@core/enums';
+import { AppRouteEnum as AppRoute } from '@core/enums';
 import {
     ComponentMetaInfo,
     LibraryComponentsSearchService,
@@ -9,6 +9,7 @@ import {
 } from '@features/documentation';
 import { GridDirectionEnum } from 'ngx-os';
 import { Observable } from 'rxjs';
+import { ComponentOverviewRouteEnum as OverviewRoute } from '../overview/enums';
 
 @Component({
     selector: 'showcase-list',
@@ -40,7 +41,7 @@ export class ListComponent implements OnInit {
         this.componentsSearchService.search(inputElement.value);
     }
 
-    public onOpenSectionButtonClick(componentType: OsComponentEnum): void {
-        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${componentType}`);
+    public onComponentDblClick(type: OsComponentEnum): void {
+        this.router.navigateByUrl(`/${AppRoute.Components}/${type}/${OverviewRoute.Documentation}`);
     }
 }

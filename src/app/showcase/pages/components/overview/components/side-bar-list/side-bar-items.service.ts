@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
 import { ComponentMetaInfo, LibraryComponentsSearchService, OsComponentEnum } from '@features/documentation';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
@@ -32,9 +32,9 @@ export class SideBarItemsService {
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
-        private readonly router: Router,
-        private readonly activatedRoute: ActivatedRoute
+        private readonly router: Router
     ) {
+        this.initCurrentRouteByUrl(this.router.url);
         this.initRouteUrlObserver();
         this.initDataObservable();
     }
@@ -81,10 +81,12 @@ export class SideBarItemsService {
             .pipe(
                 filter<NavigationEnd>((event) => event instanceof NavigationEnd)
             )
-            .subscribe(({ url }) => {
-                let fragmentIndex = url.indexOf('#');
-                fragmentIndex = (fragmentIndex === -1) ? url.length : fragmentIndex;
-                this.currentRoute = url.slice(0, fragmentIndex);
-            });
+            .subscribe(({ url }) => this.initCurrentRouteByUrl(url));
+    }
+
+    private initCurrentRouteByUrl(url: string): void {
+        let fragmentIndex = url.indexOf('#');
+        fragmentIndex = (fragmentIndex === -1) ? url.length : fragmentIndex;
+        this.currentRoute = url.slice(0, fragmentIndex);
     }
 }
