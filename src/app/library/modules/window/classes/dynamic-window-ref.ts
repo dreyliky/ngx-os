@@ -2,7 +2,7 @@ import { ComponentRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IdGenerator } from '../../../core';
 import { DynamicWindowComponent } from '../components';
-import { IDynamicWindowParams, IDynamicWindowRef } from '../interfaces';
+import { IDynamicWindowConfig, IDynamicWindowRef } from '../interfaces';
 
 /** @internal */
 export class DynamicWindowRef implements IDynamicWindowRef {
@@ -42,11 +42,11 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         return this._afterClosed$.asObservable();
     }
 
-    public get config$(): Observable<IDynamicWindowParams> {
+    public get config$(): Observable<IDynamicWindowConfig> {
         return this._config$.asObservable();
     }
 
-    public get config(): IDynamicWindowParams {
+    public get config(): IDynamicWindowConfig {
         return this._config$.getValue();
     }
 
@@ -62,7 +62,7 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         return this._componentRef;
     }
 
-    private readonly _config$ = new BehaviorSubject<IDynamicWindowParams>({});
+    private readonly _config$ = new BehaviorSubject<IDynamicWindowConfig>({});
     private readonly _isHidden$ = new BehaviorSubject<boolean>(false);
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
     private readonly _isActive$ = new BehaviorSubject<boolean>(true);
@@ -74,13 +74,13 @@ export class DynamicWindowRef implements IDynamicWindowRef {
     private _windowElement: HTMLElement;
     private _componentRef: ComponentRef<DynamicWindowComponent>;
 
-    public init(config: IDynamicWindowParams): void {
+    public init(config: IDynamicWindowConfig): void {
         this.updateConfig(config);
         this.setIsHiddenState(config.isHiddenByDefault);
         this.setIsFullscreenState(config.isFullscreenByDefault);
     }
 
-    public updateConfig(config: IDynamicWindowParams): void {
+    public updateConfig(config: IDynamicWindowConfig): void {
         this._config$.next({ ...this.config, ...config });
     }
 

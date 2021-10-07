@@ -1,13 +1,17 @@
 import { InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
-import { IS_DYNAMIC_WINDOW_CONTEXT } from '../data/is-dynamic-window-context.token';
-import { IDynamicWindowDiParams, IDynamicWindowParams } from '../interfaces';
-import { DynamicWindowConfig } from './dynamic-window-config';
+import { DYNAMIC_WINDOW_REF, IS_DYNAMIC_WINDOW_CONTEXT } from '../data';
+import { IDynamicWindowConfig, IDynamicWindowDiParams } from '../interfaces';
 import { DynamicWindowRef } from './dynamic-window-ref';
 
-/** @internal */
+/**
+ * @internal
+ * Defines data in DI tree on dynamic window level.
+ * Allows injecting these data using InjectionTokens
+ * in the component rendered inside the dynamic window
+ **/
 export class DynamicWindowInjector implements Injector {
     private readonly parentInjector: Injector;
-    private readonly config: IDynamicWindowParams;
+    private readonly config: IDynamicWindowConfig;
     private readonly windowRef: DynamicWindowRef;
     private additionalTokens: WeakMap<object, unknown>;
 
@@ -39,8 +43,7 @@ export class DynamicWindowInjector implements Injector {
     private initAdditionalTokens(): void {
         this.additionalTokens = new WeakMap();
 
-        this.additionalTokens.set(DynamicWindowConfig, this.config);
-        this.additionalTokens.set(DynamicWindowRef, this.windowRef);
+        this.additionalTokens.set(DYNAMIC_WINDOW_REF, this.windowRef);
         this.additionalTokens.set(IS_DYNAMIC_WINDOW_CONTEXT, true);
     }
 }

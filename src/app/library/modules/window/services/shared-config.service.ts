@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { RESIZERS_ARRAY } from '../../resizer';
 import { DynamicWindowConfig } from '../classes';
 import { mergeConfigs } from '../helpers';
-import { IDynamicWindowParams } from '../interfaces';
+import { IDynamicWindowConfig } from '../interfaces';
 
 /** Allows manipulation with shared config for all windows */
 @Injectable({
@@ -11,16 +11,16 @@ import { IDynamicWindowParams } from '../interfaces';
 })
 export class DynamicWindowSharedConfigService {
     /** Contains shared config */
-    public get data$(): Observable<IDynamicWindowParams> {
+    public get data$(): Observable<IDynamicWindowConfig> {
         return this._data$.asObservable();
     }
 
     /** Contains shared config */
-    public get data(): IDynamicWindowParams {
+    public get data(): IDynamicWindowConfig {
         return this._data$.getValue();
     }
 
-    private readonly _data$ = new BehaviorSubject<IDynamicWindowParams>(
+    private readonly _data$ = new BehaviorSubject<IDynamicWindowConfig>(
         new DynamicWindowConfig({
             title: 'OS dynamic window',
             minWidth: 275,
@@ -57,7 +57,7 @@ export class DynamicWindowSharedConfigService {
     );
 
     /** Overrides some part of config on the new one */
-    public update(config: IDynamicWindowParams): void {
+    public update(config: IDynamicWindowConfig): void {
         this._data$.next(mergeConfigs(config, this.data));
     }
 

@@ -20,7 +20,7 @@ import { IResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG } from '../../data';
 import { DynamicStateEnum as DynamicState, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
 import { mergeConfigs } from '../../helpers';
-import { IDynamicWindowParams } from '../../interfaces';
+import { IDynamicWindowConfig } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 
 @Component({
@@ -37,7 +37,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private readonly draggableDirective: DraggableDirective;
 
     constructor(
-        @Inject(DYNAMIC_WINDOW_SHARED_CONFIG) private sharedConfig$: Observable<IDynamicWindowParams>,
+        @Inject(DYNAMIC_WINDOW_SHARED_CONFIG) private sharedConfig$: Observable<IDynamicWindowConfig>,
         private readonly hostElementRef: ElementRef<HTMLElement>,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef

@@ -1,11 +1,11 @@
-import { IDynamicWindowParams } from '../interfaces';
+import { IDynamicWindowConfig } from '../interfaces';
 
 /** @internal */
 export function mergeConfigs(
-    updated: IDynamicWindowParams,
-    shared: IDynamicWindowParams
-): IDynamicWindowParams {
-    const result: IDynamicWindowParams = {};
+    updated: IDynamicWindowConfig,
+    shared: IDynamicWindowConfig
+): IDynamicWindowConfig {
+    const result: IDynamicWindowConfig = {};
 
     for (const [key, value] of Object.entries({ ...updated, ...shared })) {
         if (Array.isArray(value)) {

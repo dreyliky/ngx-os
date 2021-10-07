@@ -41,11 +41,12 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
     ],
     libInterfaces: [
         'IDynamicWindowRef',
-        'IDynamicWindowParams',
+        'IDynamicWindowConfig',
         'IDynamicWindowFullscreenOffset',
         'ICssCoordinate'
     ],
     libVariables: [
+        'DYNAMIC_WINDOW_REF',
         'DYNAMIC_WINDOW_SHARED_CONFIG',
         'IS_DYNAMIC_WINDOW_CONTEXT'
     ],

@@ -8,6 +8,25 @@ import {
 } from '@angular/core';
 import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 
+/**
+ * ## Content Projection Slots
+ * - Attribute `os-title-bar`: Slot for title-bar. You can pass {@link TitleBarComponent}
+ * or use your custom element instead of default title-bar
+ * - `Others`: Will be placed inside the body of the window
+ *
+ * @example
+ * ```html
+ * <os-window>
+ *    <!-- Will be at the top of the window as title-bar -->
+ *    <os-title-bar os-title-bar></os-title-bar>
+ *
+ *    <!-- Will be inside the body of window -->
+ *    <div>Header</div>
+ *    <div>Content</div>
+ *    <div>Footer</div>
+ * </os-window>
+ * ```
+ **/
 @Component({
     selector: 'os-window',
     templateUrl: './window.component.html',

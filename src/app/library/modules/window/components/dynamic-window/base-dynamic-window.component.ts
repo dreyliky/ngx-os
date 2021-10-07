@@ -8,7 +8,7 @@ import {
     DynamicWindowCssClassEnum as CssClass,
     DynamicWindowCssVariableEnum as CssVariable
 } from '../../enums';
-import { IDynamicWindowParams } from '../../interfaces';
+import { IDynamicWindowConfig } from '../../interfaces';
 
 @Component({
     template: ''
@@ -97,7 +97,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
 
     public isViewInitialized: boolean = false;
 
-    public config: IDynamicWindowParams;
+    public config: IDynamicWindowConfig;
     public draggerConfig: IDraggerParams;
     public resizerConfig: IResizerParams;
 

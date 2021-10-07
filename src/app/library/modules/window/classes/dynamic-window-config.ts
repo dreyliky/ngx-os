@@ -1,9 +1,9 @@
 import { Type } from '@angular/core';
 import { ResizerEnum } from '../../resizer';
-import { IDynamicWindowFullscreenOffset, IDynamicWindowParams } from '../interfaces';
+import { IDynamicWindowConfig, IDynamicWindowFullscreenOffset } from '../interfaces';
 
 /** @internal */
-export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowParams {
+export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowConfig {
     public title?: string;
     public data?: D;
     public type?: T;
@@ -18,8 +18,7 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public positionX?: number;
     public positionY?: number;
     public iconUrl?: string;
-    public fullscreenOffset: IDynamicWindowFullscreenOffset;
-
+    public fullscreenOffset?: IDynamicWindowFullscreenOffset;
     public isFullscreenByDefault?: boolean;
     public isHiddenByDefault?: boolean;
     public isAllowHide?: boolean;
@@ -39,19 +38,19 @@ export class DynamicWindowConfig<D = any, T = any> implements IDynamicWindowPara
     public onToggleFullscreenButtonClick?: () => void;
     public onCloseButtonClick?: () => void;
 
-    constructor(params: IDynamicWindowParams = {}) {
+    constructor(params: IDynamicWindowConfig = {}) {
         Object.assign(this, params);
         this.initWidth(params);
         this.initHeight(params);
     }
 
-    private initWidth(params: IDynamicWindowParams): void {
+    private initWidth(params: IDynamicWindowConfig): void {
         if (params.minWidth && !params.width) {
             this.width = params.minWidth;
         }
     }
 
-    private initHeight(params: IDynamicWindowParams): void {
+    private initHeight(params: IDynamicWindowConfig): void {
         if (params.minHeight && !params.height) {
             this.height = params.minHeight;
         }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { DynamicWindowService, DYNAMIC_WINDOW_REF, IDynamicWindowRef } from 'ngx-os';
 import { KeysOfType } from 'ngx-os/core';
-import { DynamicWindowRef, DynamicWindowService } from 'ngx-os/modules';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EmptyWindowComponent } from './components';
@@ -28,7 +28,7 @@ export class ExperimentsAppComponent implements OnInit {
     private currentActionIntervalId: number;
 
     constructor(
-        @Inject(DynamicWindowRef) private readonly windowRef: DynamicWindowRef,
+        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: IDynamicWindowRef,
         private readonly dynamicWindowService: DynamicWindowService,
         private readonly windowsPositionShuffleService: WindowsPositionShuffleService,
         private readonly changeDetector: ChangeDetectorRef
@@ -65,7 +65,7 @@ export class ExperimentsAppComponent implements OnInit {
         });
     }
 
-    public makeGroupWindowsAction(action: KeysOfType<DynamicWindowRef, () => any>): void {
+    public makeGroupWindowsAction(action: KeysOfType<IDynamicWindowRef, () => any>): void {
         clearInterval(this.currentActionIntervalId);
 
         let currentWindowRefIndex = 0;

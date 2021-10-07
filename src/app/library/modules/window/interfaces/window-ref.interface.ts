@@ -1,7 +1,7 @@
 import { ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
-import { IDynamicWindowParams } from './params.interface';
+import { IDynamicWindowConfig } from './config.interface';
 
 /**
  * Public API of DynamicWindowRef.
@@ -18,7 +18,7 @@ export interface IDynamicWindowRef {
     /** Is the dynamic window active (means the user works with it right now) */
     isActive$: Observable<boolean>;
     /** Configuration object for the dynamic window */
-    config$: Observable<IDynamicWindowParams>;
+    config$: Observable<IDynamicWindowConfig>;
     /** Emits value when the dynamic window closed */
     afterClosed$: Observable<any>;
 
@@ -31,14 +31,14 @@ export interface IDynamicWindowRef {
     /** Is the dynamic window active (means the user works with it right now) */
     isActive: boolean;
     /** Configuration object for the dynamic window */
-    config: IDynamicWindowParams;
+    config: IDynamicWindowConfig;
     /** The HTML element of the dynamic window */
     windowElement: HTMLElement;
     /** The component rendered inside the dynamic window */
     componentRef: ComponentRef<DynamicWindowComponent>;
 
     /** Changes the configuration of the dynamic window */
-    updateConfig(config: IDynamicWindowParams): void;
+    updateConfig(config: IDynamicWindowConfig): void;
     /** Hides dynamic window */
     hide(): void;
     /** Shows dynamic window */

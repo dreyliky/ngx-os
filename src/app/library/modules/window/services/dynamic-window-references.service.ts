@@ -3,7 +3,7 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { merge, Observable, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { DynamicWindowConfig, DynamicWindowRef } from '../classes';
-import { IDynamicWindowParams } from '../interfaces';
+import { IDynamicWindowConfig } from '../interfaces';
 import { WindowReferencesState } from '../states';
 import { DynamicWindowActivityService } from './dynamic-window-activity.service';
 import { DynamicWindowRefOrderingService } from './dynamic-window-ref-ordering.service';
@@ -29,7 +29,7 @@ export class DynamicWindowReferencesService {
         private readonly coordinatesService: DynamicWindowsCoordinatesService
     ) {}
 
-    public register(windowRef: DynamicWindowRef, config: IDynamicWindowParams): void {
+    public register(windowRef: DynamicWindowRef, config: IDynamicWindowConfig): void {
         windowRef.init(new DynamicWindowConfig(config));
         this.state.add(windowRef);
         this.coordinatesService.applyDefault(windowRef);

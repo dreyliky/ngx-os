@@ -4,7 +4,7 @@ import { ResizerEnum } from '../../resizer';
 import { IDynamicWindowFullscreenOffset } from './fullscreen-offset.interface';
 
 /** The parameters to set up a dynamic window and pass some custom data for the component which will be rendered inside */
-export interface IDynamicWindowParams<D = any, T = any> {
+export interface IDynamicWindowConfig<D = any, T = any> {
     /** The title text of the dynamic window's title bar */
     title?: string;
     /** Custom data you can access via the component which rendered inside of the dynamic window */
