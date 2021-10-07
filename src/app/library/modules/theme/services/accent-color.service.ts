@@ -3,7 +3,10 @@ import { Inject, Injectable } from '@angular/core';
 import { IThemeRgbColor } from '../interfaces';
 import { ThemeColorType } from '../types';
 
-/** @dynamic */
+/**
+ * @dynamic
+ * Allows to apply accent colors
+ **/
 // See: https://github.com/angular/angular/issues/20351
 @Injectable({
     providedIn: 'root'
