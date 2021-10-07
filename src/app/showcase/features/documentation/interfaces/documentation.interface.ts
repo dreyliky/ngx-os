@@ -12,13 +12,6 @@ export interface Doc {
     modules: DocModule[];
     miscellaneous: Miscellaneous;
     routes: any[];
-    coverage: Coverage;
-}
-
-interface Coverage {
-    count: number;
-    status: string;
-    files: File[];
 }
 
 interface File {
@@ -77,6 +70,7 @@ export interface DocTypealias {
 export interface DocModule {
     name: string;
     children: Child[];
+    description?: string;
     readme?: string;
 }
 
@@ -111,7 +105,7 @@ export interface DocComponent {
     methodsClass: MethodsClass[];
     hostBindings: any[];
     hostListeners: HostListener[];
-    description: string;
+    description?: string;
     rawdescription: string;
     type: string;
     sourceCode: string;
@@ -192,7 +186,7 @@ export interface DocDirective {
     id: string;
     file: string;
     type: string;
-    description: string;
+    description?: string;
     sourceCode: string;
     selector: string;
     providers: any[];
@@ -281,6 +275,7 @@ export interface DocClass {
     constructorObj?: ConstructorObj;
     implements?: string[];
     accessors?: DocAccessors;
+    description?: string;
     readme?: string;
 }
 
@@ -394,7 +389,7 @@ export interface DocInjectable {
     properties: DocClassProperty[];
     methods: Method[];
     readme?: string;
-    description: string;
+    description?: string;
     sourceCode: string;
     constructorObj: ConstructorObj;
     accessors?: DocAccessors;
@@ -453,6 +448,7 @@ export interface DocInterface {
     indexSignatures: any[];
     kind: number;
     methods: DocInterfaceMethod[];
+    description?: string;
     readme?: string;
 }
 
