@@ -12,7 +12,7 @@ export class GetStartedComponent implements OnInit {
     public markdownContent$: Observable<string>;
 
     public get getStartedPagePath(): string {
-        return 'https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/get-started.md';
+        return this.documentationService.getGithubUrl(GuideDocumentationEnum.GetStarted);
     }
 
     constructor(

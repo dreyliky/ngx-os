@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { LibraryModuleDocumentationService } from '@features/documentation';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { OverviewService } from '../../overview.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { OverviewService } from '../../overview.service';
 })
 export class DocumentationComponent implements OnInit {
     public markdownContent$: Observable<string>;
+    public contentGithubUrl: string;
 
     constructor(
         private readonly documentationService: LibraryModuleDocumentationService,
@@ -25,6 +26,7 @@ export class DocumentationComponent implements OnInit {
     private initMarkdownContentObservable(): void {
         this.markdownContent$ = this.overviewService.metaInfo$
             .pipe(
+                tap(({ type }) => this.contentGithubUrl = this.documentationService.getGithubUrl(type)),
                 switchMap(({ type }) => this.documentationService.getAsMarkdown(type))
             );
     }

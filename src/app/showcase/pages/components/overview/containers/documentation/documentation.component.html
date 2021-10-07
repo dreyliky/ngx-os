@@ -1,5 +1,11 @@
 <os-header>Documentation</os-header>
 
+<a
+    target="_blank"
+    [attr.href]="contentGithubUrl">
+    <os-button>Read on Github</os-button>
+</a>
+
 <showcase-markdown-viewer
     *ngIf="(markdownContent$ | async) as markdownContent; else loaderTemplate"
     [data]="markdownContent">
