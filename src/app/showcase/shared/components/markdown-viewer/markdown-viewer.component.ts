@@ -16,4 +16,20 @@ export class MarkdownViewerComponent {
     }
 
     public parsedData: string = '';
+
+    public onClick(event: MouseEvent): void {
+        this.processLinkClick(event);
+        event.stopImmediatePropagation();
+    }
+
+    private processLinkClick(event: MouseEvent): void {
+        const element = event.target as HTMLElement;
+
+        if (element.tagName === 'A') {
+            const href = element.getAttribute('href');
+
+            window.open(href, '_blank').focus();
+            event.preventDefault();
+        }
+    }
 }

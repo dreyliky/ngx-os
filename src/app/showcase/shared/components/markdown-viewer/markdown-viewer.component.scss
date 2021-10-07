@@ -38,4 +38,10 @@
             background: transparent;
         }
     }
+
+    a {
+        color: rgba(var(--os-primary-color));
+        text-decoration: underline;
+        font-weight: bold;
+    }
 }

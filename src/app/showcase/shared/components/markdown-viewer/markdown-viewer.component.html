@@ -1,3 +1,4 @@
 <os-text
-    [innerHTML]="parsedData | safeHTML">
+    [innerHTML]="parsedData | safeHTML"
+    (osClick)="onClick($event)">
 </os-text>
