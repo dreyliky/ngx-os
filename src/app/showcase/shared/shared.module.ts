@@ -5,9 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxOsModule } from 'ngx-os';
 import { CodeComponent, MarkdownViewerComponent } from './components';
+import { SafeHtmlPipe } from './pipes';
 
 @NgModule({
     declarations: [
+        SafeHtmlPipe,
         CodeComponent,
         MarkdownViewerComponent
     ],
@@ -27,6 +29,7 @@ import { CodeComponent, MarkdownViewerComponent } from './components';
         ReactiveFormsModule,
         NgxOsModule,
 
+        SafeHtmlPipe,
         CodeComponent,
         MarkdownViewerComponent
     ]

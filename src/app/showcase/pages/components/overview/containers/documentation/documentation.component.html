@@ -1,1 +1,10 @@
-<p>documentation works!</p>
+<os-header>Documentation</os-header>
+
+<showcase-markdown-viewer
+    *ngIf="(markdownContent$ | async) as markdownContent; else loaderTemplate"
+    [data]="markdownContent">
+</showcase-markdown-viewer>
+
+<ng-template #loaderTemplate>
+    Loading...
+</ng-template>

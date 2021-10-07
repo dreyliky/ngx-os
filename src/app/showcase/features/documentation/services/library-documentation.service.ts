@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -14,19 +15,18 @@ import {
     DocVariable
 } from '../interfaces';
 import { LibraryDocumentationState } from '../states';
-import { LibraryDocumentationApiService } from './library-documentation-api.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LibraryDocumentationService {
     constructor(
-        private readonly api: LibraryDocumentationApiService,
+        private readonly http: HttpClient,
         private readonly state: LibraryDocumentationState
     ) {}
 
     public update(): Observable<Doc> {
-        return this.api.get()
+        return this.http.get<Doc>(`/assets/library-doc/documentation.json`)
             .pipe(
                 tap((documentation) => console.log('lib-doc', documentation)),
                 tap((documentation) => this.state.set(documentation))
