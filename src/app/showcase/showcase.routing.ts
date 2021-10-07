@@ -21,6 +21,10 @@ const routes: Routes = [
                 loadChildren: () => import('./pages/components/components.module').then((m) => m.ComponentsModule)
             },
             {
+                path: AppRouteEnum.GetStarted,
+                loadChildren: () => import('./pages/get-started/get-started.module').then((m) => m.GetStartedModule)
+            },
+            {
                 path: '**',
                 redirectTo: AppRouteEnum.Main,
                 pathMatch: 'full'

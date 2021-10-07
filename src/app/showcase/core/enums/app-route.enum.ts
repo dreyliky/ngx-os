@@ -1,5 +1,6 @@
 export enum AppRouteEnum {
     Main = 'main',
     Components = 'components',
-    Desktop = 'desktop'
+    Desktop = 'desktop',
+    GetStarted = 'get-started'
 }

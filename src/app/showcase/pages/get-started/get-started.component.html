@@ -1,0 +1,9 @@
+<a
+    target="_blank"
+    [attr.href]="getStartedPagePath">
+    <os-button>Read on Github</os-button>
+</a>
+
+<showcase-markdown-viewer
+    [data]="(markdownContent$ | async)">
+</showcase-markdown-viewer>
