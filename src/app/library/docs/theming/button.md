@@ -1,6 +1,6 @@
 ## ButtonComponent
 
-### Styling
+### CSS Classes
 | Name          | Description                       |
 | ------------- | --------------------------------- |
 | `os-button`   | Button class                      |
