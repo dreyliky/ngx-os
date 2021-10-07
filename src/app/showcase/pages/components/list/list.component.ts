@@ -5,11 +5,11 @@ import { AppRouteEnum as AppRoute } from '@core/enums';
 import {
     ComponentMetaInfo,
     LibraryComponentsSearchService,
-    OsComponentEnum
+    OsComponentEnum,
+    OsComponentOverviewSectionEnum as OverviewSection
 } from '@features/documentation';
 import { GridDirectionEnum } from 'ngx-os';
 import { Observable } from 'rxjs';
-import { ComponentOverviewRouteEnum as OverviewRoute } from '../overview/enums';
 
 @Component({
     selector: 'showcase-list',
@@ -42,6 +42,6 @@ export class ListComponent implements OnInit {
     }
 
     public onComponentDblClick(type: OsComponentEnum): void {
-        this.router.navigateByUrl(`/${AppRoute.Components}/${type}/${OverviewRoute.Documentation}`);
+        this.router.navigateByUrl(`/${AppRoute.Components}/${type}/${OverviewSection.Documentation}`);
     }
 }

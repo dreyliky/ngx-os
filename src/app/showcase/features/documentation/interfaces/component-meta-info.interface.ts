@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { OsComponentEnum } from '../enums';
+import { OsComponentEnum, OsComponentOverviewSectionEnum } from '../enums';
 import { DemoComponentMetaInfo } from './demo-component-meta-info.interface';
 
 export interface ComponentMetaInfo {
@@ -7,6 +7,7 @@ export interface ComponentMetaInfo {
     type: OsComponentEnum;
     shortInfo: string;
     imageUrl: string;
+    forbiddenOverviewSections?: OsComponentOverviewSectionEnum[];
     libModules?: Type<any>[];
     libServices?: Type<any>[];
     libDirectives?: Type<any>[];

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OverviewComponent } from '.';
-import { ComponentOverviewRouteEnum as RouteEnum } from './enums';
+import { OsComponentOverviewSectionEnum as RouteEnum } from '@features/documentation';
+import { OverviewComponent } from './overview.component';
 
 const routes: Routes = [
     {
@@ -15,6 +15,10 @@ const routes: Routes = [
             {
                 path: RouteEnum.Examples,
                 loadChildren: () => import('./containers/examples/examples.module').then((m) => m.ExamplesModule)
+            },
+            {
+                path: RouteEnum.Theming,
+                loadChildren: () => import('./containers/theming/theming.module').then((m) => m.ThemingModule)
             },
             {
                 path: RouteEnum.Api,

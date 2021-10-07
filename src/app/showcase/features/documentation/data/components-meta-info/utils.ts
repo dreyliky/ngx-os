@@ -5,7 +5,7 @@ import {
     FixedToParentDirective,
     UtilsModule
 } from 'ngx-os/modules';
-import { OsComponentEnum } from '../../enums';
+import { OsComponentEnum, OsComponentOverviewSectionEnum as OverviewSection } from '../../enums';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const UTILS_META_INFO: ComponentMetaInfo = {
@@ -13,6 +13,9 @@ export const UTILS_META_INFO: ComponentMetaInfo = {
     type: OsComponentEnum.Utils,
     shortInfo: 'Provides helper functionality.',
     imageUrl: '/assets/showcase/icons/components/utils.png',
+    forbiddenOverviewSections: [
+        OverviewSection.Theming
+    ],
     libModules: [
         UtilsModule
     ],
