@@ -5,6 +5,7 @@ import { DynamicWindowConfig } from '../classes';
 import { mergeConfigs } from '../helpers';
 import { IDynamicWindowParams } from '../interfaces';
 
+/** Allows manipulation with shared config for all windows */
 @Injectable({
     providedIn: 'root'
 })

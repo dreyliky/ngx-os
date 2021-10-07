@@ -3,7 +3,13 @@ import { Observable } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
 import { IDynamicWindowParams } from './params.interface';
 
-/** Public API of DynamicWindowRef */
+/**
+ * Public API of DynamicWindowRef.
+ *
+ * A mediator for manipulating and tracking the states of a dynamic window.
+ * It can be used to manipulate the window itself (minimizing, closing, etc.),
+ * and to change the config, modify the initial window settings, or change the window data.
+ **/
 export interface IDynamicWindowRef {
     /** Is the dynamic window hidden */
     isHidden$: Observable<boolean>;
