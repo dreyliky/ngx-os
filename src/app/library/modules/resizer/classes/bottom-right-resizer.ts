@@ -3,7 +3,7 @@ import { BaseResizer } from './base-resizer';
 
 /** @internal */
 export class BottomRightResizer extends BaseResizer {
-    public static id = ResizerEnum.bottomRight;
+    public static id = ResizerEnum.BottomRight;
 
     private readonly documentElement = document.documentElement;
 

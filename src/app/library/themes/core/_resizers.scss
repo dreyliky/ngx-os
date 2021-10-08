@@ -58,28 +58,28 @@ os-resizers {
             left: $border-offset;
         }
 
-        &.topLeft {
+        &.top-left {
             @include corner-resizer;
     
             left: $border-offset;
             top: $border-offset;
         }
         
-        &.topRight {
+        &.top-right {
             @include corner-resizer;
     
             right: $border-offset;
             top: $border-offset;
         }
         
-        &.bottomLeft {
+        &.bottom-left {
             @include corner-resizer;
     
             left: $border-offset;
             bottom: $border-offset;
         }
         
-        &.bottomRight {
+        &.bottom-right {
             @include corner-resizer;
     
             right: $border-offset;

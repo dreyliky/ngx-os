@@ -3,7 +3,7 @@ import { BaseResizer } from './base-resizer';
 
 /** @internal */
 export class TopLeftResizer extends BaseResizer {
-    public static id = ResizerEnum.topLeft;
+    public static id = ResizerEnum.TopLeft;
 
     public resizeElement(event: MouseEvent): void {
         this.processAxisX(event);

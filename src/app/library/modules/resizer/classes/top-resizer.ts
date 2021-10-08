@@ -3,7 +3,7 @@ import { BaseResizer } from './base-resizer';
 
 /** @internal */
 export class TopResizer extends BaseResizer {
-    public static id = ResizerEnum.top;
+    public static id = ResizerEnum.Top;
 
     public resizeElement(event: MouseEvent): void {
         const height = this.originalHeight - (event.pageY - this.originalMouseY);

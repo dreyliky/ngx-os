@@ -10,7 +10,7 @@ export const TASKBAR_PLACEMENT_ARRAY: TaskbarPlacement[] = [
         windowConfigFullscreenOffsetKey: 'bottom',
         targetSizeProperty: 'offsetHeight',
         resizerConfig: {
-            allowedResizers: [ResizerEnum.top],
+            allowedResizers: [ResizerEnum.Top],
             heightStyleProperty: 'min-height'
         }
     },
@@ -21,7 +21,7 @@ export const TASKBAR_PLACEMENT_ARRAY: TaskbarPlacement[] = [
         windowConfigFullscreenOffsetKey: 'top',
         targetSizeProperty: 'offsetHeight',
         resizerConfig: {
-            allowedResizers: [ResizerEnum.bottom],
+            allowedResizers: [ResizerEnum.Bottom],
             heightStyleProperty: 'min-height'
         }
     },
@@ -32,7 +32,7 @@ export const TASKBAR_PLACEMENT_ARRAY: TaskbarPlacement[] = [
         windowConfigFullscreenOffsetKey: 'left',
         targetSizeProperty: 'offsetWidth',
         resizerConfig: {
-            allowedResizers: [ResizerEnum.right],
+            allowedResizers: [ResizerEnum.Right],
             heightStyleProperty: 'min-width'
         }
     },
@@ -43,7 +43,7 @@ export const TASKBAR_PLACEMENT_ARRAY: TaskbarPlacement[] = [
         windowConfigFullscreenOffsetKey: 'right',
         targetSizeProperty: 'offsetWidth',
         resizerConfig: {
-            allowedResizers: [ResizerEnum.left],
+            allowedResizers: [ResizerEnum.Left],
             heightStyleProperty: 'min-width'
         }
     }

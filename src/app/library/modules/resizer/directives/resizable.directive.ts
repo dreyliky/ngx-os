@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { CommonCssClassEnum as CommonCssClass } from '../../../core';
 import { BaseResizer, ResizerConfig, ResizerFactory } from '../classes';
 import { ResizerCssClassEnum as CssClass, ResizerElementTagEnum as ElementTag, ResizerEnum } from '../enums';
 import { IResizeInfo, IResizerParams } from '../interfaces';
@@ -116,7 +117,7 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     private updateResizersWrapperActivity(): void {
         const classList = this._resizersWrapperElement.classList;
 
-        (this.config.isEnabled) ? classList.add(CssClass.Active) : classList.remove(CssClass.Active);
+        (this.config.isEnabled) ? classList.add(CommonCssClass.Active) : classList.remove(CommonCssClass.Active);
     }
 
     private resizerMouseDownHandler(event: MouseEvent, resizerId: ResizerEnum): void {

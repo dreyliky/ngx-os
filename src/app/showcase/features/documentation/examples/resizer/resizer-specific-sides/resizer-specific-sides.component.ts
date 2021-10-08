@@ -11,9 +11,9 @@ export class ResizerSpecificSidesComponent {
     public readonly resizerConfig: IResizerParams = {
         isAllowChangePosition: false,
         allowedResizers: [
-            ResizerEnum.right,
-            ResizerEnum.bottomRight,
-            ResizerEnum.bottom
+            ResizerEnum.Right,
+            ResizerEnum.BottomRight,
+            ResizerEnum.Bottom
         ]
     };
 }
