@@ -19,10 +19,12 @@ os-tab-group {
 
             &:hover {
                 color: #333333;
+                border-color: transparent;
             }
 
             &:active {
                 transform: none;
+                background-color: transparent;
             }
 
             &[aria-selected="true"] {

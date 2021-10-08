@@ -1,23 +1,24 @@
 <ng-template #tabButtonTemplate>
-    <os-button
+    <button
+        class="os-button"
         [id]="id"
-        [isDisabled]="isDisabled"
-        [style]="tabButtonStyle"
-        [styleClass]="tabButtonStyleClass"
-        [role]="'tab'"
-        [ariaSelected]="isSelected"
-        (osClick)="onTabButtonClick($event)">
+        [disabled]="isDisabled"
+        [class.os-disabled]="isDisabled"
+        [ngStyle]="tabButtonStyle"
+        [ngClass]="tabButtonStyleClass"
+        [attr.role]="'tab'"
+        [attr.aria-selected]="isSelected"
+        (click)="onTabButtonClick($event)">
         {{ label }}
-    </os-button>
+    </button>
 </ng-template>
 
 <ng-template #tabContentTemplate>
     <article
         class="os-element"
+        role="tabpanel"
         [ngStyle]="style"
-        [class]="styleClass"
-        role="tabpanel">
-        <ng-content>
-        </ng-content>
+        [class]="styleClass">
+        <ng-content></ng-content>
     </article>
 </ng-template>
