@@ -13,7 +13,6 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-list-item',
     templateUrl: './item.component.html',
-    styleUrls: ['./item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListItemComponent<T> extends OsBaseComponent implements OnInit {

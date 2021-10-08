@@ -12,12 +12,14 @@
     }
 
     .os-list-item {
+        width: 100%;
         min-height: 30px;
         display: flex;
         align-items: center;
         font-size: 16px;
         padding: 0px 10px;
         margin: 1px 0px;
+        box-sizing: border-box;
 
         &.os-disabled {
             color: #909090;

@@ -11,10 +11,12 @@
     }
 
     .os-list-item {
+        width: 100%;
         min-height: 15px;
         display: flex;
         align-items: center;
         padding: 0px 2px;
+        box-sizing: border-box;
 
         &.os-selected {
             background-color: rgba(var(--os-primary-color), .6) !important;
