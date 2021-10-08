@@ -7,3 +7,11 @@
 | `os-active`   | Is button pressed                 |
 | `os-disabled` | Is button disabled                |
 | `os-focused`  | Is button focused                 |
+
+### Attributes
+| Name            |
+| --------------- |
+| `aria-label`    |
+| `aria-controls` |
+| `aria-selected` |
+| `role`          |
