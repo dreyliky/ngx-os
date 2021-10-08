@@ -49,6 +49,11 @@ export class SideBarListComponent implements OnInit, AfterViewInit {
 
     public onNodeSelected({ node }: Selection<SideBarItem>): void {
         this.router.navigateByUrl(node.data.sectionUrl);
+
+        if (node.children?.length) {
+            this.treeView.nodesExpansion.collapseAll();
+        }
+
         this.treeView.nodesExpansion.expand(node);
     }
 
