@@ -3,6 +3,7 @@ import { isNil } from '../../../core';
 import { ITreeNode, ITreeNodeSelectionEvent } from '../interfaces';
 import { TreeNodesState } from '../states';
 
+/** Must be used only via {@link TreeViewComponent}. Please don't inject it directly */
 @Injectable()
 export class TreeNodesSelectionService<T> {
     public _osSelected: EventEmitter<ITreeNodeSelectionEvent<T>> = new EventEmitter();

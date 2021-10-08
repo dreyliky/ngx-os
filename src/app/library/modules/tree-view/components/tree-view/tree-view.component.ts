@@ -53,9 +53,11 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
     @Input()
     public isAllowMultipleExpansion: boolean = true;
 
+    /** Stylelist for scroll view component of the tree-view */
     @Input()
     public scrollViewStyle: object;
 
+    /** Classlist for scroll view component of the tree-view */
     @Input()
     public scrollViewStyleClass: string | string[] | object;
 
@@ -87,6 +89,7 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
     @Output()
     public osNodeClick: EventEmitter<ITreeNodeClickEvent<T>> = new EventEmitter();
 
+    /** ScrollView component for scroll manipulations */
     @ViewChild(ScrollViewComponent)
     public readonly scrollView: ScrollViewComponent;
 

@@ -3,6 +3,7 @@ import { isNil } from '../../../core';
 import { ITreeNode, ITreeNodeExpansionEvent } from '../interfaces';
 import { TreeNodesState } from '../states';
 
+/** Must be used only via {@link TreeViewComponent}. Please don't inject it directly. */
 @Injectable()
 export class TreeNodesExpansionService<T> {
     public _osExpanded: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
