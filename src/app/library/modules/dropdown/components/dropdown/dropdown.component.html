@@ -1,4 +1,4 @@
-<ng-content select="[os-placeholder]"></ng-content>
+<ng-content select="[os-placeholder-prefix]"></ng-content>
 
 <span
     *ngIf="_isPlaceholderVisible"
@@ -11,6 +11,8 @@
     class="os-value">
     {{ _labelToDisplay }}
 </span>
+
+<ng-content select="[os-placeholder-suffix]"></ng-content>
 
 <os-list
     *ngIf="isOpened"
