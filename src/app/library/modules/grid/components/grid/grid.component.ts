@@ -12,7 +12,7 @@ import {
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { Subscription, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
-import { elementResizingObserver, OsBaseComponent } from '../../../../core';
+import { elementResizingObserver, ErrorHelper, OsBaseComponent } from '../../../../core';
 import { Cell, Grid } from '../../classes';
 import { GridDirectionEnum } from '../../enums';
 import { GridItemComponent } from '../item';
@@ -27,7 +27,15 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     public readonly direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
 
     @Input()
-    public gridSize: number = 72;
+    public set gridSize(value: number) {
+        this._gridSize = value;
+
+        this.validateGridSize();
+    }
+
+    public get gridSize(): number {
+        return this._gridSize;
+    }
 
     @Input()
     public repaintDelayInMs: number = 200;
@@ -43,8 +51,10 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         return this.grid ? this.repaintDelayInMs : 4;
     }
 
-    private _gridItemElements: QueryList<ElementRef<HTMLElement>>;
     private grid: Grid<ElementRef<HTMLElement>>;
+    private _gridSize: number = 72;
+    private _gridMinSize: number = 50;
+    private _gridItemElements: QueryList<ElementRef<HTMLElement>>;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -53,7 +63,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     public ngOnInit(): void {
-        this.classListManager.add(`os-grid`);
+        this.classListManager.add('os-grid');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
@@ -63,6 +73,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     public ngOnChanges(): void {
         this.initRecalculations();
+        this.styleListManager.apply({ '--os-grid-size': `${this._gridSize}px` });
     }
 
     private calculateGridItemElementsPositions(): void {
@@ -86,8 +97,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         const gridZoneHeight = hostElement.clientHeight || hostElement.scrollHeight;
         const xAxisCellsCount = Math.floor(gridZoneWidth / this.gridSize);
         const yAxisCellsCount = Math.floor(gridZoneHeight / this.gridSize);
-        // FIXME:
-        // const yAxisCellsCount = Math.ceil((this.gridSize * this._gridItemElements.length) / gridZoneWidth) + 1;
 
         this.grid = new Grid({ xAxisCellsCount, yAxisCellsCount, directionType: this.direction });
     }
@@ -113,6 +122,11 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         cellStyle.height = `${this.gridSize}px`;
         cellStyle.left = `${cell.x * this.gridSize}px`;
         cellStyle.top = `${cell.y * this.gridSize}px`;
-        cellStyle.setProperty('--os-grid-size', `${this.gridSize}px`);
+    }
+
+    private validateGridSize(): void {
+        if (this._gridSize < this._gridMinSize) {
+            ErrorHelper.error(this, `Min gridSize is ${this._gridMinSize}`);
+        }
     }
 }

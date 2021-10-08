@@ -29,13 +29,6 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
         return (this.data.iconUrl) ? `url(${this.data.iconUrl})` : '';
     }
 
-    public get _hostStyles(): object {
-        return {
-            ...this.style,
-            '--gridSize': this.gridSize
-        };
-    }
-
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {
