@@ -2,4 +2,4 @@
 
 Steps:
 - `npm run doc`
-- `ng start`
+- `npm run start`
