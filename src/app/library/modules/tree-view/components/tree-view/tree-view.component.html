@@ -46,7 +46,7 @@
 
             <ng-template #wrapperForNodeTemplate>
                 <ng-container
-                    *ngTemplateOutlet="_nodeTemplate; context: { node: node }">
+                    *ngTemplateOutlet="_nodeTemplate; context: { node: node, depth: depth }">
                 </ng-container>
             </ng-template>
         </div>

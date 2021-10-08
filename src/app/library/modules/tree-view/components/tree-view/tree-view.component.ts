@@ -18,6 +18,31 @@ import { ITreeNode, ITreeNodeClickEvent, ITreeNodeExpansionEvent, ITreeNodeSelec
 import { TreeNodesExpansionService, TreeNodesSelectionService } from '../../services';
 import { TreeNodesState } from '../../states';
 
+/**
+ * ## Content Projection Slots
+ * - Attribute `os-tree-view-header`: Slot for your custom content above nodes
+ * - Attribute `os-tree-view-content`: Slot for your custom content above nodes
+ * (might be used instead of default behavior. For example you want to display your own nodes
+ * somehow instead of auto-generated based on `data`)
+ * - Attribute `os-tree-view-footer`: Slot for your custom content below nodes and custom content
+ *
+ * ## Templates
+ * `#nodeTemplate`: Custom template for each node.
+ *
+ * Context:
+ * - `node`: {@link ITreeNode} node data;
+ * - `depth`: depth data (0 - root node; 1 and more - child node);
+ *
+ * @example
+ * ```html
+ * <ng-template
+ *    #nodeTemplate
+ *    let-node="node"
+ *    let-depth="depth">
+ *    <!-- YOUR CUSTOM TEMPLATE FOR EACH NODE -->
+ * </ng-template>
+ * ```
+ **/
 @Component({
     selector: 'os-tree-view',
     templateUrl: './tree-view.component.html',
