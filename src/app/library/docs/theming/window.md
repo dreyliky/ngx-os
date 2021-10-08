@@ -1,8 +1,11 @@
 ## DynamicWindowComponent
 
-Only for window which created via `DynamicWindowService`.
+Only for windows created via `DynamicWindowService`.
 
 ### Local CSS Variables
+
+Check [Local CSS Variables](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/local-css-variables.md) guide to get more information.
+
 | Name                            | Description                                                             |
 | ------------------------------- | ----------------------------------------------------------------------- |
 | `--os-width`                    | Width at the windowed mode in px                                        |
@@ -30,3 +33,47 @@ Only for window which created via `DynamicWindowService`.
 | `os-hidden`                     | Is hidden?                                  |
 | `os-fullscreen`                 | Is fullscreen?                              |
 | `os-windowed`                   | Is windowed?                                |
+
+## DynamicWindowComponent
+
+### CSS Classes
+| Name                            | Description                                         |
+| ------------------------------- | --------------------------------------------------- |
+| `os-window`                     | Window class                                        |
+| `os-active`                     | Is active? (means the user works with it right now) |
+
+## TitleBarComponent
+
+### CSS Classes
+| Name                            | Description                                         |
+| ------------------------------- | --------------------------------------------------- |
+| `os-title-bar`                  | Title Bar class                                     |
+| `os-active`                     | Is active? (means the user works with it right now) |
+
+## TitleBarButtonComponent
+
+### CSS Classes
+| Name                            | Description                                         |
+| ------------------------------- | --------------------------------------------------- |
+| `os-title-bar-button`           | Title Bar Button class                              |
+
+## TitleBarContentComponent
+
+### CSS Classes
+| Name                            | Description                                         |
+| ------------------------------- | --------------------------------------------------- |
+| `os-title-bar-content`          | Title Bar Content class                             |
+
+## TitleBarControlsComponent
+
+### CSS Classes
+| Name                            | Description                                         |
+| ------------------------------- | --------------------------------------------------- |
+| `os-title-bar-controls`         | Title Bar Controls class                            |
+
+## TitleBarIconComponent
+
+### CSS Classes
+| Name                            | Description                                         |
+| ------------------------------- | --------------------------------------------------- |
+| `os-title-bar-icon`             | Title Bar Icon class                                |
