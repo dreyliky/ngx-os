@@ -9,9 +9,9 @@
 | `os-focused`  | Is button focused                 |
 
 ### Attributes
-| Name            |
-| --------------- |
-| `aria-label`    |
-| `aria-controls` |
-| `aria-selected` |
-| `role`          |
+| Name            | Description                               |
+| --------------- | ----------------------------------------- |
+| `aria-label`    | Metadata of destination of the button     |
+| `aria-controls` | Metadata of relation of the button        |
+| `aria-selected` | Metadata of selection state of the button |
+| `role`          | Metadata of role of the button            |
