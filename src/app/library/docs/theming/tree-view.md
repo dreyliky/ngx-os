@@ -1,9 +1,10 @@
 ## TreeViewComponent
 
 ### CSS Classes
+
 | Name                            | Description                                         |
 | ------------------------------- | --------------------------------------------------- |
-| `os-tree-view`                  | Tree View class                                     |
+| `.os-tree-view`                 | Host element                                        |
 
 ## TreeNode (DIV ELEMENT)
 
@@ -19,17 +20,17 @@ Check [Local CSS Variables](https://github.com/dreyliky/ngx-os/blob/master/src/a
 
 | Name                            | Description                                         |
 | ------------------------------- | --------------------------------------------------- |
-| `os-tree-node`                  | Tree Node class                                     |
-| `os-root-node`                  | Is root? (exists when node depth=0)                 |
-| `os-disabled`                   | Is disabled?                                        |
-| `os-expandable`                 | Is might be expanded? (exists when has children)    |
-| `os-flat`                       | Is doesn't have children?                           |
-| `os-expanded`                   | Is expanded right now?                              |
-| `os-selected`                   | Is selected right now?                              |
+| `.os-tree-node`                 | Tree Node element class                             |
+| `.os-root-node`                 | Is root? (exists when node depth=0)                 |
+| `.os-disabled`                  | Is disabled?                                        |
+| `.os-expandable`                | Is might be expanded? (exists when has children)    |
+| `.os-flat`                      | Is doesn't have children?                           |
+| `.os-expanded`                  | Is expanded right now?                              |
+| `.os-selected`                  | Is selected right now?                              |
 
-### CSS Classes of children elements
+### CSS Selectors of children elements
 
 | Name                            | Description                                                                 |
 | ------------------------------- | --------------------------------------------------------------------------- |
-| `os-icon`                       | `<div>` Expansion icon of the node                                          |
-| `os-label`                      | `<div>` Label of the node (might be absent when the custom template passed) |
+| `.os-icon`                      | `<div>` Expansion icon of the node                                          |
+| `.os-label`                     | `<div>` Label of the node (might be absent when the custom template passed) |

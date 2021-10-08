@@ -24,56 +24,56 @@ Check [Local CSS Variables](https://github.com/dreyliky/ngx-os/blob/master/src/a
 ### CSS Classes
 | Name                            | Description                                 |
 | ------------------------------- | ------------------------------------------- |
-| `os-opening`                    | Is opening right now? (once after creation) |
-| `os-hiding`                     | Is hiding right now?                        |
-| `os-showing`                    | Is showing right now?                       |
-| `os-closing`                    | Is closing right now? (once before closing) |
-| `os-entering-fullscreen`        | Is entering fullscreen right now?           |
-| `os-entering-windowed`          | Is entering windowed right now?             |
-| `os-hidden`                     | Is hidden?                                  |
-| `os-fullscreen`                 | Is fullscreen?                              |
-| `os-windowed`                   | Is windowed?                                |
+| `.os-opening`                   | Is opening right now? (once after creation) |
+| `.os-hiding`                    | Is hiding right now?                        |
+| `.os-showing`                   | Is showing right now?                       |
+| `.os-closing`                   | Is closing right now? (once before closing) |
+| `.os-entering-fullscreen`       | Is entering fullscreen right now?           |
+| `.os-entering-windowed`         | Is entering windowed right now?             |
+| `.os-hidden`                    | Is hidden?                                  |
+| `.os-fullscreen`                | Is fullscreen?                              |
+| `.os-windowed`                  | Is windowed?                                |
 
 ## DynamicWindowComponent
 
 ### CSS Classes
 | Name                            | Description                                         |
 | ------------------------------- | --------------------------------------------------- |
-| `os-window`                     | Window class                                        |
-| `os-active`                     | Is active? (means the user works with it right now) |
+| `.os-window`                    | Window class                                        |
+| `.os-active`                    | Is active? (means the user works with it right now) |
 
 ## TitleBarComponent
 
 ### CSS Classes
 | Name                            | Description                                         |
 | ------------------------------- | --------------------------------------------------- |
-| `os-title-bar`                  | Title Bar class                                     |
-| `os-active`                     | Is active? (means the user works with it right now) |
+| `.os-title-bar`                 | Title Bar class                                     |
+| `.os-active`                    | Is active? (means the user works with it right now) |
 
 ## TitleBarButtonComponent
 
 ### CSS Classes
 | Name                            | Description                                         |
 | ------------------------------- | --------------------------------------------------- |
-| `os-title-bar-button`           | Title Bar Button class                              |
+| `.os-title-bar-button`          | Title Bar Button class                              |
 
 ## TitleBarContentComponent
 
 ### CSS Classes
 | Name                            | Description                                         |
 | ------------------------------- | --------------------------------------------------- |
-| `os-title-bar-content`          | Title Bar Content class                             |
+| `.os-title-bar-content`         | Title Bar Content class                             |
 
 ## TitleBarControlsComponent
 
 ### CSS Classes
 | Name                            | Description                                         |
 | ------------------------------- | --------------------------------------------------- |
-| `os-title-bar-controls`         | Title Bar Controls class                            |
+| `.os-title-bar-controls`        | Title Bar Controls class                            |
 
 ## TitleBarIconComponent
 
 ### CSS Classes
 | Name                            | Description                                         |
 | ------------------------------- | --------------------------------------------------- |
-| `os-title-bar-icon`             | Title Bar Icon class                                |
+| `.os-title-bar-icon`            | Title Bar Icon class                                |
