@@ -7,6 +7,7 @@ import { OsBaseComponent } from '../../../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent extends OsBaseComponent implements OnInit {
+    /** Header size from 1 to 6 (like `<h1>` - `<h6>`) */
     @Input()
     public set size(newSize: number) {
         this.validateSize(newSize);
@@ -14,10 +15,12 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
         this._size = newSize;
     }
 
+    /** Header size from 1 to 6 (like `<h1>` - `<h6>`) */
     public get size(): number {
         return this._size;
     }
 
+    /** @internal */
     public get _hostClass(): string {
         return `${this.classListManager.getAsString()} os-header-${this.size}`;
     }
