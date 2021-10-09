@@ -1,3 +1,4 @@
+/** @internal */
 export enum CommonCssClassEnum {
     Active = 'os-active',
     Focused = 'os-focused',

@@ -68,11 +68,13 @@ export abstract class OsBaseComponent {
     @Output()
     public osKeyUp: EventEmitter<KeyboardEvent> = new EventEmitter();
 
+    /** @internal */
     @HostBinding('class')
     public get _hostClass(): string {
         return this.classListManager.getAsString();
     }
 
+    /** @internal */
     @HostBinding('style')
     public get _hostStyle(): object {
         return this.styleListManager.get();

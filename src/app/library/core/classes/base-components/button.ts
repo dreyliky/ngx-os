@@ -44,6 +44,7 @@ export abstract class OsBaseButtonComponent extends OsBaseComponent {
     @Output()
     public osBlur: EventEmitter<MouseEvent> = new EventEmitter();
 
+    /** @internal */
     @HostBinding('attr.tabindex')
     public get _hostTabIndexAttr(): number {
         return (this.isDisabled) ? null : 0;

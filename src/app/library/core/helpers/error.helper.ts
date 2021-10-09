@@ -1,3 +1,4 @@
+/** @internal */
 export abstract class ErrorHelper {
     public static warn(context: Object, message: string): void {
         const contextName = context.constructor.name;

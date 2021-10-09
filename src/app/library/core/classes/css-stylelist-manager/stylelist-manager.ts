@@ -1,3 +1,4 @@
+/** @internal */
 export class StyleListManager {
     private data: object = {};
 

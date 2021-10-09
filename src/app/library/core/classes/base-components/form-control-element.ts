@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { OsBaseComponent } from './element';
 
+/** @internal */
 @Component({
     template: ''
 })
