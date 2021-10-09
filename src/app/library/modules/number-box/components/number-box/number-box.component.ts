@@ -30,15 +30,18 @@ import { INumberBoxChangeEvent } from '../../interfaces';
     ]
 })
 export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, OnChanges, AfterViewInit {
+    /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
+    /** Fires when the number-box value change */
     @Output()
     public osChange: EventEmitter<INumberBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('numberbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;
 
+    /** @internal */
     public get _inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
@@ -62,6 +65,7 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
         this.processValueFromSimpleChanges(changes);
     }
 
+    /** @internal */
     public writeValue(value: string | number): void {
         if (typeof(value) === 'number' || typeof(value) === 'string') {
             this.value = this.processValue(value);

@@ -7,9 +7,11 @@ import { OsBaseComponent } from '../../../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent extends OsBaseComponent implements OnInit {
+    /** Stylelist for scroll view component of the list */
     @Input()
     public scrollViewStyle: object;
 
+    /** Classlist for scroll view component of the list */
     @Input()
     public scrollViewStyleClass: string;
 

@@ -16,17 +16,21 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
+    /** Is list item selected? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean = false;
 
+    /** Is list item disabled? */
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     @Input()
     public isDisabled: boolean = false;
 
+    /** Value of the list item */
     @Input()
     public value: T;
 
+    /** Fires when the list item selected */
     @Output()
     public osSelected = new EventEmitter<T>();
 
