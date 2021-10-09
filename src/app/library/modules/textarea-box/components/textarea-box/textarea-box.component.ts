@@ -28,12 +28,15 @@ import { ITextareaBoxChangeEvent } from '../../interfaces';
     ]
 })
 export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+    /** Specifies the visible height of a textarea-box, in lines. */
     @Input()
     public rows: number;
 
+    /** Specifies the visible width of a textarea-box, in lines. */
     @Input()
     public cols: number;
 
+    /** Fires when the textarea-box value change */
     @Output()
     public osChange: EventEmitter<ITextareaBoxChangeEvent> = new EventEmitter();
 
@@ -55,6 +58,7 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit
         this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
     }
 
+    /** @internal */
     public writeValue(value: string): void {
         this.value = value;
 
