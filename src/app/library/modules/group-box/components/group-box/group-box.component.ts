@@ -7,6 +7,7 @@ import { OsBaseComponent } from '../../../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GroupBoxComponent extends OsBaseComponent implements OnInit {
+    /** Label of group */
     @Input()
     public label: string;
 
