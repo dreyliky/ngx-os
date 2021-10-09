@@ -4,10 +4,10 @@ import {
     Component,
     ContentChildren,
     ElementRef,
-    OnDestroy,
     OnInit,
     QueryList
 } from '@angular/core';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { Subscription } from 'rxjs';
 import { OsBaseComponent } from '../../../../core';
 import { TabComponent } from '../tab';
@@ -17,11 +17,10 @@ import { TabComponent } from '../tab';
     templateUrl: './tab-group.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDestroy, AfterContentInit {
+export class TabGroupComponent extends OsBaseComponent implements OnInit, AfterContentInit {
+    /** @internal */
     @ContentChildren(TabComponent)
     public readonly _tabComponentList: QueryList<TabComponent>;
-
-    private readonly tabButtonOnClickSubscriptions: Subscription[] = [];
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -38,31 +37,28 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
         this.initTabButtonClickObservers();
     }
 
-    public ngOnDestroy(): void {
-        this.tabButtonOnClickSubscriptions
-            .forEach((subscription) => subscription.unsubscribe());
-    }
-
+    /** @internal */
     public trackByFn = (_: TabComponent, index: number): number => {
         return index;
     }
 
     private initTabButtonClickObservers(): void {
-        this._tabComponentList.forEach((tabComponent) => {
-            const tabEventSubscription = tabComponent.osTabButtonClick
-                .subscribe(() => {
-                    this.deselectAllTabs();
+        this._tabComponentList
+            .forEach((tabComponent) => this.initTabButtonClickObserver(tabComponent));
+    }
 
-                    tabComponent.isSelected = true;
-                });
+    @AutoUnsubscribe()
+    private initTabButtonClickObserver(tabComponent: TabComponent): Subscription {
+        return tabComponent.osTabButtonClick
+            .subscribe(() => {
+                this.deselectAllTabs();
 
-            this.tabButtonOnClickSubscriptions.push(tabEventSubscription);
-        });
+                tabComponent.isSelected = true;
+            });
     }
 
     private deselectAllTabs(): void {
-        this._tabComponentList.forEach((tabComponent) => {
-            tabComponent.isSelected = false;
-        });
+        this._tabComponentList
+            .forEach((tabComponent) => tabComponent.isSelected = false);
     }
 }
