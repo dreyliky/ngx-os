@@ -12,8 +12,8 @@ interface StartParams {
 
 /** @internal */
 export class IntervalCheckerHelper {
-    private readonly delayBetweenChecksInMs: number;
-    private readonly maxCheckCount: number;
+    private delayBetweenChecksInMs: number;
+    private maxCheckCount: number;
 
     private passedCountOfChecks = 0;
     private currentIntervalId = 0;
@@ -21,7 +21,11 @@ export class IntervalCheckerHelper {
     private onIteration: () => void;
     private onEnd: () => void;
 
-    constructor({ delayBetweenChecksInMs, maxCheckCount }: Params = new Params()) {
+    constructor(params: Params = new Params()) {
+        this.updateSettings(params);
+    }
+
+    public updateSettings({ delayBetweenChecksInMs, maxCheckCount }: Params): void {
         this.delayBetweenChecksInMs = delayBetweenChecksInMs;
         this.maxCheckCount = maxCheckCount;
     }

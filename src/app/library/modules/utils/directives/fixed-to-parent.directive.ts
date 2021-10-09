@@ -18,6 +18,8 @@ export class FixedToParentDirective implements AfterViewInit {
     @Input('os-fixed-to-parent')
     public set config(config: FixedToParentConfig) {
         this._config = { ...this._config, ...config };
+
+        this.updateIntervalCheckerSettings();
     }
 
     private _config = new FixedToParentConfig();
@@ -34,7 +36,6 @@ export class FixedToParentDirective implements AfterViewInit {
     public ngAfterViewInit(): void {
         this.targetElement = this.hostElementRef.nativeElement;
         this.parentElement = this.targetElement.parentElement;
-        console.log(this.parentElement);
 
         this.adjustCoordinates();
     }
@@ -61,5 +62,12 @@ export class FixedToParentDirective implements AfterViewInit {
             this.targetElement.style.top = `${(top + height)}px`;
             this.targetElement.style.width = `${width}px`;
         }
+    }
+
+    private updateIntervalCheckerSettings(): void {
+        this.intervalChecker.updateSettings({
+            delayBetweenChecksInMs: this._config.recalculationIntervalInMs,
+            maxCheckCount: this._config.calculationIterationsCount
+        });
     }
 }
