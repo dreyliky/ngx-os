@@ -7,18 +7,23 @@ import { OsBaseComponent } from '../../../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScrollViewComponent extends OsBaseComponent implements OnInit {
+    /** Is vertical scroll enabled? */
     @Input()
     public isVerticalScrollEnabled: boolean = true;
 
+    /** Is horizontal scroll enabled? */
     @Input()
     public isHorizontalScrollEnabled: boolean = false;
 
+    /** Does the vertical scroll hide when it is not needed? */
     @Input()
     public isVerticalScrollHiding: boolean = false;
 
+    /** Does the horizontal scroll hide when it is not needed? */
     @Input()
     public isHorizontalScrollHiding: boolean = false;
 
+    /** @internal */
     @HostBinding('style.overflow-x')
     public get _hostOverflowX(): string {
         if (!this.isHorizontalScrollHiding) {
@@ -28,6 +33,7 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
         return (this.isHorizontalScrollEnabled) ? 'scroll' : 'hidden';
     }
 
+    /** @internal */
     @HostBinding('style.overflow-y')
     public get _hostOverflowY(): string {
         if (!this.isVerticalScrollHiding) {
@@ -48,6 +54,7 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
+    /** Scrolls to given coordinates. Recommend to use this method instead of directly via HTML element */
     public scrollTo(left: number, top: number): void {
         this.hostRef.nativeElement.scrollTo({ left, top });
     }
