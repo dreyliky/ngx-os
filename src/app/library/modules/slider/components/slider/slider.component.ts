@@ -31,28 +31,36 @@ import { ISliderValueChangeEvent } from '../../interfaces';
 export class SliderComponent
     extends OsBaseFormControlComponent<number>
     implements OnInit, AfterViewInit, ControlValueAccessor {
+    /** Label text near the slider */
     @Input()
     public label: string;
 
+    /** Label text for the minimum value of the slider */
     @Input()
     public minValueLabel: string;
 
+    /** Label text for the maximum value of the slider */
     @Input()
     public maxValueLabel: string;
 
+    /** Is slider disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean;
 
+    /** Minimum possible value of the slider */
     @Input()
     public min: number = 0;
 
+    /** Maximum possible value of the slider */
     @Input()
     public max: number = 100;
 
+    /** Value of the slider */
     @Input()
     public value: number = 0;
 
+    /** Fires when the slider state change */
     @Output()
     public osChange: EventEmitter<ISliderValueChangeEvent> = new EventEmitter();
 
@@ -73,6 +81,7 @@ export class SliderComponent
         this.initElementEventObservers(this.sliderElementRef.nativeElement);
     }
 
+    /** @internal */
     public onSliderValueChange(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
         const value: number = +targetElement.value;
@@ -81,6 +90,7 @@ export class SliderComponent
         this.osChange.emit({ originalEvent, value });
     }
 
+    /** @internal */
     public writeValue(value: number): void {
         this.value = value;
 
