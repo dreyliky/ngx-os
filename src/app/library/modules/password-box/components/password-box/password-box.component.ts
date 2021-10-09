@@ -28,15 +28,18 @@ import { IPasswordBoxChangeEvent } from '../../interfaces';
     ]
 })
 export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
+    /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
+    /** Fires when the password-box value change */
     @Output()
     public osChange: EventEmitter<IPasswordBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('passwordbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;
 
+    /** @internal */
     public get _inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
@@ -56,6 +59,7 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit
         this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
     }
 
+    /** @internal */
     public writeValue(value: string): void {
         this.value = value;
 
