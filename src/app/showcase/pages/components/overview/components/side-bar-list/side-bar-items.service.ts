@@ -21,18 +21,21 @@ export class SideBarItemsService {
         {
             label: 'Examples',
             data: {
+                imageUrl: '/assets/showcase/icons/dev/examples.png',
                 sectionUrl: RouteEnum.Examples
             }
         },
         {
             label: 'Theming',
             data: {
+                imageUrl: '/assets/showcase/icons/dev/theming.png',
                 sectionUrl: RouteEnum.Theming
             }
         },
         {
             label: 'API',
             data: {
+                imageUrl: '/assets/showcase/icons/dev/api.png',
                 sectionUrl: RouteEnum.Api
             }
         }
@@ -68,12 +71,13 @@ export class SideBarItemsService {
             .filter((section) => !this.isSectionForbidden(section, metaInfo))
             .map((section) => {
                 const sectionUrl = `/${AppRouteEnum.Components}/${metaInfo.type}/${section.data.sectionUrl}`;
+                const imageUrl = section.data.imageUrl;
 
                 return {
                     ...section,
                     id: `${metaInfo.type}_${section.label}_${RouteEnum.Documentation}`,
                     isSelected: (this.currentRoute === sectionUrl),
-                    data: { sectionUrl }
+                    data: { sectionUrl, imageUrl }
                 };
             });
     }
