@@ -6,26 +6,33 @@ import { OsBaseFormControlComponent } from './form-control-element';
     template: ''
 })
 export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
+    /** Is field disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
+    /** Is field readonly? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Readonly}`)
     public isReadonly: boolean = false;
 
+    /** Is field autofocused? */
     @Input()
     public isAutofocused: boolean = false;
 
+    /** Placeholder text of the field */
     @Input()
     public placeholder: string = '';
 
+    /** Name of the field group */
     @Input()
     public name: string;
 
+    /** Native `input` size property */
     @Input()
     public size: number = 20;
 
+    /** Value of the field as text */
     @Input()
     public value: string = '';
 
@@ -41,6 +48,7 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
     @Output()
     public osInput: EventEmitter<Event> = new EventEmitter();
 
+    /** @internal */
     public abstract osChange: EventEmitter<any>;
 
     /** The handler will be fired on the internal element in response to an event. */

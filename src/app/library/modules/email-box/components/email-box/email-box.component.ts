@@ -28,15 +28,18 @@ import { IEmailBoxChangeEvent } from '../../interfaces';
     ]
 })
 export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
+    /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
+    /** Fires when the email-box value change */
     @Output()
     public osChange: EventEmitter<IEmailBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('emailbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;
 
+    /** @internal */
     public get _inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
@@ -56,6 +59,7 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, A
         this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
     }
 
+    /** @internal */
     public writeValue(value: string): void {
         this.value = value;
 
