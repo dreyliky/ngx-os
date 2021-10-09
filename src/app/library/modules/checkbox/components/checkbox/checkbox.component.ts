@@ -30,27 +30,33 @@ import { ICheckboxValueChangeEvent } from '../../interfaces';
 export class CheckboxComponent<T>
     extends OsBaseFormControlComponent<boolean>
     implements OnInit, ControlValueAccessor {
+    /** Label text near the checkbox */
     @Input()
     public readonly label: string = '';
 
+    /** Name of the checkbox group */
     @Input()
     public readonly name: string = '';
 
+    /** Is checkbox checked? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Checked}`)
     public isChecked: boolean;
 
+    /** Is checkbox disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public readonly isDisabled: boolean;
 
+    /** Value of the checkbox */
     @Input()
     public readonly value: T;
 
+    /** Fires when the checkbox state change */
     @Output()
     public osChange: EventEmitter<ICheckboxValueChangeEvent<T>> = new EventEmitter();
 
-    /** Emits when `checked` state changed. Might be used for two way binding */
+    /** Fires when `checked` state changed. Might be used for two way binding */
     @Output()
     public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
@@ -78,7 +84,7 @@ export class CheckboxComponent<T>
         this.osChange.emit({
             originalEvent,
             value: this.value,
-            checked: this.isChecked
+            isChecked: this.isChecked
         });
     }
 
