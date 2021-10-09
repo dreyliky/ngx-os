@@ -44,6 +44,8 @@ import {
     TreeViewOverviewComponent,
     TreeViewSelectionSetupComponent,
     TreeViewWithCustomTemplateComponent,
+    UtilsAppendToBodyOverviewComponent,
+    UtilsFixedToParentOverviewComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
     WindowTitleBarComponent
@@ -94,6 +96,8 @@ import {
         TreeViewOverviewComponent,
         TreeViewSelectionSetupComponent,
         TreeViewWithCustomTemplateComponent,
+        UtilsAppendToBodyOverviewComponent,
+        UtilsFixedToParentOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
         WindowTitleBarComponent

@@ -1,0 +1,34 @@
+<div class="my-dropdown">
+    <div
+        class="my-dropdown-button"
+        (click)="onMyDropdownButtonClick()">
+        <os-text
+            *ngIf="!selectedItem; else selectedItemTemplate"
+            class="my-placeholder">
+            Please choose one of my amazing items!
+        </os-text>
+
+        <ng-template #selectedItemTemplate>
+            <os-text class="my-value">{{ selectedItem }}</os-text>
+        </ng-template>
+    </div>
+
+    <div
+        *ngIf="isOverlayVisible"
+        os-append-to-body
+        os-fixed-to-parent
+        class="my-dropdown-overlay">
+        <os-text class="description">
+            This overlay is rendered inside the body element,
+            but still saves position near the parent dropdown element!
+        </os-text>
+
+        <div
+            *ngFor="let item of myDropdownItems"
+            class="my-dropdown-item"
+            [class.selected]="(item === selectedItem)"
+            (click)="onMyDropdownItemClick(item)">
+            <os-text>{{ item }}</os-text>
+        </div>
+    </div>
+</div>

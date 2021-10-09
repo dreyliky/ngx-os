@@ -6,6 +6,7 @@ import {
     UtilsModule
 } from 'ngx-os/modules';
 import { OsComponentEnum, OsComponentOverviewSectionEnum as OverviewSection } from '../../enums';
+import { UtilsAppendToBodyOverviewComponent, UtilsFixedToParentOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const UTILS_META_INFO: ComponentMetaInfo = {
@@ -27,5 +28,14 @@ export const UTILS_META_INFO: ComponentMetaInfo = {
         AppendToBodyConfig,
         FixedToParentConfig
     ],
-    demoComponents: []
+    demoComponents: [
+        {
+            title: `${AppendToBodyDirective.name} Overview`,
+            component: UtilsAppendToBodyOverviewComponent
+        },
+        {
+            title: `${FixedToParentDirective.name} Overview`,
+            component: UtilsFixedToParentOverviewComponent
+        }
+    ]
 };

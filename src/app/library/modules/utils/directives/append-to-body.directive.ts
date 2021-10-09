@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, Inject, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Inject, Input, OnChanges, OnDestroy } from '@angular/core';
 import { AppendToBodyConfig } from '../classes';
 
 /**
@@ -11,7 +11,7 @@ import { AppendToBodyConfig } from '../classes';
 @Directive({
     selector: '[os-append-to-body]'
 })
-export class AppendToBodyDirective implements OnInit, OnDestroy, OnChanges {
+export class AppendToBodyDirective implements AfterViewInit, OnDestroy, OnChanges {
     /** Configuration of directive */
     @Input('os-append-to-body')
     public set config(config: AppendToBodyConfig) {
@@ -29,11 +29,11 @@ export class AppendToBodyDirective implements OnInit, OnDestroy, OnChanges {
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {}
 
-    public ngOnInit(): void {
+    public ngAfterViewInit(): void {
         this.targetElement = this.hostElementRef.nativeElement;
         this.parentElement = this.targetElement.parentElement;
 
-        this.processElement();
+        setTimeout(() => this.processElement());
     }
 
     public ngOnDestroy(): void {

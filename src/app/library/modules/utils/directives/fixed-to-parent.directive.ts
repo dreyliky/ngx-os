@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { EventOutside, IntervalCheckerHelper as IntervalChecker } from '../../../core';
 import { FixedToParentConfig } from '../classes';
 
@@ -13,7 +13,7 @@ import { FixedToParentConfig } from '../classes';
 @Directive({
     selector: '[os-fixed-to-parent]'
 })
-export class FixedToParentDirective implements OnInit {
+export class FixedToParentDirective implements AfterViewInit {
     /** Configuration of directive */
     @Input('os-fixed-to-parent')
     public set config(config: FixedToParentConfig) {
@@ -31,9 +31,10 @@ export class FixedToParentDirective implements OnInit {
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {}
 
-    public ngOnInit(): void {
+    public ngAfterViewInit(): void {
         this.targetElement = this.hostElementRef.nativeElement;
         this.parentElement = this.targetElement.parentElement;
+        console.log(this.parentElement);
 
         this.adjustCoordinates();
     }

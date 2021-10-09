@@ -1,0 +1,60 @@
+.my-dropdown {
+    width: 400px;
+    height: 35px;
+    border: solid 2px #000;
+    background-color: #fff;
+    position: relative;
+
+    .my-dropdown-button {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        box-sizing: border-box;
+
+        &:hover {
+            cursor: pointer;
+            opacity: .7;
+        }
+
+        .my-placeholder {
+            color: gray;
+        }
+    }
+}
+
+// Your styles should be defined in the global context, obviously
+::ng-deep .my-dropdown-overlay {
+    width: 100%;
+    border: solid 2px black;
+    box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, .5);
+    background-color: rgb(231, 231, 231);
+    position: absolute;
+
+    .description {
+        display: block;
+        padding: 7px;
+        margin: 7px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        background-color: rgba(var(--os-primary-color), .4);
+    }
+
+    .my-dropdown-item {
+        width: 100%;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        box-sizing: border-box;
+
+        &:hover {
+            background-color: rgba(var(--os-primary-color), .1);
+        }
+
+        &.selected {
+            background-color: rgba(var(--os-primary-color), .2);
+        }
+    }
+}
