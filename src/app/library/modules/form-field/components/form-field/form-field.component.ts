@@ -8,6 +8,7 @@ import { FormFieldCssClassEnum as CssClass } from '../../enums';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldComponent extends OsBaseComponent implements OnInit {
+    /** Is the label placed above the element or in one row with it? */
     @Input()
     @HostBinding(`class.${CssClass.Stacked}`)
     public isStacked: boolean = false;
