@@ -28,15 +28,18 @@ import { ITextBoxChangeEvent } from '../../interfaces';
     ]
 })
 export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
+    /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
+    /** Fires when the text-box value change */
     @Output()
     public osChange: EventEmitter<ITextBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('textbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;
 
+    /** @internal */
     public get _inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
@@ -56,6 +59,7 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Af
         this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
     }
 
+    /** @internal */
     public writeValue(value: string): void {
         this.value = value;
 
