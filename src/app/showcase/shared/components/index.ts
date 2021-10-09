@@ -1,3 +1,3 @@
-export * from './code';
+export * from './code-viewer';
 export * from './markdown-viewer';
 

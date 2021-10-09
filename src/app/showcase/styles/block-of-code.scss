@@ -1,8 +1,11 @@
-:host::ng-deep {
-    display: block;
-    background: #263238;
+.showcase-code-of-block {
+    font-size: 14px;
 
-    code,
+    pre {
+        display: block;
+        background: #263238;
+    }
+
     pre {
         text-align: left;
         white-space: pre;
@@ -12,7 +15,6 @@
         color: #c3cee3;
         font-family: Roboto Mono, monospace;
         font-size: 1em;
-        line-height: 1.5em;
 
         -moz-tab-size: 4;
         -o-tab-size: 4;
@@ -24,18 +26,12 @@
         hyphens: none;
     }
 
-    code::-moz-selection,
-    pre::-moz-selection,
-    code ::-moz-selection,
     pre ::-moz-selection {
-        background: #363636;
+        background: rgba(255, 255, 255, .25);
     }
 
-    code::selection,
-    pre::selection,
-    code ::selection,
     pre ::selection {
-        background: #363636;
+        background: rgba(255, 255, 255, .25);
     }
 
     :not(pre) > code {
@@ -47,7 +43,8 @@
     pre {
         position: relative;
         margin: 0;
-        padding: 1.25em 1em;
+        padding: 14px;
+        box-sizing: border-box;
     }
 
     .language-css > code,

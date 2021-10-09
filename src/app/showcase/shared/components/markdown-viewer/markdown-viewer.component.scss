@@ -1,9 +1,9 @@
 :host ::ng-deep {
-    :first-child {
+    > :first-child {
         margin-top: 7px;
     }
 
-    :last-child {
+    > :last-child {
         margin-bottom: 7px;
     }
 
@@ -19,7 +19,7 @@
         margin: 7px 0px;
     }
 
-    code {
+    code:not(.code-block) {
         font-family: inherit;
         background: rgba(var(--os-primary-color), .15);
         padding: 0px 5px;
@@ -27,7 +27,7 @@
         border-radius: 3px;
     }
 
-    pre {
+    pre:not(.code-wrapper) {
         border-radius: 3px;
         background: rgba(0, 0, 0, .7);
         padding: 6px;
@@ -37,6 +37,11 @@
         code {
             background: transparent;
         }
+    }
+
+    pre.code-wrapper {
+        overflow: auto;
+        margin: 8px 0px;
     }
 
     a {
