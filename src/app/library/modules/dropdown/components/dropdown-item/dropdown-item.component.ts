@@ -20,17 +20,21 @@ import { IDropdownValueChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit, OnChanges {
+    /** Is dropdown item selected? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean = false;
 
+    /** Is dropdown item disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
+    /** Value of the dropdown item */
     @Input()
     public value: T;
 
+    /** Fires when the dropdown item selected */
     @Output()
     public osSelected: EventEmitter<IDropdownValueChangeEvent<T>> = new EventEmitter();
 
@@ -51,18 +55,21 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
         this.initDefaultValueIfAbsent();
     }
 
+    /** @internal */
     public onListItemClick(originalEvent: MouseEvent): void {
         if (!this.isDisabled) {
             this.osSelected.emit({ originalEvent, value: this.value });
         }
     }
 
+    /** Sets state of selection and triggers `change detection` */
     public setSelectedState(state: boolean): void {
         this.isSelected = state;
 
         this.changeDetector.markForCheck();
     }
 
+    /** Gets the label text of the dropdown item */
     public getLabel(): string {
         return this.hostElementRef.nativeElement.innerText || null;
     }

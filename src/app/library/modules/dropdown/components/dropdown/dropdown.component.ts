@@ -10,7 +10,8 @@ import {
     HostBinding,
     HostListener,
     Inject,
-    Input, OnInit,
+    Input,
+    OnInit,
     Output,
     QueryList
 } from '@angular/core';
@@ -37,43 +38,55 @@ import { DropdownItemComponent } from '../dropdown-item';
 export class DropdownComponent<T>
     extends OsBaseFormControlComponent<T>
     implements OnInit, AfterViewInit, ControlValueAccessor {
+    /** Is dropdown overlay with items opened? */
     @Input()
     public isOpened: boolean = false;
 
+    /** Is dropdown disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
+    /** Is dropdown overlay should be created inside the `body` HTML element? */
     @Input()
     public isAppendToBody: boolean;
 
+    /** Placeholder text of the dropdown */
     @Input()
     public placeholder: string = '';
 
+    /** Value of the dropdown */
     @Input()
     public set value(value: T) {
         this.setInitialValue(value);
         this.initSelectedOptionByValue(value);
     }
 
+    /** The field name of the `value` **OBJECT** that should be used to take value from as label to display for user */
     @Input()
     public displayField: keyof T;
 
+    /** The field name of the `value` **OBJECT** that should be used to take value from as value */
     @Input()
     public valueField: keyof T;
 
+    /** Stylelist for scroll view component of the dropdown overlay */
     @Input()
     public scrollViewStyle: object = { maxHeight: '250px' };
 
+    /** Classlist for scroll view component of the dropdown overlay */
     @Input()
     public scrollViewStyleClass: string;
 
+    /** Fires when the dropdown value change */
     @Output()
     public osChange: EventEmitter<IDropdownValueChangeEvent<T>> = new EventEmitter();
 
+    /** Fires when `value` changed. Might be used for two way binding */
     @Output()
     public valueChange: EventEmitter<T> = new EventEmitter();
 
+    /** @internal */
     @ContentChildren(DropdownItemComponent)
     public set _optionComponentQueryList(data: QueryList<DropdownItemComponent<T>>) {
         this.optionComponentQueryList = data;
@@ -81,28 +94,34 @@ export class DropdownComponent<T>
         this.initOptionComponentsSelectedObserver();
     }
 
+    /** @internal */
     public get _isListAppendToBody(): boolean {
         return (!isNil(this.isAppendToBody)) ? this.isAppendToBody : !this.isDynamicWindowContext;
     }
 
+    /** @internal */
     public get _isPlaceholderVisible(): boolean {
         return (!isNil(this.placeholder) && (isNil(this._value) || isNil(this._label)));
     }
 
+    /** @internal */
     public get _isValueExist(): boolean {
         return !isNil(this._value);
     }
 
+    /** @internal */
     public get _labelToDisplay(): string {
         return this._label;
     }
 
+    /** @internal */
     private get _value(): any {
         const rawValue = this.selectedOptionComponent?.value as any;
 
         return (this.valueField) ? rawValue?.[this.valueField] : rawValue;
     }
 
+    /** @internal */
     private get _label(): string {
         const rawValue = this.selectedOptionComponent?.value as any;
         const rawLabel = this.selectedOptionComponent?.getLabel();
@@ -132,6 +151,7 @@ export class DropdownComponent<T>
         this.changeDetector.detectChanges();
     }
 
+    /** @internal */
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
         if (this.isOpened) {
@@ -141,6 +161,7 @@ export class DropdownComponent<T>
         }
     }
 
+    /** @internal */
     public writeValue(value: T): void {
         this.setInitialValue(value);
         this.initSelectedOptionByValue(value);
@@ -199,7 +220,7 @@ export class DropdownComponent<T>
     @AutoUnsubscribe()
     private initOptionComponentSelectedStateObserver(optionComponent: DropdownItemComponent<T>): Subscription {
         return optionComponent.osSelected
-            .subscribe((event: IDropdownValueChangeEvent<T>) => {
+            .subscribe((event) => {
                 this.initSelectedOption(optionComponent);
                 this.deselectAllOptions();
                 optionComponent.setSelectedState(true);
