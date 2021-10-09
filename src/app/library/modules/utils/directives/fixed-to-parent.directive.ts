@@ -2,10 +2,19 @@ import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/cor
 import { EventOutside, IntervalCheckerHelper as IntervalChecker } from '../../../core';
 import { FixedToParentConfig } from '../classes';
 
+/**
+ * Adapts the position of the element to the position of the parent element.
+ *
+ * Useful when used with the {@link AppendToBodyDirective}.
+ *
+ * The child element will be appended to the body and "save" position near the parent element
+ * as if it continues to be inside the parent element.
+ **/
 @Directive({
     selector: '[os-fixed-to-parent]'
 })
 export class FixedToParentDirective implements OnInit {
+    /** Configuration of directive */
     @Input('os-fixed-to-parent')
     public set config(config: FixedToParentConfig) {
         this._config = { ...this._config, ...config };
@@ -29,6 +38,7 @@ export class FixedToParentDirective implements OnInit {
         this.adjustCoordinates();
     }
 
+    /** @internal */
     @HostListener('document:wheel', ['$event'])
     public onDocumentWheel(event: WheelEvent): void {
         if (this._config.isEnabled) {

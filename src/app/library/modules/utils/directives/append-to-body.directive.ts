@@ -2,12 +2,17 @@ import { DOCUMENT } from '@angular/common';
 import { Directive, ElementRef, Inject, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { AppendToBodyConfig } from '../classes';
 
-/** @dynamic */
+/**
+ * @dynamic
+ *
+ * Moves element into the `body` element
+ **/
 // See: https://github.com/angular/angular/issues/20351
 @Directive({
     selector: '[os-append-to-body]'
 })
 export class AppendToBodyDirective implements OnInit, OnDestroy, OnChanges {
+    /** Configuration of directive */
     @Input('os-append-to-body')
     public set config(config: AppendToBodyConfig) {
         this._config = { ...this._config, ...config };
