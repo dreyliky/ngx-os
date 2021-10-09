@@ -1,6 +1,6 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import { CssClasslistToObjectHelper as ClasslistToObject } from '../../../../core';
-import { DragStrategyByAxisProperties, IDraggerParams } from '../../../drag-and-drop';
+import { DragStrategyByAxisProperties, IDraggerConfig } from '../../../drag-and-drop';
 import { IResizerParams } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
 import {
@@ -98,7 +98,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     public isViewInitialized: boolean = false;
 
     public config: IDynamicWindowConfig;
-    public draggerConfig: IDraggerParams;
+    public draggerConfig: IDraggerConfig;
     public resizerConfig: IResizerParams;
 
     public zIndex: number;
@@ -121,8 +121,8 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     protected isAfterExitFullscreenByDragging: boolean = false;
 
     private readonly draggerStrategy = new DragStrategyByAxisProperties({
-        xAxisStyleProperty: CssVariable.Left,
-        yAxisStyleProperty: CssVariable.Top
+        xAxisLeftStyleProperty: CssVariable.Left,
+        yAxisTopStyleProperty: CssVariable.Top
     });
 
     public ngOnDestroy(): void {

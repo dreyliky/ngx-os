@@ -29,7 +29,7 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
         DragStrategyByAxisProperties
     ],
     libInterfaces: [
-        'IDraggerParams',
+        'IDraggerConfig',
         'IDragInfo'
     ],
     libEnums: [

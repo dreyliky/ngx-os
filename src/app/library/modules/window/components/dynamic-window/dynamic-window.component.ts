@@ -121,7 +121,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     public onAfterDragging(event: IDragInfo): void {
         if (this.isAfterExitFullscreenByDragging) {
-            this.draggableDirective.updateMovableElementPosition(event.mouseEvent);
+            this.draggableDirective.updateMovableElementPosition(event.originalEvent);
 
             this.isAfterExitFullscreenByDragging = false;
         }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DragStrategyByTranslate3d, IDraggerParams } from 'ngx-os/modules';
+import { DragStrategyByTranslate3d, IDraggerConfig } from 'ngx-os/modules';
 
 @Component({
     selector: 'showcase-dragger-with-locked-axis',
@@ -8,13 +8,13 @@ import { DragStrategyByTranslate3d, IDraggerParams } from 'ngx-os/modules';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DraggerWithLockedAxisComponent {
-    public firstDraggerConfig: IDraggerParams = {
+    public firstDraggerConfig: IDraggerConfig = {
         strategy: new DragStrategyByTranslate3d({
             isLockAxisX: true
         })
     };
 
-    public secondDraggerConfig: IDraggerParams = {
+    public secondDraggerConfig: IDraggerConfig = {
         strategy: new DragStrategyByTranslate3d({
             isLockAxisY: true
         })

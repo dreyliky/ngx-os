@@ -20,7 +20,7 @@ export abstract class BaseDragStrategy {
         this.initAfterViewInitObserver();
     }
 
-    public registerMouseDown({ mouseEvent, movableElement }: IDragInfo): void {
+    public registerMouseDown({ originalEvent: mouseEvent, movableElement }: IDragInfo): void {
         const elementDomRect = movableElement.getBoundingClientRect();
         this.mouseDownEvent = mouseEvent;
 

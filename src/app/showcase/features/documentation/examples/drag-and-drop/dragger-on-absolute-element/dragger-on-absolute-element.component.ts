@@ -6,7 +6,7 @@ import {
     ElementRef,
     ViewChild
 } from '@angular/core';
-import { DragStrategyByAxisProperties, IDraggerParams } from 'ngx-os/modules';
+import { DragStrategyByAxisProperties, IDraggerConfig } from 'ngx-os/modules';
 
 @Component({
     selector: 'showcase-dragger-on-absolute-element',
@@ -18,7 +18,7 @@ export class DraggerOnAbsoluteElementComponent implements AfterViewInit {
     @ViewChild('containerHideButton', { read: ElementRef })
     private readonly containerHideButton: ElementRef<HTMLElement>;
 
-    public draggerConfig: IDraggerParams;
+    public draggerConfig: IDraggerConfig;
 
     public isContainerVisible = false;
 

@@ -11,7 +11,7 @@ export class ResizerConfig implements IResizerParams {
     public maxWidth?: number = Infinity;
     public maxHeight?: number = Infinity;
     public allowedResizers?: ResizerEnum[] = [...RESIZERS_ARRAY];
-    public allowedMouseButtons?: MouseButtonEnum[] = [MouseButtonEnum.left];
+    public allowedMouseButtons?: MouseButtonEnum[] = [MouseButtonEnum.Left];
     public xAxisLeftStyleProperty?: string = 'left';
     public xAxisRightStyleProperty?: string;
     public yAxisTopStyleProperty?: string = 'top';

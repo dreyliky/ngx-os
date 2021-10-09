@@ -2,51 +2,63 @@ import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnDestroy, O
 import { Observable, ReplaySubject } from 'rxjs';
 import { BaseDragStrategy, DraggerConfig, DragStrategyFactory } from '../classes';
 import { DraggerCssClassEnum as CssClass } from '../enums';
-import { IDraggerParams, IDragInfo } from '../interfaces';
+import { IDraggerConfig, IDragInfo } from '../interfaces';
 
+/** Makes HTML element draggable by mouse cursor */
 @Directive({
     selector: '[os-draggable]'
 })
 export class DraggableDirective implements AfterViewInit, OnDestroy {
+    /** Configuration of dragging */
     @Input('os-draggable')
-    public set config(config: IDraggerParams) {
+    public set config(config: IDraggerConfig) {
         this.updateConfigWithoutChanges(config);
         this.initMovableElement();
         this.initDraggableElement();
         this.initStrategy();
     }
 
-    public get config(): DraggerConfig {
+    /** Configuration of dragging */
+    public get config(): IDraggerConfig {
         return this._config;
     }
 
+    /** Fires before drag start. Immediately upon the `mousedown` event triggering, but only if dragging is allowed */
     @Output()
     public osBeforeDragStart: EventEmitter<IDragInfo> = new EventEmitter();
 
+    /** Fires after the `osBeforeDragStart`, but when all internal handlers registered and prepared */
     @Output()
     public osDragStart: EventEmitter<IDragInfo> = new EventEmitter();
 
-    @Output()
-    public osDragEnd: EventEmitter<IDragInfo> = new EventEmitter();
-
+    /** Fires when the `mousemove` is called */
     @Output()
     public osDragging: EventEmitter<IDragInfo> = new EventEmitter();
 
+    /** Fires when the `mousemove` is called as a macro task with minimum delay */
     @Output()
     public osAfterDragging: EventEmitter<IDragInfo> = new EventEmitter();
 
+    /** Fires when the `mouseup` is called and after all internal handlers removed */
+    @Output()
+    public osDragEnd: EventEmitter<IDragInfo> = new EventEmitter();
+
+    /** Target draggable HTML element */
     public get draggableElement(): HTMLElement {
         return this._draggableElement;
     }
 
+    /** Target movable HTML element */
     public get movableElement(): HTMLElement {
         return this._movableElement;
     }
 
+    /** Target dragging strategy */
     public get strategy(): BaseDragStrategy {
         return this._strategy;
     }
 
+    /** @internal */
     public get whenViewInit$(): Observable<unknown> {
         return this._whenViewInit$.asObservable();
     }
@@ -70,10 +82,13 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         this._whenViewInit$.complete();
     }
 
-    public updateConfigWithoutChanges(config: IDraggerParams): void {
+    /** Updates config without affecting any logic, like some internal initialization of different things */
+    public updateConfigWithoutChanges(config: IDraggerConfig): void {
         this._config = { ...this._config, ...config };
     }
 
+    // FIXME: Check is this method might be removed
+    /** @internal */
     public updateMovableElementPosition(event: MouseEvent): void {
         if (this._movableElement && this.config.isAllowMoveElement) {
             this._strategy.updateElementPosition(event);
@@ -139,7 +154,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     private getDragInfo(mouseEvent: MouseEvent): IDragInfo {
         return {
             movableElement: this._movableElement,
-            mouseEvent
+            originalEvent: mouseEvent
         };
     }
 

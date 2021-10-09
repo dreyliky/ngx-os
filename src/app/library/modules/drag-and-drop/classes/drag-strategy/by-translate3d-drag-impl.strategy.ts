@@ -14,13 +14,15 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategy {
 
     public registerMouseDown(dragInfo: IDragInfo): void {
         super.registerMouseDown(dragInfo);
-        this.calculateTotalParentCoordinates(dragInfo.mouseEvent);
+        this.calculateTotalParentCoordinates(dragInfo.originalEvent);
     }
 
     public updateElementPosition(event: MouseEvent): void {
-        const x = this.calculateElementPositionX(event);
-        const y = this.calculateElementPositionY(event);
-        this.context.movableElement.style.transform = `translate3d(${x}, ${y}, 0px)`;
+        if (this.context.config.isAllowMoveElement) {
+            const x = this.calculateElementPositionX(event);
+            const y = this.calculateElementPositionY(event);
+            this.context.movableElement.style.transform = `translate3d(${x}, ${y}, 0px)`;
+        }
     }
 
     private calculateTotalParentCoordinates(event: MouseEvent): void {
