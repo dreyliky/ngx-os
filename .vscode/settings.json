@@ -27,5 +27,6 @@
     "angular.view-engine": true,
     "[markdown]": {
         "editor.wordWrap": "off"
-    }
+    },
+    "editor.guides.bracketPairs": true
 }
