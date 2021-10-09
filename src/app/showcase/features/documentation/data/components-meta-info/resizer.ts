@@ -19,16 +19,12 @@ export const RESIZER_META_INFO: ComponentMetaInfo = {
         ResizableDirective
     ],
     libInterfaces: [
-        'IResizerParams',
+        'IResizerConfig',
         'IResizeInfo'
     ],
     libEnums: [
         'ResizerEnum',
         'MouseButtonEnum'
-    ],
-    libTypes: [
-        'xAxisStyleNameType',
-        'yAxisStyleNameType'
     ],
     demoComponents: [
         {

@@ -1,7 +1,7 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import { CssClasslistToObjectHelper as ClasslistToObject } from '../../../../core';
 import { DragStrategyByAxisProperties, IDraggerConfig } from '../../../drag-and-drop';
-import { IResizerParams } from '../../../resizer';
+import { IResizerConfig } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
 import {
     DynamicStateEnum,
@@ -99,7 +99,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
 
     public config: IDynamicWindowConfig;
     public draggerConfig: IDraggerConfig;
-    public resizerConfig: IResizerParams;
+    public resizerConfig: IResizerConfig;
 
     public zIndex: number;
     public windowOrderIndex: number = 0;

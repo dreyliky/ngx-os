@@ -1,10 +1,10 @@
 import { MouseButtonEnum } from '../../../core';
 import { RESIZERS_ARRAY } from '../data';
 import { ResizerEnum } from '../enums';
-import { IResizerParams } from '../interfaces';
+import { IResizerConfig } from '../interfaces';
 
 /** @internal */
-export class ResizerConfig implements IResizerParams {
+export class ResizerConfig implements IResizerConfig {
     public targetElement?: HTMLElement;
     public minWidth?: number;
     public minHeight?: number;

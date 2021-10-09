@@ -1,4 +1,4 @@
-import { IDynamicWindowConfig, IResizerParams } from 'ngx-os/modules';
+import { IDynamicWindowConfig, IResizerConfig } from 'ngx-os/modules';
 import { TaskbarPlacementEnum } from '../enums';
 
 export interface TaskbarPlacement {
@@ -7,5 +7,5 @@ export interface TaskbarPlacement {
     cssClassName: string;
     windowConfigFullscreenOffsetKey: keyof IDynamicWindowConfig['fullscreenOffset'];
     targetSizeProperty: keyof HTMLElement;
-    resizerConfig: IResizerParams;
+    resizerConfig: IResizerConfig;
 }

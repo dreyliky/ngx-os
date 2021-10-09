@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { IResizerParams, ResizerEnum } from 'ngx-os/modules';
+import { IResizerConfig, ResizerEnum } from 'ngx-os/modules';
 
 @Component({
     selector: 'showcase-resizer-specific-sides',
@@ -8,7 +8,7 @@ import { IResizerParams, ResizerEnum } from 'ngx-os/modules';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResizerSpecificSidesComponent {
-    public readonly resizerConfig: IResizerParams = {
+    public readonly resizerConfig: IResizerConfig = {
         isAllowChangePosition: false,
         allowedResizers: [
             ResizerEnum.Right,
