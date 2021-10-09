@@ -23,9 +23,11 @@ import { GridItemComponent } from '../item';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent extends OsBaseComponent implements OnInit, OnChanges, AfterViewInit {
+    /** Direction of grid items */
     @Input()
     public readonly direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
 
+    /** Size of each grid item in pixels */
     @Input()
     public set gridSize(value: number) {
         this._gridSize = value;
@@ -33,10 +35,12 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         this.validateGridSize();
     }
 
+    /** Size of each grid item in pixels */
     public get gridSize(): number {
         return this._gridSize;
     }
 
+    /** How long in milliseconds, the grid should wait after changes before recalculate and repaint all grid items? */
     @Input()
     public repaintDelayInMs: number = 200;
 

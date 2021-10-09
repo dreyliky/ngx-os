@@ -16,15 +16,16 @@ import { IGridItem } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridItemComponent extends OsBaseComponent implements OnInit {
+    /** Data of grid item */
     @Input()
     public data: IGridItem;
 
+    /** Is grid item selected? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean;
 
-    public gridSize: number;
-
+    /** @internal */
     public get _iconBackgroundCssUrl(): string {
         return (this.data.iconUrl) ? `url(${this.data.iconUrl})` : '';
     }
@@ -40,6 +41,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
+    /** @internal */
     @HostListener('document:click', ['$event'])
     public onClickOutside(event: MouseEvent): void {
         const hostElement = this.hostElementRef.nativeElement;
