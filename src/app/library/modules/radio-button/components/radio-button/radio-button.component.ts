@@ -30,27 +30,33 @@ import { IRadioButtonValueChangeEvent } from '../../interfaces';
 export class RadioButtonComponent<T>
     extends OsBaseFormControlComponent<T>
     implements OnInit, ControlValueAccessor {
+    /** Label text near the radio-button */
     @Input()
     public readonly label: string = '';
 
+    /** Name of the radio-button group */
     @Input()
     public readonly name: string = '';
 
+    /** Is radio-button checked? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Checked}`)
     public isChecked: boolean;
 
+    /** Is radio-button disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public readonly isDisabled: boolean;
 
+    /** Value of the radio-button */
     @Input()
     public value: T;
 
+    /** Fires when the radio-button state change */
     @Output()
     public osChange: EventEmitter<IRadioButtonValueChangeEvent<T>> = new EventEmitter();
 
-    /** Emits when `checked` state changed. Might be used for two way binding */
+    /** Fires when `checked` state changed. Might be used for two way binding */
     @Output()
     public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
@@ -69,6 +75,7 @@ export class RadioButtonComponent<T>
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
+    /** @internal */
     public onRadioButtonChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
 
@@ -77,10 +84,11 @@ export class RadioButtonComponent<T>
         this.osChange.emit({
             originalEvent,
             value: this.value,
-            checked: inputElement.checked
+            isChecked: inputElement.checked
         });
     }
 
+    /** @internal */
     public writeValue(value: T): void {
         this.isChecked = (this.value === value);
 

@@ -1,5 +1,8 @@
 export interface IRadioButtonValueChangeEvent<T> {
-    checked: boolean;
+    /** Is radio-button checked? */
+    isChecked: boolean;
+    /** Value of the radio-button */
     value: T;
+    /** Original `change` event from HTML `<input>` element */
     originalEvent: Event;
 }
