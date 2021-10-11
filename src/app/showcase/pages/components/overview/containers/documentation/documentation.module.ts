@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { DocumentationComponent } from './documentation.component';
 import { DocumentationRoutingModule } from './documentation.routing';
@@ -8,8 +9,9 @@ import { DocumentationRoutingModule } from './documentation.routing';
         DocumentationComponent
     ],
     imports: [
+        DocumentationRoutingModule,
         SharedModule,
-        DocumentationRoutingModule
+        FeaturesModule
     ]
 })
 export class DocumentationModule {}

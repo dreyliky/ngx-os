@@ -1,19 +1,37 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
     template: ''
 })
 export abstract class OsBaseViewComponent implements AfterViewInit, OnDestroy {
-    protected isViewInit: boolean = false;
-    protected viewDestroyed$ = new Subject();
+    protected get whenViewInit$(): Observable<boolean> {
+        return this._whenViewInit$
+            .asObservable()
+            .pipe(first());
+    }
+
+    protected get viewDestroyed$(): Observable<boolean> {
+        return this._viewDestroyed$.asObservable();
+    }
+
+    protected get isViewInit(): boolean {
+        return this._isViewInit;
+    }
+
+    protected _isViewInit: boolean;
+    private _viewDestroyed$ = new Subject<boolean>();
+    private _whenViewInit$ = new ReplaySubject<boolean>();
 
     public ngAfterViewInit(): void {
-        this.isViewInit = true;
+        this._isViewInit = true;
+        this._whenViewInit$.next(true);
     }
 
     public ngOnDestroy(): void {
-        this.viewDestroyed$.next();
-        this.viewDestroyed$.complete();
+        this._viewDestroyed$.next();
+        this._viewDestroyed$.complete();
+        this._whenViewInit$.complete();
     }
 }

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
-import { CodeHighlighterService, CodeLanguageType } from '@features/code-highlighter';
+import { CodeHighlighterService } from '../../services';
+import { CodeLanguageType } from '../../types';
 
 @Component({
     selector: 'showcase-code-viewer',

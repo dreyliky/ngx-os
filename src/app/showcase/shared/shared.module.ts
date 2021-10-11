@@ -4,14 +4,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxOsModule } from 'ngx-os';
-import { CodeViewerComponent, MarkdownViewerComponent } from './components';
 import { SafeHtmlPipe } from './pipes';
 
 @NgModule({
     declarations: [
-        SafeHtmlPipe,
-        CodeViewerComponent,
-        MarkdownViewerComponent
+        SafeHtmlPipe
     ],
     imports: [
         CommonModule,
@@ -29,9 +26,7 @@ import { SafeHtmlPipe } from './pipes';
         ReactiveFormsModule,
         NgxOsModule,
 
-        SafeHtmlPipe,
-        CodeViewerComponent,
-        MarkdownViewerComponent
+        SafeHtmlPipe
     ]
 })
 export class SharedModule {}

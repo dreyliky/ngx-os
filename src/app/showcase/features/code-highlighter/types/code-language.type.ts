@@ -1,1 +1,1 @@
-export type CodeLanguageType = 'html' | 'scss' | 'js' | 'ts';
+export type CodeLanguageType = 'html' | 'scss' | 'js' | 'ts' | 'json';

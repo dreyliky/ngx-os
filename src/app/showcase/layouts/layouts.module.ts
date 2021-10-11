@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FeaturesModule } from '@features/features.module';
+import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { ComponentHeaderModule } from './components';
 import { MainLayoutComponent } from './containers';

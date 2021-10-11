@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { ThemingComponent } from './theming.component';
 import { ThemingRoutingModule } from './theming.routing';
@@ -9,7 +10,8 @@ import { ThemingRoutingModule } from './theming.routing';
     ],
     imports: [
         ThemingRoutingModule,
-        SharedModule
+        SharedModule,
+        FeaturesModule
     ]
 })
 export class ThemingModule {}

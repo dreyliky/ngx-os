@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { ApiSharedModule } from '../shared';
 import { ModulesApiComponent } from './modules-api.component';
@@ -9,6 +10,7 @@ import { ModulesApiComponent } from './modules-api.component';
     ],
     imports: [
         SharedModule,
+        FeaturesModule,
         ApiSharedModule
     ],
     exports: [

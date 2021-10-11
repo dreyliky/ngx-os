@@ -6,10 +6,10 @@
     <os-button>Read on Github</os-button>
 </a>
 
-<showcase-markdown-viewer
+<showcase-markdown-previewer
     *ngIf="(markdownContent$ | async) as markdownContent; else loaderTemplate"
     [data]="markdownContent">
-</showcase-markdown-viewer>
+</showcase-markdown-previewer>
 
 <ng-template #loaderTemplate>
     <div>Loading...</div>

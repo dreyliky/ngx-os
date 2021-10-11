@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FeaturesModule } from '@features/features.module';
+import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { ComponentHeaderComponent } from './component-header.component';
 import { ThemeSettingsComponent } from './theme-settings/theme-settings.component';

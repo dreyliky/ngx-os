@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { ElementHeaderComponent } from './element-header';
 import { GettersComponent } from './getters';
@@ -23,7 +24,8 @@ import { SettersComponent } from './setters';
         SelectorComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        FeaturesModule
     ],
     exports: [
         ReadmeInfoComponent,

@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FeaturesModule } from '@features/features.module';
+import { FeaturesModule } from '@features';
 import { LayoutsModule } from '@layouts';
 import { SharedModule } from './shared/shared.module';
 import { ShowcaseComponent } from './showcase.component';

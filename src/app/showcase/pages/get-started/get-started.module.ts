@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { GetStartedComponent } from './get-started.component';
 import { GetStartedRoutingModule } from './get-started.routing';
@@ -9,7 +10,8 @@ import { GetStartedRoutingModule } from './get-started.routing';
     ],
     imports: [
         GetStartedRoutingModule,
-        SharedModule
+        SharedModule,
+        FeaturesModule
     ]
 })
 export class GetStartedModule {}

@@ -1,3 +1,7 @@
+.showcase-code-of-block {
+    display: block;
+}
+
 :host ::ng-deep {
     > :first-child {
         margin-top: 7px;
@@ -9,6 +13,7 @@
 
     h1, h2, h3, h4, h5, h6 {
         margin: 0px;
+        font-weight: normal;
 
         &:not(:first-child) {
             margin-top: 14px;

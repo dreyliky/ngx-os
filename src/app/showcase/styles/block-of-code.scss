@@ -1,5 +1,5 @@
 .showcase-code-of-block {
-    font-size: 14px;
+    font-size: 15px;
 
     pre {
         display: block;
@@ -14,7 +14,6 @@
         word-wrap: normal;
         color: #c3cee3;
         font-family: Roboto Mono, monospace;
-        font-size: 1em;
 
         -moz-tab-size: 4;
         -o-tab-size: 4;
@@ -94,7 +93,7 @@
     }
 
     .token.class-name {
-        color: #f2ff00;
+        color: #ffcb6b;
     }
 
     .token.color {
@@ -122,7 +121,7 @@
     }
 
     .token.function {
-        color: #c792ea;
+        color: #82aaff;
     }
 
     .token.hexcode {
@@ -145,7 +144,6 @@
 
     .token.keyword {
         color: #c792ea;
-        font-style: italic;
     }
 
     .token.number {
@@ -185,7 +183,7 @@
     }
 
     .token.string {
-        color: #c3e88d;
+        color: #bee38b;
     }
 
     .token.symbol {

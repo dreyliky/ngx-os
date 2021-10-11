@@ -20,7 +20,6 @@ export class ShutDownAppComponent {
     ) {}
 
     public onConfirmButtonClick(): void {
-        console.log(this.dynamicWindowService.references);
         this.dynamicWindowService.closeAll();
         this.router.navigateByUrl('/');
     }
