@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -63,13 +64,13 @@ export class DropdownComponent<T>
         this.initSelectedOptionByValue(value);
     }
 
-    /** The field name of the `value` **OBJECT** that should be used to take value from as label to display for user */
+    /** Expression which returns the `label` text from the item to show it for the user */
     @Input()
-    public displayField: keyof T;
+    public displayExpr: (item: T) => string = (item) => item as any;
 
-    /** The field name of the `value` **OBJECT** that should be used to take value from as value */
+    /** Expression which returns the value from the item */
     @Input()
-    public valueField: keyof T;
+    public valueExpr: (item: T) => string = (item) => item as any;
 
     /** Stylelist for scroll view component of the dropdown overlay */
     @Input()
@@ -119,7 +120,7 @@ export class DropdownComponent<T>
     private get _value(): any {
         const rawValue = this.selectedOptionComponent?.value as any;
 
-        return (this.valueField) ? rawValue?.[this.valueField] : rawValue;
+        return this.valueExpr(rawValue);
     }
 
     /** @internal */
@@ -127,7 +128,7 @@ export class DropdownComponent<T>
         const rawValue = this.selectedOptionComponent?.value as any;
         const rawLabel = this.selectedOptionComponent?.getLabel();
 
-        return (this.displayField) ? rawValue?.[this.displayField] : (rawLabel ?? rawValue);
+        return this.displayExpr(rawValue) ?? rawLabel;
     }
 
     private initialValue: T;

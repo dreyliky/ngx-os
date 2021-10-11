@@ -1,7 +1,7 @@
 <os-dropdown
     [placeholder]="'Choose theme'"
     [value]="selectedTheme"
-    [displayField]="'name'"
+    [displayExpr]="themeDisplayExpr"
     (osChange)="onThemeChanged($event)">
     <os-dropdown-item
         *ngFor="let theme of themes"

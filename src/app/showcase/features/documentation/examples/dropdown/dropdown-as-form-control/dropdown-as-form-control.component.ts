@@ -25,6 +25,8 @@ export class DropdownAsFormControlComponent implements OnInit {
         this.createFormGroup();
     }
 
+    public itemDisplayExpr = (item: MyItem): string => item.text;
+
     public createFormGroup(): void {
         this.formGroup = new FormGroup({
             selectedItem: new FormControl(this.items[1])
