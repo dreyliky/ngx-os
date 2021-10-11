@@ -9,9 +9,8 @@ import {
     OnInit,
     QueryList
 } from '@angular/core';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
-import { Subscription, timer } from 'rxjs';
-import { debounce } from 'rxjs/operators';
+import { timer } from 'rxjs';
+import { debounce, takeUntil } from 'rxjs/operators';
 import { elementResizingObserver, ErrorHelper, OsBaseComponent } from '../../../../core';
 import { Cell, Grid } from '../../classes';
 import { GridDirectionEnum } from '../../enums';
@@ -111,10 +110,10 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         }
     }
 
-    @AutoUnsubscribe()
-    private initHostSizeChangeObserver(): Subscription {
-        return elementResizingObserver(this.hostElementRef.nativeElement)
+    private initHostSizeChangeObserver(): void {
+        elementResizingObserver(this.hostElementRef.nativeElement)
             .pipe(
+                takeUntil(this.viewDestroyed$),
                 debounce(() => timer(this.hostResizeDelayBeforeCalculation))
             )
             .subscribe(() => this.calculateGridItemElementsPositions());

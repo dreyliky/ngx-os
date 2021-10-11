@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
-import { Observable, Subscription } from 'rxjs';
+import { OsBaseViewComponent } from 'ngx-os';
+import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { TaskbarPlacement } from './modules';
 import { DesktopBackgroundService, DesktopTaskbarService } from './services';
 
@@ -15,7 +16,7 @@ import { DesktopBackgroundService, DesktopTaskbarService } from './services';
         DesktopTaskbarService
     ]
 })
-export class DesktopComponent implements OnInit {
+export class DesktopComponent extends OsBaseViewComponent implements OnInit {
     @HostBinding('style.background')
     public hostBackgroundStylelist: string;
 
@@ -29,7 +30,9 @@ export class DesktopComponent implements OnInit {
         private readonly taskbar: DesktopTaskbarService,
         private readonly background: DesktopBackgroundService,
         private readonly changeDetector: ChangeDetectorRef
-    ) {}
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
         this.taskbarPlacement$ = this.taskbar.placement$;
@@ -39,9 +42,9 @@ export class DesktopComponent implements OnInit {
         this.initHostClasslistObserver();
     }
 
-    @AutoUnsubscribe()
-    private initHostBackgroundStylelistObserver(): Subscription {
-        return this.background.styles$
+    private initHostBackgroundStylelistObserver(): void {
+        this.background.styles$
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((styles) => {
                 this.hostBackgroundStylelist = styles;
 
@@ -49,9 +52,9 @@ export class DesktopComponent implements OnInit {
             });
     }
 
-    @AutoUnsubscribe()
-    private initHostClasslistObserver(): Subscription {
-        return this.taskbar.classList$
+    private initHostClasslistObserver(): void {
+        this.taskbar.classList$
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((classList) => {
                 this.hostClasslist = classList;
 

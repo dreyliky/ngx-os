@@ -2,11 +2,12 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
 import { IdGenerator } from '../../helpers';
 import { ClasslistManager } from '../css-classlist-manager';
 import { StyleListManager } from '../css-stylelist-manager';
+import { OsBaseViewComponent } from './view';
 
 @Component({
     template: ''
 })
-export abstract class OsBaseComponent {
+export abstract class OsBaseComponent extends OsBaseViewComponent {
     /** Target internal element stylelist */
     @Input()
     public set style(styleList: object) {
@@ -85,6 +86,7 @@ export abstract class OsBaseComponent {
     protected readonly classListManager = new ClasslistManager();
 
     constructor() {
+        super();
         this.classListManager.add(this.baseHostClassName);
     }
 

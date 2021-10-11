@@ -4,11 +4,12 @@ import {
     Component,
     ContentChildren,
     ElementRef,
+    OnDestroy,
     OnInit,
     QueryList
 } from '@angular/core';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { OsBaseComponent } from '../../../../core';
 import { TabComponent } from '../tab';
 
@@ -17,10 +18,12 @@ import { TabComponent } from '../tab';
     templateUrl: './tab-group.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupComponent extends OsBaseComponent implements OnInit, AfterContentInit {
+export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDestroy, AfterContentInit {
     /** @internal */
     @ContentChildren(TabComponent)
     public readonly _tabComponentList: QueryList<TabComponent>;
+
+    private tabButtonSubscriptions: Subscription[] = [];
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -37,28 +40,44 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, AfterC
         this.initTabButtonClickObservers();
     }
 
+    public ngOnDestroy(): void {
+        super.ngOnDestroy();
+        this.unsubscribeFromTabButtonSubscriptions();
+    }
+
     /** @internal */
-    public trackByFn = (_: TabComponent, index: number): number => {
+    public _trackByFn = (_: TabComponent, index: number): number => {
         return index;
     }
 
     private initTabButtonClickObservers(): void {
+        this.unsubscribeFromTabButtonSubscriptions();
+
+        this.tabButtonSubscriptions = [];
+
         this._tabComponentList
             .forEach((tabComponent) => this.initTabButtonClickObserver(tabComponent));
     }
 
-    @AutoUnsubscribe()
-    private initTabButtonClickObserver(tabComponent: TabComponent): Subscription {
-        return tabComponent.osTabButtonClick
+    private initTabButtonClickObserver(tabComponent: TabComponent): void {
+        const subscription = tabComponent.osTabButtonClick
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
                 this.deselectAllTabs();
 
                 tabComponent.isSelected = true;
             });
+
+        this.tabButtonSubscriptions.push(subscription);
     }
 
     private deselectAllTabs(): void {
         this._tabComponentList
             .forEach((tabComponent) => tabComponent.isSelected = false);
+    }
+
+    private unsubscribeFromTabButtonSubscriptions(): void {
+        this.tabButtonSubscriptions
+            ?.forEach((subscription) => subscription.unsubscribe());
     }
 }

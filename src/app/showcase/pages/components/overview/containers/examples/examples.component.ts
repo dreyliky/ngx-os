@@ -9,8 +9,9 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@features/documentation';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
-import { combineLatest, Subscription } from 'rxjs';
+import { OsBaseViewComponent } from 'ngx-os';
+import { combineLatest } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../../overview.service';
 
 @Component({
@@ -19,7 +20,7 @@ import { OverviewService } from '../../overview.service';
     styleUrls: ['./examples.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExamplesComponent implements OnInit {
+export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
     @ViewChildren('demoTemplate', { read: ViewContainerRef })
     private readonly demoTemplates: QueryList<ViewContainerRef>;
 
@@ -35,7 +36,9 @@ export class ExamplesComponent implements OnInit {
         private readonly overviewService: OverviewService,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
-    ) {}
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
         this.initMetaInfoObserver();
@@ -57,12 +60,12 @@ export class ExamplesComponent implements OnInit {
         }
     }
 
-    @AutoUnsubscribe()
-    private initMetaInfoObserver(): Subscription {
-        return combineLatest([
+    private initMetaInfoObserver(): void {
+        combineLatest([
             this.overviewService.metaInfo$,
             this.devExamplesVisibilityService.data$
         ])
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(([{ demoComponents }, isDevExamplesVisible]) => {
                 this.initShowcaseComponents(demoComponents, isDevExamplesVisible);
                 this.changeDetector.detectChanges();

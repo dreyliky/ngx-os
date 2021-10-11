@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
+import { OsBaseViewComponent } from 'ngx-os';
 import { GridDirectionEnum } from 'ngx-os/modules';
-import { Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ShortcutSettingsService } from '../../../../features/shortcut';
 
 @Component({
@@ -11,13 +11,15 @@ import { ShortcutSettingsService } from '../../../../features/shortcut';
     styleUrls: ['./shortcuts.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShortcutsComponent implements OnInit {
+export class ShortcutsComponent extends OsBaseViewComponent implements OnInit {
     public gridDirectionEnum = GridDirectionEnum;
     public formGroup: FormGroup;
 
     constructor(
         private readonly shortcutSettingsService: ShortcutSettingsService
-    ) {}
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
         this.initFormGroup();
@@ -33,9 +35,9 @@ export class ShortcutsComponent implements OnInit {
         });
     }
 
-    @AutoUnsubscribe()
-    private initFormGroupValueObserver(): Subscription {
-        return this.formGroup.valueChanges
+    private initFormGroupValueObserver(): void {
+        this.formGroup.valueChanges
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((settings) => this.shortcutSettingsService.apply(settings));
     }
 }

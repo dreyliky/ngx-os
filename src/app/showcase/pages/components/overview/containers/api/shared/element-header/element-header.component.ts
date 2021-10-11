@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
-import { Subscription } from 'rxjs';
+import { OsBaseViewComponent } from 'ngx-os';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'api-element-header',
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./element-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ElementHeaderComponent implements OnInit {
+export class ElementHeaderComponent extends OsBaseViewComponent implements OnInit {
     @Input()
     public readonly title: string;
 
@@ -25,15 +25,17 @@ export class ElementHeaderComponent implements OnInit {
     constructor(
         private readonly activatedRoute: ActivatedRoute,
         private readonly changeDetector: ChangeDetectorRef
-    ) {}
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
         this.initRouteFragmentObserver();
     }
 
-    @AutoUnsubscribe()
-    private initRouteFragmentObserver(): Subscription {
-        return this.activatedRoute.fragment
+    private initRouteFragmentObserver(): void {
+        this.activatedRoute.fragment
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((fragment) => {
                 this.routeFragment = fragment;
 

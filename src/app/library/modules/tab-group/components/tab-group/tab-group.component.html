@@ -11,7 +11,7 @@
             ngFor
             let-tabContent
             [ngForOf]="_tabComponentList"
-            [ngForTrackBy]="trackByFn">
+            [ngForTrackBy]="_trackByFn">
             <ng-container
                 *ngTemplateOutlet="tabContent._tabButtonTemplate">
             </ng-container>
@@ -22,7 +22,7 @@
         ngFor
         let-tabContent
         [ngForOf]="_tabComponentList"
-        [ngForTrackBy]="trackByFn">
+        [ngForTrackBy]="_trackByFn">
         <ng-template [ngIf]="tabContent.isSelected">
             <ng-container
                 *ngTemplateOutlet="tabContent._tabContentTemplate">

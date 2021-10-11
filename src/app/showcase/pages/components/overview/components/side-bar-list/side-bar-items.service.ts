@@ -1,21 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
 import {
     ComponentMetaInfo,
-    LibraryComponentsSearchService, OsComponentOverviewSectionEnum as RouteEnum
+    LibraryComponentsSearchService,
+    OsComponentOverviewSectionEnum as RouteEnum
 } from '@features/documentation';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { ITreeNode } from 'ngx-os';
-import { Observable, Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { SideBarItem } from './side-bar-item.interface';
 
 @Injectable()
-export class SideBarItemsService {
+export class SideBarItemsService implements OnDestroy {
     public data$: Observable<ITreeNode<SideBarItem>[]>;
-
-    private currentRoute: string;
 
     private readonly baseSubSections: ITreeNode<SideBarItem>[] = [
         {
@@ -41,6 +39,9 @@ export class SideBarItemsService {
         }
     ];
 
+    private currentRoute: string;
+    private destroyed$ = new Subject();
+
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
         private readonly router: Router
@@ -48,6 +49,11 @@ export class SideBarItemsService {
         this.initCurrentRouteByUrl(this.router.url);
         this.initRouteUrlObserver();
         this.initDataObservable();
+    }
+
+    public ngOnDestroy(): void {
+        this.destroyed$.next();
+        this.destroyed$.complete();
     }
 
     private mapMetaInfosToTreeNodes(metaInfos: ComponentMetaInfo[]): ITreeNode<SideBarItem>[] {
@@ -89,10 +95,10 @@ export class SideBarItemsService {
             );
     }
 
-    @AutoUnsubscribe()
-    private initRouteUrlObserver(): Subscription {
-        return this.router.events
+    private initRouteUrlObserver(): void {
+        this.router.events
             .pipe(
+                takeUntil(this.destroyed$),
                 filter<NavigationEnd>((event) => event instanceof NavigationEnd)
             )
             .subscribe(({ url }) => this.initCurrentRouteByUrl(url));

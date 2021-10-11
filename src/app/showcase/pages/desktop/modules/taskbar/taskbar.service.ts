@@ -1,19 +1,17 @@
 import { ElementRef, Injectable, OnDestroy, QueryList } from '@angular/core';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { elementResizingObserver } from 'ngx-os/core';
 import { DynamicWindowRef, DynamicWindowService, DynamicWindowSharedConfigService } from 'ngx-os/modules';
-import { combineLatest, Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { combineLatest, Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { TaskbarPlacement } from './interfaces';
 import { TaskbarPlacementService } from './services';
 
 @Injectable()
 export class TaskbarService implements OnDestroy {
     private windowRefs: DynamicWindowRef[];
-
     private previousPlacement: TaskbarPlacement;
-
-    private _windowRefElements: QueryList<ElementRef<HTMLElement>>;
+    private windowRefElements: QueryList<ElementRef<HTMLElement>>;
+    private destroyed$ = new Subject();
 
     constructor(
         private readonly dynamicWindowService: DynamicWindowService,
@@ -22,6 +20,8 @@ export class TaskbarService implements OnDestroy {
     ) {}
 
     public ngOnDestroy(): void {
+        this.destroyed$.next();
+        this.destroyed$.complete();
         this.clearWindowSharedConfig();
     }
 
@@ -31,24 +31,26 @@ export class TaskbarService implements OnDestroy {
     }
 
     public setWindowRefElements(elements: QueryList<ElementRef<HTMLElement>>): void {
-        this._windowRefElements = elements;
+        this.windowRefElements = elements;
 
         this.updateWindowRefsHidesIntoCoordinate();
     }
 
-    @AutoUnsubscribe()
-    private initWindowRefsObserver(): Subscription {
-        return this.dynamicWindowService.references$
+    private initWindowRefsObserver(): void {
+        this.dynamicWindowService.references$
+            .pipe(takeUntil(this.destroyed$))
             .subscribe((windowRefs) => this.windowRefs = windowRefs);
     }
 
-    @AutoUnsubscribe()
-    private initChangesObserver(taskbarElement: HTMLElement): Subscription {
-        return combineLatest([
+    private initChangesObserver(taskbarElement: HTMLElement): void {
+        combineLatest([
             elementResizingObserver(taskbarElement),
             this.placementService.data$
         ])
-            .pipe(debounceTime(4))
+            .pipe(
+                takeUntil(this.destroyed$),
+                debounceTime(4)
+            )
             .subscribe(() => {
                 this.updateWindowSharedConfig(taskbarElement);
                 this.updateWindowRefsHidesIntoCoordinate();
@@ -78,7 +80,7 @@ export class TaskbarService implements OnDestroy {
     }
 
     private updateWindowRefsHidesIntoCoordinate(): void {
-        this._windowRefElements.forEach(({ nativeElement: element }) => {
+        this.windowRefElements.forEach(({ nativeElement: element }) => {
             const windowRefId = element.getAttribute('data-window-ref-id');
             const windowRef = this.windowRefs
                 ?.find((currWindowRef) => currWindowRef.id === windowRefId);

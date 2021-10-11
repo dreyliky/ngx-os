@@ -26,14 +26,7 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     @Input('os-resizable')
     public set config(config: IResizerConfig) {
         this.updateConfigWithoutChanges(config);
-        this._whenViewInit$
-            .pipe(first())
-            .subscribe(() => {
-                this.initResizableElement();
-                this.updateResizersWrapperDomPlacement();
-                this.updateResizersWrapperActivity();
-                this.initResizerElements();
-            });
+        this.onConfigChanged();
     }
 
     /** Configuration of resizing */
@@ -93,6 +86,17 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     /** Updates config without affecting any logic, like some internal initialization of different things */
     public updateConfigWithoutChanges(config: IResizerConfig): void {
         this._config = { ...this._config, ...config };
+    }
+
+    private onConfigChanged(): void {
+        this._whenViewInit$
+            .pipe(first())
+            .subscribe(() => {
+                this.initResizableElement();
+                this.updateResizersWrapperDomPlacement();
+                this.updateResizersWrapperActivity();
+                this.initResizerElements();
+            });
     }
 
     private initResizableElement(): void {

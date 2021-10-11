@@ -11,9 +11,8 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
-import { combineLatest, fromEvent, Observable, Subscription } from 'rxjs';
-import { filter, map, skip } from 'rxjs/operators';
+import { combineLatest, fromEvent, Observable } from 'rxjs';
+import { filter, map, skip, takeUntil } from 'rxjs/operators';
 import { EventOutside } from '../../../../core';
 import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
 import { IResizeInfo } from '../../../resizer';
@@ -46,8 +45,8 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public ngOnInit(): void {
-        this.initConfigObserver();
         this.initDynamicStateManager();
+        this.initConfigObserver();
         this.initBeforeHiddenStateObserver();
         this.initIsHiddenStateObserver();
         this.initIsFullscreenStateObserver();
@@ -58,12 +57,11 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     public ngAfterViewInit(): void {
-        this.isViewInitialized = true;
-
+        super.ngAfterViewInit();
         this.initChildComponent(this.childComponentType);
         this.initHtmlElements();
         this.initWindowSizes();
-        this.updateComplexStructures();
+        this.updateComplexStructuresIfViewInit();
         this.windowRef.setWindowElement(this.windowElement);
         this.changeDetector.detectChanges();
     }
@@ -182,10 +180,10 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.titleBarButtons = Array.from(this.titleBarElement.querySelectorAll('.os-title-bar-button .os-icon'));
     }
 
-    @AutoUnsubscribe()
-    private initOutsideClickObserver(): Subscription {
-        return fromEvent(document, 'click')
+    private initOutsideClickObserver(): void {
+        fromEvent(document, 'click')
             .pipe(
+                takeUntil(this.viewDestroyed$),
                 filter(() => this.windowRef.isActive),
                 filter((event: MouseEvent) => EventOutside.checkForElement(this.windowElement, event))
             )
@@ -238,15 +236,15 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             .subscribe(() => this.dynamicStateManager.apply(DynamicState.Closing));
     }
 
-    @AutoUnsubscribe()
-    private initConfigObserver(): Subscription {
-        return combineLatest([
+    private initConfigObserver(): void {
+        combineLatest([
             this.sharedConfig$,
             this.windowRef.config$
         ])
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(([sharedConfig, updatedConfig]) => {
                 this.config = mergeConfigs(updatedConfig, sharedConfig);
-                this.updateComplexStructures();
+                this.updateComplexStructuresIfViewInit();
 
                 this.changeDetector.markForCheck();
             });

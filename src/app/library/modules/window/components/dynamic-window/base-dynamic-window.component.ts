@@ -1,5 +1,5 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
-import { CssClasslistToObjectHelper as ClasslistToObject } from '../../../../core';
+import { CssClasslistToObjectHelper as ClasslistToObject, OsBaseViewComponent } from '../../../../core';
 import { DragStrategyByAxisProperties, IDraggerConfig } from '../../../drag-and-drop';
 import { IResizerConfig } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRef } from '../../classes';
@@ -13,7 +13,7 @@ import { IDynamicWindowConfig } from '../../interfaces';
 @Component({
     template: ''
 })
-export abstract class BaseDynamicWindowComponent implements OnDestroy {
+export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent implements OnDestroy {
     @Input()
     public childComponentType: Type<any>;
 
@@ -95,8 +95,6 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
         };
     }
 
-    public isViewInitialized: boolean = false;
-
     public config: IDynamicWindowConfig;
     public draggerConfig: IDraggerConfig;
     public resizerConfig: IResizerConfig;
@@ -126,6 +124,7 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
     });
 
     public ngOnDestroy(): void {
+        super.ngOnDestroy();
         this.childComponentRef?.destroy();
         this.windowRef.destroy();
     }
@@ -138,8 +137,8 @@ export abstract class BaseDynamicWindowComponent implements OnDestroy {
         }
     }
 
-    protected updateComplexStructures(): void {
-        if (this.isViewInitialized) {
+    protected updateComplexStructuresIfViewInit(): void {
+        if (this.isViewInit) {
             this.updateDraggerConfig();
             this.updateResizerConfig();
         }

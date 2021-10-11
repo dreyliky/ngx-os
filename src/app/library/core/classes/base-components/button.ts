@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { CommonCssClassEnum } from '../../enums';
-import { OsBaseComponent } from './element';
+import { OsBaseComponent } from './component';
 
 @Component({
     template: ''

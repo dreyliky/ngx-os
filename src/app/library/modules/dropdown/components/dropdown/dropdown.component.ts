@@ -11,13 +11,14 @@ import {
     HostListener,
     Inject,
     Input,
+    OnDestroy,
     OnInit,
     Output,
     QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
 import { Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { CommonCssClassEnum, EventOutside, isNil, OsBaseFormControlComponent } from '../../../../core';
 import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-window-context.token';
 import { IDropdownValueChangeEvent } from '../../interfaces';
@@ -37,7 +38,7 @@ import { DropdownItemComponent } from '../dropdown-item';
 })
 export class DropdownComponent<T>
     extends OsBaseFormControlComponent<T>
-    implements OnInit, AfterViewInit, ControlValueAccessor {
+    implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
     /** Is dropdown overlay with items opened? */
     @Input()
     public isOpened: boolean = false;
@@ -132,6 +133,7 @@ export class DropdownComponent<T>
     private initialValue: T;
     private optionComponentQueryList: QueryList<DropdownItemComponent<T>>;
     private selectedOptionComponent: DropdownItemComponent<T>;
+    private optionSubscriptions: Subscription[];
 
     constructor(
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
@@ -149,6 +151,11 @@ export class DropdownComponent<T>
     public ngAfterViewInit(): void {
         this.initSelectedOptionByValue(this.initialValue);
         this.changeDetector.detectChanges();
+    }
+
+    public ngOnDestroy(): void {
+        super.ngOnDestroy();
+        this.unsubscribeFromOptionSubscriptions();
     }
 
     /** @internal */
@@ -210,6 +217,10 @@ export class DropdownComponent<T>
     }
 
     private initOptionComponentsSelectedObserver(): void {
+        this.unsubscribeFromOptionSubscriptions();
+
+        this.optionSubscriptions = [];
+
         this.optionComponentQueryList
             .forEach((optionComponent) => {
                 this.initOptionComponentSelectedStateObserver(optionComponent);
@@ -217,9 +228,9 @@ export class DropdownComponent<T>
             });
     }
 
-    @AutoUnsubscribe()
-    private initOptionComponentSelectedStateObserver(optionComponent: DropdownItemComponent<T>): Subscription {
-        return optionComponent.osSelected
+    private initOptionComponentSelectedStateObserver(optionComponent: DropdownItemComponent<T>): void {
+        const subscription = optionComponent.osSelected
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((event) => {
                 this.initSelectedOption(optionComponent);
                 this.deselectAllOptions();
@@ -229,11 +240,18 @@ export class DropdownComponent<T>
                 this.onChange?.(event.value);
                 this.changeDetector.detectChanges();
             });
+
+        this.optionSubscriptions.push(subscription);
     }
 
     private initValueBasedOnSelectedOption(optionComponent: DropdownItemComponent<T>): void {
         if (optionComponent.isSelected) {
             this.initSelectedOption(optionComponent);
         }
+    }
+
+    private unsubscribeFromOptionSubscriptions(): void {
+        this.optionSubscriptions
+            ?.forEach((subscription) => subscription.unsubscribe());
     }
 }

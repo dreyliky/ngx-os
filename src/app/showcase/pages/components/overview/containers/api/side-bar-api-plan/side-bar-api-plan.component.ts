@@ -2,9 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit }
 import { ActivatedRoute, Router } from '@angular/router';
 import { DevExamplesVisibilityService } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
-import { KeysOfType } from 'ngx-os';
-import { Subscription } from 'rxjs';
+import { KeysOfType, OsBaseViewComponent } from 'ngx-os';
+import { takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../../../overview.service';
 
 interface ListItem {
@@ -25,7 +24,7 @@ interface ApiElement {
     styleUrls: ['./side-bar-api-plan.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SideBarApiPlanComponent implements OnInit {
+export class SideBarApiPlanComponent extends OsBaseViewComponent implements OnInit {
     public apiPlanItems: ListItem[] = [];
     public routeFragment: string;
 
@@ -84,7 +83,9 @@ export class SideBarApiPlanComponent implements OnInit {
         private readonly activatedRoute: ActivatedRoute,
         private readonly router: Router,
         private readonly changeDetector: ChangeDetectorRef
-    ) {}
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
         this.initMetaInfoObserver();
@@ -122,18 +123,18 @@ export class SideBarApiPlanComponent implements OnInit {
             .flat();
     }
 
-    @AutoUnsubscribe()
-    private initMetaInfoObserver(): Subscription {
-        return this.overviewService.metaInfo$
+    private initMetaInfoObserver(): void {
+        this.overviewService.metaInfo$
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
                 this.initApiPlanItems();
                 this.changeDetector.detectChanges();
             });
     }
 
-    @AutoUnsubscribe()
-    private initRouteFragmentObserver(): Subscription {
-        return this.activatedRoute.fragment
+    private initRouteFragmentObserver(): void {
+        this.activatedRoute.fragment
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((fragment) => {
                 this.routeFragment = fragment;
 

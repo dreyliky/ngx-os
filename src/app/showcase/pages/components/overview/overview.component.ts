@@ -2,15 +2,15 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    Inject, OnInit
+    Inject,
+    OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentMetaInfo, ComponentMetaInfoMap, OsComponentEnum } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
-import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { OsBaseViewComponent } from 'ngx-os';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { OverviewService } from './overview.service';
 
 @Component({
@@ -22,7 +22,7 @@ import { OverviewService } from './overview.service';
         OverviewService
     ]
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent extends OsBaseViewComponent implements OnInit {
     private targetComponentMetaInfo: ComponentMetaInfo;
 
     constructor(
@@ -31,7 +31,9 @@ export class OverviewComponent implements OnInit {
         private readonly overviewService: OverviewService,
         private readonly changeDetector: ChangeDetectorRef,
         private readonly activatedRoute: ActivatedRoute
-    ) {}
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
         this.initRouteParamsObserver();
@@ -45,9 +47,9 @@ export class OverviewComponent implements OnInit {
         this.overviewService.applyMetaInfo(this.targetComponentMetaInfo);
     }
 
-    @AutoUnsubscribe()
-    private initRouteParamsObserver(): Subscription {
-        return this.activatedRoute.params
+    private initRouteParamsObserver(): void {
+        this.activatedRoute.params
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
                 this.mainLayout.scrollView.scrollTo(0, 0);
                 this.initMetaInfo();
@@ -56,10 +58,10 @@ export class OverviewComponent implements OnInit {
             });
     }
 
-    @AutoUnsubscribe()
-    private initRouteFragmentObserver(): Subscription {
-        return this.activatedRoute.fragment
+    private initRouteFragmentObserver(): void {
+        this.activatedRoute.fragment
             .pipe(
+                takeUntil(this.viewDestroyed$),
                 filter((fragment) => !!fragment),
                 map((fragment) => document.getElementById(fragment))
             )

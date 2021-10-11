@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { CodeHighlighterService, CodeLanguageType } from '@features/code-highlighter';
 import marked from 'marked';
-import { FireAfterViewInit, TextComponent } from 'ngx-os';
+import { OsBaseViewComponent, TextComponent } from 'ngx-os';
 
 interface CodeBlockInfo {
     selector: string;
@@ -14,7 +14,7 @@ interface CodeBlockInfo {
     styleUrls: ['./markdown-viewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MarkdownViewerComponent {
+export class MarkdownViewerComponent extends OsBaseViewComponent implements AfterViewInit {
     @Input()
     public set data(data: string) {
         if (data) {
@@ -49,7 +49,14 @@ export class MarkdownViewerComponent {
 
     constructor(
         private readonly highlighter: CodeHighlighterService
-    ) {}
+    ) {
+        super();
+    }
+
+    public ngAfterViewInit(): void {
+        super.ngAfterViewInit();
+        this.highlightCodeBlocks();
+    }
 
     public onClick(event: MouseEvent): void {
         this.processLinkClick(event);
@@ -67,8 +74,11 @@ export class MarkdownViewerComponent {
         }
     }
 
-    @FireAfterViewInit()
     private highlightCodeBlocks(): void {
+        if (!this.isViewInit) {
+            return;
+        }
+
         this.codeBlocks.forEach(({ selector, language }) => {
             const blockElements = this.textRef.nativeElement
                 .querySelectorAll<HTMLElement>(selector);

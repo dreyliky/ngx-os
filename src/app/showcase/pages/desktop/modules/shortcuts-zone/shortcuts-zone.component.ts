@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe-decorator';
+import { OsBaseViewComponent } from 'ngx-os';
 import { GridDirectionEnum } from 'ngx-os/modules';
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { APPS } from '../../apps';
 import { AppMetadata, ExecService } from '../../features/exec';
 import { ShortcutSettingsService } from '../../features/shortcut';
@@ -13,7 +12,7 @@ import { ShortcutSettingsService } from '../../features/shortcut';
     styleUrls: ['./shortcuts-zone.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShortcutsZoneComponent implements OnInit {
+export class ShortcutsZoneComponent extends OsBaseViewComponent implements OnInit {
     public gridDirection = GridDirectionEnum.Vertical;
     public gridSize = 72;
 
@@ -23,7 +22,9 @@ export class ShortcutsZoneComponent implements OnInit {
         private readonly execService: ExecService,
         private readonly shortcutSettingsService: ShortcutSettingsService,
         private readonly changeDetector: ChangeDetectorRef
-    ) {}
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
         this.initShortcutSettingsObserver();
@@ -33,10 +34,10 @@ export class ShortcutsZoneComponent implements OnInit {
         this.execService.run(program);
     }
 
-    @AutoUnsubscribe()
-    private initShortcutSettingsObserver(): Subscription {
-        return this.shortcutSettingsService.data$
+    private initShortcutSettingsObserver(): void {
+        this.shortcutSettingsService.data$
             .pipe(
+                takeUntil(this.viewDestroyed$),
                 filter((settings) => !!settings)
             )
             .subscribe(({ direction, gridSize }) => {
