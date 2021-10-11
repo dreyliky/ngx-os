@@ -57,7 +57,7 @@ If you want to change config settings later after opening window, you need to do
 import { DYNAMIC_WINDOW_REF, IDynamicWindowConfig } from 'ngx-os';
 
 @Component()
-export class MyComponentInsideDynamicWindow implements OnInit {
+export class MyInsideDynamicWindowComponent implements OnInit {
     constructor(
         @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: IDynamicWindowConfig
     ) {}
