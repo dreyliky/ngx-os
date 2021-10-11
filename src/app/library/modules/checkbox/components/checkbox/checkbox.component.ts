@@ -48,9 +48,9 @@ export class CheckboxComponent<T>
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public readonly isDisabled: boolean;
 
-    /** Value of the checkbox */
+    /** Data of the checkbox */
     @Input()
-    public readonly value: T;
+    public readonly data: T;
 
     /** Fires when the checkbox state change */
     @Output()
@@ -83,7 +83,7 @@ export class CheckboxComponent<T>
         this.isCheckedChange.emit(this.isChecked);
         this.osChange.emit({
             originalEvent,
-            value: this.value,
+            data: this.data,
             isChecked: this.isChecked
         });
     }
