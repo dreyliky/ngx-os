@@ -4,12 +4,13 @@
         height="100%"
         src="/assets/showcase/icons/components/theme.png" />
 
-    <os-dropdown-item *ngFor="let accentColor of accentColors">
+    <os-dropdown-item
+        *ngFor="let accentColor of accentColors"
+        (osClick)="colorChanged.emit(accentColor.value)">
         <div
             class="accent-color"
             [class.active]="isColorSelected(accentColor.value)"
-            [style.backgroundColor]="accentColor.css"
-            (click)="colorChanged.emit(accentColor.value)">
+            [style.backgroundColor]="accentColor.css">
         </div>
     </os-dropdown-item>
 </os-dropdown>
