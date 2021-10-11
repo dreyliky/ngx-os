@@ -18,8 +18,6 @@ export class ThemeDropdownComponent {
 
     public readonly themes = THEMES;
 
-    public themeDisplayExpr = (theme: Theme): string => theme.name;
-
     public onThemeChanged(event: IDropdownValueChangeEvent<Theme>): void {
         const theme = event.value;
 

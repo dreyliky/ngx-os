@@ -13,7 +13,7 @@ Inside this window will be rendered your component.
 
 This window will have features like:
 - Hiding, Toggle Fullscreen mode, Closing;
-- Resizing from each side and angle;
+- Resizing from each side and corner;
 - Dragging by title bar;
 - ScrollView inside of window's body, inside which will be your component;
 - The logic of overlapping different windows with each other;
