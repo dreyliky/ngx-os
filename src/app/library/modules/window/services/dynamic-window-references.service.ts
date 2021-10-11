@@ -18,7 +18,7 @@ export class DynamicWindowReferencesService implements OnDestroy {
     }
 
     public get data(): DynamicWindowRef[] {
-        return this.state.data;
+        return [...this.state.data];
     }
 
     private destroyed$ = new Subject();
