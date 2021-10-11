@@ -63,14 +63,6 @@ export class DropdownComponent<T>
         this.initSelectedOptionByValue(value);
     }
 
-    /** Expression which returns the `label` text from the item to show it for the user */
-    @Input()
-    public displayExpr: (item: T) => string;
-
-    /** Expression which returns the value from the item */
-    @Input()
-    public valueExpr: (item: T) => any;
-
     /** Stylelist for scroll view component of the dropdown overlay */
     @Input()
     public scrollViewStyle: object = { maxHeight: '250px' };
@@ -115,21 +107,8 @@ export class DropdownComponent<T>
         return this._label;
     }
 
-    /** @internal */
-    private get _value(): any {
-        const rawValue = this.selectedOptionComponent?.value as any;
-
-        return this.valueExpr?.(rawValue) ?? rawValue;
-    }
-
-    /** @internal */
-    private get _label(): string {
-        const rawValue = this.selectedOptionComponent?.value as any;
-        const rawLabel = this.selectedOptionComponent?.getLabel();
-
-        return this.displayExpr?.(rawValue) ?? rawLabel ?? rawValue;
-    }
-
+    private _label: string;
+    private _value: any;
     private initialValue: T;
     private optionComponentQueryList: QueryList<DropdownItemComponent<T>>;
     private selectedOptionComponent: DropdownItemComponent<T>;
@@ -210,6 +189,8 @@ export class DropdownComponent<T>
         this.selectedOptionComponent = option ?? null;
 
         this.deselectAllOptions();
+        this.initValue();
+        this.initLabel();
 
         if (this.selectedOptionComponent) {
             this.selectedOptionComponent.setSelectedState(true);
@@ -248,6 +229,19 @@ export class DropdownComponent<T>
         if (optionComponent.isSelected) {
             this.initSelectedOption(optionComponent);
         }
+    }
+
+    private initLabel(): void {
+        const value = this.selectedOptionComponent?.value as any;
+        const rawLabel = this.selectedOptionComponent?.getLabel();
+
+        this._label = rawLabel ?? value ?? null;
+    }
+
+    private initValue(): void {
+        const value = this.selectedOptionComponent?.value as any;
+
+        this._value = value ?? null;
     }
 
     private unsubscribeFromOptionSubscriptions(): void {
