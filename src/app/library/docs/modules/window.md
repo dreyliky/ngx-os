@@ -8,7 +8,8 @@ To open a fully functional OS-style window, you need to write few lines of code:
 this.dynamicWindowService.open(YOUR_COMPONENT_TO_RENDER_INSIDE);
 ```
 
-By doing this, you will see an absolute window element created inside the <body> element. Inside this window will be rendered your component.
+By doing this, you will see an absolute window element created inside the `<body>` element.
+Inside this window will be rendered your component.
 
 This window will have features like:
 - Hiding, Toggle Fullscreen mode, Closing;
