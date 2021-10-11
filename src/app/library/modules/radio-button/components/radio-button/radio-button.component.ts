@@ -48,9 +48,9 @@ export class RadioButtonComponent<T>
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public readonly isDisabled: boolean;
 
-    /** Value of the radio-button */
+    /** Data of the radio-button */
     @Input()
-    public value: T;
+    public data: T;
 
     /** Fires when the radio-button state change */
     @Output()
@@ -79,18 +79,18 @@ export class RadioButtonComponent<T>
     public onRadioButtonChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
 
-        this.onChange?.(this.value);
+        this.onChange?.(this.data);
         this.isCheckedChange.emit(inputElement.checked);
         this.osChange.emit({
             originalEvent,
-            value: this.value,
+            data: this.data,
             isChecked: inputElement.checked
         });
     }
 
     /** @internal */
     public writeValue(value: T): void {
-        this.isChecked = (this.value === value);
+        this.isChecked = (this.data === value);
 
         this.changeDetector.detectChanges();
     }

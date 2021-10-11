@@ -12,17 +12,17 @@ Here is a simple checkbox usage example:
 </os-checkbox>
 ```
 
-## Checkbox label
+## Label
 
 Label must be passed via `label` input parameter and it's optional.
 
 This label is also clickable and toggles the checked state.
 
-## Checkbox **data** & **isChecked** are different things
-
-`isChecked` is a boolean state which you should control manually;
+## Properties **data** & **isChecked**
 
 `data` is a useful payload that will be emitted via the `osChange` event when the checkbox state changes;
+
+`isChecked` is a boolean state which you should control manually;
 
 ## Use with **@angular/forms**
 

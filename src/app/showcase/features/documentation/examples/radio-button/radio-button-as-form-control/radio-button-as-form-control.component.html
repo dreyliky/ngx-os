@@ -2,7 +2,7 @@
     <os-radio-button
         *ngFor="let item of items"
         [label]="item.text"
-        [value]="item"
+        [data]="item"
         [name]="'radio-group-1'"
         [formControl]="formGroup.controls.selectedValue">
     </os-radio-button>
