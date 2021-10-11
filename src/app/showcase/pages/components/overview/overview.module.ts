@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { DocumentationModule } from '@features/documentation';
+import { ExamplesModule } from '@features/documentation';
 import { SharedModule } from '@shared';
 import { HeaderComponent, SideBarListComponent } from './components';
 import { OverviewComponent } from './overview.component';
@@ -14,7 +14,7 @@ import { ComponentOverviewRoutingModule } from './overview.routing';
     imports: [
         ComponentOverviewRoutingModule,
         SharedModule,
-        DocumentationModule
+        ExamplesModule
     ]
 })
 export class OverviewModule {}

@@ -106,4 +106,4 @@ import {
         SharedModule
     ]
 })
-export class DocumentationModule {}
+export class ExamplesModule {}
