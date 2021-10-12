@@ -17,7 +17,7 @@ import {
     QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CommonCssClassEnum, EventOutside, isNil, OsBaseFormControlComponent } from '../../../../core';
 import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-window-context.token';
@@ -84,6 +84,7 @@ export class DropdownComponent<T>
     public set _optionComponentQueryList(data: QueryList<DropdownItemComponent<T>>) {
         this.optionComponentQueryList = data;
 
+        this.optionsChanged$.next();
         this.initOptionComponentsSelectedObserver();
     }
 
@@ -112,7 +113,7 @@ export class DropdownComponent<T>
     private initialValue: T;
     private optionComponentQueryList: QueryList<DropdownItemComponent<T>>;
     private selectedOptionComponent: DropdownItemComponent<T>;
-    private optionSubscriptions: Subscription[];
+    private optionsChanged$ = new Subject();
 
     constructor(
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
@@ -134,7 +135,7 @@ export class DropdownComponent<T>
 
     public ngOnDestroy(): void {
         super.ngOnDestroy();
-        this.unsubscribeFromOptionSubscriptions();
+        this.optionsChanged$.complete();
     }
 
     /** @internal */
@@ -198,10 +199,6 @@ export class DropdownComponent<T>
     }
 
     private initOptionComponentsSelectedObserver(): void {
-        this.unsubscribeFromOptionSubscriptions();
-
-        this.optionSubscriptions = [];
-
         this.optionComponentQueryList
             .forEach((optionComponent) => {
                 this.initOptionComponentSelectedStateObserver(optionComponent);
@@ -210,8 +207,10 @@ export class DropdownComponent<T>
     }
 
     private initOptionComponentSelectedStateObserver(optionComponent: DropdownItemComponent<T>): void {
-        const subscription = optionComponent.osSelected
-            .pipe(takeUntil(this.viewDestroyed$))
+        optionComponent.osSelected
+            .pipe(
+                takeUntil(merge(this.viewDestroyed$, this.optionsChanged$))
+            )
             .subscribe((event) => {
                 this.initSelectedOption(optionComponent);
                 this.deselectAllOptions();
@@ -221,8 +220,6 @@ export class DropdownComponent<T>
                 this.onChange?.(event.value);
                 this.changeDetector.detectChanges();
             });
-
-        this.optionSubscriptions.push(subscription);
     }
 
     private initValueBasedOnSelectedOption(optionComponent: DropdownItemComponent<T>): void {
@@ -242,10 +239,5 @@ export class DropdownComponent<T>
         const value = this.selectedOptionComponent?.value as any;
 
         this._value = value ?? null;
-    }
-
-    private unsubscribeFromOptionSubscriptions(): void {
-        this.optionSubscriptions
-            ?.forEach((subscription) => subscription.unsubscribe());
     }
 }
