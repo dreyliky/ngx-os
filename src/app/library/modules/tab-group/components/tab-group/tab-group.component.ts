@@ -8,7 +8,7 @@ import {
     OnInit,
     QueryList
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { OsBaseComponent } from '../../../../core';
 import { TabComponent } from '../tab';
@@ -21,9 +21,19 @@ import { TabComponent } from '../tab';
 export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDestroy, AfterContentInit {
     /** @internal */
     @ContentChildren(TabComponent)
-    public readonly _tabComponentList: QueryList<TabComponent>;
+    public set _tabComponentList(data: QueryList<TabComponent>) {
+        this.__tabComponentList = data;
 
-    private tabButtonSubscriptions: Subscription[] = [];
+        this.tabsChanged$.next();
+    }
+
+    /** @internal */
+    public get _tabComponentList(): QueryList<TabComponent> {
+        return this.__tabComponentList;
+    }
+
+    private __tabComponentList: QueryList<TabComponent>;
+    private tabsChanged$ = new Subject();
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -42,7 +52,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
 
     public ngOnDestroy(): void {
         super.ngOnDestroy();
-        this.unsubscribeFromTabButtonSubscriptions();
+        this.tabsChanged$.complete();
     }
 
     /** @internal */
@@ -51,33 +61,24 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     }
 
     private initTabButtonClickObservers(): void {
-        this.unsubscribeFromTabButtonSubscriptions();
-
-        this.tabButtonSubscriptions = [];
-
         this._tabComponentList
             .forEach((tabComponent) => this.initTabButtonClickObserver(tabComponent));
     }
 
     private initTabButtonClickObserver(tabComponent: TabComponent): void {
-        const subscription = tabComponent.osTabButtonClick
-            .pipe(takeUntil(this.viewDestroyed$))
+        tabComponent.osTabButtonClick
+            .pipe(
+                takeUntil(merge(this.viewDestroyed$, this.tabsChanged$))
+            )
             .subscribe(() => {
                 this.deselectAllTabs();
 
                 tabComponent.isSelected = true;
             });
-
-        this.tabButtonSubscriptions.push(subscription);
     }
 
     private deselectAllTabs(): void {
         this._tabComponentList
             .forEach((tabComponent) => tabComponent.isSelected = false);
-    }
-
-    private unsubscribeFromTabButtonSubscriptions(): void {
-        this.tabButtonSubscriptions
-            ?.forEach((subscription) => subscription.unsubscribe());
     }
 }
