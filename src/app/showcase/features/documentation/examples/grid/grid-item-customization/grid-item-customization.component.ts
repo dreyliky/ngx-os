@@ -23,7 +23,6 @@ interface File<T = unknown> {
     isEditing?: boolean;
     labelExpr: (file: File<T>) => string;
     iconUrlExpr: (file: File<T>) => string;
-    onClick: (file: File<T>) => void;
 }
 
 @Component({
@@ -38,17 +37,16 @@ export class GridItemCustomizationComponent {
             name: 'My favorite background texture',
             type: FileTypeEnum.Png,
             data: { imageUrl: '/assets/showcase/images/bg/1.png' },
+
             iconUrlExpr: (file) => file.data.imageUrl,
-            labelExpr: ({ name, type }) => `${name}.${type}`,
-            onClick: ({ name, type }) => console.log(`Handler for first file: ${name}.${type}`)
+            labelExpr: ({ name, type }) => `${name}.${type}`
         },
         <File<ExeData>>{
             name: 'Notepad',
             type: FileTypeEnum.Exe,
             data: { iconUrl: '/assets/showcase/icons/notepad.png' },
             iconUrlExpr: (file) => file.data.iconUrl,
-            labelExpr: ({ name, type }) => `${name}.${type}`,
-            onClick: ({ name, type }) => console.log(`Handler for second file: ${name}.${type}`)
+            labelExpr: ({ name, type }) => `${name}.${type}`
         }
     ];
 
@@ -60,7 +58,6 @@ export class GridItemCustomizationComponent {
         const fileElement = event.target as HTMLElement;
         file.isEditing = true;
 
-        file.onClick(file);
         this.initFileOutsideClickObserver(file, fileElement);
     }
 
