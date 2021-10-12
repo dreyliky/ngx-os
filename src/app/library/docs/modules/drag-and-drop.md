@@ -9,7 +9,7 @@ Allows to implement simple basic Drag and Drop features.
 </div>
 ```
 
-### Features
+## Features
 
 - Dragging any HTML element using the directive;
 - CSS classes with different states are applying to the movable HTML element;
