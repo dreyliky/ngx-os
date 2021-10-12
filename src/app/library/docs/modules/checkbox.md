@@ -1,8 +1,6 @@
 ## Description
 
-Checkbox component have `<input type="checkbox">` inside.
-
-Here is a simple checkbox usage example:
+A checkbox allows you to select (or not) single values.
 
 ```html
 <os-checkbox
