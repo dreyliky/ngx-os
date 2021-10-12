@@ -1,6 +1,6 @@
 import { GridComponent, GridItemComponent, GridModule } from 'ngx-os/modules';
 import { OsComponentEnum } from '../../enums';
-import { GridOverviewComponent } from '../../examples';
+import { GridItemCustomizationComponent, GridOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const GRID_META_INFO: ComponentMetaInfo = {
@@ -25,6 +25,10 @@ export const GRID_META_INFO: ComponentMetaInfo = {
         {
             title: 'Grid Overview',
             component: GridOverviewComponent
+        },
+        {
+            title: 'Grid Item Customization',
+            component: GridItemCustomizationComponent
         }
     ]
 };

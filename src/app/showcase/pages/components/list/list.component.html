@@ -14,10 +14,9 @@
     <os-grid [direction]="gridDirection">
         <os-grid-item
             *ngFor="let component of (filteredComponents$ | async)"
-            [data]="{
-                label: component.name,
-                iconUrl: component.imageUrl
-            }"
+            [data]="component"
+            [labelExpr]="componentLabelExpr"
+            [iconUrlExpr]="componentIconUrlExpr"
             (osDblClick)="onComponentDblClick(component.type)">
         </os-grid-item>
     </os-grid>

@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { GridDirectionEnum, IGridItem } from 'ngx-os';
 
+interface MyGridItem {
+    label: string;
+    iconUrl: string;
+}
+
 @Component({
     selector: 'showcase-grid-overview',
     templateUrl: './grid-overview.component.html',
@@ -15,7 +20,7 @@ export class GridOverviewComponent implements OnInit {
     public currentGridDirection = GridDirectionEnum.Horizontal;
     public gridSize = 72;
 
-    private readonly defaultItem: IGridItem = {
+    private readonly defaultItem: MyGridItem = {
         label: 'My amazing item to display',
         iconUrl: '/assets/showcase/icons/folder-opened.png'
     }
@@ -24,6 +29,14 @@ export class GridOverviewComponent implements OnInit {
         this.onAddButtonClick();
         this.onAddButtonClick();
         this.onAddButtonClick();
+    }
+
+    public itemIconUrlExpr(item: MyGridItem): string {
+        return item.iconUrl;
+    }
+
+    public itemLabelExpr(item: MyGridItem): string {
+        return item.label;
     }
 
     public onAddButtonClick(): void {

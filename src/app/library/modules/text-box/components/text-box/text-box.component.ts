@@ -70,6 +70,7 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Af
         const targetElement = originalEvent.target as HTMLInputElement;
         const textboxValue: string = targetElement.value;
 
+        super.onFieldValueChange(originalEvent);
         this.onChange?.(textboxValue);
         this.osChange.emit({ originalEvent, value: textboxValue });
         this.changeDetector.markForCheck();

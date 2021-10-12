@@ -29,6 +29,14 @@ export class SubheaderComponent implements OnInit {
         this.initComponents();
     }
 
+    public componentIconUrlExpr(component: ComponentMetaInfo): string {
+        return component.imageUrl;
+    }
+
+    public componentLabelExpr(component: ComponentMetaInfo): string {
+        return component.name;
+    }
+
     public onGridItemClick(component: ComponentMetaInfo): void {
         this.router.navigateByUrl(`/${AppRouteEnum.Components}/${component.type}`);
     }

@@ -32,6 +32,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         this._gridSize = value;
 
         this.validateGridSize();
+        this.updateStylelist();
     }
 
     /** Size of each grid item in pixels */
@@ -67,6 +68,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     public ngOnInit(): void {
         this.classListManager.add('os-grid');
+        this.updateStylelist();
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
@@ -76,7 +78,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     public ngOnChanges(): void {
         this.initRecalculations();
-        this.styleListManager.apply({ '--os-grid-size': `${this._gridSize}px` });
     }
 
     private calculateGridItemElementsPositions(): void {
@@ -102,6 +103,12 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         const yAxisCellsCount = Math.floor(gridZoneHeight / this.gridSize);
 
         this.grid = new Grid({ xAxisCellsCount, yAxisCellsCount, directionType: this.direction });
+    }
+
+    private updateStylelist(): void {
+        this.styleListManager.apply({
+            '--os-grid-size': `${this._gridSize}px`
+        });
     }
 
     private initRecalculations(): void {

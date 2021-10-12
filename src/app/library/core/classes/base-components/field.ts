@@ -36,6 +36,10 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
     @Input()
     public value: string = '';
 
+    /** The handler will be fired when the value changes. */
+    @Output()
+    public valueChange: EventEmitter<string> = new EventEmitter();
+
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
     public osFocus: EventEmitter<FocusEvent> = new EventEmitter();
@@ -66,6 +70,10 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
         this.osInput.emit(event);
     }
 
+    protected onFieldValueChange(event: Event): void {
+        this.valueChange.emit((event.target as HTMLInputElement).value);
+    }
+
     protected initElementEventObservers(element: HTMLElement): void {
         element.onfocus = (event) => this.onFocus(event);
         element.onblur = (event) => this.onBlur(event);
@@ -80,6 +88,4 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
             field.focus();
         }
     }
-
-    protected abstract onFieldValueChange(event: Event): void;
 }

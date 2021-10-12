@@ -35,6 +35,14 @@ export class ListComponent implements OnInit {
         this.filteredComponents$ = this.componentsSearchService.filteredComponents$;
     }
 
+    public componentIconUrlExpr(component: ComponentMetaInfo): string {
+        return component.imageUrl;
+    }
+
+    public componentLabelExpr(component: ComponentMetaInfo): string {
+        return component.name;
+    }
+
     public onSearch(event: KeyboardEvent): void {
         const inputElement = event.target as HTMLInputElement;
 

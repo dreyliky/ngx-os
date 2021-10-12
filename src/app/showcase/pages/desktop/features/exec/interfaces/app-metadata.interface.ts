@@ -1,8 +1,9 @@
 import { Type } from '@angular/core';
-import { IDynamicWindowConfig, IGridItem } from 'ngx-os/modules';
+import { IDynamicWindowConfig } from 'ngx-os/modules';
+import { Shortcut } from '../../shortcut';
 
 export interface AppMetadata {
     component: Type<any>;
-    shortcutParams: IGridItem;
+    shortcutParams: Shortcut;
     windowParams: IDynamicWindowConfig;
 }

@@ -12,25 +12,43 @@ objects and pass this array as `data` into GridComponent.
 ```html
 <os-grid>
     <os-grid-item
-        *ngFor="let item of items"
-        [data]="item">
+        *ngFor="let file of files"
+        [data]="file"
+        [iconUrlExpr]="fileIconUrlExpr"
+        [labelExpr]="fileLabelExpr">
     </os-grid-item>
 </os-grid>
 ```
 
 ```typescript
+interface File {
+    name: string;
+    ext: string;
+    iconUrl: string;
+}
+
 @Component()
 export class MyGridComponent {
-    public readonly items: IGridItem[] = [
+    public readonly files: File[] = [
         {
-            label: 'My item #1',
+            name: 'My file #1',
+            ext: 'png',
             iconUrl: '/path/to/icon.png'
         },
         {
-            label: 'My item #2',
+            label: 'My file #2',
+            ext: 'exe',
             iconUrl: '/path/to/icon.png'
         }
     ];
+
+    public fileIconUrlExpr(item: MyItem): string {
+        return item.iconUrl;
+    }
+
+    public fileLabelExpr(item: MyItem): string {
+        return `${item.name}.${item.ext}`;
+    }
 }
 ```
 

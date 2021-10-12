@@ -1,6 +1,11 @@
 <div
+    *ngIf="!_gridItemIconTemplate; else _gridItemIconTemplate"
     class="os-element os-icon"
     [style.--os-icon-url]="_iconBackgroundCssUrl">
 </div>
 
-<span class="os-element os-label">{{ data.label }}</span>
+<span
+    *ngIf="!_gridItemLabelTemplate; else _gridItemLabelTemplate"
+    class="os-element os-label"
+    [innerText]="_label">
+</span>

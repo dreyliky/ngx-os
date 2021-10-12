@@ -4,6 +4,8 @@
     <os-grid-item
         *ngFor="let program of programs"
         [data]="program.shortcutParams"
+        [iconUrlExpr]="shortcutIconUrlExpr"
+        [labelExpr]="shortcutLabelExpr"
         (osDblClick)="onProgramShortcutDblClick(program)">
     </os-grid-item>
 </os-grid>

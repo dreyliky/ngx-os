@@ -16,6 +16,7 @@ import {
     EmailBoxAsFormControlComponent,
     EmailBoxOverviewComponent,
     FormFieldOverviewComponent,
+    GridItemCustomizationComponent,
     GridOverviewComponent,
     GroupBoxOverviewComponent,
     ListCustomTemplateComponent,
@@ -100,7 +101,8 @@ import {
         UtilsFixedToParentOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        GridItemCustomizationComponent
     ],
     imports: [
         SharedModule

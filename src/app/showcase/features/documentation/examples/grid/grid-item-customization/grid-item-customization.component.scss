@@ -1,0 +1,23 @@
+:host {
+    display: block;
+}
+
+.grid-wrapper {
+    width: 100%;
+    height: 250px;
+    background-color: #000000;
+}
+
+os-grid {
+    background-color: rgba(var(--os-primary-color), .6);
+}
+
+.os-textarea-box::ng-deep textarea {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    min-width: 100%;
+    min-height: 75px;
+    margin-top: 5px;
+    font-size: 12px;
+}

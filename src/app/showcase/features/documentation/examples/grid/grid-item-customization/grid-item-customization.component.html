@@ -1,0 +1,23 @@
+<div class="grid-wrapper">
+    <os-grid>
+        <os-grid-item
+            *ngFor="let file of files"
+            [data]="file"
+            [iconUrlExpr]="file.iconUrlExpr"
+            (osClick)="onFileClick($event, file)">
+            <ng-template #labelTemplate>
+                <os-label
+                    *ngIf="!file.isEditing"
+                    [innerText]="file.labelExpr(file)">
+                </os-label>
+
+                <os-textarea-box
+                    *ngIf="file.isEditing"
+                    [isAutofocused]="true"
+                    [(value)]="file.name"
+                    (click)="$event.stopPropagation()">
+                </os-textarea-box>
+            </ng-template>
+        </os-grid-item>
+    </os-grid>
+</div>

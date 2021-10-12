@@ -69,6 +69,7 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit
         const targetElement = originalEvent.target as HTMLTextAreaElement;
         const value = targetElement.value;
 
+        super.onFieldValueChange(originalEvent);
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value });
         this.changeDetector.markForCheck();

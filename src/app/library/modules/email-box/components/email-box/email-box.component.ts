@@ -70,6 +70,7 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, A
         const targetElement = originalEvent.target as HTMLInputElement;
         const value = targetElement.value;
 
+        super.onFieldValueChange(originalEvent);
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value });
         this.changeDetector.markForCheck();

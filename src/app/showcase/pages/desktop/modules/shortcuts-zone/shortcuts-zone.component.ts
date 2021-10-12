@@ -4,7 +4,7 @@ import { GridDirectionEnum } from 'ngx-os/modules';
 import { filter, takeUntil } from 'rxjs/operators';
 import { APPS } from '../../apps';
 import { AppMetadata, ExecService } from '../../features/exec';
-import { ShortcutSettingsService } from '../../features/shortcut';
+import { Shortcut, ShortcutSettingsService } from '../../features/shortcut';
 
 @Component({
     selector: 'desktop-shortcuts-zone',
@@ -28,6 +28,14 @@ export class ShortcutsZoneComponent extends OsBaseViewComponent implements OnIni
 
     public ngOnInit(): void {
         this.initShortcutSettingsObserver();
+    }
+
+    public shortcutIconUrlExpr(shortcut: Shortcut): string {
+        return shortcut.iconUrl;
+    }
+
+    public shortcutLabelExpr(shortcut: Shortcut): string {
+        return shortcut.label;
     }
 
     public onProgramShortcutDblClick(program: AppMetadata): void {
