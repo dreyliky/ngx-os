@@ -1,8 +1,7 @@
 ## Description
 
-Button component haven't native `<button>` or `<input type="button">` elements.
-
-Here is a simple button usage example:
+The Button represents a clickable button, used to submit forms or
+anywhere in a document for accessible, standard button functionality.
 
 ```html
 <os-button>Hello world!</os-button>
