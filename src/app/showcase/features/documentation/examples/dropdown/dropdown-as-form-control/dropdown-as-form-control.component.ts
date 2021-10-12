@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 interface MyItem {
@@ -12,22 +12,14 @@ interface MyItem {
     styleUrls: ['./dropdown-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DropdownAsFormControlComponent implements OnInit {
-    public items: MyItem[] = [
+export class DropdownAsFormControlComponent {
+    public readonly items: MyItem[] = [
         { text: 'Option 1', value: 1 },
         { text: 'Option 2', value: 2 },
         { text: 'Option 3', value: 3 }
     ];
 
-    public formGroup: FormGroup;
-
-    public ngOnInit(): void {
-        this.createFormGroup();
-    }
-
-    public createFormGroup(): void {
-        this.formGroup = new FormGroup({
-            selectedItem: new FormControl(this.items[1])
-        });
-    }
+    public readonly formGroup = new FormGroup({
+        selectedItem: new FormControl(this.items[1])
+    });
 }

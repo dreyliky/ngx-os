@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,17 +7,9 @@ import { FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./checkbox-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxAsFormControlComponent implements OnInit {
-    public formGroup: FormGroup;
-
-    public ngOnInit(): void {
-        this.initFormGroup();
-    }
-
-    private initFormGroup(): void {
-        this.formGroup = new FormGroup({
-            checkbox1: new FormControl(false),
-            checkbox2: new FormControl(true)
-        });
-    }
+export class CheckboxAsFormControlComponent {
+    public readonly formGroup = new FormGroup({
+        checkbox1: new FormControl(false),
+        checkbox2: new FormControl(true)
+    });
 }

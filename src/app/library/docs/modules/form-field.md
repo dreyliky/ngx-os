@@ -33,3 +33,15 @@ Might be used as a wrapper for some items of form.
     </os-button>
 </form>
 ```
+
+```typescript
+@Component()
+export class MyFormComponent {
+    public readonly formGroup = new FormGroup({
+        login: new FormControl(''),
+        password: new FormControl('')
+    });
+
+    public onLogInButtonClick(): void {/* LogIn code */}
+}
+```

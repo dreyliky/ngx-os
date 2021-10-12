@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 interface Item {
@@ -11,22 +11,14 @@ interface Item {
     styleUrls: ['./radio-button-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonAsFormControlComponent implements OnInit {
-    public items: Item[] = [
+export class RadioButtonAsFormControlComponent {
+    public readonly items: Item[] = [
         { text: 'Item 1' },
         { text: 'Item 2' },
         { text: 'Item 3' }
     ];
 
-    public formGroup: FormGroup;
-
-    public ngOnInit(): void {
-        this.createFormGroup();
-    }
-
-    public createFormGroup(): void {
-        this.formGroup = new FormGroup({
-            selectedValue: new FormControl(this.items[1])
-        });
-    }
+    public readonly formGroup = new FormGroup({
+        selectedValue: new FormControl(this.items[1])
+    });
 }

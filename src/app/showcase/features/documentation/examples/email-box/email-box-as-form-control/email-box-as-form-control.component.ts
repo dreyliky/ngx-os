@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,16 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./email-box-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EmailBoxAsFormControlComponent implements OnInit {
-    public formGroup: FormGroup;
-
-    public ngOnInit(): void {
-        this.createFormGroup();
-    }
-
-    public createFormGroup(): void {
-        this.formGroup = new FormGroup({
-            emailBoxValue: new FormControl()
-        });
-    }
+export class EmailBoxAsFormControlComponent {
+    public readonly formGroup = new FormGroup({
+        emailBoxValue: new FormControl('')
+    });
 }

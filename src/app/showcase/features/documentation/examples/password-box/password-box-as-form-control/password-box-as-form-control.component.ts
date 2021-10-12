@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,16 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./password-box-as-form-control.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PasswordBoxAsFormControlComponent implements OnInit {
-    public formGroup: FormGroup;
-
-    public ngOnInit(): void {
-        this.createFormGroup();
-    }
-
-    public createFormGroup(): void {
-        this.formGroup = new FormGroup({
-            passwordBoxValue: new FormControl()
-        });
-    }
+export class PasswordBoxAsFormControlComponent {
+    public readonly formGroup = new FormGroup({
+        passwordBoxValue: new FormControl()
+    });
 }

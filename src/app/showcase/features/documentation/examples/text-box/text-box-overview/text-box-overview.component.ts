@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,16 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./text-box-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextBoxOverviewComponent implements OnInit {
-    public formGroup: FormGroup;
-
-    public ngOnInit(): void {
-        this.createFormGroup();
-    }
-
-    public createFormGroup(): void {
-        this.formGroup = new FormGroup({
-            textboxValue: new FormControl('Hi there!')
-        });
-    }
+export class TextBoxOverviewComponent {
+    public readonly formGroup = new FormGroup({
+        textboxValue: new FormControl('Hi there!')
+    });
 }
