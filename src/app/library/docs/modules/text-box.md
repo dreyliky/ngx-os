@@ -1,8 +1,6 @@
 ## Description
 
-Text Box component have native `<input type="text">` element inside.
-
-Here is a simple Text Box usage example:
+Allows you to get short text input from the user.
 
 ```html
 <os-text-box
@@ -28,6 +26,6 @@ Here is a simple Text Box usage example:
 
 `<os-text-box>` is compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.
 
-## Two way binding properties support
+## Two-Way Binding properties support
 
 `[(value)]`, `[(ngModel)]` are support two-way binding.
