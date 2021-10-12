@@ -1,8 +1,6 @@
 ## Description
 
-Radio Button component have `<input type="radio">` inside.
-
-Here is a simple Radio Button usage example:
+Allows to select one option from the group of options.
 
 ```html
 <os-radio-button
