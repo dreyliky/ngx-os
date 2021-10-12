@@ -4,7 +4,7 @@
 }
 
 os-form-field {
-    &:not(.os-stacked) > *:not(os-label) {
+    &:not(.os-stacked) > *:not(.os-label) {
         margin-left: 10px;
     }
 }
