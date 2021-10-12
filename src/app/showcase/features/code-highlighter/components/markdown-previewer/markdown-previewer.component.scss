@@ -3,6 +3,8 @@
 }
 
 :host ::ng-deep {
+    line-height: 22px;
+
     > :first-child {
         margin-top: 7px;
     }

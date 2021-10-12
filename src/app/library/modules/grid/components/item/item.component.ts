@@ -1,15 +1,20 @@
 /* eslint-disable @typescript-eslint/member-ordering */
+import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
-    ElementRef, HostBinding,
-    HostListener,
+    ElementRef,
+    HostBinding,
+    Inject,
     Input,
     OnChanges,
     OnInit,
     TemplateRef
 } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { CommonCssClassEnum, EventOutside, OsBaseComponent } from '../../../../core';
 
 @Component({
@@ -27,9 +32,11 @@ export class GridItemComponent<T> extends OsBaseComponent implements OnInit, OnC
     @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean;
 
+    /** Method should return the URL on the icon for the grid item */
     @Input()
     public iconUrlExpr: (item: T) => string = (item: T) => String(item);
 
+    /** Method should return the label text for the grid item */
     @Input()
     public labelExpr: (item: T) => string = (item: T) => String(item);
 
@@ -48,6 +55,8 @@ export class GridItemComponent<T> extends OsBaseComponent implements OnInit, OnC
     public _label: string;
 
     constructor(
+        @Inject(DOCUMENT) private readonly document: Document,
+        private readonly changeDetector: ChangeDetectorRef,
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {
         super();
@@ -62,17 +71,7 @@ export class GridItemComponent<T> extends OsBaseComponent implements OnInit, OnC
     public ngOnInit(): void {
         this.classListManager.add('os-grid-item');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
-    }
-
-    /** @internal */
-    @HostListener('document:click', ['$event'])
-    public onClickOutside(event: MouseEvent): void {
-        const hostElement = this.hostElementRef.nativeElement;
-        const isClickOutsideWindow = EventOutside.checkForElement(hostElement, event);
-
-        if (isClickOutsideWindow && this.isSelected) {
-            this.isSelected = false;
-        }
+        this.initClickOutsideObserver();
     }
 
     protected onMouseDown(event: MouseEvent): void {
@@ -83,5 +82,21 @@ export class GridItemComponent<T> extends OsBaseComponent implements OnInit, OnC
 
     private initIconBackgroundCssUrl(): void {
         this._iconBackgroundCssUrl = `url(${this.iconUrlExpr(this.data)})`;
+    }
+
+    private initClickOutsideObserver(): void {
+        const hostElement = this.hostElementRef.nativeElement;
+
+        fromEvent(this.document, 'click')
+            .pipe(
+                takeUntil(this.viewDestroyed$),
+                filter(() => this.isSelected),
+                filter((event) => EventOutside.checkForElement(hostElement, event))
+            )
+            .subscribe(() => {
+                this.isSelected = false;
+
+                this.changeDetector.markForCheck();
+            });
     }
 }

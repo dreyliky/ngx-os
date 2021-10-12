@@ -1,13 +1,16 @@
 ## Description
 
-Allows displaying array of items in grid view.
+Allows displaying an array of items in the grid view.
 
-You need to adapt your data to an array of `IGridItem`
-objects and pass this array as `data` into GridComponent.
+This component is [Data-Agnostic](https://indepth.dev/posts/1314/agnostic-components-in-angular),
+so these fields of the `GridItemComponent` are **important to set up**:
 
-**You can't pass your custom template for items.**
+- `labelExpr`: Function which processing your item and returns for component the label text;
+- `iconUrlExpr`: Function which processing your item and returns for component the link on the icon;
 
-**Right now there is no drag and drop support.**
+Supported `Templates` described in `Grid/API` section (documentation website).
+
+**Right now there is no Drag & Drop support.**
 
 ```html
 <os-grid>
