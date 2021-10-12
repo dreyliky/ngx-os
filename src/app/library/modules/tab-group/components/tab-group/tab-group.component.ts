@@ -66,10 +66,10 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     }
 
     private initTabButtonClickObserver(tabComponent: TabComponent): void {
+        const changesOrDestroyed$ = merge(this.viewDestroyed$, this.tabsChanged$);
+
         tabComponent.osTabButtonClick
-            .pipe(
-                takeUntil(merge(this.viewDestroyed$, this.tabsChanged$))
-            )
+            .pipe(takeUntil(changesOrDestroyed$))
             .subscribe(() => {
                 this.deselectAllTabs();
 

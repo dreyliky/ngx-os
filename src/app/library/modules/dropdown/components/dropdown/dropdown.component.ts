@@ -207,10 +207,10 @@ export class DropdownComponent<T>
     }
 
     private initOptionComponentSelectedStateObserver(optionComponent: DropdownItemComponent<T>): void {
+        const changesOrDestroyed$ = merge(this.viewDestroyed$, this.optionsChanged$);
+
         optionComponent.osSelected
-            .pipe(
-                takeUntil(merge(this.viewDestroyed$, this.optionsChanged$))
-            )
+            .pipe(takeUntil(changesOrDestroyed$))
             .subscribe((event) => {
                 this.initSelectedOption(optionComponent);
                 this.deselectAllOptions();
