@@ -16,6 +16,10 @@ import { Cell, Grid } from '../../classes';
 import { GridDirectionEnum } from '../../enums';
 import { GridItemComponent } from '../item';
 
+/**
+ * ## Content Projection Slots
+ * - Component `os-grid-item`: Slot for `GridItemComponent`'s
+ **/
 @Component({
     selector: 'os-grid',
     templateUrl: './grid.component.html',

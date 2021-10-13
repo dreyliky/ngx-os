@@ -15,6 +15,33 @@ import { fromEvent } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { CommonCssClassEnum, EventOutside, OsBaseComponent } from '../../../../core';
 
+/**
+ * ## Templates
+ * `#iconTemplate`: Custom template which will be rendered instead of the default icon.
+ *
+ * @example
+ * ```html
+ * <ng-template #iconTemplate>
+ *    <!-- To get default behavior inside your template -->
+ *    <div
+ *        class="os-icon"
+ *        [style.--os-icon-url]="YOUR_LINK_TO_THE_ICON">
+ *    </div>
+ *    <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
+ * </ng-template>
+ * ```
+ *
+ * `#labelTemplate`: Custom template which will be rendered instead of the default label text.
+ *
+ * @example
+ * ```html
+ * <ng-template #labelTemplate>
+ *    <!-- To get default behavior inside your template -->
+ *    <os-label [innerText]="YOUR_LABEL_TEXT"></os-label>
+ *    <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
+ * </ng-template>
+ * ```
+ **/
 @Component({
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
