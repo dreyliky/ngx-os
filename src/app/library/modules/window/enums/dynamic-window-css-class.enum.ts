@@ -1,3 +1,4 @@
+/** @internal */
 export enum DynamicWindowCssClassEnum {
     Opening = 'os-opening',
     Hiding = 'os-hiding',

@@ -1,3 +1,4 @@
+/** @internal */
 export enum DynamicWindowCssVariableEnum {
     Width = '--os-width',
     Height = '--os-height',
