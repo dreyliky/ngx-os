@@ -76,8 +76,8 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        private readonly changeDetector: ChangeDetectorRef,
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostElementRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
@@ -92,6 +92,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
         this.isSelected = true;
 
         super.onMouseDown(event);
+        this.changeDetector.markForCheck();
     }
 
     private initClickOutsideObserver(): void {
