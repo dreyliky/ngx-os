@@ -1,10 +1,10 @@
 import { Type } from '@angular/core';
-import { ICssCoordinate } from '../../../core';
+import { CssCoordinate } from '../../../core';
 import { ResizerEnum } from '../../resizer';
-import { IDynamicWindowFullscreenOffset } from './fullscreen-offset.interface';
+import { DynamicWindowFullscreenOffset } from './fullscreen-offset.interface';
 
 /** The parameters to set up a dynamic window and pass some custom data for the component which will be rendered inside */
-export interface IDynamicWindowConfig<D = any, T = any> {
+export interface DynamicWindowConfig<D = any, T = any> {
     /** The title text of the dynamic window's title bar */
     title?: string;
     /** Custom data you can access via the component which rendered inside of the dynamic window */
@@ -38,9 +38,9 @@ export interface IDynamicWindowConfig<D = any, T = any> {
     /** The link to the icon. Will be displayed in the window's title bar */
     iconUrl?: string;
     /** Parameters of offsets from the edges of the screen in the full-screen mode */
-    fullscreenOffset?: IDynamicWindowFullscreenOffset;
+    fullscreenOffset?: DynamicWindowFullscreenOffset;
     /** Coordinates as CSS strings the dynamic window will be hidden into */
-    hidesInto?: ICssCoordinate;
+    hidesInto?: CssCoordinate;
     /** The dynamic window will be at full-screen mode after the creation */
     isFullscreenByDefault?: boolean;
     /** The dynamic window will be hidden after the creation */

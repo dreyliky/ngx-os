@@ -1,4 +1,4 @@
-import { ICellParams } from '../interfaces';
+import { CellParams } from '../interfaces';
 import { Grid } from './grid';
 
 /** @internal */
@@ -9,7 +9,7 @@ export class Cell<T> {
     private data: T;
     private context: Grid<T>;
 
-    constructor(params: ICellParams<T>) {
+    constructor(params: CellParams<T>) {
         Object.assign(this, params);
     }
 

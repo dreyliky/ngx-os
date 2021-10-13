@@ -1,9 +1,9 @@
 import { MouseButtonEnum } from '../../../core';
-import { IDraggerConfig } from '../interfaces';
+import { DraggerConfig } from '../interfaces';
 import { DragStrategyType } from '../types';
 import { DragStrategyByTranslate3d } from './drag-strategy';
 
-export class DraggerConfig implements IDraggerConfig {
+export class DraggerConfigModel implements DraggerConfig {
     public draggableElement?: HTMLElement;
     public movableElement?: HTMLElement;
     public childElementsBlackList?: HTMLElement[] = [];

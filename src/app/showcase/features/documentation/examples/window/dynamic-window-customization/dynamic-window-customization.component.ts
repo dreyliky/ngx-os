@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@angular/core';
-import { DynamicWindowService, DYNAMIC_WINDOW_REF, IDynamicWindowRef } from 'ngx-os';
+import { DynamicWindowRefModel, DynamicWindowService, DYNAMIC_WINDOW_REF } from 'ngx-os';
 
 @Component({
     selector: 'showcase-dynamic-window-customization',
@@ -41,7 +41,7 @@ export class MyAppComponent {}
 })
 export class MyAppTitleBarComponent {
     constructor(
-        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: IDynamicWindowRef
+        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRefModel
     ) {}
 
     public onCloseButtonClick(): void {

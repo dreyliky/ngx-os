@@ -15,7 +15,7 @@ export const RADIO_BUTTON_META_INFO: ComponentMetaInfo = {
         RadioButtonComponent
     ],
     libInterfaces: [
-        'IRadioButtonValueChangeEvent'
+        'RadioButtonValueChangeEvent'
     ],
     demoComponents: [
         {

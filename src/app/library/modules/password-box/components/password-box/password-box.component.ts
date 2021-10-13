@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
-import { IPasswordBoxChangeEvent } from '../../interfaces';
+import { PasswordBoxChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-password-box',
@@ -34,7 +34,7 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit
 
     /** Fires when the password-box value change */
     @Output()
-    public osChange: EventEmitter<IPasswordBoxChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<PasswordBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('passwordbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;

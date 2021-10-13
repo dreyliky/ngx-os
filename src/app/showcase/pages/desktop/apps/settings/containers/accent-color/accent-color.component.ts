@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AccentColorManagerService } from '@features/theme';
-import { IThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os/modules';
 
 @Component({
     selector: 'settings-accent-color-section',
@@ -9,7 +9,7 @@ import { IThemeRgbColor } from 'ngx-os/modules';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccentColorComponent implements OnInit {
-    public selectedColor: IThemeRgbColor;
+    public selectedColor: ThemeRgbColor;
 
     constructor(
         private readonly accentColorService: AccentColorManagerService
@@ -19,7 +19,7 @@ export class AccentColorComponent implements OnInit {
         this.selectedColor = this.accentColorService.get('primary');
     }
 
-    public onAccentColorClick(accentColor: IThemeRgbColor): void {
+    public onAccentColorClick(accentColor: ThemeRgbColor): void {
         this.selectedColor = accentColor;
 
         this.accentColorService.apply('primary', accentColor);

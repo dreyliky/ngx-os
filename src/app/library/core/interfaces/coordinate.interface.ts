@@ -1,4 +1,4 @@
-export interface ICoordinate {
+export interface Coordinate {
     /** The x-axis of coordinate */
     x: number;
     /** The y-axis of coordinate */

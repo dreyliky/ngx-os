@@ -1,7 +1,7 @@
 import { Grid } from '../classes';
 
 /** @internal */
-export interface ICellParams<T> {
+export interface CellParams<T> {
     x: number;
     y: number;
     data: T;

@@ -12,9 +12,9 @@ import {
 import { ReplaySubject } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { CommonCssClassEnum as CommonCssClass } from '../../../core';
-import { BaseResizer, ResizerConfig, ResizerFactory } from '../classes';
+import { BaseResizer, ResizerConfigModel, ResizerFactory } from '../classes';
 import { ResizerCssClassEnum as CssClass, ResizerElementTagEnum as ElementTag, ResizerEnum } from '../enums';
-import { IResizeInfo, IResizerConfig } from '../interfaces';
+import { ResizeInfo } from '../interfaces';
 
 /** @dynamic */
 // See: https://github.com/angular/angular/issues/20351
@@ -24,13 +24,13 @@ import { IResizeInfo, IResizerConfig } from '../interfaces';
 export class ResizableDirective implements AfterViewInit, OnDestroy {
     /** Configuration of resizing */
     @Input('os-resizable')
-    public set config(config: IResizerConfig) {
+    public set config(config: ResizerConfigModel) {
         this.updateConfigWithoutChanges(config);
         this.onConfigChanged();
     }
 
     /** Configuration of resizing */
-    public get config(): IResizerConfig {
+    public get config(): ResizerConfigModel {
         return this._config;
     }
 
@@ -44,28 +44,28 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
 
     /** Fires before resize start. Immediately upon the `mousedown` event triggering, but only if resizing is allowed */
     @Output()
-    public osBeforeResizeStart: EventEmitter<IResizeInfo> = new EventEmitter();
+    public osBeforeResizeStart: EventEmitter<ResizeInfo> = new EventEmitter();
 
     /** Fires after the `osBeforeResizeStart`, but when all internal handlers registered and prepared */
     @Output()
-    public osResizeStart: EventEmitter<IResizeInfo> = new EventEmitter();
+    public osResizeStart: EventEmitter<ResizeInfo> = new EventEmitter();
 
     /** Fires when the `mousemove` is called */
     @Output()
-    public osResizing: EventEmitter<IResizeInfo> = new EventEmitter();
+    public osResizing: EventEmitter<ResizeInfo> = new EventEmitter();
 
     /** Fires when the `mousemove` is called as a macro task with minimum delay */
     @Output()
-    public osAfterResizing: EventEmitter<IResizeInfo> = new EventEmitter();
+    public osAfterResizing: EventEmitter<ResizeInfo> = new EventEmitter();
 
     /** Fires when the `mouseup` is called and after all internal handlers removed */
     @Output()
-    public osResizeEnd: EventEmitter<IResizeInfo> = new EventEmitter();
+    public osResizeEnd: EventEmitter<ResizeInfo> = new EventEmitter();
 
     private _resizableElement: HTMLElement;
     private _resizersWrapperElement: HTMLElement;
     private _resizerInstance: BaseResizer;
-    private _config = new ResizerConfig();
+    private _config = new ResizerConfigModel();
     private _whenViewInit$ = new ReplaySubject();
 
     constructor(
@@ -84,7 +84,7 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     }
 
     /** Updates config without affecting any logic, like some internal initialization of different things */
-    public updateConfigWithoutChanges(config: IResizerConfig): void {
+    public updateConfigWithoutChanges(config: ResizerConfigModel): void {
         this._config = { ...this._config, ...config };
     }
 
@@ -169,7 +169,7 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
         this.osResizeEnd.emit(this.getResizeInfo(event));
     }
 
-    private getResizeInfo(originalEvent: MouseEvent): IResizeInfo {
+    private getResizeInfo(originalEvent: MouseEvent): ResizeInfo {
         return {
             resizableElement: this._resizableElement,
             originalEvent

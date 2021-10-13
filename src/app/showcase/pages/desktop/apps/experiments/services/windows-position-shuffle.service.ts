@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { RandomHelper } from 'ngx-os/core';
-import { DynamicWindowRef } from 'ngx-os/modules';
+import { DynamicWindowRefModel } from 'ngx-os/modules';
 
 interface ShuffleParams {
-    windowRefs: DynamicWindowRef[];
+    windowRefs: DynamicWindowRefModel[];
     ignoreWindowRefIds: string[];
     iterationDelayInMs: number;
 }
@@ -12,7 +12,7 @@ interface ShuffleParams {
 export class WindowsPositionShuffleService {
     private readonly padding = 96;
 
-    private windowRefs: DynamicWindowRef[];
+    private windowRefs: DynamicWindowRefModel[];
     private ignoreWindowRefIds: string[];
     private delay: number;
 
@@ -46,7 +46,7 @@ export class WindowsPositionShuffleService {
         return this.shuffleIntervalId;
     }
 
-    private generateRandomPositionForWindowRef(windowRef: DynamicWindowRef): void {
+    private generateRandomPositionForWindowRef(windowRef: DynamicWindowRefModel): void {
         const positionX = RandomHelper.getRandomInt(
             this.padding, (innerWidth - this.padding - windowRef.config.width)
         );

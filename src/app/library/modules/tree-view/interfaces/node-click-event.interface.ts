@@ -1,8 +1,8 @@
-import { ITreeNode } from './node.interface';
+import { TreeNode } from './node.interface';
 
-export interface ITreeNodeClickEvent<T = any> {
+export interface TreeNodeClickEvent<T = any> {
     /** Event of clicking on node element */
     originalEvent?: MouseEvent;
     /** Node which was clicked */
-    node: ITreeNode<T>
+    node: TreeNode<T>
 }

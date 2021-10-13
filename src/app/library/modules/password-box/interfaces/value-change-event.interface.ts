@@ -1,4 +1,4 @@
-export interface IPasswordBoxChangeEvent {
+export interface PasswordBoxChangeEvent {
     /** Value of the password-box */
     value: string;
     /** Original `change` event from HTML `input` element */

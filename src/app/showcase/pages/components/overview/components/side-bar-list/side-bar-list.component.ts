@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComponentMetaInfo, LibraryComponentsSearchService } from '@features/documentation';
-import { ITreeNode, ITreeNodeSelectionEvent as Selection, TreeViewComponent } from 'ngx-os';
+import { TreeNode, TreeNodeSelectionEvent as Selection, TreeViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { OverviewService } from '../../overview.service';
 import { SideBarItem } from './side-bar-item.interface';
@@ -22,7 +22,7 @@ export class SideBarListComponent implements OnInit, AfterViewInit {
     private readonly treeView: TreeViewComponent<SideBarItem>;
 
     public metaInfo$: Observable<ComponentMetaInfo>;
-    public nodes$: Observable<ITreeNode<SideBarItem>[]>;
+    public nodes$: Observable<TreeNode<SideBarItem>[]>;
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,

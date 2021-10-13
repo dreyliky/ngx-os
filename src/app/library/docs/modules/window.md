@@ -54,12 +54,12 @@ In this case, your window will be hiding into `top left` corner, while all other
 If you want to change config settings later after opening window, you need to do next in your `YOUR_COMPONENT_TO_RENDER_INSIDE`:
 
 ```typescript
-import { DYNAMIC_WINDOW_REF, IDynamicWindowRef } from 'ngx-os';
+import { DYNAMIC_WINDOW_REF, DynamicWindowRef } from 'ngx-os';
 
 @Component()
 export class MyInsideDynamicWindowComponent implements OnInit {
     constructor(
-        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: IDynamicWindowRef
+        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRef
     ) {}
 
     public ngOnInit(): void {

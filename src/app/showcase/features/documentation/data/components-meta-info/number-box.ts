@@ -15,7 +15,7 @@ export const NUMBER_BOX_META_INFO: ComponentMetaInfo = {
         NumberBoxComponent
     ],
     libInterfaces: [
-        'INumberBoxChangeEvent'
+        'NumberBoxChangeEvent'
     ],
     demoComponents: [
         {

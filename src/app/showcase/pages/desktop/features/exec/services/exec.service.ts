@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DynamicWindowService, IDynamicWindowRef } from 'ngx-os/modules';
+import { DynamicWindowRefModel, DynamicWindowService } from 'ngx-os/modules';
 import { AppMetadata } from '../interfaces';
 
 @Injectable()
@@ -8,7 +8,7 @@ export class ExecService {
         private readonly dynamicWindowService: DynamicWindowService
     ) {}
 
-    public run({ component, windowParams }: AppMetadata): IDynamicWindowRef {
+    public run({ component, windowParams }: AppMetadata): DynamicWindowRefModel {
         return this.dynamicWindowService.open(component, windowParams);
     }
 }

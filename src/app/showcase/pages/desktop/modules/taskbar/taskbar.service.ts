@@ -1,6 +1,6 @@
 import { ElementRef, Injectable, OnDestroy, QueryList } from '@angular/core';
 import { elementResizingObserver } from 'ngx-os/core';
-import { DynamicWindowRef, DynamicWindowService, DynamicWindowSharedConfigService } from 'ngx-os/modules';
+import { DynamicWindowRefModel, DynamicWindowService, DynamicWindowSharedConfigService } from 'ngx-os/modules';
 import { combineLatest, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { TaskbarPlacement } from './interfaces';
@@ -8,7 +8,7 @@ import { TaskbarPlacementService } from './services';
 
 @Injectable()
 export class TaskbarService implements OnDestroy {
-    private windowRefs: DynamicWindowRef[];
+    private windowRefs: DynamicWindowRefModel[];
     private previousPlacement: TaskbarPlacement;
     private windowRefElements: QueryList<ElementRef<HTMLElement>>;
     private destroyed$ = new Subject();
@@ -92,7 +92,7 @@ export class TaskbarService implements OnDestroy {
         });
     }
 
-    private updateWindowRefHidesIntoCoordinate(windowRef: DynamicWindowRef, windowRefElement: HTMLElement): void {
+    private updateWindowRefHidesIntoCoordinate(windowRef: DynamicWindowRefModel, windowRefElement: HTMLElement): void {
         const { x, y, width, height } = windowRefElement.getBoundingClientRect();
         const cssX = `${x + (width / 2)}px`;
         const cssY = `${y + (height / 2)}px`;

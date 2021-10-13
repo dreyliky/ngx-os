@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
-import { AccentColorService, IThemeRgbColor, ThemeColorType } from 'ngx-os';
+import { AccentColorService, ThemeColorType, ThemeRgbColor } from 'ngx-os';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AccentColorManagerService {
-    public get applied$(): Observable<IThemeRgbColor> {
+    public get applied$(): Observable<ThemeRgbColor> {
         return this._applied$.asObservable();
     }
 
-    public get applied(): IThemeRgbColor {
+    public get applied(): ThemeRgbColor {
         return this._applied$.getValue();
     }
 
     private accentColorStorageKey = 'accent-color';
 
-    private _applied$ = new BehaviorSubject<IThemeRgbColor>(null);
+    private _applied$ = new BehaviorSubject<ThemeRgbColor>(null);
 
     constructor(
         private readonly accentColorService: AccentColorService
     ) {}
 
-    public get(colorType: ThemeColorType): IThemeRgbColor {
+    public get(colorType: ThemeColorType): ThemeRgbColor {
         return this.accentColorService.get(colorType);
     }
 
@@ -36,7 +36,7 @@ export class AccentColorManagerService {
         }
     }
 
-    public apply(colorType: ThemeColorType, color: IThemeRgbColor): void {
+    public apply(colorType: ThemeColorType, color: ThemeRgbColor): void {
         const colorAsJson = JSON.stringify(color);
 
         this.accentColorService.apply(colorType, color);

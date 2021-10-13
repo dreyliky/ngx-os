@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IDropdownValueChangeEvent } from 'ngx-os/modules';
+import { DropdownValueChangeEvent } from 'ngx-os/modules';
 import { THEMES } from '../../data';
 import { Theme } from '../../interfaces';
 
@@ -18,7 +18,7 @@ export class ThemeDropdownComponent {
 
     public readonly themes = THEMES;
 
-    public onThemeChanged(event: IDropdownValueChangeEvent<Theme>): void {
+    public onThemeChanged(event: DropdownValueChangeEvent<Theme>): void {
         const theme = event.value;
 
         this.themeChanged.emit(theme);

@@ -1,7 +1,7 @@
 import { first } from 'rxjs/operators';
 import { isNil } from '../../../../core';
 import { DraggableDirective } from '../../directives/draggable.directive';
-import { IDragInfo } from '../../interfaces';
+import { DragInfo } from '../../interfaces';
 import { DragStrategyType } from '../../types';
 
 /** @internal */
@@ -20,7 +20,7 @@ export abstract class BaseDragStrategy {
         this.initAfterViewInitObserver();
     }
 
-    public registerMouseDown({ originalEvent: mouseEvent, movableElement }: IDragInfo): void {
+    public registerMouseDown({ originalEvent: mouseEvent, movableElement }: DragInfo): void {
         const elementDomRect = movableElement.getBoundingClientRect();
         this.mouseDownEvent = mouseEvent;
 

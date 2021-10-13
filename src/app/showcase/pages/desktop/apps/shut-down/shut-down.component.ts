@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { DynamicWindowService, DYNAMIC_WINDOW_REF, IDynamicWindowRef } from 'ngx-os';
+import { DynamicWindowRefModel, DynamicWindowService, DYNAMIC_WINDOW_REF } from 'ngx-os';
 
 @Component({
     selector: 'showcase-shut-down',
@@ -16,7 +16,7 @@ export class ShutDownAppComponent {
     constructor(
         private readonly router: Router,
         private readonly dynamicWindowService: DynamicWindowService,
-        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: IDynamicWindowRef
+        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRefModel
     ) {}
 
     public onConfirmButtonClick(): void {

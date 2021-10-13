@@ -2,7 +2,7 @@ import { MouseButtonEnum } from '../../../core';
 import { ResizerEnum } from '../enums';
 
 /** Settings of resizing for {@link ResizableDirective} */
-export interface IResizerConfig {
+export interface ResizerConfig {
     /** Is resizing enabled */
     isEnabled?: boolean;
     /** Target element that should be resizable */

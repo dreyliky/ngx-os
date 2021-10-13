@@ -29,8 +29,8 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
         DragStrategyByAxisProperties
     ],
     libInterfaces: [
-        'IDraggerConfig',
-        'IDragInfo'
+        'DraggerConfig',
+        'DragInfo'
     ],
     libEnums: [
         'MouseButtonEnum'

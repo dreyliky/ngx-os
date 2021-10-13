@@ -15,7 +15,7 @@ export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
         TextBoxComponent
     ],
     libInterfaces: [
-        'ITextBoxChangeEvent'
+        'TextBoxChangeEvent'
     ],
     demoComponents: [
         {

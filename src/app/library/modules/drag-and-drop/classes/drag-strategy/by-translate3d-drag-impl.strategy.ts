@@ -1,5 +1,5 @@
-import { ICoordinate } from '../../../../core';
-import { IDragInfo } from '../../interfaces';
+import { Coordinate } from '../../../../core';
+import { DragInfo } from '../../interfaces';
 import { BaseDragStrategy } from './base-drag.strategy';
 import { DragStrategyByTranslate3d } from './by-translate3d-drag.strategy';
 
@@ -7,12 +7,12 @@ import { DragStrategyByTranslate3d } from './by-translate3d-drag.strategy';
 export class DragStrategyByTranslate3dImpl extends BaseDragStrategy {
     protected config: DragStrategyByTranslate3d;
 
-    private readonly totalParentCoordinates: ICoordinate = {
+    private readonly totalParentCoordinates: Coordinate = {
         x: 0,
         y: 0
     };
 
-    public registerMouseDown(dragInfo: IDragInfo): void {
+    public registerMouseDown(dragInfo: DragInfo): void {
         super.registerMouseDown(dragInfo);
         this.calculateTotalParentCoordinates(dragInfo.originalEvent);
     }

@@ -1,14 +1,14 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import { CssClasslistToObjectHelper as ClasslistToObject, OsBaseViewComponent } from '../../../../core';
-import { DragStrategyByAxisProperties, IDraggerConfig } from '../../../drag-and-drop';
-import { IResizerConfig } from '../../../resizer';
-import { DynamicStateManager, DynamicWindowRef } from '../../classes';
+import { DraggerConfigModel, DragStrategyByAxisProperties } from '../../../drag-and-drop';
+import { ResizerConfigModel } from '../../../resizer';
+import { DynamicStateManager, DynamicWindowRefModel } from '../../classes';
 import {
     DynamicStateEnum,
     DynamicWindowCssClassEnum as CssClass,
     DynamicWindowCssVariableEnum as CssVariable
 } from '../../enums';
-import { IDynamicWindowConfig } from '../../interfaces';
+import { DynamicWindowConfig } from '../../interfaces';
 
 @Component({
     template: ''
@@ -18,7 +18,7 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
     public childComponentType: Type<any>;
 
     @Input()
-    public windowRef: DynamicWindowRef;
+    public windowRef: DynamicWindowRefModel;
 
     public get isOpening(): boolean {
         return this.dynamicStateManager.is(DynamicStateEnum.Opening);
@@ -95,9 +95,9 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         };
     }
 
-    public config: IDynamicWindowConfig;
-    public draggerConfig: IDraggerConfig;
-    public resizerConfig: IResizerConfig;
+    public config: DynamicWindowConfig;
+    public draggerConfig: DraggerConfigModel;
+    public resizerConfig: ResizerConfigModel;
 
     public zIndex: number;
     public windowOrderIndex: number = 0;

@@ -1,8 +1,8 @@
 import { Type } from '@angular/core';
-import { DynamicWindowRef } from '../classes';
+import { DynamicWindowRefModel } from '../classes';
 
 /** @internal */
-export interface IDynamicWindowInputParams {
+export interface DynamicWindowInputParams {
     component: Type<any>;
-    windowRef: DynamicWindowRef;
+    windowRef: DynamicWindowRefModel;
 }

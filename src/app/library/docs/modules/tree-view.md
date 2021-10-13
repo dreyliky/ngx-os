@@ -2,7 +2,7 @@
 
 Tree View allows you to work with tree data.
 
-You need to adapt your data to an array of `ITreeNode` objects and pass this array as `data` into `TreeViewComponent`.
+You need to adapt your data to an array of `TreeNode` objects and pass this array as `data` into `TreeViewComponent`.
 
 If you want to customize your nodes, you can pass the template inside the `<os-tree-view>` component.
 
@@ -31,7 +31,7 @@ import { TreeViewComponent } from 'ngx-os';
 
 @Component()
 export class AppComponent {
-    public readonly myNodes: ITreeNode[] = [
+    public readonly myNodes: TreeNode[] = [
         {
             label: 'My Node 1',
             children: [
@@ -55,7 +55,7 @@ export class AppComponent {
 
 ## But can I just set value into isExpanded and isSelected fields of node objects?
 
-You can define fields `isExpanded` and `isSelected` of `ITreeNode` object to make node selected or expanded,
+You can define fields `isExpanded` and `isSelected` of `TreeNode` object to make node selected or expanded,
 but recommended using them only as initial state or only to read data from them to understand the actual state of the node at the current moment.
 
 `ChangeDetection.OnPush` is the reason why you should use methods to manipulate states instead of direct assignments of values into those fields.

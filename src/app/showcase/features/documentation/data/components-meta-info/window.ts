@@ -40,10 +40,10 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
         DynamicWindowSharedConfigService
     ],
     libInterfaces: [
-        'IDynamicWindowRef',
-        'IDynamicWindowConfig',
-        'IDynamicWindowFullscreenOffset',
-        'ICssCoordinate'
+        'DynamicWindowRef',
+        'DynamicWindowConfig',
+        'DynamicWindowFullscreenOffset',
+        'CssCoordinate'
     ],
     libVariables: [
         'DYNAMIC_WINDOW_REF',

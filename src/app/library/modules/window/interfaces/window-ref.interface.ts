@@ -1,7 +1,7 @@
 import { ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DynamicWindowComponent } from '../components';
-import { IDynamicWindowConfig } from './config.interface';
+import { DynamicWindowConfig } from './config.interface';
 
 /**
  * Public API of DynamicWindowRef.
@@ -10,7 +10,7 @@ import { IDynamicWindowConfig } from './config.interface';
  * It can be used to manipulate the window itself (minimizing, closing, etc.),
  * and to change the config, modify the initial window settings, or change the window data.
  **/
-export interface IDynamicWindowRef {
+export interface DynamicWindowRef {
     /** Is the dynamic window hidden */
     isHidden$: Observable<boolean>;
     /** Is the dynamic window at full-screen */
@@ -18,7 +18,7 @@ export interface IDynamicWindowRef {
     /** Is the dynamic window active (means the user works with it right now) */
     isActive$: Observable<boolean>;
     /** Configuration object for the dynamic window */
-    config$: Observable<IDynamicWindowConfig>;
+    config$: Observable<DynamicWindowConfig>;
     /** Emits value when the dynamic window closed */
     afterClosed$: Observable<any>;
 
@@ -31,14 +31,14 @@ export interface IDynamicWindowRef {
     /** Is the dynamic window active (means the user works with it right now) */
     isActive: boolean;
     /** Configuration object for the dynamic window */
-    config: IDynamicWindowConfig;
+    config: DynamicWindowConfig;
     /** The HTML element of the dynamic window */
     windowElement: HTMLElement;
     /** The component rendered inside the dynamic window */
     componentRef: ComponentRef<DynamicWindowComponent>;
 
     /** Changes the configuration of the dynamic window */
-    updateConfig(config: IDynamicWindowConfig): void;
+    updateConfig(config: DynamicWindowConfig): void;
     /** Hides dynamic window */
     hide(): void;
     /** Shows dynamic window */

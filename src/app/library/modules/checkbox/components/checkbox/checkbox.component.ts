@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
-import { ICheckboxValueChangeEvent } from '../../interfaces';
+import { CheckboxValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-checkbox',
@@ -54,7 +54,7 @@ export class CheckboxComponent<T>
 
     /** Fires when the checkbox state change */
     @Output()
-    public osChange: EventEmitter<ICheckboxValueChangeEvent<T>> = new EventEmitter();
+    public osChange: EventEmitter<CheckboxValueChangeEvent<T>> = new EventEmitter();
 
     /** Fires when `checked` state changed. Might be used for two way binding */
     @Output()

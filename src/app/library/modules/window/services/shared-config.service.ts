@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RESIZERS_ARRAY } from '../../resizer';
-import { DynamicWindowConfig } from '../classes';
+import { DynamicWindowConfigModel } from '../classes';
 import { mergeConfigs } from '../helpers';
-import { IDynamicWindowConfig } from '../interfaces';
+import { DynamicWindowConfig } from '../interfaces';
 
 /** Allows manipulation with shared config for all windows */
 @Injectable({
@@ -11,17 +11,17 @@ import { IDynamicWindowConfig } from '../interfaces';
 })
 export class DynamicWindowSharedConfigService {
     /** Contains shared config */
-    public get data$(): Observable<IDynamicWindowConfig> {
+    public get data$(): Observable<DynamicWindowConfig> {
         return this._data$.asObservable();
     }
 
     /** Contains shared config */
-    public get data(): IDynamicWindowConfig {
+    public get data(): DynamicWindowConfig {
         return this._data$.getValue();
     }
 
-    private readonly _data$ = new BehaviorSubject<IDynamicWindowConfig>(
-        new DynamicWindowConfig({
+    private readonly _data$ = new BehaviorSubject<DynamicWindowConfig>(
+        new DynamicWindowConfigModel({
             title: 'OS dynamic window',
             minWidth: 275,
             minHeight: 175,
@@ -57,7 +57,7 @@ export class DynamicWindowSharedConfigService {
     );
 
     /** Overrides some part of config on the new one */
-    public update(config: IDynamicWindowConfig): void {
+    public update(config: DynamicWindowConfig): void {
         this._data$.next(mergeConfigs(config, this.data));
     }
 

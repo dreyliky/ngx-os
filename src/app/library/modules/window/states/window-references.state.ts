@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DynamicWindowRef } from '../classes';
+import { DynamicWindowRefModel } from '../classes';
 
 /** @internal */
 @Injectable({
     providedIn: 'root'
 })
 export class WindowReferencesState {
-    public get data$(): Observable<DynamicWindowRef[]> {
+    public get data$(): Observable<DynamicWindowRefModel[]> {
         return this._data$.asObservable();
     }
 
-    public get data(): DynamicWindowRef[] {
+    public get data(): DynamicWindowRefModel[] {
         return this._data$.getValue();
     }
 
-    private readonly _data$ = new BehaviorSubject<DynamicWindowRef[]>([]);
+    private readonly _data$ = new BehaviorSubject<DynamicWindowRefModel[]>([]);
 
-    private readonly windowRefMap: Map<string, DynamicWindowRef> = new Map();
+    private readonly windowRefMap: Map<string, DynamicWindowRefModel> = new Map();
 
-    public getById(id: string): DynamicWindowRef {
+    public getById(id: string): DynamicWindowRefModel {
         return this.windowRefMap.get(id);
     }
 
-    public add(windowRef: DynamicWindowRef): void {
+    public add(windowRef: DynamicWindowRefModel): void {
         this.windowRefMap.set(windowRef.id, windowRef);
         this._data$.next([...this.data, windowRef]);
     }
 
-    public remove(windowRef: DynamicWindowRef): void {
+    public remove(windowRef: DynamicWindowRefModel): void {
         const targetWindowRefIndex = this.data.indexOf(windowRef);
 
         this.data.splice(targetWindowRefIndex, 1);

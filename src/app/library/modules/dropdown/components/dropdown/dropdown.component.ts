@@ -21,7 +21,7 @@ import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CommonCssClassEnum, EventOutside, isNil, OsBaseFormControlComponent } from '../../../../core';
 import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-window-context.token';
-import { IDropdownValueChangeEvent } from '../../interfaces';
+import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownItemComponent } from '../dropdown-item';
 
 @Component({
@@ -73,7 +73,7 @@ export class DropdownComponent<T>
 
     /** Fires when the dropdown value change */
     @Output()
-    public osChange: EventEmitter<IDropdownValueChangeEvent<T>> = new EventEmitter();
+    public osChange: EventEmitter<DropdownValueChangeEvent<T>> = new EventEmitter();
 
     /** Fires when `value` changed. Might be used for two way binding */
     @Output()

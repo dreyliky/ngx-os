@@ -1,10 +1,10 @@
 import { Injector } from '@angular/core';
-import { DynamicWindowRef } from '../classes';
-import { IDynamicWindowConfig } from './config.interface';
+import { DynamicWindowRefModel } from '../classes';
+import { DynamicWindowConfig } from './config.interface';
 
 /** @internal */
-export interface IDynamicWindowDiParams {
+export interface DynamicWindowDiParams {
     injector: Injector;
-    config: IDynamicWindowConfig;
-    windowRef: DynamicWindowRef;
+    config: DynamicWindowConfig;
+    windowRef: DynamicWindowRefModel;
 }

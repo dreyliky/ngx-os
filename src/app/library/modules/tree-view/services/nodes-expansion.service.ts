@@ -1,13 +1,13 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { isNil } from '../../../core';
-import { ITreeNode, ITreeNodeExpansionEvent } from '../interfaces';
+import { TreeNode, TreeNodeExpansionEvent } from '../interfaces';
 import { TreeNodesState } from '../states';
 
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly. */
 @Injectable()
 export class TreeNodesExpansionService<T> {
-    public _osExpanded: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
-    public _osCollapsed: EventEmitter<ITreeNodeExpansionEvent<T>> = new EventEmitter();
+    public _osExpanded: EventEmitter<TreeNodeExpansionEvent<T>> = new EventEmitter();
+    public _osCollapsed: EventEmitter<TreeNodeExpansionEvent<T>> = new EventEmitter();
 
     constructor(
         private readonly state: TreeNodesState<T>
@@ -33,7 +33,7 @@ export class TreeNodesExpansionService<T> {
      * Expands node
      * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
-    public expand(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+    public expand(node: TreeNode<T>, originalEvent?: MouseEvent): void {
         node.isExpanded = true;
 
         this._osExpanded.emit({ node, originalEvent });
@@ -44,7 +44,7 @@ export class TreeNodesExpansionService<T> {
      * Collapses node
      * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
-    public collapse(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+    public collapse(node: TreeNode<T>, originalEvent?: MouseEvent): void {
         node.isExpanded = false;
 
         this._osCollapsed.emit({ node, originalEvent });
@@ -55,7 +55,7 @@ export class TreeNodesExpansionService<T> {
      * Expands and collapses node (sets the opposite state)
      * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
-    public toggle(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+    public toggle(node: TreeNode<T>, originalEvent?: MouseEvent): void {
         if (node.isExpanded) {
             this.collapse(node, originalEvent);
         } else {
@@ -63,7 +63,7 @@ export class TreeNodesExpansionService<T> {
         }
     }
 
-    private setStateForAll(getState: (node: ITreeNode<T>) => boolean): void {
+    private setStateForAll(getState: (node: TreeNode<T>) => boolean): void {
         this.state.flatData.forEach((node) => {
             const newState = getState(node);
 

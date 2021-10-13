@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
-import { IRadioButtonValueChangeEvent } from '../../interfaces';
+import { RadioButtonValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-radio-button',
@@ -54,7 +54,7 @@ export class RadioButtonComponent<T>
 
     /** Fires when the radio-button state change */
     @Output()
-    public osChange: EventEmitter<IRadioButtonValueChangeEvent<T>> = new EventEmitter();
+    public osChange: EventEmitter<RadioButtonValueChangeEvent<T>> = new EventEmitter();
 
     /** Fires when `checked` state changed. Might be used for two way binding */
     @Output()

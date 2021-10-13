@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { IThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os/modules';
 import { BackgroundMetadata, BackgroundTypeEnum } from '../../../../../../features/background';
 import { BackgroundControlService } from '../../services';
 
@@ -17,9 +17,9 @@ export class ColorSelectionComponent {
         return (this.currentBackground.type === BackgroundTypeEnum.Color);
     }
 
-    public get selectedBackgroundColor(): IThemeRgbColor {
+    public get selectedBackgroundColor(): ThemeRgbColor {
         if (this.isCurrentBackgroundColor) {
-            return this.currentBackground.data as IThemeRgbColor;
+            return this.currentBackground.data as ThemeRgbColor;
         }
 
         return null;
@@ -29,7 +29,7 @@ export class ColorSelectionComponent {
         private readonly backgroundControlService: BackgroundControlService
     ) {}
 
-    public onAccentColorClick(color: IThemeRgbColor): void {
+    public onAccentColorClick(color: ThemeRgbColor): void {
         this.backgroundControlService.applyColor(color);
     }
 }

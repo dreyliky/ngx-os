@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DynamicWindowRef } from '../classes';
+import { DynamicWindowRefModel } from '../classes';
 import { WindowReferencesState } from '../states';
 
 /** @internal */
@@ -39,7 +39,7 @@ export class DynamicWindowRefOrderingService {
         this.windowOrderIds.push(id);
     }
 
-    public getHighestOpened(): DynamicWindowRef {
+    public getHighestOpened(): DynamicWindowRefModel {
         let index = (this.windowOrderIds.length - 1);
 
         while (index >= 0) {

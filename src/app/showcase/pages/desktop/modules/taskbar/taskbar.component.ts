@@ -7,7 +7,7 @@ import {
     QueryList,
     ViewChildren
 } from '@angular/core';
-import { ButtonComponent, DynamicWindowRef, DynamicWindowService } from 'ngx-os/modules';
+import { ButtonComponent, DynamicWindowRefModel, DynamicWindowService } from 'ngx-os/modules';
 import { Observable } from 'rxjs';
 import { TaskbarService } from './taskbar.service';
 
@@ -25,7 +25,7 @@ import { TaskbarService } from './taskbar.service';
     ]
 })
 export class TaskbarComponent implements OnInit, AfterViewInit {
-    public windowRefs$: Observable<DynamicWindowRef[]>;
+    public windowRefs$: Observable<DynamicWindowRefModel[]>;
 
     @ViewChildren(ButtonComponent, { read: ElementRef })
     protected set windowRefElements(data: QueryList<ElementRef<HTMLElement>>) {
@@ -50,7 +50,7 @@ export class TaskbarComponent implements OnInit, AfterViewInit {
         return `url(${iconUrl || '/assets/showcase/icons/icon.png'})`;
     }
 
-    public onWindowReferenceIconClick(event: PointerEvent, windowRef: DynamicWindowRef): void {
+    public onWindowReferenceIconClick(event: PointerEvent, windowRef: DynamicWindowRefModel): void {
         if (!windowRef.isHidden && !windowRef.isActive) {
             windowRef.setIsActive(true);
         } else {

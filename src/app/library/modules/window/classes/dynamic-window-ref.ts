@@ -2,10 +2,10 @@ import { ComponentRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IdGenerator } from '../../../core';
 import { DynamicWindowComponent } from '../components';
-import { IDynamicWindowConfig, IDynamicWindowRef } from '../interfaces';
+import { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
 
 /** @internal */
-export class DynamicWindowRef implements IDynamicWindowRef {
+export class DynamicWindowRefModel implements DynamicWindowRef {
     public get isHidden$(): Observable<boolean> {
         return this._isHidden$.asObservable();
     }
@@ -42,11 +42,11 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         return this._afterClosed$.asObservable();
     }
 
-    public get config$(): Observable<IDynamicWindowConfig> {
+    public get config$(): Observable<DynamicWindowConfig> {
         return this._config$.asObservable();
     }
 
-    public get config(): IDynamicWindowConfig {
+    public get config(): DynamicWindowConfig {
         return this._config$.getValue();
     }
 
@@ -62,7 +62,7 @@ export class DynamicWindowRef implements IDynamicWindowRef {
         return this._componentRef;
     }
 
-    private readonly _config$ = new BehaviorSubject<IDynamicWindowConfig>({});
+    private readonly _config$ = new BehaviorSubject<DynamicWindowConfig>({});
     private readonly _isHidden$ = new BehaviorSubject<boolean>(false);
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
     private readonly _isActive$ = new BehaviorSubject<boolean>(true);
@@ -74,13 +74,13 @@ export class DynamicWindowRef implements IDynamicWindowRef {
     private _windowElement: HTMLElement;
     private _componentRef: ComponentRef<DynamicWindowComponent>;
 
-    public init(config: IDynamicWindowConfig): void {
+    public init(config: DynamicWindowConfig): void {
         this.updateConfig(config);
         this.setIsHiddenState(config.isHiddenByDefault);
         this.setIsFullscreenState(config.isFullscreenByDefault);
     }
 
-    public updateConfig(config: IDynamicWindowConfig): void {
+    public updateConfig(config: DynamicWindowConfig): void {
         this._config$.next({ ...this.config, ...config });
     }
 

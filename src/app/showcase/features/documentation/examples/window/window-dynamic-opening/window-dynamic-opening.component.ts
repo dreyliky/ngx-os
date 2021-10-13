@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, Optional } from '@angular/core';
-import { DynamicWindowService, DYNAMIC_WINDOW_REF, IDynamicWindowRef, IS_DYNAMIC_WINDOW_CONTEXT } from 'ngx-os';
+import { DynamicWindowRefModel, DynamicWindowService, DYNAMIC_WINDOW_REF, IS_DYNAMIC_WINDOW_CONTEXT } from 'ngx-os';
 
 @Component({
     selector: 'showcase-window-dynamic-opening',
@@ -14,7 +14,7 @@ export class WindowDynamicOpeningComponent {
 
     constructor(
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) public readonly isComponentInsideWindow: boolean,
-        @Inject(DYNAMIC_WINDOW_REF) @Optional() private readonly windowRef: IDynamicWindowRef,
+        @Inject(DYNAMIC_WINDOW_REF) @Optional() private readonly windowRef: DynamicWindowRefModel,
         private readonly dynamicWindowService: DynamicWindowService
     ) {}
 

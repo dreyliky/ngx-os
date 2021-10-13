@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
-import { IEmailBoxChangeEvent } from '../../interfaces';
+import { EmailBoxChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-email-box',
@@ -34,7 +34,7 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, A
 
     /** Fires when the email-box value change */
     @Output()
-    public osChange: EventEmitter<IEmailBoxChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<EmailBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('emailbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;

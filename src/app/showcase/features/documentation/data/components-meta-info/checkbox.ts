@@ -15,7 +15,7 @@ export const CHECKBOX_META_INFO: ComponentMetaInfo = {
         CheckboxComponent
     ],
     libInterfaces: [
-        'ICheckboxValueChangeEvent'
+        'CheckboxValueChangeEvent'
     ],
     demoComponents: [
         {

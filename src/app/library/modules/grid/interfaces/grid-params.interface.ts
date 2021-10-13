@@ -1,7 +1,7 @@
 import { GridDirectionEnum } from '../enums';
 
 /** @internal */
-export interface IGridParams {
+export interface GridParams {
     xAxisCellsCount: number;
     yAxisCellsCount: number;
     directionType?: GridDirectionEnum;

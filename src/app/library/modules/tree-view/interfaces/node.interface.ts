@@ -1,15 +1,15 @@
-import { ITreeNodeClickEvent } from './node-click-event.interface';
-import { ITreeNodeExpansionEvent } from './node-expansion-event.interface';
-import { ITreeNodeSelectionEvent } from './node-selection-event.interface';
+import { TreeNodeClickEvent } from './node-click-event.interface';
+import { TreeNodeExpansionEvent } from './node-expansion-event.interface';
+import { TreeNodeSelectionEvent } from './node-selection-event.interface';
 
 /** Data structure used as tree node item data */
-export interface ITreeNode<T = any> {
+export interface TreeNode<T = any> {
     /** Text of the node to display for the user */
     label?: string;
     /** Custom data that node represents */
     data?: T;
     /** An array of children nodes which can be expanded or collapsed in the tree */
-    children?: ITreeNode<T>[];
+    children?: TreeNode<T>[];
     /** Node element id */
     id?: string;
     /** Node element stylelist */
@@ -27,13 +27,13 @@ export interface ITreeNode<T = any> {
     /** Is node selected */
     isSelected?: boolean;
     /** Callback which fires when the user clicks on the node element */
-    onClick?: (event: ITreeNodeClickEvent<T>) => void;
+    onClick?: (event: TreeNodeClickEvent<T>) => void;
     /** Callback which fires when node expands */
-    onExpanded?: (event: ITreeNodeExpansionEvent<T>) => void;
+    onExpanded?: (event: TreeNodeExpansionEvent<T>) => void;
     /** Callback which fires when node collapses */
-    onCollapsed?: (event: ITreeNodeExpansionEvent<T>) => void;
+    onCollapsed?: (event: TreeNodeExpansionEvent<T>) => void;
     /** Callback which fires when node selects */
-    onSelected?: (event: ITreeNodeSelectionEvent<T>) => void;
+    onSelected?: (event: TreeNodeSelectionEvent<T>) => void;
     /** Callback which fires when node deselects */
-    onDeselected?: (event: ITreeNodeSelectionEvent<T>) => void;
+    onDeselected?: (event: TreeNodeSelectionEvent<T>) => void;
 }

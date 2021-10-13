@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
-import { ITreeNode } from '../interfaces';
+import { TreeNode } from '../interfaces';
 
 /** @internal */
 @Injectable()
 export class TreeNodesState<T> {
     /** Original data tree of nodes */
-    public get data(): ITreeNode<T>[] {
+    public get data(): TreeNode<T>[] {
         return this._data;
     }
 
     /** Flat array of all nodes. Parents and children on the same level here */
-    public get flatData(): ITreeNode<T>[] {
+    public get flatData(): TreeNode<T>[] {
         return this._flatData;
     }
 
-    private _data: ITreeNode<T>[] = [];
-    private _flatData: ITreeNode<T>[] = [];
+    private _data: TreeNode<T>[] = [];
+    private _flatData: TreeNode<T>[] = [];
 
-    public set(data: ITreeNode<T>[]): void {
+    public set(data: TreeNode<T>[]): void {
         this._data = data;
         this._flatData = [];
 
         this.initFlatDataForNodesAndChildren(data);
     }
 
-    private initFlatDataForNodesAndChildren(nodes: ITreeNode[]): void {
+    private initFlatDataForNodesAndChildren(nodes: TreeNode[]): void {
         nodes.forEach((node) => {
             this._flatData.push(node);
 

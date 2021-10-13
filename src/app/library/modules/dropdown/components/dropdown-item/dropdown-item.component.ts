@@ -12,7 +12,7 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { CommonCssClassEnum, isNil, OsBaseComponent } from '../../../../core';
-import { IDropdownValueChangeEvent } from '../../interfaces';
+import { DropdownValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-dropdown-item',
@@ -36,7 +36,7 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
 
     /** Fires when the dropdown item selected */
     @Output()
-    public osSelected: EventEmitter<IDropdownValueChangeEvent<T>> = new EventEmitter();
+    public osSelected: EventEmitter<DropdownValueChangeEvent<T>> = new EventEmitter();
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>,

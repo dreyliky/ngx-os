@@ -20,7 +20,7 @@ export const DROPDOWN_META_INFO: ComponentMetaInfo = {
         DropdownItemComponent
     ],
     libInterfaces: [
-        'IDropdownValueChangeEvent'
+        'DropdownValueChangeEvent'
     ],
     demoComponents: [
         {

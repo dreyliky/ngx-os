@@ -23,10 +23,10 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
         TreeNodesExpansionService
     ],
     libInterfaces: [
-        'ITreeNode',
-        'ITreeNodeClickEvent',
-        'ITreeNodeSelectionEvent',
-        'ITreeNodeExpansionEvent'
+        'TreeNode',
+        'TreeNodeClickEvent',
+        'TreeNodeSelectionEvent',
+        'TreeNodeExpansionEvent'
     ],
     demoComponents: [
         {

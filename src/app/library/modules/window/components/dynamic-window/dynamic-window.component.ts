@@ -14,12 +14,12 @@ import {
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { filter, map, skip, takeUntil } from 'rxjs/operators';
 import { EventOutside } from '../../../../core';
-import { DraggableDirective, IDragInfo } from '../../../drag-and-drop';
-import { IResizeInfo } from '../../../resizer';
+import { DraggableDirective, DragInfo } from '../../../drag-and-drop';
+import { ResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG } from '../../data';
 import { DynamicStateEnum as DynamicState, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
 import { mergeConfigs } from '../../helpers';
-import { IDynamicWindowConfig } from '../../interfaces';
+import { DynamicWindowConfig } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 
 @Component({
@@ -36,7 +36,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private readonly draggableDirective: DraggableDirective;
 
     constructor(
-        @Inject(DYNAMIC_WINDOW_SHARED_CONFIG) private sharedConfig$: Observable<IDynamicWindowConfig>,
+        @Inject(DYNAMIC_WINDOW_SHARED_CONFIG) private sharedConfig$: Observable<DynamicWindowConfig>,
         private readonly hostElementRef: ElementRef<HTMLElement>,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
@@ -117,7 +117,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         }
     }
 
-    public onAfterDragging(event: IDragInfo): void {
+    public onAfterDragging(event: DragInfo): void {
         if (this.isAfterExitFullscreenByDragging) {
             this.draggableDirective.updateMovableElementPosition(event.originalEvent);
 
@@ -141,7 +141,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.changeDetector.detach();
     }
 
-    public onResizing({ resizableElement }: IResizeInfo): void {
+    public onResizing({ resizableElement }: ResizeInfo): void {
         const { offsetWidth, offsetHeight } = resizableElement;
         this.widthAtWindowedMode = offsetWidth;
         this.heightAtWindowedMode = offsetHeight;

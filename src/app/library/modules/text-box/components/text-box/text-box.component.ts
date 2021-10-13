@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
-import { ITextBoxChangeEvent } from '../../interfaces';
+import { TextBoxChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-text-box',
@@ -34,7 +34,7 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Af
 
     /** Fires when the text-box value change */
     @Output()
-    public osChange: EventEmitter<ITextBoxChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<TextBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('textbox')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;

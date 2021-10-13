@@ -1,8 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
-import { DynamicWindowConfig, DynamicWindowRef } from '../classes';
-import { IDynamicWindowConfig } from '../interfaces';
+import { DynamicWindowConfigModel, DynamicWindowRefModel } from '../classes';
+import { DynamicWindowConfig as IDynamicWindowConfig } from '../interfaces';
 import { WindowReferencesState } from '../states';
 import { DynamicWindowActivityService } from './dynamic-window-activity.service';
 import { DynamicWindowRefOrderingService } from './dynamic-window-ref-ordering.service';
@@ -13,11 +13,11 @@ import { DynamicWindowsCoordinatesService } from './dynamic-windows-coordinates.
     providedIn: 'root'
 })
 export class DynamicWindowReferencesService implements OnDestroy {
-    public get data$(): Observable<DynamicWindowRef[]> {
+    public get data$(): Observable<DynamicWindowRefModel[]> {
         return this.state.data$;
     }
 
-    public get data(): DynamicWindowRef[] {
+    public get data(): DynamicWindowRefModel[] {
         return [...this.state.data];
     }
 
@@ -35,20 +35,20 @@ export class DynamicWindowReferencesService implements OnDestroy {
         this.destroyed$.complete();
     }
 
-    public register(windowRef: DynamicWindowRef, config: IDynamicWindowConfig): void {
-        windowRef.init(new DynamicWindowConfig(config));
+    public register(windowRef: DynamicWindowRefModel, config: IDynamicWindowConfig): void {
+        windowRef.init(new DynamicWindowConfigModel(config));
         this.state.add(windowRef);
         this.coordinatesService.applyDefault(windowRef);
         this.initHighestWindowActivityObserver(windowRef);
         this.initIsActiveStateObserver(windowRef);
     }
 
-    public remove(windowRef: DynamicWindowRef): void {
+    public remove(windowRef: DynamicWindowRefModel): void {
         this.orderingService.remove(windowRef.id);
         this.state.remove(windowRef);
     }
 
-    private initHighestWindowActivityObserver(windowRef: DynamicWindowRef): void {
+    private initHighestWindowActivityObserver(windowRef: DynamicWindowRefModel): void {
         merge(
             windowRef.isHidden$.pipe(filter(Boolean)),
             windowRef.afterClosed$
@@ -60,7 +60,7 @@ export class DynamicWindowReferencesService implements OnDestroy {
             .subscribe((highestWindow) => highestWindow?.setIsActive(true));
     }
 
-    private initIsActiveStateObserver(windowRef: DynamicWindowRef): void {
+    private initIsActiveStateObserver(windowRef: DynamicWindowRefModel): void {
         windowRef.isActive$
             .pipe(
                 takeUntil(this.destroyed$),

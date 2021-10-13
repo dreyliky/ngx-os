@@ -16,7 +16,7 @@ export const THEME_META_INFO: ComponentMetaInfo = {
         AccentColorService
     ],
     libInterfaces: [
-        'IThemeRgbColor'
+        'ThemeRgbColor'
     ],
     libTypes: [
         'ThemeColorType'

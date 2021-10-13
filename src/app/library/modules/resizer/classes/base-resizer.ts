@@ -1,7 +1,7 @@
 import { osParseInt } from '../../../core';
 import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
-import { ResizerConfig } from './resizer-config';
+import { ResizerConfigModel } from './resizer-config';
 
 /** @internal */
 export abstract class BaseResizer {
@@ -17,7 +17,7 @@ export abstract class BaseResizer {
     protected originalY = 20;
     protected originalMouseX = 20;
     protected originalMouseY = 20;
-    protected config: ResizerConfig;
+    protected config: ResizerConfigModel;
     protected resizableElement: HTMLElement;
 
     private minSize = 20;

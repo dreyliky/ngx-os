@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
-import { ISliderValueChangeEvent } from '../../interfaces';
+import { SliderValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-slider',
@@ -62,7 +62,7 @@ export class SliderComponent
 
     /** Fires when the slider state change */
     @Output()
-    public osChange: EventEmitter<ISliderValueChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
 
     @ViewChild('slider')
     private readonly sliderElementRef: ElementRef<HTMLInputElement>;

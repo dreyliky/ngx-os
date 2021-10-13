@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os/modules';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BackgroundService, BackgroundTypeEnum } from '../features/background';
@@ -11,7 +11,7 @@ export class DesktopBackgroundService {
             .pipe(
                 map(({ type, data }) => {
                     if (type === BackgroundTypeEnum.Color) {
-                        const { r, g, b } = data as IThemeRgbColor;
+                        const { r, g, b } = data as ThemeRgbColor;
 
                         return `rgb(${r}, ${g}, ${b})`;
                     }

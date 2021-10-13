@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 import { ScrollViewComponent } from '../../../scroll-view';
-import { ITreeNode, ITreeNodeClickEvent, ITreeNodeExpansionEvent, ITreeNodeSelectionEvent } from '../../interfaces';
+import { TreeNode, TreeNodeClickEvent, TreeNodeExpansionEvent, TreeNodeSelectionEvent } from '../../interfaces';
 import { TreeNodesExpansionService, TreeNodesSelectionService } from '../../services';
 import { TreeNodesState } from '../../states';
 
@@ -30,7 +30,7 @@ import { TreeNodesState } from '../../states';
  * `#nodeTemplate`: Custom template for each node.
  *
  * Context:
- * - `$implicit`: {@link ITreeNode} node data;
+ * - `$implicit`: {@link TreeNode} node data;
  * - `depth`: depth data (0 - root node; 1 and more - child node);
  *
  * @example
@@ -59,7 +59,7 @@ import { TreeNodesState } from '../../states';
 export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnChanges {
     /** An array of tree nodes */
     @Input()
-    public data: ITreeNode<T>[];
+    public data: TreeNode<T>[];
 
     /** Can the user select tree nodes? */
     @Input()
@@ -91,31 +91,31 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
 
     /** Fires when the node selected */
     @Output()
-    public get osNodeSelected(): EventEmitter<ITreeNodeSelectionEvent<T>> {
+    public get osNodeSelected(): EventEmitter<TreeNodeSelectionEvent<T>> {
         return this.nodesSelection._osSelected;
     }
 
     /** Fires when the node deselected */
     @Output()
-    public get osNodeDeselected(): EventEmitter<ITreeNodeSelectionEvent<T>> {
+    public get osNodeDeselected(): EventEmitter<TreeNodeSelectionEvent<T>> {
         return this.nodesSelection._osDeselected;
     }
 
     /** Fires when the node expanded */
     @Output()
-    public get osNodeExpanded(): EventEmitter<ITreeNodeExpansionEvent<T>> {
+    public get osNodeExpanded(): EventEmitter<TreeNodeExpansionEvent<T>> {
         return this.nodesExpansion._osExpanded;
     }
 
     /** Fires when the node collapsed */
     @Output()
-    public get osNodeCollapsed(): EventEmitter<ITreeNodeExpansionEvent<T>> {
+    public get osNodeCollapsed(): EventEmitter<TreeNodeExpansionEvent<T>> {
         return this.nodesExpansion._osCollapsed;
     }
 
     /** Fires when the node clicked by user */
     @Output()
-    public osNodeClick: EventEmitter<ITreeNodeClickEvent<T>> = new EventEmitter();
+    public osNodeClick: EventEmitter<TreeNodeClickEvent<T>> = new EventEmitter();
 
     /** ScrollView component for scroll manipulations */
     @ViewChild(ScrollViewComponent)
@@ -144,7 +144,7 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
-    public onNodeClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
+    public onNodeClick(originalEvent: MouseEvent, node: TreeNode<T>): void {
         this.osNodeClick.emit({ originalEvent, node });
         node.onClick?.({ originalEvent, node });
 
@@ -163,7 +163,7 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
         }
     }
 
-    public onToggleExpandButtonClick(originalEvent: MouseEvent, node: ITreeNode<T>): void {
+    public onToggleExpandButtonClick(originalEvent: MouseEvent, node: TreeNode<T>): void {
         if (!node.isDisabled) {
             this.nodesExpansion.toggle(node, originalEvent);
         }

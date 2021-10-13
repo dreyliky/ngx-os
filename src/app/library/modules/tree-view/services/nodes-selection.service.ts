@@ -1,13 +1,13 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { isNil } from '../../../core';
-import { ITreeNode, ITreeNodeSelectionEvent } from '../interfaces';
+import { TreeNode, TreeNodeSelectionEvent } from '../interfaces';
 import { TreeNodesState } from '../states';
 
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly */
 @Injectable()
 export class TreeNodesSelectionService<T> {
-    public _osSelected: EventEmitter<ITreeNodeSelectionEvent<T>> = new EventEmitter();
-    public _osDeselected: EventEmitter<ITreeNodeSelectionEvent<T>> = new EventEmitter();
+    public _osSelected: EventEmitter<TreeNodeSelectionEvent<T>> = new EventEmitter();
+    public _osDeselected: EventEmitter<TreeNodeSelectionEvent<T>> = new EventEmitter();
 
     constructor(
         private readonly state: TreeNodesState<T>
@@ -18,7 +18,7 @@ export class TreeNodesSelectionService<T> {
     }
 
     /** Returns all selected nodes */
-    public getAllSelected(): ITreeNode<T>[] {
+    public getAllSelected(): TreeNode<T>[] {
         return this.state.flatData
             .filter(({ isSelected }) => isSelected);
     }
@@ -27,7 +27,7 @@ export class TreeNodesSelectionService<T> {
      * Selects node
      * @param originalEvent - MouseEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public select(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+    public select(node: TreeNode<T>, originalEvent?: MouseEvent): void {
         node.isSelected = true;
         const allSelected = this.getAllSelected();
 
@@ -39,7 +39,7 @@ export class TreeNodesSelectionService<T> {
      * Deselects node
      * @param originalEvent - Event which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public deselect(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+    public deselect(node: TreeNode<T>, originalEvent?: MouseEvent): void {
         node.isSelected = false;
         const allSelected = this.getAllSelected();
 
@@ -51,7 +51,7 @@ export class TreeNodesSelectionService<T> {
      * Selects and deselects node (sets the opposite state)
      * @param originalEvent - MouseEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public toggle(node: ITreeNode<T>, originalEvent?: MouseEvent): void {
+    public toggle(node: TreeNode<T>, originalEvent?: MouseEvent): void {
         if (node.isSelected) {
             this.deselect(node, originalEvent);
         } else {
@@ -60,7 +60,7 @@ export class TreeNodesSelectionService<T> {
     }
 
     /** Deselects all nodes except specific one */
-    public deselectAllExceptSpecific(node: ITreeNode<T>): void {
+    public deselectAllExceptSpecific(node: TreeNode<T>): void {
         this.state.flatData.forEach((currentNode) => {
             if (currentNode.isSelected && currentNode !== node) {
                 this.deselect(currentNode);
@@ -68,7 +68,7 @@ export class TreeNodesSelectionService<T> {
         });
     }
 
-    private setStateForNodes(getState: (node: ITreeNode<T>) => boolean): void {
+    private setStateForNodes(getState: (node: TreeNode<T>) => boolean): void {
         this.state.flatData.forEach((node) => {
             const newState = getState(node);
 

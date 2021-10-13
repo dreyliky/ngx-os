@@ -1,4 +1,4 @@
-export interface ICheckboxValueChangeEvent<T> {
+export interface CheckboxValueChangeEvent<T> {
     /** Is checkbox checked? */
     isChecked: boolean;
     /** Data of the checkbox */

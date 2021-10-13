@@ -6,7 +6,7 @@ import {
     ElementRef,
     ViewChild
 } from '@angular/core';
-import { IDraggerConfig } from 'ngx-os/modules';
+import { DraggerConfigModel } from 'ngx-os/modules';
 
 @Component({
     selector: 'showcase-dragger-via-handle',
@@ -21,7 +21,7 @@ export class DraggerViaHandleComponent implements AfterViewInit {
     @ViewChild('handle')
     private readonly handleElement: ElementRef<HTMLDivElement>;
 
-    public draggerConfig: IDraggerConfig;
+    public draggerConfig: DraggerConfigModel;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef

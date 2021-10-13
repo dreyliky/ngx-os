@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
-import { ITextareaBoxChangeEvent } from '../../interfaces';
+import { TextareaBoxChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-textarea-box',
@@ -38,7 +38,7 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit
 
     /** Fires when the textarea-box value change */
     @Output()
-    public osChange: EventEmitter<ITextareaBoxChangeEvent> = new EventEmitter();
+    public osChange: EventEmitter<TextareaBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('textarea')
     private readonly fieldElementRef: ElementRef<HTMLInputElement>;

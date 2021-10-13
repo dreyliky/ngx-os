@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { IThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os/modules';
 import { ACCENT_COLORS } from '../../data';
 
 @Component({
@@ -10,14 +10,14 @@ import { ACCENT_COLORS } from '../../data';
 })
 export class ThemeAccentColorsComponent {
     @Input()
-    public readonly selectedColor: IThemeRgbColor;
+    public readonly selectedColor: ThemeRgbColor;
 
     @Output()
-    public accentColorClick = new EventEmitter<IThemeRgbColor>();
+    public accentColorClick = new EventEmitter<ThemeRgbColor>();
 
     public readonly accentColors = ACCENT_COLORS;
 
-    public isAccentColorSelected({ r, g, b }: IThemeRgbColor): boolean {
+    public isAccentColorSelected({ r, g, b }: ThemeRgbColor): boolean {
         return (
             r === this.selectedColor?.r &&
             g === this.selectedColor?.g &&
@@ -25,7 +25,7 @@ export class ThemeAccentColorsComponent {
         );
     }
 
-    public transformAccentColorToCssFormat({ r, g, b }: IThemeRgbColor): string {
+    public transformAccentColorToCssFormat({ r, g, b }: ThemeRgbColor): string {
         return `rgb(${r}, ${g}, ${b})`;
     }
 }

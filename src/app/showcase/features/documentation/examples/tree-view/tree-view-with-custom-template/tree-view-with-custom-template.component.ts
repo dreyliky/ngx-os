@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ITreeNode } from 'ngx-os/modules';
+import { TreeNode } from 'ngx-os/modules';
 
 interface MyNodeData {
     iconUrl: string;
@@ -12,7 +12,7 @@ interface MyNodeData {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeViewWithCustomTemplateComponent {
-    public readonly nodes: ITreeNode<MyNodeData>[] = [
+    public readonly nodes: TreeNode<MyNodeData>[] = [
         {
             label: 'My PC',
             data: { iconUrl: '/assets/showcase/icons/my-pc.png' },

@@ -2,7 +2,7 @@ import { MouseButtonEnum } from '../../../core';
 import { DragStrategyType } from '../types';
 
 /** Settings of dragging for {@link DraggableDirective} */
-export interface IDraggerConfig {
+export interface DraggerConfig {
     /** Is dragging enabled */
     isEnabled?: boolean;
     /** The target element by dragging which the dragging of `movableElement` will take place */

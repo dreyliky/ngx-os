@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ITreeNode, ITreeNodeSelectionEvent } from 'ngx-os/modules';
+import { TreeNode, TreeNodeSelectionEvent } from 'ngx-os/modules';
 
 @Component({
     selector: 'showcase-tree-view-selection-setup',
@@ -12,7 +12,7 @@ export class TreeViewSelectionSetupComponent {
     public isAllowMultipleSelection: boolean = true;
     public isSelectionInToggleMode: boolean = true;
 
-    public readonly nodes: ITreeNode[] = [
+    public readonly nodes: TreeNode[] = [
         {
             label: 'Fruits',
             children: [
@@ -61,9 +61,9 @@ export class TreeViewSelectionSetupComponent {
             .join(', ');
     }
 
-    private _selectedNodes: ITreeNode[] = [];
+    private _selectedNodes: TreeNode[] = [];
 
-    public onNodeToggleSelection({ allSelected }: ITreeNodeSelectionEvent): void {
+    public onNodeToggleSelection({ allSelected }: TreeNodeSelectionEvent): void {
         this._selectedNodes = allSelected;
     }
 }

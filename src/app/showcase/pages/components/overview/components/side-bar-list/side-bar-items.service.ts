@@ -6,16 +6,16 @@ import {
     LibraryComponentsSearchService,
     OsComponentOverviewSectionEnum as RouteEnum
 } from '@features/documentation';
-import { ITreeNode } from 'ngx-os';
+import { TreeNode } from 'ngx-os';
 import { Observable, Subject } from 'rxjs';
 import { filter, map, startWith, takeUntil } from 'rxjs/operators';
 import { SideBarItem } from './side-bar-item.interface';
 
 @Injectable()
 export class SideBarItemsService implements OnDestroy {
-    public data$: Observable<ITreeNode<SideBarItem>[]>;
+    public data$: Observable<TreeNode<SideBarItem>[]>;
 
-    private readonly baseSubSections: ITreeNode<SideBarItem>[] = [
+    private readonly baseSubSections: TreeNode<SideBarItem>[] = [
         {
             label: 'Examples',
             data: {
@@ -55,7 +55,7 @@ export class SideBarItemsService implements OnDestroy {
         this.destroyed$.complete();
     }
 
-    private mapMetaInfosToTreeNodes(metaInfos: ComponentMetaInfo[]): ITreeNode<SideBarItem>[] {
+    private mapMetaInfosToTreeNodes(metaInfos: ComponentMetaInfo[]): TreeNode<SideBarItem>[] {
         return metaInfos.map((metaInfo) => {
             const sectionUrl = `/${AppRouteEnum.Components}/${metaInfo.type}/${RouteEnum.Documentation}`;
             const isSectionUrlActive = this.currentRoute.includes(metaInfo.type);
@@ -71,7 +71,7 @@ export class SideBarItemsService implements OnDestroy {
         });
     }
 
-    private mapBaseSubSectionsForComponent(metaInfo: ComponentMetaInfo): ITreeNode<SideBarItem>[] {
+    private mapBaseSubSectionsForComponent(metaInfo: ComponentMetaInfo): TreeNode<SideBarItem>[] {
         return this.baseSubSections
             .filter((section) => !this.isSectionForbidden(section, metaInfo))
             .map((section) => {
@@ -110,7 +110,7 @@ export class SideBarItemsService implements OnDestroy {
         this.currentRoute = url.slice(0, fragmentIndex);
     }
 
-    private isSectionForbidden(section: ITreeNode<SideBarItem>, metaInfo: ComponentMetaInfo): boolean {
+    private isSectionForbidden(section: TreeNode<SideBarItem>, metaInfo: ComponentMetaInfo): boolean {
         const sectionUrl = section.data.sectionUrl as RouteEnum;
 
         return metaInfo.forbiddenOverviewSections?.includes(sectionUrl);
