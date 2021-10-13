@@ -30,16 +30,19 @@ import { TreeNodesState } from '../../states';
  * `#nodeTemplate`: Custom template for each node.
  *
  * Context:
- * - `node`: {@link ITreeNode} node data;
+ * - `$implicit`: {@link ITreeNode} node data;
  * - `depth`: depth data (0 - root node; 1 and more - child node);
  *
  * @example
  * ```html
  * <ng-template
  *    #nodeTemplate
- *    let-node="node"
+ *    let-node
  *    let-depth="depth">
- *    <!-- YOUR CUSTOM TEMPLATE FOR EACH NODE -->
+ *    <!--
+ *        Variable `node` contains the node data, and `depth` - the depth of the node.
+ *        Now you are ready to build your custom content for each node.
+ *    -->
  * </ng-template>
  * ```
  **/
