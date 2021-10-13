@@ -1,7 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
-import { ComponentMetaInfo, ComponentMetaInfoMap, OsComponentEnum } from '@features/documentation';
+import {
+    ComponentMetaInfo,
+    ComponentMetaInfoMap,
+    OsComponentEnum,
+    OsComponentOverviewSectionEnum as OverviewSection
+} from '@features/documentation';
 
 @Component({
     selector: 'showcase-subheader',
@@ -38,7 +43,9 @@ export class SubheaderComponent implements OnInit {
     }
 
     public onGridItemClick(component: ComponentMetaInfo): void {
-        this.router.navigateByUrl(`/${AppRouteEnum.Components}/${component.type}`);
+        this.router.navigateByUrl(
+            `/${AppRouteEnum.Components}/${component.type}/${OverviewSection.Documentation}`
+        );
     }
 
     private initComponents(): void {

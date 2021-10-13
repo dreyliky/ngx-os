@@ -8,7 +8,7 @@ import {
 } from '@features/documentation';
 import { ITreeNode } from 'ngx-os';
 import { Observable, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { filter, map, startWith, takeUntil } from 'rxjs/operators';
 import { SideBarItem } from './side-bar-item.interface';
 
 @Injectable()
@@ -46,7 +46,6 @@ export class SideBarItemsService implements OnDestroy {
         private readonly componentsSearchService: LibraryComponentsSearchService,
         private readonly router: Router
     ) {
-        this.initCurrentRouteByUrl(this.router.url);
         this.initRouteUrlObserver();
         this.initDataObservable();
     }
@@ -99,6 +98,7 @@ export class SideBarItemsService implements OnDestroy {
         this.router.events
             .pipe(
                 takeUntil(this.destroyed$),
+                startWith(this.router.url),
                 filter<NavigationEnd>((event) => event instanceof NavigationEnd)
             )
             .subscribe(({ url }) => this.initCurrentRouteByUrl(url));
