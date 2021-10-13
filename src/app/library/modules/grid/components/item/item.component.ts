@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
@@ -9,7 +8,6 @@ import {
     HostBinding,
     Inject,
     Input,
-    OnChanges,
     OnInit,
     TemplateRef
 } from '@angular/core';
@@ -22,23 +20,21 @@ import { CommonCssClassEnum, EventOutside, OsBaseComponent } from '../../../../c
     templateUrl: './item.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridItemComponent<T> extends OsBaseComponent implements OnInit, OnChanges {
-    /** Data of grid item */
-    @Input()
-    public data: T;
-
+export class GridItemComponent extends OsBaseComponent implements OnInit {
     /** Is grid item selected? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean;
 
-    /** Method should return the URL on the icon for the grid item */
+    /** URL to the icon of the grid item */
     @Input()
-    public iconUrlExpr: (item: T) => string = (item: T) => String(item);
+    public set iconUrl(value: string) {
+        this._iconBackgroundCssUrl = `url(${value})`;
+    }
 
-    /** Method should return the label text for the grid item */
+    /** Label text of the grid item */
     @Input()
-    public labelExpr: (item: T) => string = (item: T) => String(item);
+    public label: string;
 
     /** @internal */
     @ContentChild('iconTemplate')
@@ -51,21 +47,12 @@ export class GridItemComponent<T> extends OsBaseComponent implements OnInit, OnC
     /** @internal */
     public _iconBackgroundCssUrl: string;
 
-    /** @internal */
-    public _label: string;
-
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         private readonly changeDetector: ChangeDetectorRef,
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {
         super();
-    }
-
-    public ngOnChanges(): void {
-        this._label = this.labelExpr(this.data);
-
-        this.initIconBackgroundCssUrl();
     }
 
     public ngOnInit(): void {
@@ -78,10 +65,6 @@ export class GridItemComponent<T> extends OsBaseComponent implements OnInit, OnC
         this.isSelected = true;
 
         super.onMouseDown(event);
-    }
-
-    private initIconBackgroundCssUrl(): void {
-        this._iconBackgroundCssUrl = `url(${this.iconUrlExpr(this.data)})`;
     }
 
     private initClickOutsideObserver(): void {

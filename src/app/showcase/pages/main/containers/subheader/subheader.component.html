@@ -11,9 +11,8 @@
     [gridSize]="72">
     <os-grid-item
         *ngFor="let component of components"
-        [data]="component"
-        [labelExpr]="componentLabelExpr"
-        [iconUrlExpr]="componentIconUrlExpr"
+        [label]="component.name"
+        [iconUrl]="component.imageUrl"
         (osDblClick)="onGridItemClick(component)">
     </os-grid-item>
 </os-grid>

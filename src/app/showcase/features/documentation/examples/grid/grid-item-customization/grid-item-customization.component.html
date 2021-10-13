@@ -1,14 +1,22 @@
 <div class="grid-wrapper">
-    <os-grid [gridSize]="100">
+    <os-grid [gridSize]="125">
         <os-grid-item
             *ngFor="let file of files"
-            [data]="file"
-            [iconUrlExpr]="file.iconUrlExpr"
+            [iconUrl]="file.iconUrl"
+            [label]="file.getLabel()"
             (osClick)="onFileClick($event, file)">
+            <ng-container *ngIf="file.type === 'png'">
+                <ng-template #iconTemplate>
+                    <img
+                        class="os-icon"
+                        [src]="file.iconUrl" />
+                </ng-template>
+            </ng-container>
+
             <ng-template #labelTemplate>
                 <os-label
                     *ngIf="!file.isEditing"
-                    [innerText]="file.labelExpr(file)">
+                    [innerText]="file.getLabel()">
                 </os-label>
 
                 <os-textarea-box

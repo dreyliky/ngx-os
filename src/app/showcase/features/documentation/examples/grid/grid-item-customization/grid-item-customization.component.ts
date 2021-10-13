@@ -3,26 +3,27 @@ import { EventOutside } from 'ngx-os';
 import { fromEvent } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 
-enum FileTypeEnum {
-    Png = 'png',
-    Exe = 'exe'
+abstract class File {
+    public name: string;
+    public iconUrl: string;
+    public isEditing?: boolean;
+    public readonly abstract type: 'png' | 'exe';
+
+    constructor(params: Partial<File>) {
+        Object.assign(this, params);
+    }
+
+    public getLabel(): string {
+        return `${this.name}.${this.type}`;
+    }
 }
 
-interface PngData {
-    imageUrl: string;
+class FilePng extends File {
+    public readonly type = 'png';
 }
 
-interface ExeData {
-    iconUrl: string;
-}
-
-interface File<T = unknown> {
-    name: string;
-    type: FileTypeEnum;
-    data: T;
-    isEditing?: boolean;
-    labelExpr: (file: File<T>) => string;
-    iconUrlExpr: (file: File<T>) => string;
+class FileExe extends File {
+    public readonly type = 'exe';
 }
 
 @Component({
@@ -32,22 +33,15 @@ interface File<T = unknown> {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridItemCustomizationComponent {
-    public readonly files: File<unknown>[] = [
-        <File<PngData>>{
+    public readonly files: File[] = [
+        new FilePng({
             name: 'My favorite background texture',
-            type: FileTypeEnum.Png,
-            data: { imageUrl: '/assets/showcase/images/bg/1.png' },
-
-            iconUrlExpr: (file) => file.data.imageUrl,
-            labelExpr: ({ name, type }) => `${name}.${type}`
-        },
-        <File<ExeData>>{
+            iconUrl: '/assets/showcase/images/bg/1.png'
+        }),
+        new FileExe({
             name: 'Notepad',
-            type: FileTypeEnum.Exe,
-            data: { iconUrl: '/assets/showcase/icons/notepad.png' },
-            iconUrlExpr: (file) => file.data.iconUrl,
-            labelExpr: ({ name, type }) => `${name}.${type}`
-        }
+            iconUrl: '/assets/showcase/icons/notepad.png'
+        })
     ];
 
     constructor(
@@ -59,6 +53,10 @@ export class GridItemCustomizationComponent {
         file.isEditing = true;
 
         this.initFileOutsideClickObserver(file, fileElement);
+    }
+
+    public getBackgroundCssUrl(url: string): string {
+        return `url(${url})`;
     }
 
     private initFileOutsideClickObserver(file: File, labelZoneElement: HTMLElement): void {

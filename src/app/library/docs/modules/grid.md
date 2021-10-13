@@ -2,12 +2,6 @@
 
 Allows displaying an array of items in the grid view.
 
-This component is [Data-Agnostic](https://indepth.dev/posts/1314/agnostic-components-in-angular),
-so these fields of the `GridItemComponent` are **important to set up**:
-
-- `labelExpr`: Function which processing your item and returns for component the label text;
-- `iconUrlExpr`: Function which processing your item and returns for component the link on the icon;
-
 Supported `Templates` described in `Grid/API` section (documentation website).
 
 **Right now there is no Drag & Drop support.**
@@ -17,8 +11,8 @@ Supported `Templates` described in `Grid/API` section (documentation website).
     <os-grid-item
         *ngFor="let file of files"
         [data]="file"
-        [iconUrlExpr]="fileIconUrlExpr"
-        [labelExpr]="fileLabelExpr">
+        [iconUrl]="file.iconUrl"
+        [label]="file.getFullName()">
     </os-grid-item>
 </os-grid>
 ```
@@ -28,6 +22,7 @@ interface File {
     name: string;
     ext: string;
     iconUrl: string;
+    getFullName(): string;
 }
 
 @Component()
@@ -36,22 +31,20 @@ export class MyGridComponent {
         {
             name: 'My file #1',
             ext: 'png',
-            iconUrl: '/path/to/icon.png'
+            iconUrl: '/path/to/icon.png',
+            getFullName: function() {
+                return `${this.name}.${this.ext}`;
+            }
         },
         {
             label: 'My file #2',
             ext: 'exe',
-            iconUrl: '/path/to/icon.png'
+            iconUrl: '/path/to/icon.png',
+            getFullName: function() {
+                return `${this.name}.${this.ext}`;
+            }
         }
     ];
-
-    public fileIconUrlExpr(item: MyItem): string {
-        return item.iconUrl;
-    }
-
-    public fileLabelExpr(item: MyItem): string {
-        return `${item.name}.${item.ext}`;
-    }
 }
 ```
 

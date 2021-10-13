@@ -36,9 +36,8 @@
         [gridSize]="gridSize">
         <os-grid-item
             *ngFor="let item of items"
-            [labelExpr]="itemLabelExpr"
-            [iconUrlExpr]="itemIconUrlExpr"
-            [data]="item">
+            [label]="item.label"
+            [iconUrl]="item.iconUrl">
         </os-grid-item>
     </os-grid>
 </div>

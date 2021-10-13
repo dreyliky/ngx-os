@@ -12,6 +12,17 @@ os-grid {
     background-color: rgba(var(--os-primary-color), .6);
 }
 
+.os-grid-item {
+    .os-icon {
+        box-shadow: 0px 7px 13px 3px rgba(0, 0, 0, .4);
+        transition: transform .3s ease;
+    }
+
+    &:hover .os-icon {
+        transform: perspective(5px) rotateY(1deg);
+    }
+}
+
 .os-textarea-box::ng-deep textarea {
     width: 100%;
     height: 100%;
