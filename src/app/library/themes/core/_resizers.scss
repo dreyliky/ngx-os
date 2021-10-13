@@ -98,13 +98,13 @@ os-resizers {
             cursor: ew-resize;
         }
 
-        os-resizer.topLeft,
-        os-resizer.bottomRight {
+        os-resizer.top-left,
+        os-resizer.bottom-right {
             cursor: nwse-resize;
         }
 
-        os-resizer.topRight,
-        os-resizer.bottomLeft {
+        os-resizer.top-right,
+        os-resizer.bottom-left {
             cursor: nesw-resize;
         }
     }
