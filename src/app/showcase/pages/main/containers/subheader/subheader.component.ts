@@ -19,11 +19,11 @@ export class SubheaderComponent implements OnInit {
 
     private readonly componentsToDisplay: OsComponentEnum[] = [
         OsComponentEnum.Window,
+        OsComponentEnum.Theme,
         OsComponentEnum.TreeView,
         OsComponentEnum.Grid,
         OsComponentEnum.List,
-        OsComponentEnum.Dropdown,
-        OsComponentEnum.TabGroup
+        OsComponentEnum.Dropdown
     ];
 
     constructor(
