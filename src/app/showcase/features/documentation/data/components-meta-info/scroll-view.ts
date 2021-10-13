@@ -1,4 +1,4 @@
-import { ScrollViewComponent, ScrollViewModule } from 'ngx-os/modules';
+import { ScrollViewComponent, ScrollViewModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { ScrollViewOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

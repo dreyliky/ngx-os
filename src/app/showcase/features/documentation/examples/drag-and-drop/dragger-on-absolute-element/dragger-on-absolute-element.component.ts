@@ -6,7 +6,7 @@ import {
     ElementRef,
     ViewChild
 } from '@angular/core';
-import { DraggerConfigModel, DragStrategyByAxisProperties } from 'ngx-os/modules';
+import { DraggerConfigModel, DragStrategyByAxisProperties } from 'ngx-os';
 
 @Component({
     selector: 'showcase-dragger-on-absolute-element',

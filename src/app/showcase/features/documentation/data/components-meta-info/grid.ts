@@ -1,4 +1,4 @@
-import { GridComponent, GridItemComponent, GridModule } from 'ngx-os/modules';
+import { GridComponent, GridItemComponent, GridModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { GridItemCustomizationComponent, GridOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

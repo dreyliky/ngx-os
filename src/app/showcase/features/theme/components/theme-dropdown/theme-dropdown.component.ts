@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { DropdownValueChangeEvent } from 'ngx-os/modules';
+import { DropdownValueChangeEvent } from 'ngx-os';
 import { THEMES } from '../../data';
 import { Theme } from '../../interfaces';
 

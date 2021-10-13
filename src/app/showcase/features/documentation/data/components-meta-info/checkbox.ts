@@ -1,4 +1,4 @@
-import { CheckboxComponent, CheckboxModule } from 'ngx-os/modules';
+import { CheckboxComponent, CheckboxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { CheckboxAsFormControlComponent, CheckboxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

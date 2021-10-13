@@ -1,4 +1,4 @@
-import { ButtonComponent, ButtonModule } from 'ngx-os/modules';
+import { ButtonComponent, ButtonModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { ButtonCounterComponent, ButtonOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

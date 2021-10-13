@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AccentColorManagerService, Theme, ThemeManagerService, THEMES } from '@features/theme';
-import { ThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

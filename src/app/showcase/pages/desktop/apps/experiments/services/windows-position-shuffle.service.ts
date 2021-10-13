@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RandomHelper } from 'ngx-os/core';
-import { DynamicWindowRefModel } from 'ngx-os/modules';
+import { DynamicWindowRefModel, RandomHelper } from 'ngx-os';
 
 interface ShuffleParams {
     windowRefs: DynamicWindowRefModel[];

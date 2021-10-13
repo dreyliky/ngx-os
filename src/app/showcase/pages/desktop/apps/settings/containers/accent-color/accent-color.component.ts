@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AccentColorManagerService } from '@features/theme';
-import { ThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os';
 
 @Component({
     selector: 'settings-accent-color-section',

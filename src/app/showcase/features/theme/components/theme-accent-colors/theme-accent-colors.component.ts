@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { ThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os';
 import { ACCENT_COLORS } from '../../data';
 
 @Component({

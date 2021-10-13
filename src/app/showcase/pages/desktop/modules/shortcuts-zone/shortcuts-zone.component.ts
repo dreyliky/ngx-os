@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { OsBaseViewComponent } from 'ngx-os';
-import { GridDirectionEnum } from 'ngx-os/modules';
+import { GridDirectionEnum, OsBaseViewComponent } from 'ngx-os';
 import { filter, takeUntil } from 'rxjs/operators';
 import { APPS } from '../../apps';
 import { AppMetadata, ExecService } from '../../features/exec';

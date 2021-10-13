@@ -1,6 +1,5 @@
 import { ElementRef, Injectable, OnDestroy, QueryList } from '@angular/core';
-import { elementResizingObserver } from 'ngx-os/core';
-import { DynamicWindowRefModel, DynamicWindowService, DynamicWindowSharedConfigService } from 'ngx-os/modules';
+import { DynamicWindowRefModel, DynamicWindowService, DynamicWindowSharedConfigService, elementResizingObserver } from 'ngx-os';
 import { combineLatest, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { TaskbarPlacement } from './interfaces';

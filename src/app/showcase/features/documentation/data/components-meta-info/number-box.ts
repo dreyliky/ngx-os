@@ -1,4 +1,4 @@
-import { NumberBoxComponent, NumberBoxModule } from 'ngx-os/modules';
+import { NumberBoxComponent, NumberBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { NumberBoxAsFormControlComponent, NumberBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

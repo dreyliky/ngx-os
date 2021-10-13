@@ -1,4 +1,4 @@
-import { ListComponent, ListItemComponent, ListModule } from 'ngx-os/modules';
+import { ListComponent, ListItemComponent, ListModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { ListCustomTemplateComponent, ListOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

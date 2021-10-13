@@ -1,4 +1,4 @@
-import { AccentColorService, ThemeService } from 'ngx-os/modules';
+import { AccentColorService, ThemeService } from 'ngx-os';
 import { OsComponentEnum, OsComponentOverviewSectionEnum as OverviewSection } from '../../enums';
 import { ThemeDifferentStylingComponent, ThemeOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

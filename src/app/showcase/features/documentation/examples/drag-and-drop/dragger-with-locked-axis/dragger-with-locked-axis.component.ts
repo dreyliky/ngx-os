@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DraggerConfigModel, DragStrategyByTranslate3d } from 'ngx-os/modules';
+import { DraggerConfigModel, DragStrategyByTranslate3d } from 'ngx-os';
 
 @Component({
     selector: 'showcase-dragger-with-locked-axis',

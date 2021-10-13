@@ -3,7 +3,7 @@ import {
     DraggableDirective,
     DragStrategyByAxisProperties,
     DragStrategyByTranslate3d
-} from 'ngx-os/modules';
+} from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     DraggerOnAbsoluteElementComponent,

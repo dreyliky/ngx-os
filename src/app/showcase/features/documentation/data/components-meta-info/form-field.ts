@@ -1,4 +1,4 @@
-import { FormFieldComponent, FormFieldModule } from 'ngx-os/modules';
+import { FormFieldComponent, FormFieldModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { FormFieldOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

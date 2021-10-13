@@ -1,4 +1,4 @@
-import { ThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os';
 
 export const ACCENT_COLORS: ThemeRgbColor[] = [
     { r: 255, g: 185, b: 0 },

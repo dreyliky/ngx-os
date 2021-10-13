@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { DropdownValueChangeEvent } from 'ngx-os/modules';
+import { DropdownValueChangeEvent } from 'ngx-os';
 import {
     TaskbarPlacement,
     TaskbarPlacementEnum,

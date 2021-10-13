@@ -1,4 +1,4 @@
-import { DropdownComponent, DropdownItemComponent, DropdownModule } from 'ngx-os/modules';
+import { DropdownComponent, DropdownItemComponent, DropdownModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     DropdownAsFormControlComponent, DropdownOverviewComponent,

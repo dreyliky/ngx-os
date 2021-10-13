@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode, TreeNodeSelectionEvent } from 'ngx-os/modules';
+import { TreeNode, TreeNodeSelectionEvent } from 'ngx-os';
 
 @Component({
     selector: 'showcase-tree-view-selection-setup',

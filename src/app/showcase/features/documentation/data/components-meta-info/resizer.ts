@@ -1,4 +1,4 @@
-import { ResizableDirective, ResizerModule } from 'ngx-os/modules';
+import { ResizableDirective, ResizerModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     ResizerOnAbsoluteElementComponent,

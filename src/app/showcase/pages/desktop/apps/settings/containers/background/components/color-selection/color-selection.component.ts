@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os';
 import { BackgroundMetadata, BackgroundTypeEnum } from '../../../../../../features/background';
 import { BackgroundControlService } from '../../services';
 

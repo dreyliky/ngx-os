@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DynamicWindowRefModel, DynamicWindowService } from 'ngx-os/modules';
+import { DynamicWindowRefModel, DynamicWindowService } from 'ngx-os';
 import { AppMetadata } from '../interfaces';
 
 @Injectable()

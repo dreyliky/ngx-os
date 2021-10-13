@@ -1,4 +1,4 @@
-import { TreeNodesExpansionService, TreeNodesSelectionService, TreeViewComponent, TreeViewModule } from 'ngx-os/modules';
+import { TreeNodesExpansionService, TreeNodesSelectionService, TreeViewComponent, TreeViewModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     TreeViewOverviewComponent,

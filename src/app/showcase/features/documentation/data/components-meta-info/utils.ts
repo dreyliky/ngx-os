@@ -4,7 +4,7 @@ import {
     FixedToParentConfig,
     FixedToParentDirective,
     UtilsModule
-} from 'ngx-os/modules';
+} from 'ngx-os';
 import { OsComponentEnum, OsComponentOverviewSectionEnum as OverviewSection } from '../../enums';
 import { UtilsAppendToBodyOverviewComponent, UtilsFixedToParentOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

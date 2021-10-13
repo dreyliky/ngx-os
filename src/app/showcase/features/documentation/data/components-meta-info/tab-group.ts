@@ -1,4 +1,4 @@
-import { TabComponent, TabGroupComponent, TabGroupModule } from 'ngx-os/modules';
+import { TabComponent, TabGroupComponent, TabGroupModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { TabGroupOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

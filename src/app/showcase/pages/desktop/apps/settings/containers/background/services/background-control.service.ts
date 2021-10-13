@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ThemeRgbColor } from 'ngx-os/modules';
+import { ThemeRgbColor } from 'ngx-os';
 import { BackgroundService, BackgroundTypeEnum } from '../../../../../features/background';
 
 @Injectable()

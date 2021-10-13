@@ -1,4 +1,4 @@
-import { GridDirectionEnum } from 'ngx-os/modules';
+import { GridDirectionEnum } from 'ngx-os';
 
 export interface ShortcutSettingsData {
     direction: GridDirectionEnum;

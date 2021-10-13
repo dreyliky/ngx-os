@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ResizerConfigModel, ResizerEnum } from 'ngx-os/modules';
+import { ResizerConfigModel, ResizerEnum } from 'ngx-os';
 
 @Component({
     selector: 'showcase-resizer-specific-sides',

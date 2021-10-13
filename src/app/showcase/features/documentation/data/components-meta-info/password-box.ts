@@ -1,4 +1,4 @@
-import { PasswordBoxComponent, PasswordBoxModule } from 'ngx-os/modules';
+import { PasswordBoxComponent, PasswordBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { PasswordBoxAsFormControlComponent, PasswordBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

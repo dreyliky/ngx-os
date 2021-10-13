@@ -7,7 +7,7 @@ import {
     QueryList,
     ViewChildren
 } from '@angular/core';
-import { ButtonComponent, DynamicWindowRefModel, DynamicWindowService } from 'ngx-os/modules';
+import { ButtonComponent, DynamicWindowRefModel, DynamicWindowService } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { TaskbarService } from './taskbar.service';
 

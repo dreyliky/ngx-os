@@ -1,4 +1,4 @@
-import { TextareaBoxComponent, TextareaBoxModule } from 'ngx-os/modules';
+import { TextareaBoxComponent, TextareaBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { TextareaAsFormControlComponent, TextareaOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

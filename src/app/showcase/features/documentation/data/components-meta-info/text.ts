@@ -1,4 +1,4 @@
-import { HeaderComponent, LabelComponent, TextComponent, TextModule } from 'ngx-os/modules';
+import { HeaderComponent, LabelComponent, TextComponent, TextModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { TextOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

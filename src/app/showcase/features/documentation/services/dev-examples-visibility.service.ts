@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { isNil } from 'ngx-os/core';
+import { isNil } from 'ngx-os';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
-import { DynamicWindowService } from 'ngx-os/modules';
+import { DynamicWindowService } from 'ngx-os';
 import { DesktopAppsModule } from './apps';
 import { DesktopComponent } from './desktop.component';
 import { DesktopRoutingModule } from './desktop.routing';

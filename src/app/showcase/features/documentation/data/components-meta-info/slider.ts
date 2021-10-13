@@ -1,4 +1,4 @@
-import { SliderComponent, SliderModule } from 'ngx-os/modules';
+import { SliderComponent, SliderModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { SliderAsFormControlComponent, SliderOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

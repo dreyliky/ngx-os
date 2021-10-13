@@ -8,7 +8,7 @@ import {
     TitleBarIconComponent,
     WindowComponent,
     WindowModule
-} from 'ngx-os/modules';
+} from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     DynamicWindowCustomizationComponent,

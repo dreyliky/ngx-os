@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode } from 'ngx-os/modules';
+import { TreeNode } from 'ngx-os';
 
 interface MyNodeData {
     iconUrl: string;

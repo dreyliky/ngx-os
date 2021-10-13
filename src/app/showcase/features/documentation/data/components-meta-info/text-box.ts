@@ -1,4 +1,4 @@
-import { TextBoxComponent, TextBoxModule } from 'ngx-os/modules';
+import { TextBoxComponent, TextBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { TextBoxAsFormControlComponent, TextBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

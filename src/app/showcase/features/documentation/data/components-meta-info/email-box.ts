@@ -1,4 +1,4 @@
-import { EmailBoxComponent, EmailBoxModule } from 'ngx-os/modules';
+import { EmailBoxComponent, EmailBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { EmailBoxAsFormControlComponent, EmailBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

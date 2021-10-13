@@ -1,4 +1,4 @@
-import { RadioButtonComponent, RadioButtonModule } from 'ngx-os/modules';
+import { RadioButtonComponent, RadioButtonModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { RadioButtonAsFormControlComponent, RadioButtonOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';

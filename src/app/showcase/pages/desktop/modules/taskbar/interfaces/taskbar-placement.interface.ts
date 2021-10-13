@@ -1,4 +1,4 @@
-import { DynamicWindowConfigModel, ResizerConfigModel } from 'ngx-os/modules';
+import { DynamicWindowConfigModel, ResizerConfigModel } from 'ngx-os';
 import { TaskbarPlacementEnum } from '../enums';
 
 export interface TaskbarPlacement {

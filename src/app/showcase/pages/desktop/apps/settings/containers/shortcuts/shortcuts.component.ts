@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { OsBaseViewComponent } from 'ngx-os';
-import { GridDirectionEnum } from 'ngx-os/modules';
+import { GridDirectionEnum, OsBaseViewComponent } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 import { ShortcutSettingsService } from '../../../../features/shortcut';
 

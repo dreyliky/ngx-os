@@ -6,7 +6,7 @@ import {
     ElementRef,
     ViewChild
 } from '@angular/core';
-import { DraggerConfigModel } from 'ngx-os/modules';
+import { DraggerConfigModel } from 'ngx-os';
 
 @Component({
     selector: 'showcase-dragger-via-handle',

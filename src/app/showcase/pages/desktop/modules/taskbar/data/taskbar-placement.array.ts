@@ -1,4 +1,4 @@
-import { ResizerEnum } from 'ngx-os/modules';
+import { ResizerEnum } from 'ngx-os';
 import { TaskbarPlacementEnum } from '../enums';
 import { TaskbarPlacement } from '../interfaces';
 

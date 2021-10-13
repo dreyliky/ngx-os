@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ThemeEnum } from '@features/theme';
-import { ThemeService } from 'ngx-os/modules';
+import { ThemeService } from 'ngx-os';
 import { Observable } from 'rxjs';
 
 @Component({

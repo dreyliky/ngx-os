@@ -1,4 +1,4 @@
-import { GroupBoxComponent, GroupBoxModule } from 'ngx-os/modules';
+import { GroupBoxComponent, GroupBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { GroupBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
