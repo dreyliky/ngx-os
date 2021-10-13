@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { GridDirectionEnum, IGridItem } from 'ngx-os';
+import { GridDirectionEnum } from 'ngx-os';
 
 interface MyGridItem {
     label: string;
@@ -15,7 +15,7 @@ interface MyGridItem {
 export class GridOverviewComponent implements OnInit {
     public readonly gridDirectionEnum = GridDirectionEnum;
 
-    public readonly items: IGridItem[] = [];
+    public readonly items: MyGridItem[] = [];
 
     public currentGridDirection = GridDirectionEnum.Horizontal;
     public gridSize = 72;
