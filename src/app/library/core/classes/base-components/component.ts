@@ -1,5 +1,4 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { IdGenerator } from '../../helpers';
 import { ClasslistManager } from '../css-classlist-manager';
 import { StyleListManager } from '../css-stylelist-manager';
 import { OsBaseViewComponent } from './view';
@@ -27,7 +26,7 @@ export abstract class OsBaseComponent extends OsBaseViewComponent {
     /** Target internal element id. By default it generates randomly */
     @Input()
     @HostBinding('id')
-    public id: string = IdGenerator.generate('os-element');
+    public id: string;
 
     /** Target internal element click event */
     @Output()
