@@ -2,7 +2,7 @@ import { TreeNodeClickEvent } from './node-click-event.interface';
 import { TreeNodeExpansionEvent } from './node-expansion-event.interface';
 import { TreeNodeSelectionEvent } from './node-selection-event.interface';
 
-/** Data structure used as tree node item data */
+/** Model used as tree node item data */
 export interface TreeNode<T = any> {
     /** Text of the node to display for the user */
     label?: string;
