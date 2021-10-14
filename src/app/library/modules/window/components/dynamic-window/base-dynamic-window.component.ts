@@ -10,6 +10,7 @@ import {
 } from '../../enums';
 import { DynamicWindowConfig } from '../../interfaces';
 
+/** @internal */
 @Component({
     template: ''
 })
