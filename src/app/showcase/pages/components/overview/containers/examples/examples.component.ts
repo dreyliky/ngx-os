@@ -12,6 +12,7 @@ import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@features/d
 import { OsBaseViewComponent } from 'ngx-os';
 import { combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { OverviewService } from '../../overview.service';
 
 @Component({
@@ -29,6 +30,9 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
         this.renderDemoComponents();
     }
 
+    public readonly isDevExamplesCheckboxVisible = !environment.production;
+    public isDevExamplesVisible: boolean;
+
     public demoComponents: DemoComponentMetaInfo[];
 
     constructor(
@@ -41,7 +45,13 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.isDevExamplesVisible = this.devExamplesVisibilityService.data;
+
         this.initMetaInfoObserver();
+    }
+
+    public onToggleDevMode(state: boolean): void {
+        this.devExamplesVisibilityService.apply(state);
     }
 
     private renderDemoComponents(): void {

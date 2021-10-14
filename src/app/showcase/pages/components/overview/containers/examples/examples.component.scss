@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.dev-examples-toggle {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
