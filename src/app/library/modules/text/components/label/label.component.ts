@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-label',
     templateUrl: './label.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LabelComponent extends OsBaseComponent implements OnInit {

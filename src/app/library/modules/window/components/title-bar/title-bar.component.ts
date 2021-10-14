@@ -1,9 +1,18 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostBinding,
+    Input,
+    OnInit,
+    ViewEncapsulation
+} from '@angular/core';
 import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar',
     templateUrl: './title-bar.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitleBarComponent extends OsBaseComponent implements OnInit {

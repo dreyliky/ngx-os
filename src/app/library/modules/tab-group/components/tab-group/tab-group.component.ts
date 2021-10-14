@@ -8,7 +8,8 @@ import {
     OnDestroy,
     OnInit,
     Output,
-    QueryList
+    QueryList,
+    ViewEncapsulation
 } from '@angular/core';
 import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -18,6 +19,7 @@ import { TabComponent } from '../tab';
 @Component({
     selector: 'os-tab-group',
     templateUrl: './tab-group.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDestroy {

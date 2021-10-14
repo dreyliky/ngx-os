@@ -4,7 +4,8 @@ import {
     ElementRef,
     HostBinding,
     Input,
-    OnInit
+    OnInit,
+    ViewEncapsulation
 } from '@angular/core';
 import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 
@@ -17,6 +18,7 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-window',
     templateUrl: './window.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WindowComponent extends OsBaseComponent implements OnInit {

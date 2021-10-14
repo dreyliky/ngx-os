@@ -8,7 +8,8 @@ import {
     OnInit,
     Output,
     TemplateRef,
-    ViewChild
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 
@@ -35,6 +36,7 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-tab',
     templateUrl: './tab.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabComponent extends OsBaseComponent implements OnInit {

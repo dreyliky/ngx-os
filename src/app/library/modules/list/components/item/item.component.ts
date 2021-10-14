@@ -6,13 +6,15 @@ import {
     HostBinding,
     Input,
     OnInit,
-    Output
+    Output,
+    ViewEncapsulation
 } from '@angular/core';
 import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list-item',
     templateUrl: './item.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListItemComponent<T> extends OsBaseComponent implements OnInit {

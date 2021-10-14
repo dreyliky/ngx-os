@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { OsBaseButtonComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar-button',
     templateUrl: './title-bar-button.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TitleBarButtonComponent extends OsBaseButtonComponent implements OnInit {

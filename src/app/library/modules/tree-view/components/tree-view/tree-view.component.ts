@@ -10,7 +10,8 @@ import {
     Output,
     SimpleChanges,
     TemplateRef,
-    ViewChild
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 import { ScrollViewComponent } from '../../../scroll-view';
@@ -67,6 +68,7 @@ import { TreeNodesState } from '../../states';
 @Component({
     selector: 'os-tree-view',
     templateUrl: './tree-view.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         TreeNodesState,

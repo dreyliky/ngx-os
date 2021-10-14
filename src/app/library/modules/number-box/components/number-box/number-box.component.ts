@@ -11,7 +11,8 @@ import {
     OnInit,
     Output,
     SimpleChanges,
-    ViewChild
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
@@ -20,6 +21,7 @@ import { NumberBoxChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-number-box',
     templateUrl: './number-box.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         {

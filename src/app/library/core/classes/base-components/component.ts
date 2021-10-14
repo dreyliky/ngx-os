@@ -25,7 +25,7 @@ export abstract class OsBaseComponent extends OsBaseViewComponent {
 
     /** Target internal element id. By default it generates randomly */
     @Input()
-    @HostBinding('id')
+    @HostBinding('attr.id')
     public id: string;
 
     /** Target internal element click event */

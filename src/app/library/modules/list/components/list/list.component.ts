@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list',
     templateUrl: './list.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent extends OsBaseComponent implements OnInit {

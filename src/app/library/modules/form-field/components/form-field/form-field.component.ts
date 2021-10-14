@@ -1,10 +1,19 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostBinding,
+    Input,
+    OnInit,
+    ViewEncapsulation
+} from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 import { FormFieldCssClassEnum as CssClass } from '../../enums';
 
 @Component({
     selector: 'os-form-field',
     templateUrl: './form-field.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldComponent extends OsBaseComponent implements OnInit {

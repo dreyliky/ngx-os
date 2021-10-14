@@ -9,7 +9,8 @@ import {
     Input,
     OnInit,
     Output,
-    ViewChild
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
@@ -18,6 +19,7 @@ import { EmailBoxChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-email-box',
     templateUrl: './email-box.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         {

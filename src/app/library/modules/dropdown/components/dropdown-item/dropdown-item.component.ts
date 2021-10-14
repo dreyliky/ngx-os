@@ -9,7 +9,8 @@ import {
     OnChanges,
     OnInit,
     Output,
-    SimpleChanges
+    SimpleChanges,
+    ViewEncapsulation
 } from '@angular/core';
 import { CommonCssClassEnum, isNil, OsBaseComponent } from '../../../../core';
 import { DropdownValueChangeEvent } from '../../interfaces';
@@ -17,6 +18,7 @@ import { DropdownValueChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-dropdown-item',
     templateUrl: './dropdown-item.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit, OnChanges {

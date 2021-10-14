@@ -14,7 +14,8 @@ import {
     OnDestroy,
     OnInit,
     Output,
-    QueryList
+    QueryList,
+    ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { merge, Subject } from 'rxjs';
@@ -37,6 +38,7 @@ import { DropdownItemComponent } from '../dropdown-item';
 @Component({
     selector: 'os-dropdown',
     templateUrl: './dropdown.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         {

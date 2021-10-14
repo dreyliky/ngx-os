@@ -9,7 +9,8 @@ import {
     Input,
     OnInit,
     Output,
-    ViewChild
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
@@ -18,6 +19,7 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-textarea-box',
     templateUrl: './textarea-box.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         {

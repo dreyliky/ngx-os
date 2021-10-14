@@ -9,7 +9,8 @@ import {
     OnInit,
     Type,
     ViewChild,
-    ViewContainerRef
+    ViewContainerRef,
+    ViewEncapsulation
 } from '@angular/core';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { filter, map, skip, takeUntil } from 'rxjs/operators';
@@ -29,6 +30,7 @@ import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
     host: {
         'class': 'os-dynamic-window'
     },
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicWindowComponent extends BaseDynamicWindowComponent implements OnInit, AfterViewInit {

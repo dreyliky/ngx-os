@@ -7,7 +7,8 @@ import {
     Input,
     OnChanges,
     OnInit,
-    QueryList
+    QueryList,
+    ViewEncapsulation
 } from '@angular/core';
 import { timer } from 'rxjs';
 import { debounce, takeUntil } from 'rxjs/operators';
@@ -23,6 +24,7 @@ import { GridItemComponent } from '../item';
 @Component({
     selector: 'os-grid',
     templateUrl: './grid.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent extends OsBaseComponent implements OnInit, OnChanges, AfterViewInit {

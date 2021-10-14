@@ -9,7 +9,8 @@ import {
     Inject,
     Input,
     OnInit,
-    TemplateRef
+    TemplateRef,
+    ViewEncapsulation
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -45,6 +46,7 @@ import { CommonCssClassEnum, EventOutside, OsBaseComponent } from '../../../../c
 @Component({
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridItemComponent extends OsBaseComponent implements OnInit {
