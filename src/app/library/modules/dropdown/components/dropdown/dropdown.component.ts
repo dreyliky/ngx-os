@@ -24,6 +24,16 @@ import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-windo
 import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownItemComponent } from '../dropdown-item';
 
+/**
+ * ## Content Projection Slots
+ *
+ * - Attribute `os-placeholder-prefix`: Slot for your custom content from the left of the placeholder.
+ * - Attribute `os-placeholder-suffix`: Slot for your custom content from the right of the placeholder.
+ * - Attribute `os-dropdown-header`: Slot for your custom content inside overlay at the top.
+ * - Attribute `os-dropdown-content`: Slot for your custom content inside overlay at the middle.
+ * - Components `os-dropdown-item`: Slot for `DropdownItemComponent`'s which are will be rendered inside the overlay.
+ * - Attribute `os-dropdown-footer`: Slot for your custom content inside overlay at the bottom.
+ **/
 @Component({
     selector: 'os-dropdown',
     templateUrl: './dropdown.component.html',
