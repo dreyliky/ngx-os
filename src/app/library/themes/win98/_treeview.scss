@@ -13,7 +13,7 @@
         display: flex;
         align-items: center;
 
-        .os-icon {
+        .os-icon:not(.os-custom) {
             width: 23px;
             height: 16px;
         }
@@ -22,7 +22,7 @@
             padding: 1px 6px 1px 2px;
         }
 
-        &.os-expandable .os-icon {
+        &.os-expandable .os-icon:not(.os-custom) {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -39,7 +39,7 @@
             }
         }
 
-        &.os-expanded .os-icon:before {
+        &.os-expanded .os-icon:not(.os-custom):before {
             background-position: 0px 0px;
         }
 
@@ -55,12 +55,12 @@
                 outline: 1px dotted rgb(0, 0, 0);
             }
 
-            .os-icon:before {
+            .os-icon:not(.os-custom):before {
                 opacity: 1;
                 background-position: 0px -9px;
             }
 
-            &.os-expanded .os-icon:before {
+            &.os-expanded .os-icon:not(.os-custom):before {
                 opacity: 1;
                 background-position: 0px 0px;
             }

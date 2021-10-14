@@ -1,6 +1,7 @@
 import { TreeNodesExpansionService, TreeNodesSelectionService, TreeViewComponent, TreeViewModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
+    TreeViewIconCustomizationComponent,
     TreeViewOverviewComponent,
     TreeViewSelectionSetupComponent,
     TreeViewWithCustomTemplateComponent
@@ -36,6 +37,10 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
         {
             title: 'Tree View selection setup',
             component: TreeViewSelectionSetupComponent
+        },
+        {
+            title: 'Tree View custom icon template',
+            component: TreeViewIconCustomizationComponent
         },
         {
             title: 'Tree View with custom template',

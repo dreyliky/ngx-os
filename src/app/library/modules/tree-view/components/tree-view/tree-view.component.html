@@ -33,21 +33,28 @@
             (click)="onNodeClick($event, node)">
             <div
                 class="os-icon"
+                [class.os-custom]="_nodeIconTemplate"
                 [ngClass]="node.iconStyleClass"
                 [ngStyle]="node.iconStyle"
                 (click)="onToggleExpandButtonClick($event, node)">
-            </div>
-
-            <div
-                *ngIf="!_nodeTemplate; else wrapperForNodeTemplate"
-                class="os-label">
-                {{ node.label }}
-            </div>
-
-            <ng-template #wrapperForNodeTemplate>
-                <ng-container
-                    *ngTemplateOutlet="_nodeTemplate; context: { $implicit: node, depth: depth }">
+                <ng-container *ngIf="_nodeIconTemplate">
+                    <ng-container
+                        *ngTemplateOutlet="_nodeIconTemplate; context: { $implicit: node, depth: depth }">
+                    </ng-container>
                 </ng-container>
+            </div>
+
+            <ng-container *ngIf="_nodeContentTemplate; else defaultLabelTemplate">
+                <ng-container
+                    *ngTemplateOutlet="_nodeContentTemplate; context: { $implicit: node, depth: depth }">
+                </ng-container>
+            </ng-container>
+
+            <ng-template #defaultLabelTemplate>
+                <div
+                    class="os-label"
+                    [innerText]="node.label">
+                </div>
             </ng-template>
         </div>
 

@@ -11,7 +11,7 @@
         display: flex;
         align-items: center;
 
-        &.os-expandable .os-icon {
+        &.os-expandable .os-icon:not(.os-custom) {
             width: 16px;
             height: 16px;
             margin-right: 10px;
@@ -20,7 +20,7 @@
             background-repeat: no-repeat;
         }
 
-        &.os-expanded .os-icon {
+        &.os-expanded .os-icon:not(.os-custom) {
             background-position: -16px -16px;
         }
 
@@ -33,11 +33,11 @@
                 background-color: rgba(var(--os-primary-color), .2);
             }
 
-            .os-icon {
+            .os-icon:not(.os-custom) {
                 background-position: 0px 0px;
             }
 
-            &.os-expanded .os-icon {
+            &.os-expanded .os-icon:not(.os-custom) {
                 background-position: -16px 0px;
             }
         }

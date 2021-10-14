@@ -27,7 +27,7 @@ import { TreeNodesState } from '../../states';
  * - Attribute `os-tree-view-footer`: Slot for your custom content below nodes and custom content
  *
  * ## Templates
- * `#nodeTemplate`: Custom template for each node.
+ * `#nodeContent`: Custom template for each node.
  *
  * Context:
  * - `$implicit`: {@link TreeNode} node data;
@@ -36,12 +36,30 @@ import { TreeNodesState } from '../../states';
  * @example
  * ```html
  * <ng-template
- *    #nodeTemplate
+ *    #nodeContent
  *    let-node
  *    let-depth="depth">
  *    <!--
  *        Variable `node` contains the node data, and `depth` - the depth of the node.
  *        Now you are ready to build your custom content for each node.
+ *    -->
+ * </ng-template>
+ * ```
+ *
+ * `#nodeIcon`: Custom template for the node expansion icon.
+ *
+ * Context:
+ * - `$implicit`: {@link TreeNode} node data;
+ * - `depth`: depth data (0 - root node; 1 and more - child node);
+ *
+ * ```html
+ * <ng-template
+ *    #nodeIcon
+ *    let-node
+ *    let-depth="depth">
+ *    <!--
+ *        Variable `node` contains the node data, and `depth` - the depth of the node.
+ *        Place your custom content for the node expansion icon here.
  *    -->
  * </ng-template>
  * ```
@@ -121,8 +139,13 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
     @ViewChild(ScrollViewComponent)
     public readonly scrollView: ScrollViewComponent;
 
-    @ContentChild('nodeTemplate')
-    public readonly _nodeTemplate: TemplateRef<any>;
+    /** @internal */
+    @ContentChild('nodeIcon')
+    public readonly _nodeIconTemplate: TemplateRef<any>;
+
+    /** @internal */
+    @ContentChild('nodeContent')
+    public readonly _nodeContentTemplate: TemplateRef<any>;
 
     constructor(
         /** The service for manipulating of nodes selection states */
@@ -144,6 +167,7 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
+    /** @internal */
     public onNodeClick(originalEvent: MouseEvent, node: TreeNode<T>): void {
         this.osNodeClick.emit({ originalEvent, node });
         node.onClick?.({ originalEvent, node });
@@ -163,6 +187,7 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
         }
     }
 
+    /** @internal */
     public onToggleExpandButtonClick(originalEvent: MouseEvent, node: TreeNode<T>): void {
         if (!node.isDisabled) {
             this.nodesExpansion.toggle(node, originalEvent);

@@ -44,6 +44,7 @@ import {
     ThemeDifferentStylingComponent,
     ThemeOverviewComponent,
     TitleBarButtonOverviewComponent,
+    TreeViewIconCustomizationComponent,
     TreeViewOverviewComponent,
     TreeViewSelectionSetupComponent,
     TreeViewWithCustomTemplateComponent,
@@ -106,7 +107,8 @@ import {
         WindowTitleBarComponent,
         GridItemCustomizationComponent,
         TabGroupLoadedLazilyComponent,
-        TabGroupLabelCustomizationComponent
+        TabGroupLabelCustomizationComponent,
+        TreeViewIconCustomizationComponent
     ],
     imports: [
         SharedModule

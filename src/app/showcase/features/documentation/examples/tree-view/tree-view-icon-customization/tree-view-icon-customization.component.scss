@@ -1,0 +1,14 @@
+.my-custom-expandable-icon {
+    width: 100px;
+    margin-right: 5px;
+
+    img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.os-tree-view::ng-deep .os-tree-node {
+    min-height: 30px;
+    padding-left: 5px;
+}
