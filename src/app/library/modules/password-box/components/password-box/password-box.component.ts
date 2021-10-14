@@ -7,7 +7,6 @@ import {
     EventEmitter,
     forwardRef,
     Input,
-    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation
@@ -19,6 +18,9 @@ import { PasswordBoxChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-password-box',
     templateUrl: './password-box.component.html',
+    host: {
+        'class': 'os-password-box'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -29,7 +31,7 @@ import { PasswordBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
+export class PasswordBoxComponent extends OsBaseFieldComponent implements AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
@@ -50,10 +52,6 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements OnInit
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-    }
-
-    public ngOnInit(): void {
-        this.classListManager.add('os-password-box');
     }
 
     public ngAfterViewInit(): void {

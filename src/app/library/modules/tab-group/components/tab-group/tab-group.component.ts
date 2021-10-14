@@ -19,6 +19,9 @@ import { TabComponent } from '../tab';
 @Component({
     selector: 'os-tab-group',
     templateUrl: './tab-group.component.html',
+    host: {
+        'class': 'os-tab-group'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -56,7 +59,6 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-tab-group');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

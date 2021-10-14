@@ -18,6 +18,9 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-window',
     templateUrl: './window.component.html',
+    host: {
+        'class': 'os-window'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -57,7 +60,6 @@ export class WindowComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-window');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

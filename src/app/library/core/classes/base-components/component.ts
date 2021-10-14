@@ -1,93 +1,67 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { ClasslistManager } from '../css-classlist-manager';
-import { StyleListManager } from '../css-stylelist-manager';
 import { OsBaseViewComponent } from './view';
 
 @Component({
-    template: ''
+    template: '',
+    host: {
+        class: 'os-element'
+    }
 })
 export abstract class OsBaseComponent extends OsBaseViewComponent {
     /** Target internal element stylelist */
     @Input()
-    public set style(styleList: object) {
-        if (styleList) {
-            this.styleListManager.apply(styleList);
-        }
-    }
+    @HostBinding('style')
+    public readonly style: object;
 
     /** Target internal element classList */
     @Input()
-    public set styleClass(classList: string | string[] | object) {
-        if (classList) {
-            this.classListManager.apply(classList);
-        }
-    }
+    @HostBinding('class')
+    public readonly styleClass: string | string[] | object;
 
     /** Target internal element id. By default it generates randomly */
     @Input()
     @HostBinding('attr.id')
-    public id: string;
+    public readonly id: string;
 
     /** Target internal element click event */
     @Output()
-    public osClick: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element dblclick event */
     @Output()
-    public osDblClick: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osDblClick: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element mousedown event */
     @Output()
-    public osMouseDown: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osMouseDown: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element mousemove event */
     @Output()
-    public osMouseMove: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osMouseMove: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element mouseout event */
     @Output()
-    public osMouseOut: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osMouseOut: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element mouseover event */
     @Output()
-    public osMouseOver: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osMouseOver: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element mouseup event */
     @Output()
-    public osMouseUp: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osMouseUp: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element wheel event */
     @Output()
-    public osWheel: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osWheel: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element keydown event */
     @Output()
-    public osKeyDown: EventEmitter<KeyboardEvent> = new EventEmitter();
+    public readonly osKeyDown: EventEmitter<KeyboardEvent> = new EventEmitter();
 
     /** Target internal element keyup event */
     @Output()
-    public osKeyUp: EventEmitter<KeyboardEvent> = new EventEmitter();
-
-    /** @internal */
-    @HostBinding('class')
-    public get _hostClass(): string {
-        return this.classListManager.getAsString();
-    }
-
-    /** @internal */
-    @HostBinding('style')
-    public get _hostStyle(): object {
-        return this.styleListManager.get();
-    }
-
-    protected readonly baseHostClassName = 'os-element';
-    protected readonly styleListManager = new StyleListManager();
-    protected readonly classListManager = new ClasslistManager();
-
-    constructor() {
-        super();
-        this.classListManager.add(this.baseHostClassName);
-    }
+    public readonly osKeyUp: EventEmitter<KeyboardEvent> = new EventEmitter();
 
     /** The handler will be fired on the target internal element in response to an event. */
     protected onClick(event: MouseEvent): void {

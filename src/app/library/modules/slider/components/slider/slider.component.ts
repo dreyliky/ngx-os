@@ -8,7 +8,6 @@ import {
     forwardRef,
     HostBinding,
     Input,
-    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation
@@ -20,6 +19,9 @@ import { SliderValueChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-slider',
     templateUrl: './slider.component.html',
+    host: {
+        'class': 'os-slider'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -32,7 +34,7 @@ import { SliderValueChangeEvent } from '../../interfaces';
 })
 export class SliderComponent
     extends OsBaseFormControlComponent<number>
-    implements OnInit, AfterViewInit, ControlValueAccessor {
+    implements AfterViewInit, ControlValueAccessor {
     /** Label text near the slider */
     @Input()
     public label: string;
@@ -73,10 +75,6 @@ export class SliderComponent
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-    }
-
-    public ngOnInit(): void {
-        this.classListManager.add('os-slider');
     }
 
     public ngAfterViewInit(): void {

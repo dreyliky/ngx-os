@@ -4,6 +4,9 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-list',
     templateUrl: './list.component.html',
+    host: {
+        'class': 'os-list'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -23,7 +26,6 @@ export class ListComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-list');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

@@ -4,6 +4,9 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-group-box',
     templateUrl: './group-box.component.html',
+    host: {
+        'class': 'os-group-box'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -19,7 +22,6 @@ export class GroupBoxComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-group-box');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

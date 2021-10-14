@@ -4,6 +4,9 @@ import { OsBaseButtonComponent } from '../../../../core';
 @Component({
     selector: 'os-title-bar-button',
     templateUrl: './title-bar-button.component.html',
+    host: {
+        'class': 'os-title-bar-button'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -33,7 +36,6 @@ export class TitleBarButtonComponent extends OsBaseButtonComponent implements On
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-title-bar-button');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

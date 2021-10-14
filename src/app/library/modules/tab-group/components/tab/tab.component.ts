@@ -36,6 +36,9 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-tab',
     templateUrl: './tab.component.html',
+    host: {
+        'class': 'os-tab'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -86,7 +89,6 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-tab');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

@@ -20,7 +20,7 @@ export abstract class OsBaseViewComponent implements AfterViewInit, OnDestroy {
         return this._isViewInit;
     }
 
-    protected _isViewInit: boolean;
+    private _isViewInit: boolean;
     private _viewDestroyed$ = new Subject<boolean>();
     private _whenViewInit$ = new ReplaySubject<boolean>();
 

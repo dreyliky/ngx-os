@@ -4,6 +4,9 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-label',
     templateUrl: './label.component.html',
+    host: {
+        'class': 'os-label os-text'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -15,7 +18,6 @@ export class LabelComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-label os-text');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

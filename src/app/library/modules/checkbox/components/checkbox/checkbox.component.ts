@@ -19,6 +19,9 @@ import { CheckboxValueChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-checkbox',
     templateUrl: './checkbox.component.html',
+    host: {
+        'class': 'os-checkbox'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -73,7 +76,6 @@ export class CheckboxComponent<T>
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-checkbox');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

@@ -12,6 +12,9 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-title-bar-icon',
     template: '',
+    host: {
+        'class': 'os-title-bar-icon'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -34,7 +37,6 @@ export class TitleBarIconComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-title-bar-icon');
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 }

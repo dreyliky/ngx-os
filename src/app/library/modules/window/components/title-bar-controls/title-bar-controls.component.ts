@@ -4,6 +4,9 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-title-bar-controls',
     templateUrl: './title-bar-controls.component.html',
+    host: {
+        'class': 'os-title-bar-controls'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -15,7 +18,6 @@ export class TitleBarControlsComponent extends OsBaseComponent implements OnInit
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-title-bar-controls');
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 }

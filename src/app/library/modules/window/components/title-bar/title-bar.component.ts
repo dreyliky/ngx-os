@@ -12,6 +12,9 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-title-bar',
     templateUrl: './title-bar.component.html',
+    host: {
+        'class': 'os-title-bar'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -28,7 +31,6 @@ export class TitleBarComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-title-bar');
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 }

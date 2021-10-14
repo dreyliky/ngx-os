@@ -13,6 +13,9 @@ import { FormFieldCssClassEnum as CssClass } from '../../enums';
 @Component({
     selector: 'os-form-field',
     templateUrl: './form-field.component.html',
+    host: {
+        'class': 'os-form-field'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -29,7 +32,6 @@ export class FormFieldComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-form-field');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

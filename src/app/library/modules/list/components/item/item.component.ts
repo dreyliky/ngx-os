@@ -14,6 +14,9 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-list-item',
     templateUrl: './item.component.html',
+    host: {
+        'class': 'os-list-item'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -43,7 +46,6 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-list-item');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

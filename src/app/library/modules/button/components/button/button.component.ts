@@ -4,6 +4,9 @@ import { OsBaseButtonComponent } from '../../../../core';
 @Component({
     selector: 'os-button',
     templateUrl: './button.component.html',
+    host: {
+        'class': 'os-button'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -15,7 +18,6 @@ export class ButtonComponent extends OsBaseButtonComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-button');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

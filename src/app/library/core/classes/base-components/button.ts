@@ -9,27 +9,27 @@ export abstract class OsBaseButtonComponent extends OsBaseComponent {
     /** Is button disabled */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean;
+    public readonly isDisabled: boolean;
 
     /** Is button focused */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Focused}`)
-    public isFocused: boolean;
+    public readonly isFocused: boolean;
 
     /** Metadata of destination of the button */
     @Input()
     @HostBinding('attr.aria-label')
-    public ariaLabel: string;
+    public readonly ariaLabel: string;
 
     /** Metadata of relation of the button */
     @Input()
     @HostBinding('attr.aria-controls')
-    public ariaControls: string;
+    public readonly ariaControls: string;
 
     /** Metadata of selection state of the button */
     @Input()
     @HostBinding('attr.aria-selected')
-    public ariaSelected: string;
+    public readonly ariaSelected: string;
 
     /** Metadata of role of the button */
     @Input()
@@ -38,11 +38,11 @@ export abstract class OsBaseButtonComponent extends OsBaseComponent {
 
     /** Target internal element focus event */
     @Output()
-    public osFocus: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osFocus: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** Target internal element blur event */
     @Output()
-    public osBlur: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osBlur: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** @internal */
     @HostBinding('attr.tabindex')

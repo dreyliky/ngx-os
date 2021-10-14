@@ -7,7 +7,6 @@ import {
     EventEmitter,
     forwardRef,
     Input,
-    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation
@@ -19,6 +18,9 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-textarea-box',
     templateUrl: './textarea-box.component.html',
+    host: {
+        'class': 'os-textarea-box'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -29,7 +31,7 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterViewInit, ControlValueAccessor {
     /** Specifies the visible height of a textarea-box, in lines. */
     @Input()
     public rows: number;
@@ -49,10 +51,6 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements OnInit
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-    }
-
-    public ngOnInit(): void {
-        this.classListManager.add('os-textarea-box');
     }
 
     public ngAfterViewInit(): void {

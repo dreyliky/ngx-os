@@ -46,6 +46,9 @@ import { CommonCssClassEnum, EventOutside, OsBaseComponent } from '../../../../c
 @Component({
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
+    host: {
+        'class': 'os-grid-item'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -85,7 +88,6 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-grid-item');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
         this.initClickOutsideObserver();
     }

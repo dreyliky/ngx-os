@@ -4,6 +4,9 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-text',
     templateUrl: './text.component.html',
+    host: {
+        'class': 'os-text'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -15,7 +18,6 @@ export class TextComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-text');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 }

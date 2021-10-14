@@ -1,9 +1,20 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostBinding,
+    Input,
+    OnInit,
+    ViewEncapsulation
+} from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-header',
     templateUrl: './header.component.html',
+    host: {
+        'class': 'os-header'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -22,8 +33,9 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
     }
 
     /** @internal */
-    public get _hostClass(): string {
-        return `${this.classListManager.getAsString()} os-header-${this.size}`;
+    @HostBinding('class')
+    public get _hostHeaderSizeClass(): string {
+        return `os-header-${this.size}`;
     }
 
     private readonly minSize: number = 1;
@@ -38,7 +50,6 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-header');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

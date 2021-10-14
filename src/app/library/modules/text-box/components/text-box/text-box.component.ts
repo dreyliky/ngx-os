@@ -7,7 +7,6 @@ import {
     EventEmitter,
     forwardRef,
     Input,
-    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation
@@ -19,6 +18,9 @@ import { TextBoxChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-text-box',
     templateUrl: './text-box.component.html',
+    host: {
+        'class': 'os-text-box'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -29,7 +31,7 @@ import { TextBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
+export class TextBoxComponent extends OsBaseFieldComponent implements AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
@@ -50,10 +52,6 @@ export class TextBoxComponent extends OsBaseFieldComponent implements OnInit, Af
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-    }
-
-    public ngOnInit(): void {
-        this.classListManager.add('os-text-box');
     }
 
     public ngAfterViewInit(): void {

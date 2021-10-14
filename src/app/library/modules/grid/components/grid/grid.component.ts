@@ -4,6 +4,7 @@ import {
     Component,
     ContentChildren,
     ElementRef,
+    HostBinding,
     Input,
     OnChanges,
     OnInit,
@@ -24,6 +25,9 @@ import { GridItemComponent } from '../item';
 @Component({
     selector: 'os-grid',
     templateUrl: './grid.component.html',
+    host: {
+        'class': 'os-grid'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -38,7 +42,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         this._gridSize = value;
 
         this.validateGridSize();
-        this.updateStylelist();
     }
 
     /** Size of each grid item in pixels */
@@ -50,11 +53,18 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     @Input()
     public repaintDelayInMs: number = 200;
 
+    /** @internal */
     @ContentChildren(GridItemComponent, { read: ElementRef })
-    private set gridItemElements(elements: QueryList<ElementRef<HTMLElement>>) {
+    public set __gridItemElements(elements: QueryList<ElementRef<HTMLElement>>) {
         this._gridItemElements = elements;
 
         this.initRecalculations();
+    }
+
+    /** @internal */
+    @HostBinding('style.--os-grid-size')
+    public get _hostGridSizeClass(): string {
+        return `${this._gridSize}px`;
     }
 
     private get hostResizeDelayBeforeCalculation(): number {
@@ -73,8 +83,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-grid');
-        this.updateStylelist();
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 
@@ -109,12 +117,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         const yAxisCellsCount = Math.floor(gridZoneHeight / this.gridSize);
 
         this.grid = new Grid({ xAxisCellsCount, yAxisCellsCount, directionType: this.direction });
-    }
-
-    private updateStylelist(): void {
-        this.styleListManager.apply({
-            '--os-grid-size': `${this._gridSize}px`
-        });
     }
 
     private initRecalculations(): void {

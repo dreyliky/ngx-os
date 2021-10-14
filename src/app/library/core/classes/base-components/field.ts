@@ -9,28 +9,28 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
     /** Is field disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean = false;
+    public readonly isDisabled: boolean = false;
 
     /** Is field readonly? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Readonly}`)
-    public isReadonly: boolean = false;
+    public readonly isReadonly: boolean = false;
 
     /** Is field autofocused? */
     @Input()
-    public isAutofocused: boolean = false;
+    public readonly isAutofocused: boolean = false;
 
     /** Placeholder text of the field */
     @Input()
-    public placeholder: string = '';
+    public readonly placeholder: string = '';
 
     /** Name of the field group */
     @Input()
-    public name: string;
+    public readonly name: string;
 
     /** Native `input` size property */
     @Input()
-    public size: number = 20;
+    public readonly size: number = 20;
 
     /** Value of the field as text */
     @Input()
@@ -38,19 +38,19 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
 
     /** The handler will be fired when the value changes. */
     @Output()
-    public valueChange: EventEmitter<string> = new EventEmitter();
+    public readonly valueChange: EventEmitter<string> = new EventEmitter();
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public osFocus: EventEmitter<FocusEvent> = new EventEmitter();
+    public readonly osFocus: EventEmitter<FocusEvent> = new EventEmitter();
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public osBlur: EventEmitter<FocusEvent> = new EventEmitter();
+    public readonly osBlur: EventEmitter<FocusEvent> = new EventEmitter();
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public osInput: EventEmitter<Event> = new EventEmitter();
+    public readonly osInput: EventEmitter<Event> = new EventEmitter();
 
     /** @internal */
     public abstract osChange: EventEmitter<any>;

@@ -38,6 +38,9 @@ import { DropdownItemComponent } from '../dropdown-item';
 @Component({
     selector: 'os-dropdown',
     templateUrl: './dropdown.component.html',
+    host: {
+        'class': 'os-dropdown'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -136,7 +139,6 @@ export class DropdownComponent<T>
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-dropdown');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

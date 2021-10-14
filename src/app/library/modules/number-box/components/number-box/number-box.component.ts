@@ -8,7 +8,6 @@ import {
     forwardRef,
     Input,
     OnChanges,
-    OnInit,
     Output,
     SimpleChanges,
     ViewChild,
@@ -21,6 +20,9 @@ import { NumberBoxChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-number-box',
     templateUrl: './number-box.component.html',
+    host: {
+        'class': 'os-number-box'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -31,7 +33,7 @@ import { NumberBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, OnChanges, AfterViewInit {
+export class NumberBoxComponent extends OsBaseFieldComponent implements OnChanges, AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
@@ -52,10 +54,6 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnInit, 
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-    }
-
-    public ngOnInit(): void {
-        this.classListManager.add('os-number-box');
     }
 
     public ngAfterViewInit(): void {

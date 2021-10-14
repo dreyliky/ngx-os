@@ -12,6 +12,9 @@ import { OsBaseComponent } from '../../../../core';
 @Component({
     selector: 'os-scroll-view',
     templateUrl: './scroll-view.component.html',
+    host: {
+        'class': 'os-scroll-view'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -59,7 +62,6 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-scroll-view');
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 

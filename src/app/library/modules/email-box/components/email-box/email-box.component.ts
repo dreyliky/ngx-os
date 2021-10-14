@@ -7,7 +7,6 @@ import {
     EventEmitter,
     forwardRef,
     Input,
-    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation
@@ -19,6 +18,9 @@ import { EmailBoxChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-email-box',
     templateUrl: './email-box.component.html',
+    host: {
+        'class': 'os-email-box'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -29,7 +31,7 @@ import { EmailBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, AfterViewInit {
+export class EmailBoxComponent extends OsBaseFieldComponent implements AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
@@ -50,10 +52,6 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements OnInit, A
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-    }
-
-    public ngOnInit(): void {
-        this.classListManager.add('os-email-box');
     }
 
     public ngAfterViewInit(): void {

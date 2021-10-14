@@ -18,6 +18,9 @@ import { DropdownValueChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-dropdown-item',
     templateUrl: './dropdown-item.component.html',
+    host: {
+        'class': 'os-dropdown-item'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -52,7 +55,6 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-dropdown-item');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
         this.initDefaultValueIfAbsent();
     }

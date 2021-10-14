@@ -19,6 +19,9 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
 @Component({
     selector: 'os-radio-button',
     templateUrl: './radio-button.component.html',
+    host: {
+        'class': 'os-radio-button'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -73,7 +76,6 @@ export class RadioButtonComponent<T>
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-radio-button');
         this.initElementEventObservers(this.hostElementRef.nativeElement);
     }
 

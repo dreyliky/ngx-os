@@ -68,6 +68,9 @@ import { TreeNodesState } from '../../states';
 @Component({
     selector: 'os-tree-view',
     templateUrl: './tree-view.component.html',
+    host: {
+        'class': 'os-tree-view'
+    },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -165,7 +168,6 @@ export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnC
     }
 
     public ngOnInit(): void {
-        this.classListManager.add('os-tree-view');
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
