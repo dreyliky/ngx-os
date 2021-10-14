@@ -26,7 +26,6 @@ import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 @Component({
     selector: 'os-dynamic-window',
     templateUrl: './dynamic-window.component.html',
-    styleUrls: ['./dynamic-window.component.scss'],
     host: {
         'class': 'os-dynamic-window'
     },

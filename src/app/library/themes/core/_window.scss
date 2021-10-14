@@ -1,0 +1,23 @@
+.os-dynamic-window {
+    .os-window {
+        position: fixed;
+        z-index: 1000;
+    
+        .os-title-bar {
+            user-select: none;
+        }
+    }
+
+    .os-window,
+    .os-window > .os-window-body,
+    .os-window > .os-window-body > .os-scroll-view {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .os-window-body,
+    .os-scroll-view {
+        height: 100%;
+    }
+}
