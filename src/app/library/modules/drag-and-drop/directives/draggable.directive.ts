@@ -103,14 +103,18 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
 
     private initDraggableElement(): void {
         this._draggableElement?.removeEventListener('mousedown', this.elementMouseDownHandler);
+        this._draggableElement?.classList.remove(CssClass.Draggable);
 
         this._draggableElement = (this.config?.draggableElement ?? this.hostRef.nativeElement);
 
+        this._draggableElement?.classList.add(CssClass.Draggable);
         this._draggableElement.addEventListener('mousedown', this.elementMouseDownHandler);
     }
 
     private initMovableElement(): void {
+        this._movableElement?.classList.remove(CssClass.Movable);
         this._movableElement = this.config?.movableElement ?? this.hostRef.nativeElement;
+        this._movableElement?.classList.add(CssClass.Movable);
     }
 
     private readonly elementMouseDownHandler = (event: MouseEvent): void => {
