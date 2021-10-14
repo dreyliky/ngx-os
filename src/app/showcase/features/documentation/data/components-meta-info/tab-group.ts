@@ -1,6 +1,10 @@
 import { TabComponent, TabGroupComponent, TabGroupModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
-import { TabGroupOverviewComponent } from '../../examples';
+import {
+    TabGroupLabelCustomizationComponent,
+    TabGroupLoadedLazilyComponent,
+    TabGroupOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TAB_GROUP_META_INFO: ComponentMetaInfo = {
@@ -19,6 +23,14 @@ export const TAB_GROUP_META_INFO: ComponentMetaInfo = {
         {
             title: 'Tab Group Overview',
             component: TabGroupOverviewComponent
+        },
+        {
+            title: 'Tab Group label customization',
+            component: TabGroupLabelCustomizationComponent
+        },
+        {
+            title: 'Tab Group content is loaded lazily (when activated)',
+            component: TabGroupLoadedLazilyComponent
         }
     ]
 };

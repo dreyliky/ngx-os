@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 interface TabItem {
     id: number;
@@ -13,7 +13,7 @@ interface TabItem {
     styleUrls: ['./tab-group-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupOverviewComponent implements OnInit {
+export class TabGroupOverviewComponent {
     public readonly tabs: TabItem[] = [
         {
             id: 1,
@@ -33,9 +33,5 @@ export class TabGroupOverviewComponent implements OnInit {
         }
     ];
 
-    public selectedTabId: number;
-
-    public ngOnInit(): void {
-        this.selectedTabId = this.tabs[0].id;
-    }
+    public selectedTabIndex: number;
 }

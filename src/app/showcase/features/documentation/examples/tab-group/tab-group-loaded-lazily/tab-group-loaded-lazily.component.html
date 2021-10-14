@@ -1,0 +1,19 @@
+<os-tab-group>
+    <os-tab [label]="'First'">
+        <ng-template #tabContent>
+            Content 1 - Loaded: {{ getTimeLoaded(0) | date:'medium' }}
+        </ng-template>
+    </os-tab>
+
+    <os-tab [label]="'Second'">
+        <ng-template #tabContent>
+            Content 2 - Loaded: {{ getTimeLoaded(1) | date:'medium' }}
+        </ng-template>
+    </os-tab>
+
+    <os-tab [label]="'Third'">
+        <ng-template #tabContent>
+            Content 3 - Loaded: {{ getTimeLoaded(2) | date:'medium' }}
+        </ng-template>
+    </os-tab>
+</os-tab-group>

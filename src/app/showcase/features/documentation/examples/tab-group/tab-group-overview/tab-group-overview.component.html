@@ -1,8 +1,7 @@
-<os-tab-group>
+<os-tab-group [(selectedTabIndex)]="selectedTabIndex">
     <os-tab
         *ngFor="let tab of tabs"
         [label]="tab.title"
-        [isSelected]="(selectedTabId === tab.id)"
         [isDisabled]="tab.isDisabled">
         <os-text>{{ tab.content }}</os-text>
     </os-tab>

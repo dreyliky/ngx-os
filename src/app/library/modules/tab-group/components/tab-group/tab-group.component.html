@@ -8,23 +8,23 @@
         role="tablist">
         <ng-template
             ngFor
-            let-tabContent
+            let-tab
             [ngForOf]="_tabComponentList"
             [ngForTrackBy]="_trackByFn">
             <ng-container
-                *ngTemplateOutlet="tabContent._tabButtonTemplate">
+                *ngTemplateOutlet="tab._tabButtonInternalTemplate">
             </ng-container>
         </ng-template>
     </menu>
 
     <ng-template
         ngFor
-        let-tabContent
+        let-tab
         [ngForOf]="_tabComponentList"
         [ngForTrackBy]="_trackByFn">
-        <ng-template [ngIf]="tabContent.isSelected">
+        <ng-template [ngIf]="tab._isSelected">
             <ng-container
-                *ngTemplateOutlet="tabContent._tabContentTemplate">
+                *ngTemplateOutlet="tab._tabContentInternalTemplate">
             </ng-container>
         </ng-template>
     </ng-template>

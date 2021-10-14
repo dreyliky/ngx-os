@@ -33,6 +33,8 @@ import {
     ScrollViewOverviewComponent,
     SliderAsFormControlComponent,
     SliderOverviewComponent,
+    TabGroupLabelCustomizationComponent,
+    TabGroupLoadedLazilyComponent,
     TabGroupOverviewComponent,
     TextareaAsFormControlComponent,
     TextareaOverviewComponent,
@@ -102,7 +104,9 @@ import {
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
         WindowTitleBarComponent,
-        GridItemCustomizationComponent
+        GridItemCustomizationComponent,
+        TabGroupLoadedLazilyComponent,
+        TabGroupLabelCustomizationComponent
     ],
     imports: [
         SharedModule

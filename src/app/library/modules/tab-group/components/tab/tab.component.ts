@@ -1,6 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ContentChild,
     ElementRef,
     EventEmitter,
     Input,
@@ -11,6 +12,26 @@ import {
 } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 
+/**
+ * ## Templates
+ * `#tabLabel`: Template for the label of the tab button.
+ *
+ * @example
+ * ```html
+ * <ng-template #tabLabel>
+ *    <!-- Your label content here -->
+ * </ng-template>
+ * ```
+ *
+ * `#tabContent`: Template for the content lazy loading.
+ *
+ * @example
+ * ```html
+ * <ng-template #tabContent>
+ *    <!-- Your tab content here -->
+ * </ng-template>
+ * ```
+ */
 @Component({
     selector: 'os-tab',
     templateUrl: './tab.component.html',
@@ -20,10 +41,6 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     /** Label text of the tab */
     @Input()
     public label: string;
-
-    /** Is tab selected? */
-    @Input()
-    public isSelected: boolean = false;
 
     /** Is tab disabled? */
     @Input()
@@ -42,12 +59,23 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     public osTabButtonClick = new EventEmitter<MouseEvent>();
 
     /** @internal */
-    @ViewChild('tabButtonTemplate', { static: true })
-    public _tabButtonTemplate: TemplateRef<HTMLButtonElement>;
+    @ContentChild('tabLabel')
+    public readonly _tabLabelTemplate: TemplateRef<HTMLElement>;
 
     /** @internal */
-    @ViewChild('tabContentTemplate', { static: true })
-    public _tabContentTemplate: TemplateRef<any>;
+    @ContentChild('tabContent')
+    public readonly _tabContentTemplate: TemplateRef<HTMLElement>;
+
+    /** @internal */
+    @ViewChild('tabButtonInternalTemplate', { static: true })
+    public _tabButtonInternalTemplate: TemplateRef<HTMLButtonElement>;
+
+    /** @internal */
+    @ViewChild('tabContentInternalTemplate', { static: true })
+    public _tabContentInternalTemplate: TemplateRef<any>;
+
+    /** @internal */
+    public _isSelected: boolean = false;
 
     constructor(
         private readonly hostElementRef: ElementRef<HTMLElement>
@@ -65,5 +93,10 @@ export class TabComponent extends OsBaseComponent implements OnInit {
         if (!this.isDisabled) {
             this.osTabButtonClick.emit(event);
         }
+    }
+
+    /** @internal */
+    public setSelectionState(state: boolean): void {
+        this._isSelected = state;
     }
 }

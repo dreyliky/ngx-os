@@ -4,41 +4,42 @@
 </os-header>
 
 <div class="wrapper">
-    <os-tab-group>
-        <os-tab
-            [isSelected]="openedSection === sectionEnum.Demo"
-            [label]="'Demo'">
+    <os-tab-group [(selectedTabIndex)]="openedSection">
+        <os-tab [label]="'Demo'">
             <ng-content></ng-content>
         </os-tab>
 
         <os-tab
             *ngIf="docComponent"
-            [isSelected]="openedSection === sectionEnum.HTML"
             [label]="'HTML'">
-            <showcase-code-viewer
-                [language]="'html'"
-                [code]="docComponent.templateData">
-            </showcase-code-viewer>
+            <ng-template #tabContent>
+                <showcase-code-viewer
+                    [language]="'html'"
+                    [code]="docComponent.templateData">
+                </showcase-code-viewer>
+            </ng-template>
         </os-tab>
 
         <os-tab
             *ngIf="isScssExist"
-            [isSelected]="openedSection === sectionEnum.SCSS"
             [label]="'SCSS'">
-            <showcase-code-viewer
-                [language]="'scss'"
-                [code]="docComponent.styleUrlsData[0].data">
-            </showcase-code-viewer>
+            <ng-template #tabContent>
+                <showcase-code-viewer
+                    [language]="'scss'"
+                    [code]="docComponent.styleUrlsData[0].data">
+                </showcase-code-viewer>
+            </ng-template>
         </os-tab>
 
         <os-tab
             *ngIf="docComponent"
-            [isSelected]="openedSection === sectionEnum.TS"
             [label]="'TypeScript'">
-            <showcase-code-viewer
-                [language]="'ts'"
-                [code]="docComponent.sourceCode">
-            </showcase-code-viewer>
+            <ng-template #tabContent>
+                <showcase-code-viewer
+                    [language]="'ts'"
+                    [code]="docComponent.sourceCode">
+                </showcase-code-viewer>
+            </ng-template>
         </os-tab>
     </os-tab-group>
 </div>

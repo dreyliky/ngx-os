@@ -1,4 +1,4 @@
-<ng-template #tabButtonTemplate>
+<ng-template #tabButtonInternalTemplate>
     <button
         class="os-button"
         [id]="id"
@@ -7,18 +7,33 @@
         [ngStyle]="tabButtonStyle"
         [ngClass]="tabButtonStyleClass"
         [attr.role]="'tab'"
-        [attr.aria-selected]="isSelected"
+        [attr.aria-selected]="_isSelected"
         (click)="onTabButtonClick($event)">
-        {{ label }}
+        <ng-container
+            *ngIf="_tabLabelTemplate; else defaultLabelTemplate">
+            <ng-container
+                *ngTemplateOutlet="_tabLabelTemplate">
+            </ng-container>
+        </ng-container>
+
+        <ng-template #defaultLabelTemplate>{{ label }}</ng-template>
     </button>
 </ng-template>
 
-<ng-template #tabContentTemplate>
+<ng-template #tabContentInternalTemplate>
     <article
         class="os-element"
         role="tabpanel"
         [ngStyle]="style"
         [class]="styleClass">
-        <ng-content></ng-content>
+        <ng-container *ngIf="_tabContentTemplate; else defaultContentTemplate">
+            <ng-container
+                *ngTemplateOutlet="_tabContentTemplate">
+            </ng-container>
+        </ng-container>
+
+        <ng-template #defaultContentTemplate>
+            <ng-content></ng-content>
+        </ng-template>
     </article>
 </ng-template>
