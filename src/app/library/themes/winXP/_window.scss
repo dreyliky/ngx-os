@@ -1,9 +1,5 @@
-os-window {
-    width: var(--os-width);
-    height: var(--os-height);
+.os-window {
     display: block;
-    top: var(--os-top);
-    left: var(--os-left);
     font-size: 11px;
     box-shadow:
         inset -1px -1px rgba(var(--os-primary-color), .6),
@@ -17,6 +13,33 @@ os-window {
     background: #ece9d8;
     padding: 0 0 3px 0;
     -webkit-font-smoothing: none;
+
+    &.os-active {
+        box-shadow:
+            inset -1px -1px rgba(var(--os-primary-color), 1),
+            inset 1px 1px rgba(var(--os-primary-color), .9),
+            inset -2px -2px rgba(var(--os-primary-color), 1),
+            inset 2px 2px rgba(var(--os-primary-color), .7),
+            inset -3px -3px rgba(var(--os-primary-color), .8),
+            inset 3px 3px rgba(var(--os-primary-color), .7);
+    }
+
+    &:not(.os-active) {
+        .os-title-bar-button {
+            opacity: .5;
+        }
+    }
+
+    .os-window-body {
+        margin: 0px 3px;
+    }
+}
+
+.os-dynamic-window .os-window {
+    width: var(--os-width);
+    height: var(--os-height);
+    top: var(--os-top);
+    left: var(--os-left);
 
     --fullscreen-width: calc(100% + 6px - var(--os-fullscreen-offset-right) - var(--os-fullscreen-offset-left));
     --fullscreen-height: calc(100% + 2px - var(--os-fullscreen-offset-bottom) - var(--os-fullscreen-offset-top));
@@ -86,10 +109,6 @@ os-window {
         }
     }
 
-    fieldset {
-        margin-bottom: 9px;
-    }
-
     &.os-hiding,
     &.os-showing {
         pointer-events: none;
@@ -128,14 +147,6 @@ os-window {
     }
 
     &.os-active {
-        box-shadow:
-            inset -1px -1px rgba(var(--os-primary-color), 1),
-            inset 1px 1px rgba(var(--os-primary-color), .9),
-            inset -2px -2px rgba(var(--os-primary-color), 1),
-            inset 2px 2px rgba(var(--os-primary-color), .7),
-            inset -3px -3px rgba(var(--os-primary-color), .8),
-            inset 3px 3px rgba(var(--os-primary-color), .7);
-
         &.os-fullscreen, &.os-entering-fullscreen {
             .os-title-bar-button[aria-label="Fullscreen"] .os-icon {
                 background-position: -42px 0px;
@@ -145,16 +156,6 @@ os-window {
                 }
             }
         }
-    }
-
-    &:not(.os-active) {
-        .os-title-bar-button {
-            opacity: .5;
-        }
-    }
-
-    .os-window-body {
-        margin: 0px 3px;
     }
 
     &:hover os-resizers {

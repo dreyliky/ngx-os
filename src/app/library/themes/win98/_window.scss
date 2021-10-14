@@ -1,14 +1,21 @@
-os-window {
+.os-window {
+    display: block;
+    font-size: 11px;
+    padding: 3px;
+    background: rgb(var(--os-background-color));
+    box-shadow: var(--border-window-outer), var(--border-window-inner);
+    -webkit-font-smoothing: none;
+
+    .os-window-body {
+        margin: 0px 2px;
+    }
+}
+
+.os-dynamic-window .os-window {
     width: var(--os-width);
     height: var(--os-height);
-    display: block;
     top: var(--os-top);
     left: var(--os-left);
-    font-size: 11px;
-    box-shadow: var(--border-window-outer), var(--border-window-inner);
-    background: rgb(var(--os-background-color));
-    padding: 3px;
-    -webkit-font-smoothing: none;
 
     --fullscreen-width: calc(100% + 1px - var(--os-fullscreen-offset-right) - var(--os-fullscreen-offset-left));
     --fullscreen-height: calc(100% - 2px - var(--os-fullscreen-offset-bottom) - var(--os-fullscreen-offset-top));
@@ -78,10 +85,6 @@ os-window {
         }
     }
 
-    fieldset {
-        margin-bottom: 9px;
-    }
-
     &.os-hiding,
     &.os-showing {
         pointer-events: none;
@@ -129,10 +132,6 @@ os-window {
 
     &.os-closing {
         display: none !important;
-    }
-
-    .os-window-body {
-        margin: 0px 2px;
     }
 
     &:hover os-resizers {
