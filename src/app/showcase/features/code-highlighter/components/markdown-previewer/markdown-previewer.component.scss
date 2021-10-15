@@ -2,7 +2,7 @@
     display: block;
 }
 
-.showcase-code-of-block {
+:host::ng-deep {
     line-height: 22px;
 
     > :first-child {
