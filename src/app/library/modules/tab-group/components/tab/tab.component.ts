@@ -19,18 +19,22 @@ import { OsBaseComponent } from '../../../../core';
  *
  * @example
  * ```html
- * <ng-template #tabLabel>
- *    <!-- Your label content here -->
- * </ng-template>
+ * <os-tab>
+ *     <ng-template #tabLabel>
+ *         <!-- Your label content here -->
+ *     </ng-template>
+ * </os-tab>
  * ```
  *
  * `#tabContent`: Template for the content lazy loading.
  *
  * @example
  * ```html
- * <ng-template #tabContent>
- *    <!-- Your tab content here -->
- * </ng-template>
+ * <os-tab>
+ *     <ng-template #tabContent>
+ *         <!-- Your tab content here -->
+ *     </ng-template>
+ * </os-tab>
  * ```
  */
 @Component({

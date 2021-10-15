@@ -20,7 +20,15 @@ import { GridItemComponent } from '../item';
 
 /**
  * ## Content Projection Slots
+ *
  * - Component `os-grid-item`: Slot for `GridItemComponent`'s
+ *
+ * @example
+ * ```html
+ * <os-grid>
+ *     <os-grid-item *ngFor="let item of items"></os-grid-item>
+ * </os-grid>
+ * ```
  **/
 @Component({
     selector: 'os-grid',

@@ -27,6 +27,16 @@ import { TreeNodesState } from '../../states';
  * somehow instead of auto-generated based on `data`)
  * - Attribute `os-tree-view-footer`: Slot for your custom content below nodes and custom content
  *
+ * @example
+ * ```html
+ * <os-tree-view>
+ *     <div os-tree-view-header>YOUR HEADER CONTENT</div>
+ *     <div os-tree-view-content>YOUR CONTENT</div>
+ *     <!-- TREE NODES WILL BE RENDERED HERE -->
+ *     <div os-tree-view-footer>YOUR FOOTER CONTENT</div>
+ * </os-tree-view>
+ * ```
+ *
  * ## Templates
  * `#nodeContent`: Custom template for each node.
  *
@@ -36,15 +46,15 @@ import { TreeNodesState } from '../../states';
  *
  * @example
  * ```html
- * <ng-template
- *    #nodeContent
- *    let-node
- *    let-depth="depth">
- *    <!--
- *        Variable `node` contains the node data, and `depth` - the depth of the node.
- *        Now you are ready to build your custom content for each node.
- *    -->
- * </ng-template>
+ * <os-tree-view>
+ *     <ng-template
+ *        #nodeContent
+ *        let-node
+ *        let-depth="depth">
+ *        <!-- Variable `node` contains the node data, and `depth` - the depth of the node. -->
+ *        <!-- Now you are ready to build your custom content for each node. -->
+ *      </ng-template>
+ * </os-tree-view>
  * ```
  *
  * `#nodeIcon`: Custom template for the node expansion icon.
@@ -54,15 +64,15 @@ import { TreeNodesState } from '../../states';
  * - `depth`: depth data (0 - root node; 1 and more - child node);
  *
  * ```html
- * <ng-template
- *    #nodeIcon
- *    let-node
- *    let-depth="depth">
- *    <!--
- *        Variable `node` contains the node data, and `depth` - the depth of the node.
- *        Place your custom content for the node expansion icon here.
- *    -->
- * </ng-template>
+ * <os-tree-view>
+ *     <ng-template
+ *        #nodeIcon
+ *        let-node
+ *        let-depth="depth">
+ *        <!-- Variable `node` contains the node data, and `depth` - the depth of the node. -->
+ *        <!-- Place your custom content for the node expansion icon here. -->
+ *     </ng-template>
+ * </os-tree-view>
  * ```
  **/
 @Component({

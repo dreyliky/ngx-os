@@ -6,14 +6,14 @@
             [label]="file.getLabel()"
             (osClick)="onFileClick($event, file)">
             <ng-container *ngIf="file.type === 'png'">
-                <ng-template #iconTemplate>
+                <ng-template #gridItemIcon>
                     <img
                         class="os-icon"
                         [src]="file.iconUrl" />
                 </ng-template>
             </ng-container>
 
-            <ng-template #labelTemplate>
+            <ng-template #gridItemLabel>
                 <os-label
                     *ngIf="!file.isEditing"
                     [innerText]="file.getLabel()">

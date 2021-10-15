@@ -1,18 +1,32 @@
-<ng-content select="[os-placeholder-prefix]"></ng-content>
+<ng-container *ngIf="_isPlaceholderVisible">
+    <ng-container *ngIf="_placeholderTemplate; else defaultPlaceholderTemplate">
+        <ng-container
+            *ngTemplateOutlet="_placeholderTemplate">
+        </ng-container>
+    </ng-container>
 
-<span
-    *ngIf="_isPlaceholderVisible"
-    class="os-placeholder">
-    {{ placeholder }}
-</span>
+    <ng-template #defaultPlaceholderTemplate>
+        <span
+            class="os-placeholder"
+            [innerText]="placeholder">
+        </span>
+    </ng-template>
+</ng-container>
 
-<span
-    *ngIf="_isValueExist"
-    class="os-value">
-    {{ _labelToDisplay }}
-</span>
+<ng-container *ngIf="_isValueExist">
+    <ng-container *ngIf="_valueTemplate; else defaultValueTemplate">
+        <ng-container
+            *ngTemplateOutlet="_valueTemplate; context: { $implicit: _valueContext }">
+        </ng-container>
+    </ng-container>
 
-<ng-content select="[os-placeholder-suffix]"></ng-content>
+    <ng-template #defaultValueTemplate>
+        <span
+            class="os-value"
+            [innerText]="_labelToDisplay">
+        </span>
+    </ng-template>
+</ng-container>
 
 <os-list
     *ngIf="isOpened"

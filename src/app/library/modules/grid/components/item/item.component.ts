@@ -18,29 +18,33 @@ import { CommonCssClassEnum, EventOutside, OsBaseComponent } from '../../../../c
 
 /**
  * ## Templates
- * `#iconTemplate`: Custom template which will be rendered instead of the default icon.
+ * `#gridItemIcon`: Custom template which will be rendered instead of the default icon.
  *
  * @example
  * ```html
- * <ng-template #iconTemplate>
- *    <!-- To get default behavior inside your template -->
- *    <div
- *        class="os-icon"
- *        [style.--os-icon-url]="YOUR_LINK_TO_THE_ICON">
- *    </div>
- *    <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
- * </ng-template>
+ * <os-grid-item>
+ *     <ng-template #gridItemIcon>
+ *         <!-- To get default behavior inside your template -->
+ *         <div
+ *             class="os-icon"
+ *             [style.--os-icon-url]="YOUR_LINK_TO_THE_ICON">
+ *         </div>
+ *         <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
+ *     </ng-template>
+ * </os-grid-item>
  * ```
  *
- * `#labelTemplate`: Custom template which will be rendered instead of the default label text.
+ * `#gridItemLabel`: Custom template which will be rendered instead of the default label text.
  *
  * @example
  * ```html
- * <ng-template #labelTemplate>
- *    <!-- To get default behavior inside your template -->
- *    <os-label [innerText]="YOUR_LABEL_TEXT"></os-label>
- *    <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
- * </ng-template>
+ * <os-grid-item>
+ *     <ng-template #gridItemLabel>
+ *         <!-- To get default behavior inside your template -->
+ *         <os-label [innerText]="YOUR_LABEL_TEXT"></os-label>
+ *         <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
+ *     </ng-template>
+ * </os-grid-item>
  * ```
  **/
 @Component({
@@ -69,11 +73,11 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     public label: string;
 
     /** @internal */
-    @ContentChild('iconTemplate')
+    @ContentChild('gridItemIcon')
     public readonly _gridItemIconTemplate: TemplateRef<HTMLElement>;
 
     /** @internal */
-    @ContentChild('labelTemplate')
+    @ContentChild('gridItemLabel')
     public readonly _gridItemLabelTemplate: TemplateRef<HTMLElement>;
 
     /** @internal */

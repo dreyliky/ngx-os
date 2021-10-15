@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
+    ContentChild,
     ContentChildren,
     ElementRef,
     EventEmitter,
@@ -15,6 +16,7 @@ import {
     OnInit,
     Output,
     QueryList,
+    TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -28,12 +30,60 @@ import { DropdownItemComponent } from '../dropdown-item';
 /**
  * ## Content Projection Slots
  *
- * - Attribute `os-placeholder-prefix`: Slot for your custom content from the left of the placeholder.
- * - Attribute `os-placeholder-suffix`: Slot for your custom content from the right of the placeholder.
  * - Attribute `os-dropdown-header`: Slot for your custom content inside overlay at the top.
  * - Attribute `os-dropdown-content`: Slot for your custom content inside overlay at the middle.
  * - Components `os-dropdown-item`: Slot for `DropdownItemComponent`'s which are will be rendered inside the overlay.
  * - Attribute `os-dropdown-footer`: Slot for your custom content inside overlay at the bottom.
+ *
+ * @example
+ * ```html
+ * <os-dropdown>
+ *     <div os-dropdown-header>MY HEADER CONTENT</div>
+ *     <div os-dropdown-content>MY CONTENT</div>
+ *     <os-dropdown-item *ngFor="let item of items"></os-dropdown-item>
+ *     <div os-dropdown-footer>MY FOOTER CONTENT</div>
+ * </os-dropdown>
+ * ```
+ *
+ * ## Templates
+ *
+ * `#dropdownPlaceholder`: Custom template which will be rendered instead of the default placeholder.
+ *
+ * @example
+ * ```html
+ * <os-dropdown>
+ *     <ng-template #dropdownPlaceholder>
+ *         <!-- To get default behavior inside your template -->
+ *         <span
+ *             class="os-placeholder"
+ *             [innerText]="'My placeholder text'">
+ *         </span>
+ *         <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
+ *     </ng-template>
+ * </os-dropdown>
+ * ```
+ *
+ * `#dropdownValue`: Custom template which will be rendered instead of the default value.
+ *
+ * Context:
+ * - `$implicit`: {@link T} value from the selected dropdown item;
+ *
+ * @example
+ * ```html
+ * <os-dropdown>
+ *     <ng-template
+ *         #dropdownValue
+ *         let-value>
+ *         <!-- Variable `value` contains the value from the selected dropdown item. -->
+ *         <!-- To get default behavior inside your template: -->
+ *         <span
+ *             class="os-value"
+ *             [innerText]="'My value text'">
+ *         </span>
+ *         <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
+ *     </ng-template>
+ * </os-dropdown>
+ * ```
  **/
 @Component({
     selector: 'os-dropdown',
@@ -95,6 +145,14 @@ export class DropdownComponent<T>
     public valueChange: EventEmitter<T> = new EventEmitter();
 
     /** @internal */
+    @ContentChild('dropdownPlaceholder')
+    public _placeholderTemplate: TemplateRef<HTMLElement>;
+
+    /** @internal */
+    @ContentChild('dropdownValue')
+    public _valueTemplate: TemplateRef<HTMLElement>;
+
+    /** @internal */
     @ContentChildren(DropdownItemComponent)
     public set _optionComponentQueryList(data: QueryList<DropdownItemComponent<T>>) {
         this.optionComponentQueryList = data;
@@ -121,6 +179,11 @@ export class DropdownComponent<T>
     /** @internal */
     public get _labelToDisplay(): string {
         return this._label;
+    }
+
+    /** @internal */
+    public get _valueContext(): string {
+        return this._value;
     }
 
     private _label: string;

@@ -11,9 +11,18 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 
 /**
  * ## Content Projection Slots
- * - Attribute `os-title-bar`: Slot for title-bar. You can pass {@link TitleBarComponent}
+ *
+ * - Component `os-title-bar`: Slot for title-bar. You should pass {@link TitleBarComponent}
  * or use your custom element instead of default title-bar
  * - `Others`: Will be placed inside the body of the window
+ *
+ * @example
+ * ```html
+ * <os-window>
+ *     <os-title-bar>MY CUSTOM TITLE BAR CONTENT HERE</os-title-bar>
+ *     <div>ANY CONTENT OF THE WINDOW HERE</div>
+ * </os-window>
+ * ```
  **/
 @Component({
     selector: 'os-window',

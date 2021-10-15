@@ -1,8 +1,12 @@
-<os-dropdown [placeholder]="'Color'">
-    <img
-        os-placeholder-prefix
-        height="100%"
-        src="/assets/showcase/icons/components/theme.png" />
+<os-dropdown>
+    <ng-template #dropdownPlaceholder>
+        <img
+            class="placeholder-icon"
+            height="100%"
+            src="/assets/showcase/icons/components/theme.png" />
+
+        <os-label class="os-placeholder">Color</os-label>
+    </ng-template>
 
     <os-dropdown-item
         *ngFor="let accentColor of accentColors"
