@@ -10,9 +10,8 @@ Supported `Templates` described in `Grid/API` section (documentation website).
 <os-grid>
     <os-grid-item
         *ngFor="let file of files"
-        [data]="file"
         [iconUrl]="file.iconUrl"
-        [label]="file.getFullName()">
+        [label]="file.name">
     </os-grid-item>
 </os-grid>
 ```
@@ -20,9 +19,7 @@ Supported `Templates` described in `Grid/API` section (documentation website).
 ```typescript
 interface File {
     name: string;
-    ext: string;
     iconUrl: string;
-    getFullName(): string;
 }
 
 @Component()
@@ -30,19 +27,11 @@ export class MyGridComponent {
     public readonly files: File[] = [
         {
             name: 'My file #1',
-            ext: 'png',
-            iconUrl: '/path/to/icon.png',
-            getFullName: function() {
-                return `${this.name}.${this.ext}`;
-            }
+            iconUrl: '/path/to/icon.png'
         },
         {
             label: 'My file #2',
-            ext: 'exe',
-            iconUrl: '/path/to/icon.png',
-            getFullName: function() {
-                return `${this.name}.${this.ext}`;
-            }
+            iconUrl: '/path/to/icon.png'
         }
     ];
 }
