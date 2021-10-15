@@ -33,7 +33,10 @@ export class AppendToBodyDirective implements AfterViewInit, OnDestroy, OnChange
         this.targetElement = this.hostElementRef.nativeElement;
         this.parentElement = this.targetElement.parentElement;
 
-        setTimeout(() => this.processElement());
+        // When used in pair with `FixedToParentDirective`,
+        // this solves the problem of incorrect determining of
+        // the parent element by `FixedToParentDirective`.
+        queueMicrotask(() => this.processElement());
     }
 
     public ngOnDestroy(): void {
