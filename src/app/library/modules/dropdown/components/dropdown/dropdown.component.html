@@ -29,12 +29,13 @@
 </ng-container>
 
 <os-list
-    *ngIf="isOpened"
+    *ngIf="isOverlayOpened"
     [os-fixed-to-parent]="{ isEnabled: _isListAppendToBody }"
     [os-append-to-body]="{ isEnabled: _isListAppendToBody }"
     class="os-part-of-dropdown"
     [scrollViewStyle]="scrollViewStyle"
-    [scrollViewStyleClass]="scrollViewStyleClass">
+    [scrollViewStyleClass]="scrollViewStyleClass"
+    (osClick)="$event.stopPropagation()">
     <ng-content select="[os-dropdown-header]"></ng-content>
 
     <ng-content select="[os-dropdown-content]"></ng-content>
