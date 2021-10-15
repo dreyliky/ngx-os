@@ -1,6 +1,6 @@
 export interface DropdownValueChangeEvent<T> {
-    /** Value of the dropdown */
-    value: T;
+    /** Data of the dropdown */
+    data: T;
     /** Original `change` event from HTML element */
     originalEvent: MouseEvent;
 }

@@ -19,7 +19,7 @@ export class ThemeDropdownComponent {
     public readonly themes = THEMES;
 
     public onThemeChanged(event: DropdownValueChangeEvent<Theme>): void {
-        const theme = event.value;
+        const theme = event.data;
 
         this.themeChanged.emit(theme);
     }

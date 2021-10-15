@@ -5,8 +5,8 @@
         <os-dropdown
             [placeholder]="'Choose direction'"
             [formControl]="formGroup.controls.direction">
-            <os-dropdown-item [value]="gridDirectionEnum.Horizontal">Horizontal</os-dropdown-item>
-            <os-dropdown-item [value]="gridDirectionEnum.Vertical">Vertical</os-dropdown-item>
+            <os-dropdown-item [data]="gridDirectionEnum.Horizontal">Horizontal</os-dropdown-item>
+            <os-dropdown-item [data]="gridDirectionEnum.Vertical">Vertical</os-dropdown-item>
         </os-dropdown>
     </os-form-field>
     

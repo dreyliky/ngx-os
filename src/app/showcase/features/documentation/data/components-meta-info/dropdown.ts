@@ -1,9 +1,8 @@
 import { DropdownComponent, DropdownItemComponent, DropdownModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
-    DropdownAsFormControlComponent, DropdownOverviewComponent,
-    DropdownWithCustomContentComponent,
-    DropdownWithIntervalValueChangeComponent
+    DropdownAsFormControlComponent,
+    DropdownOverviewComponent, DropdownWithIntervalValueChangeComponent, DropdownСustomizationComponent
 } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
@@ -32,8 +31,8 @@ export const DROPDOWN_META_INFO: ComponentMetaInfo = {
             component: DropdownAsFormControlComponent
         },
         {
-            title: 'Dropdown with custom content',
-            component: DropdownWithCustomContentComponent
+            title: 'Dropdown customization',
+            component: DropdownСustomizationComponent
         },
         {
             title: 'Dropdown with interval value changing',

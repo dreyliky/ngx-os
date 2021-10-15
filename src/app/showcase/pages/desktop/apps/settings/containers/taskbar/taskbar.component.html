@@ -7,7 +7,7 @@
         (osChange)="onPlacementChange($event)">
         <os-dropdown-item
             *ngFor="let placement of placements"
-            [value]="placement.id">
+            [data]="placement.id">
             {{ placement.name }}
         </os-dropdown-item>
     </os-dropdown>

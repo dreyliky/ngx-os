@@ -1,4 +1,5 @@
 import {
+    AfterContentInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -17,35 +18,34 @@ import { DropdownValueChangeEvent } from '../../interfaces';
 
 @Component({
     selector: 'os-dropdown-item',
-    templateUrl: './dropdown-item.component.html',
+    template: '<ng-content></ng-content>',
     host: {
-        'class': 'os-dropdown-item'
+        'class': 'os-dropdown-item os-list-item'
     },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit, OnChanges {
-    /** Is dropdown item selected? */
+export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit, AfterContentInit, OnChanges {
+    /** Data of the dropdown item */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
-    public isSelected: boolean = false;
+    public data: T;
 
     /** Is dropdown item disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
-    /** Value of the dropdown item */
-    @Input()
-    public value: T;
-
     /** Fires when the dropdown item selected */
     @Output()
     public osSelected: EventEmitter<DropdownValueChangeEvent<T>> = new EventEmitter();
 
+    /** Is dropdown item selected? */
+    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
+    public isSelected: boolean = false;
+
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly changeDetector: ChangeDetectorRef,
+        private readonly hostElementRef: ElementRef<HTMLElement>
     ) {
         super();
     }
@@ -56,14 +56,10 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
 
     public ngOnInit(): void {
         this.initElementEventObservers(this.hostElementRef.nativeElement);
-        this.initDefaultValueIfAbsent();
     }
 
-    /** @internal */
-    public onListItemClick(originalEvent: MouseEvent): void {
-        if (!this.isDisabled) {
-            this.osSelected.emit({ originalEvent, value: this.value });
-        }
+    public ngAfterContentInit(): void {
+        this.initDefaultValueIfAbsent();
     }
 
     /** Sets state of selection and triggers `change detection` */
@@ -78,6 +74,14 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
         return this.hostElementRef.nativeElement.innerText || null;
     }
 
+    protected onClick(originalEvent: MouseEvent): void {
+        super.onClick(originalEvent);
+
+        if (!this.isDisabled) {
+            this.osSelected.emit({ originalEvent, data: this.data });
+        }
+    }
+
     private initValueAfterValueChanged(changes: SimpleChanges): void {
         if (this.hostElementRef && (changes?.value?.previousValue !== changes?.value?.currentValue)) {
             if (isNil(changes.value.currentValue)) {
@@ -87,8 +91,8 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
     }
 
     private initDefaultValueIfAbsent(): void {
-        if (isNil(this.value)) {
-            this.value = this.getLabel() as any;
+        if (isNil(this.data)) {
+            this.data = this.getLabel() as any;
         }
     }
 }

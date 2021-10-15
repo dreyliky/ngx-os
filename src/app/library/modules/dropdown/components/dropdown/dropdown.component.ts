@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import {
-    AfterViewInit,
+    AfterContentInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -103,7 +103,7 @@ import { DropdownItemComponent } from '../dropdown-item';
 })
 export class DropdownComponent<T>
     extends OsBaseFormControlComponent<T>
-    implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
+    implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
     /** Is dropdown disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
@@ -121,7 +121,9 @@ export class DropdownComponent<T>
     @Input()
     public set value(value: T) {
         this.setInitialValue(value);
-        this.initSelectedOptionByValue(value);
+        // This microtask helps to solve the problem with structural directives that are imposed on elements.
+        // Structural directives are always recreating the EmbeddedView.
+        queueMicrotask(() => this.initSelectedOptionByValue(value));
     }
 
     /** Stylelist for scroll view component of the dropdown overlay */
@@ -206,9 +208,13 @@ export class DropdownComponent<T>
         this.initClickOutsideObserver();
     }
 
-    public ngAfterViewInit(): void {
-        this.initSelectedOptionByValue(this.initialValue);
-        this.changeDetector.detectChanges();
+    public ngAfterContentInit(): void {
+        // This microtask helps to solve the problem with structural directives that are imposed on elements.
+        // Structural directives are always recreating the EmbeddedView.
+        queueMicrotask(() => {
+            this.initSelectedOptionByValue(this.initialValue);
+            this.changeDetector.detectChanges();
+        });
     }
 
     public ngOnDestroy(): void {
@@ -239,15 +245,12 @@ export class DropdownComponent<T>
     public writeValue(value: T): void {
         this.setInitialValue(value);
         this.initSelectedOptionByValue(value);
-        this.changeDetector.detectChanges();
     }
 
     protected onClick(event: PointerEvent): void {
         if (!this.isDisabled) {
-            this.isOverlayOpened = !this.isOverlayOpened;
-
             super.onClick(event);
-            this.changeDetector.detectChanges();
+            this.toggle();
         }
     }
 
@@ -255,9 +258,9 @@ export class DropdownComponent<T>
         this.initSelectedOption(optionComponent);
         this.deselectAllOptions();
         optionComponent.setSelectedState(true);
-        this.valueChange.emit(event.value);
+        this.valueChange.emit(event.data);
         this.osChange.emit(event);
-        this.onChange?.(event.value);
+        this.onChange?.(event.data);
         this.close();
     }
 
@@ -267,9 +270,9 @@ export class DropdownComponent<T>
         }
     }
 
-    private getOptionComponentByValue(value: T): DropdownItemComponent<T> {
+    private getOptionComponentByData(data: T): DropdownItemComponent<T> {
         return this.optionComponentQueryList
-            ?.find((optionComponent) => optionComponent.value === value);
+            ?.find((optionComponent) => optionComponent.data === data);
     }
 
     private deselectAllOptions(): void {
@@ -277,8 +280,8 @@ export class DropdownComponent<T>
             ?.forEach((optionComponent) => optionComponent.setSelectedState(false));
     }
 
-    private initSelectedOptionByValue(value: T): void {
-        const optionComponent = this.getOptionComponentByValue(value);
+    private initSelectedOptionByValue(data: T): void {
+        const optionComponent = this.getOptionComponentByData(data);
 
         this.initSelectedOption(optionComponent);
     }
@@ -302,14 +305,14 @@ export class DropdownComponent<T>
     }
 
     private initLabel(): void {
-        const value = this.selectedOptionComponent?.value as any;
+        const value = this.selectedOptionComponent?.data as any;
         const rawLabel = this.selectedOptionComponent?.getLabel();
 
         this._label = rawLabel ?? value ?? null;
     }
 
     private initValue(): void {
-        const value = this.selectedOptionComponent?.value as any;
+        const value = this.selectedOptionComponent?.data as any;
 
         this._value = value ?? null;
     }

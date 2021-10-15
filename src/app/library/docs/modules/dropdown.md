@@ -6,8 +6,8 @@ Supported `Content Projection Slots` described in `Dropdown/API` section (docume
 
 ```html
 <os-dropdown-box [(ngModel)]="selectedItem">
-    <os-dropdown-item [value]="1">Item #1</os-dropdown-item>
-    <os-dropdown-item [value]="2">Item #2</os-dropdown-item>
+    <os-dropdown-item [data]="1">Item #1</os-dropdown-item>
+    <os-dropdown-item [data]="2">Item #2</os-dropdown-item>
 </os-dropdown-box>
 ```
 

@@ -21,10 +21,11 @@
         <os-label>Role</os-label>
 
         <os-dropdown
+            [value]="3"
             [placeholder]="'Choose item'">
-            <os-dropdown-item>User</os-dropdown-item>
-            <os-dropdown-item>Moderator</os-dropdown-item>
-            <os-dropdown-item [isSelected]="true">Admin</os-dropdown-item>
+            <os-dropdown-item [data]="1">User</os-dropdown-item>
+            <os-dropdown-item [data]="2">Moderator</os-dropdown-item>
+            <os-dropdown-item [data]="3">Admin</os-dropdown-item>
         </os-dropdown>
     </os-form-field>
 

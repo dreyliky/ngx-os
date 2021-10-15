@@ -12,5 +12,5 @@ export class FixedToParentConfig {
      *
      * Unfortunately, there is no better way to observe the end of the scroll animation.
      **/
-    public calculationIterationsCount?: number = 30;
+    public calculationIterationsCount?: number = 40;
 }

@@ -1,0 +1,30 @@
+<os-dropdown>
+    <ng-template #dropdownPlaceholder>
+        <img
+            class="icon"
+            src="/assets/showcase/icons/icon.png" />
+
+        <os-label class="os-placeholder">
+            Choose your favorite component
+        </os-label>
+    </ng-template>
+
+    <ng-template
+        #dropdownValue
+        let-component>
+        <os-label
+            class="os-value"
+            [innerText]="component.name">
+        </os-label>
+    </ng-template>
+
+    <os-dropdown-item
+        *ngFor="let component of components"
+        [data]="component">
+        <img
+            class="icon"
+            [src]="component.imageUrl" />
+
+        {{ component.name }}
+    </os-dropdown-item>
+</os-dropdown>

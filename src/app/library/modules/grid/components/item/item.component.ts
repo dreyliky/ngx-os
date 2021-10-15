@@ -4,8 +4,7 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChild,
-    ElementRef,
-    HostBinding,
+    ElementRef, HostBinding,
     Inject,
     Input,
     OnInit,
@@ -85,8 +84,8 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        private readonly hostElementRef: ElementRef<HTMLElement>,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly changeDetector: ChangeDetectorRef,
+        private readonly hostElementRef: ElementRef<HTMLElement>
     ) {
         super();
     }

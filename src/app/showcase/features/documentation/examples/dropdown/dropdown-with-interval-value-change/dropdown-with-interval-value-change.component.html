@@ -9,7 +9,7 @@
         [value]="selectedItem">
         <os-dropdown-item
             *ngFor="let item of items"
-            [value]="item">
+            [data]="item">
             {{ item.name }}
         </os-dropdown-item>
     </os-dropdown>
