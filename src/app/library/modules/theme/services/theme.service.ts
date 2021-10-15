@@ -25,7 +25,7 @@ export class ThemeService<T> {
     private _applied$ = new BehaviorSubject<T>(null);
 
     constructor(
-        @Inject(DOCUMENT) private document: Document
+        @Inject(DOCUMENT) private readonly document: Document
     ) {
         this.initThemeLinkElement();
     }

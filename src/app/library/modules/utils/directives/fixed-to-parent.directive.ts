@@ -1,4 +1,7 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Directive, ElementRef, Inject, Input, OnInit } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { EventOutside, IntervalCheckerHelper as IntervalChecker } from '../../../core';
 import { FixedToParentConfig } from '../classes';
 
@@ -13,7 +16,7 @@ import { FixedToParentConfig } from '../classes';
 @Directive({
     selector: '[os-fixed-to-parent]'
 })
-export class FixedToParentDirective implements AfterViewInit {
+export class FixedToParentDirective implements OnInit, AfterViewInit {
     /** Configuration of directive */
     @Input('os-fixed-to-parent')
     public set config(config: FixedToParentConfig) {
@@ -30,8 +33,13 @@ export class FixedToParentDirective implements AfterViewInit {
     private readonly intervalChecker = new IntervalChecker();
 
     constructor(
+        @Inject(DOCUMENT) private readonly document: Document,
         private readonly hostElementRef: ElementRef<HTMLElement>
     ) {}
+
+    public ngOnInit(): void {
+        this.initDocumentWheelObserver();
+    }
 
     public ngAfterViewInit(): void {
         this.targetElement = this.hostElementRef.nativeElement;
@@ -41,17 +49,17 @@ export class FixedToParentDirective implements AfterViewInit {
     }
 
     /** @internal */
-    @HostListener('document:wheel', ['$event'])
-    public onDocumentWheel(event: WheelEvent): void {
-        if (this._config.isEnabled) {
-            const isEventOutsideTargetElement = EventOutside.checkForElement(this.targetElement, event);
-
-            if (isEventOutsideTargetElement) {
+    private initDocumentWheelObserver(): void {
+        fromEvent(this.document, 'wheel')
+            .pipe(
+                filter(() => this._config.isEnabled),
+                filter((event) => EventOutside.checkForElement(this.targetElement, event))
+            )
+            .subscribe(() => {
                 this.intervalChecker.start({
                     onIteration: () => this.adjustCoordinates()
                 });
-            }
-        }
+            });
     }
 
     private adjustCoordinates(): void {
