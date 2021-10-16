@@ -28,7 +28,7 @@ export class LibraryDocumentationService {
     public update(): Observable<Doc> {
         return this.http.get<Doc>(`/assets/library-doc/documentation.json`)
             .pipe(
-                tap((documentation) => console.log('lib-doc', documentation)),
+                tap((documentation) => console.log('library-documentation', documentation)),
                 tap((documentation) => this.state.set(documentation))
             );
     }

@@ -17,7 +17,7 @@ export class ExamplesDocumentationService {
     public update(): Observable<Doc> {
         return this.http.get<Doc>(`/assets/showcase-doc/documentation.json`)
             .pipe(
-                tap((documentation) => console.log('showcase-doc', documentation)),
+                tap((documentation) => console.log('showcase-documentation', documentation)),
                 tap((documentation) => this.state.set(documentation))
             );
     }
