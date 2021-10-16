@@ -1,4 +1,45 @@
-.icon {
-    height: 32px;
+:host {
+    height: 400px;
+    display: block;
+}
+
+.search-container {
+    padding: 7px;
+}
+
+.dropdown-icon {
+    height: 100%;
     margin-right: 5px;
+}
+
+.os-dropdown-item {
+    white-space: nowrap;
+
+    .component-icon {
+        height: 32px;
+        margin-right: 5px;
+    }
+    
+    .component-description {
+        color: gray;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.pagination-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 7px;
+
+    .os-button {
+        margin: 0px 2px;
+
+        &.os-focused {
+            font-weight: bold;
+        }
+    }
 }

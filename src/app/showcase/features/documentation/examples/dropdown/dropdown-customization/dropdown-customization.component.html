@@ -1,7 +1,16 @@
 <os-dropdown>
+    <div
+        os-dropdown-header
+        class="search-container">
+        <os-text-box
+            [placeholder]="'Search by name'"
+            (osKeyUp)="onSearch($event)">
+        </os-text-box>
+    </div>
+
     <ng-template #dropdownPlaceholder>
         <img
-            class="icon"
+            class="dropdown-icon"
             src="/assets/showcase/icons/icon.png" />
 
         <os-label class="os-placeholder">
@@ -12,19 +21,39 @@
     <ng-template
         #dropdownValue
         let-component>
-        <os-label
+        <img
+            class="dropdown-icon"
+            [src]="component.imageUrl" />
+
+        <b
             class="os-value"
             [innerText]="component.name">
-        </os-label>
+        </b>
     </ng-template>
 
     <os-dropdown-item
-        *ngFor="let component of components"
+        *ngFor="let component of filteredComponents"
         [data]="component">
         <img
-            class="icon"
+            class="component-icon"
             [src]="component.imageUrl" />
 
-        {{ component.name }}
+        {{ component.name }}&nbsp;
+
+        <span
+            class="component-description"
+            [innerText]="component.shortInfo">
+        </span>
     </os-dropdown-item>
+
+    <div
+        os-dropdown-footer
+        class="pagination-container">
+        <os-button
+            *ngFor="let pageIndex of pages"
+            [class.os-focused]="(pageIndex === activePage)"
+            [innerText]="(pageIndex + 1)"
+            (osClick)="onPageButtonClick(pageIndex)">
+        </os-button>
+    </div>
 </os-dropdown>
