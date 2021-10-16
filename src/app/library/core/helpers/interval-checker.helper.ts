@@ -48,7 +48,7 @@ export class IntervalCheckerHelper {
     }
 
     private initChecking(): void {
-        this.currentIntervalId = setInterval(() => {
+        this.currentIntervalId = window.setInterval(() => {
             this.passedCountOfChecks++;
 
             if (this.passedCountOfChecks < this.maxCheckCount) {

@@ -26,7 +26,7 @@ export class DynamicStateManager {
 
         this._state = state;
 
-        this.currentStateTimeoutId = setTimeout(() => {
+        this.currentStateTimeoutId = window.setTimeout(() => {
             this._state = null;
 
             this.afterEndCallback?.();
