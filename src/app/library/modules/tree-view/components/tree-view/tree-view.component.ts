@@ -15,7 +15,12 @@ import {
 } from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 import { ScrollViewComponent } from '../../../scroll-view';
-import { TreeNode, TreeNodeClickEvent, TreeNodeExpansionEvent, TreeNodeSelectionEvent } from '../../interfaces';
+import {
+    TreeNode,
+    TreeNodeClickEvent,
+    TreeNodeExpansionEvent,
+    TreeNodeSelectionEvent
+} from '../../interfaces';
 import { TreeNodesExpansionService, TreeNodesSelectionService } from '../../services';
 import { TreeNodesState } from '../../states';
 

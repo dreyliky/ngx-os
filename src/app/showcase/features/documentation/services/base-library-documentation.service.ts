@@ -10,7 +10,9 @@ import { Observable } from 'rxjs';
  **/
 export abstract class BaseLibraryDocumentationService<T> {
     protected readonly baseUrl = '/assets/docs';
-    protected readonly baseGithubUrl = 'https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs';
+    protected readonly baseGithubUrl = 'https://github.com/dreyliky/ngx-os' +
+        '/blob/master/src/app/library/docs';
+
     protected readonly abstract sectionUrl: string;
 
     constructor(

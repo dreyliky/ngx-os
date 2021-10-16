@@ -31,7 +31,9 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
         }
     ]
 })
-export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterViewInit, ControlValueAccessor {
+export class TextareaBoxComponent
+    extends OsBaseFieldComponent
+    implements AfterViewInit, ControlValueAccessor {
     /** Specifies the visible height of a textarea-box, in lines. */
     @Input()
     public rows: number;

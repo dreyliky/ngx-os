@@ -1,4 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { ComponentMetaInfo, LibraryComponentsSearchService } from '@features/documentation';
 import { TreeNode, TreeNodeSelectionEvent as Selection, TreeViewComponent } from 'ngx-os';
@@ -62,7 +69,8 @@ export class SideBarListComponent implements OnInit, AfterViewInit {
         const selectedNode = selectedNodes[0];
 
         if (selectedNode) {
-            const nodeElement = this.hostRef.nativeElement.querySelector(`#${selectedNode.id}`) as HTMLElement;
+            const nodeElement = this.hostRef.nativeElement
+                .querySelector(`#${selectedNode.id}`) as HTMLElement;
 
             this.treeView.scrollView.scrollTo(0, nodeElement.offsetTop);
         }

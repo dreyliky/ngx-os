@@ -10,7 +10,8 @@ import { BaseLibraryDocumentationService } from './base-library-documentation.se
 @Injectable({
     providedIn: 'root'
 })
-export class LibraryModuleDocumentationService extends BaseLibraryDocumentationService<OsComponentEnum> {
+export class LibraryModuleDocumentationService
+    extends BaseLibraryDocumentationService<OsComponentEnum> {
     protected readonly sectionUrl: string = '/modules/';
 
     constructor(

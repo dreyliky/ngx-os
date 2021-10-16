@@ -10,7 +10,8 @@ import { BaseLibraryDocumentationService } from './base-library-documentation.se
 @Injectable({
     providedIn: 'root'
 })
-export class LibraryGuideDocumentationService extends BaseLibraryDocumentationService<GuideDocumentationEnum> {
+export class LibraryGuideDocumentationService
+    extends BaseLibraryDocumentationService<GuideDocumentationEnum> {
     protected readonly sectionUrl: string = '/guides/';
 
     constructor(

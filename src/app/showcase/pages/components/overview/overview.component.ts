@@ -55,7 +55,9 @@ export class OverviewComponent extends OsBaseViewComponent implements OnInit {
             .subscribe(() => {
                 this.mainLayout.scrollView.scrollTo(0, 0);
                 this.initMetaInfo();
-                this.titleService.setTitle(`ngx-os - ${this.targetComponentMetaInfo.name} Documentation`);
+                this.titleService.setTitle(
+                    `ngx-os - ${this.targetComponentMetaInfo.name} Documentation`
+                );
                 this.changeDetector.detectChanges();
             });
     }

@@ -50,6 +50,8 @@ export class ListComponent implements OnInit {
     }
 
     public onComponentDblClick(type: OsComponentEnum): void {
-        this.router.navigateByUrl(`/${AppRoute.Components}/${type}/${OverviewSection.Documentation}`);
+        this.router.navigateByUrl(
+            `/${AppRoute.Components}/${type}/${OverviewSection.Documentation}`
+        );
     }
 }

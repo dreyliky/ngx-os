@@ -57,7 +57,8 @@ export class SideBarItemsService implements OnDestroy {
 
     private mapMetaInfosToTreeNodes(metaInfos: ComponentMetaInfo[]): TreeNode<SideBarItem>[] {
         return metaInfos.map((metaInfo) => {
-            const sectionUrl = `/${AppRouteEnum.Components}/${metaInfo.type}/${RouteEnum.Documentation}`;
+            const sectionUrl = `/${AppRouteEnum.Components}/` +
+                `${metaInfo.type}/${RouteEnum.Documentation}`;
             const isSectionUrlActive = this.currentRoute.includes(metaInfo.type);
 
             return {
@@ -75,7 +76,8 @@ export class SideBarItemsService implements OnDestroy {
         return this.baseSubSections
             .filter((section) => !this.isSectionForbidden(section, metaInfo))
             .map((section) => {
-                const sectionUrl = `/${AppRouteEnum.Components}/${metaInfo.type}/${section.data.sectionUrl}`;
+                const sectionUrl = `/${AppRouteEnum.Components}/` +
+                    `${metaInfo.type}/${section.data.sectionUrl}`;
                 const imageUrl = section.data.imageUrl;
 
                 return {
@@ -110,7 +112,10 @@ export class SideBarItemsService implements OnDestroy {
         this.currentRoute = url.slice(0, fragmentIndex);
     }
 
-    private isSectionForbidden(section: TreeNode<SideBarItem>, metaInfo: ComponentMetaInfo): boolean {
+    private isSectionForbidden(
+        section: TreeNode<SideBarItem>,
+        metaInfo: ComponentMetaInfo
+    ): boolean {
         const sectionUrl = section.data.sectionUrl as RouteEnum;
 
         return metaInfo.forbiddenOverviewSections?.includes(sectionUrl);

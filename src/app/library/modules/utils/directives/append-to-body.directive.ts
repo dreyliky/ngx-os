@@ -1,5 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Directive, ElementRef, Inject, Input, OnChanges, OnDestroy } from '@angular/core';
+import {
+    AfterViewInit,
+    Directive,
+    ElementRef,
+    Inject,
+    Input,
+    OnChanges,
+    OnDestroy
+} from '@angular/core';
 import { AppendToBodyConfig } from '../classes';
 
 /**

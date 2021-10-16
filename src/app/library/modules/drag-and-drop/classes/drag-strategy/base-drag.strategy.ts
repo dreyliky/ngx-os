@@ -47,7 +47,9 @@ export abstract class BaseDragStrategy {
     private initAfterViewInitObserver(): void {
         this.context.whenViewInit$
             .pipe(first())
-            .subscribe(() => this.initialDomRect = this.context.movableElement.getBoundingClientRect());
+            .subscribe(() => {
+                this.initialDomRect = this.context.movableElement.getBoundingClientRect();
+            });
     }
 
     public abstract updateElementPosition(event: MouseEvent): void;

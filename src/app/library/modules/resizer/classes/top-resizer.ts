@@ -13,8 +13,9 @@ export class TopResizer extends BaseResizer {
 
             if (this.config.isAllowChangePosition && this.config.yAxisTopStyleProperty) {
                 const position = `${this.originalY + (event.pageY - this.originalMouseY)}px`;
+                const property = this.config.yAxisTopStyleProperty;
 
-                this.resizableElement.style.setProperty(this.config.yAxisTopStyleProperty, position);
+                this.resizableElement.style.setProperty(property, position);
             }
         }
     }

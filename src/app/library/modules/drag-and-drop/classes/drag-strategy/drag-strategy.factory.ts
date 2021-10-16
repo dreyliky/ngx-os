@@ -19,23 +19,34 @@ export abstract class DragStrategyFactory {
             DragStrategyByTranslate3dImpl
         );
 
-    public static create(strategyConfig: DragStrategyType, context: DraggableDirective): BaseDragStrategy {
+    public static create(
+        strategyConfig: DragStrategyType,
+        context: DraggableDirective
+    ): BaseDragStrategy {
         const StrategyType = this.findByConfigInstance(strategyConfig);
 
         if (StrategyType) {
             return new StrategyType(context);
         }
 
-        throw new Error(`Incorrect type of strategyConfig. Can't create strategy implementation instance!`);
+        throw new Error(
+            `Incorrect type of strategyConfig. ` +
+            `Can't create strategy implementation instance!`
+        );
     }
 
-    public static isDifferent(newStrategyConfig: DragStrategyType, context: DraggableDirective): boolean {
+    public static isDifferent(
+        newStrategyConfig: DragStrategyType,
+        context: DraggableDirective
+    ): boolean {
         const NewStrategyType = this.findByConfigInstance(newStrategyConfig);
 
         return !(context.strategy instanceof NewStrategyType);
     }
 
-    private static findByConfigInstance(strategyConfig: DragStrategyType): Type<BaseDragStrategy> {
+    private static findByConfigInstance(
+        strategyConfig: DragStrategyType
+    ): Type<BaseDragStrategy> {
         const configName = (strategyConfig as Object).constructor.name;
 
         return this.strategyMap.get(configName);

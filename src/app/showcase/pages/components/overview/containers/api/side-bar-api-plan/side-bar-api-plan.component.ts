@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DevExamplesVisibilityService } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';

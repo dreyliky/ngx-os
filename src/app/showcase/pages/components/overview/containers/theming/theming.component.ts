@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LibraryThemingDocumentationService } from '@features/documentation';
+import { OsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../../overview.service';
 
 @Component({
@@ -10,24 +11,37 @@ import { OverviewService } from '../../overview.service';
     styleUrls: ['./theming.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ThemingComponent implements OnInit {
+export class ThemingComponent extends OsBaseViewComponent implements OnInit {
     public markdownContent$: Observable<string>;
     public contentGithubUrl: string;
 
     constructor(
         private readonly documentationService: LibraryThemingDocumentationService,
-        private readonly overviewService: OverviewService
-    ) {}
+        private readonly overviewService: OverviewService,
+        private readonly changeDetector: ChangeDetectorRef
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
         this.initMarkdownContentObservable();
+        this.initContentGithubUrlObserver();
     }
 
     private initMarkdownContentObservable(): void {
         this.markdownContent$ = this.overviewService.metaInfo$
             .pipe(
-                tap(({ type }) => this.contentGithubUrl = this.documentationService.getGithubUrl(type)),
                 switchMap(({ type }) => this.documentationService.getAsMarkdown(type))
             );
+    }
+
+    private initContentGithubUrlObserver(): void {
+        this.overviewService.metaInfo$
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(({ type }) => {
+                this.contentGithubUrl = this.documentationService.getGithubUrl(type);
+
+                this.changeDetector.detectChanges();
+            });
     }
 }

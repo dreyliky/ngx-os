@@ -62,7 +62,10 @@ export class MarkdownPreviewerComponent extends OsBaseViewComponent {
         });
     }
 
-    private highlightBlockElements(blockElements: NodeListOf<HTMLElement>, language: CodeLanguageType): void {
+    private highlightBlockElements(
+        blockElements: NodeListOf<HTMLElement>,
+        language: CodeLanguageType
+    ): void {
         blockElements.forEach((blockElement) => {
             const rawCode = blockElement.innerText;
             const highlightedCode = this.highlighter.highlight(language, rawCode);

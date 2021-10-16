@@ -61,7 +61,8 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
             showcaseTemplates.forEach((showcaseTemplate) => showcaseTemplate.clear());
 
             this.demoComponents.forEach(({ component }, componentIndex) => {
-                const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+                const componentFactory = this.componentFactoryResolver
+                    .resolveComponentFactory(component);
 
                 showcaseTemplates[componentIndex]?.createComponent(componentFactory);
             });
@@ -82,7 +83,10 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
             });
     }
 
-    private initShowcaseComponents(demoComponents: DemoComponentMetaInfo[], isDevExamplesVisible: boolean): void {
+    private initShowcaseComponents(
+        demoComponents: DemoComponentMetaInfo[],
+        isDevExamplesVisible: boolean
+    ): void {
         if (!isDevExamplesVisible) {
             this.demoComponents = demoComponents
                 ?.filter((showcaseComponent) => !showcaseComponent.isOnlyForDevEnv);

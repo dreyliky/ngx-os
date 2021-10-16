@@ -13,7 +13,10 @@ export abstract class GridDirectionStrategyFactory {
             case GridDirectionEnum.Vertical:
                 return new VerticalDirectionStrategy(context);
             default:
-                throw new Error(`Incorrect type of directionEnum. Can't create direction strategy!`);
+                throw new Error(
+                    'Incorrect type of directionEnum.' +
+                        'Can\'t create direction strategy!'
+                );
         }
     }
 }

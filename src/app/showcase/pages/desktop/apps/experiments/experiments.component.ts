@@ -1,5 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { DynamicWindowRefModel, DynamicWindowService, DYNAMIC_WINDOW_REF, KeysOfType } from 'ngx-os';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit
+} from '@angular/core';
+import {
+    DynamicWindowRefModel,
+    DynamicWindowService,
+    DYNAMIC_WINDOW_REF,
+    KeysOfType
+} from 'ngx-os';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EmptyWindowComponent } from './components';

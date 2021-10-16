@@ -42,7 +42,12 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategy {
             return '0px';
         }
 
-        return `${event.clientX - this.initialDomRect.x - this.shiftX + this.totalParentCoordinates.x}px`;
+        const calculatedPosition = (
+            event.clientX - this.initialDomRect.x -
+            this.shiftX + this.totalParentCoordinates.x
+        );
+
+        return `${calculatedPosition}px`;
     }
 
     private calculateElementPositionY(event: MouseEvent): string {
@@ -50,6 +55,11 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategy {
             return '0px';
         }
 
-        return `${event.clientY - this.initialDomRect.y - this.shiftY + this.totalParentCoordinates.y}px`;
+        const calculatedPosition = (
+            event.clientY - this.initialDomRect.y -
+            this.shiftY + this.totalParentCoordinates.y
+        );
+
+        return `${calculatedPosition}px`;
     }
 }

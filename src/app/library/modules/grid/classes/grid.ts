@@ -38,7 +38,10 @@ export class Grid<T> implements GridParams {
 
     private validateCellsCount(): void {
         if (this.xAxisCellsCount <= 0 || this.yAxisCellsCount <= 0) {
-            throw new Error(`Incorrect grid size. Cells count by x and y axes can't be less than 1!`);
+            throw new Error(
+                `Incorrect grid size.` +
+                `Cells count by x and y axes can't be less than 1!`
+            );
         }
     }
 }

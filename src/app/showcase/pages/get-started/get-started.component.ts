@@ -20,6 +20,7 @@ export class GetStartedComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        this.markdownContent$ = this.documentationService.getAsMarkdown(GuideDocumentationEnum.GetStarted);
+        this.markdownContent$ = this.documentationService
+            .getAsMarkdown(GuideDocumentationEnum.GetStarted);
     }
 }

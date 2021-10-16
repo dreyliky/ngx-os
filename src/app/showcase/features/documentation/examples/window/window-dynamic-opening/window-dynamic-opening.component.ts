@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject, Optional } from '@angular/core';
-import { DynamicWindowRefModel, DynamicWindowService, DYNAMIC_WINDOW_REF, IS_DYNAMIC_WINDOW_CONTEXT } from 'ngx-os';
+import {
+    DynamicWindowRefModel,
+    DynamicWindowService,
+    DYNAMIC_WINDOW_REF,
+    IS_DYNAMIC_WINDOW_CONTEXT
+} from 'ngx-os';
 
 @Component({
     selector: 'showcase-window-dynamic-opening',

@@ -18,8 +18,9 @@ export class TopRightResizer extends BaseResizer {
 
             if (this.config.isAllowChangePosition && this.config.xAxisRightStyleProperty) {
                 const position = `${(this.documentElement.clientWidth - event.clientX)}px`;
+                const property = this.config.xAxisRightStyleProperty;
 
-                this.resizableElement.style.setProperty(this.config.xAxisRightStyleProperty, position);
+                this.resizableElement.style.setProperty(property, position);
             }
         }
     }
@@ -32,8 +33,9 @@ export class TopRightResizer extends BaseResizer {
 
             if (this.config.isAllowChangePosition && this.config.yAxisTopStyleProperty) {
                 const position = `${this.originalY + (event.pageY - this.originalMouseY)}px`;
+                const property = this.config.yAxisTopStyleProperty;
 
-                this.resizableElement.style.setProperty(this.config.yAxisTopStyleProperty, position);
+                this.resizableElement.style.setProperty(property, position);
             }
         }
     }

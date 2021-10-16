@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Input,
+    OnInit
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OsBaseViewComponent } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';

@@ -18,8 +18,11 @@ import { filter, map, skip, takeUntil } from 'rxjs/operators';
 import { EventOutside } from '../../../../core';
 import { DraggableDirective, DragInfo } from '../../../drag-and-drop';
 import { ResizeInfo } from '../../../resizer';
-import { DYNAMIC_WINDOW_SHARED_CONFIG } from '../../data';
-import { DynamicStateEnum as DynamicState, DynamicWindowCssVariableEnum as CssVariable } from '../../enums';
+import { DYNAMIC_WINDOW_SHARED_CONFIG as SHARED_CONFIG } from '../../data';
+import {
+    DynamicStateEnum as DynamicState,
+    DynamicWindowCssVariableEnum as CssVariable
+} from '../../enums';
 import { mergeConfigs } from '../../helpers';
 import { DynamicWindowConfig } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
@@ -34,7 +37,9 @@ import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicWindowComponent extends BaseDynamicWindowComponent implements OnInit, AfterViewInit {
+export class DynamicWindowComponent
+    extends BaseDynamicWindowComponent
+    implements OnInit, AfterViewInit {
     @ViewChild('content', { read: ViewContainerRef, static: true })
     private readonly contentViewRef: ViewContainerRef;
 
@@ -43,7 +48,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        @Inject(DYNAMIC_WINDOW_SHARED_CONFIG) private sharedConfig$: Observable<DynamicWindowConfig>,
+        @Inject(SHARED_CONFIG) private readonly sharedConfig$: Observable<DynamicWindowConfig>,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
@@ -167,8 +172,10 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
 
     private initDynamicStateManager(): void {
         this.dynamicStateManager.apply(DynamicState.Opening);
-        this.dynamicStateManager.registerAfterStartCallback(() => this.changeDetector.detectChanges());
-        this.dynamicStateManager.registerAfterEndCallback(() => this.changeDetector.markForCheck());
+        this.dynamicStateManager
+            .registerAfterStartCallback(() => this.changeDetector.detectChanges());
+        this.dynamicStateManager
+            .registerAfterEndCallback(() => this.changeDetector.markForCheck());
     }
 
     private initWindowSizes(): void {
@@ -184,7 +191,9 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private initHtmlElements(): void {
         this.windowElement = this.hostRef.nativeElement.querySelector('.os-window');
         this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
-        this.titleBarButtons = Array.from(this.titleBarElement.querySelectorAll('.os-title-bar-button .os-icon'));
+        const titleBarButtons = this.titleBarElement
+            .querySelectorAll<HTMLButtonElement>('.os-title-bar-button .os-icon');
+        this.titleBarButtons = Array.from(titleBarButtons);
     }
 
     private initOutsideClickObserver(): void {
@@ -192,7 +201,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 filter(() => this.windowRef.isActive),
-                filter((event: MouseEvent) => EventOutside.checkForElement(this.windowElement, event))
+                filter((event) => EventOutside.checkForElement(this.windowElement, event))
             )
             .subscribe(() => this.windowRef.setIsActive(false));
     }
@@ -233,7 +242,11 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
         this.windowRef.isFullscreen$
             .pipe(
                 skip(1),
-                map((state) => (state) ? DynamicState.EnteringFullscreen : DynamicState.EnteringWindowed)
+                map((state) => (
+                    (state) ?
+                        DynamicState.EnteringFullscreen :
+                        DynamicState.EnteringWindowed
+                ))
             )
             .subscribe((dynamicState) => this.dynamicStateManager.apply(dynamicState));
     }

@@ -13,8 +13,9 @@ export class LeftResizer extends BaseResizer {
 
             if (this.config.isAllowChangePosition && this.config.xAxisLeftStyleProperty) {
                 const position = `${this.originalX + (event.pageX - this.originalMouseX)}px`;
+                const property = this.config.xAxisLeftStyleProperty;
 
-                this.resizableElement.style.setProperty(this.config.xAxisLeftStyleProperty, position);
+                this.resizableElement.style.setProperty(property, position);
             }
         }
     }

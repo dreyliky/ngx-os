@@ -6,7 +6,10 @@ import {
     UtilsModule
 } from 'ngx-os';
 import { OsComponentEnum, OsComponentOverviewSectionEnum as OverviewSection } from '../../enums';
-import { UtilsAppendToBodyOverviewComponent, UtilsFixedToParentOverviewComponent } from '../../examples';
+import {
+    UtilsAppendToBodyOverviewComponent,
+    UtilsFixedToParentOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const UTILS_META_INFO: ComponentMetaInfo = {

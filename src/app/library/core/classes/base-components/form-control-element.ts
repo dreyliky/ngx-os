@@ -6,7 +6,8 @@ import { OsBaseComponent } from './component';
 @Component({
     template: ''
 })
-export abstract class OsBaseFormControlComponent<T = any> extends OsBaseComponent implements ControlValueAccessor {
+export abstract class OsBaseFormControlComponent<T = any>
+    extends OsBaseComponent implements ControlValueAccessor {
     public onChange: (value: T) => void;
     public onTouched: () => void;
 

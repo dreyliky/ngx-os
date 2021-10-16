@@ -14,16 +14,6 @@ export interface Doc {
     routes: any[];
 }
 
-interface File {
-    filePath: string;
-    type: string;
-    linktype: string;
-    name: string;
-    coveragePercent: number;
-    coverageCount: string;
-    status: string;
-}
-
 interface Miscellaneous {
     variables: DocVariable[];
     functions: any[];

@@ -70,7 +70,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     /** @internal */
     public _trackByFn = (_: TabComponent, index: number): number => {
         return index;
-    }
+    };
 
     private initTabButtonClickObservers(): void {
         this._tabComponentList

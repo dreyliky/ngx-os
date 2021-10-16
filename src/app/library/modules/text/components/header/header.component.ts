@@ -59,7 +59,10 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
         }
 
         if (value < this.minSize || value > this.maxSize) {
-            throw new Error(`os-header size param can't be less than ${this.minSize} and more than ${this.maxSize}!`);
+            throw new Error(
+                `os-header size param can't be less than ` +
+                `${this.minSize} and more than ${this.maxSize}!`
+            );
         }
     }
 }

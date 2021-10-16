@@ -1,5 +1,14 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Directive, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output } from '@angular/core';
+import {
+    AfterViewInit,
+    Directive,
+    ElementRef,
+    EventEmitter,
+    Inject,
+    Input,
+    OnDestroy,
+    Output
+} from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { BaseDragStrategy, DraggerConfigModel, DragStrategyFactory } from '../classes';
 import { DraggerCssClassEnum as CssClass } from '../enums';
@@ -144,7 +153,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
         this.document.addEventListener('mouseup', this.documentMouseUpHandler);
         this.osDragStart.emit(dragInfo);
-    }
+    };
 
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
         this.updateMovableElementPosition(event);
@@ -153,7 +162,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
 
         this.osDragging.emit(dragInfo);
         setTimeout(() => this.osAfterDragging.emit(this.getDragInfo(event)));
-    }
+    };
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {
         const dragInfo = this.getDragInfo(event);
@@ -162,7 +171,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         this.document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         this.document.removeEventListener('mouseup', this.documentMouseUpHandler);
         this.osDragEnd.emit(dragInfo);
-    }
+    };
 
     private getDragInfo(mouseEvent: MouseEvent): DragInfo {
         return {

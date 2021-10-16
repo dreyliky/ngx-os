@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    HostBinding,
+    OnInit
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { OsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';

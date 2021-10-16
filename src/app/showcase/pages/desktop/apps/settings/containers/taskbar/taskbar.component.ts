@@ -25,7 +25,9 @@ export class TaskbarComponent implements OnInit {
         this.selectedPlacement = this.taskbarPlacementService.data;
     }
 
-    public onPlacementChange({ data: value }: DropdownValueChangeEvent<TaskbarPlacementEnum>): void {
+    public onPlacementChange(
+        { data: value }: DropdownValueChangeEvent<TaskbarPlacementEnum>
+    ): void {
         this.taskbarPlacementService.change(value);
 
         this.selectedPlacement = this.taskbarPlacementService.data;

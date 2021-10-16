@@ -12,7 +12,10 @@ export class DynamicWindowsCoordinatesService {
     private currentAmoutOfWindows = 0;
 
     public applyDefault(windowRef: DynamicWindowRefModel): void {
-        if (typeof(windowRef.config.positionX) !== 'number' && typeof(windowRef.config.positionY) !== 'number') {
+        if (
+            typeof(windowRef.config.positionX) !== 'number' &&
+            typeof(windowRef.config.positionY) !== 'number'
+        ) {
             if (this.currentAmoutOfWindows >= this.maxAmountOfWindows) {
                 this.currentAmoutOfWindows = 0;
             }

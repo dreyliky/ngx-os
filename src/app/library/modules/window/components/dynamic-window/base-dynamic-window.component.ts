@@ -1,5 +1,8 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
-import { CssClasslistToObjectHelper as ClasslistToObject, OsBaseViewComponent } from '../../../../core';
+import {
+    CssClasslistToObjectHelper as ClasslistToObject,
+    OsBaseViewComponent
+} from '../../../../core';
 import { DraggerConfigModel, DragStrategyByAxisProperties } from '../../../drag-and-drop';
 import { ResizerConfigModel } from '../../../resizer';
 import { DynamicStateManager, DynamicWindowRefModel } from '../../classes';
@@ -104,8 +107,8 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
     public windowOrderIndex: number = 0;
 
     public windowElement: HTMLElement;
-    public titleBarElement: HTMLDivElement;
-    public titleBarButtons: HTMLButtonElement[] = [];
+    public titleBarElement: HTMLElement;
+    public titleBarButtons: HTMLElement[] = [];
 
     protected readonly dynamicStateManager = new DynamicStateManager();
     protected readonly baseZIndex: number = 1000;

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    OnInit,
+    ViewEncapsulation
+} from '@angular/core';
 import { OsBaseComponent } from '../../../../core';
 
 @Component({

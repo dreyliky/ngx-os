@@ -23,7 +23,7 @@ export class GridOverviewComponent implements OnInit {
     private readonly defaultItem: MyGridItem = {
         label: 'My amazing item to display',
         iconUrl: '/assets/showcase/icons/folder-opened.png'
-    }
+    };
 
     public ngOnInit(): void {
         this.onAddButtonClick();

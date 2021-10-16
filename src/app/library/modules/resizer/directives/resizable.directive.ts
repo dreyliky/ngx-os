@@ -13,7 +13,11 @@ import { ReplaySubject } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { CommonCssClassEnum as CommonCssClass } from '../../../core';
 import { BaseResizer, ResizerConfigModel, ResizerFactory } from '../classes';
-import { ResizerCssClassEnum as CssClass, ResizerElementTagEnum as ElementTag, ResizerEnum } from '../enums';
+import {
+    ResizerCssClassEnum as CssClass,
+    ResizerElementTagEnum as ElementTag,
+    ResizerEnum
+} from '../enums';
 import { ResizeInfo } from '../interfaces';
 
 /** @dynamic */
@@ -128,7 +132,10 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     }
 
     private updateResizersWrapperDomPlacement(): void {
-        if (this._resizersWrapperElement && (this._resizersWrapperElement.parentElement !== this._resizableElement)) {
+        if (
+            this._resizersWrapperElement &&
+            (this._resizersWrapperElement.parentElement !== this._resizableElement)
+        ) {
             this._resizersWrapperElement.remove();
 
             this._resizableElement.appendChild(this._resizersWrapperElement);
@@ -137,8 +144,9 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
 
     private updateResizersWrapperActivity(): void {
         const classList = this._resizersWrapperElement.classList;
+        const action: keyof DOMTokenList = (this.config.isEnabled) ? 'add' : 'remove';
 
-        (this.config.isEnabled) ? classList.add(CommonCssClass.Active) : classList.remove(CommonCssClass.Active);
+        classList[action](CommonCssClass.Active);
     }
 
     private resizerMouseDownHandler(event: MouseEvent, resizerId: ResizerEnum): void {
@@ -162,13 +170,13 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
         this._resizerInstance.resizeElement(event);
         this.osResizing.emit(this.getResizeInfo(event));
         setTimeout(() => this.osAfterResizing.emit(this.getResizeInfo(event)));
-    }
+    };
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {
         this._resizableElement.classList.remove(CssClass.Resizing);
         this._document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         this.osResizeEnd.emit(this.getResizeInfo(event));
-    }
+    };
 
     private getResizeInfo(originalEvent: MouseEvent): ResizeInfo {
         return {

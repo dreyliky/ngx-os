@@ -22,7 +22,12 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, merge, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { CommonCssClassEnum, EventOutside, isNil, OsBaseFormControlComponent } from '../../../../core';
+import {
+    CommonCssClassEnum,
+    EventOutside,
+    isNil,
+    OsBaseFormControlComponent
+} from '../../../../core';
 import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-window-context.token';
 import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownItemComponent } from '../dropdown-item';
@@ -123,7 +128,7 @@ export class DropdownComponent<T>
         this.setInitialValue(value);
         // This microtask helps to solve the problem with structural directives that are imposed on elements.
         // Structural directives are always recreating the EmbeddedView.
-        queueMicrotask(() => this.initSelectedOptionByValue(value));
+        queueMicrotask(() => this.initSelectedItemByValue(value));
     }
 
     /** Stylelist for scroll view component of the dropdown overlay */
@@ -152,11 +157,11 @@ export class DropdownComponent<T>
 
     /** @internal */
     @ContentChildren(DropdownItemComponent)
-    public set _optionComponentQueryList(data: QueryList<DropdownItemComponent<T>>) {
-        this.optionComponentQueryList = data;
+    public set _itemComponentQueryList(data: QueryList<DropdownItemComponent<T>>) {
+        this.itemComponentQueryList = data;
 
-        this.optionsChanged$.next();
-        this.initOptionComponentsSelectedObserver();
+        this.itemsChanged$.next();
+        this.initItemComponentsSelectedObserver();
     }
 
     /** Is dropdown overlay with items opened? */
@@ -183,16 +188,16 @@ export class DropdownComponent<T>
     }
 
     /** @internal */
-    public get _valueContext(): string {
+    public get _valueContext(): T {
         return this._value;
     }
 
     private _label: string;
-    private _value: any;
+    private _value: T;
     private initialValue: T;
-    private optionComponentQueryList: QueryList<DropdownItemComponent<T>>;
-    private selectedOptionComponent: DropdownItemComponent<T>;
-    private optionsChanged$ = new Subject();
+    private itemComponentQueryList: QueryList<DropdownItemComponent<T>>;
+    private selectedItemComponent: DropdownItemComponent<T>;
+    private itemsChanged$ = new Subject();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
@@ -212,14 +217,14 @@ export class DropdownComponent<T>
         // This microtask helps to solve the problem with structural directives that are imposed on elements.
         // Structural directives are always recreating the EmbeddedView.
         queueMicrotask(() => {
-            this.initSelectedOptionByValue(this.initialValue);
+            this.initSelectedItemByValue(this.initialValue);
             this.changeDetector.detectChanges();
         });
     }
 
     public ngOnDestroy(): void {
         super.ngOnDestroy();
-        this.optionsChanged$.complete();
+        this.itemsChanged$.complete();
     }
 
     /** Opens the dropdown overlay */
@@ -244,7 +249,7 @@ export class DropdownComponent<T>
     /** @internal */
     public writeValue(value: T): void {
         this.setInitialValue(value);
-        this.initSelectedOptionByValue(value);
+        this.initSelectedItemByValue(value);
     }
 
     protected onClick(event: PointerEvent): void {
@@ -254,10 +259,13 @@ export class DropdownComponent<T>
         }
     }
 
-    private onOptionSelected(event: DropdownValueChangeEvent<T>, optionComponent: DropdownItemComponent<T>): void {
-        this.initSelectedOption(optionComponent);
-        this.deselectAllOptions();
-        optionComponent.setSelectedState(true);
+    private onItemSelected(
+        event: DropdownValueChangeEvent<T>,
+        itemComponent: DropdownItemComponent<T>
+    ): void {
+        this.initSelectedItem(itemComponent);
+        this.deselectAllItems();
+        itemComponent.setSelectedState(true);
         this.valueChange.emit(event.data);
         this.osChange.emit(event);
         this.onChange?.(event.data);
@@ -270,77 +278,75 @@ export class DropdownComponent<T>
         }
     }
 
-    private getOptionComponentByData(data: T): DropdownItemComponent<T> {
-        return this.optionComponentQueryList
-            ?.find((optionComponent) => optionComponent.data === data);
+    private getItemComponentByData(data: T): DropdownItemComponent<T> {
+        return this.itemComponentQueryList
+            ?.find((itemComponent) => itemComponent.data === data);
     }
 
-    private deselectAllOptions(): void {
-        this.optionComponentQueryList
-            ?.forEach((optionComponent) => optionComponent.setSelectedState(false));
+    private deselectAllItems(): void {
+        this.itemComponentQueryList
+            ?.forEach((itemComponent) => itemComponent.setSelectedState(false));
     }
 
-    private initSelectedOptionByValue(data: T): void {
-        const optionComponent = this.getOptionComponentByData(data);
+    private initSelectedItemByValue(data: T): void {
+        const itemComponent = this.getItemComponentByData(data);
 
-        this.initSelectedOption(optionComponent);
+        this.initSelectedItem(itemComponent);
     }
 
-    private initSelectedOption(option: DropdownItemComponent<T>): void {
-        this.selectedOptionComponent = option ?? null;
+    private initSelectedItem(item: DropdownItemComponent<T>): void {
+        this.selectedItemComponent = item ?? null;
 
-        this.deselectAllOptions();
+        this.deselectAllItems();
         this.initValue();
         this.initLabel();
 
-        if (this.selectedOptionComponent) {
-            this.selectedOptionComponent.setSelectedState(true);
+        if (this.selectedItemComponent) {
+            this.selectedItemComponent.setSelectedState(true);
         }
     }
 
-    private initValueBasedOnSelectedOption(optionComponent: DropdownItemComponent<T>): void {
-        if (optionComponent.isSelected) {
-            this.initSelectedOption(optionComponent);
+    private initValueBasedOnSelectedItem(itemComponent: DropdownItemComponent<T>): void {
+        if (itemComponent.isSelected) {
+            this.initSelectedItem(itemComponent);
         }
     }
 
     private initLabel(): void {
-        const value = this.selectedOptionComponent?.data as any;
-        const rawLabel = this.selectedOptionComponent?.getLabel();
+        const value = this.selectedItemComponent?.data?.toString();
+        const rawLabel = this.selectedItemComponent?.getLabel();
 
         this._label = rawLabel ?? value ?? null;
     }
 
     private initValue(): void {
-        const value = this.selectedOptionComponent?.data as any;
-
-        this._value = value ?? null;
+        this._value = (this.selectedItemComponent?.data ?? null);
     }
 
-    private initOptionComponentsSelectedObserver(): void {
-        this.optionComponentQueryList
-            .forEach((optionComponent) => {
-                this.initOptionComponentSelectedStateObserver(optionComponent);
-                this.initValueBasedOnSelectedOption(optionComponent);
+    private initItemComponentsSelectedObserver(): void {
+        this.itemComponentQueryList
+            .forEach((itemComponent) => {
+                this.initItemComponentSelectedStateObserver(itemComponent);
+                this.initValueBasedOnSelectedItem(itemComponent);
             });
     }
 
-    private initOptionComponentSelectedStateObserver(optionComponent: DropdownItemComponent<T>): void {
-        const changesOrDestroyed$ = merge(this.viewDestroyed$, this.optionsChanged$);
+    private initItemComponentSelectedStateObserver(itemComponent: DropdownItemComponent<T>): void {
+        const changesOrDestroyed$ = merge(this.viewDestroyed$, this.itemsChanged$);
 
-        optionComponent.osSelected
+        itemComponent.osSelected
             .pipe(takeUntil(changesOrDestroyed$))
-            .subscribe((event) => this.onOptionSelected(event, optionComponent));
+            .subscribe((event) => this.onItemSelected(event, itemComponent));
     }
 
     private initClickOutsideObserver(): void {
-        const dropdownElement = this.hostRef.nativeElement;
-
         fromEvent(this.document, 'click')
             .pipe(
                 takeUntil(this.viewDestroyed$),
-                filter(() => this.isOverlayOpened),
-                filter((event) => EventOutside.checkForElement(dropdownElement, event))
+                filter((event) => (
+                    this.isOverlayOpened &&
+                    EventOutside.checkForElement(this.hostRef.nativeElement, event)
+                ))
             )
             .subscribe(() => this.close());
     }

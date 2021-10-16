@@ -25,7 +25,9 @@ import { DropdownValueChangeEvent } from '../../interfaces';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit, AfterContentInit, OnChanges {
+export class DropdownItemComponent<T>
+    extends OsBaseComponent
+    implements OnInit, AfterContentInit, OnChanges {
     /** Data of the dropdown item */
     @Input()
     public data: T;
