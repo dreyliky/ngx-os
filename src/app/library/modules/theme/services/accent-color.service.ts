@@ -49,10 +49,10 @@ export class AccentColorService {
     }
 
     private parseCssColor(cssColor: string): ThemeRgbColor {
-        const colorAsArray = cssColor
+        const [r, g, b] = cssColor
             .split(',')
             .map((colorPart) => +colorPart.replace( /^\D+/g, ''));
 
-        return { r: colorAsArray[0], g: colorAsArray[1], b: colorAsArray[2] };
+        return { r, g, b };
     }
 }
