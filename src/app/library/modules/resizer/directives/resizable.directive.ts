@@ -13,6 +13,7 @@ import { ReplaySubject } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { CommonCssClassEnum as CommonCssClass } from '../../../core';
 import { BaseResizer, ResizerConfigModel, ResizerFactory } from '../classes';
+import { RESIZERS_ARRAY } from '../data';
 import {
     ResizerCssClassEnum as CssClass,
     ResizerElementTagEnum as ElementTag,
@@ -65,6 +66,10 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     /** Fires when the `mouseup` is called and after all internal handlers removed */
     @Output()
     public osResizeEnd: EventEmitter<ResizeInfo> = new EventEmitter();
+
+    public get resizableElement(): HTMLElement {
+        return this._resizableElement;
+    }
 
     private _resizableElement: HTMLElement;
     private _resizersWrapperElement: HTMLElement;
@@ -120,15 +125,28 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     }
 
     private initResizerElements(): void {
-        this.config.allowedResizers.forEach((resizerName) => {
-            const resizerElement = this._document.createElement(ElementTag.Resizer);
+        RESIZERS_ARRAY.forEach((resizer) => {
+            const targetExisting = this._resizersWrapperElement.querySelector(`.${resizer}`);
+            const isTargetAllowed = this.config.allowedResizers.includes(resizer);
 
-            resizerElement.classList.add(resizerName);
-            resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
-                this.resizerMouseDownHandler(event, resizerName);
-            });
-            this._resizersWrapperElement.appendChild(resizerElement);
+            if (targetExisting && !isTargetAllowed) {
+                // If target (already existing) resizer became forbidden
+                this._resizersWrapperElement.removeChild(targetExisting);
+            } else if (!targetExisting && isTargetAllowed) {
+                // If target resizer absent but became allowed
+                this.createResizer(resizer);
+            }
         });
+    }
+
+    private createResizer(resizer: ResizerEnum): void {
+        const resizerElement = this._document.createElement(ElementTag.Resizer);
+
+        resizerElement.classList.add(resizer);
+        resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
+            this.resizerMouseDownHandler(event, resizer);
+        });
+        this._resizersWrapperElement.appendChild(resizerElement);
     }
 
     private updateResizersWrapperDomPlacement(): void {

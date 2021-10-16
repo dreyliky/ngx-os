@@ -266,7 +266,7 @@ export class DynamicWindowComponent
                 this.config = mergeConfigs(updatedConfig, sharedConfig);
                 this.updateComplexStructuresIfViewInit();
 
-                this.changeDetector.markForCheck();
+                this.changeDetector.detectChanges();
             });
     }
 }

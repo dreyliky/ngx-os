@@ -6,27 +6,55 @@
 
     &.taskbar-bottom {
         flex-direction: column;
+
+        desktop-taskbar {
+            max-height: 70vh;
+        }
     }
 
     &.taskbar-top {
         flex-direction: column-reverse;
+
+        desktop-taskbar {
+            max-height: 70vh;
+        }
     }
 
     &.taskbar-left {
         flex-direction: row-reverse;
+
+        desktop-taskbar {
+            max-width: 70vh;
+        }
     }
 
     &.taskbar-right {
         flex-direction: row;
+
+        desktop-taskbar {
+            max-width: 70vh;
+        }
     }
 }
 
 desktop-shortcuts-zone {
     width: 100%;
-    height: 100%;
-    flex: auto;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 100%;
 }
 
 desktop-taskbar {
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    &.taskbar-left,
+    &.taskbar-right {
+        max-width: 70vh;
+    }
+
+    &.taskbar-top,
+    &.taskbar-bottom {
+        max-height: 70vh;
+    }
 }

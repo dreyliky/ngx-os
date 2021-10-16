@@ -9,7 +9,7 @@ export function mergeConfigs(
 
     for (const [key, value] of Object.entries({ ...updated, ...shared })) {
         if (Array.isArray(value)) {
-            result[key] = [...(updated[key] ?? shared[key])];
+            result[key] = (updated[key] ?? shared[key]);
         } else if (value === Object(value)) {
             result[key] = { ...shared?.[key], ...updated?.[key] };
         } else {

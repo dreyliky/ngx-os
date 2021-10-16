@@ -1,17 +1,117 @@
 :host-context(.win10) {
-    width: 100%;
-    min-height: 50px;
     display: flex;
     flex-wrap: wrap;
     background-color: rgba(255, 255, 255, .5);
     backdrop-filter: blur(40px);
 
-    .taskbar-button {
-        $width: 61px;
+    $button-width: 61px;
 
-        width: $width;
-        min-width: $width;
-        max-width: $width;
+    &:host-context(.taskbar-top) {
+        width: 100%;
+        min-height: 50px;
+        flex-basis: 50px;
+
+        .taskbar-button {
+            ::before {
+                width: 51px;
+                height: 3px;
+                top: 0;
+                left: 6px;
+            }
+
+            &:hover ::before {
+                width: 100%;
+                left: 0px;
+            }
+
+            &.os-active ::before {
+                width: 100%;
+                left: 0px;
+            }
+        }
+    }
+
+    &:host-context(.taskbar-bottom) {
+        width: 100%;
+        min-height: 50px;
+        flex-basis: 50px;
+
+        .taskbar-button {
+            ::before {
+                width: 51px;
+                height: 3px;
+                bottom: 0;
+                left: 6px;
+            }
+
+            &:hover ::before {
+                width: 100%;
+                left: 0px;
+            }
+
+            &.os-active ::before {
+                width: 100%;
+                left: 0px;
+            }
+        }
+    }
+
+    &:host-context(.taskbar-left) {
+        min-width: $button-width;
+        height: 100%;
+        flex-basis: $button-width;
+        flex-direction: column;
+
+        .taskbar-button {
+            ::before {
+                width: 3px;
+                height: 38px;
+                top: 6px;
+                left: 0;
+            }
+
+            &:hover ::before {
+                height: 100%;
+                top: 0px;
+            }
+
+            &.os-active ::before {
+                height: 100%;
+                top: 0px;
+            }
+        }
+    }
+
+    &:host-context(.taskbar-right) {
+        min-width: $button-width;
+        height: 100%;
+        flex-basis: $button-width;
+        flex-direction: column;
+
+        .taskbar-button {
+            ::before {
+                width: 3px;
+                height: 38px;
+                top: 6px;
+                right: 0;
+            }
+
+            &:hover ::before {
+                height: 100%;
+                top: 0px;
+            }
+
+            &.os-active ::before {
+                height: 100%;
+                top: 0px;
+            }
+        }
+    }
+
+    .taskbar-button {
+        width: $button-width;
+        min-width: $button-width;
+        max-width: $button-width;
         height: 50px;
         position: relative;
         display: flex;
@@ -24,23 +124,14 @@
         transition: background 0.3s ease;
 
         ::before {
-            width: 51px;
-            height: 3px;
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 6px;
             background: rgb(var(--os-primary-color));
             transition: all 0.15s ease;
         }
 
         &:hover {
             background: rgba(255, 255, 255, .5);
-
-            ::before {
-                width: 100%;
-                left: 0px;
-            }
         }
 
         .icon {
@@ -57,11 +148,6 @@
         &.os-active {
             background-color: rgba(255, 255, 255, .5);
             transform: none;
-
-            ::before {
-                width: 100%;
-                left: 0px;
-            }
 
             &:hover {
                 background-color: rgba(255, 255, 255, .8);

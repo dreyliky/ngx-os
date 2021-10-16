@@ -11,7 +11,8 @@ export const TASKBAR_PLACEMENT_ARRAY: TaskbarPlacement[] = [
         targetSizeProperty: 'offsetHeight',
         resizerConfig: {
             allowedResizers: [ResizerEnum.Top],
-            heightStyleProperty: 'min-height'
+            isAllowChangePosition: false,
+            heightStyleProperty: 'flex-basis'
         }
     },
     {
@@ -22,7 +23,8 @@ export const TASKBAR_PLACEMENT_ARRAY: TaskbarPlacement[] = [
         targetSizeProperty: 'offsetHeight',
         resizerConfig: {
             allowedResizers: [ResizerEnum.Bottom],
-            heightStyleProperty: 'min-height'
+            isAllowChangePosition: false,
+            heightStyleProperty: 'flex-basis'
         }
     },
     {
@@ -33,7 +35,8 @@ export const TASKBAR_PLACEMENT_ARRAY: TaskbarPlacement[] = [
         targetSizeProperty: 'offsetWidth',
         resizerConfig: {
             allowedResizers: [ResizerEnum.Right],
-            heightStyleProperty: 'min-width'
+            isAllowChangePosition: false,
+            widthStyleProperty: 'flex-basis'
         }
     },
     {
@@ -44,7 +47,8 @@ export const TASKBAR_PLACEMENT_ARRAY: TaskbarPlacement[] = [
         targetSizeProperty: 'offsetWidth',
         resizerConfig: {
             allowedResizers: [ResizerEnum.Left],
-            heightStyleProperty: 'min-width'
+            isAllowChangePosition: false,
+            widthStyleProperty: 'flex-basis'
         }
     }
 ];

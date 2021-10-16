@@ -1,7 +1,6 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import {
-    CssClasslistToObjectHelper as ClasslistToObject,
-    OsBaseViewComponent
+    CssClasslistToObjectHelper as ClasslistToObject, isObjectsWithSameData, OsBaseViewComponent
 } from '../../../../core';
 import { DraggerConfigModel, DragStrategyByAxisProperties } from '../../../drag-and-drop';
 import { ResizerConfigModel } from '../../../resizer';
@@ -149,16 +148,20 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
     }
 
     protected updateDraggerConfig(): void {
-        this.draggerConfig = {
+        const newConfig = {
             draggableElement: this.titleBarElement,
             movableElement: this.windowElement,
             childElementsBlackList: this.titleBarButtons,
             strategy: this.draggerStrategy
         };
+
+        if (!this.draggerConfig || !isObjectsWithSameData(newConfig, this.draggerConfig)) {
+            this.draggerConfig = newConfig;
+        }
     }
 
     protected updateResizerConfig(): void {
-        this.resizerConfig = {
+        const newConfig = {
             targetElement: this.windowElement,
             minWidth: this.config.minWidth,
             minHeight: this.config.minHeight,
@@ -171,5 +174,9 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
             widthStyleProperty: CssVariable.Width,
             heightStyleProperty: CssVariable.Height
         };
+
+        if (!this.resizerConfig || !isObjectsWithSameData(newConfig, this.resizerConfig)) {
+            this.resizerConfig = newConfig;
+        }
     }
 }

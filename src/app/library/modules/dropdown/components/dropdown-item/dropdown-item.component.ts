@@ -78,6 +78,7 @@ export class DropdownItemComponent<T>
 
     protected onClick(originalEvent: MouseEvent): void {
         super.onClick(originalEvent);
+        originalEvent.stopPropagation();
 
         if (!this.isDisabled) {
             this.osSelected.emit({ originalEvent, data: this.data });
