@@ -12,6 +12,9 @@ export const SHUT_DOWN_APP: AppMetadata = {
         iconUrl: 'assets/showcase/icons/shutdown.png',
         isTitleBarVisible: false,
         isFullscreenByDefault: true,
+        style: {
+            'z-index': '10000 !important'
+        },
         fullscreenOffset: {
             top: '0px',
             bottom: '0px',

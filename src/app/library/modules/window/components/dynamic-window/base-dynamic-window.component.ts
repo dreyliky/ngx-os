@@ -69,7 +69,6 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
 
     public get windowStyle(): object {
         return {
-            ...this.config.style,
             [CssVariable.Left]: `${this.config.positionX}px`,
             [CssVariable.Top]: `${this.config.positionY}px`,
             [CssVariable.RealWidth]: `${this.windowElement?.offsetWidth}px`,
@@ -79,7 +78,9 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
             [CssVariable.FullscreenOffsetTop]: this.config.fullscreenOffset?.top,
             [CssVariable.FullscreenOffsetRight]: this.config.fullscreenOffset?.right,
             [CssVariable.FullscreenOffsetBottom]: this.config.fullscreenOffset?.bottom,
-            [CssVariable.FullscreenOffsetLeft]: this.config.fullscreenOffset?.left
+            [CssVariable.FullscreenOffsetLeft]: this.config.fullscreenOffset?.left,
+            'z-index': this.zIndex,
+            ...this.config.style
         };
     }
 

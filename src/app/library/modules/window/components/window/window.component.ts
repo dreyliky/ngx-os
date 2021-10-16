@@ -34,21 +34,6 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WindowComponent extends OsBaseComponent implements OnInit {
-    /** The width of the window as CSS string */
-    @Input()
-    @HostBinding('style.width')
-    public width: string;
-
-    /** The height of the window as CSS string */
-    @Input()
-    @HostBinding('style.height')
-    public height: string;
-
-    /** The zIndex of the window as CSS value */
-    @Input()
-    @HostBinding('style.zIndex')
-    public zIndex: number;
-
     /** Marks window as active (means user works with it right now) */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Active}`)
