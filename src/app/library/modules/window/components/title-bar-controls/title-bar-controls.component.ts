@@ -3,7 +3,7 @@ import { OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar-controls',
-    templateUrl: './title-bar-controls.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-title-bar-controls'
     },

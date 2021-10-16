@@ -11,7 +11,7 @@ import { OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-scroll-view',
-    templateUrl: './scroll-view.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-scroll-view'
     },

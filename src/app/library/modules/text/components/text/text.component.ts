@@ -3,7 +3,7 @@ import { OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-text',
-    templateUrl: './text.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-text'
     },

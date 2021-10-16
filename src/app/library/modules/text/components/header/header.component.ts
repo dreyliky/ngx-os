@@ -11,7 +11,7 @@ import { OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-header',
-    templateUrl: './header.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-header'
     },

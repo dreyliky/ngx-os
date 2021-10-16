@@ -12,7 +12,7 @@ import { FormFieldCssClassEnum as CssClass } from '../../enums';
 
 @Component({
     selector: 'os-form-field',
-    templateUrl: './form-field.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-form-field'
     },

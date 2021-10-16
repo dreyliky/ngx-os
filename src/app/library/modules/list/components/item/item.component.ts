@@ -13,7 +13,7 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list-item',
-    templateUrl: './item.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-list-item'
     },

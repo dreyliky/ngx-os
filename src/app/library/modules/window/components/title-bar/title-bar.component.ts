@@ -11,7 +11,7 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar',
-    templateUrl: './title-bar.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-title-bar'
     },

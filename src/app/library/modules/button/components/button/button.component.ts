@@ -3,7 +3,7 @@ import { OsBaseButtonComponent } from '../../../../core';
 
 @Component({
     selector: 'os-button',
-    templateUrl: './button.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-button'
     },

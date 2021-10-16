@@ -3,7 +3,7 @@ import { OsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-label',
-    templateUrl: './label.component.html',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-label os-text'
     },

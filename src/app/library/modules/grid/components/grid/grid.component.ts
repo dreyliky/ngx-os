@@ -32,7 +32,7 @@ import { GridItemComponent } from '../item';
  **/
 @Component({
     selector: 'os-grid',
-    templateUrl: './grid.component.html',
+    template: '<ng-content select="os-grid-item"></ng-content>',
     host: {
         'class': 'os-grid'
     },
