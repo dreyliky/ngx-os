@@ -69,7 +69,8 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     private _whenViewInit$ = new ReplaySubject();
 
     constructor(
-        @Inject(DOCUMENT) private readonly document: Document,
+        /** @internal */
+        @Inject(DOCUMENT) public readonly _document: Document,
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
@@ -79,7 +80,7 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.document.removeEventListener('mouseup', this.documentMouseUpHandler);
+        this._document.removeEventListener('mouseup', this.documentMouseUpHandler);
         this._whenViewInit$.complete();
     }
 
@@ -109,14 +110,14 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     }
 
     private initResizersWrapperElement(): void {
-        this._resizersWrapperElement = this.document.createElement(ElementTag.Resizers);
+        this._resizersWrapperElement = this._document.createElement(ElementTag.Resizers);
 
         this.osResizersWrapperElementInit.emit(this._resizersWrapperElement);
     }
 
     private initResizerElements(): void {
         this.config.allowedResizers.forEach((resizerName) => {
-            const resizerElement = this.document.createElement(ElementTag.Resizer);
+            const resizerElement = this._document.createElement(ElementTag.Resizer);
 
             resizerElement.classList.add(resizerName);
             resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
@@ -152,8 +153,8 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
         event.preventDefault();
         this._resizerInstance.init(this._resizableElement, event);
         this._resizableElement.classList.add(CssClass.Resizing);
-        this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
-        this.document.addEventListener('mouseup', this.documentMouseUpHandler);
+        this._document.addEventListener('mousemove', this.documentMouseMoveHandler);
+        this._document.addEventListener('mouseup', this.documentMouseUpHandler);
         this.osResizeStart.emit(resizeInfo);
     }
 
@@ -165,7 +166,7 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {
         this._resizableElement.classList.remove(CssClass.Resizing);
-        this.document.removeEventListener('mousemove', this.documentMouseMoveHandler);
+        this._document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         this.osResizeEnd.emit(this.getResizeInfo(event));
     }
 

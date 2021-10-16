@@ -5,8 +5,6 @@ import { BaseResizer } from './base-resizer';
 export class BottomRightResizer extends BaseResizer {
     public static id = ResizerEnum.BottomRight;
 
-    private readonly documentElement = document.documentElement;
-
     public resizeElement(event: MouseEvent): void {
         this.processAxisX(event);
         this.processAxisY(event);

@@ -12,13 +12,12 @@ export class TopRightResizer extends BaseResizer {
 
     private processAxisX(event: MouseEvent): void {
         const width = this.originalWidth + (event.pageX - this.originalMouseX);
-        const { documentElement } = document;
 
         if (width > this.minWidth && width < this.maxWidth) {
             this.resizableElement.style.setProperty(this.config.widthStyleProperty, `${width}px`);
 
             if (this.config.isAllowChangePosition && this.config.xAxisRightStyleProperty) {
-                const position = `${(documentElement.clientWidth - event.clientX)}px`;
+                const position = `${(this.documentElement.clientWidth - event.clientX)}px`;
 
                 this.resizableElement.style.setProperty(this.config.xAxisRightStyleProperty, position);
             }

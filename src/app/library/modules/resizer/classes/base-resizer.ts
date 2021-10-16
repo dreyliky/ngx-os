@@ -7,6 +7,7 @@ import { ResizerConfigModel } from './resizer-config';
 export abstract class BaseResizer {
     public static id: ResizerEnum = null;
 
+    protected readonly documentElement = this.context._document.documentElement;
     protected minWidth: number;
     protected maxWidth: number;
     protected minHeight: number;

@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -26,6 +27,7 @@ export class OverviewComponent extends OsBaseViewComponent implements OnInit {
     private targetComponentMetaInfo: ComponentMetaInfo;
 
     constructor(
+        @Inject(DOCUMENT) private readonly document: Document,
         @Inject(MAIN_LAYOUT) private readonly mainLayout: MainLayoutComponent,
         private readonly titleService: Title,
         private readonly overviewService: OverviewService,
@@ -63,7 +65,7 @@ export class OverviewComponent extends OsBaseViewComponent implements OnInit {
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 filter((fragment) => !!fragment),
-                map((fragment) => document.getElementById(fragment))
+                map((fragment) => this.document.getElementById(fragment))
             )
             .subscribe((targetElement) => targetElement.scrollIntoView());
     }

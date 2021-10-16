@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { EventOutside } from 'ngx-os';
 import { fromEvent } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
@@ -45,6 +46,7 @@ export class GridItemCustomizationComponent {
     ];
 
     constructor(
+        @Inject(DOCUMENT) private readonly document: Document,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
@@ -60,7 +62,7 @@ export class GridItemCustomizationComponent {
     }
 
     private initFileOutsideClickObserver(file: File, labelZoneElement: HTMLElement): void {
-        fromEvent(document, 'click')
+        fromEvent(this.document, 'click')
             .pipe(
                 filter((event) => EventOutside.checkForElement(labelZoneElement, event)),
                 first()

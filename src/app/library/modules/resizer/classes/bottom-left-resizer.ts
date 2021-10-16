@@ -26,13 +26,12 @@ export class BottomLeftResizer extends BaseResizer {
 
     private processAxisY(event: MouseEvent): void {
         const height = this.originalHeight + (event.pageY - this.originalMouseY);
-        const { documentElement } = document;
 
         if (height > this.minHeight && height < this.maxHeight) {
             this.resizableElement.style.setProperty(this.config.heightStyleProperty, `${height}px`);
 
             if (this.config.isAllowChangePosition && this.config.yAxisBottomStyleProperty) {
-                const position = `${documentElement.clientHeight - event.pageY}px`;
+                const position = `${this.documentElement.clientHeight - event.pageY}px`;
 
                 this.resizableElement.style.setProperty(this.config.yAxisBottomStyleProperty, position);
             }

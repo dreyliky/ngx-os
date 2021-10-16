@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -41,6 +42,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     private readonly draggableDirective: DraggableDirective;
 
     constructor(
+        @Inject(DOCUMENT) private readonly document: Document,
         @Inject(DYNAMIC_WINDOW_SHARED_CONFIG) private sharedConfig$: Observable<DynamicWindowConfig>,
         private readonly hostElementRef: ElementRef<HTMLElement>,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
@@ -186,7 +188,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initOutsideClickObserver(): void {
-        fromEvent(document, 'click')
+        fromEvent(this.document, 'click')
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 filter(() => this.windowRef.isActive),

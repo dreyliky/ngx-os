@@ -13,12 +13,18 @@ export namespace CssClasslistToObjectHelper {
     }
 
     export function fromString(classList: string): object {
-        return { [classList]: true };
+        const classListAsArray = classList.split(' ');
+
+        return fromArray(classListAsArray);
     }
 
     export function fromArray(classList: string[]): object {
-        const classListAsString = classList.join(' ');
+        return classList
+            .filter((className) => className)
+            .reduce((accumulator, className) => {
+                accumulator[className] = true;
 
-        return { [classListAsString]: true };
+                return accumulator;
+            }, {});
     }
 }
