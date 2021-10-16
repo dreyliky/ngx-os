@@ -16,13 +16,8 @@
 ## DropdownItemComponent
 
 ### CSS Classes
-| Name                | Description                       |
-| ------------------- | --------------------------------- |
-| `.os-dropdown-item` | Host element                      |
-| `.os-selected`      | Is selected?                      |
-| `.os-disabled`      | Is disabled?                      |
-
-### CSS Selectors of children elements
-| Name                | Description                |
-| ------------------- | -------------------------  |
-| `.os-list-item`     | `<os-list-item>` List item |
+| Name                             | Description                       |
+| -------------------------------- | --------------------------------- |
+| `.os-dropdown-item.os-list-item` | Host element                      |
+| `.os-selected`                   | Is selected?                      |
+| `.os-disabled`                   | Is disabled?                      |
