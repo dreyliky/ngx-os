@@ -33,7 +33,7 @@ export class TaskbarComponent implements OnInit, AfterViewInit {
     }
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>,
+        private readonly hostRef: ElementRef<HTMLElement>,
         private readonly dynamicWindowService: DynamicWindowService,
         private readonly taskbarService: TaskbarService
     ) {}
@@ -43,7 +43,7 @@ export class TaskbarComponent implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        this.taskbarService.init(this.hostElementRef.nativeElement);
+        this.taskbarService.init(this.hostRef.nativeElement);
     }
 
     public getTaskbarIconCssUrl(iconUrl: string): string {
