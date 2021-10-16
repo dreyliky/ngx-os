@@ -66,7 +66,7 @@ export class CheckboxComponent<T>
     public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
     @ViewChild('checkbox')
-    private readonly checkboxElementRef: ElementRef<HTMLInputElement>;
+    private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>,
@@ -95,16 +95,16 @@ export class CheckboxComponent<T>
     public writeValue(value: boolean): void {
         this.isChecked = value;
 
-        this.changeDetector.detectChanges();
+        this.changeDetector.markForCheck();
     }
 
     protected onClick(event: PointerEvent): void {
         if (!this.isDisabled) {
-            const currentState = this.checkboxElementRef.nativeElement.checked;
-            this.checkboxElementRef.nativeElement.checked = !currentState;
+            const currentState = this.inputElementRef.nativeElement.checked;
+            this.inputElementRef.nativeElement.checked = !currentState;
 
-            this.checkboxElementRef.nativeElement.dispatchEvent(new Event('change'));
-            this.checkboxElementRef.nativeElement.focus();
+            this.inputElementRef.nativeElement.dispatchEvent(new Event('change'));
+            this.inputElementRef.nativeElement.focus();
             super.onClick(event);
         }
     }
