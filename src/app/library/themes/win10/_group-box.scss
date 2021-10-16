@@ -1,5 +1,4 @@
-os-group-box {
-
+.os-group-box {
     fieldset {
         border: 0px;
         padding: 0px;
@@ -11,38 +10,4 @@ os-group-box {
         font-size: 18px;
         margin-bottom: 24px;
     }
-
-    .field-row {
-        display: flex;
-        align-items: center;
-
-        > * {
-            + {
-                * {
-                    margin-left: 8px;
-                }
-            }
-        }
-    }
-
-    [class^="field-row"] {
-        + {
-            [class^="field-row"] {
-                margin-top: 8px;
-            }
-        }
-    }
-
-    .field-row-stacked {
-        display: flex;
-        flex-direction: column;
-        * {
-            + {
-                * {
-                    margin-top: 8px;
-                }
-            }
-        }
-    }
-
 }

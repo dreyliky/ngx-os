@@ -27,16 +27,6 @@
     font-style: normal;
 }
 
-@media (not(hover)) {
-    button.os-element:not(:disabled):hover {
-        box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
-    }
-}
-
-pre.os-element {
-    box-shadow: var(--border-field);
-}
-
 .os-element {
     font-size: 12px;
     font-family: Tahoma;

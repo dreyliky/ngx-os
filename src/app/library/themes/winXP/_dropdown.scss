@@ -1,15 +1,4 @@
-@keyframes os-dropdown-opening {
-    from {
-        transform: scale(.85);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-os-dropdown {
+.os-dropdown {
     width: 100%;
     height: 21px;
     display: flex;
@@ -75,10 +64,6 @@ os-dropdown {
         }
     }
 
-    &.os-opening {
-        animation: os-dropdown-opening .3s ease forwards;
-    }
-
     .os-placeholder, .os-value {
         width: 100%;
         height: 100%;
@@ -87,7 +72,7 @@ os-dropdown {
     }
 }
 
-os-list.os-part-of-dropdown {
+.os-list.os-part-of-dropdown {
     position: absolute;
     z-index: 999;
     opacity: .999;

@@ -1,9 +1,4 @@
-os-tab-group {
-    [role="tabpanel"] {
-        position: relative;
-        z-index: 2;
-    }
-
+.os-tab-group {
     menu[role="tablist"] {
         position: relative;
         margin: 0 0 -2px 0;

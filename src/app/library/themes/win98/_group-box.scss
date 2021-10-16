@@ -1,5 +1,4 @@
-os-group-box {
-
+.os-group-box {
     fieldset {
         border: none;
         box-shadow: inset -1px -1px rgb(255, 255, 255), inset -2px 1px rgba(0, 0, 0, .515), inset 1px -2px rgba(0, 0, 0, .515), inset 2px 2px rgb(255, 255, 255);
@@ -11,38 +10,4 @@ os-group-box {
     legend {
         background: rgb(var(--os-background-color));
     }
-
-    .field-row {
-        display: flex;
-        align-items: center;
-
-        > * {
-            + {
-                * {
-                    margin-left: 6px;
-                }
-            }
-        }
-    }
-
-    [class^="field-row"] {
-        + {
-            [class^="field-row"] {
-                margin-top: 6px;
-            }
-        }
-    }
-
-    .field-row-stacked {
-        display: flex;
-        flex-direction: column;
-        * {
-            + {
-                * {
-                    margin-top: 6px;
-                }
-            }
-        }
-    }
-
 }

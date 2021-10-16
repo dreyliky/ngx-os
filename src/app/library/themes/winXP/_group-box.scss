@@ -1,5 +1,4 @@
-os-group-box {
-
+.os-group-box {
     fieldset {
         border: 1px solid #d0d0bf;
         box-shadow: none;
@@ -15,38 +14,4 @@ os-group-box {
         background: transparent;
         color: rgb(var(--os-primary-color));
     }
-
-    .field-row {
-        display: flex;
-        align-items: center;
-
-        > * {
-            + {
-                * {
-                    margin-left: 6px;
-                }
-            }
-        }
-    }
-
-    [class^="field-row"] {
-        + {
-            [class^="field-row"] {
-                margin-top: 6px;
-            }
-        }
-    }
-
-    .field-row-stacked {
-        display: flex;
-        flex-direction: column;
-        * {
-            + {
-                * {
-                    margin-top: 6px;
-                }
-            }
-        }
-    }
-
 }
