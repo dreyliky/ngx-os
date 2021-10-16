@@ -26,11 +26,11 @@ export class AppendToBodyDirective implements AfterViewInit, OnDestroy, OnChange
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
     public ngAfterViewInit(): void {
-        this.targetElement = this.hostElementRef.nativeElement;
+        this.targetElement = this.hostRef.nativeElement;
         this.parentElement = this.targetElement.parentElement;
 
         // When used in pair with `FixedToParentDirective`,
@@ -40,7 +40,7 @@ export class AppendToBodyDirective implements AfterViewInit, OnDestroy, OnChange
     }
 
     public ngOnDestroy(): void {
-        this.hostElementRef?.nativeElement?.remove();
+        this.hostRef?.nativeElement?.remove();
     }
 
     public ngOnChanges(): void {

@@ -69,14 +69,14 @@ export class CheckboxComponent<T>
     private readonly checkboxElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>,
+        private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     public onCheckboxValueChange(originalEvent: Event): void {

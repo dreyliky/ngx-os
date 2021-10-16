@@ -16,12 +16,12 @@ export class GroupBoxComponent extends OsBaseComponent implements OnInit {
     public label: string;
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 }

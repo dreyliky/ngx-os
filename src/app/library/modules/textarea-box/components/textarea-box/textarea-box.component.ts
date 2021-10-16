@@ -45,7 +45,7 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterV
     public osChange: EventEmitter<TextareaBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('textarea')
-    private readonly fieldElementRef: ElementRef<HTMLInputElement>;
+    private readonly textareaElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef
@@ -54,8 +54,8 @@ export class TextareaBoxComponent extends OsBaseFieldComponent implements AfterV
     }
 
     public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.fieldElementRef.nativeElement);
-        this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
+        this.initElementEventObservers(this.textareaElementRef.nativeElement);
+        this.autoFocusFieldIfNeeded(this.textareaElementRef.nativeElement);
     }
 
     /** @internal */

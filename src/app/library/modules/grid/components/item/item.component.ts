@@ -85,13 +85,13 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         private readonly changeDetector: ChangeDetectorRef,
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
         this.initClickOutsideObserver();
     }
 
@@ -103,7 +103,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     private initClickOutsideObserver(): void {
-        const hostElement = this.hostElementRef.nativeElement;
+        const hostElement = this.hostRef.nativeElement;
 
         fromEvent(this.document, 'click')
             .pipe(

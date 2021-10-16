@@ -53,13 +53,13 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     private tabsChanged$ = new Subject();
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     public ngOnDestroy(): void {

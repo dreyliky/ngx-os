@@ -44,7 +44,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         @Inject(DYNAMIC_WINDOW_SHARED_CONFIG) private sharedConfig$: Observable<DynamicWindowConfig>,
-        private readonly hostElementRef: ElementRef<HTMLElement>,
+        private readonly hostRef: ElementRef<HTMLElement>,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -182,7 +182,7 @@ export class DynamicWindowComponent extends BaseDynamicWindowComponent implement
     }
 
     private initHtmlElements(): void {
-        this.windowElement = this.hostElementRef.nativeElement.querySelector('.os-window');
+        this.windowElement = this.hostRef.nativeElement.querySelector('.os-window');
         this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
         this.titleBarButtons = Array.from(this.titleBarElement.querySelectorAll('.os-title-bar-button .os-icon'));
     }

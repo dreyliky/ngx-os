@@ -20,12 +20,12 @@ export class ListComponent extends OsBaseComponent implements OnInit {
     public scrollViewStyleClass: string;
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 }

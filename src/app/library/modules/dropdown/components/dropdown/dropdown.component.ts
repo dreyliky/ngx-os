@@ -197,14 +197,14 @@ export class DropdownComponent<T>
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
-        private readonly hostElementRef: ElementRef<HTMLElement>,
+        private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
         this.initClickOutsideObserver();
     }
 
@@ -334,7 +334,7 @@ export class DropdownComponent<T>
     }
 
     private initClickOutsideObserver(): void {
-        const dropdownElement = this.hostElementRef.nativeElement;
+        const dropdownElement = this.hostRef.nativeElement;
 
         fromEvent(this.document, 'click')
             .pipe(

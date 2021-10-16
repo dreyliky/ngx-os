@@ -69,7 +69,7 @@ export class SliderComponent
     public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
 
     @ViewChild('slider')
-    private readonly sliderElementRef: ElementRef<HTMLInputElement>;
+    private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef
@@ -78,7 +78,7 @@ export class SliderComponent
     }
 
     public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.sliderElementRef.nativeElement);
+        this.initElementEventObservers(this.inputElementRef.nativeElement);
     }
 
     /** @internal */

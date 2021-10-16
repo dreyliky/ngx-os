@@ -85,13 +85,13 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     private _gridItemElements: QueryList<ElementRef<HTMLElement>>;
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     public ngAfterViewInit(): void {
@@ -118,7 +118,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private adjustGridBeforeCalculatingItemElementsPositions(): void {
-        const hostElement = this.hostElementRef.nativeElement;
+        const hostElement = this.hostRef.nativeElement;
         const gridZoneWidth = hostElement.clientWidth || hostElement.scrollWidth;
         const gridZoneHeight = hostElement.clientHeight || hostElement.scrollHeight;
         const xAxisCellsCount = Math.floor(gridZoneWidth / this.gridSize);
@@ -134,7 +134,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private initHostSizeChangeObserver(): void {
-        elementResizingObserver(this.hostElementRef.nativeElement)
+        elementResizingObserver(this.hostRef.nativeElement)
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 debounce(() => timer(this.hostResizeDelayBeforeCalculation))

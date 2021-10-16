@@ -41,7 +41,7 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements AfterView
     public osChange: EventEmitter<EmailBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('emailbox')
-    private readonly fieldElementRef: ElementRef<HTMLInputElement>;
+    private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {
@@ -55,8 +55,8 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements AfterView
     }
 
     public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.fieldElementRef.nativeElement);
-        this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
+        this.initElementEventObservers(this.inputElementRef.nativeElement);
+        this.autoFocusFieldIfNeeded(this.inputElementRef.nativeElement);
     }
 
     /** @internal */

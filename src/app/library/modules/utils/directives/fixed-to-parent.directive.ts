@@ -34,7 +34,7 @@ export class FixedToParentDirective implements OnInit, AfterViewInit {
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
     public ngOnInit(): void {
@@ -42,7 +42,7 @@ export class FixedToParentDirective implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        this.targetElement = this.hostElementRef.nativeElement;
+        this.targetElement = this.hostRef.nativeElement;
         this.parentElement = this.targetElement.parentElement;
 
         this.adjustCoordinates();

@@ -12,12 +12,12 @@ import { OsBaseButtonComponent } from '../../../../core';
 })
 export class ButtonComponent extends OsBaseButtonComponent implements OnInit {
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 }

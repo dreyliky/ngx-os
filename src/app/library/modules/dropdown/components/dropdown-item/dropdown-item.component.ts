@@ -45,7 +45,7 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef,
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
@@ -55,7 +55,7 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     public ngAfterContentInit(): void {
@@ -71,7 +71,7 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
 
     /** Gets the label text of the dropdown item */
     public getLabel(): string {
-        return this.hostElementRef.nativeElement.innerText || null;
+        return this.hostRef.nativeElement.innerText || null;
     }
 
     protected onClick(originalEvent: MouseEvent): void {
@@ -83,7 +83,7 @@ export class DropdownItemComponent<T> extends OsBaseComponent implements OnInit,
     }
 
     private initValueAfterValueChanged(changes: SimpleChanges): void {
-        if (this.hostElementRef && (changes?.value?.previousValue !== changes?.value?.currentValue)) {
+        if (this.hostRef && (changes?.value?.previousValue !== changes?.value?.currentValue)) {
             if (isNil(changes.value.currentValue)) {
                 this.initDefaultValueIfAbsent();
             }

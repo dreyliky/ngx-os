@@ -40,13 +40,13 @@ export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
     public osSelected = new EventEmitter<T>();
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     protected onClick(event: PointerEvent): void {

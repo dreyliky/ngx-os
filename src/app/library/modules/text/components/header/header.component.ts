@@ -44,13 +44,13 @@ export class HeaderComponent extends OsBaseComponent implements OnInit {
     private _size: number = this.minSize;
 
     constructor(
-        private readonly hostElementRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElementRef.nativeElement);
+        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     private validateSize(value: number): void {

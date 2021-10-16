@@ -41,7 +41,7 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements AfterV
     public osChange: EventEmitter<PasswordBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('passwordbox')
-    private readonly fieldElementRef: ElementRef<HTMLInputElement>;
+    private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {
@@ -55,8 +55,8 @@ export class PasswordBoxComponent extends OsBaseFieldComponent implements AfterV
     }
 
     public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.fieldElementRef.nativeElement);
-        this.autoFocusFieldIfNeeded(this.fieldElementRef.nativeElement);
+        this.initElementEventObservers(this.inputElementRef.nativeElement);
+        this.autoFocusFieldIfNeeded(this.inputElementRef.nativeElement);
     }
 
     /** @internal */
