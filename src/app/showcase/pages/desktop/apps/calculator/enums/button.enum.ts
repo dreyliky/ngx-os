@@ -1,0 +1,19 @@
+export enum ButtonEnum {
+    Zero,
+    One,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Clear,
+    Delete,
+    Multiply,
+    Plus,
+    Minus,
+    Division,
+    Equal
+}

@@ -1,0 +1,11 @@
+:host-context(.win10) {
+    .os-button {
+        &[type="="] {
+            background: rgba(var(--os-primary-color), .4);
+
+            &:hover {
+                background: rgba(var(--os-primary-color), .5);
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+:host {
+    width: 100%;
+    height: 75%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+    box-sizing: border-box;
+
+    &::ng-deep .os-button {
+        min-width: 25px;
+        height: auto;
+        margin: 3px;
+
+        &[type="C"] {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+
+        &[type="="] {
+            grid-column-start: 2;
+            grid-column-end: 5;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+<os-button
+    *ngFor="let button of buttons"
+    [attr.type]="button.label"
+    [innerText]="button.label"
+    (osClick)="button.onClick()">
+</os-button>

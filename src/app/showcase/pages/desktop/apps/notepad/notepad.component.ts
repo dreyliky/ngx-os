@@ -1,6 +1,7 @@
 import {
     AfterViewInit,
-    ChangeDetectionStrategy, Component,
+    ChangeDetectionStrategy,
+    Component,
     ElementRef,
     ViewChild
 } from '@angular/core';
