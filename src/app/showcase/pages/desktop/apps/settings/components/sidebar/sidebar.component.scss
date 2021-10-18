@@ -1,5 +1,7 @@
 :host-context(.win10) {
     os-list {
-        background-color: transparent;
+        @supports (backdrop-filter: blur(40px)) {
+            background-color: transparent;
+        }
     }
 }

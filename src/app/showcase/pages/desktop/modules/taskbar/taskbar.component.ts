@@ -1,14 +1,21 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
+    HostBinding,
     OnInit,
     QueryList,
     ViewChildren
 } from '@angular/core';
-import { ButtonComponent, DynamicWindowRefModel, DynamicWindowService } from 'ngx-os';
-import { Observable } from 'rxjs';
+import {
+    ButtonComponent,
+    DynamicWindowRefModel,
+    DynamicWindowService,
+    OsBaseViewComponent
+} from 'ngx-os';
+import { takeUntil } from 'rxjs/operators';
 import { TaskbarService } from './taskbar.service';
 
 @Component({
@@ -24,22 +31,30 @@ import { TaskbarService } from './taskbar.service';
         TaskbarService
     ]
 })
-export class TaskbarComponent implements OnInit, AfterViewInit {
-    public windowRefs$: Observable<DynamicWindowRefModel[]>;
-
+export class TaskbarComponent extends OsBaseViewComponent implements OnInit, AfterViewInit {
     @ViewChildren(ButtonComponent, { read: ElementRef })
-    protected set windowRefElements(data: QueryList<ElementRef<HTMLElement>>) {
+    public set windowRefElements(data: QueryList<ElementRef<HTMLElement>>) {
         this.taskbarService.setWindowRefElements(data);
     }
+
+    @HostBinding('class.has-window-refs')
+    public get hostHasWindowRefsClass(): boolean {
+        return !!this.windowRefs.length;
+    }
+
+    public windowRefs: DynamicWindowRefModel[];
 
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly dynamicWindowService: DynamicWindowService,
-        private readonly taskbarService: TaskbarService
-    ) {}
+        private readonly taskbarService: TaskbarService,
+        private readonly changeDetector: ChangeDetectorRef
+    ) {
+        super();
+    }
 
     public ngOnInit(): void {
-        this.windowRefs$ = this.dynamicWindowService.references$;
+        this.initWindowRefsObserver();
     }
 
     public ngAfterViewInit(): void {
@@ -59,5 +74,15 @@ export class TaskbarComponent implements OnInit, AfterViewInit {
 
         // Disable outside click checking for window (which removes active state)
         event.stopPropagation();
+    }
+
+    private initWindowRefsObserver(): void {
+        this.dynamicWindowService.references$
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe((windowRefs) => {
+                this.windowRefs = windowRefs;
+
+                this.changeDetector.markForCheck();
+            });
     }
 }

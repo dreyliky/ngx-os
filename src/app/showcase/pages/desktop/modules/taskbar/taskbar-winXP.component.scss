@@ -1,11 +1,11 @@
 :host-context(.winXP) {
-    width: 100%;
-    min-height: 30px;
+    --gradient-degrees: 180deg;
+
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-content: flex-start;
     background: linear-gradient(
-        180deg,
+        var(--gradient-degrees),
         rgba(var(--os-primary-color), .7) 0%,
         rgba(var(--os-primary-color), .9) 8%,
         rgba(var(--os-primary-color), .9) 40%,
@@ -17,7 +17,9 @@
     ), #ffffff;
 
     .taskbar-button {
-        width: 160px;
+        width: 100%;
+        min-width: 25px;
+        max-width: 160px;
         height: 25px;
         display: flex;
         align-items: center;
@@ -31,6 +33,8 @@
         ), #ffffff;
         color: #feffff;
         border: solid 1px rgb(var(--os-primary-color));
+        writing-mode: horizontal-tb;
+        padding: 0px 5px;
 
         &:hover {
             box-shadow: none;
@@ -75,6 +79,64 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+    }
+
+    &:host-context(.taskbar-top) {
+        width: 100%;
+        min-height: 31px;
+
+        &.has-window-refs {
+            min-height: fit-content;
+        }
+
+        .taskbar-button {
+            margin: 2px 3px;
+        }
+    }
+
+    &:host-context(.taskbar-bottom) {
+        width: 100%;
+        min-height: 31px;
+
+        &.has-window-refs {
+            min-height: fit-content;
+        }
+
+        .taskbar-button {
+            margin: 3px;
+        }
+    }
+
+    &:host-context(.taskbar-left) {
+        min-width: 35px;
+        height: 100%;
+        writing-mode: vertical-lr;
+        --gradient-degrees: 90deg;
+
+        &.has-window-refs {
+            min-width: fit-content;
+        }
+
+        .taskbar-button {
+            max-width: 25px;
+            margin: 3px;
+        }
+    }
+
+    &:host-context(.taskbar-right) {
+        min-width: 35px;
+        height: 100%;
+        writing-mode: vertical-lr;
+        --gradient-degrees: 90deg;
+
+        &.has-window-refs {
+            min-width: fit-content;
+        }
+
+        .taskbar-button {
+            max-width: 25px;
+            margin: 3px;
         }
     }
 }

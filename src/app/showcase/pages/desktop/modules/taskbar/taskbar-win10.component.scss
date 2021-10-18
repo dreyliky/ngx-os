@@ -1,15 +1,23 @@
 :host-context(.win10) {
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
     background-color: rgba(255, 255, 255, .5);
     backdrop-filter: blur(40px);
+
+    @supports (not(backdrop-filter: blur(40px))) {
+        background-color: rgba(255, 255, 255, .98);
+    }
 
     $button-width: 61px;
 
     &:host-context(.taskbar-top) {
         width: 100%;
         min-height: 50px;
-        flex-basis: 50px;
+
+        &.has-window-refs {
+            min-height: fit-content;
+        }
 
         .taskbar-button {
             ::before {
@@ -34,7 +42,10 @@
     &:host-context(.taskbar-bottom) {
         width: 100%;
         min-height: 50px;
-        flex-basis: 50px;
+
+        &.has-window-refs {
+            min-height: fit-content;
+        }
 
         .taskbar-button {
             ::before {
@@ -59,8 +70,11 @@
     &:host-context(.taskbar-left) {
         min-width: $button-width;
         height: 100%;
-        flex-basis: $button-width;
-        flex-direction: column;
+        writing-mode: vertical-lr;
+
+        &.has-window-refs {
+            min-width: fit-content;
+        }
 
         .taskbar-button {
             ::before {
@@ -85,8 +99,11 @@
     &:host-context(.taskbar-right) {
         min-width: $button-width;
         height: 100%;
-        flex-basis: $button-width;
-        flex-direction: column;
+        writing-mode: vertical-lr;
+
+        &.has-window-refs {
+            min-width: fit-content;
+        }
 
         .taskbar-button {
             ::before {
