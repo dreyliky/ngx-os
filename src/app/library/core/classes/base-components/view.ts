@@ -6,17 +6,17 @@ import { first } from 'rxjs/operators';
     template: ''
 })
 export abstract class OsBaseViewComponent implements AfterViewInit, OnDestroy {
-    public get whenViewInit$(): Observable<boolean> {
+    protected get whenViewInit$(): Observable<boolean> {
         return this._whenViewInit$
             .asObservable()
             .pipe(first());
     }
 
-    public get viewDestroyed$(): Observable<boolean> {
+    protected get viewDestroyed$(): Observable<boolean> {
         return this._viewDestroyed$.asObservable();
     }
 
-    public get isViewInit(): boolean {
+    protected get isViewInit(): boolean {
         return this._isViewInit;
     }
 
