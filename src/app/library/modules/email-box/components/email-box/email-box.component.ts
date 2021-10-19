@@ -5,16 +5,15 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    Input,
-    OnInit,
-    Optional,
+    Input, Optional,
     Output,
     Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { AbstractControl, NgControl, ValidationErrors } from '@angular/forms';
+import { NgControl } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
+import { DEFAULT_EMAIL_VALIDATION_PATTERN } from '../../data';
 import { EmailBoxChangeEvent } from '../../interfaces';
 
 @Component({
@@ -28,15 +27,14 @@ import { EmailBoxChangeEvent } from '../../interfaces';
 })
 export class EmailBoxComponent
     extends OsBaseFieldComponent
-    implements OnInit, AfterViewInit {
+    implements AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
     /** RegExp for email validation */
     @Input()
-    public pattern: RegExp =
-        /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z].)+[a-zA-Z]{2,9})$/i;
+    public pattern: RegExp = DEFAULT_EMAIL_VALIDATION_PATTERN;
 
     /** Fires when the email-box value change */
     @Output()
@@ -56,10 +54,6 @@ export class EmailBoxComponent
     ) {
         super();
         this.initControlDir(controlDir, this);
-    }
-
-    public ngOnInit(): void {
-        this.initValidators(this.emailValidator.bind(this));
     }
 
     public ngAfterViewInit(): void {
@@ -82,11 +76,5 @@ export class EmailBoxComponent
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value, isValid });
         this.changeDetector.markForCheck();
-    }
-
-    private emailValidator(control: AbstractControl): ValidationErrors | null {
-        const isIncorrect = !this.pattern.test(control.value);
-
-        return (isIncorrect) ? { invalid: true } : null;
     }
 }

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { EmailValidator } from 'ngx-os';
 
 @Component({
     selector: 'showcase-email-box-validity-overview',
@@ -8,5 +9,8 @@ import { FormControl } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailBoxValidityOverviewComponent {
-    public readonly emailControl = new FormControl('my-mail@gmail.com');
+    public readonly emailControl = new FormControl(
+        'my-mail@gmail.com',
+        EmailValidator()
+    );
 }
