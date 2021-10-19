@@ -11,12 +11,16 @@
         height: auto;
         margin: 3px;
 
-        &[type="C"] {
+        &[group="number"] {
+            font-weight: bold;
+        }
+
+        &[label="C"] {
             grid-column-start: 1;
             grid-column-end: 3;
         }
 
-        &[type="="] {
+        &[label="="] {
             grid-column-start: 2;
             grid-column-end: 5;
         }

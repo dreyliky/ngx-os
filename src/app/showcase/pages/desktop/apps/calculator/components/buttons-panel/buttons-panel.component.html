@@ -1,6 +1,7 @@
 <os-button
     *ngFor="let button of buttons"
-    [attr.type]="button.label"
+    [attr.label]="button.label"
+    [attr.group]="button.group"
     [innerText]="button.label"
     (osClick)="button.onClick()">
 </os-button>

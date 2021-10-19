@@ -1,8 +1,16 @@
-import { ButtonGroupEnum } from '../enums';
+import { Injector } from '@angular/core';
+import { ButtonGroupEnum, NumberEnum } from '../enums';
 import { BaseButton } from './base-button';
 
-export abstract class NumberButton extends BaseButton {
-    public static group = ButtonGroupEnum.Number;
+export class ButtonNumber extends BaseButton {
+    public readonly group = ButtonGroupEnum.Number;
+
+    constructor(
+        injector: Injector,
+        public readonly label: NumberEnum
+    ) {
+        super(injector);
+    }
 
     public onClick(): void {
         const blocks = this.output.splitToBlocks();

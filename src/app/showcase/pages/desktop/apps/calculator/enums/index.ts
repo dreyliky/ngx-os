@@ -1,5 +1,4 @@
-export * from './button-type.enum';
-export * from './button.enum';
+export * from './button-group.enum';
 export * from './number.enum';
 export * from './operation.enum';
 

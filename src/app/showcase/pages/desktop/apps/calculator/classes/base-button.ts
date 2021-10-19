@@ -1,10 +1,9 @@
 import { Injector } from '@angular/core';
-import { ButtonEnum, ButtonGroupEnum } from '../enums';
+import { ButtonGroupEnum } from '../enums';
 import { OutputService } from '../services';
 
 export abstract class BaseButton {
-    public static type: ButtonEnum;
-    public static group: ButtonGroupEnum;
+    public readonly group: ButtonGroupEnum;
 
     protected output: OutputService;
 
@@ -13,10 +12,6 @@ export abstract class BaseButton {
     constructor(
         protected readonly injector: Injector
     ) {
-        this.onInit();
-    }
-
-    public onInit(): void {
         this.output = this.injector.get(OutputService);
     }
 

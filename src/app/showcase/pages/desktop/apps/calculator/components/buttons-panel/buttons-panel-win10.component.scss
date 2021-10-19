@@ -1,6 +1,6 @@
 :host-context(.win10) {
     .os-button {
-        &[type="="] {
+        &[label="="] {
             background: rgba(var(--os-primary-color), .4);
 
             &:hover {

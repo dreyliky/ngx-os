@@ -10,6 +10,8 @@ export const CALCULATOR_APP: AppMetadata = {
     windowParams: {
         title: 'Calculator',
         iconUrl: 'assets/showcase/icons/calculator.png',
+        isAllowFullscreen: false,
+        allowedResizers: [],
         minWidth: 350,
         minHeight: 400
     }

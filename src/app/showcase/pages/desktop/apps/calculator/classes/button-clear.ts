@@ -1,9 +1,8 @@
-import { ButtonEnum, ButtonGroupEnum } from '../enums';
+import { ButtonGroupEnum } from '../enums';
 import { BaseButton } from './base-button';
 
 export class ButtonClear extends BaseButton {
-    public static type = ButtonEnum.Clear;
-    public static group = ButtonGroupEnum.Operation;
+    public readonly group = ButtonGroupEnum.Action;
 
     public label = 'C';
 

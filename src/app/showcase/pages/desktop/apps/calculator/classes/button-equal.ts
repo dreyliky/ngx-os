@@ -1,17 +1,19 @@
-import { ButtonEnum, ButtonGroupEnum } from '../enums';
+import { Injector } from '@angular/core';
+import { ButtonGroupEnum } from '../enums';
 import { CalculationService } from '../services';
 import { BaseButton } from './base-button';
 
 export class ButtonEqual extends BaseButton {
-    public static type = ButtonEnum.Equal;
-    public static group = ButtonGroupEnum.Operation;
+    public readonly group = ButtonGroupEnum.Action;
 
     public label = '=';
 
     private calculation: CalculationService;
 
-    public onInit(): void {
-        super.onInit();
+    constructor(
+        injector: Injector
+    ) {
+        super(injector);
 
         this.calculation = this.injector.get(CalculationService);
     }

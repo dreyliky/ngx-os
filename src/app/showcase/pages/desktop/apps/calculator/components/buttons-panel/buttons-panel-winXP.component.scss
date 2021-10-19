@@ -1,0 +1,8 @@
+:host-context(.winXP) {
+    .os-button {
+        &[group="operation"],
+        &[group="action"] {
+            color: red;
+        }
+    }
+}

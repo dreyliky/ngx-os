@@ -1,4 +1,5 @@
 export enum ButtonGroupEnum {
     Number = 'number',
-    Operation = 'operation'
+    Operation = 'operation',
+    Action = 'action'
 }
