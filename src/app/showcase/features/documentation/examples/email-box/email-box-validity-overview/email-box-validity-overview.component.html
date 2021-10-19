@@ -1,0 +1,8 @@
+<os-email-box
+    [placeholder]="'Please enter valid email'"
+    [formControl]="emailControl">
+</os-email-box>
+
+<os-text>
+    Is email valid: <b>{{ emailControl.valid | json }}</b>
+</os-text>

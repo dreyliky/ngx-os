@@ -65,11 +65,11 @@ export class SliderComponent
     public value: number = 0;
 
     constructor(
-        @Self() @Optional() protected readonly controlDir: NgControl,
+        @Self() @Optional() controlDir: NgControl,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-        this.initValueAccessor(this);
+        this.initControlDir(controlDir, this);
     }
 
     public ngAfterViewInit(): void {

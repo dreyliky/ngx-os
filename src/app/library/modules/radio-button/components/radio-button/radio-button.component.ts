@@ -63,12 +63,12 @@ export class RadioButtonComponent<T>
     private readonly radioElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        @Self() @Optional() protected readonly controlDir: NgControl,
+        @Self() @Optional() controlDir: NgControl,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-        this.initValueAccessor(this);
+        this.initControlDir(controlDir, this);
     }
 
     public ngOnInit(): void {

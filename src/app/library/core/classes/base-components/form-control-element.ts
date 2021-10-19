@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NgControl, ValidatorFn } from '@angular/forms';
 import { OsBaseComponent } from './component';
 
 /** @internal */
@@ -11,7 +11,7 @@ export abstract class OsBaseFormControlComponent<T = any>
     public onChange: (value: T) => void;
     public onTouched: () => void;
 
-    protected abstract readonly controlDir: NgControl;
+    protected controlDir: NgControl;
 
     constructor() {
         super();
@@ -25,17 +25,25 @@ export abstract class OsBaseFormControlComponent<T = any>
         this.onTouched = fn;
     }
 
-    public initValueAccessor(valueAccessor: OsBaseFormControlComponent): void {
-        if (this.controlDir) {
+    public initControlDir(
+        controlDir: NgControl,
+        valueAccessor: OsBaseFormControlComponent
+    ): void {
+        if (controlDir) {
+            this.controlDir = controlDir;
             this.controlDir.valueAccessor = valueAccessor;
         }
     }
 
-    public setValidityState(state: boolean): void {
-        if (state) {
-            this.controlDir?.control.setErrors({ invalid: true });
-        } else {
-            this.controlDir?.control.setErrors(null);
+    public initValidators(validator: ValidatorFn): void {
+        const control = this.controlDir?.control;
+
+        if (control) {
+            const validators = (control.validator) ?
+                [control.validator, validator] : validator;
+
+            control.setValidators(validators);
+            control.updateValueAndValidity();
         }
     }
 

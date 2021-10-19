@@ -1,6 +1,10 @@
 import { EmailBoxComponent, EmailBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
-import { EmailBoxAsFormControlComponent, EmailBoxOverviewComponent } from '../../examples';
+import {
+    EmailBoxAsFormControlComponent,
+    EmailBoxOverviewComponent,
+    EmailBoxValidityOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
@@ -25,6 +29,10 @@ export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
         {
             title: 'Email Box as FormControl',
             component: EmailBoxAsFormControlComponent
+        },
+        {
+            title: 'Email Box Validity Overview',
+            component: EmailBoxValidityOverviewComponent
         }
     ]
 };

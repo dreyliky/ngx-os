@@ -6,13 +6,14 @@ import {
     ElementRef,
     EventEmitter,
     Input,
+    OnInit,
     Optional,
     Output,
     Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { AbstractControl, NgControl, ValidationErrors } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
 import { EmailBoxChangeEvent } from '../../interfaces';
 
@@ -25,11 +26,14 @@ import { EmailBoxChangeEvent } from '../../interfaces';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EmailBoxComponent extends OsBaseFieldComponent implements AfterViewInit {
+export class EmailBoxComponent
+    extends OsBaseFieldComponent
+    implements OnInit, AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
+    /** RegExp for email validation */
     @Input()
     public pattern: RegExp =
         /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z].)+[a-zA-Z]{2,9})$/i;
@@ -47,11 +51,15 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements AfterView
     }
 
     constructor(
-        @Self() @Optional() protected readonly controlDir: NgControl,
+        @Self() @Optional() controlDir: NgControl,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-        this.initValueAccessor(this);
+        this.initControlDir(controlDir, this);
+    }
+
+    public ngOnInit(): void {
+        this.initValidators(this.emailValidator.bind(this));
     }
 
     public ngAfterViewInit(): void {
@@ -69,10 +77,16 @@ export class EmailBoxComponent extends OsBaseFieldComponent implements AfterView
     protected onFieldValueChange(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
         const value = targetElement.value;
+        const isValid = this.pattern.test(value);
 
-        this.setValidityState(this.pattern.test(value));
         this.onChange?.(value);
-        this.osChange.emit({ originalEvent, value });
+        this.osChange.emit({ originalEvent, value, isValid });
         this.changeDetector.markForCheck();
+    }
+
+    private emailValidator(control: AbstractControl): ValidationErrors | null {
+        const isIncorrect = !this.pattern.test(control.value);
+
+        return (isIncorrect) ? { invalid: true } : null;
     }
 }

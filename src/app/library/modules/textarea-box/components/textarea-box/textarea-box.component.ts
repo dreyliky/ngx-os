@@ -44,11 +44,11 @@ export class TextareaBoxComponent
     private readonly textareaElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        @Self() @Optional() protected readonly controlDir: NgControl,
+        @Self() @Optional() controlDir: NgControl,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-        this.initValueAccessor(this);
+        this.initControlDir(controlDir, this);
     }
 
     public ngAfterViewInit(): void {

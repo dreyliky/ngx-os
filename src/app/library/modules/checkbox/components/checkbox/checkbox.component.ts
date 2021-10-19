@@ -63,12 +63,12 @@ export class CheckboxComponent<T>
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        @Self() @Optional() protected readonly controlDir: NgControl,
+        @Self() @Optional() controlDir: NgControl,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-        this.initValueAccessor(this);
+        this.initControlDir(controlDir, this);
     }
 
     public ngOnInit(): void {

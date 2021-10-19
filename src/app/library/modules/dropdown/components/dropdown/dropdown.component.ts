@@ -181,14 +181,14 @@ export class DropdownComponent<T>
     private itemsChanged$ = new Subject();
 
     constructor(
+        @Self() @Optional() controlDir: NgControl,
         @Inject(DOCUMENT) private readonly document: Document,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
-        @Self() @Optional() protected readonly controlDir: NgControl,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-        this.initValueAccessor(this);
+        this.initControlDir(controlDir, this);
     }
 
     public ngOnInit(): void {
