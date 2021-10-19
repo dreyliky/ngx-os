@@ -1,10 +1,11 @@
 import {
-    AfterContentInit,
+    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
+    Host,
     HostBinding,
     Input,
     OnChanges,
@@ -13,8 +14,10 @@ import {
     SimpleChanges,
     ViewEncapsulation
 } from '@angular/core';
+import { filter, takeUntil } from 'rxjs/operators';
 import { CommonCssClassEnum, isNil, OsBaseComponent } from '../../../../core';
 import { DropdownValueChangeEvent } from '../../interfaces';
+import { DropdownComponent } from '../dropdown/dropdown.component';
 
 @Component({
     selector: 'os-dropdown-item',
@@ -27,7 +30,7 @@ import { DropdownValueChangeEvent } from '../../interfaces';
 })
 export class DropdownItemComponent<T>
     extends OsBaseComponent
-    implements OnInit, AfterContentInit, OnChanges {
+    implements OnInit, AfterViewInit, OnChanges {
     /** Data of the dropdown item */
     @Input()
     public data: T;
@@ -46,29 +49,24 @@ export class DropdownItemComponent<T>
     public isSelected: boolean = false;
 
     constructor(
-        private readonly changeDetector: ChangeDetectorRef,
-        private readonly hostRef: ElementRef<HTMLElement>
+        @Host() private readonly dropdown: DropdownComponent<T>,
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        this.initValueAfterValueChanged(changes);
+        this.processValueOnChanges(changes);
     }
 
     public ngOnInit(): void {
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
-    public ngAfterContentInit(): void {
+    public ngAfterViewInit(): void {
         this.initDefaultValueIfAbsent();
-    }
-
-    /** Sets state of selection and triggers `change detection` */
-    public setSelectedState(state: boolean): void {
-        this.isSelected = state;
-
-        this.changeDetector.markForCheck();
+        this.initDropdownValueObserver();
     }
 
     /** Gets the label text of the dropdown item */
@@ -81,11 +79,14 @@ export class DropdownItemComponent<T>
         originalEvent.stopPropagation();
 
         if (!this.isDisabled) {
-            this.osSelected.emit({ originalEvent, data: this.data });
+            const event: DropdownValueChangeEvent<T> = { originalEvent, data: this.data };
+
+            this.dropdown.onItemSelect(event, this);
+            this.osSelected.emit(event);
         }
     }
 
-    private initValueAfterValueChanged(changes: SimpleChanges): void {
+    private processValueOnChanges(changes: SimpleChanges): void {
         if (this.hostRef && (changes?.value?.previousValue !== changes?.value?.currentValue)) {
             if (isNil(changes.value.currentValue)) {
                 this.initDefaultValueIfAbsent();
@@ -97,5 +98,22 @@ export class DropdownItemComponent<T>
         if (isNil(this.data)) {
             this.data = this.getLabel() as any;
         }
+    }
+
+    private initDropdownValueObserver(): void {
+        this.dropdown.controlValue$
+            ?.pipe(
+                takeUntil(this.viewDestroyed$),
+                filter((value) => !isNil(value))
+            )
+            .subscribe((dropdownValue) => {
+                this.isSelected = (dropdownValue === this.data);
+
+                if (this.isSelected) {
+                    this.dropdown.initSelectedItem(this);
+                }
+
+                this.changeDetector.markForCheck();
+            });
     }
 }

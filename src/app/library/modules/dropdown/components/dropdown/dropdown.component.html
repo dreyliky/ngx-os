@@ -16,14 +16,14 @@
 <ng-container *ngIf="_isValueExist">
     <ng-container *ngIf="_valueTemplate; else defaultValueTemplate">
         <ng-container
-            *ngTemplateOutlet="_valueTemplate; context: { $implicit: _valueContext }">
+            *ngTemplateOutlet="_valueTemplate; context: { $implicit: value }">
         </ng-container>
     </ng-container>
 
     <ng-template #defaultValueTemplate>
         <span
             class="os-value"
-            [innerText]="_labelToDisplay">
+            [innerText]="label">
         </span>
     </ng-template>
 </ng-container>

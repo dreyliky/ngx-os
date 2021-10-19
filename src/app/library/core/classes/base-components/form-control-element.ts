@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { startWith } from 'rxjs/operators';
 import { OsBaseComponent } from './component';
 
 /** @internal */
@@ -11,11 +13,14 @@ export abstract class OsBaseFormControlComponent<T = any>
     public onChange: (value: T) => void;
     public onTouched: () => void;
 
-    protected controlDir: NgControl;
-
-    constructor() {
-        super();
+    public get controlValue$(): Observable<T> {
+        return this.controlDir?.control.valueChanges
+            .pipe(
+                startWith(this.controlDir.control.value)
+            );
     }
+
+    protected controlDir: NgControl;
 
     public registerOnChange(fn: () => void): void {
         this.onChange = fn;
