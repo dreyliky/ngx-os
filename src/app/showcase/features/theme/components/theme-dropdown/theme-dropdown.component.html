@@ -1,6 +1,6 @@
 <os-dropdown
     [placeholder]="'Choose theme'"
-    [value]="selectedTheme"
+    [ngModel]="selectedTheme"
     (osChange)="onThemeChanged($event)">
     <os-dropdown-item
         *ngFor="let theme of themes"

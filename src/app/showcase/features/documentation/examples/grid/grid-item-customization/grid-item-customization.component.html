@@ -22,7 +22,7 @@
                 <os-textarea-box
                     *ngIf="file.isEditing"
                     [isAutofocused]="true"
-                    [(value)]="file.name"
+                    [(ngModel)]="file.name"
                     (click)="$event.stopPropagation()">
                 </os-textarea-box>
             </ng-template>

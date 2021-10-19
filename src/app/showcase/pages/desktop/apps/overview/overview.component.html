@@ -21,7 +21,7 @@
         <os-label>Role</os-label>
 
         <os-dropdown
-            [value]="3"
+            [ngModel]="3"
             [placeholder]="'Choose item'">
             <os-dropdown-item [data]="1">User</os-dropdown-item>
             <os-dropdown-item [data]="2">Moderator</os-dropdown-item>
@@ -49,7 +49,7 @@
             [maxValueLabel]="'Max'"
             [min]="14"
             [max]="120"
-            [value]="18">
+            [ngModel]="18">
         </os-slider>
     </os-form-field>
 

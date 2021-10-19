@@ -5,13 +5,14 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
     Input,
+    Optional,
     Output,
+    Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
 import { TextareaBoxChangeEvent } from '../../interfaces';
 
@@ -22,14 +23,7 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
         'class': 'os-textarea-box'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TextareaBoxComponent),
-            multi: true
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaBoxComponent
     extends OsBaseFieldComponent
@@ -50,9 +44,11 @@ export class TextareaBoxComponent
     private readonly textareaElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
+        @Self() @Optional() protected readonly controlDir: NgControl,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+        this.initValueAccessor(this);
     }
 
     public ngAfterViewInit(): void {
@@ -71,7 +67,6 @@ export class TextareaBoxComponent
         const targetElement = originalEvent.target as HTMLTextAreaElement;
         const value = targetElement.value;
 
-        super.onFieldValueChange(originalEvent);
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value });
         this.changeDetector.markForCheck();

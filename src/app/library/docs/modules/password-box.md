@@ -5,7 +5,7 @@ Allows you to get password input from the user.
 ```html
 <os-password-box
     [placeholder]="'Hello World'"
-    [(value)]="myValueField">
+    [(ngModel)]="myValueField">
 </os-password-box>
 ```
 
@@ -25,7 +25,3 @@ Allows you to get password input from the user.
 ## Use with **@angular/forms**
 
 `<os-password-box>` is compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.
-
-## Two-Way Binding properties support
-
-`[(value)]`, `[(ngModel)]` are support two-way binding.

@@ -5,7 +5,7 @@ Allows you to get email input from the user.
 ```html
 <os-email-box
     [placeholder]="'Hello World'"
-    [(value)]="myValueField">
+    [(ngModel)]="myValueField">
 </os-email-box>
 ```
 
@@ -25,7 +25,3 @@ Allows you to get email input from the user.
 ## Use with **@angular/forms**
 
 `<os-email-box>` is compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.
-
-## Two-Way Binding properties support
-
-`[(value)]`, `[(ngModel)]` are support two-way binding.

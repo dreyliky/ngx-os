@@ -5,14 +5,15 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
     HostBinding,
     Input,
+    Optional,
     Output,
+    Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
 import { SliderValueChangeEvent } from '../../interfaces';
 
@@ -23,14 +24,7 @@ import { SliderValueChangeEvent } from '../../interfaces';
         'class': 'os-slider'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => SliderComponent),
-            multi: true
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderComponent
     extends OsBaseFormControlComponent<number>
@@ -60,10 +54,6 @@ export class SliderComponent
     @Input()
     public max: number = 100;
 
-    /** Value of the slider */
-    @Input()
-    public value: number = 0;
-
     /** Fires when the slider state change */
     @Output()
     public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
@@ -71,10 +61,15 @@ export class SliderComponent
     @ViewChild('slider')
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
+    /** Value of the slider */
+    public value: number = 0;
+
     constructor(
+        @Self() @Optional() protected readonly controlDir: NgControl,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+        this.initValueAccessor(this);
     }
 
     public ngAfterViewInit(): void {

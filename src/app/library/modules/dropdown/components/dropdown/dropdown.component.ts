@@ -8,18 +8,19 @@ import {
     ContentChildren,
     ElementRef,
     EventEmitter,
-    forwardRef,
     HostBinding,
     Inject,
     Input,
     OnDestroy,
     OnInit,
+    Optional,
     Output,
     QueryList,
+    Self,
     TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { fromEvent, merge, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
@@ -97,14 +98,7 @@ import { DropdownItemComponent } from '../dropdown-item';
         'class': 'os-dropdown'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => DropdownComponent),
-            multi: true
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent<T>
     extends OsBaseFormControlComponent<T>
@@ -122,15 +116,6 @@ export class DropdownComponent<T>
     @Input()
     public placeholder: string = '';
 
-    /** Value of the dropdown */
-    @Input()
-    public set value(value: T) {
-        this.setInitialValue(value);
-        // This microtask helps to solve the problem with structural directives that are imposed on elements.
-        // Structural directives are always recreating the EmbeddedView.
-        queueMicrotask(() => this.initSelectedItemByValue(value));
-    }
-
     /** Stylelist for scroll view component of the dropdown overlay */
     @Input()
     public scrollViewStyle: object = { maxHeight: '250px' };
@@ -142,10 +127,6 @@ export class DropdownComponent<T>
     /** Fires when the dropdown value change */
     @Output()
     public osChange: EventEmitter<DropdownValueChangeEvent<T>> = new EventEmitter();
-
-    /** Fires when `value` changed. Might be used for two way binding */
-    @Output()
-    public valueChange: EventEmitter<T> = new EventEmitter();
 
     /** @internal */
     @ContentChild('dropdownPlaceholder')
@@ -202,10 +183,12 @@ export class DropdownComponent<T>
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
+        @Self() @Optional() protected readonly controlDir: NgControl,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+        this.initValueAccessor(this);
     }
 
     public ngOnInit(): void {
@@ -250,6 +233,9 @@ export class DropdownComponent<T>
     public writeValue(value: T): void {
         this.setInitialValue(value);
         this.initSelectedItemByValue(value);
+        // This microtask helps to solve the problem with structural directives that are imposed on elements.
+        // Structural directives are always recreating the EmbeddedView.
+        queueMicrotask(() => this.initSelectedItemByValue(value));
     }
 
     protected onClick(event: PointerEvent): void {
@@ -266,7 +252,6 @@ export class DropdownComponent<T>
         this.initSelectedItem(itemComponent);
         this.deselectAllItems();
         itemComponent.setSelectedState(true);
-        this.valueChange.emit(event.data);
         this.osChange.emit(event);
         this.onChange?.(event.data);
         this.close();

@@ -7,6 +7,6 @@ Allows specifying by the user a numeric value that must be no less than a given 
     [label]="'Sound volume'"
     [min]="0"
     [max]="100"
-    [(value)]="myValueField">
+    [(ngModel)]="myValueField">
 </os-slider>
 ```

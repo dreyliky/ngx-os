@@ -5,13 +5,14 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
     Input,
+    Optional,
     Output,
+    Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgControl } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
 import { TextBoxChangeEvent } from '../../interfaces';
 
@@ -22,14 +23,7 @@ import { TextBoxChangeEvent } from '../../interfaces';
         'class': 'os-text-box'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => TextBoxComponent),
-            multi: true
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextBoxComponent extends OsBaseFieldComponent implements AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
@@ -49,9 +43,11 @@ export class TextBoxComponent extends OsBaseFieldComponent implements AfterViewI
     }
 
     constructor(
+        @Self() @Optional() protected readonly controlDir: NgControl,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+        this.initValueAccessor(this);
     }
 
     public ngAfterViewInit(): void {
@@ -70,7 +66,6 @@ export class TextBoxComponent extends OsBaseFieldComponent implements AfterViewI
         const targetElement = originalEvent.target as HTMLInputElement;
         const textboxValue: string = targetElement.value;
 
-        super.onFieldValueChange(originalEvent);
         this.onChange?.(textboxValue);
         this.osChange.emit({ originalEvent, value: textboxValue });
         this.changeDetector.markForCheck();

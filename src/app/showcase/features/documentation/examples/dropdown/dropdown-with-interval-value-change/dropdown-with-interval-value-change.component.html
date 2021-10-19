@@ -6,7 +6,7 @@
 <os-form-field>
     <os-dropdown
         [placeholder]="'Placeholder'"
-        [value]="selectedItem">
+        [ngModel]="selectedItem">
         <os-dropdown-item
             *ngFor="let item of items"
             [data]="item">

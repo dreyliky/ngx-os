@@ -14,7 +14,3 @@ Supported `Content Projection Slots` described in `Dropdown/API` section (docume
 ## Use with **@angular/forms**
 
 `<os-dropdown-box>` is compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.
-
-## Two way binding properties support
-
-`[(value)]`, `[(ngModel)]` are support two-way binding.

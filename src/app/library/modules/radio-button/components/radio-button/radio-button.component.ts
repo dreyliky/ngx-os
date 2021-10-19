@@ -4,15 +4,16 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
     HostBinding,
     Input,
     OnInit,
+    Optional,
     Output,
+    Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
 import { RadioButtonValueChangeEvent } from '../../interfaces';
 
@@ -23,14 +24,7 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
         'class': 'os-radio-button'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => RadioButtonComponent),
-            multi: true
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonComponent<T>
     extends OsBaseFormControlComponent<T>
@@ -69,10 +63,12 @@ export class RadioButtonComponent<T>
     private readonly radioElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
+        @Self() @Optional() protected readonly controlDir: NgControl,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+        this.initValueAccessor(this);
     }
 
     public ngOnInit(): void {

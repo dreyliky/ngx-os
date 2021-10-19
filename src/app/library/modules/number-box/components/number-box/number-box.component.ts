@@ -5,15 +5,16 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
     Input,
     OnChanges,
+    Optional,
     Output,
+    Self,
     SimpleChanges,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgControl } from '@angular/forms';
 import { OsBaseFieldComponent } from '../../../../core';
 import { NumberBoxChangeEvent } from '../../interfaces';
 
@@ -24,14 +25,7 @@ import { NumberBoxChangeEvent } from '../../interfaces';
         'class': 'os-number-box'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => NumberBoxComponent),
-            multi: true
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberBoxComponent extends OsBaseFieldComponent implements OnChanges, AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
@@ -51,9 +45,11 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnChange
     }
 
     constructor(
+        @Self() @Optional() protected readonly controlDir: NgControl,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+        this.initValueAccessor(this);
     }
 
     public ngAfterViewInit(): void {
@@ -88,7 +84,6 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnChange
         const targetElement = originalEvent.target as HTMLInputElement;
         const value = +targetElement.value;
 
-        super.onFieldValueChange(originalEvent);
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value });
         this.changeDetector.markForCheck();

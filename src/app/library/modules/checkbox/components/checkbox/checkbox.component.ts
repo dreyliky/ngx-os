@@ -4,15 +4,16 @@ import {
     Component,
     ElementRef,
     EventEmitter,
-    forwardRef,
     HostBinding,
     Input,
     OnInit,
+    Optional,
     Output,
+    Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
 import { CheckboxValueChangeEvent } from '../../interfaces';
 
@@ -23,14 +24,7 @@ import { CheckboxValueChangeEvent } from '../../interfaces';
         'class': 'os-checkbox'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => CheckboxComponent),
-            multi: true
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent<T>
     extends OsBaseFormControlComponent<boolean>
@@ -69,10 +63,12 @@ export class CheckboxComponent<T>
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
+        @Self() @Optional() protected readonly controlDir: NgControl,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
+        this.initValueAccessor(this);
     }
 
     public ngOnInit(): void {
