@@ -1,14 +1,14 @@
 <textarea
     #textarea
     class="os-element os-scroll-view"
+    [attr.id]="id"
+    [attr.name]="name"
+    [attr.rows]="rows"
+    [attr.cols]="cols"
     [class]="styleClass"
-    [id]="id"
     [ngStyle]="style"
-    [name]="name"
     [readOnly]="isReadonly"
     [placeholder]="placeholder"
     [disabled]="isDisabled"
-    [rows]="rows"
-    [cols]="cols"
     [value]="value">
 </textarea>

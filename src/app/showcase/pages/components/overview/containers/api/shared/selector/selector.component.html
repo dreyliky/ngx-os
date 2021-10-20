@@ -1,10 +1,7 @@
-<os-form-field [isStacked]="true">
-    <os-label>Selector</os-label>
-
-    <os-text-box
-        [size]="name.length"
-        [isReadonly]="true"
-        [ngModel]="name"
-        (osClick)="onSelectorTextboxClick($event)">
-    </os-text-box>
-</os-form-field>
+<os-text-box
+    [size]="name.length"
+    [isReadonly]="true"
+    [ngModel]="name"
+    [size]="name.length"
+    (osClick)="onSelectorTextboxClick($event)">
+</os-text-box>

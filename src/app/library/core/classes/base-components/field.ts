@@ -30,7 +30,7 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
 
     /** Native `input` size property */
     @Input()
-    public readonly size: number = 20;
+    public readonly size: number;
 
     /** The handler will be fired when the value changes. */
     @Output()

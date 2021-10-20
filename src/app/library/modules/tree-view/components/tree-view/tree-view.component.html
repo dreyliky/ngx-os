@@ -23,7 +23,7 @@
             [style.--os-tree-node-depth]="depth"
             [ngStyle]="node.style"
             [ngClass]="node.styleClass"
-            [id]="node.id"
+            [attr.id]="node.id"
             [class.os-root-node]="!depth"
             [class.os-disabled]="node.isDisabled"
             [class.os-expandable]="node.children?.length"

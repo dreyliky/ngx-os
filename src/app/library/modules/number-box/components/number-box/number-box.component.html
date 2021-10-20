@@ -1,13 +1,13 @@
 <input
     #numberbox
-    [id]="id"
+    [attr.id]="id"
+    [attr.name]="name"
+    [attr.size]="size"
     [class]="styleClass"
     [ngStyle]="style"
     [placeholder]="placeholder"
-    [name]="name"
     [disabled]="isDisabled"
     [readOnly]="isReadonly"
     [autocomplete]="_inputAutocompleteAttrValue"
     [type]="'text'"
-    [size]="size"
     [value]="value" />

@@ -9,10 +9,10 @@
 
 <input
     #slider
-    type="range"
+    [type]="'range'"
     [disabled]="isDisabled"
-    [min]="min"
-    [max]="max"
+    [attr.min]="min"
+    [attr.max]="max"
     [value]="value"
     (change)="onSliderValueChange($event)" />
 
