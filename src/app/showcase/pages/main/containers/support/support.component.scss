@@ -1,0 +1,35 @@
+:host {
+    width: 100%;
+    display: block;
+    padding: 15px;
+    box-sizing: border-box;
+    background: rgba(var(--os-primary-color), .8);
+    color: #fff;
+    text-align: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+        height: 36px;
+        margin-left: 10px;
+    }
+}
+
+.description {
+    .os-text {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 32px;
+    }
+}
+
+.os-grid {
+    width: 215px;
+    height: 115px;
+    display: block;
+    margin: 15px auto 0px auto;
+}

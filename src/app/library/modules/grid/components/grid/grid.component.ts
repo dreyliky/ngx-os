@@ -48,7 +48,6 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     @Input()
     public set gridSize(value: number) {
         this._gridSize = value;
-        console.log(value);
 
         this.validateGridSize();
     }

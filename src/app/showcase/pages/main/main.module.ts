@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
 import { CardComponent } from './components';
-import { AuthorComponent, FeaturesComponent, SubheaderComponent } from './containers';
+import {
+    AuthorComponent,
+    FeaturesComponent,
+    SubheaderComponent,
+    SupportComponent
+} from './containers';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main.routing';
 
@@ -10,6 +15,7 @@ import { MainRoutingModule } from './main.routing';
         MainComponent,
         SubheaderComponent,
         FeaturesComponent,
+        SupportComponent,
         AuthorComponent,
         CardComponent
     ],

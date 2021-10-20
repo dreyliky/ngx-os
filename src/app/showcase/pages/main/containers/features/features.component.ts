@@ -21,10 +21,28 @@ export class FeaturesComponent {
                         + 'an amazing app in operating system style.'
         },
         {
+            iconUrl: '/assets/showcase/icons/lightweight.png',
+            title: 'LIGHTWEIGHT',
+            description: 'There are no external dependencies, '
+                        + 'also you can use the code of only modules you need.'
+        },
+        {
+            iconUrl: '/assets/showcase/icons/full-documented.png',
+            title: 'FULLY DOCUMENTED',
+            description: 'Every module has its own documentation about usage. '
+                        + 'Each field, method are documented too.'
+        },
+        {
             iconUrl: '/assets/showcase/icons/themes.png',
             title: '3 THEMES',
             description: 'Try to use: Win98, WinXP, Win10 themes. '
                         + 'You can switch between in realtime.'
+        },
+        {
+            iconUrl: '/assets/showcase/icons/easy-to-use.png',
+            title: 'EASY TO USE',
+            description: 'Library has an intuitive and simple API. '
+                        + 'Each module has examples to demonstrate key features.'
         },
         {
             iconUrl: '/assets/showcase/icons/open-source.png',

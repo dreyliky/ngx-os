@@ -11,12 +11,15 @@
 
 .wrapper {
     width: 100%;
-    display: flex;
-    flex: 1 1 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
     padding: 30px;
     box-sizing: border-box;
 
     .card {
+        margin: 7px;
+
         .icon {
             height: 96px;
             margin-bottom: 15px;

@@ -1,0 +1,23 @@
+<os-header class="title">
+    Support
+    <img
+        class="icon"
+        src="/assets/showcase/icons/emojis/fire.png" />
+</os-header>
+
+<div class="description">
+    <os-text>
+        If you like this library, you can support development by donating to me via the services below.<br />
+        Also, you can contribute features, fixes, or ideas in GitHub.<br />
+        Thanks!
+    </os-text>
+
+    <os-grid [gridSize]="100">
+        <os-grid-item
+            *ngFor="let website of websites"
+            [iconUrl]="website.iconUrl"
+            [label]="website.name"
+            (osDblClick)="onWebsiteDblClick(website)">
+        </os-grid-item>
+    </os-grid>
+</div>

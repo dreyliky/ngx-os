@@ -19,21 +19,21 @@ export class SideBarItemsService implements OnDestroy {
         {
             label: 'Examples',
             data: {
-                imageUrl: '/assets/showcase/icons/dev/examples.png',
+                imageUrl: '/assets/showcase/icons/emojis/acid.png',
                 sectionUrl: RouteEnum.Examples
             }
         },
         {
             label: 'Theming',
             data: {
-                imageUrl: '/assets/showcase/icons/dev/theming.png',
+                imageUrl: '/assets/showcase/icons/emojis/art.png',
                 sectionUrl: RouteEnum.Theming
             }
         },
         {
             label: 'API',
             data: {
-                imageUrl: '/assets/showcase/icons/dev/api.png',
+                imageUrl: '/assets/showcase/icons/emojis/puzzle.png',
                 sectionUrl: RouteEnum.Api
             }
         }
