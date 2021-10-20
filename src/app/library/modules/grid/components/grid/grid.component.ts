@@ -48,6 +48,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     @Input()
     public set gridSize(value: number) {
         this._gridSize = value;
+        console.log(value);
 
         this.validateGridSize();
     }
@@ -102,9 +103,8 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         this.initRecalculations();
     }
 
-    // eslint-disable-next-line max-lines-per-function
     private calculateGridItemElementsPositions(): void {
-        this.adjustGridBeforeCalculatingItemElementsPositions();
+        this.createGrid();
         this.fillGridByItemsWithCoordinates();
         this.fillGridByItemsWithoutCoordinates();
     }
@@ -113,7 +113,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         this._gridItemComponents.forEach((gridItem) => {
             if (gridItem.coordinate) {
                 const { x, y } = gridItem.coordinate;
-                const targetCell = this.grid.get(x, y);
+                const targetCell = this.grid.getCell(x, y);
 
                 targetCell.setData(gridItem.hostRef);
                 this.initCellStyles(targetCell);
@@ -122,7 +122,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private fillGridByItemsWithoutCoordinates(): void {
-        let actualCell = this.grid.getFirstEmpty();
+        let actualCell = this.grid.getFirstEmptyCell();
 
         for (const gridItem of this._gridItemComponents) {
             if (!actualCell) {
@@ -138,7 +138,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         }
     }
 
-    private adjustGridBeforeCalculatingItemElementsPositions(): void {
+    private createGrid(): void {
         const hostElement = this.hostRef.nativeElement;
         const gridZoneWidth = hostElement.clientWidth || hostElement.scrollWidth;
         const gridZoneHeight = hostElement.clientHeight || hostElement.scrollHeight;

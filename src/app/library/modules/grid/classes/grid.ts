@@ -21,12 +21,12 @@ export class Grid<T> implements GridParams {
         this.reset();
     }
 
-    public get(x: number, y: number): Cell<T> {
+    public getCell(x: number, y: number): Cell<T> {
         return this.structure[y][x];
     }
 
-    public getFirstEmpty(): Cell<T> {
-        const firstCell = this.get(0, 0);
+    public getFirstEmptyCell(): Cell<T> {
+        const firstCell = this.getCell(0, 0);
 
         if (isNil(firstCell.getData())) {
             return firstCell;
