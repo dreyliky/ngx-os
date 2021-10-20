@@ -1,0 +1,13 @@
+:host {
+    display: block;
+}
+
+.grid-wrapper {
+    width: 100%;
+    height: 250px;
+    background-color: #000000;
+}
+
+os-grid {
+    background-color: rgba(var(--os-primary-color), .6);
+}

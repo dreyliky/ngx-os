@@ -1,0 +1,23 @@
+<os-form-field [isStacked]="true">
+    <os-label>Direction</os-label>
+    
+    <os-dropdown
+        [placeholder]="'Choose direction'"
+        [(ngModel)]="currentGridDirection">
+        <os-dropdown-item [data]="gridDirectionEnum.Horizontal">Horizontal</os-dropdown-item>
+        <os-dropdown-item [data]="gridDirectionEnum.Vertical">Vertical</os-dropdown-item>
+    </os-dropdown>
+</os-form-field>
+
+<div class="grid-wrapper">
+    <os-grid
+        [gridSize]="80"
+        [direction]="currentGridDirection">
+        <os-grid-item
+            *ngFor="let item of items"
+            [label]="item.label"
+            [iconUrl]="item.iconUrl"
+            [coordinate]="item.coordinate">
+        </os-grid-item>
+    </os-grid>
+</div>

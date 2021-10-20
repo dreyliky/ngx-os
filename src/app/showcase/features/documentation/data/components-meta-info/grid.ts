@@ -1,6 +1,10 @@
 import { GridComponent, GridItemComponent, GridModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
-import { GridItemCustomizationComponent, GridOverviewComponent } from '../../examples';
+import {
+    GridItemCustomizationComponent,
+    GridItemWithStaticCoordinateComponent,
+    GridOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const GRID_META_INFO: ComponentMetaInfo = {
@@ -26,6 +30,10 @@ export const GRID_META_INFO: ComponentMetaInfo = {
         {
             title: 'Grid Item Customization',
             component: GridItemCustomizationComponent
+        },
+        {
+            title: 'Grid Item with Static Coordinate',
+            component: GridItemWithStaticCoordinateComponent
         }
     ]
 };

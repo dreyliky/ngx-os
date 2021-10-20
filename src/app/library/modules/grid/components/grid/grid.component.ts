@@ -62,9 +62,9 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     public repaintDelayInMs: number = 200;
 
     /** @internal */
-    @ContentChildren(GridItemComponent, { read: ElementRef })
-    public set __gridItemElements(elements: QueryList<ElementRef<HTMLElement>>) {
-        this._gridItemElements = elements;
+    @ContentChildren(GridItemComponent)
+    public set __gridItemElements(elements: QueryList<GridItemComponent>) {
+        this._gridItemComponents = elements;
 
         this.initRecalculations();
     }
@@ -82,7 +82,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     private grid: Grid<ElementRef<HTMLElement>>;
     private _gridSize: number = 72;
     private _gridMinSize: number = 50;
-    private _gridItemElements: QueryList<ElementRef<HTMLElement>>;
+    private _gridItemComponents: QueryList<GridItemComponent>;
 
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>
@@ -102,19 +102,40 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         this.initRecalculations();
     }
 
+    // eslint-disable-next-line max-lines-per-function
     private calculateGridItemElementsPositions(): void {
         this.adjustGridBeforeCalculatingItemElementsPositions();
+        this.fillGridByItemsWithCoordinates();
+        this.fillGridByItemsWithoutCoordinates();
+    }
 
-        let actualCell = this.grid.get(0, 0);
+    private fillGridByItemsWithCoordinates(): void {
+        this._gridItemComponents.forEach((gridItem) => {
+            if (gridItem.coordinate) {
+                const { x, y } = gridItem.coordinate;
+                const targetCell = this.grid.get(x, y);
 
-        this._gridItemElements.forEach((gridItem) => {
-            if (actualCell) {
-                actualCell.setData(gridItem);
+                targetCell.setData(gridItem.hostRef);
+                this.initCellStyles(targetCell);
+            }
+        });
+    }
+
+    private fillGridByItemsWithoutCoordinates(): void {
+        let actualCell = this.grid.getFirstEmpty();
+
+        for (const gridItem of this._gridItemComponents) {
+            if (!actualCell) {
+                break;
+            }
+
+            if (!gridItem.coordinate) {
+                actualCell.setData(gridItem.hostRef);
                 this.initCellStyles(actualCell);
 
                 actualCell = actualCell.getNextWithoutData();
             }
-        });
+        }
     }
 
     private adjustGridBeforeCalculatingItemElementsPositions(): void {

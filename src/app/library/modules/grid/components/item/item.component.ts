@@ -4,7 +4,8 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChild,
-    ElementRef, HostBinding,
+    ElementRef,
+    HostBinding,
     Inject,
     Input,
     OnInit,
@@ -13,7 +14,7 @@ import {
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { CommonCssClassEnum, EventOutside, OsBaseComponent } from '../../../../core';
+import { CommonCssClassEnum, Coordinate, EventOutside, OsBaseComponent } from '../../../../core';
 
 /**
  * ## Templates
@@ -71,6 +72,16 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     @Input()
     public label: string;
 
+    /**
+     * Static coordinate of the cell for the grid item.
+     *
+     * @example
+     * `x: 0; y: 0;` - First cell by X-Axis and Y-Axis;
+     * `x: 1; y: 2;` - Second cell by X-Axis and third cell by Y-Axis;
+    */
+    @Input()
+    public coordinate: Coordinate;
+
     /** @internal */
     @ContentChild('gridItemIcon')
     public readonly _gridItemIconTemplate: TemplateRef<HTMLElement>;
@@ -83,9 +94,10 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     public _iconBackgroundCssUrl: string;
 
     constructor(
+        /** @internal */
+        public readonly hostRef: ElementRef<HTMLElement>,
         @Inject(DOCUMENT) private readonly document: Document,
-        private readonly changeDetector: ChangeDetectorRef,
-        private readonly hostRef: ElementRef<HTMLElement>
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }

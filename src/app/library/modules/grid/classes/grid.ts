@@ -1,3 +1,4 @@
+import { isNil } from '../../../core';
 import { GridDirectionEnum } from '../enums';
 import { GridParams } from '../interfaces';
 import { BaseDirectionStrategy, GridDirectionStrategyFactory } from './direction';
@@ -22,6 +23,16 @@ export class Grid<T> implements GridParams {
 
     public get(x: number, y: number): Cell<T> {
         return this.structure[y][x];
+    }
+
+    public getFirstEmpty(): Cell<T> {
+        const firstCell = this.get(0, 0);
+
+        if (isNil(firstCell.getData())) {
+            return firstCell;
+        }
+
+        return this.directionStrategy.nextWithoutData(firstCell);
     }
 
     public reset(): void {

@@ -18,6 +18,7 @@ import {
     EmailBoxValidityOverviewComponent,
     FormFieldOverviewComponent,
     GridItemCustomizationComponent,
+    GridItemWithStaticCoordinateComponent,
     GridOverviewComponent,
     GroupBoxOverviewComponent,
     ListCustomTemplateComponent,
@@ -110,7 +111,8 @@ import {
         UtilsFixedToParentOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        GridItemWithStaticCoordinateComponent
     ],
     imports: [
         SharedModule
