@@ -8,15 +8,14 @@
 
     <table class="content">
         <tr *ngFor="let property of properties">
-            <td class="property-name-col">
-                <os-text>
-                    {{ property.name }}:
-                    <span class="text-primary">{{ property.type }}</span>
-                </os-text>
+            <td
+                class="property-name-col os-text"
+                [innerHTML]="property | propertyFormatter | safeHTML">
             </td>
 
-            <td>
-                <os-text [innerHTML]="property?.description"></os-text>
+            <td
+                class="os-text"
+                [innerHTML]="property?.description">
             </td>
         </tr>
     </table>

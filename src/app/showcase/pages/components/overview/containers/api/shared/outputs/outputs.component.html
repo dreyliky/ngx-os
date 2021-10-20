@@ -7,15 +7,14 @@
 
     <table class="content">
         <tr *ngFor="let outputProp of outputs">
-            <td class="property-name-col">
-                <os-text>
-                    {{ outputProp.name }}:
-                    <span class="text-primary">{{ outputProp.type }}</span>
-                </os-text>
+            <td
+                class="property-name-col os-text"
+                [innerHTML]="outputProp | outputFormatter | safeHTML">
             </td>
 
-            <td>
-                <os-text [innerHTML]="outputProp?.description"></os-text>
+            <td
+                class="os-text"
+                [innerHTML]="outputProp?.description">
             </td>
         </tr>
     </table>
