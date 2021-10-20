@@ -19,10 +19,6 @@ table.content {
         &.property-name-col {
             width: 250px;
             border: solid 1px rgba(0, 0, 0, .05);
-
-            .property-type {
-                color: rgb(var(--os-primary-color));
-            }
         }
 
         height: 54px;

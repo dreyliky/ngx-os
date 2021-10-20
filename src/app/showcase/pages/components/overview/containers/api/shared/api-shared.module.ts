@@ -4,7 +4,7 @@ import { SharedModule } from '@shared';
 import { ElementHeaderComponent } from './element-header';
 import { GettersComponent } from './getters';
 import { InputsComponent } from './inputs';
-import { MethodsComponent } from './methods';
+import { MethodFormatterPipe, MethodsComponent } from './methods';
 import { OutputsComponent } from './outputs';
 import { PropertiesComponent } from './properties';
 import { ReadmeInfoComponent } from './readme-info';
@@ -20,6 +20,7 @@ import { SettersComponent } from './setters';
         InputsComponent,
         OutputsComponent,
         PropertiesComponent,
+        MethodFormatterPipe,
         MethodsComponent,
         SelectorComponent
     ],
