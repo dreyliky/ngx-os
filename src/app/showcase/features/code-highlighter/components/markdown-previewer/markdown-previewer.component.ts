@@ -67,11 +67,13 @@ export class MarkdownPreviewerComponent extends OsBaseViewComponent {
         language: CodeLanguageType
     ): void {
         blockElements.forEach((blockElement) => {
+            const blockParentElement = blockElement.parentElement;
             const rawCode = blockElement.innerText;
             const highlightedCode = this.highlighter.highlight(language, rawCode);
             blockElement.innerHTML = highlightedCode;
 
-            blockElement.parentElement.classList.add('code-wrapper', 'os-scroll-view');
+            blockParentElement.parentElement.classList.add('code-wrapper');
+            blockParentElement.classList.add('os-scroll-view');
             blockElement.classList.add('code-block');
         });
     }

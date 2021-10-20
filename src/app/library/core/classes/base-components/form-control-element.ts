@@ -4,15 +4,17 @@ import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 import { OsBaseComponent } from './component';
 
-/** @internal */
 @Component({
     template: ''
 })
 export abstract class OsBaseFormControlComponent<T = any>
     extends OsBaseComponent implements ControlValueAccessor {
+    /** @internal */
     public onChange: (value: T) => void;
+    /** @internal */
     public onTouched: () => void;
 
+    /** @internal */
     public get controlValue$(): Observable<T> {
         return this.controlDir?.control.valueChanges
             .pipe(
@@ -22,15 +24,17 @@ export abstract class OsBaseFormControlComponent<T = any>
 
     protected controlDir: NgControl;
 
+    /** @internal */
     public registerOnChange(fn: () => void): void {
         this.onChange = fn;
     }
 
+    /** @internal */
     public registerOnTouched(fn: () => void): void {
         this.onTouched = fn;
     }
 
-    public initControlDir(
+    protected initControlDir(
         controlDir: NgControl,
         valueAccessor: OsBaseFormControlComponent
     ): void {

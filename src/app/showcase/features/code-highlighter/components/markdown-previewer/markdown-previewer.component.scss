@@ -31,6 +31,8 @@
         margin: 7px 0px;
     }
 
+
+
     code:not(.code-block) {
         font-family: inherit;
         background: rgba(var(--os-primary-color), .15);
@@ -39,7 +41,11 @@
         border-radius: 3px;
     }
 
-    pre:not(.code-wrapper) {
+    .code-wrapper {
+        display: grid;
+    }
+
+    pre:not(.os-scroll-view) {
         border-radius: 3px;
         background: rgba(0, 0, 0, .7);
         padding: 6px;
@@ -51,7 +57,7 @@
         }
     }
 
-    pre.code-wrapper {
+    pre.os-scroll-view {
         overflow: auto;
         margin: 8px 0px;
     }
