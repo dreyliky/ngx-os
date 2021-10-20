@@ -4,8 +4,7 @@ import { CardComponent } from './components';
 import {
     AuthorComponent,
     FeaturesComponent,
-    SubheaderComponent,
-    SupportComponent
+    SubheaderComponent
 } from './containers';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main.routing';
@@ -15,7 +14,6 @@ import { MainRoutingModule } from './main.routing';
         MainComponent,
         SubheaderComponent,
         FeaturesComponent,
-        SupportComponent,
         AuthorComponent,
         CardComponent
     ],

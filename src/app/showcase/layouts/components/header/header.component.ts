@@ -3,12 +3,12 @@ import { AppRouteEnum } from '@core/enums';
 import { environment } from 'src/environments/environment';
 
 @Component({
-    selector: 'showcase-component-header',
-    templateUrl: './component-header.component.html',
-    styleUrls: ['./component-header.component.scss'],
+    selector: 'showcase-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ComponentHeaderComponent {
+export class HeaderComponent {
     public readonly libVersion: string = environment.version;
 
     public readonly recommendedBrowserText: string = 'The library is on the alpha stage right now. '

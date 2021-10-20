@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
-import { ComponentHeaderModule } from './components';
+import { FooterComponent, HeaderModule } from './components';
 import { MainLayoutComponent } from './containers';
 
 @NgModule({
     declarations: [
-        MainLayoutComponent
+        MainLayoutComponent,
+        FooterComponent
     ],
     imports: [
         SharedModule,
         FeaturesModule,
-        ComponentHeaderModule
+        HeaderModule
     ],
     exports: [
         MainLayoutComponent

@@ -7,12 +7,12 @@ interface SupportWebsite {
 }
 
 @Component({
-    selector: 'showcase-support',
-    templateUrl: './support.component.html',
-    styleUrls: ['./support.component.scss'],
+    selector: 'showcase-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SupportComponent {
+export class FooterComponent {
     public readonly websites: SupportWebsite[] = [
         {
             name: 'Patreon',

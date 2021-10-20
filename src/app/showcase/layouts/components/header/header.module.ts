@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
-import { ComponentHeaderComponent } from './component-header.component';
+import { HeaderComponent } from './header.component';
 import { ThemeSettingsComponent } from './theme-settings/theme-settings.component';
 
 @NgModule({
     declarations: [
-        ComponentHeaderComponent,
+        HeaderComponent,
         ThemeSettingsComponent
     ],
     imports: [
@@ -14,7 +14,7 @@ import { ThemeSettingsComponent } from './theme-settings/theme-settings.componen
         FeaturesModule
     ],
     exports: [
-        ComponentHeaderComponent
+        HeaderComponent
     ]
 })
-export class ComponentHeaderModule {}
+export class HeaderModule {}
