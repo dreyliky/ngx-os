@@ -51,7 +51,8 @@ export class OverviewComponent extends OsBaseViewComponent implements OnInit {
         this.router.events
             .pipe(
                 takeUntil(this.viewDestroyed$),
-                filter((event) => event instanceof NavigationEnd)
+                filter((event) => event instanceof NavigationEnd),
+                filter(() => !this.activatedRoute.snapshot.fragment)
             )
             .subscribe(() => this.mainLayout.scrollView.scrollTo(0, 0));
     }
