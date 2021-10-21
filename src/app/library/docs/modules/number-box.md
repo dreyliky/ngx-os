@@ -2,6 +2,12 @@
 
 Allows you to get number input from the user.
 
+## Features
+- Supports Integer or Decimals;
+- Supports Min and Max values;
+- Supports Min and Max fraction digits count;
+- Allows forbidding empty field when no value;
+
 ```html
 <os-number-box
     [placeholder]="'Hello World'"
