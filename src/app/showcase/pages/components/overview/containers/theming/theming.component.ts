@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { LibraryThemingDocumentationService } from '@features/documentation';
 import { OsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
@@ -16,6 +17,7 @@ export class ThemingComponent extends OsBaseViewComponent implements OnInit {
     public contentGithubUrl: string;
 
     constructor(
+        private readonly titleService: Title,
         private readonly documentationService: LibraryThemingDocumentationService,
         private readonly overviewService: OverviewService,
         private readonly changeDetector: ChangeDetectorRef
@@ -24,6 +26,7 @@ export class ThemingComponent extends OsBaseViewComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.titleService.setTitle(`ngx-os - ${this.overviewService.metaInfo.name} Theming`);
         this.initMarkdownContentObservable();
         this.initContentGithubUrlObserver();
     }

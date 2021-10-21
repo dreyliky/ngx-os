@@ -8,6 +8,7 @@ import {
     ViewChildren,
     ViewContainerRef
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@features/documentation';
 import { OsBaseViewComponent } from 'ngx-os';
 import { combineLatest } from 'rxjs';
@@ -36,6 +37,7 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
     public demoComponents: DemoComponentMetaInfo[];
 
     constructor(
+        private readonly titleService: Title,
         private readonly devExamplesVisibilityService: DevExamplesVisibilityService,
         private readonly overviewService: OverviewService,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
@@ -47,6 +49,7 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
     public ngOnInit(): void {
         this.isDevExamplesVisible = this.devExamplesVisibilityService.data;
 
+        this.titleService.setTitle(`ngx-os - ${this.overviewService.metaInfo.name} Examples`);
         this.initMetaInfoObserver();
     }
 
