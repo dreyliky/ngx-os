@@ -13,7 +13,7 @@ import { Shortcut, ShortcutSettingsService } from '../../features/shortcut';
 })
 export class ShortcutsZoneComponent extends OsBaseViewComponent implements OnInit {
     public gridDirection = GridDirectionEnum.Vertical;
-    public gridSize = 72;
+    public cellSize = 72;
 
     public programs = APPS;
 
@@ -47,9 +47,9 @@ export class ShortcutsZoneComponent extends OsBaseViewComponent implements OnIni
                 takeUntil(this.viewDestroyed$),
                 filter((settings) => !!settings)
             )
-            .subscribe(({ direction, gridSize }) => {
+            .subscribe(({ direction, cellSize }) => {
                 this.gridDirection = direction;
-                this.gridSize = gridSize;
+                this.cellSize = cellSize;
 
                 this.changeDetector.detectChanges();
             });

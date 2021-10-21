@@ -30,7 +30,7 @@ export class ShortcutsComponent extends OsBaseViewComponent implements OnInit {
 
         this.formGroup = new FormGroup({
             direction: new FormControl(settings?.direction ?? GridDirectionEnum.Vertical),
-            gridSize: new FormControl(settings?.gridSize ?? 72)
+            cellSize: new FormControl(settings?.cellSize ?? 72)
         });
     }
 

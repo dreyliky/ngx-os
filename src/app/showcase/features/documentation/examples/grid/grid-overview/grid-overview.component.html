@@ -14,7 +14,7 @@
 
     <os-number-box
         [placeholder]="'Enter grid size'"
-        [(ngModel)]="gridSize">
+        [(ngModel)]="cellSize">
     </os-number-box>
 </os-form-field>
 
@@ -33,7 +33,7 @@
 <div class="grid-wrapper">
     <os-grid
         [direction]="currentGridDirection"
-        [gridSize]="gridSize">
+        [cellSize]="cellSize">
         <os-grid-item
             *ngFor="let item of items"
             [label]="item.label"

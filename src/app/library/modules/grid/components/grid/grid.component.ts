@@ -44,17 +44,17 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     @Input()
     public readonly direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
 
-    /** Size of each grid item in pixels */
+    /** Size of the grid cell in pixels inside which will be rendered each grid item */
     @Input()
-    public set gridSize(value: number) {
-        this._gridSize = value;
+    public set cellSize(value: number) {
+        this._cellSize = value;
 
-        this.validateGridSize();
+        this.validateCellSize();
     }
 
-    /** Size of each grid item in pixels */
-    public get gridSize(): number {
-        return this._gridSize;
+    /** Size of the grid cell in pixels inside which will be rendered each grid item */
+    public get cellSize(): number {
+        return this._cellSize;
     }
 
     /** How long in milliseconds, the grid should wait after changes before recalculate and repaint all grid items? */
@@ -71,8 +71,8 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     /** @internal */
     @HostBinding('style.--os-grid-size')
-    public get _hostGridSizeClass(): string {
-        return `${this._gridSize}px`;
+    public get _hostCellSizeClass(): string {
+        return `${this._cellSize}px`;
     }
 
     private get hostResizeDelayBeforeCalculation(): number {
@@ -80,8 +80,8 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private grid: Grid<ElementRef<HTMLElement>>;
-    private _gridSize: number = 72;
-    private _gridMinSize: number = 50;
+    private _cellSize: number = 72;
+    private _cellMinSize: number = 50;
     private _gridItemComponents: QueryList<GridItemComponent>;
 
     constructor(
@@ -141,8 +141,8 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         const hostElement = this.hostRef.nativeElement;
         const gridZoneWidth = hostElement.clientWidth || hostElement.scrollWidth;
         const gridZoneHeight = hostElement.clientHeight || hostElement.scrollHeight;
-        const xAxisCellsCount = Math.floor(gridZoneWidth / this.gridSize);
-        const yAxisCellsCount = Math.floor(gridZoneHeight / this.gridSize);
+        const xAxisCellsCount = Math.floor(gridZoneWidth / this.cellSize);
+        const yAxisCellsCount = Math.floor(gridZoneHeight / this.cellSize);
 
         this.grid = new Grid({ xAxisCellsCount, yAxisCellsCount, directionType: this.direction });
     }
@@ -164,15 +164,15 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     private initCellStyles(cell: Cell<ElementRef<HTMLElement>>): void {
         const cellStyle = cell.getData().nativeElement.style;
-        cellStyle.width = `${this.gridSize}px`;
-        cellStyle.height = `${this.gridSize}px`;
-        cellStyle.left = `${cell.x * this.gridSize}px`;
-        cellStyle.top = `${cell.y * this.gridSize}px`;
+        cellStyle.width = `${this.cellSize}px`;
+        cellStyle.height = `${this.cellSize}px`;
+        cellStyle.left = `${cell.x * this.cellSize}px`;
+        cellStyle.top = `${cell.y * this.cellSize}px`;
     }
 
-    private validateGridSize(): void {
-        if (this._gridSize < this._gridMinSize) {
-            ErrorHelper.error(this, `Min gridSize is ${this._gridMinSize}`);
+    private validateCellSize(): void {
+        if (this._cellSize < this._cellMinSize) {
+            ErrorHelper.error(this, `Min cellSize is ${this._cellMinSize}`);
         }
     }
 }
