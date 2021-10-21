@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const TEXT_META_INFO: ComponentMetaInfo = {
     name: 'Text',
     type: OsComponentEnum.Text,
-    shortInfo: 'Provides different views for text.',
+    shortInfo: 'Provides different components for displaying OS-styled text.',
     imageUrl: '/assets/showcase/icons/components/text.png',
     libModules: [
         TextModule

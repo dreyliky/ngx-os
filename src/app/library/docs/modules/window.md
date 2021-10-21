@@ -2,7 +2,7 @@
 
 `DynamicWindowService` allows you to open your components inside OS-style windows.
 
-To open a fully functional OS-style window, you need to write few lines of code:
+To open a fully functional OS-styled window, you need to write few lines of code:
 
 ```typescript
 this.dynamicWindowService.open(YOUR_COMPONENT_TO_RENDER_INSIDE);

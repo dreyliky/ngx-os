@@ -18,7 +18,7 @@ import { DynamicWindowReferencesService } from './dynamic-window-references.serv
 
 /**
  * @dynamic
- * Allows open your component inside an OS window
+ * Allows open your component inside an OS-styled window
  **/
 // See: https://github.com/angular/angular/issues/20351
 @Injectable({

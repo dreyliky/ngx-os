@@ -10,7 +10,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
     name: 'Email Box',
     type: OsComponentEnum.EmailBox,
-    shortInfo: 'Provides the same functionality as a native <input type="email">.',
+    shortInfo: 'Provides the text field for entering an email.',
     imageUrl: '/assets/showcase/icons/components/email-box.png',
     libModules: [
         EmailBoxModule

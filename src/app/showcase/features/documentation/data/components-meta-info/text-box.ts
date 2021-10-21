@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
     name: 'Text Box',
     type: OsComponentEnum.TextBox,
-    shortInfo: 'Provides the same functionality as a native <input type="text">.',
+    shortInfo: 'Provides the text field for entering a text.',
     imageUrl: '/assets/showcase/icons/components/text-box.png',
     libModules: [
         TextBoxModule

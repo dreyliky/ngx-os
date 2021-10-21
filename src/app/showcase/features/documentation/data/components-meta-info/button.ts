@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const BUTTON_META_INFO: ComponentMetaInfo = {
     name: 'Button',
     type: OsComponentEnum.Button,
-    shortInfo: 'OS Button component has custom selector without native <button> element.',
+    shortInfo: 'Provides OS-styled button component.',
     imageUrl: '/assets/showcase/icons/components/button.png',
     libModules: [
         ButtonModule

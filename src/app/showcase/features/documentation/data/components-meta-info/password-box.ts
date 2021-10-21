@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const PASSWORD_BOX_META_INFO: ComponentMetaInfo = {
     name: 'Password Box',
     type: OsComponentEnum.PasswordBox,
-    shortInfo: 'Provides the same functionality as a native <input type="password">.',
+    shortInfo: 'Provides the text field for entering a password.',
     imageUrl: '/assets/showcase/icons/components/password-box.png',
     libModules: [
         PasswordBoxModule

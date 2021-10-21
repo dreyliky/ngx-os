@@ -6,7 +6,7 @@ import { ComponentMetaInfo } from '../../interfaces';
 export const NUMBER_BOX_META_INFO: ComponentMetaInfo = {
     name: 'Number Box',
     type: OsComponentEnum.NumberBox,
-    shortInfo: 'Provides the same functionality as a native <input type="number">.',
+    shortInfo: 'Provides the text field for entering a number (integer or decimal).',
     imageUrl: '/assets/showcase/icons/components/number-box.png',
     libModules: [
         NumberBoxModule
