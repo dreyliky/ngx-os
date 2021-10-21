@@ -7,6 +7,7 @@ import {
     EventEmitter,
     Input,
     OnChanges,
+    OnInit,
     Optional,
     Output,
     Self,
@@ -15,9 +16,10 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { OsBaseFieldComponent } from '../../../../core';
+import { isNil, OsBaseFieldComponent } from '../../../../core';
 import { NumberBoxChangeEvent } from '../../interfaces';
 
+// FIXME: Refactor
 @Component({
     selector: 'os-number-box',
     templateUrl: './number-box.component.html',
@@ -27,17 +29,43 @@ import { NumberBoxChangeEvent } from '../../interfaces';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NumberBoxComponent extends OsBaseFieldComponent implements OnChanges, AfterViewInit {
+export class NumberBoxComponent
+    extends OsBaseFieldComponent
+    implements OnInit, OnChanges, AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
+
+    /** Allows decimal numbers */
+    @Input()
+    public isAllowDecimal: boolean = true;
+
+    /** Allows to display empty field without number when no value */
+    @Input()
+    public isAllowEmpty: boolean = true;
+
+    /** Minimum allowed number */
+    @Input()
+    public min: number;
+
+    /** Maximum allowed number */
+    @Input()
+    public max: number;
+
+    /** Minimum count of fraction digits */
+    @Input()
+    public minFractionDigits: number;
+
+    /** Maximum count of fraction digits */
+    @Input()
+    public maxFractionDigits: number;
 
     /** Fires when the number-box value change */
     @Output()
     public osChange: EventEmitter<NumberBoxChangeEvent> = new EventEmitter();
 
     @ViewChild('numberbox')
-    private readonly inputElementRef: ElementRef<HTMLInputElement>;
+    private readonly inputRef: ElementRef<HTMLInputElement>;
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {
@@ -52,9 +80,13 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnChange
         this.initControlDir(controlDir, this);
     }
 
+    public ngOnInit(): void {
+        this.initDefaultValue();
+    }
+
     public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.inputElementRef.nativeElement);
-        this.autoFocusFieldIfNeeded(this.inputElementRef.nativeElement);
+        this.initElementEventObservers(this.inputRef.nativeElement);
+        this.autoFocusFieldIfNeeded(this.inputRef.nativeElement);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -64,9 +96,9 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnChange
     /** @internal */
     public writeValue(value: string | number): void {
         if (typeof(value) === 'number' || typeof(value) === 'string') {
-            this.value = this.processValue(value);
+            this.value = this.convertValueToNumericString(value);
         } else {
-            this.value = '';
+            this.initDefaultValue();
         }
 
         this.changeDetector.detectChanges();
@@ -75,14 +107,13 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnChange
     protected onInput(event: Event): void {
         const inputElement = event.target as HTMLInputElement;
 
-        inputElement.value = this.processValue(inputElement.value);
+        inputElement.value = this.convertValueToValidNumericString(inputElement.value);
 
         super.onInput(event);
     }
 
     protected onFieldValueChange(originalEvent: Event): void {
-        const targetElement = originalEvent.target as HTMLInputElement;
-        const value = +targetElement.value;
+        const value = +this.processValueChange();
 
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value });
@@ -91,13 +122,82 @@ export class NumberBoxComponent extends OsBaseFieldComponent implements OnChange
 
     private processValueFromSimpleChanges(changes: SimpleChanges): void {
         if (changes.value?.previousValue !== changes.value?.currentValue) {
-            this.value = this.processValue(changes.value.currentValue);
+            this.value = this.convertValueToNumericString(changes.value.currentValue);
         }
     }
 
-    private processValue(value: string | number): string {
+    private processValueChange(): string {
+        const inputElement = this.inputRef.nativeElement;
+        this.value = this.processMinMaxBoundaries(inputElement.value);
+        this.value = this.convertValueToNumericString(this.value);
+
+        if (!this.value.length) {
+            this.initDefaultValue();
+        }
+
+        inputElement.value = this.value;
+
+        return this.value;
+    }
+
+    private processMinMaxBoundaries(newValue: string): string {
+        let result = +newValue;
+
+        if (newValue.length) {
+            if (!isNil(this.min)) {
+                result = (result < this.min) ? this.min : result;
+            }
+
+            if (!isNil(this.max)) {
+                result = (result > this.max) ? this.max : result;
+            }
+
+            return result.toString();
+        }
+
+        return newValue;
+    }
+
+    private convertValueToValidNumericString(value: string | number): string {
         return value.toString()
-            .replace(/[^0-9.]/g, '')
+            .replace(this.getRegexpWithAllowedSymbols(), '')
+            .replace(/(?<!^)-/g, '')
             .replace(/(\..*?)\..*/g, '$1');
+    }
+
+    private getRegexpWithAllowedSymbols(): RegExp {
+        const dotSymbol = this.isAllowDecimal ? '.' : '';
+        const regexpAsString = `[^0-9${dotSymbol}-]`;
+
+        return new RegExp(regexpAsString, 'g');
+    }
+
+    private convertValueToNumericString(value: string | number): string {
+        const parsedValue = this.convertValueToValidNumericString(value);
+        const dotIndex = parsedValue.indexOf('.');
+        const fractionDigits = (dotIndex !== -1) ? parsedValue.slice((dotIndex + 1)) : null;
+
+        // eslint-disable-next-line max-len
+        if (!isNil(this.minFractionDigits) && !isNil(fractionDigits) && fractionDigits.length < this.minFractionDigits) {
+            return parsedValue.slice(0, dotIndex);
+        }
+
+        // eslint-disable-next-line max-len
+        if (!isNil(this.maxFractionDigits) && !isNil(fractionDigits) && fractionDigits.length > this.maxFractionDigits) {
+            return (
+                parsedValue.slice(0, (dotIndex + 1)) +
+                fractionDigits.slice(0, this.maxFractionDigits)
+            );
+        }
+
+        return parsedValue;
+    }
+
+    private initDefaultValue(): void {
+        if (this.isAllowEmpty) {
+            this.value = '';
+        } else {
+            this.value = '0';
+        }
     }
 }

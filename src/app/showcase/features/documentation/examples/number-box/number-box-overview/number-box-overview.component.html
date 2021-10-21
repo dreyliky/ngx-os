@@ -1,24 +1,70 @@
-<os-form-field>
+<os-form-field [isStacked]="true">
+    <os-label>Default</os-label>
+
     <os-number-box
         [placeholder]="'Default'">
     </os-number-box>
 </os-form-field>
 
-<os-form-field>
+<os-form-field [isStacked]="true">
+    <os-label>Default & auto focused</os-label>
+
     <os-number-box
         [placeholder]="'Default & auto focused'"
         [isAutofocused]="true">
     </os-number-box>
 </os-form-field>
 
-<os-form-field>
+<os-form-field [isStacked]="true">
+    <os-label>Readonly</os-label>
+
     <os-number-box
         [ngModel]="'123456'"
         [isReadonly]="true">
     </os-number-box>
 </os-form-field>
 
-<os-form-field>
+<os-form-field [isStacked]="true">
+    <os-label>Min value: 5; Max value: 45;</os-label>
+
+    <os-number-box
+        [placeholder]="'Min value: 5; Max value: 45;'"
+        [min]="5"
+        [max]="45">
+    </os-number-box>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Min fraction digits value: 2; Min fraction digits value: 4;</os-label>
+
+    <os-number-box
+        [placeholder]="'Min fraction digits value: 2; Min fraction digits value: 4;'"
+        [minFractionDigits]="2"
+        [maxFractionDigits]="4">
+    </os-number-box>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Forbid empty field</os-label>
+
+    <os-number-box
+        [placeholder]="'Forbid empty field'"
+        [isAllowEmpty]="false">
+    </os-number-box>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Only integers</os-label>
+
+    <os-number-box
+        [placeholder]="'Only integers'"
+        [isAllowDecimal]="false">
+    </os-number-box>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Disabled</os-label>
+
     <os-number-box
         [placeholder]="'Disabled'"
         [isDisabled]="true">
