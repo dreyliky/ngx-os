@@ -8,6 +8,10 @@
     background-color: #000000;
 }
 
-os-grid {
+.os-grid {
     background-color: rgba(var(--os-primary-color), .6);
+
+    .os-grid-item {
+        transition: all .3s ease;
+    }
 }
