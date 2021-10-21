@@ -31,7 +31,9 @@
         margin: 7px 0px;
     }
 
-
+    div {
+        display: grid;
+    }
 
     code:not(.code-block) {
         font-family: inherit;
@@ -41,11 +43,7 @@
         border-radius: 3px;
     }
 
-    .code-wrapper {
-        display: grid;
-    }
-
-    pre:not(.os-scroll-view) {
+    pre:not(.code-wrapper) {
         border-radius: 3px;
         background: rgba(0, 0, 0, .7);
         padding: 6px;
@@ -57,7 +55,8 @@
         }
     }
 
-    pre.os-scroll-view {
+    pre.code-wrapper {
+        display: grid;
         overflow: auto;
         margin: 8px 0px;
     }
