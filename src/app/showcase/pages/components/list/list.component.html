@@ -11,7 +11,9 @@
         </os-text-box>
     </div>
 
-    <os-grid [direction]="gridDirection">
+    <os-grid
+        [cellSize]="90"
+        [direction]="gridDirection">
         <os-grid-item
             *ngFor="let component of (filteredComponents$ | async)"
             [label]="component.name"

@@ -1,6 +1,7 @@
 .os-grid {
     .os-grid-item {
         .os-icon {
+            height: calc(var(--os-grid-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
             position: relative;
             background-image: var(--os-icon-url);
         }

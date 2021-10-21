@@ -4,9 +4,11 @@
 
 Check [Local CSS Variables](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/local-css-variables.md) guide to get more information.
 
-| Name               | Description                   |
-| ------------------ | ----------------------------  |
-| `--os-grid-size`   | Grid size in px               |
+| Name                     | Description                                                                                      |
+| ------------------------ | -----------------------------------------------------------------------------------------------  |
+| `--os-grid-size`         | Grid size in px                                                                                  |
+| `--os-label-height`      | Height of the label below icon (helpful to calculate icon height in default and selected states) |
+| `--os-grid-item-padding` | Padding of the `.os-grid-item` (helpful to calculate icon height in default and selected states) |
 
 ### CSS Classes
 | Name            | Description                       |
