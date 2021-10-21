@@ -17,9 +17,9 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { isNil, OsBaseFieldComponent } from '../../../../core';
+import { NumericalValueConverter } from '../../helpers/numerical-value-converter.helper';
 import { NumberBoxChangeEvent } from '../../interfaces';
 
-// FIXME: Refactor
 @Component({
     selector: 'os-number-box',
     templateUrl: './number-box.component.html',
@@ -72,6 +72,8 @@ export class NumberBoxComponent
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
 
+    private readonly converter = new NumericalValueConverter(this);
+
     constructor(
         @Self() @Optional() controlDir: NgControl,
         private readonly changeDetector: ChangeDetectorRef
@@ -95,8 +97,8 @@ export class NumberBoxComponent
 
     /** @internal */
     public writeValue(value: string | number): void {
-        if (typeof(value) === 'number' || typeof(value) === 'string') {
-            this.value = this.convertValueToNumericString(value);
+        if (!isNil(value)) {
+            this.value = this.converter.toValid(value);
         } else {
             this.initDefaultValue();
         }
@@ -106,30 +108,14 @@ export class NumberBoxComponent
 
     protected onInput(event: Event): void {
         const inputElement = event.target as HTMLInputElement;
-
-        inputElement.value = this.convertValueToValidNumericString(inputElement.value);
+        inputElement.value = this.converter.toRaw(inputElement.value);
 
         super.onInput(event);
     }
 
     protected onFieldValueChange(originalEvent: Event): void {
-        const value = +this.processValueChange();
-
-        this.onChange?.(value);
-        this.osChange.emit({ originalEvent, value });
-        this.changeDetector.markForCheck();
-    }
-
-    private processValueFromSimpleChanges(changes: SimpleChanges): void {
-        if (changes.value?.previousValue !== changes.value?.currentValue) {
-            this.value = this.convertValueToNumericString(changes.value.currentValue);
-        }
-    }
-
-    private processValueChange(): string {
         const inputElement = this.inputRef.nativeElement;
-        this.value = this.processMinMaxBoundaries(inputElement.value);
-        this.value = this.convertValueToNumericString(this.value);
+        this.value = this.converter.toValid(inputElement.value);
 
         if (!this.value.length) {
             this.initDefaultValue();
@@ -137,67 +123,18 @@ export class NumberBoxComponent
 
         inputElement.value = this.value;
 
-        return this.value;
+        this.onChange?.(+this.value);
+        this.osChange.emit({ originalEvent, value: +this.value });
+        this.changeDetector.markForCheck();
     }
 
-    private processMinMaxBoundaries(newValue: string): string {
-        let result = +newValue;
-
-        if (newValue.length) {
-            if (!isNil(this.min)) {
-                result = (result < this.min) ? this.min : result;
-            }
-
-            if (!isNil(this.max)) {
-                result = (result > this.max) ? this.max : result;
-            }
-
-            return result.toString();
+    private processValueFromSimpleChanges(changes: SimpleChanges): void {
+        if (changes.value?.previousValue !== changes.value?.currentValue) {
+            this.value = this.converter.toValid(changes.value.currentValue);
         }
-
-        return newValue;
-    }
-
-    private convertValueToValidNumericString(value: string | number): string {
-        return value.toString()
-            .replace(this.getRegexpWithAllowedSymbols(), '')
-            .replace(/(?<!^)-/g, '')
-            .replace(/(\..*?)\..*/g, '$1');
-    }
-
-    private getRegexpWithAllowedSymbols(): RegExp {
-        const dotSymbol = this.isAllowDecimal ? '.' : '';
-        const regexpAsString = `[^0-9${dotSymbol}-]`;
-
-        return new RegExp(regexpAsString, 'g');
-    }
-
-    private convertValueToNumericString(value: string | number): string {
-        const parsedValue = this.convertValueToValidNumericString(value);
-        const dotIndex = parsedValue.indexOf('.');
-        const fractionDigits = (dotIndex !== -1) ? parsedValue.slice((dotIndex + 1)) : null;
-
-        // eslint-disable-next-line max-len
-        if (!isNil(this.minFractionDigits) && !isNil(fractionDigits) && fractionDigits.length < this.minFractionDigits) {
-            return parsedValue.slice(0, dotIndex);
-        }
-
-        // eslint-disable-next-line max-len
-        if (!isNil(this.maxFractionDigits) && !isNil(fractionDigits) && fractionDigits.length > this.maxFractionDigits) {
-            return (
-                parsedValue.slice(0, (dotIndex + 1)) +
-                fractionDigits.slice(0, this.maxFractionDigits)
-            );
-        }
-
-        return parsedValue;
     }
 
     private initDefaultValue(): void {
-        if (this.isAllowEmpty) {
-            this.value = '';
-        } else {
-            this.value = '0';
-        }
+        this.value = (this.isAllowEmpty) ? '' : '0';
     }
 }
