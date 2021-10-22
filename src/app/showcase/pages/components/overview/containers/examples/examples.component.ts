@@ -2,16 +2,12 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver,
     Inject,
-    OnInit,
-    QueryList,
-    ViewChildren,
-    ViewContainerRef
+    OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@features/documentation';
-import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts/containers';
+import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
 import { OsBaseViewComponent } from 'ngx-os';
 import { combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -25,14 +21,6 @@ import { OverviewService } from '../../overview.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
-    @ViewChildren('demoTemplate', { read: ViewContainerRef })
-    private readonly demoTemplates: QueryList<ViewContainerRef>;
-
-    @ViewChildren(ExamplesComponent)
-    private set demoBlockComponents(_: ExamplesComponent) {
-        this.renderDemoComponents();
-    }
-
     public readonly isDevExamplesCheckboxVisible = !environment.production;
     public isDevExamplesVisible: boolean;
 
@@ -43,7 +31,6 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
         private readonly titleService: Title,
         private readonly devExamplesVisibilityService: DevExamplesVisibilityService,
         private readonly overviewService: OverviewService,
-        private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
@@ -59,23 +46,6 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
 
     public onToggleDevMode(state: boolean): void {
         this.devExamplesVisibilityService.apply(state);
-    }
-
-    private renderDemoComponents(): void {
-        if (this.demoTemplates && this.demoComponents) {
-            const showcaseTemplates = this.demoTemplates.toArray();
-
-            showcaseTemplates.forEach((showcaseTemplate) => showcaseTemplate.clear());
-
-            this.demoComponents.forEach(({ component }, componentIndex) => {
-                const componentFactory = this.componentFactoryResolver
-                    .resolveComponentFactory(component);
-
-                showcaseTemplates[componentIndex]?.createComponent(componentFactory);
-            });
-
-            this.changeDetector.detectChanges();
-        }
     }
 
     private initMetaInfoObserver(): void {

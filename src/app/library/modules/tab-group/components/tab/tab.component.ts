@@ -63,9 +63,9 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     @Input()
     public tabButtonStyleClass: string;
 
-    /** Fires when the tab button click */
+    /** Fires when the tab selected */
     @Output()
-    public osTabButtonClick = new EventEmitter<MouseEvent>();
+    public osTabSelected = new EventEmitter<MouseEvent>();
 
     /** @internal */
     @ContentChild('tabLabel')
@@ -99,7 +99,7 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     /** @internal */
     public onTabButtonClick(event: MouseEvent): void {
         if (!this.isDisabled) {
-            this.osTabButtonClick.emit(event);
+            this.osTabSelected.emit(event);
         }
     }
 
