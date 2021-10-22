@@ -22,18 +22,17 @@ export class TitleBarButtonComponent extends OsBaseButtonComponent implements On
     @Input()
     public readonly iconUrl: string;
 
-    /** Styles for the icon */
+    /** Stylelist for the icon */
     @Input()
     public readonly iconStyle: object;
 
-    public get _iconStyle(): object {
-        return (!this.iconUrl) ? null : {
-            backgroundImage: `url(${this.iconUrl})`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: '0px 0px',
-            ...this.iconStyle
-        };
+    /** Classlist for the icon */
+    @Input()
+    public readonly iconStyleClass: string | string[] | object;
+
+    /** @internal */
+    public get _iconCssUrl(): string {
+        return (this.iconUrl) ? `url(${this.iconUrl})` : null;
     }
 
     constructor(

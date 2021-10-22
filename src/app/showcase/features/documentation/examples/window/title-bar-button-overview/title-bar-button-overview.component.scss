@@ -1,3 +1,29 @@
-.buttons {
+:host {
+    width: 100%;
     display: flex;
+}
+
+.os-title-bar {
+    width: 400px;
+}
+
+:host-context(.win98) {
+    .my-custom-button::ng-deep .os-icon {
+        background-position: 2px 1px;
+        background-size: 11px;
+    }
+}
+
+:host-context(.winXP) {
+    .my-custom-button::ng-deep .os-icon {
+        background-position: 2px;
+        background-size: 17px;
+    }
+}
+
+:host-context(.win10) {
+    .my-custom-button::ng-deep .os-icon {
+        background-position: center;
+        background-size: 50%;
+    }
 }
