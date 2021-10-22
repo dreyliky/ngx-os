@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 
 @Component({
     selector: 'showcase-utils-fixed-to-parent-overview',
@@ -16,8 +16,15 @@ export class UtilsFixedToParentOverviewComponent {
     public selectedItem: string;
     public isOverlayVisible = false;
 
-    public onMyDropdownButtonClick(): void {
+    @HostListener('document:click')
+    public onClickOutside(): void {
+        this.isOverlayVisible = false;
+    }
+
+    public onMyDropdownButtonClick(event: MouseEvent): void {
         this.isOverlayVisible = !this.isOverlayVisible;
+
+        event.stopPropagation();
     }
 
     public onMyDropdownItemClick(item: string): void {

@@ -6,7 +6,9 @@
 <div class="wrapper">
     <os-tab-group [(selectedTabIndex)]="openedSection">
         <os-tab [label]="'Demo'">
-            <ng-template #exampleTemplate></ng-template>
+            <div class="example-wrapper">
+                <ng-template #exampleTemplate></ng-template>
+            </div>
         </os-tab>
 
         <os-tab
