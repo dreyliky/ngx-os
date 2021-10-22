@@ -158,7 +158,7 @@ export class DropdownComponent<T>
     constructor(
         @Self() @Optional() controlDir: NgControl,
         @Inject(DOCUMENT) private readonly document: Document,
-        @Inject(IS_DYNAMIC_WINDOW_CONTEXT)private readonly isDynamicWindowContext: boolean,
+        @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
