@@ -144,7 +144,7 @@ export class DynamicWindowComponent
     }
 
     public onTitleBarDblClick(): void {
-        if (this.config.isToggleFullscreenByDblClickOnTitleBar) {
+        if (this.config.isAllowFullscreen && this.config.isToggleFullscreenByDblClickOnTitleBar) {
             this.windowRef.toggleFullscreen();
         }
     }
