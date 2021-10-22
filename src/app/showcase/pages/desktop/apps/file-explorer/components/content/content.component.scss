@@ -1,0 +1,11 @@
+:host {
+    width: 100%;
+    display: flex;
+}
+
+.os-grid-item::ng-deep {
+    .os-label {
+        color: #000;
+        text-shadow: none;
+    }
+}
