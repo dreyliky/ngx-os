@@ -48,16 +48,19 @@
 
     <os-title-bar-controls>
         <os-title-bar-button
+            [isDisabled]="!config.isAllowHide"
             [ariaLabel]="'Hide'"
             (osClick)="onHideButtonClick()">
         </os-title-bar-button>
 
         <os-title-bar-button
+            [isDisabled]="!config.isAllowFullscreen"
             [ariaLabel]="'Fullscreen'"
             (osClick)="onFullscreenButtonClick()">
         </os-title-bar-button>
 
         <os-title-bar-button
+            [isDisabled]="!config.isAllowClose"
             [ariaLabel]="'Close'"
             (osClick)="onCloseButtonClick()">
         </os-title-bar-button>

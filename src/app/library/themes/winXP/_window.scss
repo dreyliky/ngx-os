@@ -146,14 +146,14 @@
         display: none !important;
     }
 
-    &.os-active {
-        &.os-fullscreen, &.os-entering-fullscreen {
-            .os-title-bar-button[aria-label="Fullscreen"] .os-icon {
+    &.os-fullscreen, &.os-entering-fullscreen {
+        .os-title-bar-button[aria-label="Fullscreen"] {
+            .os-icon {
                 background-position: -42px 0px;
+            }
 
-                &:not(:disabled):active {
-                    background-position: -42px -21px;
-                }
+            &:not(.os-disabled) .os-icon:active {
+                background-position: -42px -21px;
             }
         }
     }
@@ -280,7 +280,7 @@ os-title-bar {
         box-shadow: none !important;
     }
 
-    &:hover {
+    &:hover:not(.os-disabled) {
         background-position: 0px -21px;
     }
 
@@ -300,12 +300,24 @@ os-title-bar {
         }
     }
 
-    &[aria-label="Hide"] .os-icon {
-        background-position: 0px 0px;
+    &[aria-label="Hide"] {
+        .os-icon {
+            background-position: 0px 0px;
+        }
+
+        &.os-disabled {
+            opacity: .3;
+        }
     }
 
-    &[aria-label="Fullscreen"] .os-icon {
-        background-position: -21px 0px;
+    &[aria-label="Fullscreen"] {
+        .os-icon {
+            background-position: -21px 0px;
+        }
+
+        &.os-disabled {
+            opacity: .3;
+        }
     }
 
     &[aria-label="Close"] {
@@ -313,6 +325,10 @@ os-title-bar {
 
         .os-icon {
             background-position: -63px 0px;
+        }
+
+        &.os-disabled {
+            opacity: .3;
         }
     }
 }

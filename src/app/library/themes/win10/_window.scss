@@ -150,21 +150,25 @@
     }
 
     &.os-fullscreen, &.os-entering-fullscreen {
-        &.os-active {
-            .os-title-bar {
-                .os-title-bar-button[aria-label="Fullscreen"] .os-icon {
-                    background-position: -90px 0px;
-                }
+        &.os-active .os-title-bar {
+            .os-title-bar-button[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
+                background-position: -90px 0px;
             }
         }
 
         &:not(.os-active) .os-title-bar {
-            .os-title-bar-button[aria-label="Fullscreen"] .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
                 background-position: -90px -29px;
 
                 &:hover {
                     background-position: -90px -58px;
                 }
+            }
+        }
+
+        .os-title-bar {
+            .os-title-bar-button[aria-label="Fullscreen"].os-disabled .os-icon {
+                background-position: -90px -87px;
             }
         }
     }
@@ -195,7 +199,7 @@
         .os-title-bar-button {
             background-color: rgb(var(--os-primary-color));
 
-            &:hover {
+            &:hover:not(.os-disabled) {
                 background-color: rgba(255, 255, 255, .1);
             }
 
@@ -203,23 +207,23 @@
                 background-color: rgba(255, 255, 255, .2);
             }
 
-            &[aria-label="Hide"] .os-icon {
+            &[aria-label="Hide"]:not(.os-disabled) .os-icon {
                 background-position: 0px 0px;
             }
     
-            &[aria-label="Fullscreen"] .os-icon {
+            &[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
                 background-position: -45px 0px;
             }
     
-            &[aria-label="Close"] .os-icon {
+            &[aria-label="Close"]:not(.os-disabled) .os-icon {
                 background-position: -135px 0px;
     
                 &:hover {
                     background-color: rgb(232, 17, 35);
-                }
 
-                &:not(.os-disabled):active {
-                    background-color: rgba(232, 17, 35, .8);
+                    &:active {
+                        background-color: rgba(232, 17, 35, .8);
+                    }
                 }
             }
         }
@@ -275,36 +279,62 @@
         background-repeat: no-repeat;
     }
 
-    &:hover {
+    &:hover:not(.os-disabled) {
         background-color: #e5e5e5;
     }
 
-    &[aria-label="Hide"] .os-icon {
-        background-position: 0px -29px;
+    &[aria-label="Hide"] {
+        &:not(.os-disabled) {
+            .os-icon {
+                background-position: 0px -29px;
 
-        &:hover {
-            background-position: 0px -58px;
+                &:hover {
+                    background-position: 0px -58px;
+                }
+            }
+        }
+
+        &.os-disabled {
+            .os-icon {
+                background-position: 0px -87px;
+            }
         }
     }
 
-    &[aria-label="Fullscreen"] .os-icon {
-        background-position: -45px -29px;
+    &[aria-label="Fullscreen"] {
+        &:not(.os-disabled) {
+            .os-icon {
+                background-position: -45px -29px;
+        
+                &:hover {
+                    background-position: -45px -58px;
+                }
+            }
+        }
 
-        &:hover {
-            background-position: -45px -58px;
+        &.os-disabled .os-icon {
+            background-position: -45px -87px;
         }
     }
 
     &[aria-label="Close"] {
-        :hover {
-            background-color: rgb(232, 17, 35);
+        &:not(.os-disabled) {
+            :hover {
+                background-color: rgb(232, 17, 35);
+            }
+
+            .os-icon {
+                background-position: -135px -29px;
+        
+                &:hover {
+                    background-position: -135px -58px;
+                }
+            }
         }
 
-        .os-icon {
-            background-position: -135px -29px;
-    
-            &:hover {
-                background-position: -135px -58px;
+        &.os-disabled {
+            .os-icon {
+                background-position: -135px -87px;
             }
         }
     }
