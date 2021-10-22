@@ -1,6 +1,3 @@
-export const BACKGROUND_URLS: string[] = [
-    'assets/showcase/images/bg/1.png',
-    'assets/showcase/images/bg/2.png',
-    'assets/showcase/images/bg/3.png',
-    'assets/showcase/images/bg/4.png'
-];
+export const BACKGROUND_URLS: string[] = new Array(10)
+    .fill('')
+    .map((_, index) => `assets/showcase/images/bg/${index + 1}.png`);
