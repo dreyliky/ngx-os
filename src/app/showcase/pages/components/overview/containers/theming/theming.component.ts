@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LibraryThemingDocumentationService } from '@features/documentation';
+import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts/containers';
 import { OsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
@@ -17,6 +24,7 @@ export class ThemingComponent extends OsBaseViewComponent implements OnInit {
     public contentGithubUrl: string;
 
     constructor(
+        @Inject(MAIN_LAYOUT) private readonly mainLayout: MainLayoutComponent,
         private readonly titleService: Title,
         private readonly documentationService: LibraryThemingDocumentationService,
         private readonly overviewService: OverviewService,
@@ -27,6 +35,7 @@ export class ThemingComponent extends OsBaseViewComponent implements OnInit {
 
     public ngOnInit(): void {
         this.titleService.setTitle(`ngx-os - ${this.overviewService.metaInfo.name} Theming`);
+        this.mainLayout.scrollView.scrollTo(0, 0);
         this.initMarkdownContentObservable();
         this.initContentGithubUrlObserver();
     }

@@ -3,6 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
+    Inject,
     OnInit,
     QueryList,
     ViewChildren,
@@ -10,6 +11,7 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@features/documentation';
+import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts/containers';
 import { OsBaseViewComponent } from 'ngx-os';
 import { combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -37,6 +39,7 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
     public demoComponents: DemoComponentMetaInfo[];
 
     constructor(
+        @Inject(MAIN_LAYOUT) private readonly mainLayout: MainLayoutComponent,
         private readonly titleService: Title,
         private readonly devExamplesVisibilityService: DevExamplesVisibilityService,
         private readonly overviewService: OverviewService,
@@ -50,6 +53,7 @@ export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
         this.isDevExamplesVisible = this.devExamplesVisibilityService.data;
 
         this.titleService.setTitle(`ngx-os - ${this.overviewService.metaInfo.name} Examples`);
+        this.mainLayout.scrollView.scrollTo(0, 0);
         this.initMetaInfoObserver();
     }
 

@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    Inject,
+    OnInit
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LibraryModuleDocumentationService } from '@features/documentation';
+import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
 import { OsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
@@ -17,6 +24,7 @@ export class DocumentationComponent extends OsBaseViewComponent implements OnIni
     public contentGithubUrl: string;
 
     constructor(
+        @Inject(MAIN_LAYOUT) private readonly mainLayout: MainLayoutComponent,
         private readonly titleService: Title,
         private readonly documentationService: LibraryModuleDocumentationService,
         private readonly overviewService: OverviewService,
@@ -27,6 +35,7 @@ export class DocumentationComponent extends OsBaseViewComponent implements OnIni
 
     public ngOnInit(): void {
         this.titleService.setTitle(`ngx-os - ${this.overviewService.metaInfo.name} Documentation`);
+        this.mainLayout.scrollView.scrollTo(0, 0);
         this.initMarkdownContentObservable();
         this.initContentGithubUrlObserver();
     }
