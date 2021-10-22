@@ -35,10 +35,12 @@
 
 .os-grid {
     --os-label-height: 26px;
+}
 
-    .os-grid-item::ng-deep {
-        .os-label {
-            font-size: 16px;
-        }
+.os-grid-item::ng-deep {
+    .os-label {
+        font-size: 14px;
+        color: #292929;
+        text-shadow: none;
     }
 }
