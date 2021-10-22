@@ -12,7 +12,7 @@ export const CALCULATOR_APP: AppMetadata = {
         iconUrl: 'assets/showcase/icons/calculator.png',
         isAllowFullscreen: false,
         allowedResizers: [],
-        minWidth: 350,
-        minHeight: 400
+        minWidth: 250,
+        minHeight: 350
     }
 };
