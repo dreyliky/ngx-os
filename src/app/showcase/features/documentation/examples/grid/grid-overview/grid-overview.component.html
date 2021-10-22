@@ -10,12 +10,14 @@
 </os-form-field>
 
 <os-form-field [isStacked]="true">
-    <os-label>Grid size</os-label>
-
-    <os-number-box
-        [placeholder]="'Enter grid size'"
+    <os-slider
+        [label]="'Cell size'"
+        [min]="50"
+        [max]="150"
+        [minValueLabel]="'50 pixels'"
+        [maxValueLabel]="'150 pixels'"
         [(ngModel)]="cellSize">
-    </os-number-box>
+    </os-slider>
 </os-form-field>
 
 <os-form-field>

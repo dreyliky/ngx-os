@@ -6,7 +6,7 @@ Check [Local CSS Variables](https://github.com/dreyliky/ngx-os/blob/master/src/a
 
 | Name                     | Description                                                                                      |
 | ------------------------ | -----------------------------------------------------------------------------------------------  |
-| `--os-grid-size`         | Grid size in px                                                                                  |
+| `--os-cell-size`         | Cell size in px                                                                                  |
 | `--os-label-height`      | Height of the label below icon (helpful to calculate icon height in default and selected states) |
 | `--os-grid-item-padding` | Padding of the `.os-grid-item` (helpful to calculate icon height in default and selected states) |
 

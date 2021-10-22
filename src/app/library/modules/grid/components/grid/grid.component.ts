@@ -70,7 +70,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     /** @internal */
-    @HostBinding('style.--os-grid-size')
+    @HostBinding('style.--os-cell-size')
     public get _hostCellSizeClass(): string {
         return `${this._cellSize}px`;
     }

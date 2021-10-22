@@ -16,7 +16,7 @@
 
         &.os-selected {
             height: auto !important;
-            min-height: var(--os-grid-size) !important;
+            min-height: var(--os-cell-size) !important;
             background: linear-gradient(
                 90deg,
                 rgba(var(--os-primary-color), .3),
@@ -29,7 +29,7 @@
         }
 
         .os-icon {
-            height: calc(var(--os-grid-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
+            height: calc(var(--os-cell-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
             position: relative;
             background-image: var(--os-icon-url);
         }
