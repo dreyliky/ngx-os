@@ -11,11 +11,13 @@
     </os-form-field>
     
     <os-form-field [isStacked]="true">
-        <os-label>Grid size</os-label>
-    
-        <os-number-box
-            [placeholder]="'Enter grid size'"
+        <os-slider
+            [min]="50"
+            [max]="150"
+            [label]="'Size'"
+            [minValueLabel]="'50 pixels'"
+            [maxValueLabel]="'150 pixels'"
             [formControl]="formGroup.controls.cellSize">
-        </os-number-box>
+        </os-slider>
     </os-form-field>
 </form>

@@ -1,6 +1,5 @@
 .os-window {
     display: block;
-    font-size: 11px;
     box-shadow:
         inset -1px -1px rgba(var(--os-primary-color), .6),
         inset 1px 1px rgba(var(--os-primary-color), .5),
@@ -216,6 +215,7 @@ os-title-bar {
     .os-title-bar-content {
         width: 100%;
         height: 100%;
+        font-size: 11px;
         display: flex;
         align-items: center;
         box-sizing: border-box;

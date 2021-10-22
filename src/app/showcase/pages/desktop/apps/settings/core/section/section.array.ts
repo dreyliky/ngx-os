@@ -7,19 +7,19 @@ export const SECTIONS: Section[] = [
         name: 'Theme'
     },
     {
-        id: SectionEnum.AccentColor,
-        name: 'Accent Color'
-    },
-    {
-        id: SectionEnum.Background,
-        name: 'Background'
-    },
-    {
         id: SectionEnum.Shortcuts,
         name: 'Shortcuts'
     },
     {
         id: SectionEnum.Taskbar,
         name: 'Taskbar'
+    },
+    {
+        id: SectionEnum.AccentColor,
+        name: 'Accent Color'
+    },
+    {
+        id: SectionEnum.Background,
+        name: 'Background'
     }
 ];

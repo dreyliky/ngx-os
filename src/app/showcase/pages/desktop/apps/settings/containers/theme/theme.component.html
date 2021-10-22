@@ -1,6 +1,8 @@
-<os-header [size]="6">Choose preferred theme</os-header>
+<os-form-field [isStacked]="true">
+    <os-label>Preferred theme</os-label>
 
-<theme-dropdown
-    [selectedTheme]="(appliedTheme$ | async)"
-    (themeChanged)="onThemeChanged($event)">
-</theme-dropdown>
+    <theme-dropdown
+        [selectedTheme]="(appliedTheme$ | async)"
+        (themeChanged)="onThemeChanged($event)">
+    </theme-dropdown>
+</os-form-field>

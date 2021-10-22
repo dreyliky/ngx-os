@@ -1,6 +1,6 @@
 <os-scroll-view>
     <div class="wrapper">
-        <os-header>{{ selectedSection.name }}</os-header>
+        <os-header [size]="3">{{ selectedSection.name }}</os-header>
 
         <ng-container [ngSwitch]="selectedSection.id">
             <settings-theme-section

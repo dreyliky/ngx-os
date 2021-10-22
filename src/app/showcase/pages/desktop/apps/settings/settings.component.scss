@@ -3,6 +3,13 @@
     height: 100%;
     display: flex;
     user-select: none;
+
+    &::ng-deep {
+        .os-form-field {
+            width: 100%;
+            max-width: 280px;
+        }
+    }
 }
 
 .sidebar {

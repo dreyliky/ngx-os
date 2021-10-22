@@ -1,10 +1,10 @@
-<os-header>Experiments with windows</os-header>
+<os-header [size]="3">Experiments with windows</os-header>
 
-<os-header [size]="5">
+<os-header [size]="6">
     Total spawned: {{ totalSpawned }}; Alive: {{ (totalWindowsAlive$ | async) }};
 </os-header>
 
-<os-form-field [isStacked]="false">
+<os-form-field [isStacked]="true">
     <os-label>Actions delay in milliseconds</os-label>
 
     <os-number-box
@@ -13,7 +13,7 @@
     </os-number-box>
 </os-form-field>
 
-<os-form-field [isStacked]="false">
+<os-form-field [isStacked]="true">
     <os-label>Spawn amount of windows</os-label>
 
     <div class="buttons-wrapper">
@@ -25,7 +25,7 @@
     </div>
 </os-form-field>
 
-<os-form-field [isStacked]="false">
+<os-form-field [isStacked]="true">
     <os-label>Group actions</os-label>
 
     <div class="buttons-wrapper">
@@ -61,7 +61,7 @@
     </div>
 </os-form-field>
 
-<os-form-field>
+<os-form-field [isStacked]="true">
     <os-label>Stop current actions</os-label>
 
     <os-button

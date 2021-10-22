@@ -1,6 +1,5 @@
 .os-window {
     display: block;
-    font-size: 11px;
     padding: 3px;
     background: rgb(var(--os-background-color));
     box-shadow: var(--border-window-outer), var(--border-window-inner);
@@ -167,6 +166,7 @@ os-title-bar {
     .os-title-bar-content {
         width: 100%;
         height: 100%;
+        font-size: 11px;
         font-weight: bold;
         color: white;
         letter-spacing: 0;
