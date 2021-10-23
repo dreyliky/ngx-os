@@ -2,7 +2,7 @@ import { AppMetadata } from '../../../features/exec';
 import { CalculatorAppComponent } from '../calculator.component';
 
 export const CALCULATOR_APP: AppMetadata = {
-    component: CalculatorAppComponent,
+    componentRef: () => CalculatorAppComponent,
     shortcutParams: {
         label: 'Calculator',
         iconUrl: 'assets/showcase/icons/calculator.png'

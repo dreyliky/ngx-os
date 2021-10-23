@@ -3,7 +3,7 @@ import { DynamicWindowConfig } from 'ngx-os';
 import { Shortcut } from '../../shortcut';
 
 export interface AppMetadata {
-    component: Type<any>;
+    componentRef: () => Type<any>;
     shortcutParams: Shortcut;
     windowParams: DynamicWindowConfig;
 }

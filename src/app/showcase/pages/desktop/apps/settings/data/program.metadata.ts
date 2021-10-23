@@ -2,7 +2,7 @@ import { AppMetadata } from '../../../features/exec';
 import { SettingsAppComponent } from '../settings.component';
 
 export const SETTINGS_APP: AppMetadata = {
-    component: SettingsAppComponent,
+    componentRef: () => SettingsAppComponent,
     shortcutParams: {
         label: 'Settings',
         iconUrl: 'assets/showcase/icons/settings.png'

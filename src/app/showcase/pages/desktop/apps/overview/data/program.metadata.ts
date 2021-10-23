@@ -2,7 +2,7 @@ import { AppMetadata } from '../../../features/exec';
 import { OverviewAppComponent } from '../overview.component';
 
 export const OVERVIEW_APP: AppMetadata = {
-    component: OverviewAppComponent,
+    componentRef: () => OverviewAppComponent,
     shortcutParams: {
         label: 'Overview',
         iconUrl: 'assets/showcase/icons/my-pc.png'

@@ -2,7 +2,7 @@ import { AppMetadata } from '../../../features/exec';
 import { NotepadAppComponent } from '../notepad.component';
 
 export const NOTEPAD_APP: AppMetadata = {
-    component: NotepadAppComponent,
+    componentRef: () => NotepadAppComponent,
     shortcutParams: {
         label: 'Notepad',
         iconUrl: 'assets/showcase/icons/notepad.png'

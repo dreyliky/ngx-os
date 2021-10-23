@@ -2,7 +2,7 @@ import { AppMetadata } from '../../../features/exec';
 import { ExperimentsAppComponent } from '../experiments.component';
 
 export const EXPERIMENTS_APP: AppMetadata = {
-    component: ExperimentsAppComponent,
+    componentRef: () => ExperimentsAppComponent,
     shortcutParams: {
         label: 'Experiments with dynamic windows',
         iconUrl: 'assets/showcase/icons/bug.png'

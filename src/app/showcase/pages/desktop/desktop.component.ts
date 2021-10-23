@@ -6,9 +6,12 @@ import {
     OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { OsBaseViewComponent } from 'ngx-os';
+import { DynamicWindowService, OsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { BackgroundService } from './features/background';
+import { ExecService } from './features/exec';
+import { ShortcutSettingsService } from './features/shortcut';
 import { TaskbarPlacement } from './modules';
 import { DesktopBackgroundService, DesktopTaskbarService } from './services';
 
@@ -18,6 +21,10 @@ import { DesktopBackgroundService, DesktopTaskbarService } from './services';
     styleUrls: ['./desktop.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
+        DynamicWindowService,
+        ExecService,
+        BackgroundService,
+        ShortcutSettingsService,
         DesktopBackgroundService,
         DesktopTaskbarService
     ]

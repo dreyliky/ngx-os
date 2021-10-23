@@ -2,7 +2,7 @@ import { AppMetadata } from '../../../features/exec';
 import { ShutDownAppComponent } from '../shut-down.component';
 
 export const SHUT_DOWN_APP: AppMetadata = {
-    component: ShutDownAppComponent,
+    componentRef: () => ShutDownAppComponent,
     shortcutParams: {
         label: 'Shut Down',
         iconUrl: 'assets/showcase/icons/shutdown.png'
