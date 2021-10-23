@@ -12,6 +12,7 @@ export class DropdownСustomizationComponent implements OnInit {
     public filteredComponents: ComponentMetaInfo[];
     public pages: number[];
     public activePage = 0;
+    public searchString = '';
 
     private readonly componentCountPerPage = 5;
     private components: ComponentMetaInfo[];
@@ -31,10 +32,10 @@ export class DropdownСustomizationComponent implements OnInit {
 
     public onSearch(event: KeyboardEvent): void {
         const inputElement = event.target as HTMLInputElement;
-        const searchString = inputElement.value.toLowerCase();
+        this.searchString = inputElement.value.toLowerCase();
 
-        if (searchString.length) {
-            this.filterComponentsBySearch(searchString);
+        if (this.searchString.length) {
+            this.filterComponentsBySearch();
         } else {
             this.filterComponentsByPage(this.activePage);
         }
@@ -47,9 +48,9 @@ export class DropdownСustomizationComponent implements OnInit {
             .slice(takeFrom, takeTo);
     }
 
-    private filterComponentsBySearch(searchString: string): void {
+    private filterComponentsBySearch(): void {
         this.filteredComponents = this.components
-            .filter((component) => component.name.toLowerCase().includes(searchString));
+            .filter((component) => component.name.toLowerCase().includes(this.searchString));
     }
 
     private initPages(): void {
