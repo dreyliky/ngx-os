@@ -66,12 +66,12 @@ export class DropdownItemComponent<T>
 
     public ngAfterViewInit(): void {
         this.initDefaultValueIfAbsent();
-        this.initDropdownValueObserver();
+        queueMicrotask(() => this.initDropdownFormControlValueObserver());
     }
 
     /** Gets the label text of the dropdown item */
     public getLabel(): string {
-        return this.hostRef.nativeElement.innerText || null;
+        return this.hostRef.nativeElement.innerText || this.data?.toString() || null;
     }
 
     protected onClick(originalEvent: MouseEvent): void {
@@ -100,8 +100,8 @@ export class DropdownItemComponent<T>
         }
     }
 
-    private initDropdownValueObserver(): void {
-        this.dropdown.controlValue$
+    private initDropdownFormControlValueObserver(): void {
+        this.dropdown.formControlValue$
             ?.pipe(
                 takeUntil(this.viewDestroyed$),
                 filter((value) => !isNil(value))

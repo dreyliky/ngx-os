@@ -15,7 +15,7 @@ export abstract class OsBaseFormControlComponent<T = any>
     public onTouched: () => void;
 
     /** @internal */
-    public get controlValue$(): Observable<T> {
+    public get formControlValue$(): Observable<T> {
         return this.controlDir?.control.valueChanges
             .pipe(
                 startWith(this.controlDir.control.value)

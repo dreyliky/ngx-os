@@ -200,7 +200,7 @@ export class DropdownComponent<T>
     /** @internal */
     public initSelectedItem(item: ItemComponent<T>): void {
         this.value = item?.data ?? null;
-        this.label = item?.getLabel() ?? item?.data?.toString() ?? null;
+        this.label = item?.getLabel();
 
         this.changeDetector.detectChanges();
     }
