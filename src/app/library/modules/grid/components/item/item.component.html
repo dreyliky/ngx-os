@@ -1,8 +1,9 @@
-<div
+<picture
     *ngIf="!_gridItemIconTemplate; else _gridItemIconTemplate"
     class="os-element os-icon"
     [style.--os-icon-url]="_iconBackgroundCssUrl">
-</div>
+    <img [src]="_iconUrl" />
+</picture>
 
 <span
     *ngIf="!_gridItemLabelTemplate; else _gridItemLabelTemplate"

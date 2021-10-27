@@ -65,6 +65,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     /** URL to the icon of the grid item */
     @Input()
     public set iconUrl(value: string) {
+        this._iconUrl = value;
         this._iconBackgroundCssUrl = `url(${value})`;
     }
 
@@ -89,6 +90,9 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     /** @internal */
     @ContentChild('gridItemLabel')
     public readonly _gridItemLabelTemplate: TemplateRef<HTMLElement>;
+
+    /** @internal */
+    public _iconUrl: string;
 
     /** @internal */
     public _iconBackgroundCssUrl: string;

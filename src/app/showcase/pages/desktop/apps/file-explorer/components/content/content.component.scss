@@ -3,6 +3,11 @@
     display: flex;
 }
 
+.os-scroll-view {
+    padding: 5px;
+    box-sizing: border-box;
+}
+
 .os-grid-item::ng-deep {
     .os-label {
         color: #000;

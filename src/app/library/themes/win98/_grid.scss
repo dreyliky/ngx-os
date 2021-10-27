@@ -1,9 +1,13 @@
 .os-grid {
     .os-grid-item {
         .os-icon {
-            height: calc(var(--os-cell-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
             position: relative;
-            background-image: var(--os-icon-url);
+
+            img {
+                height: calc(var(--os-cell-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
+                display: block;
+                margin: auto;
+            }
         }
 
         .os-label {
@@ -12,9 +16,9 @@
         }
 
         &.os-selected {
-            .os-icon:after {
+            .os-icon::before {
                 width: 100%;
-                height: 100%;
+                height: calc(var(--os-cell-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
                 top: 0;
                 left: 0;
                 position: absolute;

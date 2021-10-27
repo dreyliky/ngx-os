@@ -1,7 +1,9 @@
-<os-grid>
-    <os-grid-item
-        *ngFor="let file of files"
-        [label]="file.name"
-        [iconUrl]="file.iconUrl">
-    </os-grid-item>
-</os-grid>
+<os-scroll-view>
+    <os-grid [isHeightResizing]="true">
+        <os-grid-item
+            *ngFor="let file of files"
+            [label]="file.name"
+            [iconUrl]="file.iconUrl">
+        </os-grid-item>
+    </os-grid>
+</os-scroll-view>
