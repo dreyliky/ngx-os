@@ -6,8 +6,8 @@ import { Cell } from './grid-cell';
 
 /** @internal */
 export class Grid<T> implements GridParams {
-    public readonly xAxisCellsCount: number = 10;
-    public readonly yAxisCellsCount: number = 10;
+    public xAxisCellsCount: number = 10;
+    public yAxisCellsCount: number = 10;
     public readonly directionType: GridDirectionEnum = GridDirectionEnum.Horizontal;
     public readonly directionStrategy: BaseDirectionStrategy<T>;
     public structure: Cell<T>[][] = [];
@@ -48,11 +48,12 @@ export class Grid<T> implements GridParams {
     }
 
     private validateCellsCount(): void {
-        if (this.xAxisCellsCount <= 0 || this.yAxisCellsCount <= 0) {
-            throw new Error(
-                `Incorrect cell size. ` +
-                `Cells count by x and y axes can't be less than 1!`
-            );
+        if (this.xAxisCellsCount <= 0) {
+            this.xAxisCellsCount = 1;
+        }
+
+        if (this.yAxisCellsCount <= 0) {
+            this.yAxisCellsCount = 1;
         }
     }
 }

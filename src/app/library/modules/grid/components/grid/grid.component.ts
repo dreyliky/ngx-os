@@ -103,9 +103,12 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private calculateGridItemElementsPositions(): void {
-        this.createGrid();
-        this.fillGridByItemsWithCoordinates();
-        this.fillGridByItemsWithoutCoordinates();
+        this.initGrid();
+
+        if (this.grid) {
+            this.fillGridByItemsWithCoordinates();
+            this.fillGridByItemsWithoutCoordinates();
+        }
     }
 
     private fillGridByItemsWithCoordinates(): void {
@@ -114,7 +117,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
                 const { x, y } = gridItem.coordinate;
                 const targetCell = this.grid.getCell(x, y);
 
-                targetCell.setData(gridItem.hostRef);
+                targetCell?.setData(gridItem.hostRef);
                 this.initCellStyles(targetCell);
             }
         });
@@ -137,14 +140,21 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         }
     }
 
-    private createGrid(): void {
+    private initGrid(): void {
         const hostElement = this.hostRef.nativeElement;
-        const gridZoneWidth = hostElement.clientWidth || hostElement.scrollWidth;
-        const gridZoneHeight = hostElement.clientHeight || hostElement.scrollHeight;
-        const xAxisCellsCount = Math.floor(gridZoneWidth / this.cellSize);
-        const yAxisCellsCount = Math.floor(gridZoneHeight / this.cellSize);
 
-        this.grid = new Grid({ xAxisCellsCount, yAxisCellsCount, directionType: this.direction });
+        if (hostElement.offsetParent) {
+            const gridZoneWidth = hostElement.clientWidth || hostElement.scrollWidth;
+            const gridZoneHeight = hostElement.clientHeight || hostElement.scrollHeight;
+
+            this.grid = new Grid({
+                xAxisCellsCount: Math.floor(gridZoneWidth / this.cellSize),
+                yAxisCellsCount: Math.floor(gridZoneHeight / this.cellSize),
+                directionType: this.direction
+            });
+        } else {
+            this.grid = null;
+        }
     }
 
     private initRecalculations(): void {
@@ -163,11 +173,14 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private initCellStyles(cell: Cell<ElementRef<HTMLElement>>): void {
-        const cellStyle = cell.getData().nativeElement.style;
-        cellStyle.width = `${this.cellSize}px`;
-        cellStyle.height = `${this.cellSize}px`;
-        cellStyle.left = `${cell.x * this.cellSize}px`;
-        cellStyle.top = `${cell.y * this.cellSize}px`;
+        const cellStyle = cell?.getData().nativeElement.style;
+
+        if (cellStyle) {
+            cellStyle.width = `${this.cellSize}px`;
+            cellStyle.height = `${this.cellSize}px`;
+            cellStyle.left = `${cell.x * this.cellSize}px`;
+            cellStyle.top = `${cell.y * this.cellSize}px`;
+        }
     }
 
     private validateCellSize(): void {
