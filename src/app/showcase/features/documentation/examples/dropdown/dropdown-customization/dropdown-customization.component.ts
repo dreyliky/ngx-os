@@ -9,6 +9,7 @@ import { ComponentMetaInfo } from '../../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownСustomizationComponent implements OnInit {
+    public selectedComponent: ComponentMetaInfo;
     public filteredComponents: ComponentMetaInfo[];
     public pages: number[];
     public activePage = 0;
@@ -39,6 +40,12 @@ export class DropdownСustomizationComponent implements OnInit {
         } else {
             this.filterComponentsByPage(this.activePage);
         }
+    }
+
+    public onClearButtonClick(event: MouseEvent): void {
+        this.selectedComponent = null;
+
+        event.stopPropagation();
     }
 
     private filterComponentsByPage(page: number = 0): void {

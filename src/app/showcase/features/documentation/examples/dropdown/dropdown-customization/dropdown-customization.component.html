@@ -1,4 +1,4 @@
-<os-dropdown>
+<os-dropdown [(ngModel)]="selectedComponent">
     <div
         os-dropdown-header
         class="search-container">
@@ -29,6 +29,12 @@
             class="os-value"
             [innerText]="component.name">
         </b>
+
+        <os-button
+            class="clear-button"
+            (osClick)="onClearButtonClick($event)">
+            Clear
+        </os-button>
     </ng-template>
 
     <os-dropdown-item
@@ -58,3 +64,7 @@
         </os-button>
     </div>
 </os-dropdown>
+
+<os-text>
+    Selected: {{ selectedComponent?.name || '-' }}
+</os-text>

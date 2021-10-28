@@ -12,6 +12,13 @@
     margin-right: 5px;
 }
 
+.clear-button {
+    height: 95%;
+    min-height: 95%;
+    margin-left: auto;
+    font-size: 11px;
+}
+
 .os-dropdown-item {
     white-space: nowrap;
 
@@ -21,10 +28,10 @@
     }
     
     .component-description {
-        color: gray;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        opacity: .6;
     }
 }
 

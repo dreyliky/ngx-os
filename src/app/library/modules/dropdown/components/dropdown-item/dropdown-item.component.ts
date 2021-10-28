@@ -14,7 +14,7 @@ import {
     SimpleChanges,
     ViewEncapsulation
 } from '@angular/core';
-import { filter, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { CommonCssClassEnum, isNil, OsBaseComponent } from '../../../../core';
 import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownComponent } from '../dropdown/dropdown.component';
@@ -102,10 +102,7 @@ export class DropdownItemComponent<T>
 
     private initDropdownFormControlValueObserver(): void {
         this.dropdown.formControlValue$
-            ?.pipe(
-                takeUntil(this.viewDestroyed$),
-                filter((value) => !isNil(value))
-            )
+            ?.pipe(takeUntil(this.viewDestroyed$))
             .subscribe((dropdownValue) => {
                 this.isSelected = (dropdownValue === this.data);
 
