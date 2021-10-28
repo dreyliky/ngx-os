@@ -1,0 +1,2 @@
+export * from './desktop.component';
+

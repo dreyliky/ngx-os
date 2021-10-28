@@ -33,6 +33,7 @@
             position: relative;
 
             img {
+                max-width: 100%;
                 height: calc(var(--os-cell-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
                 display: block;
                 margin: auto;

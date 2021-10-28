@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxOsModule } from 'ngx-os';
+import { LoaderComponent } from './components';
 import { SafeHtmlPipe } from './pipes';
 
 @NgModule({
     declarations: [
-        SafeHtmlPipe
+        SafeHtmlPipe,
+        LoaderComponent
     ],
     imports: [
         CommonModule,
@@ -26,7 +28,8 @@ import { SafeHtmlPipe } from './pipes';
         ReactiveFormsModule,
         NgxOsModule,
 
-        SafeHtmlPipe
+        SafeHtmlPipe,
+        LoaderComponent
     ]
 })
 export class SharedModule {}

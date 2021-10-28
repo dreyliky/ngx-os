@@ -1,16 +1,29 @@
 :host {
     width: 100%;
     display: flex;
-}
+    background-color: rgb(var(--os-background-color));
 
-.os-scroll-view {
-    padding: 5px;
-    box-sizing: border-box;
-}
+    > * {
+        width: 100%;
+        height: 100%;
+        display: block;
 
-.os-grid-item::ng-deep {
-    .os-label {
-        color: #000;
-        text-shadow: none;
+        &::ng-deep {
+            .os-scroll-view {
+                padding: 5px;
+                box-sizing: border-box;
+            }
+    
+            .os-grid-item::ng-deep {
+                .os-label {
+                    color: #000;
+                    text-shadow: none;
+                }
+            }
+        }
     }
+}
+
+:host-context(.win10) {
+    background-color: #fff;
 }

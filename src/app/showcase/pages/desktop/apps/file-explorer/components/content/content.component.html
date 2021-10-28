@@ -1,9 +1,13 @@
-<os-scroll-view>
-    <os-grid [isHeightResizing]="true">
-        <os-grid-item
-            *ngFor="let file of files"
-            [label]="file.name"
-            [iconUrl]="file.iconUrl">
-        </os-grid-item>
-    </os-grid>
-</os-scroll-view>
+<ng-container [ngSwitch]="selectedSection.data.id">
+    <file-explorer-desktop-section
+        *ngSwitchCase="sectionEnum.Desktop">
+    </file-explorer-desktop-section>
+
+    <file-explorer-documents-section
+        *ngSwitchCase="sectionEnum.Documents">
+    </file-explorer-documents-section>
+
+    <file-explorer-pictures-section
+        *ngSwitchCase="sectionEnum.Pictures">
+    </file-explorer-pictures-section>
+</ng-container>

@@ -1,3 +1,10 @@
-<file-explorer-sidebar></file-explorer-sidebar>
+<file-explorer-sidebar
+    [sections]="sections"
+    [selectedSection]="selectedSection"
+    (sectionSelected)="onSectionChange($event)">
+</file-explorer-sidebar>
 
-<file-explorer-content></file-explorer-content>
+<file-explorer-content
+    [sections]="sections"
+    [selectedSection]="selectedSection">
+</file-explorer-content>

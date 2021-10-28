@@ -1,3 +1,5 @@
 <os-tree-view
-    [data]="sections">
+    [data]="sections"
+    [isAllowSelection]="true"
+    (osNodeSelected)="onTreeNodeSelected($event)">
 </os-tree-view>

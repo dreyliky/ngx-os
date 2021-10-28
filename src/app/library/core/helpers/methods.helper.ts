@@ -8,6 +8,10 @@ export function osParseInt(value: string): number {
     return Number.parseInt(value, 10);
 }
 
+export function deepClone<T>(data: T): T {
+    return JSON.parse(JSON.stringify(data));
+}
+
 /** @internal */
 export function isObjectsWithSameData(objectA: Object, objectB: Object): boolean {
     const keysOfObjectA = Object.keys(objectA);

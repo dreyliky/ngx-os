@@ -8,7 +8,7 @@ export class ExecService {
         private readonly dynamicWindowService: DynamicWindowService
     ) {}
 
-    public run({ componentRef, windowParams }: AppMetadata): DynamicWindowRefModel {
-        return this.dynamicWindowService.open(componentRef(), windowParams);
+    public run({ componentRef, windowParams }: AppMetadata, data?: any): DynamicWindowRefModel {
+        return this.dynamicWindowService.open(componentRef(), { ...windowParams, data });
     }
 }

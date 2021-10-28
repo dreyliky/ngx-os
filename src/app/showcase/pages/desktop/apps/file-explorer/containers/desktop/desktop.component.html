@@ -1,0 +1,10 @@
+<os-scroll-view>
+    <os-grid [isHeightResizing]="true">
+        <os-grid-item
+            *ngFor="let program of programs"
+            [iconUrl]="program.shortcutParams.iconUrl"
+            [label]="program.shortcutParams.label"
+            (osDblClick)="onProgramShortcutDblClick(program)">
+        </os-grid-item>
+    </os-grid>
+</os-scroll-view>

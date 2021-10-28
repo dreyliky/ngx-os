@@ -1,0 +1,20 @@
+<os-scroll-view>
+    <os-text>
+        These images loaded from <i>poemist</i> server.
+    </os-text>
+
+    <ng-container *ngIf="(poems$ | async) as poems; else loaderTemplate">
+        <os-grid [isHeightResizing]="true">
+            <os-grid-item
+                *ngFor="let poem of poems"
+                [label]="poem.title | slice:0:15"
+                [iconUrl]="'/assets/showcase/icons/file.png'"
+                (osDblClick)="onPoemDblClick(poem)">
+            </os-grid-item>
+        </os-grid>
+    </ng-container>
+</os-scroll-view>
+
+<ng-template #loaderTemplate>
+    <showcase-loader></showcase-loader>
+</ng-template>

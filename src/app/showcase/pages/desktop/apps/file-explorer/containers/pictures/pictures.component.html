@@ -1,0 +1,14 @@
+<os-scroll-view>
+    <os-text>
+        These images loaded from <i>picsum.photos</i> server.
+    </os-text>
+
+    <os-grid [isHeightResizing]="true">
+        <os-grid-item
+            *ngFor="let image of images; let index = index;"
+            [label]="getImageLabel(index)"
+            [iconUrl]="image.getThumbImageUrl()"
+            (osDblClick)="onImageDblClick(image)">
+        </os-grid-item>
+    </os-grid>
+</os-scroll-view>

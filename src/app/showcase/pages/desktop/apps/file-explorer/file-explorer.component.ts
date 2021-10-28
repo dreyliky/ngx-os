@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { deepClone, TreeNode } from 'ngx-os';
+import { Section, SECTIONS } from './core';
 
 @Component({
     selector: 'file-explorer-app',
@@ -6,4 +8,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./file-explorer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FileExplorerAppComponent {}
+export class FileExplorerAppComponent implements OnInit {
+    public sections: TreeNode<Section>[] = deepClone(SECTIONS);
+    public selectedSection: TreeNode<Section>;
+
+    public ngOnInit(): void {
+        this.selectedSection = this.sections[0];
+    }
+
+    public onSectionChange(section: TreeNode<Section>): void {
+        this.selectedSection = section;
+    }
+}

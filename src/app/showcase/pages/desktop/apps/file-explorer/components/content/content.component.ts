@@ -1,9 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-
-interface File {
-    name: string;
-    iconUrl: string;
-}
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { TreeNode } from 'ngx-os';
+import { Section, SectionEnum } from '../../core';
 
 @Component({
     selector: 'file-explorer-content',
@@ -11,15 +8,12 @@ interface File {
     styleUrls: ['./content.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContentComponent implements OnInit {
-    public files: File[];
+export class ContentComponent {
+    @Input()
+    public sections: TreeNode<Section>[];
 
-    public ngOnInit(): void {
-        this.files = new Array(50)
-            .fill(null)
-            .map((_, index) => ({
-                name: `File #${index + 1}`,
-                iconUrl: '/assets/showcase/icons/icon.png'
-            }));
-    }
+    @Input()
+    public selectedSection: TreeNode<Section>;
+
+    public readonly sectionEnum = SectionEnum;
 }

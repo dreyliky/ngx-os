@@ -2,3 +2,10 @@
     width: 200px;
     display: flex;
 }
+
+:host-context(.win10) {
+    .os-tree-view {
+        background-color: transparent;
+        border: none;
+    }
+}

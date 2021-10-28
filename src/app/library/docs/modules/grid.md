@@ -44,6 +44,12 @@ export class MyGridComponent {
 - Some grid items might have static coordinates, and other items without
 coordinates will be filled flowing around static grid items;
 
+## About grid cells
+
+The amount of cells is calculated based on the `os-grid` element size (width, height).
+
+**Make sure your `os-grid` element has the correct size in all cases to ensure correct determinations of cells amount.**
+
 ## About calculations
 
 Technically each item is absolute.

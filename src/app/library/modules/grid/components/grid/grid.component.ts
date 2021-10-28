@@ -148,8 +148,9 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     private calculateGridCellsCountByX(): number {
         const gridZoneWidth = this.hostElement.clientWidth || this.hostElement.scrollWidth;
+        const cellsCount = Math.floor(gridZoneWidth / this.cellSize);
 
-        return Math.floor(gridZoneWidth / this.cellSize);
+        return (cellsCount <= 0) ? 1 : cellsCount;
     }
 
     private calculateGridCellsCountByY(): number {
