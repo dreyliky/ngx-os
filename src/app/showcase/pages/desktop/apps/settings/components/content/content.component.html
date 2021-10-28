@@ -3,6 +3,10 @@
         <os-header [size]="3">{{ selectedSection.name }}</os-header>
 
         <ng-container [ngSwitch]="selectedSection.id">
+            <settings-general-section
+                *ngSwitchCase="sectionEnum.General">
+            </settings-general-section>
+
             <settings-theme-section
                 *ngSwitchCase="sectionEnum.Theme">
             </settings-theme-section>

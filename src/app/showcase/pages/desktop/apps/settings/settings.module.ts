@@ -5,6 +5,7 @@ import { ContentComponent, SidebarComponent } from './components';
 import {
     AccentColorComponent,
     BackgroundSectionModule,
+    GeneralComponent,
     ShortcutsComponent,
     TaskbarComponent,
     ThemeComponent
@@ -19,7 +20,8 @@ import { SettingsAppComponent } from './settings.component';
         ThemeComponent,
         AccentColorComponent,
         ShortcutsComponent,
-        TaskbarComponent
+        TaskbarComponent,
+        GeneralComponent
     ],
     imports: [
         SharedModule,

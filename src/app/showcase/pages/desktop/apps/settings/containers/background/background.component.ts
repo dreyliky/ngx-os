@@ -1,5 +1,6 @@
 import {
-    ChangeDetectionStrategy, Component,
+    ChangeDetectionStrategy,
+    Component,
     OnInit
 } from '@angular/core';
 import { Observable } from 'rxjs';

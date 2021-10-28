@@ -3,6 +3,10 @@ import { Section } from './section.interface';
 
 export const SECTIONS: Section[] = [
     {
+        id: SectionEnum.General,
+        name: 'General'
+    },
+    {
         id: SectionEnum.Theme,
         name: 'Theme'
     },

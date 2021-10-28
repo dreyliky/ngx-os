@@ -15,10 +15,12 @@ export class BackgroundService {
     }
 
     private readonly localStorageKey = 'desktop-custom-bg';
-    private readonly _data$ = new BehaviorSubject<BackgroundMetadata>(null);
+    private readonly _data$ = new BehaviorSubject<BackgroundMetadata>({
+        type: BackgroundTypeEnum.Color,
+        data: ACCENT_COLORS[25]
+    });
 
     constructor() {
-        this.applyDefaultIfNotExits();
         this.initData();
     }
 
@@ -35,21 +37,11 @@ export class BackgroundService {
         this._data$.next(data);
     }
 
-    private applyDefaultIfNotExits(): void {
-        const prefferedColorIndex = 25;
-        const isAppliedBgExist = !!this.get();
-
-        if (!isAppliedBgExist) {
-            this.apply({
-                type: BackgroundTypeEnum.Color,
-                data: ACCENT_COLORS[prefferedColorIndex]
-            });
-        }
-    }
-
     private initData(): void {
-        const currentBg = this.get();
+        const dataFromStorage = this.get();
 
-        this._data$.next(currentBg);
+        if (dataFromStorage) {
+            this._data$.next(dataFromStorage);
+        }
     }
 }
