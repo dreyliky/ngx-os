@@ -2,20 +2,20 @@
     <os-label>Selection parameters</os-label>
 
     <os-checkbox
-        [label]="'Allow selection'"
-        [(isChecked)]="isAllowSelection">
+        [(ngModel)]="isAllowSelection">
+        Allow selection
     </os-checkbox>
 
     <os-checkbox
-        [label]="'Multiple selection'"
         [isDisabled]="!isAllowSelection"
-        [(isChecked)]="isAllowMultipleSelection">
+        [(ngModel)]="isAllowMultipleSelection">
+        Multiple selection
     </os-checkbox>
 
     <os-checkbox
-        [label]="'Toggle mode'"
         [isDisabled]="!isAllowSelection"
-        [(isChecked)]="isSelectionInToggleMode">
+        [(ngModel)]="isSelectionInToggleMode">
+        Toggle mode
     </os-checkbox>
 </os-form-field>
 

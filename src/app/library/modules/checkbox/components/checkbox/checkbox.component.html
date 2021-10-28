@@ -6,8 +6,6 @@
     [checked]="isChecked"
     (change)="onCheckboxValueChange($event)" />
 
-<label
-    class="os-element os-label"
-    [class.os-has-text]="!!label">
-    {{ label }}
+<label class="os-element os-label">
+    <ng-content></ng-content>
 </label>

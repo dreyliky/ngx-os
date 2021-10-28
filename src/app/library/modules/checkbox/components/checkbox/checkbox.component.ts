@@ -1,8 +1,7 @@
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component,
-    ElementRef,
+    Component, ElementRef,
     EventEmitter,
     HostBinding,
     Input,
@@ -29,18 +28,9 @@ import { CheckboxValueChangeEvent } from '../../interfaces';
 export class CheckboxComponent<T>
     extends OsBaseFormControlComponent<boolean>
     implements OnInit, ControlValueAccessor {
-    /** Label text near the checkbox */
-    @Input()
-    public readonly label: string = '';
-
     /** Name of the checkbox group */
     @Input()
     public readonly name: string = '';
-
-    /** Is checkbox checked? */
-    @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Checked}`)
-    public isChecked: boolean;
 
     /** Is checkbox disabled? */
     @Input()
@@ -55,9 +45,9 @@ export class CheckboxComponent<T>
     @Output()
     public osChange: EventEmitter<CheckboxValueChangeEvent<T>> = new EventEmitter();
 
-    /** Fires when `checked` state changed. Might be used for two way binding */
-    @Output()
-    public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
+    /** Is checkbox checked? */
+    @HostBinding(`class.${CommonCssClassEnum.Checked}`)
+    public isChecked: boolean;
 
     @ViewChild('checkbox')
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
@@ -80,7 +70,6 @@ export class CheckboxComponent<T>
         this.isChecked = inputElement.checked;
 
         this.onChange?.(this.isChecked);
-        this.isCheckedChange.emit(this.isChecked);
         this.osChange.emit({
             originalEvent,
             data: this.data,

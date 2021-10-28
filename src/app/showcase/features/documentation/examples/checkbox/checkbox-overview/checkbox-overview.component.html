@@ -1,26 +1,26 @@
 <os-form-field>
     <os-checkbox
-        [label]="'Default 1'"
         [name]="'checkbox-group-overview-1'">
+        Default 1
     </os-checkbox>
 
     <os-checkbox
-        [label]="'Default 2'"
         [name]="'checkbox-group-overview-1'">
+        Default 2
     </os-checkbox>
 </os-form-field>
 
 <os-form-field>
     <os-checkbox
-        [label]="'Disabled unchecked'"
         [isDisabled]="true"
-        [isChecked]="false">
+        [ngModel]="false">
+        Disabled unchecked
     </os-checkbox>
 
     <os-checkbox
-        [label]="'Disabled checked'"
         [isDisabled]="true"
-        [isChecked]="true">
+        [ngModel]="true">
+        Disabled checked
     </os-checkbox>
 </os-form-field>
 

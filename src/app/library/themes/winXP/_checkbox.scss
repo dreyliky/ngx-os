@@ -32,7 +32,7 @@
             }
         }
 
-        &:focus + label.os-has-text {
+        &:focus + label:not(:empty) {
             outline: 1px dotted #000000;
         }
 

@@ -2,9 +2,9 @@
     <os-checkbox
         *ngIf="isDevExamplesCheckboxVisible"
         class="dev-examples-toggle"
-        [label]="'Show DEV examples'"
-        [(isChecked)]="isDevExamplesVisible"
+        [(ngModel)]="isDevExamplesVisible"
         (isCheckedChange)="onToggleDevMode($event)">
+        Show DEV examples
     </os-checkbox>
 
     <os-header>
