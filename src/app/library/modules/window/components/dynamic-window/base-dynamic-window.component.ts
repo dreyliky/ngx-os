@@ -59,10 +59,6 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         return (!this.windowRef.isFullscreen && !this.isEnteringWindowed);
     }
 
-    public get isAllowResizing(): boolean {
-        return !this.windowRef.isFullscreen;
-    }
-
     public get _titleBarDisplayAttr(): string {
         return (this.config.isTitleBarVisible) ? '' : 'none';
     }
@@ -169,7 +165,6 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
             maxWidth: this.config.maxWidth,
             maxHeight: this.config.maxHeight,
             allowedResizers: this.config.allowedResizers,
-            isEnabled: this.isAllowResizing,
             xAxisLeftStyleProperty: CssVariable.Left,
             yAxisTopStyleProperty: CssVariable.Top,
             widthStyleProperty: CssVariable.Width,

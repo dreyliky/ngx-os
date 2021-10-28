@@ -22,7 +22,7 @@ class RandomImage {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PicturesComponent {
-    public readonly images = new Array(10)
+    public readonly images = new Array(50)
         .fill(0)
         .map(() => new RandomImage());
 

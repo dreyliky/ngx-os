@@ -139,7 +139,7 @@
         display: none !important;
     }
 
-    &:hover os-resizers {
+    &:hover:not(.os-fullscreen) os-resizers {
         display: inherit;
     }
 
