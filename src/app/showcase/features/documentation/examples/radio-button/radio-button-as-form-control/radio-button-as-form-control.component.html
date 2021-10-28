@@ -1,10 +1,10 @@
 <form [formGroup]="formGroup">
     <os-radio-button
         *ngFor="let item of items"
-        [label]="item.text"
         [data]="item"
         [name]="'radio-group-1'"
         [formControl]="formGroup.controls.selectedValue">
+        {{ item.text }}
     </os-radio-button>
 </form>
 

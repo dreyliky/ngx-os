@@ -45,7 +45,7 @@
             background: url("./icon/winXP_radio-button-checkmark.png");
         }
 
-        &:focus + label.os-has-text {
+        &:focus + label:not(:empty) {
             outline: 1px dotted #000000;
         }
 

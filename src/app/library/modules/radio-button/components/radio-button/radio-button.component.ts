@@ -29,10 +29,6 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
 export class RadioButtonComponent<T>
     extends OsBaseFormControlComponent<T>
     implements OnInit, ControlValueAccessor {
-    /** Label text near the radio-button */
-    @Input()
-    public readonly label: string = '';
-
     /** Name of the radio-button group */
     @Input()
     public readonly name: string = '';

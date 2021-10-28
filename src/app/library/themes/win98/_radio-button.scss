@@ -36,7 +36,7 @@
             background-position: 0px -12px;
         }
 
-        &:focus + label.os-has-text {
+        &:focus + label:not(:empty) {
             outline: 1px dotted rgb(0, 0, 0);
         }
 
