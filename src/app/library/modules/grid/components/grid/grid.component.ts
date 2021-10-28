@@ -136,10 +136,8 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
         for (const gridItem of this._gridItemComponents) {
             if (!actualCell) {
-                break;
-            }
-
-            if (!gridItem.coordinate) {
+                this.initExcessGridItemStyles(gridItem);
+            } else if (!gridItem.coordinate) {
                 actualCell.setData(gridItem.hostRef);
                 this.initCellStyles(actualCell);
 
@@ -191,10 +189,15 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
             .subscribe(() => this.update());
     }
 
+    private initExcessGridItemStyles(gridItem: GridItemComponent): void {
+        gridItem.hostRef.nativeElement.style.display = 'none';
+    }
+
     private initCellStyles(cell: Cell<ElementRef<HTMLElement>>): void {
         const cellStyle = cell?.getData().nativeElement.style;
 
         if (cellStyle) {
+            cellStyle.display = '';
             cellStyle.width = `${this.cellSize}px`;
             cellStyle.height = `${this.cellSize}px`;
             cellStyle.left = `${cell.x * this.cellSize}px`;

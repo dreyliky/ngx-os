@@ -19,6 +19,7 @@ export class GridOverviewComponent implements OnInit {
 
     public currentGridDirection = GridDirectionEnum.Horizontal;
     public cellSize = 72;
+    public isHeightResizing = true;
 
     private readonly defaultItem: MyGridItem = {
         label: 'My amazing item to display',

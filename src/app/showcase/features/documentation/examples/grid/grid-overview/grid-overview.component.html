@@ -10,6 +10,13 @@
 </os-form-field>
 
 <os-form-field [isStacked]="true">
+    <os-checkbox
+        [label]="'Is height resizing? (If false and there are a lot of items in the grid, excess ones will be hidden)'"
+        [(ngModel)]="isHeightResizing">
+    </os-checkbox>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
     <os-slider
         [label]="'Cell size'"
         [min]="50"
@@ -32,8 +39,9 @@
     </os-button>
 </os-form-field>
 
-<div class="grid-wrapper">
+<os-scroll-view class="grid-wrapper">
     <os-grid
+        [isHeightResizing]="isHeightResizing"
         [direction]="currentGridDirection"
         [cellSize]="cellSize">
         <os-grid-item
@@ -42,4 +50,4 @@
             [iconUrl]="item.iconUrl">
         </os-grid-item>
     </os-grid>
-</div>
+</os-scroll-view>
