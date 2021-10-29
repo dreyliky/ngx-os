@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RESIZERS_ARRAY } from '../../resizer';
-import { DynamicWindowConfigModel } from '../classes';
+import { DynamicWindowConfigModel } from '../classes/dynamic-window-config';
 import { mergeConfigs } from '../helpers';
 import { DynamicWindowConfig } from '../interfaces';
 
