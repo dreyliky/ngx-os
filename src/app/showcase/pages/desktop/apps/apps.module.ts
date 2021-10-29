@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserAppModule } from './browser';
 import { CalculatorModule } from './calculator';
 import { ExperimentsAppModule } from './experiments';
 import { ImageViewerAppModule } from './image-viewer';
@@ -16,8 +15,7 @@ import { ShutDownAppModule } from './shut-down';
         ShutDownAppModule,
         ExperimentsAppModule,
         CalculatorModule,
-        ImageViewerAppModule,
-        BrowserAppModule
+        ImageViewerAppModule
     ]
 })
 export class DesktopAppsModule {}

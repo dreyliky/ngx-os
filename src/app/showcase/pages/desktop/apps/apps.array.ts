@@ -1,5 +1,4 @@
 import { AppMetadata } from '../features/exec';
-import { BROWSER_APP } from './browser';
 import { CALCULATOR_APP } from './calculator';
 import { EXPERIMENTS_APP } from './experiments';
 import { FILE_EXPLORER_APP } from './file-explorer';
@@ -10,7 +9,6 @@ import { SHUT_DOWN_APP } from './shut-down';
 
 export const APPS: AppMetadata[] = [
     OVERVIEW_APP,
-    BROWSER_APP,
     FILE_EXPLORER_APP,
     NOTEPAD_APP,
     CALCULATOR_APP,

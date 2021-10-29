@@ -1,2 +1,0 @@
-export * from './program.metadata';
-
