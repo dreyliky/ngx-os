@@ -13,3 +13,5 @@
 - Don't write SCSS code in components of the library (You should write SCSS in library/themes folder);
 
 Please check ESLINT rules and stick to them.
+
+**Thanks!**

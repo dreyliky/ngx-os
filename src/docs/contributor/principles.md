@@ -12,3 +12,5 @@
 - Each public field must have explicit definition of type even it has initial value (`compodoc` parse it);
 - Each boolean field must have prefix `is`;
 - Each module should have `index.ts` and `public_api.ts` exports;
+
+**Thanks!**

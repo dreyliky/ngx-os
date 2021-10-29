@@ -41,3 +41,5 @@ will make the website loading a little bit faster.
 `showcase` project also has it's logic of processing JSON data.
 
 It means, some fields, methods, and something else might be excluded on the UI side by its internal logic.
+
+**Thanks!**
