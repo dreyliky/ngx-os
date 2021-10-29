@@ -10,12 +10,7 @@ import {
 } from '@angular/core';
 import { AppendToBodyConfig } from '../classes';
 
-/**
- * @dynamic
- *
- * Moves element into the `body` element
- **/
-// See: https://github.com/angular/angular/issues/20351
+/** Moves element into the `body` element **/
 @Directive({
     selector: '[os-append-to-body]'
 })

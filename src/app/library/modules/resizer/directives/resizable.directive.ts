@@ -21,8 +21,6 @@ import {
 } from '../enums';
 import { ResizeInfo } from '../interfaces';
 
-/** @dynamic */
-// See: https://github.com/angular/angular/issues/20351
 @Directive({
     selector: '[os-resizable]'
 })

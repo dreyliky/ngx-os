@@ -16,11 +16,7 @@ import { DynamicWindowComponent } from '../components';
 import { DynamicWindowConfig, DynamicWindowInputParams } from '../interfaces';
 import { DynamicWindowReferencesService } from './dynamic-window-references.service';
 
-/**
- * @dynamic
- * Allows open your component inside an OS-styled window
- **/
-// See: https://github.com/angular/angular/issues/20351
+/** Allows open your component inside an OS-styled window **/
 @Injectable({
     providedIn: 'root'
 })

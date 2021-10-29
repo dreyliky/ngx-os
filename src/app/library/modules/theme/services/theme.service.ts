@@ -2,11 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-/**
- * @dynamic
- * Allows to apply themes
- **/
-// See: https://github.com/angular/angular/issues/20351
+/** Allows to apply themes **/
 @Injectable({
     providedIn: 'root'
 })
