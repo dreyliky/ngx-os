@@ -41,3 +41,10 @@
         }
     }
 }
+
+:host-context(.win98),
+:host-context(.winXP) {
+    .node-content .icon-wrapper {
+        height: 22px;
+    }
+}

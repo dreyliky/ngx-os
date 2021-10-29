@@ -14,7 +14,8 @@
         align-items: center;
 
         .os-icon:not(.os-custom) {
-            width: 23px;
+            width: 16px;
+            min-width: 16px;
             height: 16px;
         }
 
@@ -70,7 +71,7 @@
             color: #909090;
         }
 
-        &:not(.os-root-node) :first-child {
+        &:not(.os-root-node) > :first-child {
             margin-left: calc((16px * var(--os-tree-node-depth)));
         }
     }
