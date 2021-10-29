@@ -1,1 +1,0 @@
-Library's internal component, which creates when you open some window via DynamicWindowService.

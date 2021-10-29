@@ -27,7 +27,10 @@ import { mergeConfigs } from '../../helpers';
 import { DynamicWindowConfig } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 
-/** @internal */
+/**
+ * @internal
+ * Component, which creates when you open some window via {@link DynamicWindowService}.
+ **/
 @Component({
     selector: 'os-dynamic-window',
     templateUrl: './dynamic-window.component.html',
