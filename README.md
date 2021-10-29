@@ -23,12 +23,16 @@ to get more information:
 - How to create new modules;
 - How to write clean code;
 
+## Roadmap
+
+Check Roadmap at the [Trello](https://trello.com/b/RxLewteC/ngx-os-roadmap)
+
 ## Support 🔥
 
 - [Patreon](https://www.patreon.com/dreyliky)
 - [Buy me a Coffee](https://www.buymeacoffee.com/dreyliky)
 
-Thanks!
+**Thanks!**
 
 ## Screenshots from demo desktop page
 
