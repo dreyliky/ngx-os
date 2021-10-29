@@ -9,6 +9,19 @@
 - `npm run start`;
 - Open `http://localhost:4200`;
 
+## Recommended Development Environment
+
+### Editor
+
+Visual Studio Code;
+
+### VS Code extensions
+
+- Angular Language Service;
+- ESLint;
+- TODO Highlight;
+- Material Icon Theme;
+
 ## How to update documentation after code changes?
 
 To update documentation, you should run `npm run doc`.
