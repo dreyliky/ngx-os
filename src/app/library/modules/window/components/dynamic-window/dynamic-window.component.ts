@@ -183,7 +183,6 @@ export class DynamicWindowComponent
 
     private initWindowSizes(): void {
         const { offsetWidth, offsetHeight } = this.windowElement;
-
         this.widthAtWindowedMode = (this.config.width ?? offsetWidth);
         this.heightAtWindowedMode = (this.config.height ?? offsetHeight);
 

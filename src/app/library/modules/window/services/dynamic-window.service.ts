@@ -74,10 +74,9 @@ export class DynamicWindowService {
     private createComponentRef(
         windowInjector: DynamicWindowInjector
     ): ComponentRef<DynamicWindowComponent> {
-        const componentFactory = this.componentFactoryResolver
-            .resolveComponentFactory(DynamicWindowComponent);
-
-        return componentFactory.create(windowInjector);
+        return this.componentFactoryResolver
+            .resolveComponentFactory(DynamicWindowComponent)
+            .create(windowInjector);
     }
 
     private appendWindowComponentToBody(componentRef: ComponentRef<DynamicWindowComponent>): void {
