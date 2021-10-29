@@ -16,7 +16,7 @@ To update documentation, you should run `npm run doc`.
 This command will run `compodoc` library which will scan library and examples code
 and create JSON files of the documentation in the `assets` folder.
 
-After that, the `showcase` will request these files and dynamically build the documentation.
+After that, the `showcase` app will request these files and dynamically build the documentation.
 
 ## How to create a new theme?
 
