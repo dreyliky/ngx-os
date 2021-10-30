@@ -4,6 +4,8 @@ Components in operating systems style for Angular.
 
 Visit the [ngx-os website](https://dreyliky.github.io) for general information, examples, demos and documentation.
 
+[![Preview](/src/assets/demo/preview.jpg)](https://dreyliky.github.io)
+
 ## For end-users
 
 Check [Library Documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs) 
