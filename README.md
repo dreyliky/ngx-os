@@ -1,8 +1,18 @@
 # ngx-os
 
-Components in operating systems style for Angular.
+<div style="display: flex; align-items: center; margin: 10px 0px;">
+<img
+    style="margin-right: 10px;"
+    src="src/assets/showcase/icons/icon.png"
+    alt="ngx-os icon"
+    height="64" />
 
-Visit the [ngx-os website](https://dreyliky.github.io) for general information, examples, demos and documentation.
+<span>
+    Components in operating systems style for Angular.<br />
+    Visit the <a href="https://dreyliky.github.io">ngx-os website</a> for general information, examples, demos and documentation.
+</span>
+</div>
+
 
 [![Preview](/src/assets/demo/preview.jpg)](https://dreyliky.github.io)
 
