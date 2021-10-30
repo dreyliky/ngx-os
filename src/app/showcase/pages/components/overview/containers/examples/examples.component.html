@@ -3,7 +3,7 @@
         *ngIf="isDevExamplesCheckboxVisible"
         class="dev-examples-toggle"
         [(ngModel)]="isDevExamplesVisible"
-        (isCheckedChange)="onToggleDevMode($event)">
+        (ngModelChange)="onToggleDevMode($event)">
         Show DEV examples
     </os-checkbox>
 
