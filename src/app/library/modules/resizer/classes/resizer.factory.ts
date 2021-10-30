@@ -1,3 +1,4 @@
+import { Injectable, Injector } from '@angular/core';
 import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
 import { BaseResizer } from './base-resizer';
@@ -11,8 +12,9 @@ import { TopResizer } from './top-resizer';
 import { TopRightResizer } from './top-right-resizer';
 
 /** @internal */
-export abstract class ResizerFactory {
-    private static readonly resizers = [
+@Injectable()
+export class ResizerFactory {
+    private readonly resizers = [
         TopLeftResizer,
         TopResizer,
         TopRightResizer,
@@ -23,10 +25,14 @@ export abstract class ResizerFactory {
         BottomRightResizer
     ];
 
-    public static create(id: ResizerEnum, context: ResizableDirective): BaseResizer {
+    constructor(
+        private readonly injector: Injector
+    ) {}
+
+    public create(id: ResizerEnum, context: ResizableDirective): BaseResizer {
         const ResizerType = this.resizers
             .find((resizer) => resizer.id === id);
 
-        return new ResizerType(context);
+        return new ResizerType(context, this.injector);
     }
 }

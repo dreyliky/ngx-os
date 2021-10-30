@@ -6,13 +6,16 @@ import { TreeNodesState } from '../states';
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly. */
 @Injectable()
 export class TreeNodesExpansionService<T> {
+    /** @internal */
     public _osExpanded: EventEmitter<TreeNodeExpansionEvent<T>> = new EventEmitter();
+    /** @internal */
     public _osCollapsed: EventEmitter<TreeNodeExpansionEvent<T>> = new EventEmitter();
 
     constructor(
         private readonly state: TreeNodesState<T>
     ) {}
 
+    /** @internal */
     public _initDefaultStateForAll(commonDefaultState: boolean): void {
         this.setStateForAll((node) => (
             (!isNil(node.isExpanded)) ? node.isExpanded : commonDefaultState

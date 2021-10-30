@@ -1,3 +1,5 @@
+import { DOCUMENT } from '@angular/common';
+import { Injector } from '@angular/core';
 import { osParseInt } from '../../../core';
 import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
@@ -7,7 +9,7 @@ import { ResizerConfigModel } from './resizer-config';
 export abstract class BaseResizer {
     public static id: ResizerEnum = null;
 
-    protected readonly documentElement = this.context._document.documentElement;
+    protected readonly documentElement: HTMLElement;
     protected minWidth: number;
     protected maxWidth: number;
     protected minHeight: number;
@@ -24,9 +26,11 @@ export abstract class BaseResizer {
     private minSize = 20;
 
     constructor(
-        protected readonly context: ResizableDirective
+        protected readonly context: ResizableDirective,
+        private readonly injector: Injector
     ) {
         this.config = this.context.config;
+        this.documentElement = this.injector.get(DOCUMENT)?.documentElement;
     }
 
     public init(resizableElement: HTMLElement, event: MouseEvent): void {

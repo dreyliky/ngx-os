@@ -134,7 +134,7 @@ export class DynamicWindowComponent
 
     public onAfterDragging(event: DragInfo): void {
         if (this.isAfterExitFullscreenByDragging) {
-            this.draggableDirective.updateMovableElementPosition(event.originalEvent);
+            this.draggableDirective.strategy.updateElementPosition(event.originalEvent);
 
             this.isAfterExitFullscreenByDragging = false;
         }

@@ -106,9 +106,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         this._config = { ...this._config, ...config };
     }
 
-    // FIXME: Check is this method might be removed
-    /** @internal */
-    public updateMovableElementPosition(event: MouseEvent): void {
+    private updateMovableElementPosition(event: MouseEvent): void {
         if (this._movableElement && this.config.isAllowMoveElement) {
             this._strategy.updateElementPosition(event);
         }
@@ -173,10 +171,10 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         this.osDragEnd.emit(dragInfo);
     };
 
-    private getDragInfo(mouseEvent: MouseEvent): DragInfo {
+    private getDragInfo(originalEvent: MouseEvent): DragInfo {
         return {
             movableElement: this._movableElement,
-            originalEvent: mouseEvent
+            originalEvent
         };
     }
 

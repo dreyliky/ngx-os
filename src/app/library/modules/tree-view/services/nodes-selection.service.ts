@@ -6,13 +6,16 @@ import { TreeNodesState } from '../states';
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly */
 @Injectable()
 export class TreeNodesSelectionService<T> {
+    /** @internal */
     public _osSelected: EventEmitter<TreeNodeSelectionEvent<T>> = new EventEmitter();
+    /** @internal */
     public _osDeselected: EventEmitter<TreeNodeSelectionEvent<T>> = new EventEmitter();
 
     constructor(
         private readonly state: TreeNodesState<T>
     ) {}
 
+    /** @internal */
     public _initDefaultStateForAll(): void {
         this.setStateForNodes((node) => !!node.isSelected);
     }
