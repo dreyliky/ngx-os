@@ -1,22 +1,16 @@
+import { DragStrategyEnum } from '../../enums';
+import { DragStrategyByAxisPropertiesParams } from '../../interfaces';
+
 /**
  * Affects to move element by CSS axises properties.
  * A great choice for dragging absolute HTML elements
  **/
-export class DragStrategyByAxisProperties {
-    /**
-     * Name of CSS property X-Axis from the left side of the HTML element.
-     *
-     * For example: `left`, `marginLeft`
-     **/
+export class DragStrategyByAxisProperties implements DragStrategyByAxisPropertiesParams {
+    public readonly type = DragStrategyEnum.ByAxisProperties;
     public xAxisLeftStyleProperty?: string = 'left';
-    /**
-     * Name of CSS property Y-Axis from the top side of the HTML element.
-     *
-     * For example: `top`, `marginTop`
-     **/
     public yAxisTopStyleProperty?: string = 'top';
 
-    constructor(params?: DragStrategyByAxisProperties) {
+    constructor(params?: DragStrategyByAxisPropertiesParams) {
         Object.assign(this, params);
     }
 }

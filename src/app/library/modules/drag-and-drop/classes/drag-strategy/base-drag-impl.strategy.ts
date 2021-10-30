@@ -1,11 +1,14 @@
 import { first } from 'rxjs/operators';
 import { isNil } from '../../../../core';
 import { DraggableDirective } from '../../directives/draggable.directive';
+import { DragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
 import { DragStrategyType } from '../../types';
 
 /** @internal */
-export abstract class BaseDragStrategy {
+export abstract class BaseDragStrategyImpl {
+    public readonly type: DragStrategyEnum;
+
     protected initialDomRect: DOMRect;
     protected mouseDownEvent: MouseEvent;
     protected shiftX: number;

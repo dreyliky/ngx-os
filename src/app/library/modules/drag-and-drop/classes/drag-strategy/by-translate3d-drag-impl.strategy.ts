@@ -1,10 +1,13 @@
 import { Coordinate } from '../../../../core';
+import { DragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
-import { BaseDragStrategy } from './base-drag.strategy';
+import { BaseDragStrategyImpl } from './base-drag-impl.strategy';
 import { DragStrategyByTranslate3d } from './by-translate3d-drag.strategy';
 
 /** @internal */
-export class DragStrategyByTranslate3dImpl extends BaseDragStrategy {
+export class DragStrategyByTranslate3dImpl extends BaseDragStrategyImpl {
+    public readonly type = DragStrategyEnum.ByTranslate3d;
+
     protected config: DragStrategyByTranslate3d;
 
     private readonly totalParentCoordinates: Coordinate = {

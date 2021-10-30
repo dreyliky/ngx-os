@@ -10,7 +10,7 @@ import {
     Output
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { BaseDragStrategy, DraggerConfigModel, DragStrategyFactory } from '../classes';
+import { BaseDragStrategyImpl, DraggerConfigModel, DragStrategyFactory } from '../classes';
 import { DraggerCssClassEnum as CssClass } from '../enums';
 import { DragInfo } from '../interfaces';
 
@@ -72,7 +72,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     }
 
     /** Target dragging strategy */
-    public get strategy(): BaseDragStrategy {
+    public get strategy(): BaseDragStrategyImpl {
         return this._strategy;
     }
 
@@ -83,7 +83,7 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
 
     private _draggableElement: HTMLElement;
     private _movableElement: HTMLElement;
-    private _strategy: BaseDragStrategy;
+    private _strategy: BaseDragStrategyImpl;
     private _config = new DraggerConfigModel();
     private _whenViewInit$ = new ReplaySubject();
 
