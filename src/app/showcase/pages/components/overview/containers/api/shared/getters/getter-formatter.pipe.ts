@@ -6,6 +6,6 @@ import { DocGetSignature } from '@features/documentation';
 })
 export class GetterFormatterPipe implements PipeTransform {
     public transform({ name, returnType }: DocGetSignature): string {
-        return `${name}: <span class="text-primary">${returnType}</span>`;
+        return `${name}: <xmp class="text-primary">${returnType}</xmp>`;
     }
 }

@@ -6,6 +6,6 @@ import { InputsClass } from '@features/documentation';
 })
 export class InputFormatterPipe implements PipeTransform {
     public transform({ name, type }: InputsClass): string {
-        return `${name}: <span class="text-primary">${type}</span>`;
+        return `${name}: <xmp class="text-primary">${type}</xmp>`;
     }
 }

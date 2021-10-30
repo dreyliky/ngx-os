@@ -6,6 +6,6 @@ import { DocSetSignature } from '@features/documentation';
 })
 export class SetterFormatterPipe implements PipeTransform {
     public transform({ name, args }: DocSetSignature): string {
-        return `${name}: <span class="text-primary">${args[0].type}</span>`;
+        return `${name}: <xmp class="text-primary">${args[0].type}</xmp>`;
     }
 }

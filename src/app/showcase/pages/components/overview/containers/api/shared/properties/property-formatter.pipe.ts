@@ -6,6 +6,6 @@ import { DocClassProperty } from '@features/documentation';
 })
 export class PropertyFormatterPipe implements PipeTransform {
     public transform({ name, type }: DocClassProperty): string {
-        return `${name}: <span class="text-primary">${type}</span>`;
+        return `${name}: <xmp class="text-primary">${type}</xmp>`;
     }
 }

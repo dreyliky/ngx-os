@@ -18,14 +18,14 @@ export class MethodFormatterPipe implements PipeTransform {
         let result = output;
 
         if (method.typeParameters?.length) {
-            result += `<<span class="text-primary">`;
+            result += `<<xmp class="text-primary">`;
 
             method.typeParameters?.forEach((param, paramIndex) => {
                 result += param;
                 result += (paramIndex < (method.typeParameters.length - 1)) ? ', ' : '';
             });
 
-            result += '</span>>';
+            result += '</xmp>>';
         }
 
         return result;
