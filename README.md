@@ -1,20 +1,16 @@
 # ngx-os
 
-<div style="display: flex; align-items: center; margin: 10px 0px;">
 <img
-    style="margin-right: 10px;"
+    style="float: right; margin-right: 10px;"
     src="src/assets/showcase/icons/icon.png"
     alt="ngx-os icon"
-    height="64" />
+    height="96" />
 
-<span>
-    Components in operating systems style for Angular.<br />
-    Visit the <a href="https://dreyliky.github.io">ngx-os website</a> for general information, examples, demos and documentation.
-</span>
-</div>
+Components in operating systems style for Angular.
 
+Visit the [ngx-os website](https://ngx-os.io) for general information, examples, demos and documentation.
 
-[![Preview](/src/assets/demo/preview.jpg)](https://dreyliky.github.io)
+[![Preview](/src/assets/demo/preview.jpg)](https://ngx-os.io)
 
 ## For end-users
 
@@ -49,10 +45,10 @@ Check Roadmap at the [Trello](https://trello.com/b/RxLewteC/ngx-os-roadmap)
 ## Screenshots from demo desktop page
 
 ### Windows 10 theme
-[![Desktop Windows 10](/src/assets/demo/desktop-win10.jpg)](https://dreyliky.github.io)
+[![Desktop Windows 10](/src/assets/demo/desktop-win10.jpg)](https://ngx-os.io)
 
 ### Windows XP theme
-[![Desktop Windows XP](/src/assets/demo/desktop-winxp.jpg)](https://dreyliky.github.io)
+[![Desktop Windows XP](/src/assets/demo/desktop-winxp.jpg)](https://ngx-os.io)
 
 ### Windows 98 theme
-[![Desktop Windows 98](/src/assets/demo/desktop-win98.jpg)](https://dreyliky.github.io)
+[![Desktop Windows 98](/src/assets/demo/desktop-win98.jpg)](https://ngx-os.io)
