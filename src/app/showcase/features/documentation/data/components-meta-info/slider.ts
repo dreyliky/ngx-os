@@ -1,4 +1,3 @@
-import { SliderComponent, SliderModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { SliderAsFormControlComponent, SliderOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -9,10 +8,10 @@ export const SLIDER_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides the same functionality as a native <input type="range">.',
     imageUrl: '/assets/showcase/icons/components/slider.png',
     libModules: [
-        SliderModule
+        'SliderModule'
     ],
     libComponents: [
-        SliderComponent
+        'SliderComponent'
     ],
     libInterfaces: [
         'SliderValueChangeEvent'

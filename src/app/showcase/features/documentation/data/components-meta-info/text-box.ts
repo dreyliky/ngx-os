@@ -1,4 +1,3 @@
-import { TextBoxComponent, TextBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { TextBoxAsFormControlComponent, TextBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -9,10 +8,10 @@ export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides the text field for entering a text.',
     imageUrl: '/assets/showcase/icons/components/text-box.png',
     libModules: [
-        TextBoxModule
+        'TextBoxModule'
     ],
     libComponents: [
-        TextBoxComponent
+        'TextBoxComponent'
     ],
     libInterfaces: [
         'TextBoxChangeEvent'

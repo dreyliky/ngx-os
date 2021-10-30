@@ -1,4 +1,3 @@
-import { TextareaBoxComponent, TextareaBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { TextareaAsFormControlComponent, TextareaOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -9,10 +8,10 @@ export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides the text field for entering a multi-line text.',
     imageUrl: '/assets/showcase/icons/components/text-box.png',
     libModules: [
-        TextareaBoxModule
+        'TextareaBoxModule'
     ],
     libComponents: [
-        TextareaBoxComponent
+        'TextareaBoxComponent'
     ],
     libInterfaces: [
         'TextareaBoxChangeEvent'

@@ -1,9 +1,3 @@
-import {
-    DragAndDropModule,
-    DraggableDirective,
-    DragStrategyByAxisProperties,
-    DragStrategyByTranslate3d
-} from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     DraggerOnAbsoluteElementComponent,
@@ -19,14 +13,14 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides different features for dragging functionality.',
     imageUrl: '/assets/showcase/icons/components/drag-and-drop.png',
     libModules: [
-        DragAndDropModule
+        'DragAndDropModule'
     ],
     libDirectives: [
-        DraggableDirective
+        'DraggableDirective'
     ],
     libClasses: [
-        DragStrategyByTranslate3d,
-        DragStrategyByAxisProperties
+        'DragStrategyByTranslate3d',
+        'DragStrategyByAxisProperties'
     ],
     libInterfaces: [
         'DraggerConfig',

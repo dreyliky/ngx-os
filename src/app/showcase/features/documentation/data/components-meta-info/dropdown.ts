@@ -1,4 +1,3 @@
-import { DropdownComponent, DropdownItemComponent, DropdownModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     DropdownAsFormControlComponent,
@@ -14,11 +13,11 @@ export const DROPDOWN_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides functional for selecting a value from a set of items.',
     imageUrl: '/assets/showcase/icons/components/dropdown.png',
     libModules: [
-        DropdownModule
+        'DropdownModule'
     ],
     libComponents: [
-        DropdownComponent,
-        DropdownItemComponent
+        'DropdownComponent',
+        'DropdownItemComponent'
     ],
     libInterfaces: [
         'DropdownValueChangeEvent'

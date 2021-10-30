@@ -1,4 +1,3 @@
-import { EmailBoxComponent, EmailBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     EmailBoxAsFormControlComponent,
@@ -13,10 +12,10 @@ export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides the text field for entering an email.',
     imageUrl: '/assets/showcase/icons/components/email-box.png',
     libModules: [
-        EmailBoxModule
+        'EmailBoxModule'
     ],
     libComponents: [
-        EmailBoxComponent
+        'EmailBoxComponent'
     ],
     libInterfaces: [
         'EmailBoxChangeEvent'

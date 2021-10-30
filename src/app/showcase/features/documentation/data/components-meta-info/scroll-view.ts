@@ -1,4 +1,3 @@
-import { ScrollViewComponent, ScrollViewModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { ScrollViewOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -9,10 +8,10 @@ export const SCROLL_VIEW_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides container with scroll bars.',
     imageUrl: '/assets/showcase/icons/components/scroll-view.png',
     libModules: [
-        ScrollViewModule
+        'ScrollViewModule'
     ],
     libComponents: [
-        ScrollViewComponent
+        'ScrollViewComponent'
     ],
     demoComponents: [
         {

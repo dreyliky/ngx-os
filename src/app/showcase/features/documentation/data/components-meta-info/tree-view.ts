@@ -1,9 +1,3 @@
-import {
-    TreeNodesExpansionService,
-    TreeNodesSelectionService,
-    TreeViewComponent,
-    TreeViewModule
-} from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     TreeViewIconCustomizationComponent,
@@ -19,14 +13,14 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides a view that can be used to display hierarchy data.',
     imageUrl: '/assets/showcase/icons/components/tree-view.png',
     libModules: [
-        TreeViewModule
+        'TreeViewModule'
     ],
     libComponents: [
-        TreeViewComponent
+        'TreeViewComponent'
     ],
     libServices: [
-        TreeNodesSelectionService,
-        TreeNodesExpansionService
+        'TreeNodesSelectionService',
+        'TreeNodesExpansionService'
     ],
     libInterfaces: [
         'TreeNode',

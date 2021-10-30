@@ -1,4 +1,3 @@
-import { ResizableDirective, ResizerModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     ResizerOnAbsoluteElementComponent,
@@ -13,10 +12,10 @@ export const RESIZER_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides different features for resizing functionality.',
     imageUrl: '/assets/showcase/icons/components/resizer.png',
     libModules: [
-        ResizerModule
+        'ResizerModule'
     ],
     libDirectives: [
-        ResizableDirective
+        'ResizableDirective'
     ],
     libInterfaces: [
         'ResizerConfig',

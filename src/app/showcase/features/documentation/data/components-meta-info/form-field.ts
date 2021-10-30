@@ -1,4 +1,3 @@
-import { FormFieldComponent, FormFieldModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { FormFieldOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -9,10 +8,10 @@ export const FORM_FIELD_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides component for wrapping several form components to define a form field.',
     imageUrl: '/assets/showcase/icons/components/form-field.png',
     libModules: [
-        FormFieldModule
+        'FormFieldModule'
     ],
     libComponents: [
-        FormFieldComponent
+        'FormFieldComponent'
     ],
     demoComponents: [
         {

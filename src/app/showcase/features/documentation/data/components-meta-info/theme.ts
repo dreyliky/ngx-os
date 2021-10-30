@@ -1,10 +1,3 @@
-import {
-    AccentColorService,
-    AvailableForOsDirective,
-    ForbiddenForOsDirective,
-    ThemeModule,
-    ThemeService
-} from 'ngx-os';
 import { OsComponentEnum, OsComponentOverviewSectionEnum as OverviewSection } from '../../enums';
 import {
     ThemeAvailabilityDirectivesComponent,
@@ -22,15 +15,15 @@ export const THEME_META_INFO: ComponentMetaInfo = {
         OverviewSection.Theming
     ],
     libModules: [
-        ThemeModule
+        'ThemeModule'
     ],
     libServices: [
-        ThemeService,
-        AccentColorService
+        'ThemeService',
+        'AccentColorService'
     ],
     libDirectives: [
-        AvailableForOsDirective,
-        ForbiddenForOsDirective
+        'AvailableForOsDirective',
+        'ForbiddenForOsDirective'
     ],
     libInterfaces: [
         'ThemeRgbColor'

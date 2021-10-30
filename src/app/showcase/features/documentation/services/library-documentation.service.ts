@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import {
@@ -33,43 +33,43 @@ export class LibraryDocumentationService {
             );
     }
 
-    public findDocModulesByTypes(moduleTypes: Type<any>[]): DocModule[] {
-        return moduleTypes
-            .map((moduleType) => {
+    public findDocModulesByTypes(moduleNames: string[]): DocModule[] {
+        return moduleNames
+            .map((moduleName) => {
                 return this.state.data.modules
-                    .find((module) => module.name === moduleType.name);
+                    .find((module) => module.name === moduleName);
             });
     }
 
-    public findDocInjectablesByTypes(serviceTypes: Type<any>[]): DocInjectable[] {
-        return serviceTypes
-            .map((serviceType) => {
+    public findDocInjectablesByTypes(serviceNames: string[]): DocInjectable[] {
+        return serviceNames
+            .map((serviceName) => {
                 return this.state.data.injectables
-                    .find((service) => service.name === serviceType.name);
+                    .find((service) => service.name === serviceName);
             });
     }
 
-    public findDocDirectivesByTypes(directiveTypes: Type<any>[]): DocDirective[] {
-        return directiveTypes
-            .map((directiveType) => {
+    public findDocDirectivesByTypes(directiveNames: string[]): DocDirective[] {
+        return directiveNames
+            .map((directiveName) => {
                 return this.state.data.directives
-                    .find((directive) => directive.name === directiveType.name);
+                    .find((directive) => directive.name === directiveName);
             });
     }
 
-    public findDocComponentsByTypes(componentTypes: Type<any>[]): DocComponent[] {
-        return componentTypes
-            .map((componentType) => {
+    public findDocComponentsByTypes(componentNames: string[]): DocComponent[] {
+        return componentNames
+            .map((componentName) => {
                 return this.state.data.components
-                    .find((component) => component.name === componentType.name);
+                    .find((component) => component.name === componentName);
             });
     }
 
-    public findDocClassesByTypes(classTypes: Type<any>[]): DocClass[] {
-        return classTypes
-            .map((classType) => {
+    public findDocClassesByTypes(classNames: string[]): DocClass[] {
+        return classNames
+            .map((className) => {
                 return this.state.data.classes
-                    .find((currentClass) => currentClass.name === classType.name);
+                    .find((currentClass) => currentClass.name === className);
             });
     }
 

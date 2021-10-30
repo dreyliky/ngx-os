@@ -1,4 +1,3 @@
-import { TabComponent, TabGroupComponent, TabGroupModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     TabGroupLabelCustomizationComponent,
@@ -13,11 +12,11 @@ export const TAB_GROUP_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Allows organizing content into separate views separated by tabs.',
     imageUrl: '/assets/showcase/icons/components/tab-group.png',
     libModules: [
-        TabGroupModule
+        'TabGroupModule'
     ],
     libComponents: [
-        TabGroupComponent,
-        TabComponent
+        'TabGroupComponent',
+        'TabComponent'
     ],
     demoComponents: [
         {

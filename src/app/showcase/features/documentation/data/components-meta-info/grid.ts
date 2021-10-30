@@ -1,4 +1,3 @@
-import { GridComponent, GridItemComponent, GridModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     GridItemCustomizationComponent,
@@ -13,11 +12,11 @@ export const GRID_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides grid layout functionality.',
     imageUrl: '/assets/showcase/icons/components/grid.png',
     libModules: [
-        GridModule
+        'GridModule'
     ],
     libComponents: [
-        GridComponent,
-        GridItemComponent
+        'GridComponent',
+        'GridItemComponent'
     ],
     libEnums: [
         'GridDirectionEnum'

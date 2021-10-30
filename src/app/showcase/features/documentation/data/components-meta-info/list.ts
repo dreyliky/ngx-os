@@ -1,4 +1,3 @@
-import { ListComponent, ListItemComponent, ListModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { ListCustomTemplateComponent, ListOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -9,11 +8,11 @@ export const LIST_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Allows showing a bunch of items in the list view.',
     imageUrl: '/assets/showcase/icons/components/list.png',
     libModules: [
-        ListModule
+        'ListModule'
     ],
     libComponents: [
-        ListComponent,
-        ListItemComponent
+        'ListComponent',
+        'ListItemComponent'
     ],
     demoComponents: [
         {

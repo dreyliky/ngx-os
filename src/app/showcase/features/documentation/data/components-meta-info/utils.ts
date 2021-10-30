@@ -1,10 +1,3 @@
-import {
-    AppendToBodyConfig,
-    AppendToBodyDirective,
-    FixedToParentConfig,
-    FixedToParentDirective,
-    UtilsModule
-} from 'ngx-os';
 import { OsComponentEnum, OsComponentOverviewSectionEnum as OverviewSection } from '../../enums';
 import {
     UtilsAppendToBodyOverviewComponent,
@@ -21,24 +14,26 @@ export const UTILS_META_INFO: ComponentMetaInfo = {
         OverviewSection.Theming
     ],
     libModules: [
-        UtilsModule
+        'UtilsModule'
     ],
     libDirectives: [
-        AppendToBodyDirective,
-        FixedToParentDirective
+        'AppendToBodyDirective',
+        'FixedToParentDirective'
     ],
     libClasses: [
-        AppendToBodyConfig,
-        FixedToParentConfig
+        'AppendToBodyConfig',
+        'FixedToParentConfig'
     ],
     demoComponents: [
         {
-            title: `${AppendToBodyDirective.name} Overview`,
+            title: 'AppendToBodyDirective Overview',
             component: UtilsAppendToBodyOverviewComponent
         },
         {
-            title: `${FixedToParentDirective.name} Overview`,
+            title: 'FixedToParentDirective Overview',
             component: UtilsFixedToParentOverviewComponent
         }
     ]
 };
+
+console.log(UTILS_META_INFO);

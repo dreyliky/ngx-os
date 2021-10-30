@@ -1,14 +1,3 @@
-import {
-    DynamicWindowService,
-    DynamicWindowSharedConfigService,
-    TitleBarButtonComponent,
-    TitleBarComponent,
-    TitleBarContentComponent,
-    TitleBarControlsComponent,
-    TitleBarIconComponent,
-    WindowComponent,
-    WindowModule
-} from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import {
     DynamicWindowCustomizationComponent,
@@ -25,19 +14,19 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides OS-styled window functionality.',
     imageUrl: '/assets/showcase/icons/components/window.png',
     libModules: [
-        WindowModule
+        'WindowModule'
     ],
     libComponents: [
-        WindowComponent,
-        TitleBarComponent,
-        TitleBarContentComponent,
-        TitleBarControlsComponent,
-        TitleBarButtonComponent,
-        TitleBarIconComponent
+        'WindowComponent',
+        'TitleBarComponent',
+        'TitleBarContentComponent',
+        'TitleBarControlsComponent',
+        'TitleBarButtonComponent',
+        'TitleBarIconComponent'
     ],
     libServices: [
-        DynamicWindowService,
-        DynamicWindowSharedConfigService
+        'DynamicWindowService',
+        'DynamicWindowSharedConfigService'
     ],
     libInterfaces: [
         'DynamicWindowRef',

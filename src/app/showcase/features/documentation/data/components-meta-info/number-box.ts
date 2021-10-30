@@ -1,4 +1,3 @@
-import { NumberBoxComponent, NumberBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { NumberBoxAsFormControlComponent, NumberBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -9,10 +8,10 @@ export const NUMBER_BOX_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides the text field for entering a number (integer or decimal).',
     imageUrl: '/assets/showcase/icons/components/number-box.png',
     libModules: [
-        NumberBoxModule
+        'NumberBoxModule'
     ],
     libComponents: [
-        NumberBoxComponent
+        'NumberBoxComponent'
     ],
     libInterfaces: [
         'NumberBoxChangeEvent'

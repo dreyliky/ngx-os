@@ -1,4 +1,3 @@
-import { PasswordBoxComponent, PasswordBoxModule } from 'ngx-os';
 import { OsComponentEnum } from '../../enums';
 import { PasswordBoxAsFormControlComponent, PasswordBoxOverviewComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
@@ -9,10 +8,10 @@ export const PASSWORD_BOX_META_INFO: ComponentMetaInfo = {
     shortInfo: 'Provides the text field for entering a password.',
     imageUrl: '/assets/showcase/icons/components/password-box.png',
     libModules: [
-        PasswordBoxModule
+        'PasswordBoxModule'
     ],
     libComponents: [
-        PasswordBoxComponent
+        'PasswordBoxComponent'
     ],
     libInterfaces: [
         'PasswordBoxChangeEvent'
