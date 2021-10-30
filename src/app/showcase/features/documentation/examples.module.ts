@@ -43,6 +43,7 @@ import {
     TextBoxAsFormControlComponent,
     TextBoxOverviewComponent,
     TextOverviewComponent,
+    ThemeAvailabilityDirectivesComponent,
     ThemeDifferentStylingComponent,
     ThemeOverviewComponent,
     TitleBarButtonOverviewComponent,
@@ -76,6 +77,7 @@ import {
         EmailBoxValidityOverviewComponent,
         FormFieldOverviewComponent,
         GridItemCustomizationComponent,
+        GridItemWithStaticCoordinateComponent,
         GridOverviewComponent,
         GroupBoxOverviewComponent,
         ListCustomTemplateComponent,
@@ -100,6 +102,7 @@ import {
         TextBoxAsFormControlComponent,
         TextBoxOverviewComponent,
         TextOverviewComponent,
+        ThemeAvailabilityDirectivesComponent,
         ThemeDifferentStylingComponent,
         ThemeOverviewComponent,
         TitleBarButtonOverviewComponent,
@@ -111,8 +114,7 @@ import {
         UtilsFixedToParentOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent,
-        GridItemWithStaticCoordinateComponent
+        WindowTitleBarComponent
     ],
     imports: [
         SharedModule

@@ -42,7 +42,6 @@ The CSS class like `win98`, is the theme name taken from your `angular.json`.
 
 Check [Get Started](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/get-started.md) guide for more information.
 
-
 ### How it works?
 
 `:host-context` is the `ShadowDom` feature that allows you to make a block of styles based on some parent context. In our case, we checking is some parent element contains `.win98` class name.
@@ -75,3 +74,23 @@ In this case, library's color-type variable name consists from next parts:
 `os` and `color` are hardcode parts of CSS color.
 
 `COLOR_TYPE` it's specific color type from `ThemeColorType` (see `Theme/API` section).
+
+## How to set up elements availability based on themes?
+
+To set up HTML elements availability based on themes you might use `AvailableForOs` and `ForbiddenForOs` directives.
+
+```html
+<div *availableForOs="['win10']">
+    Content you want to display only for Windows 10
+</div>
+
+<div *forbiddenForOs="['win98', 'winXP']">
+    Content you want to hide for Windows XP, Windows 98
+</div>
+```
+
+In this case, hardcoded strings with theme names are the theme names taken from your `angular.json`.
+
+Check [Get Started](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/get-started.md) guide for more information.
+
+Please check examples in the `Theme/Examples` section (documentation website) to see a live demo.

@@ -1,0 +1,23 @@
+<os-header [size]="6">
+    Change the theme and check how directives change the availability of list items
+</os-header>
+
+<os-list>
+    <ng-container *ngFor="let demoItem of demoItems">
+        <os-list-item *availableForOs="demoItem.themes">
+            <os-text>
+                This Item <span class="text-green">Available</span>
+                for: <b>{{ demoItem.label }}</b>
+            </os-text>
+        </os-list-item>
+    </ng-container>
+
+    <ng-container *ngFor="let demoItem of demoItems">
+        <os-list-item *forbiddenForOs="demoItem.themes">
+            <os-text>
+                This Item <span class="text-red">Forbidden</span>
+                for: <b>{{ demoItem.label }}</b>
+            </os-text>
+        </os-list-item>
+    </ng-container>
+</os-list>

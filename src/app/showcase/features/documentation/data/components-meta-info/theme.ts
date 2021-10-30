@@ -1,6 +1,16 @@
-import { AccentColorService, ThemeService } from 'ngx-os';
+import {
+    AccentColorService,
+    AvailableForOsDirective,
+    ForbiddenForOsDirective,
+    ThemeModule,
+    ThemeService
+} from 'ngx-os';
 import { OsComponentEnum, OsComponentOverviewSectionEnum as OverviewSection } from '../../enums';
-import { ThemeDifferentStylingComponent, ThemeOverviewComponent } from '../../examples';
+import {
+    ThemeAvailabilityDirectivesComponent,
+    ThemeDifferentStylingComponent,
+    ThemeOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const THEME_META_INFO: ComponentMetaInfo = {
@@ -11,9 +21,16 @@ export const THEME_META_INFO: ComponentMetaInfo = {
     forbiddenOverviewSections: [
         OverviewSection.Theming
     ],
+    libModules: [
+        ThemeModule
+    ],
     libServices: [
         ThemeService,
         AccentColorService
+    ],
+    libDirectives: [
+        AvailableForOsDirective,
+        ForbiddenForOsDirective
     ],
     libInterfaces: [
         'ThemeRgbColor'
@@ -29,6 +46,10 @@ export const THEME_META_INFO: ComponentMetaInfo = {
         {
             title: 'Different styling based on the current theme',
             component: ThemeDifferentStylingComponent
+        },
+        {
+            title: 'AvailableForOs & ForbiddenForOs Directives',
+            component: ThemeAvailabilityDirectivesComponent
         }
     ]
 };
