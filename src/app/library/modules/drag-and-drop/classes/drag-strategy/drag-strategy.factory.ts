@@ -28,9 +28,6 @@ export abstract class DragStrategyFactory {
         newStrategyConfig: DragStrategyType,
         context: DraggableDirective
     ): boolean {
-        console.log(context.strategy);
-        console.log(newStrategyConfig);
-
         return (context.strategy?.type !== newStrategyConfig.type);
     }
 }
