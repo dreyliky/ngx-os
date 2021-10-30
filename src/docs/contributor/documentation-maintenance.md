@@ -4,8 +4,8 @@ API documentation is parsing via [compodoc](https://compodoc.app) library into J
 from which the `showcase` project is take the information and builds a UI.
 
 There are two different JSON documentations exists:
-1. lib-doc (JSON with parsed things from library);
-2. showcase-doc (JSON with parsed things from `showcase/features/documentation/examples`)
+1. library-documentation (JSON with parsed things from library);
+2. showcase-documentation (JSON with parsed things from `showcase/features/documentation/examples`)
 with examples of library usage;
 
 ## Rules about documentation
