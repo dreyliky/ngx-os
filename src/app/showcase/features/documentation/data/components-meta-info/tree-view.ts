@@ -31,18 +31,22 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Tree View Overview',
+            componentName: 'TreeViewOverviewComponent',
             component: TreeViewOverviewComponent
         },
         {
             title: 'Tree View selection setup',
+            componentName: 'TreeViewSelectionSetupComponent',
             component: TreeViewSelectionSetupComponent
         },
         {
             title: 'Tree View custom icon template',
+            componentName: 'TreeViewIconCustomizationComponent',
             component: TreeViewIconCustomizationComponent
         },
         {
             title: 'Tree View with custom template',
+            componentName: 'TreeViewWithCustomTemplateComponent',
             component: TreeViewWithCustomTemplateComponent
         }
     ]

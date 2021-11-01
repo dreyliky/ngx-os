@@ -19,10 +19,12 @@ export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Text Box Overview',
+            componentName: 'TextBoxOverviewComponent',
             component: TextBoxOverviewComponent
         },
         {
             title: 'Text Box as FormControl',
+            componentName: 'TextBoxAsFormControlComponent',
             component: TextBoxAsFormControlComponent
         }
     ]

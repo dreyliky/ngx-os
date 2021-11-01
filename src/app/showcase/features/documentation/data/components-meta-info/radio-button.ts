@@ -19,10 +19,12 @@ export const RADIO_BUTTON_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Radio Button Overview',
+            componentName: 'RadioButtonOverviewComponent',
             component: RadioButtonOverviewComponent
         },
         {
             title: 'Radio Button as FormControl',
+            componentName: 'RadioButtonAsFormControlComponent',
             component: RadioButtonAsFormControlComponent
         }
     ]

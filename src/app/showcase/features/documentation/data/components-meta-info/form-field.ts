@@ -16,6 +16,7 @@ export const FORM_FIELD_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Form Field Overview',
+            componentName: 'FormFieldOverviewComponent',
             component: FormFieldOverviewComponent
         }
     ]

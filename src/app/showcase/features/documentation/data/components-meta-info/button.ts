@@ -16,10 +16,12 @@ export const BUTTON_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Buttons with different states',
+            componentName: 'ButtonOverviewComponent',
             component: ButtonOverviewComponent
         },
         {
             title: 'Counter',
+            componentName: 'ButtonCounterComponent',
             component: ButtonCounterComponent
         }
     ]

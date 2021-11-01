@@ -16,6 +16,7 @@ export const GROUP_BOX_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Group box Overview',
+            componentName: 'GroupBoxOverviewComponent',
             component: GroupBoxOverviewComponent
         }
     ]

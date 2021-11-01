@@ -16,6 +16,7 @@ export const SCROLL_VIEW_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Scroll View Overview',
+            componentName: 'ScrollViewOverviewComponent',
             component: ScrollViewOverviewComponent
         }
     ]

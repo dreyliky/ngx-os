@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Doc, DocComponent } from '../interfaces';
@@ -22,8 +22,8 @@ export class ExamplesDocumentationService {
             );
     }
 
-    public findDocComponentByType(componentType: Type<any>): DocComponent {
+    public findDocComponentByName(componentName: string): DocComponent {
         return this.state.data.components
-            .find((component) => component.name === componentType.name);
+            .find((component) => component.name === componentName);
     }
 }

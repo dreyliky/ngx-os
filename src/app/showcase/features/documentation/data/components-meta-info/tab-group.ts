@@ -21,14 +21,17 @@ export const TAB_GROUP_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Tab Group Overview',
+            componentName: 'TabGroupOverviewComponent',
             component: TabGroupOverviewComponent
         },
         {
             title: 'Tab Group label customization',
+            componentName: 'TabGroupLabelCustomizationComponent',
             component: TabGroupLabelCustomizationComponent
         },
         {
             title: 'Tab Group content is loaded lazily (when activated)',
+            componentName: 'TabGroupLoadedLazilyComponent',
             component: TabGroupLoadedLazilyComponent
         }
     ]

@@ -18,6 +18,7 @@ export const TEXT_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Text Overview',
+            componentName: 'TextOverviewComponent',
             component: TextOverviewComponent
         }
     ]

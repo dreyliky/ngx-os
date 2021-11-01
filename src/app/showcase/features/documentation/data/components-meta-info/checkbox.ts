@@ -19,10 +19,12 @@ export const CHECKBOX_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Checkbox Overview',
+            componentName: 'CheckboxOverviewComponent',
             component: CheckboxOverviewComponent
         },
         {
             title: 'Checkbox as FormControl',
+            componentName: 'CheckboxAsFormControlComponent',
             component: CheckboxAsFormControlComponent
         }
     ]

@@ -27,10 +27,12 @@ export const UTILS_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'AppendToBodyDirective Overview',
+            componentName: 'UtilsAppendToBodyOverviewComponent',
             component: UtilsAppendToBodyOverviewComponent
         },
         {
             title: 'FixedToParentDirective Overview',
+            componentName: 'UtilsFixedToParentOverviewComponent',
             component: UtilsFixedToParentOverviewComponent
         }
     ]

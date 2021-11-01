@@ -35,18 +35,22 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Dragger Overview',
+            componentName: 'DraggerOverviewComponent',
             component: DraggerOverviewComponent
         },
         {
             title: 'Dragger with locked axis',
+            componentName: 'DraggerWithLockedAxisComponent',
             component: DraggerWithLockedAxisComponent
         },
         {
             title: 'Dragger via handle',
+            componentName: 'DraggerViaHandleComponent',
             component: DraggerViaHandleComponent
         },
         {
             title: 'Dragger on absolute element which append to body',
+            componentName: 'DraggerOnAbsoluteElementComponent',
             component: DraggerOnAbsoluteElementComponent
         }
     ]

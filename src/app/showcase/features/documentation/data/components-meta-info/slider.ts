@@ -19,10 +19,12 @@ export const SLIDER_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Slider Overview',
+            componentName: 'SliderOverviewComponent',
             component: SliderOverviewComponent
         },
         {
             title: 'Slider as FormControl',
+            componentName: 'SliderAsFormControlComponent',
             component: SliderAsFormControlComponent
         }
     ]

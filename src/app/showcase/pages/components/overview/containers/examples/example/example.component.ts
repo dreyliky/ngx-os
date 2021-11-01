@@ -31,7 +31,7 @@ export class ExampleComponent implements AfterViewInit {
     @Input()
     public set demoComponentMetaInfo(data: DemoComponentMetaInfo) {
         this._demoComponentMetaInfo = data;
-        this.docComponent = this.docService.findDocComponentByType(data.component);
+        this.docComponent = this.docService.findDocComponentByName(data.componentName);
     }
 
     public get demoComponentMetaInfo(): DemoComponentMetaInfo {

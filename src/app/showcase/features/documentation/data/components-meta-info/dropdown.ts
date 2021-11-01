@@ -25,18 +25,22 @@ export const DROPDOWN_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Dropdown Overview',
+            componentName: 'DropdownOverviewComponent',
             component: DropdownOverviewComponent
         },
         {
             title: 'Dropdown as FormControl',
+            componentName: 'DropdownAsFormControlComponent',
             component: DropdownAsFormControlComponent
         },
         {
             title: 'Dropdown customization',
+            componentName: 'DropdownСustomizationComponent',
             component: DropdownСustomizationComponent
         },
         {
             title: 'Dropdown with interval value changing',
+            componentName: 'DropdownWithIntervalValueChangeComponent,',
             component: DropdownWithIntervalValueChangeComponent,
             isOnlyForDevEnv: true
         }

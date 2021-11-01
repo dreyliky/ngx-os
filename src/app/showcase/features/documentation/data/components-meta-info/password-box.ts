@@ -19,10 +19,12 @@ export const PASSWORD_BOX_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Password Box Overview',
+            componentName: 'PasswordBoxOverviewComponent',
             component: PasswordBoxOverviewComponent
         },
         {
             title: 'Password Box as FormControl',
+            componentName: 'PasswordBoxAsFormControlComponent',
             component: PasswordBoxAsFormControlComponent
         }
     ]

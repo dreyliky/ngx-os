@@ -19,10 +19,12 @@ export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Textarea Box Overview',
+            componentName: 'TextareaOverviewComponent',
             component: TextareaOverviewComponent
         },
         {
             title: 'Textarea Box as FormControl',
+            componentName: 'TextareaAsFormControlComponent',
             component: TextareaAsFormControlComponent
         }
     ]

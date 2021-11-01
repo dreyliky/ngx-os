@@ -34,14 +34,17 @@ export const THEME_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Theme Overview',
+            componentName: 'ThemeOverviewComponent',
             component: ThemeOverviewComponent
         },
         {
             title: 'Different styling based on the current theme',
+            componentName: 'ThemeDifferentStylingComponent',
             component: ThemeDifferentStylingComponent
         },
         {
             title: 'AvailableForOs & ForbiddenForOs Directives',
+            componentName: 'ThemeAvailabilityDirectivesComponent',
             component: ThemeAvailabilityDirectivesComponent
         }
     ]

@@ -24,14 +24,17 @@ export const GRID_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Grid Overview',
+            componentName: 'GridOverviewComponent',
             component: GridOverviewComponent
         },
         {
             title: 'Grid Item Customization',
+            componentName: 'GridItemCustomizationComponent',
             component: GridItemCustomizationComponent
         },
         {
             title: 'Grid Item with Static Coordinate',
+            componentName: 'GridItemWithStaticCoordinateComponent',
             component: GridItemWithStaticCoordinateComponent
         }
     ]

@@ -23,14 +23,17 @@ export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Email Box Overview',
+            componentName: 'EmailBoxOverviewComponent',
             component: EmailBoxOverviewComponent
         },
         {
             title: 'Email Box as FormControl',
+            componentName: 'EmailBoxAsFormControlComponent',
             component: EmailBoxAsFormControlComponent
         },
         {
             title: 'Email Box Validity Overview',
+            componentName: 'EmailBoxValidityOverviewComponent',
             component: EmailBoxValidityOverviewComponent
         }
     ]

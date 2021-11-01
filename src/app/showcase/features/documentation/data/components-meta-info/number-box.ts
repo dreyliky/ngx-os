@@ -19,10 +19,12 @@ export const NUMBER_BOX_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Number Box Overview',
+            componentName: 'NumberBoxOverviewComponent',
             component: NumberBoxOverviewComponent
         },
         {
             title: 'Number Box as FormControl',
+            componentName: 'NumberBoxAsFormControlComponent',
             component: NumberBoxAsFormControlComponent
         }
     ]

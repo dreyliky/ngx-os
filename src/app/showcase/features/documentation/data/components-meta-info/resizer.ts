@@ -28,14 +28,17 @@ export const RESIZER_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'Resizer Overview',
+            componentName: 'ResizerOverviewComponent',
             component: ResizerOverviewComponent
         },
         {
             title: 'Resizer with specific sides',
+            componentName: 'ResizerSpecificSidesComponent',
             component: ResizerSpecificSidesComponent
         },
         {
             title: 'Resizer on absolute element which append to body',
+            componentName: 'ResizerOnAbsoluteElementComponent',
             component: ResizerOnAbsoluteElementComponent
         }
     ]

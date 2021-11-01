@@ -17,10 +17,12 @@ export const LIST_META_INFO: ComponentMetaInfo = {
     demoComponents: [
         {
             title: 'List Overview',
+            componentName: 'ListOverviewComponent',
             component: ListOverviewComponent
         },
         {
             title: 'List with custom template',
+            componentName: 'ListCustomTemplateComponent',
             component: ListCustomTemplateComponent
         }
     ]
