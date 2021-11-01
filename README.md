@@ -24,8 +24,8 @@
 Check [Library Documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs) 
 to get more information:
 
-- [Get started](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/get-started.md);
-- [Components documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/modules);
+- [Get started](https://ngx-os.io/get-started);
+- [Components documentation](https://ngx-os.io/components);
 - [Components theming documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/theming);
 
 ## For contributors
