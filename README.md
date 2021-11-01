@@ -12,7 +12,7 @@
 <td>
   Components in operating systems style for Angular.
 
-  Visit the <a href="https://ngx-os.io">ngx-os</a> website for general information, examples, demos and documentation.
+  Visit the <a href="https://ngx-os.io">ngx-os website</a> for general information, examples, demos and documentation.
 </td>
 </tr>
 </table>
