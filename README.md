@@ -1,14 +1,21 @@
 # ngx-os
 
+<table border="0">
+<tr>
+<td>
 <img
-    style="float: right; margin-right: 10px;"
-    src="src/assets/showcase/icons/icon.png"
-    alt="ngx-os icon"
-    height="96" />
+  src="src/assets/showcase/icons/icon.png"
+  alt="ngx-os icon"
+  height="96" />
+</td>
 
-Components in operating systems style for Angular.
+<td>
+  Components in operating systems style for Angular.
 
-Visit the [ngx-os website](https://ngx-os.io) for general information, examples, demos and documentation.
+  Visit the <a href="https://ngx-os.io">ngx-os</a> website for general information, examples, demos and documentation.
+</td>
+</tr>
+</table>
 
 [![Preview](/src/assets/demo/preview.jpg)](https://ngx-os.io)
 
@@ -17,30 +24,23 @@ Visit the [ngx-os website](https://ngx-os.io) for general information, examples,
 Check [Library Documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs) 
 to get more information:
 
-- Guides;
-- Components documentation;
-- Components theming documentation;
+- [Get started](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/get-started.md);
+- [Components documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/modules);
+- [Components theming documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/theming);
 
 ## For contributors
 
 Check [Contributor Documentation](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor) 
 to get more information:
 
-- How to start project;
-- How to create new themes;
-- How to create new modules;
-- How to write clean code;
+- [Get started](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/get-started.md);
+- [Theme creation guide](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/theme-creation-guide.md);
+- [Principles](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/principles.md);
+- [Code Style Guide](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/code-style-guide.md);
 
 ## Roadmap
 
 Check Roadmap at the [Trello](https://trello.com/b/RxLewteC/ngx-os-roadmap)
-
-## Support 🔥
-
-- [Patreon](https://www.patreon.com/dreyliky)
-- [Buy me a Coffee](https://www.buymeacoffee.com/dreyliky)
-
-**Thanks!**
 
 ## Screenshots from demo desktop page
 
