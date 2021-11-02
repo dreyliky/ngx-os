@@ -37,5 +37,3 @@ export const UTILS_META_INFO: ComponentMetaInfo = {
         }
     ]
 };
-
-console.log(UTILS_META_INFO);
