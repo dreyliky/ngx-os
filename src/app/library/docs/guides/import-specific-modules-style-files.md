@@ -11,7 +11,7 @@ In this case, to import specifically window styles, you should create your own t
 `src/app/styles/windows10.scss`
 
 ```scss
-// Important file to import for all themes is: `_core.scss`
+// Important file to import for all themes is: `core.scss`
 @import "node_modules/ngx-os/themes/win10/core.scss";
 // Than you can import only styles you really need
 @import "node_modules/ngx-os/themes/win10/window.scss";
