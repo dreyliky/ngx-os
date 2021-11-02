@@ -1,0 +1,5 @@
+@import "./base/text-box.scss";
+
+.os-email-box {
+    @include base-text-box;
+}

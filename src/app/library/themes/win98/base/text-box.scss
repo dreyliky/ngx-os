@@ -1,7 +1,4 @@
-.os-text-box,
-.os-number-box,
-.os-email-box,
-.os-password-box {
+@mixin base-text-box {
     width: 100%;
 
     input {
