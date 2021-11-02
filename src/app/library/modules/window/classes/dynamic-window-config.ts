@@ -34,9 +34,6 @@ export class DynamicWindowConfigModel<D = any, T = any> implements DynamicWindow
     public titleBarStyleClass: string | string[] | object;
     public scrollViewStyle?: object;
     public scrollViewStyleClass?: string | string[] | object;
-    public onHideButtonClick?: () => void;
-    public onToggleFullscreenButtonClick?: () => void;
-    public onCloseButtonClick?: () => void;
 
     constructor(params: DynamicWindowConfig = {}) {
         Object.assign(this, params);

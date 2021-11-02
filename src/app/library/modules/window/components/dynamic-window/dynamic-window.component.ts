@@ -85,24 +85,18 @@ export class DynamicWindowComponent
         if (this.config.isAllowHide) {
             setTimeout(() => this.windowRef.hide());
         }
-
-        this.config.onHideButtonClick?.();
     }
 
     public onFullscreenButtonClick(): void {
         if (this.config.isAllowFullscreen) {
             setTimeout(() => this.windowRef.toggleFullscreen());
         }
-
-        this.config.onToggleFullscreenButtonClick?.();
     }
 
     public onCloseButtonClick(): void {
         if (this.config.isAllowClose) {
             setTimeout(() => this.windowRef.close());
         }
-
-        this.config.onCloseButtonClick?.();
     }
 
     public onWindowMouseDown(): void {
