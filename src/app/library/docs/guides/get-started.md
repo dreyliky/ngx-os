@@ -92,15 +92,18 @@ In this file, you can import exactly the things you need. For example:
 In your `src/app/styles/win10.scss`:
 ```scss
 // All component styles
-@import "ngx-os/themes/win10/_index.scss";
+@import "ngx-os/themes/win10/index.scss";
 
 // Important basic things that must be imported
-@import "ngx-os/themes/win10/_core.scss";
+@import "ngx-os/themes/win10/core.scss";
 
 // Specific things you want to use
-@import "ngx-os/themes/win10/_button.scss";
-@import "ngx-os/themes/win10/_window.scss";
+@import "ngx-os/themes/win10/button.scss";
+@import "ngx-os/themes/win10/window.scss";
 ```
+
+Check [import specific modules style files guide](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/import-specific-modules-style-files.md)
+to get more information.
 
 After that, just like in case above, add this file to `angular.json`:
 
@@ -116,8 +119,6 @@ In your `angular.json`:
     ]
 }
 ```
-
----
 
 ### Apply theme
 

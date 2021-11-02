@@ -1,6 +1,7 @@
-@import "./global";
-@import "./resizers";
-@import "./dragger";
-@import "./grid";
-@import "./form-field";
-@import "./window";
+.os-element {
+    outline: none;
+}
+
+a {
+    color: inherit;
+}
