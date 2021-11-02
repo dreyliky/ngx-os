@@ -4,7 +4,7 @@ Each theme has its own folder with a list of SCSS files.
 
 You can find the file name of modules in the `Module/Theming` section (documentation website).
 
-For example in the [window theming](https://ngx-os.io/components/window/theming) section, you can see the styles file name of the window module is `_window.scss`.
+For example in the [window theming](https://ngx-os.io/components/window/theming) section, you can see the styles file name of the window module is `window.scss`.
 
 In this case, to import specifically window styles, you should create your own theme file, like:
 
