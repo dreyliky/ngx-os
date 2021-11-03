@@ -6,6 +6,7 @@
 <img
   src="src/assets/showcase/icons/icon.png"
   alt="ngx-os icon"
+  width="96"
   height="96" />
 </td>
 
