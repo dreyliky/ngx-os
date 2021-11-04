@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
 import { GuideDocumentationEnum } from '@features/documentation';
@@ -14,11 +15,13 @@ export class GuidesComponent implements OnInit {
     public selectedGuideId: GuideDocumentationEnum;
 
     constructor(
+        private readonly titleService: Title,
         private readonly activatedRoute: ActivatedRoute,
         private readonly router: Router
     ) {}
 
     public ngOnInit(): void {
+        this.titleService.setTitle('ngx-os - Guides');
         this.initSelectedGuideId();
     }
 
