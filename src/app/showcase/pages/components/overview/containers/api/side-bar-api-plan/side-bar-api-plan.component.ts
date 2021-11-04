@@ -115,6 +115,10 @@ export class SideBarApiPlanComponent extends OsBaseViewComponent implements OnIn
         }
     }
 
+    public isListItemSelected(apiListItem: ListItem): boolean {
+        return (apiListItem.name === this.routeFragment);
+    }
+
     private initApiPlanItems(): void {
         this.apiPlanItems = this.apiElements
             .map(({ name: elementName, iconUrl, serviceDataPropName }) => (<ListItem[]>[

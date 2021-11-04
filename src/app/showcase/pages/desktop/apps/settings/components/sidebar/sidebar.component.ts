@@ -15,4 +15,8 @@ export class SidebarComponent {
     public sectionChange = new EventEmitter<Section>();
 
     public readonly sections = SECTIONS;
+
+    public isSectionSelected(section: Section): boolean {
+        return (section.id === this.selectedSection.id);
+    }
 }

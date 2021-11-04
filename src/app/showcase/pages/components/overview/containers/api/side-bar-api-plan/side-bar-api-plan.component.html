@@ -1,7 +1,7 @@
 <os-list>
     <os-list-item
         *ngFor="let listItem of apiPlanItems"
-        [isSelected]="listItem.name === routeFragment"
+        [isSelected]="isListItemSelected(listItem)"
         [data]="listItem"
         (osClick)="onListItemClick(listItem)">
         <div

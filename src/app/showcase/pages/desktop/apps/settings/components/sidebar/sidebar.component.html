@@ -1,7 +1,7 @@
 <os-list>
     <os-list-item
         *ngFor="let section of sections"
-        [isSelected]="section.id === selectedSection.id"
+        [isSelected]="isSectionSelected(section)"
         (osClick)="sectionChange.emit(section)">
         {{ section.name }}
     </os-list-item>
