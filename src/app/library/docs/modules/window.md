@@ -5,7 +5,13 @@
 To open a fully functional OS-styled window, you need to write few lines of code:
 
 ```typescript
-this.dynamicWindowService.open(YOUR_COMPONENT_TO_RENDER_INSIDE);
+class MyComponent {
+    constructor(
+        private readonly dynamicWindowService: DynamicWindowService
+    ) {
+        this.dynamicWindowService.open(YOUR_COMPONENT_TO_RENDER_INSIDE);
+    }
+}
 ```
 
 By doing this, you will see an absolute window element created inside the `<body>` element.
@@ -24,11 +30,17 @@ This window will have features like:
 `DynamicWindowSharedConfigService` allows you to manipulate the default setup for all windows.
 
 ```typescript
-this.dynamicWindowSharedConfigService.update({
-    allowedResizers = [],
-    iconUrl: '/path/to/my-icon.png',
-    hidesInto: { x: '100%', y: '100%' }
-});
+class MyComponent {
+    constructor(
+        private readonly dynamicWindowSharedConfigService: DynamicWindowSharedConfigService
+    ) {
+        this.dynamicWindowSharedConfigService.update({
+            allowedResizers = [],
+            iconUrl: '/path/to/my-icon.png',
+            hidesInto: { x: '100%', y: '100%' }
+        });
+    }
+}
 ```
 
 Code above will apply for all your dynamic windows, next settings:
