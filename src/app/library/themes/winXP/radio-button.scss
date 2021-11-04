@@ -25,7 +25,7 @@
                 top: 0;
                 left: -19px;
                 margin-right: 6px;
-                background-image: url('./icon/winXP_radio-button.png');
+                background-image: url('/assets/themes/winXP/icons/radio-button.png');
                 content: "";
             }
         }
@@ -42,7 +42,7 @@
             left: -15px;
             content: "";
             position: absolute;
-            background: url("./icon/winXP_radio-button-checkmark.png");
+            background: url("/assets/themes/winXP/icons/radio-button-checkmark.png");
         }
 
         &:focus + label:not(:empty) {

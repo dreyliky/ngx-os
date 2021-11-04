@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "eslint-check": "eslint ./src/**/*.ts",
     "eslint-fix": "eslint ./src/**/*.ts --fix",
-    "build-lib": "ng build library --configuration production",
+    "build-lib": "ng build library --configuration production && node scripts/on-library-builded.js",
     "doc": "npm run build-lib-doc && npm run build-showcase-doc",
     "build-lib-doc": "compodoc -c compodoc-lib-config.json",
     "build-showcase-doc": "compodoc -c compodoc-showcase-config.json"

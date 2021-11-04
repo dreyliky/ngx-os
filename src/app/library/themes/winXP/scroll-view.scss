@@ -13,10 +13,10 @@
 
     &::-webkit-scrollbar-track {
         &:vertical {
-            background-image: url("./icon/winXP_scroll-background.png");
+            background-image: url("/assets/themes/winXP/icons/scroll-background.png");
         }
         &:horizontal {
-            background-image: url("./icon/winXP_scroll-background-horizontal.png");
+            background-image: url("/assets/themes/winXP/icons/scroll-background-horizontal.png");
         }
     }
 
@@ -30,12 +30,12 @@
         box-shadow: inset -3px 0 rgba(0, 0, 0, .07), inset 1px 1px rgba(0, 0, 0, .15);
 
         &:vertical {
-            background-image: url("./icon/winXP_scroll-thumb.png");
+            background-image: url("/assets/themes/winXP/icons/scroll-thumb.png");
         }
 
         &:horizontal {
             background-size: 8px;
-            background-image: url("./icon/winXP_scroll-thumb-horizontal.png");
+            background-image: url("/assets/themes/winXP/icons/scroll-thumb-horizontal.png");
         }
     }
 
@@ -46,7 +46,7 @@
         &:start,
         &:end {
             border-radius: 3px;
-            background-image: url("./icon/winXP_arrow-button.png");
+            background-image: url("/assets/themes/winXP/icons/arrow-button.png");
             background-color: rgb(var(--os-primary-color));
         }
 

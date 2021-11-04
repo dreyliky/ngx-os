@@ -207,7 +207,7 @@ os-title-bar {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("./icon/win98_title-bar-button.png");
+    background-image: url("/assets/themes/win98/icons/title-bar-button.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     cursor: default;
@@ -216,7 +216,7 @@ os-title-bar {
     .os-icon {
         width: 100%;
         height: 100%;
-        background-image: url("./icon/win98_title-bar-button-icons.png");
+        background-image: url("/assets/themes/win98/icons/title-bar-button-icons.png");
         background-size: initial;
         background-position: 999px 999px;
         background-repeat: no-repeat;

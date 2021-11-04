@@ -15,7 +15,7 @@
     }
 
     &::-webkit-scrollbar-track {
-        background-image: url("./icon/win98_scroll-background.png");
+        background-image: url("/assets/themes/win98/icons/scroll-background.png");
     }
 
     &::-webkit-scrollbar-thumb {
@@ -29,7 +29,7 @@
 
         &:start,
         &:end {
-            background-image: url("./icon/win98_arrow-button.png");
+            background-image: url("/assets/themes/win98/icons/arrow-button.png");
         }
 
         &:vertical {
