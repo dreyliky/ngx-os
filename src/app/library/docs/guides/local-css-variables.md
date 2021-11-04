@@ -1,5 +1,8 @@
 # Local CSS Variables
 
+**The section is optional and needs only if you want to understand**
+**why components have local CSS variables and what they need for.**
+
 Local CSS variables, it's CSS variables placed in `style` attribute of specific HTML element.
 
 They are useful for theming and contain useful data for the theming.

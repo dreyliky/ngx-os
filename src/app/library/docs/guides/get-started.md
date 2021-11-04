@@ -46,23 +46,32 @@ You can check list of all available themes in `Theme` section.
 
 ```json
 {
-    "projects": {
-        "YOUR_PROJECT_NAME": {
-            "architect": {
-                "build": {
-                    "options": {
-                        "styles": [
-                            {
-                                "input": "node_modules/ngx-os/themes/win10/index.scss",
-                                "bundleName": "win10",
-                                "inject": false
-                            }
-                        ]
-                    }
-                }
-            }
+  "projects": {
+    "YOUR_PROJECT_NAME": {
+      "architect": {
+        "build": {
+          "options": {
+            "assets": [
+              // Copy all assets from ngx-os library into your application assets
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-os/assets",
+                "output": "assets"
+              }
+            ],
+            "styles": [
+              // Add themes you need into your app
+              {
+                "input": "node_modules/ngx-os/themes/win10/index.scss",
+                "bundleName": "win10",
+                "inject": false
+              }
+            ]
+          }
         }
+      }
     }
+  }
 }
 ```
 
@@ -108,7 +117,7 @@ In your `app.component.html`:
 
 <p>
     <font color="red">
-        <b>If styles don't apply, make sure you rebuild your app after modifying your `angular.json`!</b>
+        <b>If styles don't apply, please make sure you rebuild your app after modifying your angular.json!</b>
     </font>
 </p>
 
