@@ -1,6 +1,6 @@
 :host {
-    max-width: 700px;
-    display: block;
-    margin: auto;
+    min-height: 100%;
+    display: flex;
     padding: 30px;
+    box-sizing: border-box;
 }

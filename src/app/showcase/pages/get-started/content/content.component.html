@@ -1,0 +1,9 @@
+<a
+    target="_blank"
+    [attr.href]="contentGithubUrl">
+    <os-button>Read on Github</os-button>
+</a>
+
+<showcase-markdown-previewer
+    [data]="(markdownContent$ | async)">
+</showcase-markdown-previewer>

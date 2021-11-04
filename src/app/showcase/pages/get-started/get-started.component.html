@@ -1,9 +1,9 @@
-<a
-    target="_blank"
-    [attr.href]="getStartedPagePath">
-    <os-button>Read on Github</os-button>
-</a>
+<get-started-side-bar
+    [selectedGuideId]="selectedGuideId"
+    (guideSelected)="onGuideSelected($event)">
+</get-started-side-bar>
 
-<showcase-markdown-previewer
-    [data]="(markdownContent$ | async)">
-</showcase-markdown-previewer>
+<get-started-content
+    [selectedGuideId]="selectedGuideId"
+    (contentLoadError)="onContentLoadError()">
+</get-started-content>
