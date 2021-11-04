@@ -25,7 +25,7 @@
 Check [Library Documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs) 
 to get more information:
 
-- [Get started](https://ngx-os.io/get-started);
+- [Get started](https://ngx-os.io/guides);
 - [Components documentation](https://ngx-os.io/components);
 - [Components theming documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/theming);
 
@@ -35,7 +35,8 @@ Check [Contributor Documentation](https://github.com/dreyliky/ngx-os/blob/master
 to get more information:
 
 - [Get started](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/get-started.md);
-- [Theme creation guide](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/theme-creation-guide.md);
+- [Theme Creation Guide](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/theme-creation-guide.md);
+- [Module Creation Guide](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/module-creation-guide.md);
 - [Principles](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/principles.md);
 - [Code Style Guide](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/code-style-guide.md);
 
