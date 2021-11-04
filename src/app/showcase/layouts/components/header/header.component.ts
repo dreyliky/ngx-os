@@ -14,8 +14,8 @@ export class HeaderComponent {
     public readonly recommendedBrowserText: string = 'The library is on the alpha stage right now. '
         + 'Recommend using the latest version of Google Chrome to get the best experience.';
 
-    public get getStartedPagePath(): string {
-        return `/${AppRouteEnum.GetStarted}`;
+    public get guidesPagePath(): string {
+        return `/${AppRouteEnum.Guides}`;
     }
 
     public get componentsPagePath(): string {

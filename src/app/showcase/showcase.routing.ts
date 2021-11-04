@@ -21,8 +21,8 @@ const routes: Routes = [
                 loadChildren: () => import('./pages/components/components.module').then((m) => m.ComponentsModule)
             },
             {
-                path: AppRouteEnum.GetStarted,
-                loadChildren: () => import('./pages/get-started/get-started.module').then((m) => m.GetStartedModule)
+                path: AppRouteEnum.Guides,
+                loadChildren: () => import('./pages/guides/guides.module').then((m) => m.GuidesModule)
             },
             {
                 path: '**',

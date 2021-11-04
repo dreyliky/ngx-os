@@ -5,12 +5,12 @@ import { GuideDocumentationEnum } from '@features/documentation';
 import { UrlParamEnum } from './url-param.enum';
 
 @Component({
-    selector: 'showcase-get-started',
-    templateUrl: './get-started.component.html',
-    styleUrls: ['./get-started.component.scss'],
+    selector: 'showcase-guides',
+    templateUrl: './guides.component.html',
+    styleUrls: ['./guides.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GetStartedComponent implements OnInit {
+export class GuidesComponent implements OnInit {
     public selectedGuideId: GuideDocumentationEnum;
 
     constructor(
@@ -25,12 +25,12 @@ export class GetStartedComponent implements OnInit {
     public onGuideSelected(id: GuideDocumentationEnum): void {
         this.selectedGuideId = id;
 
-        this.router.navigateByUrl(`/${AppRouteEnum.GetStarted}/${id}`);
+        this.router.navigateByUrl(`/${AppRouteEnum.Guides}/${id}`);
     }
 
     public onContentLoadError(): void {
         this.initDefaultSelectedGuideId();
-        this.router.navigateByUrl(`/${AppRouteEnum.GetStarted}`);
+        this.router.navigateByUrl(`/${AppRouteEnum.Guides}`);
     }
 
     private initSelectedGuideId(): void {

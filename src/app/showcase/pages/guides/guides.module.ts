@@ -2,20 +2,20 @@ import { NgModule } from '@angular/core';
 import { FeaturesModule } from '@features';
 import { SharedModule } from '@shared';
 import { ContentComponent } from './content';
-import { GetStartedComponent } from './get-started.component';
-import { GetStartedRoutingModule } from './get-started.routing';
+import { GuidesComponent } from './guides.component';
+import { GuidesRoutingModule } from './guides.routing';
 import { SideBarComponent } from './side-bar';
 
 @NgModule({
     declarations: [
-        GetStartedComponent,
+        GuidesComponent,
         SideBarComponent,
         ContentComponent
     ],
     imports: [
-        GetStartedRoutingModule,
+        GuidesRoutingModule,
         SharedModule,
         FeaturesModule
     ]
 })
-export class GetStartedModule {}
+export class GuidesModule {}

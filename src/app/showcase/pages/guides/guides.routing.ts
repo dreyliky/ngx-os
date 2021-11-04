@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GetStartedComponent } from './get-started.component';
+import { GuidesComponent } from './guides.component';
 import { UrlParamEnum } from './url-param.enum';
 
 const routes: Routes = [
     {
         path: `:${UrlParamEnum.GuideId}`,
-        component: GetStartedComponent
+        component: GuidesComponent
     },
     {
         path: '',
-        component: GetStartedComponent
+        component: GuidesComponent
     }
 ];
 
@@ -22,4 +22,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class GetStartedRoutingModule {}
+export class GuidesRoutingModule {}
