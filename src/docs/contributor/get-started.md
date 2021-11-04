@@ -31,14 +31,9 @@ and create JSON files of the documentation in the `assets` folder.
 
 After that, the `showcase` app will request these files and dynamically build the documentation.
 
-## How to create themes?
+## Guides
 
-Check [Theme Creation Guide](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/theme-creation-guide.md)
-to get more information.
-
-## How to create new module/component?
-
-Check [Module Creation Guide](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor/module-creation-guide.md)
+Please check [Contributor Guides](https://github.com/dreyliky/ngx-os/blob/master/src/docs/contributor)
 to get more information.
 
 **Thanks!**
