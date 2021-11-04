@@ -7,6 +7,10 @@ export const MARKDOWN_GUIDE_DOCUMENTATIONS: MarkdownDocumentation<GuideDoc>[] = 
         name: 'Get Started'
     },
     {
+        id: GuideDoc.AvailableThemes,
+        name: 'Available Themes'
+    },
+    {
         id: GuideDoc.ImportSpecificModulesStyles,
         name: 'How to import specific modules styles files from themes?'
     },
