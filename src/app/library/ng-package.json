@@ -2,15 +2,7 @@
     "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
     "dest": "../../../dist/ngx-os",
     "lib": {
-        "entryFile": "public-api.ts",
-        "umdModuleIds": {
-            "ngx-os": "./src",
-            "ngx-os/*": "./src/*",
-            "ngx-os/core": "./src/core",
-            "ngx-os/core/*": "./src/core/*",
-            "ngx-os/modules": "./src/modules",
-            "ngx-os/modules/*": "./src/modules/*"
-        }
+        "entryFile": "public-api.ts"
     },
     "assets": [
         "themes"
