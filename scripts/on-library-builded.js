@@ -13,6 +13,6 @@ function copyFolderSync(from, to) {
 }
 
 copyFolderSync(
-    'src/app/library/themes',
-    'dist/ngx-os/themes'
+    'src/assets/themes',
+    'dist/ngx-os/assets/themes'
 );
