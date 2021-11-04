@@ -2,7 +2,7 @@
 
 `tree-view.scss`
 
-Check [import specific modules style files guide](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/import-specific-modules-style-files.md)
+Check [import specific modules style files guide](https://ngx-os.io/guides/import-specific-modules-style-files)
 to get more information.
 
 ## TreeViewComponent
@@ -17,7 +17,7 @@ to get more information.
 
 ### Local CSS Variables
 
-Check [Local CSS Variables](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/local-css-variables.md) guide to get more information.
+Check [Local CSS Variables](https://ngx-os.io/guides/local-css-variables) guide to get more information.
 
 | Name                            | Description                                                             |
 | ------------------------------- | ----------------------------------------------------------------------- |

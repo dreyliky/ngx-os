@@ -38,7 +38,7 @@ export class AppModule {}
 
 **Add all styles at once**
 
-Check [Available Themes guide](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/available-themes.md)
+Check [Available Themes guide](https://ngx-os.io/guides/available-themes)
 to understand which themes exist and to see their locations in the package.
 
 In your `angular.json` you need to define path to themes you want to use in your project.
@@ -72,7 +72,7 @@ You can apply theme via `ThemeService`, using this `bundleName`.
 
 **How to import only styles of specific modules?**
 
-Check [Import specific modules style files guide](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/import-specific-modules-style-files.md)
+Check [Import specific modules style files guide](https://ngx-os.io/guides/import-specific-modules-style-files)
 to get more information.
 
 ## Apply theme

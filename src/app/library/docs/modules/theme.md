@@ -5,7 +5,7 @@ For saving state, please make your own service wrapper which will save a state s
 
 ## How to apply theme?
 
-In [Get Started](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/get-started.md) guide described how to setup `angular.json` with `scss` theme files and how to apply them from your Angular app.
+In [Get Started](https://ngx-os.io/guides/get-started) guide described how to setup `angular.json` with `scss` theme files and how to apply them from your Angular app.
 
 ## How to change value for some accent color?
 
@@ -40,7 +40,7 @@ To apply different styles for your component based on a specific theme, you need
 
 The CSS class like `win98`, is the theme name taken from your `angular.json`.
 
-Check [Get Started](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/get-started.md) guide for more information.
+Check [Get Started](https://ngx-os.io/guides/get-started) guide for more information.
 
 ### How it works?
 
@@ -91,6 +91,6 @@ To set up HTML elements availability based on themes you might use `AvailableFor
 
 In this case, hardcoded strings with theme names are the theme names taken from your `angular.json`.
 
-Check [Get Started](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/get-started.md) guide for more information.
+Check [Get Started](https://ngx-os.io/guides/get-started) guide for more information.
 
 Please check examples in the `Theme/Examples` section (documentation website) to see a live demo.

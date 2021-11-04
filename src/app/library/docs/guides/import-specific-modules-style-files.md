@@ -18,7 +18,7 @@ In this case, to import specifically window styles, you should create your own t
 // Other specific style files...
 ```
 
-Check [Available Themes guide](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/guides/available-themes.md)
+Check [Available Themes guide](https://ngx-os.io/guides/available-themes)
 to understand which themes exist and to see their locations in the package.
 
 Explore the `node_modules/ngx-os/themes` folder to understand more if you need.
