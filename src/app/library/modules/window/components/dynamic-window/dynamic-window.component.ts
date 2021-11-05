@@ -16,8 +16,8 @@ import {
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { filter, map, skip, takeUntil } from 'rxjs/operators';
 import { EventOutside } from '../../../../core';
-import { DraggableDirective, DragInfo } from '../../../drag-and-drop';
-import { ResizeInfo } from '../../../resizer';
+import { DraggableDirective } from '../../../drag-and-drop';
+import { ResizableDirective, ResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG as SHARED_CONFIG } from '../../data';
 import {
     DynamicStateEnum as DynamicState,
@@ -49,6 +49,9 @@ export class DynamicWindowComponent
     @ViewChild(DraggableDirective, { static: true })
     private readonly draggableDirective: DraggableDirective;
 
+    @ViewChild(ResizableDirective, { static: true })
+    private readonly resizableDirective: ResizableDirective;
+
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         @Inject(SHARED_CONFIG) private readonly sharedConfig$: Observable<DynamicWindowConfig>,
@@ -66,7 +69,6 @@ export class DynamicWindowComponent
         this.initIsHiddenStateObserver();
         this.initIsFullscreenStateObserver();
         this.initAfterClosedStateObserver();
-        this.initActiveWindowIdObserver();
         this.initWindowIdOrderObserver();
         this.initOutsideClickObserver();
     }
@@ -76,68 +78,51 @@ export class DynamicWindowComponent
         this.initChildComponent(this.childComponentType);
         this.initHtmlElements();
         this.initWindowSizes();
-        this.updateComplexStructuresIfViewInit();
+        this.initMousedownObserver();
         this.windowRef.setWindowElement(this.windowElement);
+        this.windowRef.setDragger(this.draggableDirective);
+        this.windowRef.setResizer(this.resizableDirective);
         this.changeDetector.detectChanges();
     }
 
     public onHideButtonClick(): void {
         if (this.config.isAllowHide) {
-            setTimeout(() => this.windowRef.hide());
+            this.windowRef.hide();
         }
     }
 
     public onFullscreenButtonClick(): void {
         if (this.config.isAllowFullscreen) {
-            setTimeout(() => this.windowRef.toggleFullscreen());
+            this.windowRef.toggleFullscreen();
         }
     }
 
     public onCloseButtonClick(): void {
         if (this.config.isAllowClose) {
-            setTimeout(() => this.windowRef.close());
-        }
-    }
-
-    public onWindowMouseDown(): void {
-        this.windowRef.setIsActive(true);
-    }
-
-    public onBeforeDragStart(): void {
-        if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
-            const titleBarDomRect = this.titleBarElement.getBoundingClientRect();
-
-            this.draggableDirective.updateConfigWithoutChanges({
-                shiftX: (this.widthAtWindowedMode / 2),
-                shiftY: (titleBarDomRect.height / 2)
-            });
+            this.windowRef.close();
         }
     }
 
     public onDragStart(): void {
-        setTimeout(() => this.changeDetector.detach());
+        if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
+            this.draggableDirective.updateConfigWithoutChanges({
+                shiftX: (this.widthAtWindowedMode / 2),
+                shiftY: (this.titleBarElement.clientHeight / 2)
+            });
+        }
+
+        this.changeDetector.detach();
     }
 
     public onDragging(): void {
         if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
-            this.isAfterExitFullscreenByDragging = true;
-
             this.windowRef.goWindowed();
-        }
-    }
-
-    public onAfterDragging(event: DragInfo): void {
-        if (this.isAfterExitFullscreenByDragging) {
-            this.draggableDirective.strategy.updateElementPosition(event.originalEvent);
-
-            this.isAfterExitFullscreenByDragging = false;
         }
     }
 
     public onDragEnd(): void {
         this.draggableDirective.updateConfigWithoutChanges({ shiftX: null, shiftY: null });
-
-        setTimeout(() => this.changeDetector.reattach());
+        this.changeDetector.reattach();
     }
 
     public onTitleBarDblClick(): void {
@@ -151,18 +136,15 @@ export class DynamicWindowComponent
     }
 
     public onResizing({ resizableElement }: ResizeInfo): void {
-        const { offsetWidth, offsetHeight } = resizableElement;
-        this.widthAtWindowedMode = offsetWidth;
-        this.heightAtWindowedMode = offsetHeight;
+        this.widthAtWindowedMode = resizableElement.offsetWidth;
+        this.heightAtWindowedMode = resizableElement.offsetHeight;
     }
 
     public onResizeEnd(): void {
-        setTimeout(() => this.changeDetector.reattach());
+        this.changeDetector.reattach();
     }
 
     private initChildComponent(componentType: Type<any>): void {
-        this.contentViewRef.clear();
-
         const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
         this.childComponentRef = this.contentViewRef.createComponent(factory);
     }
@@ -176,9 +158,8 @@ export class DynamicWindowComponent
     }
 
     private initWindowSizes(): void {
-        const { offsetWidth, offsetHeight } = this.windowElement;
-        this.widthAtWindowedMode = (this.config.width ?? offsetWidth);
-        this.heightAtWindowedMode = (this.config.height ?? offsetHeight);
+        this.widthAtWindowedMode = (this.config.width ?? this.windowElement.offsetWidth);
+        this.heightAtWindowedMode = (this.config.height ?? this.windowElement.offsetHeight);
 
         this.windowElement.style.setProperty(CssVariable.Width, `${this.widthAtWindowedMode}px`);
         this.windowElement.style.setProperty(CssVariable.Height, `${this.heightAtWindowedMode}px`);
@@ -187,9 +168,15 @@ export class DynamicWindowComponent
     private initHtmlElements(): void {
         this.windowElement = this.hostRef.nativeElement.querySelector('.os-window');
         this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
-        const titleBarButtons = this.titleBarElement
-            .querySelectorAll<HTMLButtonElement>('.os-title-bar-button .os-icon');
-        this.titleBarButtons = Array.from(titleBarButtons);
+        this.titleBarButtons = Array.from(
+            this.titleBarElement.querySelectorAll('.os-title-bar-button .os-icon')
+        );
+    }
+
+    private initMousedownObserver(): void {
+        fromEvent(this.windowElement, 'mousedown')
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(() => this.windowRef.setIsActive(true));
     }
 
     private initOutsideClickObserver(): void {
@@ -202,21 +189,13 @@ export class DynamicWindowComponent
             .subscribe(() => this.windowRef.setIsActive(false));
     }
 
-    private initActiveWindowIdObserver(): void {
-        this.windowRef.isActive$
-            .subscribe(() => {
-                this.updateZIndex();
-                this.changeDetector.markForCheck();
-            });
-    }
-
     private initWindowIdOrderObserver(): void {
         this.windowRef.orderIndex$
             .subscribe((orderIndex) => {
                 this.windowOrderIndex = orderIndex;
 
                 this.updateZIndex();
-                this.changeDetector.markForCheck();
+                this.changeDetector.detectChanges();
             });
     }
 
@@ -260,7 +239,6 @@ export class DynamicWindowComponent
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(([sharedConfig, updatedConfig]) => {
                 this.config = mergeConfigs(updatedConfig, sharedConfig);
-                this.updateComplexStructuresIfViewInit();
 
                 this.changeDetector.detectChanges();
             });

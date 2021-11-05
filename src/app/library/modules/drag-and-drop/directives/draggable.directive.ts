@@ -41,21 +41,13 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     @Output()
     public osMovableElementInit: EventEmitter<HTMLElement> = new EventEmitter();
 
-    /** Fires before drag start. Immediately upon the `mousedown` event triggering, but only if dragging is allowed */
-    @Output()
-    public osBeforeDragStart: EventEmitter<DragInfo> = new EventEmitter();
-
-    /** Fires after the `osBeforeDragStart`, but when all internal handlers registered and prepared */
+    /** Fires when calls mousedown handler over draggableElement */
     @Output()
     public osDragStart: EventEmitter<DragInfo> = new EventEmitter();
 
     /** Fires when the `mousemove` is called */
     @Output()
     public osDragging: EventEmitter<DragInfo> = new EventEmitter();
-
-    /** Fires when the `mousemove` is called as a macro task with minimum delay */
-    @Output()
-    public osAfterDragging: EventEmitter<DragInfo> = new EventEmitter();
 
     /** Fires when the `mouseup` is called and after all internal handlers removed */
     @Output()
@@ -145,21 +137,16 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
 
         const dragInfo = this.getDragInfo(event);
 
-        this.osBeforeDragStart.emit(dragInfo);
+        this.osDragStart.emit(dragInfo);
         this._movableElement.classList.add(CssClass.Dragging);
         this._strategy.registerMouseDown(dragInfo);
         this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
         this.document.addEventListener('mouseup', this.documentMouseUpHandler);
-        this.osDragStart.emit(dragInfo);
     };
 
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
         this.updateMovableElementPosition(event);
-
-        const dragInfo = this.getDragInfo(event);
-
-        this.osDragging.emit(dragInfo);
-        setTimeout(() => this.osAfterDragging.emit(this.getDragInfo(event)));
+        this.osDragging.emit(this.getDragInfo(event));
     };
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {

@@ -3,10 +3,9 @@
     [styleClass]="windowStyleClass"
     [style]="windowStyle"
     [attr.id]="windowRef.id"
-    [isActive]="windowRef.isActive"
+    [isActive]="(windowRef.isActive$ | async)"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
-    (osMouseDown)="onWindowMouseDown()"
     (osResizeStart)="onResizeStart()"
     (osResizing)="onResizing($event)"
     (osResizeEnd)="onResizeEnd()">
@@ -17,10 +16,8 @@
         [style]="config.titleBarStyle"
         [styleClass]="config.titleBarStyleClass"
         (osDblClick)="onTitleBarDblClick()"
-        (osBeforeDragStart)="onBeforeDragStart()"
         (osDragStart)="onDragStart()"
         (osDragging)="onDragging()"
-        (osAfterDragging)="onAfterDragging($event)"
         (osDragEnd)="onDragEnd()">
         <ng-container *ngIf="config.titleBarCustomContent; else defaultTitleBarContentTemplateOutlet">
             <ng-container *ngComponentOutlet="config.titleBarCustomContent"></ng-container>

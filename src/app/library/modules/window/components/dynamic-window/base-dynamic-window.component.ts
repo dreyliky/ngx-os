@@ -1,9 +1,11 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import {
-    CssClasslistToObjectHelper as ClasslistToObject, isObjectsWithSameData, OsBaseViewComponent
+    CachableReturnInstance,
+    CssClasslistToObjectHelper,
+    OsBaseViewComponent,
+    WhenViewInit
 } from '../../../../core';
-import { DraggerConfigModel, DragStrategyByAxisProperties } from '../../../drag-and-drop';
-import { ResizerConfigModel } from '../../../resizer';
+import { DragStrategyByAxisProperties } from '../../../drag-and-drop';
 import { DynamicStateManager, DynamicWindowRefModel } from '../../classes';
 import {
     DynamicStateEnum,
@@ -63,6 +65,7 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         return (this.config.isTitleBarVisible) ? '' : 'none';
     }
 
+    @CachableReturnInstance
     public get windowStyle(): object {
         return {
             [CssVariable.Left]: `${this.config.positionX}px`,
@@ -80,9 +83,10 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         };
     }
 
+    @CachableReturnInstance
     public get windowStyleClass(): object {
         return {
-            ...ClasslistToObject.transform(this.config.styleClass),
+            ...CssClasslistToObjectHelper.transform(this.config.styleClass),
             [CssClass.Opening]: this.isOpening,
             [CssClass.Hiding]: this.isHiding,
             [CssClass.Showing]: this.isShowing,
@@ -95,9 +99,35 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         };
     }
 
+    @WhenViewInit()
+    @CachableReturnInstance
+    public get draggerConfig(): object {
+        return {
+            draggableElement: this.titleBarElement,
+            movableElement: this.windowElement,
+            childElementsBlackList: this.titleBarButtons,
+            strategy: this.draggerStrategy
+        };
+    }
+
+    @WhenViewInit()
+    @CachableReturnInstance
+    public get resizerConfig(): object {
+        return {
+            targetElement: this.windowElement,
+            minWidth: this.config.minWidth,
+            minHeight: this.config.minHeight,
+            maxWidth: this.config.maxWidth,
+            maxHeight: this.config.maxHeight,
+            allowedResizers: this.config.allowedResizers,
+            xAxisLeftStyleProperty: CssVariable.Left,
+            yAxisTopStyleProperty: CssVariable.Top,
+            widthStyleProperty: CssVariable.Width,
+            heightStyleProperty: CssVariable.Height
+        };
+    }
+
     public config: DynamicWindowConfig;
-    public draggerConfig: DraggerConfigModel;
-    public resizerConfig: ResizerConfigModel;
 
     public zIndex: number;
     public windowOrderIndex: number = 0;
@@ -109,14 +139,10 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
     protected readonly dynamicStateManager = new DynamicStateManager();
     protected readonly baseZIndex: number = 1000;
     protected readonly alwaysOnTopBaseZIndex: number = 5000;
-    protected readonly cssAnimationClassDuration: number = 1000;
 
     protected childComponentRef: ComponentRef<any>;
-
     protected widthAtWindowedMode: number;
     protected heightAtWindowedMode: number;
-
-    protected isAfterExitFullscreenByDragging: boolean = false;
 
     private readonly draggerStrategy = new DragStrategyByAxisProperties({
         xAxisLeftStyleProperty: CssVariable.Left,
@@ -134,45 +160,6 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
 
         if (this.config.isAlwaysOnTop) {
             this.zIndex += this.alwaysOnTopBaseZIndex;
-        }
-    }
-
-    protected updateComplexStructuresIfViewInit(): void {
-        if (this.isViewInit) {
-            this.updateDraggerConfig();
-            this.updateResizerConfig();
-        }
-    }
-
-    protected updateDraggerConfig(): void {
-        const newConfig = {
-            draggableElement: this.titleBarElement,
-            movableElement: this.windowElement,
-            childElementsBlackList: this.titleBarButtons,
-            strategy: this.draggerStrategy
-        };
-
-        if (!this.draggerConfig || !isObjectsWithSameData(newConfig, this.draggerConfig)) {
-            this.draggerConfig = newConfig;
-        }
-    }
-
-    protected updateResizerConfig(): void {
-        const newConfig = {
-            targetElement: this.windowElement,
-            minWidth: this.config.minWidth,
-            minHeight: this.config.minHeight,
-            maxWidth: this.config.maxWidth,
-            maxHeight: this.config.maxHeight,
-            allowedResizers: this.config.allowedResizers,
-            xAxisLeftStyleProperty: CssVariable.Left,
-            yAxisTopStyleProperty: CssVariable.Top,
-            widthStyleProperty: CssVariable.Width,
-            heightStyleProperty: CssVariable.Height
-        };
-
-        if (!this.resizerConfig || !isObjectsWithSameData(newConfig, this.resizerConfig)) {
-            this.resizerConfig = newConfig;
         }
     }
 }

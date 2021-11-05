@@ -48,21 +48,13 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
     @Output()
     public osResizersWrapperElementInit: EventEmitter<HTMLElement> = new EventEmitter();
 
-    /** Fires before resize start. Immediately upon the `mousedown` event triggering, but only if resizing is allowed */
-    @Output()
-    public osBeforeResizeStart: EventEmitter<ResizeInfo> = new EventEmitter();
-
-    /** Fires after the `osBeforeResizeStart`, but when all internal handlers registered and prepared */
+    /** Fires when calls mousedown handler over resizableElement */
     @Output()
     public osResizeStart: EventEmitter<ResizeInfo> = new EventEmitter();
 
     /** Fires when the `mousemove` is called */
     @Output()
     public osResizing: EventEmitter<ResizeInfo> = new EventEmitter();
-
-    /** Fires when the `mousemove` is called as a macro task with minimum delay */
-    @Output()
-    public osAfterResizing: EventEmitter<ResizeInfo> = new EventEmitter();
 
     /** Fires when the `mouseup` is called and after all internal handlers removed */
     @Output()
@@ -177,19 +169,17 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
         const resizeInfo = this.getResizeInfo(event);
         this._resizerInstance = this.resizerFactory.create(resizerId, this);
 
-        this.osBeforeResizeStart.emit(resizeInfo);
+        this.osResizeStart.emit(resizeInfo);
         event.preventDefault();
         this._resizerInstance.init(this._resizableElement, event);
         this._resizableElement.classList.add(CssClass.Resizing);
         this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
         this.document.addEventListener('mouseup', this.documentMouseUpHandler);
-        this.osResizeStart.emit(resizeInfo);
     }
 
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
         this._resizerInstance.resizeElement(event);
         this.osResizing.emit(this.getResizeInfo(event));
-        setTimeout(() => this.osAfterResizing.emit(this.getResizeInfo(event)));
     };
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {

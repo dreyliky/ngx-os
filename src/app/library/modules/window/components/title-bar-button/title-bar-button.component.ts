@@ -44,4 +44,9 @@ export class TitleBarButtonComponent extends OsBaseButtonComponent implements On
     public ngOnInit(): void {
         this.initElementEventObservers(this.hostRef.nativeElement);
     }
+
+    public onClick(event: MouseEvent): void {
+        super.onClick(event);
+        event.stopPropagation();
+    }
 }

@@ -1,6 +1,8 @@
 import { ComponentRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IdGenerator } from '../../../core';
+import { DraggableDirective } from '../../drag-and-drop';
+import { ResizableDirective } from '../../resizer';
 import { DynamicWindowComponent } from '../components';
 import { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
 
@@ -50,16 +52,24 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         return this._config$.getValue();
     }
 
-    public get windowElement(): HTMLElement {
-        return this._windowElement;
-    }
-
     public get id(): string {
         return this._id;
     }
 
+    public get windowElement(): HTMLElement {
+        return this._windowElement;
+    }
+
     public get componentRef(): ComponentRef<DynamicWindowComponent> {
         return this._componentRef;
+    }
+
+    public get dragger(): DraggableDirective {
+        return this._dragger;
+    }
+
+    public get resizer(): ResizableDirective {
+        return this._resizer;
     }
 
     private readonly _config$ = new BehaviorSubject<DynamicWindowConfig>({});
@@ -72,6 +82,8 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
 
     private readonly _id = IdGenerator.generate();
     private _windowElement: HTMLElement;
+    private _dragger: DraggableDirective;
+    private _resizer: ResizableDirective;
     private _componentRef: ComponentRef<DynamicWindowComponent>;
 
     public init(config: DynamicWindowConfig): void {
@@ -155,6 +167,22 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         }
 
         this._componentRef = componentRef;
+    }
+
+    public setDragger(dragger: DraggableDirective): void {
+        if (this._dragger) {
+            throw new Error(`Can't change dragger`);
+        }
+
+        this._dragger = dragger;
+    }
+
+    public setResizer(resizer: ResizableDirective): void {
+        if (this._resizer) {
+            throw new Error(`Can't change resizer`);
+        }
+
+        this._resizer = resizer;
     }
 
     public destroy(): void {
