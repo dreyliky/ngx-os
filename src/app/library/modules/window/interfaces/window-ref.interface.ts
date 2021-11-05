@@ -44,13 +44,13 @@ export interface DynamicWindowRef {
     /** Shows dynamic window */
     show(): void;
     /** Makes dynamic window visible or hidden */
-    toggleVisibility(state: boolean): void;
+    toggleVisibility(): void;
     /** Maximizes the dynamic window at full-screen mode */
     goFullscreen(): void;
     /** Minimizes the dynamic window at windowed mode */
     goWindowed(): void;
     /** Makes dynamic window full-screen or windowed mode */
-    toggleFullscreen(state: boolean): void;
+    toggleFullscreen(): void;
     /** Closes the dynamic window */
     close<T>(result?: T): void;
 }
