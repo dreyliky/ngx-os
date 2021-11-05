@@ -100,14 +100,14 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         if (!this.isHidden) {
             this._beforeHidden$.next();
             this._isHidden$.next(true);
-            this.setIsActive(false);
+            this.makeInactive();
         }
     }
 
     public show(): void {
         if (this.isHidden) {
             this._isHidden$.next(false);
-            this.setIsActive(true);
+            this.makeActive();
         }
     }
 
@@ -143,9 +143,15 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         this._afterClosed$.next(result);
     }
 
-    public setIsActive(state: boolean): void {
-        if (this.isActive !== state) {
-            this._isActive$.next(state);
+    public makeActive(): void {
+        if (!this.isActive) {
+            this._isActive$.next(true);
+        }
+    }
+
+    public makeInactive(): void {
+        if (this.isActive) {
+            this._isActive$.next(false);
         }
     }
 

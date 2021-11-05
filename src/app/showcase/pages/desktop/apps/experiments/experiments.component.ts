@@ -6,7 +6,7 @@ import {
     OnInit
 } from '@angular/core';
 import {
-    DynamicWindowRefModel,
+    DynamicWindowRef,
     DynamicWindowService,
     DYNAMIC_WINDOW_REF,
     KeysOfType
@@ -38,7 +38,7 @@ export class ExperimentsAppComponent implements OnInit {
     private currentActionIntervalId: number;
 
     constructor(
-        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRefModel,
+        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRef,
         private readonly dynamicWindowService: DynamicWindowService,
         private readonly windowsPositionShuffleService: WindowsPositionShuffleService,
         private readonly changeDetector: ChangeDetectorRef
@@ -75,7 +75,7 @@ export class ExperimentsAppComponent implements OnInit {
         });
     }
 
-    public makeGroupWindowsAction(action: KeysOfType<DynamicWindowRefModel, () => any>): void {
+    public makeGroupWindowsAction(action: KeysOfType<DynamicWindowRef, () => any>): void {
         clearInterval(this.currentActionIntervalId);
 
         let currentWindowRefIndex = 0;

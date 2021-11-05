@@ -150,12 +150,10 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     };
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {
-        const dragInfo = this.getDragInfo(event);
-
         this._movableElement.classList.remove(CssClass.Dragging);
         this.document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         this.document.removeEventListener('mouseup', this.documentMouseUpHandler);
-        this.osDragEnd.emit(dragInfo);
+        this.osDragEnd.emit(this.getDragInfo(event));
     };
 
     private getDragInfo(originalEvent: MouseEvent): DragInfo {

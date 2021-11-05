@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject, Optional } from '@angular/core';
 import {
-    DynamicWindowRefModel,
+    DynamicWindowRef,
     DynamicWindowService,
     DYNAMIC_WINDOW_REF,
     IS_DYNAMIC_WINDOW_CONTEXT
@@ -19,7 +19,7 @@ export class WindowDynamicOpeningComponent {
 
     constructor(
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) public readonly isComponentInsideWindow: boolean,
-        @Inject(DYNAMIC_WINDOW_REF) @Optional() private readonly windowRef: DynamicWindowRefModel,
+        @Inject(DYNAMIC_WINDOW_REF) @Optional() private readonly windowRef: DynamicWindowRef,
         private readonly dynamicWindowService: DynamicWindowService
     ) {}
 

@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import {
     ButtonComponent,
-    DynamicWindowRefModel,
+    DynamicWindowRef,
     DynamicWindowService,
     OsBaseViewComponent
 } from 'ngx-os';
@@ -42,7 +42,7 @@ export class TaskbarComponent extends OsBaseViewComponent implements OnInit, Aft
         return !!this.windowRefs.length;
     }
 
-    public windowRefs: DynamicWindowRefModel[];
+    public windowRefs: DynamicWindowRef[];
 
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>,
@@ -65,9 +65,9 @@ export class TaskbarComponent extends OsBaseViewComponent implements OnInit, Aft
         return `url(${iconUrl || '/assets/showcase/icons/icon.png'})`;
     }
 
-    public onWindowReferenceIconClick(event: PointerEvent, windowRef: DynamicWindowRefModel): void {
+    public onWindowReferenceIconClick(event: PointerEvent, windowRef: DynamicWindowRef): void {
         if (!windowRef.isHidden && !windowRef.isActive) {
-            windowRef.setIsActive(true);
+            windowRef.makeActive();
         } else {
             windowRef.toggleVisibility();
         }

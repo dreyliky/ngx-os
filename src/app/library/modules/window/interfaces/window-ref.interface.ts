@@ -45,6 +45,10 @@ export interface DynamicWindowRef {
 
     /** Changes the configuration of the dynamic window */
     updateConfig(config: DynamicWindowConfig): void;
+    /** Makes the dynamic window active (means the user works with it right now) */
+    makeActive(): void;
+    /** Makes the dynamic window inactive */
+    makeInactive(): void;
     /** Hides dynamic window */
     hide(): void;
     /** Shows dynamic window */

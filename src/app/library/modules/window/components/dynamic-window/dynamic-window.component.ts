@@ -176,7 +176,7 @@ export class DynamicWindowComponent
     private initMousedownObserver(): void {
         fromEvent(this.windowElement, 'mousedown')
             .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe(() => this.windowRef.setIsActive(true));
+            .subscribe(() => this.windowRef.makeActive());
     }
 
     private initOutsideClickObserver(): void {
@@ -186,7 +186,7 @@ export class DynamicWindowComponent
                 filter(() => this.windowRef.isActive),
                 filter((event) => EventOutside.checkForElement(this.windowElement, event))
             )
-            .subscribe(() => this.windowRef.setIsActive(false));
+            .subscribe(() => this.windowRef.makeInactive());
     }
 
     private initWindowIdOrderObserver(): void {

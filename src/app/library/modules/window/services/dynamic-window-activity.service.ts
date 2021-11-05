@@ -13,7 +13,7 @@ export class DynamicWindowActivityService {
     public makeAllInactiveExceptSpecificId(id: string): void {
         this.state.data.forEach((windowRef) => {
             if (windowRef.id !== id && windowRef.isActive) {
-                windowRef.setIsActive(false);
+                windowRef.makeInactive();
             }
         });
     }

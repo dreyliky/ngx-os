@@ -22,12 +22,12 @@ import { DynamicWindowReferencesService } from './dynamic-window-references.serv
 })
 export class DynamicWindowService {
     /** Contains references to windows opened via the service */
-    public get references$(): Observable<DynamicWindowRefModel[]> {
+    public get references$(): Observable<DynamicWindowRef[]> {
         return this.referencesService.data$;
     }
 
     /** Contains references to windows opened via the service */
-    public get references(): DynamicWindowRefModel[] {
+    public get references(): DynamicWindowRef[] {
         return this.referencesService.data;
     }
 
