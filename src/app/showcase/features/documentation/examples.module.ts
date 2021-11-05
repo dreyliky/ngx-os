@@ -53,6 +53,7 @@ import {
     TreeViewWithCustomTemplateComponent,
     UtilsAppendToBodyOverviewComponent,
     UtilsFixedToParentOverviewComponent,
+    WindowDynamicObserveEventsComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
     WindowTitleBarComponent
@@ -114,7 +115,8 @@ import {
         UtilsFixedToParentOverviewComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        WindowDynamicObserveEventsComponent
     ],
     imports: [
         SharedModule
