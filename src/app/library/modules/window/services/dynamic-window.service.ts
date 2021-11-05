@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { DynamicWindowInjector, DynamicWindowRefModel } from '../classes';
 import { DynamicWindowComponent } from '../components';
-import { DynamicWindowConfig, DynamicWindowInputParams } from '../interfaces';
+import { DynamicWindowConfig, DynamicWindowInputParams, DynamicWindowRef } from '../interfaces';
 import { DynamicWindowReferencesService } from './dynamic-window-references.service';
 
 /** Allows open your component inside an OS-styled window **/
@@ -40,7 +40,7 @@ export class DynamicWindowService {
     ) {}
 
     /** Opens a window containing the given component */
-    public open(component: Type<any>, config: DynamicWindowConfig = {}): DynamicWindowRefModel {
+    public open(component: Type<any>, config: DynamicWindowConfig = {}): DynamicWindowRef {
         const windowRef = this.createDynamicWindow(config);
 
         this.referencesService.register(windowRef, config);
