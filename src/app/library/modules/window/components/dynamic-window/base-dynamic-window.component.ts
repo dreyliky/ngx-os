@@ -106,7 +106,8 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
             draggableElement: this.titleBarElement,
             movableElement: this.windowElement,
             childElementsBlackList: this.titleBarButtons,
-            strategy: this.draggerStrategy
+            strategy: this.draggerStrategy,
+            ...this.config.draggerConfig
         };
     }
 
@@ -123,7 +124,8 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
             xAxisLeftStyleProperty: CssVariable.Left,
             yAxisTopStyleProperty: CssVariable.Top,
             widthStyleProperty: CssVariable.Width,
-            heightStyleProperty: CssVariable.Height
+            heightStyleProperty: CssVariable.Height,
+            ...this.config.resizerConfig
         };
     }
 

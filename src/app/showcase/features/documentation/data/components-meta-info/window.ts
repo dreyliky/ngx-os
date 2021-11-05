@@ -2,6 +2,7 @@ import { OsComponentEnum } from '../../enums';
 import {
     DynamicWindowCustomizationComponent,
     TitleBarButtonOverviewComponent,
+    WindowDynamicCustomDraggingLogicComponent,
     WindowDynamicObserveEventsComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
@@ -70,6 +71,11 @@ export const WINDOW_META_INFO: ComponentMetaInfo = {
             title: 'Dynamic Window observe events',
             componentName: 'WindowDynamicObserveEventsComponent',
             component: WindowDynamicObserveEventsComponent
+        },
+        {
+            title: 'Dynamic Window custom dragging logic implementation',
+            componentName: 'WindowDynamicCustomDraggingLogicComponent',
+            component: WindowDynamicCustomDraggingLogicComponent
         }
     ]
 };

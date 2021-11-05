@@ -41,7 +41,7 @@ export class DynamicWindowService {
 
     /** Opens a window containing the given component */
     public open(component: Type<any>, config: DynamicWindowConfig = {}): DynamicWindowRef {
-        const windowRef = this.createDynamicWindow(config);
+        const windowRef = this.createDynamicWindow();
 
         this.referencesService.register(windowRef, config);
         this.applyDataForCreatedWindowInstance({ component, windowRef });
@@ -55,13 +55,9 @@ export class DynamicWindowService {
             .forEach((windowRef) => windowRef.close());
     }
 
-    private createDynamicWindow(config: DynamicWindowConfig): DynamicWindowRefModel {
+    private createDynamicWindow(): DynamicWindowRefModel {
         const windowRef = new DynamicWindowRefModel();
-        const windowInjector = new DynamicWindowInjector({
-            injector: this.injector,
-            config,
-            windowRef
-        });
+        const windowInjector = new DynamicWindowInjector({ injector: this.injector, windowRef });
         const componentRef = this.createComponentRef(windowInjector);
 
         windowRef.setComponentRef(componentRef);

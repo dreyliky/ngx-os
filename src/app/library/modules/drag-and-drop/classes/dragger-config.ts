@@ -1,5 +1,5 @@
 import { MouseButtonEnum } from '../../../core';
-import { DraggerConfig } from '../interfaces';
+import { DraggerConfig, DragInfo } from '../interfaces';
 import { DragStrategyType } from '../types';
 import { DragStrategyByTranslate3d } from './drag-strategy';
 
@@ -13,4 +13,5 @@ export class DraggerConfigModel implements DraggerConfig {
     public strategy?: DragStrategyType = new DragStrategyByTranslate3d();
     public isEnabled?: boolean = true;
     public isAllowMoveElement?: boolean = true;
+    public mouseMoveHandler?: (event: DragInfo) => void;
 }

@@ -53,6 +53,7 @@ import {
     TreeViewWithCustomTemplateComponent,
     UtilsAppendToBodyOverviewComponent,
     UtilsFixedToParentOverviewComponent,
+    WindowDynamicCustomDraggingLogicComponent,
     WindowDynamicObserveEventsComponent,
     WindowDynamicOpeningComponent,
     WindowOverviewComponent,
@@ -116,7 +117,8 @@ import {
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
         WindowTitleBarComponent,
-        WindowDynamicObserveEventsComponent
+        WindowDynamicObserveEventsComponent,
+        WindowDynamicCustomDraggingLogicComponent
     ],
     imports: [
         SharedModule

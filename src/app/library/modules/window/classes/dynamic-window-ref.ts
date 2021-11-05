@@ -64,12 +64,12 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         return this._componentRef;
     }
 
-    public get dragger(): DraggableDirective {
-        return this._dragger;
+    public get draggableDirective(): DraggableDirective {
+        return this._draggableDirective;
     }
 
-    public get resizer(): ResizableDirective {
-        return this._resizer;
+    public get resizableDirective(): ResizableDirective {
+        return this._resizableDirective;
     }
 
     private readonly _config$ = new BehaviorSubject<DynamicWindowConfig>({});
@@ -82,8 +82,8 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
 
     private readonly _id = IdGenerator.generate();
     private _windowElement: HTMLElement;
-    private _dragger: DraggableDirective;
-    private _resizer: ResizableDirective;
+    private _draggableDirective: DraggableDirective;
+    private _resizableDirective: ResizableDirective;
     private _componentRef: ComponentRef<DynamicWindowComponent>;
 
     public init(config: DynamicWindowConfig): void {
@@ -175,20 +175,20 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         this._componentRef = componentRef;
     }
 
-    public setDragger(dragger: DraggableDirective): void {
-        if (this._dragger) {
-            throw new Error(`Can't change dragger`);
+    public setDraggableDirective(directive: DraggableDirective): void {
+        if (this._draggableDirective) {
+            throw new Error(`Can't change DraggableDirective`);
         }
 
-        this._dragger = dragger;
+        this._draggableDirective = directive;
     }
 
-    public setResizer(resizer: ResizableDirective): void {
-        if (this._resizer) {
-            throw new Error(`Can't change resizer`);
+    public setResizableDirective(directive: ResizableDirective): void {
+        if (this._resizableDirective) {
+            throw new Error(`Can't change ResizableDirective`);
         }
 
-        this._resizer = resizer;
+        this._resizableDirective = directive;
     }
 
     public destroy(): void {

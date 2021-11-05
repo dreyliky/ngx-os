@@ -1,7 +1,7 @@
 import { MouseButtonEnum } from '../../../core';
 import { RESIZERS_ARRAY } from '../data';
 import { ResizerEnum } from '../enums';
-import { ResizerConfig } from '../interfaces';
+import { ResizeInfo, ResizerConfig } from '../interfaces';
 
 /** @internal */
 export class ResizerConfigModel implements ResizerConfig {
@@ -20,4 +20,5 @@ export class ResizerConfigModel implements ResizerConfig {
     public heightStyleProperty?: string = 'height';
     public isAllowChangePosition?: boolean = true;
     public isEnabled?: boolean = true;
+    public mouseMoveHandler?: (event: ResizeInfo) => void;
 }

@@ -80,8 +80,8 @@ export class DynamicWindowComponent
         this.initWindowSizes();
         this.initMousedownObserver();
         this.windowRef.setWindowElement(this.windowElement);
-        this.windowRef.setDragger(this.draggableDirective);
-        this.windowRef.setResizer(this.resizableDirective);
+        this.windowRef.setDraggableDirective(this.draggableDirective);
+        this.windowRef.setResizableDirective(this.resizableDirective);
         this.changeDetector.detectChanges();
     }
 

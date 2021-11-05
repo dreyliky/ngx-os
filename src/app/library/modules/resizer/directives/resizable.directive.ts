@@ -65,9 +65,14 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
         return this._resizableElement;
     }
 
+    /** Target resizer */
+    public get resizer(): BaseResizer {
+        return this._resizer;
+    }
+
     private _resizableElement: HTMLElement;
     private _resizersWrapperElement: HTMLElement;
-    private _resizerInstance: BaseResizer;
+    private _resizer: BaseResizer;
     private _config = new ResizerConfigModel();
     private _whenViewInit$ = new ReplaySubject();
 
@@ -167,19 +172,26 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
         }
 
         const resizeInfo = this.getResizeInfo(event);
-        this._resizerInstance = this.resizerFactory.create(resizerId, this);
+        this._resizer = this.resizerFactory.create(resizerId, this);
 
         this.osResizeStart.emit(resizeInfo);
         event.preventDefault();
-        this._resizerInstance.init(this._resizableElement, event);
+        this._resizer.init(this._resizableElement, event);
         this._resizableElement.classList.add(CssClass.Resizing);
         this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
         this.document.addEventListener('mouseup', this.documentMouseUpHandler);
     }
 
     private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
-        this._resizerInstance.resizeElement(event);
-        this.osResizing.emit(this.getResizeInfo(event));
+        const resizeInfo = this.getResizeInfo(event);
+
+        if (this.config.mouseMoveHandler) {
+            this.config.mouseMoveHandler(resizeInfo);
+        } else {
+            this._resizer.resizeElement(event);
+        }
+
+        this.osResizing.emit(resizeInfo);
     };
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {

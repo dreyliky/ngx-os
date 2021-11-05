@@ -1,4 +1,5 @@
 import { MouseButtonEnum } from '../../../core';
+import { DragInfo } from '../interfaces';
 import { DragStrategyType } from '../types';
 
 /** Settings of dragging for {@link DraggableDirective} */
@@ -25,4 +26,6 @@ export interface DraggerConfig {
     strategy?: DragStrategyType;
     /** Should directive move movable element? */
     isAllowMoveElement?: boolean;
+    /** Handler for custom logic implementation for mousemove */
+    mouseMoveHandler?: (event: DragInfo) => void;
 }

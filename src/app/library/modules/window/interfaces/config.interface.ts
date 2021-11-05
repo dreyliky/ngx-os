@@ -1,6 +1,7 @@
 import { Type } from '@angular/core';
 import { CssCoordinate } from '../../../core';
-import { ResizerEnum } from '../../resizer';
+import { DraggerConfig } from '../../drag-and-drop';
+import { ResizerConfig, ResizerEnum } from '../../resizer';
 import { DynamicWindowFullscreenOffset } from './fullscreen-offset.interface';
 
 /** The parameters to set up a dynamic window and pass some custom data for the component which will be rendered inside */
@@ -71,4 +72,8 @@ export interface DynamicWindowConfig<D = any, T = any> {
     scrollViewStyle?: object;
     /** Classlist for scroll view component of the window */
     scrollViewStyleClass?: string | string[] | object;
+    /** Configuration for {@link DraggableDirective} */
+    draggerConfig?: DraggerConfig;
+    /** Configuration for {@link ResizableDirective} */
+    resizerConfig?: ResizerConfig;
 }

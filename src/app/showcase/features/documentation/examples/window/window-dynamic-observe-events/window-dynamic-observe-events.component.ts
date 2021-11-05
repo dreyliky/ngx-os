@@ -66,7 +66,7 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     private initWindowDragStartObserver(): void {
-        this.windowRef.dragger.osDragStart
+        this.windowRef.draggableDirective.osDragStart
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
                 this.isDragging = true;
@@ -76,13 +76,13 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     private initWindowDraggingObserver(): void {
-        this.windowRef.dragger.osDragging
+        this.windowRef.draggableDirective.osDragging
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => this.changeDetector.detectChanges());
     }
 
     private initWindowDragEndObserver(): void {
-        this.windowRef.dragger.osDragEnd
+        this.windowRef.draggableDirective.osDragEnd
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
                 this.isDragging = false;
@@ -92,7 +92,7 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     private initWindowResizeStartObserver(): void {
-        this.windowRef.resizer.osResizeStart
+        this.windowRef.resizableDirective.osResizeStart
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
                 this.isResizing = true;
@@ -102,13 +102,13 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     private initWindowResizingObserver(): void {
-        this.windowRef.resizer.osResizing
+        this.windowRef.resizableDirective.osResizing
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => this.changeDetector.detectChanges());
     }
 
     private initWindowResizeEndObserver(): void {
-        this.windowRef.resizer.osResizeEnd
+        this.windowRef.resizableDirective.osResizeEnd
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
                 this.isResizing = false;

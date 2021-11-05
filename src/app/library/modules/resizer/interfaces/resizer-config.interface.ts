@@ -1,5 +1,6 @@
 import { MouseButtonEnum } from '../../../core';
 import { ResizerEnum } from '../enums';
+import { ResizeInfo } from '../interfaces';
 
 /** Settings of resizing for {@link ResizableDirective} */
 export interface ResizerConfig {
@@ -57,4 +58,6 @@ export interface ResizerConfig {
     heightStyleProperty?: string;
     /** Is resizing should affect position of the HTML element */
     isAllowChangePosition?: boolean;
+    /** Handler for custom logic implementation for mousemove */
+    mouseMoveHandler?: (event: ResizeInfo) => void;
 }

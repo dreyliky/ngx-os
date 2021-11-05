@@ -39,9 +39,9 @@ export interface DynamicWindowRef {
     /** The component rendered inside the dynamic window */
     componentRef: ComponentRef<DynamicWindowComponent>;
     /** {@link DraggableDirective} of the dynamic window. Might be used to track events */
-    dragger: DraggableDirective;
+    draggableDirective: DraggableDirective;
     /** {@link ResizableDirective} of the dynamic window. Might be used to track events */
-    resizer: ResizableDirective;
+    resizableDirective: ResizableDirective;
 
     /** Changes the configuration of the dynamic window */
     updateConfig(config: DynamicWindowConfig): void;

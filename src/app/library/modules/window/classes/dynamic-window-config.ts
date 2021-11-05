@@ -1,5 +1,6 @@
 import { Type } from '@angular/core';
-import { ResizerEnum } from '../../resizer';
+import { DraggerConfig } from '../../drag-and-drop';
+import { ResizerConfig, ResizerEnum } from '../../resizer';
 import { DynamicWindowConfig, DynamicWindowFullscreenOffset } from '../interfaces';
 
 /** @internal */
@@ -34,6 +35,8 @@ export class DynamicWindowConfigModel<D = any, T = any> implements DynamicWindow
     public titleBarStyleClass: string | string[] | object;
     public scrollViewStyle?: object;
     public scrollViewStyleClass?: string | string[] | object;
+    public draggerConfig?: DraggerConfig = {};
+    public resizerConfig?: ResizerConfig = {};
 
     constructor(params: DynamicWindowConfig = {}) {
         Object.assign(this, params);
