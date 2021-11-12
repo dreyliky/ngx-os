@@ -1,5 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Directive, ElementRef, Inject, Input, OnInit } from '@angular/core';
+import {
+    AfterViewInit,
+    Directive,
+    ElementRef,
+    Inject,
+    Input,
+    OnChanges,
+    OnInit
+} from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { EventOutside, IntervalCheckerHelper as IntervalChecker } from '../../../core';
@@ -16,17 +24,17 @@ import { FixedToParentConfig } from '../classes';
 @Directive({
     selector: '[osFixedToParent]'
 })
-export class FixedToParentDirective implements OnInit, AfterViewInit {
+export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit {
     /** Configuration of directive */
     @Input('osFixedToParent')
-    public set config(config: FixedToParentConfig) {
-        this._config = { ...this._config, ...config };
+    public parameters: FixedToParentConfig | undefined | '';
 
-        this.updateIntervalCheckerSettings();
+    /** Configuration of directive */
+    public get config(): FixedToParentConfig {
+        return this._config;
     }
 
     private _config = new FixedToParentConfig();
-
     private targetElement: HTMLElement;
     private parentElement: HTMLElement;
 
@@ -36,6 +44,12 @@ export class FixedToParentDirective implements OnInit, AfterViewInit {
         @Inject(DOCUMENT) private readonly document: Document,
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
+
+    public ngOnChanges(): void {
+        this._config = { ...this._config, ...this.parameters };
+
+        this.updateIntervalCheckerSettings();
+    }
 
     public ngOnInit(): void {
         this.initDocumentWheelObserver();

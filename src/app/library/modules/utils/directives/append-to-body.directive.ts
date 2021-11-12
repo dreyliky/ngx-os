@@ -17,8 +17,11 @@ import { AppendToBodyConfig } from '../classes';
 export class AppendToBodyDirective implements AfterViewInit, OnDestroy, OnChanges {
     /** Configuration of directive */
     @Input('osAppendToBody')
-    public set config(config: AppendToBodyConfig) {
-        this._config = { ...this._config, ...config };
+    public parameters: AppendToBodyConfig | undefined | '';
+
+    /** Configuration of directive */
+    public get config(): AppendToBodyConfig {
+        return this._config;
     }
 
     private targetElement: HTMLElement;
@@ -47,6 +50,8 @@ export class AppendToBodyDirective implements AfterViewInit, OnDestroy, OnChange
     }
 
     public ngOnChanges(): void {
+        this._config = { ...this._config, ...this.parameters };
+
         if (this.targetElement) {
             this.processElement();
         }
