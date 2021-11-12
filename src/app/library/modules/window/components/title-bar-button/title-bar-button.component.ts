@@ -20,15 +20,15 @@ import { OsBaseButtonComponent } from '../../../../core';
 export class TitleBarButtonComponent extends OsBaseButtonComponent implements OnInit {
     /** Link to the icon */
     @Input()
-    public readonly iconUrl: string;
+    public iconUrl: string;
 
     /** Stylelist for the icon */
     @Input()
-    public readonly iconStyle: object;
+    public iconStyle: object;
 
     /** Classlist for the icon */
     @Input()
-    public readonly iconStyleClass: string | string[] | object;
+    public iconStyleClass: string | string[] | object;
 
     /** @internal */
     public get _iconCssUrl(): string {

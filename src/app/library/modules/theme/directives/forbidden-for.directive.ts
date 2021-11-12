@@ -17,7 +17,7 @@ import { ThemeService } from '../services';
 export class ForbiddenForOsDirective<T> implements OnInit, OnDestroy {
     /** An array of theme names for which will be hidden the wrapped HTML element */
     @Input('forbiddenForOs')
-    private readonly themes: T[];
+    private themes: T[];
 
     private isViewCreated = false;
     private themeSubscription: Subscription;

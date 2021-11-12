@@ -11,17 +11,17 @@ export abstract class OsBaseComponent extends OsBaseViewComponent {
     /** Target internal element stylelist */
     @Input()
     @HostBinding('style')
-    public readonly style: object;
+    public style: object;
 
     /** Target internal element classList */
     @Input()
     @HostBinding('class')
-    public readonly styleClass: string | string[] | object;
+    public styleClass: string | string[] | object;
 
     /** Target internal element id. By default it generates randomly */
     @Input()
     @HostBinding('attr.id')
-    public readonly id: string;
+    public id: string;
 
     /** Target internal element click event */
     @Output()

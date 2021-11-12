@@ -30,16 +30,16 @@ export class CheckboxComponent<T>
     implements OnInit, ControlValueAccessor {
     /** Name of the checkbox group */
     @Input()
-    public readonly name: string = '';
+    public name: string = '';
 
     /** Is checkbox disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    public readonly isDisabled: boolean;
+    public isDisabled: boolean;
 
     /** Data of the checkbox */
     @Input()
-    public readonly data: T;
+    public data: T;
 
     /** Fires when the checkbox state change */
     @Output()

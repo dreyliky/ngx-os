@@ -9,28 +9,28 @@ export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
     /** Is field disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    public readonly isDisabled: boolean = false;
+    public isDisabled: boolean = false;
 
     /** Is field readonly? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Readonly}`)
-    public readonly isReadonly: boolean = false;
+    public isReadonly: boolean = false;
 
     /** Is field autofocused? */
     @Input()
-    public readonly isAutofocused: boolean = false;
+    public isAutofocused: boolean = false;
 
     /** Placeholder text of the field */
     @Input()
-    public readonly placeholder: string = '';
+    public placeholder: string = '';
 
     /** Name of the field group */
     @Input()
-    public readonly name: string;
+    public name: string;
 
     /** Native `input` size property */
     @Input()
-    public readonly size: number;
+    public size: number;
 
     /** The handler will be fired when the value changes. */
     @Output()

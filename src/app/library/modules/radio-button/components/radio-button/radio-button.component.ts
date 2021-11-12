@@ -31,7 +31,7 @@ export class RadioButtonComponent<T>
     implements OnInit, ControlValueAccessor {
     /** Name of the radio-button group */
     @Input()
-    public readonly name: string = '';
+    public name: string = '';
 
     /** Is radio-button checked? */
     @Input()
@@ -41,7 +41,7 @@ export class RadioButtonComponent<T>
     /** Is radio-button disabled? */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    public readonly isDisabled: boolean;
+    public isDisabled: boolean;
 
     /** Data of the radio-button */
     @Input()

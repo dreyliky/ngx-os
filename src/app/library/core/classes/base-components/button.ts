@@ -9,27 +9,27 @@ export abstract class OsBaseButtonComponent extends OsBaseComponent {
     /** Is button disabled */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    public readonly isDisabled: boolean;
+    public isDisabled: boolean;
 
     /** Is button focused */
     @Input()
     @HostBinding(`class.${CommonCssClassEnum.Focused}`)
-    public readonly isFocused: boolean;
+    public isFocused: boolean;
 
     /** Metadata of destination of the button */
     @Input()
     @HostBinding('attr.aria-label')
-    public readonly ariaLabel: string;
+    public ariaLabel: string;
 
     /** Metadata of relation of the button */
     @Input()
     @HostBinding('attr.aria-controls')
-    public readonly ariaControls: string;
+    public ariaControls: string;
 
     /** Metadata of selection state of the button */
     @Input()
     @HostBinding('attr.aria-selected')
-    public readonly ariaSelected: string;
+    public ariaSelected: string;
 
     /** Metadata of role of the button */
     @Input()

@@ -47,7 +47,7 @@ import { GridItemComponent } from '../item';
 export class GridComponent extends OsBaseComponent implements OnInit, OnChanges, AfterViewInit {
     /** Direction of grid items */
     @Input()
-    public readonly direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
+    public direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
 
     /** Size of the grid cell in pixels inside which will be rendered each grid item */
     @Input()

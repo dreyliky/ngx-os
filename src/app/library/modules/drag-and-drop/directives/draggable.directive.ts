@@ -22,7 +22,7 @@ import { DraggerConfig, DragInfo } from '../interfaces';
 export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     /** Configuration of dragging */
     @Input('os-draggable')
-    public readonly parameters: DraggerConfig;
+    public parameters: DraggerConfig;
 
     /** Fires when the draggable element init */
     @Output()
