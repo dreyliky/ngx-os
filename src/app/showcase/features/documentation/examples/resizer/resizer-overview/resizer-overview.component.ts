@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ResizerConfigModel } from 'ngx-os';
+import { ResizerConfig } from 'ngx-os';
 
 @Component({
     selector: 'showcase-resizer-overview',
@@ -8,7 +8,7 @@ import { ResizerConfigModel } from 'ngx-os';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResizerOverviewComponent {
-    public readonly resizerConfig: ResizerConfigModel = {
+    public readonly resizerConfig: ResizerConfig = {
         isAllowChangePosition: false
     };
 }
