@@ -15,14 +15,14 @@ import { BaseDragStrategyImpl, DraggerConfigModel, DragStrategyFactory } from '.
 import { DraggerCssClassEnum as CssClass } from '../enums';
 import { DraggerConfig, DragInfo } from '../interfaces';
 
-/** Makes HTML element draggable by mouse cursor */
+/** Makes HTML element draggable by mouse */
 @Directive({
-    selector: '[os-draggable]'
+    selector: '[osDraggable]'
 })
 export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     /** Configuration of dragging */
-    @Input('os-draggable')
-    public parameters: DraggerConfig;
+    @Input('osDraggable')
+    public parameters: DraggerConfig | undefined | '' ;
 
     /** Fires when the draggable element init */
     @Output()
@@ -95,12 +95,12 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     /** Updates config without affecting any logic, like some internal initialization of different things */
-    public updateConfigWithoutChanges(config: DraggerConfigModel): void {
+    public updateConfigWithoutChanges(config: DraggerConfig): void {
         this._config = { ...this._config, ...config };
     }
 
     private update(): void {
-        this.updateConfigWithoutChanges(this.parameters);
+        this.updateConfigWithoutChanges(this.parameters as DraggerConfig);
         this.initMovableElement();
         this.initDraggableElement();
         this.initStrategy();

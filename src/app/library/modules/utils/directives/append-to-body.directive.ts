@@ -12,11 +12,11 @@ import { AppendToBodyConfig } from '../classes';
 
 /** Moves element into the `body` element **/
 @Directive({
-    selector: '[os-append-to-body]'
+    selector: '[osAppendToBody]'
 })
 export class AppendToBodyDirective implements AfterViewInit, OnDestroy, OnChanges {
     /** Configuration of directive */
-    @Input('os-append-to-body')
+    @Input('osAppendToBody')
     public set config(config: AppendToBodyConfig) {
         this._config = { ...this._config, ...config };
     }

@@ -23,15 +23,15 @@ import {
 import { ResizeInfo, ResizerConfig } from '../interfaces';
 
 @Directive({
-    selector: '[os-resizable]',
+    selector: '[osResizable]',
     providers: [
         ResizerFactory
     ]
 })
 export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     /** Configuration of resizing */
-    @Input('os-resizable')
-    public parameters: ResizerConfig;
+    @Input('osResizable')
+    public parameters: ResizerConfig | undefined | '';
 
     /** Fires when the resizable element init */
     @Output()
@@ -81,7 +81,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     ) {}
 
     public ngOnChanges(): void {
-        this.updateConfigWithoutChanges(this.parameters);
+        this.updateConfigWithoutChanges(this.parameters as ResizerConfig);
         this.onConfigChanged();
     }
 
@@ -96,7 +96,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     /** Updates config without affecting any logic, like some internal initialization of different things */
-    public updateConfigWithoutChanges(config: ResizerConfigModel): void {
+    public updateConfigWithoutChanges(config: ResizerConfig): void {
         this._config = { ...this._config, ...config };
     }
 

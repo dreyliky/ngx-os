@@ -12,11 +12,11 @@ import { ThemeService } from '../services';
 
 /** Allows to hide HTML elements for specific themes */
 @Directive({
-    selector: '[forbiddenForOs]'
+    selector: '[osForbiddenFor]'
 })
 export class ForbiddenForOsDirective<T> implements OnInit, OnDestroy {
     /** An array of theme names for which will be hidden the wrapped HTML element */
-    @Input('forbiddenForOs')
+    @Input('osForbiddenFor')
     private themes: T[];
 
     private isViewCreated = false;

@@ -9,7 +9,7 @@ to get more information.
 
 ### CSS Classes
 
-Applies for `resizable element`. Resizable element MIGHT BE child of element[os-resizable].
+Applies for `resizable element`. Resizable element MIGHT BE child of element[osResizable].
 
 | Name            | Description                       |
 | --------------- | --------------------------------- |

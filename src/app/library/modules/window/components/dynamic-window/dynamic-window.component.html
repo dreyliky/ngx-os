@@ -1,5 +1,5 @@
 <os-window
-    [os-resizable]="resizerConfig"
+    [osResizable]="resizerConfig"
     [styleClass]="windowStyleClass"
     [style]="windowStyle"
     [attr.id]="windowRef.id"
@@ -10,7 +10,7 @@
     (osResizing)="onResizing($event)"
     (osResizeEnd)="onResizeEnd()">
     <os-title-bar
-        [os-draggable]="draggerConfig"
+        [osDraggable]="draggerConfig"
         [isActive]="windowRef.isActive"
         [style.display]="_titleBarDisplayAttr"
         [style]="config.titleBarStyle"

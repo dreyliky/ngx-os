@@ -80,11 +80,11 @@ In this case, library's color-type variable name consists from next parts:
 To set up HTML elements availability based on themes you might use `AvailableForOs` and `ForbiddenForOs` directives.
 
 ```html
-<div *availableForOs="['win10']">
+<div *osAvailableFor="['win10']">
     Content you want to display only for Windows 10
 </div>
 
-<div *forbiddenForOs="['win98', 'winXP']">
+<div *osForbiddenFor="['win98', 'winXP']">
     Content you want to hide for Windows XP, Windows 98
 </div>
 ```

@@ -4,7 +4,7 @@
 
 <os-list>
     <ng-container *ngFor="let demoItem of demoItems">
-        <os-list-item *availableForOs="demoItem.themes">
+        <os-list-item *osAvailableFor="demoItem.themes">
             <os-text>
                 This Item <span class="text-green">Available</span>
                 for: <b>{{ demoItem.label }}</b>
@@ -13,7 +13,7 @@
     </ng-container>
 
     <ng-container *ngFor="let demoItem of demoItems">
-        <os-list-item *forbiddenForOs="demoItem.themes">
+        <os-list-item *osForbiddenFor="demoItem.themes">
             <os-text>
                 This Item <span class="text-red">Forbidden</span>
                 for: <b>{{ demoItem.label }}</b>

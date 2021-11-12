@@ -9,7 +9,7 @@ to get more information.
 
 ### CSS Classes
 
-Applies for `movable element`. Movable element MIGHT BE child of element[os-draggable].
+Applies for `movable element`. Movable element MIGHT BE child of element[osDraggable].
 
 | Name            | Description                       |
 | --------------- | --------------------------------- |

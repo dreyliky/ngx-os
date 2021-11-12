@@ -14,11 +14,11 @@ import { FixedToParentConfig } from '../classes';
  * as if it continues to be inside the parent element.
  **/
 @Directive({
-    selector: '[os-fixed-to-parent]'
+    selector: '[osFixedToParent]'
 })
 export class FixedToParentDirective implements OnInit, AfterViewInit {
     /** Configuration of directive */
-    @Input('os-fixed-to-parent')
+    @Input('osFixedToParent')
     public set config(config: FixedToParentConfig) {
         this._config = { ...this._config, ...config };
 

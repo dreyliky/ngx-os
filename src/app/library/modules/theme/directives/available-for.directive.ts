@@ -12,11 +12,11 @@ import { ThemeService } from '../services';
 
 /** Allows to display HTML elements for specific themes */
 @Directive({
-    selector: '[availableForOs]'
+    selector: '[osAvailableFor]'
 })
 export class AvailableForOsDirective<T> implements OnInit, OnDestroy {
     /** An array of theme names for which will be displayed the wrapped HTML element */
-    @Input('availableForOs')
+    @Input('osAvailableFor')
     private themes: T[];
 
     private isViewCreated = false;

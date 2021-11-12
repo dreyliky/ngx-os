@@ -5,7 +5,7 @@ Allows to implement simple basic Drag and Drop features.
 ```html
 <div
     class="container"
-    os-draggable>
+    osDraggable>
 </div>
 ```
 

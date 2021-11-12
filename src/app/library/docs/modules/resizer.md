@@ -5,8 +5,8 @@ Allows implementing simple basic Resizable features.
 ```html
 <div
     class="container"
-    os-append-to-body
-    os-resizable>
+    osAppendToBody
+    osResizable>
 </div>
 ```
 
