@@ -14,7 +14,12 @@ import {
 import { timer } from 'rxjs';
 import { debounce, takeUntil } from 'rxjs/operators';
 import { elementResizingObserver, ErrorHelper, OsBaseComponent } from '../../../../core';
-import { Cell, Grid } from '../../classes';
+import {
+    BaseGridCellCountDeterminator,
+    Cell,
+    Grid,
+    GridCellCountDeterminatorFactory
+} from '../../classes';
 import { GridDirectionEnum } from '../../enums';
 import { GridItemComponent } from '../item';
 
@@ -67,10 +72,15 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     /** @internal */
     @ContentChildren(GridItemComponent)
-    public set __gridItemElements(elements: QueryList<GridItemComponent>) {
-        this._gridItemComponents = elements;
+    public set _gridItemComponents(elements: QueryList<GridItemComponent>) {
+        this.gridItemComponents = elements;
 
         this.initRecalculations();
+    }
+
+    /** @internal */
+    public get _gridItemComponents(): QueryList<GridItemComponent> {
+        return this.gridItemComponents;
     }
 
     /** @internal */
@@ -79,18 +89,20 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         return `${this._cellSize}px`;
     }
 
+    /** @internal */
+    public get hostElement(): HTMLElement {
+        return this.hostRef.nativeElement;
+    }
+
     private get hostResizeDelayBeforeCalculation(): number {
         return this.grid ? this.repaintDelayInMs : 4;
     }
 
-    private get hostElement(): HTMLElement {
-        return this.hostRef.nativeElement;
-    }
-
     private grid: Grid<ElementRef<HTMLElement>>;
+    private cellCountDeterminator: BaseGridCellCountDeterminator;
     private _cellSize: number = 72;
     private _cellMinSize: number = 50;
-    private _gridItemComponents: QueryList<GridItemComponent>;
+    private gridItemComponents: QueryList<GridItemComponent>;
 
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>
@@ -111,6 +123,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private update(): void {
+        this.initCellCountDeterminator();
         this.initGrid();
 
         if (this.grid) {
@@ -120,7 +133,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private fillGridByItemsWithCoordinates(): void {
-        this._gridItemComponents.forEach((gridItem) => {
+        this.gridItemComponents.forEach((gridItem) => {
             if (gridItem.coordinate) {
                 const { x, y } = gridItem.coordinate;
                 const targetCell = this.grid.getCell(x, y);
@@ -134,7 +147,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     private fillGridByItemsWithoutCoordinates(): void {
         let actualCell = this.grid.getFirstEmptyCell();
 
-        for (const gridItem of this._gridItemComponents) {
+        for (const gridItem of this.gridItemComponents) {
             if (!actualCell) {
                 this.initExcessGridItemStyles(gridItem);
             } else if (!gridItem.coordinate) {
@@ -146,32 +159,22 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         }
     }
 
-    private calculateGridCellsCountByX(): number {
-        const gridZoneWidth = this.hostElement.clientWidth || this.hostElement.scrollWidth;
-        const cellsCount = Math.floor(gridZoneWidth / this.cellSize);
-
-        return (cellsCount <= 0) ? 1 : cellsCount;
-    }
-
-    private calculateGridCellsCountByY(): number {
-        if (this.isHeightResizing) {
-            return Math.ceil(this._gridItemComponents.length / this.calculateGridCellsCountByX());
-        }
-
-        const gridZoneHeight = this.hostElement.clientHeight || this.hostElement.scrollHeight;
-
-        return Math.floor(gridZoneHeight / this.cellSize);
-    }
-
     private initGrid(): void {
         if (this.hostElement.offsetParent) {
             this.grid = new Grid({
-                xAxisCellsCount: this.calculateGridCellsCountByX(),
-                yAxisCellsCount: this.calculateGridCellsCountByY(),
+                xAxisCellsCount: this.cellCountDeterminator.calculateForAxisX(),
+                yAxisCellsCount: this.cellCountDeterminator.calculateForAxisY(),
                 directionType: this.direction
             });
         } else {
             this.grid = null;
+        }
+    }
+
+    private initCellCountDeterminator(): void {
+        if (this.cellCountDeterminator?.type !== this.direction) {
+            this.cellCountDeterminator = GridCellCountDeterminatorFactory
+                .create(this.direction, this);
         }
     }
 
