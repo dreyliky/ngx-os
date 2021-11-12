@@ -7,9 +7,11 @@
             (osClick)="onFileClick($event, file)">
             <ng-container *ngIf="file.type === 'png'">
                 <ng-template #gridItemIcon>
-                    <img
+                    <picture
                         class="os-icon"
-                        [src]="file.iconUrl" />
+                        [style.--os-icon-url]="file.iconUrl">
+                        <img [src]="file.iconUrl" />
+                    </picture>
                 </ng-template>
             </ng-container>
 

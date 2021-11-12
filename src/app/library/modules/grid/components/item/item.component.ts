@@ -25,10 +25,11 @@ import { CommonCssClassEnum, Coordinate, EventOutside, OsBaseComponent } from '.
  * <os-grid-item>
  *     <ng-template #gridItemIcon>
  *         <!-- To get default behavior inside your template -->
- *         <div
+ *         <picture
  *             class="os-icon"
  *             [style.--os-icon-url]="YOUR_LINK_TO_THE_ICON">
- *         </div>
+ *             <img [src]="YOUR_LINK_TO_THE_ICON" />
+ *         </picture>
  *         <!-- OR JUST WRITE YOUR CUSTOM CONTENT -->
  *     </ng-template>
  * </os-grid-item>
