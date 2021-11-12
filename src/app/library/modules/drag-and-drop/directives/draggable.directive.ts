@@ -6,32 +6,23 @@ import {
     EventEmitter,
     Inject,
     Input,
+    OnChanges,
     OnDestroy,
     Output
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { BaseDragStrategyImpl, DraggerConfigModel, DragStrategyFactory } from '../classes';
 import { DraggerCssClassEnum as CssClass } from '../enums';
-import { DragInfo } from '../interfaces';
+import { DraggerConfig, DragInfo } from '../interfaces';
 
 /** Makes HTML element draggable by mouse cursor */
 @Directive({
     selector: '[os-draggable]'
 })
-export class DraggableDirective implements AfterViewInit, OnDestroy {
+export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     /** Configuration of dragging */
     @Input('os-draggable')
-    public set config(config: DraggerConfigModel) {
-        this.updateConfigWithoutChanges(config);
-        this.initMovableElement();
-        this.initDraggableElement();
-        this.initStrategy();
-    }
-
-    /** Configuration of dragging */
-    public get config(): DraggerConfigModel {
-        return this._config;
-    }
+    public readonly parameters: DraggerConfig;
 
     /** Fires when the draggable element init */
     @Output()
@@ -68,6 +59,11 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         return this._strategy;
     }
 
+    /** Configuration of dragging */
+    public get config(): DraggerConfig {
+        return this._config;
+    }
+
     /** @internal */
     public get whenViewInit$(): Observable<unknown> {
         return this._whenViewInit$.asObservable();
@@ -84,6 +80,11 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
+    public ngOnChanges(): void {
+        this.update();
+        console.log('changes');
+    }
+
     public ngAfterViewInit(): void {
         this._whenViewInit$.next();
     }
@@ -96,6 +97,13 @@ export class DraggableDirective implements AfterViewInit, OnDestroy {
     /** Updates config without affecting any logic, like some internal initialization of different things */
     public updateConfigWithoutChanges(config: DraggerConfigModel): void {
         this._config = { ...this._config, ...config };
+    }
+
+    private update(): void {
+        this.updateConfigWithoutChanges(this.parameters);
+        this.initMovableElement();
+        this.initDraggableElement();
+        this.initStrategy();
     }
 
     private updateMovableElementPosition(event: MouseEvent): void {
