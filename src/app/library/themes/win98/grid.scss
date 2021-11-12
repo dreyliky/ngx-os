@@ -4,10 +4,11 @@
     .os-grid-item {
         .os-icon {
             position: relative;
+            height: calc(var(--os-cell-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
 
             img {
                 max-width: 100%;
-                height: calc(var(--os-cell-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
+                height: 100%;
                 display: block;
                 margin: auto;
             }
@@ -22,12 +23,12 @@
             .os-icon::before {
                 width: 100%;
                 max-width: 100%;
-                height: calc(var(--os-cell-size) - var(--os-label-height) - var(--os-grid-item-padding) - 5px);
+                height: 100%;
                 top: 0;
                 left: 0;
                 position: absolute;
                 mask-image: var(--os-icon-url);
-                mask-size: contain;
+                mask-size: auto 100%;
                 mask-repeat: no-repeat;
                 mask-position: center;
                 filter: opacity(.5);
