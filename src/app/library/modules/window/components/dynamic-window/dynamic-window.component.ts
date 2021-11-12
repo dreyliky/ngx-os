@@ -13,8 +13,8 @@ import {
     ViewContainerRef,
     ViewEncapsulation
 } from '@angular/core';
-import { combineLatest, fromEvent, Observable } from 'rxjs';
-import { filter, map, skip, takeUntil } from 'rxjs/operators';
+import { combineLatest, fromEvent, Observable, timer } from 'rxjs';
+import { filter, map, skip, skipUntil, takeUntil } from 'rxjs/operators';
 import { EventOutside } from '../../../../core';
 import { DraggableDirective } from '../../../drag-and-drop';
 import { ResizableDirective, ResizeInfo } from '../../../resizer';
@@ -183,6 +183,7 @@ export class DynamicWindowComponent
         fromEvent(this.document, 'click')
             .pipe(
                 takeUntil(this.viewDestroyed$),
+                skipUntil(timer()),
                 filter(() => this.windowRef.isActive),
                 filter((event) => EventOutside.checkForElement(this.windowElement, event))
             )
