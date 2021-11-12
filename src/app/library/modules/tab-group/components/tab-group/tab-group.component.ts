@@ -41,7 +41,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
 
         this.tabsChanged$.next();
         this.initTabSelection();
-        this.initTabButtonClickObservers();
+        this.initTabsSelectionObservers();
     }
 
     /** @internal */
@@ -72,7 +72,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
         return index;
     };
 
-    private initTabButtonClickObservers(): void {
+    private initTabsSelectionObservers(): void {
         this._tabComponentList
             .forEach((component, index) => this.initTabButtonClickObserver(component, index));
     }

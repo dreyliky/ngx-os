@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
     ElementRef,
@@ -87,7 +88,8 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     public _isSelected: boolean = false;
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
@@ -106,5 +108,7 @@ export class TabComponent extends OsBaseComponent implements OnInit {
     /** @internal */
     public setSelectionState(state: boolean): void {
         this._isSelected = state;
+
+        this.changeDetector.detectChanges();
     }
 }
