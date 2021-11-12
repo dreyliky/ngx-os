@@ -5,7 +5,7 @@ import { BaseDirectionStrategy, GridDirectionStrategyFactory } from './direction
 import { Cell } from './grid-cell';
 
 /** @internal */
-export class Grid<T> implements GridParams {
+export class Grid<T = any> implements GridParams {
     public xAxisCellsCount: number = 10;
     public yAxisCellsCount: number = 10;
     public readonly directionType: GridDirectionEnum = GridDirectionEnum.Horizontal;

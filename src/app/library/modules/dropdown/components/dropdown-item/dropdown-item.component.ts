@@ -28,7 +28,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DropdownItemComponent<T>
+export class DropdownItemComponent<T = any>
     extends OsBaseComponent
     implements OnInit, AfterViewInit, OnChanges {
     /** Data of the dropdown item */

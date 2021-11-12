@@ -2,7 +2,7 @@ import { Grid } from '../grid';
 import { Cell } from '../grid-cell';
 
 /** @internal */
-export abstract class BaseDirectionStrategy<T> {
+export abstract class BaseDirectionStrategy<T = any> {
     constructor(
         public readonly context: Grid<T>
     ) {}

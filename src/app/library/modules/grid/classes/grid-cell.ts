@@ -2,7 +2,7 @@ import { CellParams } from '../interfaces';
 import { Grid } from './grid';
 
 /** @internal */
-export class Cell<T> {
+export class Cell<T = any> {
     public readonly x: number;
     public readonly y: number;
 

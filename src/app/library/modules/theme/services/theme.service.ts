@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class ThemeService<T> {
+export class ThemeService<T = any> {
     /** Applied theme */
     public get applied$(): Observable<T> {
         return this._applied$.asObservable();

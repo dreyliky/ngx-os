@@ -139,7 +139,7 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         (state) ? this.goFullscreen() : this.goWindowed();
     }
 
-    public close<T>(result?: T): void {
+    public close<T = any>(result?: T): void {
         this._afterClosed$.next(result);
     }
 

@@ -14,7 +14,7 @@ import { ThemeService } from '../services';
 @Directive({
     selector: '[osAvailableFor]'
 })
-export class AvailableForOsDirective<T> implements OnInit, OnDestroy {
+export class AvailableForOsDirective<T = any> implements OnInit, OnDestroy {
     /** An array of theme names for which will be displayed the wrapped HTML element */
     @Input('osAvailableFor')
     private themes: T[];

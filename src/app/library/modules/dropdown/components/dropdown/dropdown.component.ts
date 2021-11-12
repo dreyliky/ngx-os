@@ -96,7 +96,7 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DropdownComponent<T>
+export class DropdownComponent<T = any>
     extends OsBaseFormControlComponent<T>
     implements OnInit, ControlValueAccessor {
     /** Is dropdown disabled? */

@@ -20,7 +20,7 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListItemComponent<T> extends OsBaseComponent implements OnInit {
+export class ListItemComponent<T = any> extends OsBaseComponent implements OnInit {
     /** Data of the list item */
     @Input()
     public data: T;

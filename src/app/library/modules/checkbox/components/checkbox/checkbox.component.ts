@@ -25,7 +25,7 @@ import { CheckboxValueChangeEvent } from '../../interfaces';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent<T>
+export class CheckboxComponent<T = any>
     extends OsBaseFormControlComponent<boolean>
     implements OnInit, ControlValueAccessor {
     /** Name of the checkbox group */

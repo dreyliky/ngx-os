@@ -26,7 +26,7 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonComponent<T>
+export class RadioButtonComponent<T = any>
     extends OsBaseFormControlComponent<T>
     implements OnInit, ControlValueAccessor {
     /** Name of the radio-button group */

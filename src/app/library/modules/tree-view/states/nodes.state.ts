@@ -3,7 +3,7 @@ import { TreeNode } from '../interfaces';
 
 /** @internal */
 @Injectable()
-export class TreeNodesState<T> {
+export class TreeNodesState<T = any> {
     /** Original data tree of nodes */
     public get data(): TreeNode<T>[] {
         return this._data;

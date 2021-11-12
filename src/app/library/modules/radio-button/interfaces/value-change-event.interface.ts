@@ -1,4 +1,4 @@
-export interface RadioButtonValueChangeEvent<T> {
+export interface RadioButtonValueChangeEvent<T = any> {
     /** Is radio-button checked? */
     isChecked: boolean;
     /** Data of the radio-button */

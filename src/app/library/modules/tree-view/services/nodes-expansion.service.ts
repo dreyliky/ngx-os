@@ -5,7 +5,7 @@ import { TreeNodesState } from '../states';
 
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly. */
 @Injectable()
-export class TreeNodesExpansionService<T> {
+export class TreeNodesExpansionService<T = any> {
     /** @internal */
     public _osExpanded: EventEmitter<TreeNodeExpansionEvent<T>> = new EventEmitter();
     /** @internal */

@@ -94,7 +94,7 @@ import { TreeNodesState } from '../../states';
         TreeNodesSelectionService
     ]
 })
-export class TreeViewComponent<T> extends OsBaseComponent implements OnInit, OnChanges {
+export class TreeViewComponent<T = any> extends OsBaseComponent implements OnInit, OnChanges {
     /** An array of tree nodes */
     @Input()
     public data: TreeNode<T>[];

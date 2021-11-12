@@ -14,7 +14,7 @@ import { ThemeService } from '../services';
 @Directive({
     selector: '[osForbiddenFor]'
 })
-export class ForbiddenForOsDirective<T> implements OnInit, OnDestroy {
+export class ForbiddenForOsDirective<T = any> implements OnInit, OnDestroy {
     /** An array of theme names for which will be hidden the wrapped HTML element */
     @Input('osForbiddenFor')
     private themes: T[];
