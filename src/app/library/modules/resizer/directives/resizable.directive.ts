@@ -6,6 +6,7 @@ import {
     EventEmitter,
     Inject,
     Input,
+    OnChanges,
     OnDestroy,
     Output
 } from '@angular/core';
@@ -19,7 +20,7 @@ import {
     ResizerElementTagEnum as ElementTag,
     ResizerEnum
 } from '../enums';
-import { ResizeInfo } from '../interfaces';
+import { ResizeInfo, ResizerConfig } from '../interfaces';
 
 @Directive({
     selector: '[os-resizable]',
@@ -27,18 +28,10 @@ import { ResizeInfo } from '../interfaces';
         ResizerFactory
     ]
 })
-export class ResizableDirective implements AfterViewInit, OnDestroy {
+export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     /** Configuration of resizing */
     @Input('os-resizable')
-    public set config(config: ResizerConfigModel) {
-        this.updateConfigWithoutChanges(config);
-        this.onConfigChanged();
-    }
-
-    /** Configuration of resizing */
-    public get config(): ResizerConfigModel {
-        return this._config;
-    }
+    public parameters: ResizerConfig;
 
     /** Fires when the resizable element init */
     @Output()
@@ -70,6 +63,11 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
         return this._resizer;
     }
 
+    /** Configuration of resizing */
+    public get config(): ResizerConfigModel {
+        return this._config;
+    }
+
     private _resizableElement: HTMLElement;
     private _resizersWrapperElement: HTMLElement;
     private _resizer: BaseResizer;
@@ -81,6 +79,11 @@ export class ResizableDirective implements AfterViewInit, OnDestroy {
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly resizerFactory: ResizerFactory
     ) {}
+
+    public ngOnChanges(): void {
+        this.updateConfigWithoutChanges(this.parameters);
+        this.onConfigChanged();
+    }
 
     public ngAfterViewInit(): void {
         this.initResizersWrapperElement();
