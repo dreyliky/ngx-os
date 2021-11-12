@@ -1,4 +1,3 @@
-import { Coordinate } from '../../../../core';
 import { DragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
 import { BaseDragStrategyImpl } from './base-drag-impl.strategy';
@@ -10,14 +9,12 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategyImpl {
 
     protected config: DragStrategyByTranslate3d;
 
-    private readonly totalParentCoordinates: Coordinate = {
-        x: 0,
-        y: 0
-    };
+    private initialX: number;
+    private initialY: number;
 
     public registerMouseDown(dragInfo: DragInfo): void {
+        this.initInitialCoordinates();
         super.registerMouseDown(dragInfo);
-        this.calculateTotalParentCoordinates(dragInfo.originalEvent);
     }
 
     public updateElementPosition(event: MouseEvent): void {
@@ -28,41 +25,25 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategyImpl {
         }
     }
 
-    private calculateTotalParentCoordinates(event: MouseEvent): void {
-        const parentElements = event.composedPath() as HTMLElement[];
-        this.totalParentCoordinates.x = 0;
-        this.totalParentCoordinates.y = 0;
-
-        parentElements
-            .forEach((parent) => {
-                this.totalParentCoordinates.x += (parent.scrollLeft ?? 0);
-                this.totalParentCoordinates.y += (parent.scrollTop ?? 0);
-            });
+    private initInitialCoordinates(): void {
+        const computedStyle = window.getComputedStyle(this.context.movableElement);
+        const transform = new WebKitCSSMatrix(computedStyle.transform);
+        const domRect = this.context.movableElement.getBoundingClientRect();
+        this.initialX = (domRect.left - transform.m41);
+        this.initialY = (domRect.top - transform.m42);
     }
 
     private calculateElementPositionX(event: MouseEvent): string {
-        if (this.config.isLockAxisX) {
-            return '0px';
-        }
+        const position = (!this.config.isLockAxisX) ?
+            (event.clientX - this.initialX - this.shiftX) : 0;
 
-        const calculatedPosition = (
-            event.clientX - this.initialDomRect.x -
-            this.shiftX + this.totalParentCoordinates.x
-        );
-
-        return `${calculatedPosition}px`;
+        return `${position}px`;
     }
 
     private calculateElementPositionY(event: MouseEvent): string {
-        if (this.config.isLockAxisY) {
-            return '0px';
-        }
+        const position = (!this.config.isLockAxisY) ?
+            (event.clientY - this.initialY - this.shiftY) : 0;
 
-        const calculatedPosition = (
-            event.clientY - this.initialDomRect.y -
-            this.shiftY + this.totalParentCoordinates.y
-        );
-
-        return `${calculatedPosition}px`;
+        return `${position}px`;
     }
 }
