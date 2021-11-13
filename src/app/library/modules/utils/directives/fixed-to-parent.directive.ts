@@ -1,16 +1,17 @@
-import { DOCUMENT } from '@angular/common';
 import {
     AfterViewInit,
     Directive,
     ElementRef,
-    Inject,
     Input,
     OnChanges,
     OnInit
 } from '@angular/core';
-import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { EventOutside, IntervalCheckerHelper as IntervalChecker } from '../../../core';
+import {
+    EventOutside,
+    GlobalEvents,
+    IntervalCheckerHelper as IntervalChecker
+} from '../../../core';
 import { FixedToParentConfig } from '../classes';
 
 /**
@@ -41,8 +42,8 @@ export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit 
     private readonly intervalChecker = new IntervalChecker();
 
     constructor(
-        @Inject(DOCUMENT) private readonly document: Document,
-        private readonly hostRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly globalEvents: GlobalEvents
     ) {}
 
     public ngOnChanges(): void {
@@ -64,7 +65,7 @@ export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit 
 
     /** @internal */
     private initDocumentWheelObserver(): void {
-        fromEvent(this.document, 'wheel')
+        this.globalEvents.fromDocument('wheel')
             .pipe(
                 filter(() => this._config.isEnabled),
                 filter((event) => EventOutside.checkForElement(this.targetElement, event))

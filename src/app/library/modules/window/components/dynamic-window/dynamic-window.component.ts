@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
@@ -15,7 +14,7 @@ import {
 } from '@angular/core';
 import { combineLatest, fromEvent, Observable, timer } from 'rxjs';
 import { filter, map, skip, skipUntil, takeUntil } from 'rxjs/operators';
-import { EventOutside } from '../../../../core';
+import { EventOutside, GlobalEvents } from '../../../../core';
 import { DraggableDirective } from '../../../drag-and-drop';
 import { ResizableDirective, ResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG as SHARED_CONFIG } from '../../data';
@@ -53,9 +52,9 @@ export class DynamicWindowComponent
     private readonly resizableDirective: ResizableDirective;
 
     constructor(
-        @Inject(DOCUMENT) private readonly document: Document,
         @Inject(SHARED_CONFIG) private readonly sharedConfig$: Observable<DynamicWindowConfig>,
         private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly globalEvents: GlobalEvents,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -180,7 +179,7 @@ export class DynamicWindowComponent
     }
 
     private initOutsideClickObserver(): void {
-        fromEvent(this.document, 'click')
+        this.globalEvents.fromDocument('click')
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 skipUntil(timer()),

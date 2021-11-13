@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -17,11 +16,11 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { fromEvent } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
     CommonCssClassEnum,
     EventOutside,
+    GlobalEvents,
     isNil,
     OsBaseFormControlComponent
 } from '../../../../core';
@@ -157,8 +156,8 @@ export class DropdownComponent<T = any>
 
     constructor(
         @Self() @Optional() controlDir: NgControl,
-        @Inject(DOCUMENT) private readonly document: Document,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
+        private readonly globalEvents: GlobalEvents,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -222,7 +221,7 @@ export class DropdownComponent<T = any>
     }
 
     private initClickOutsideObserver(): void {
-        fromEvent(this.document, 'click')
+        this.globalEvents.fromDocument('click')
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 filter((event) => (

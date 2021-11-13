@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
@@ -6,15 +5,17 @@ import {
     ContentChild,
     ElementRef,
     HostBinding,
-    Inject,
     Input,
     OnInit,
     TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
-import { fromEvent } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { CommonCssClassEnum, Coordinate, EventOutside, OsBaseComponent } from '../../../../core';
+import {
+    CommonCssClassEnum,
+    Coordinate,
+    EventOutside, GlobalEvents, OsBaseComponent
+} from '../../../../core';
 
 /**
  * ## Templates
@@ -101,7 +102,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     constructor(
         /** @internal */
         public readonly hostRef: ElementRef<HTMLElement>,
-        @Inject(DOCUMENT) private readonly document: Document,
+        private readonly globalEvents: GlobalEvents,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
@@ -120,13 +121,11 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     private initClickOutsideObserver(): void {
-        const hostElement = this.hostRef.nativeElement;
-
-        fromEvent(this.document, 'click')
+        this.globalEvents.fromDocument('click')
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 filter(() => this.isSelected),
-                filter((event) => EventOutside.checkForElement(hostElement, event))
+                filter((event) => EventOutside.checkForElement(this.hostRef.nativeElement, event))
             )
             .subscribe(() => {
                 this.isSelected = false;
