@@ -14,7 +14,9 @@ import { filter, takeUntil } from 'rxjs/operators';
 import {
     CommonCssClassEnum,
     Coordinate,
-    EventOutside, GlobalEvents, OsBaseComponent
+    EventOutside,
+    GlobalEvents,
+    OsBaseComponent
 } from '../../../../core';
 
 /**
