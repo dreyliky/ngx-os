@@ -9,23 +9,23 @@ Might be used as a wrapper for some items of form.
 
 ```html
 <form [formGroup]="formGroup">
-    <os-field-row [isStacked]="false">
+    <os-form-field [isStacked]="false">
         <os-label>Login</os-label>
 
         <os-text-box
             [placeholder]="'Please enter your login'"
             [formControl]="formGroup.controls.login">
         </os-text-box>
-    </os-field-row>
+    </os-form-field>
 
-    <os-field-row [isStacked]="false">
+    <os-form-field [isStacked]="false">
         <os-label>Password</os-label>
 
         <os-password-box
             [placeholder]="'Please enter your password'"
             [formControl]="formGroup.controls.password">
         </os-password-box>
-    </os-field-row>
+    </os-form-field>
 
     <os-button
         (osClick)="onLogInButtonClick()">
