@@ -1,7 +1,17 @@
 os-header.os-header-5 {
+    display: flex;
     color: rgb(var(--os-primary-color));
     font-weight: bold;
     margin-bottom: 0px !important;
+
+    .os-button {
+        margin-right: 6px;
+    }
+
+    .show-isolated-button {
+        display: flex;
+        margin-left: auto;
+    }
 }
 
 .wrapper {

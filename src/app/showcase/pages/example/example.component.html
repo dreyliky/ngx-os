@@ -1,0 +1,12 @@
+<os-button
+    (osClick)="onOpenAllExamplesButtonClick()">
+    Show all examples
+</os-button>
+
+<os-header
+    class="text-primary"
+    [size]="4">
+    <b>{{ componentType | uppercase }}</b> {{ demoMetaInfo.componentName }}
+</os-header>
+
+<ng-template #exampleContainer></ng-template>

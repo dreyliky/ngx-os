@@ -3,16 +3,17 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver,
-    Input,
-    ViewChild,
+    ComponentFactoryResolver, Input, ViewChild,
     ViewContainerRef
 } from '@angular/core';
+import { AppRouteEnum } from '@core/enums';
 import {
     DemoComponentMetaInfo,
     DocComponent,
     ExamplesDocumentationService
 } from '@features/documentation';
+import { DynamicWindowService } from 'ngx-os';
+import { OverviewService } from '../../../overview.service';
 
 enum SectionEnum {
     Demo,
@@ -45,6 +46,13 @@ export class ExampleComponent implements AfterViewInit {
         return !!this.docComponent?.styleUrlsData?.[0]?.data;
     }
 
+    public get isolatedPath(): string {
+        const { type: componentType } = this.overviewService.metaInfo;
+        const { componentName } = this._demoComponentMetaInfo;
+
+        return `/${AppRouteEnum.Example}/${componentType}/${componentName}`;
+    }
+
     public readonly sectionEnum = SectionEnum;
 
     public openedSection = SectionEnum.Demo;
@@ -53,21 +61,26 @@ export class ExampleComponent implements AfterViewInit {
     private _demoComponentMetaInfo: DemoComponentMetaInfo;
 
     constructor(
+        private readonly overviewService: OverviewService,
         private readonly docService: ExamplesDocumentationService,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
+        private readonly dynamicWindowService: DynamicWindowService,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
     public ngAfterViewInit(): void {
-        this.render();
-    }
-
-    public render(): void {
         const componentFactory = this.componentFactoryResolver
             .resolveComponentFactory(this._demoComponentMetaInfo.component);
 
         this.exampleContainer.clear();
         this.exampleContainer.createComponent(componentFactory);
         this.changeDetector.detectChanges();
+    }
+
+    public onOpenInsideDynamicWindowButtonClick(): void {
+        this.dynamicWindowService.open(
+            this.demoComponentMetaInfo.component,
+            { minWidth: 450, minHeight: 350 }
+        );
     }
 }

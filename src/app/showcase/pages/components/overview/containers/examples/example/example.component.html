@@ -1,6 +1,17 @@
 <os-header [size]="5">
     <span *ngIf="demoComponentMetaInfo.isOnlyForDevEnv">=== DEV:</span>
     {{ demoComponentMetaInfo.title }}
+
+    <a
+        class="show-isolated-button"
+        [routerLink]="isolatedPath">
+        <os-button>Isolate mode</os-button>
+    </a>
+
+    <os-button
+        (osClick)="onOpenInsideDynamicWindowButtonClick()">
+        Inside Dynamic Window
+    </os-button>
 </os-header>
 
 <div class="wrapper">

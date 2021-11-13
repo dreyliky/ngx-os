@@ -82,7 +82,6 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
 
     public ngOnChanges(): void {
         this.update();
-        console.log('changes');
     }
 
     public ngAfterViewInit(): void {

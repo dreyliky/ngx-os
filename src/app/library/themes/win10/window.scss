@@ -19,7 +19,7 @@
     }
 }
 
-.os-dynamic-window .os-window {
+.os-dynamic-window > .os-window {
     width: var(--os-width);
     height: var(--os-height);
     top: var(--os-top);

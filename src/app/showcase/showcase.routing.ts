@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
-import { MainLayoutComponent } from '@layouts';
+import { ExampleLayoutComponent, MainLayoutComponent } from '@layouts';
 
 const routes: Routes = [
     {
         path: AppRouteEnum.Desktop,
         loadChildren: () => import('./pages/desktop/desktop.module').then((m) => m.DesktopPageModule)
+    },
+    {
+        path: AppRouteEnum.Example,
+        component: ExampleLayoutComponent,
+        loadChildren: () => import('./pages/example/example.module').then((m) => m.ExamplePageModule)
     },
     {
         path: '',
