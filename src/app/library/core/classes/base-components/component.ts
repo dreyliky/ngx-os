@@ -18,7 +18,7 @@ export abstract class OsBaseComponent extends OsBaseViewComponent {
     @HostBinding('class')
     public styleClass: string | string[] | object;
 
-    /** Target internal element id. By default it generates randomly */
+    /** Target internal element id */
     @Input()
     @HostBinding('attr.id')
     public id: string;
