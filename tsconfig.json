@@ -8,8 +8,25 @@
     "files": [],
     "compilerOptions": {
         "typeRoots": ["node_modules/@types", "node_modules/@angular"],
+        "strictPropertyInitialization": false,
+        "strictNullChecks": false,
+        "allowJs": false,
+        "forceConsistentCasingInFileNames": true,
+        "strict": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
         "experimentalDecorators": true,
-        "allowJs": true
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es5",
+        "module": "es2020",
+        "lib": [
+            "es2019",
+            "dom"
+        ]
     },
     "references": [
         {
@@ -24,5 +41,11 @@
         {
             "path": "./src/app/library/tsconfig.spec.json"
         }
-    ]
+    ],
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
 }

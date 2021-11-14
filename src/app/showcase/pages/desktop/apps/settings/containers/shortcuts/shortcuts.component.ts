@@ -14,6 +14,14 @@ export class ShortcutsComponent extends OsBaseViewComponent implements OnInit {
     public gridDirectionEnum = GridDirectionEnum;
     public formGroup: FormGroup;
 
+    public get cellSizeControl(): FormControl {
+        return this.formGroup.controls.cellSize as FormControl;
+    }
+
+    public get directionControl(): FormControl {
+        return this.formGroup.controls.direction as FormControl;
+    }
+
     constructor(
         private readonly shortcutSettingsService: ShortcutSettingsService
     ) {

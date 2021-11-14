@@ -8,7 +8,9 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberBoxAsFormControlComponent {
+    public readonly numberBoxControl = new FormControl();
+
     public readonly formGroup = new FormGroup({
-        numberBoxValue: new FormControl()
+        numberBoxValue: this.numberBoxControl
     });
 }

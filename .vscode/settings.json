@@ -24,7 +24,7 @@
     "typescript.preferences.quoteStyle": "single",
     "typescript.inlayHints.parameterNames.enabled": "all",
     "editor.inlayHints.enabled": false,
-    "angular.view-engine": true,
+    "angular.view-engine": false,
     "[markdown]": {
         "editor.wordWrap": "off"
     },

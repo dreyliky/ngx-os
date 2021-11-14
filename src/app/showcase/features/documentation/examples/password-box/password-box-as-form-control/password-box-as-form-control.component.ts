@@ -8,7 +8,9 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PasswordBoxAsFormControlComponent {
+    public readonly passwordBoxControl = new FormControl();
+
     public readonly formGroup = new FormGroup({
-        passwordBoxValue: new FormControl()
+        passwordBoxValue: this.passwordBoxControl
     });
 }

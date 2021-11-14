@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import type PrismJS from 'prismjs';
+import type * as PrismJS from 'prismjs';
 import { LANGUAGES_MAP } from '../data';
 import { CodeLanguageType } from '../types';
 

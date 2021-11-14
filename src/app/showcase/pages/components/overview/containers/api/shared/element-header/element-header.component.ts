@@ -17,10 +17,10 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ElementHeaderComponent extends OsBaseViewComponent implements OnInit {
     @Input()
-    public readonly title: string;
+    public title: string;
 
     @Input()
-    public readonly iconUrl: string;
+    public iconUrl: string;
 
     public get isActiveByRouteFragment(): boolean {
         return (this.title === this.routeFragment);

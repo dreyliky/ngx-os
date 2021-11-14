@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MethodsClass } from '@features/documentation';
+import { DocMethod } from '@features/documentation';
 
 @Pipe({
     name: 'methodFormatter'
 })
 export class MethodFormatterPipe implements PipeTransform {
-    public transform(method: MethodsClass): string {
+    public transform(method: DocMethod): string {
         let output = this.addTypeParameters(method.name, method);
         output = this.addOptionalSymbol(output, method.optional);
         output = this.addBracketsWithParams(output, method);
@@ -14,7 +14,7 @@ export class MethodFormatterPipe implements PipeTransform {
         return output;
     }
 
-    private addTypeParameters(output: string, method: MethodsClass): string {
+    private addTypeParameters(output: string, method: DocMethod): string {
         let result = output;
 
         if (method.typeParameters?.length) {
@@ -35,7 +35,7 @@ export class MethodFormatterPipe implements PipeTransform {
         return output + ((isOptional) ? '?' : '');
     }
 
-    private addBracketsWithParams(output: string, method: MethodsClass): string {
+    private addBracketsWithParams(output: string, method: DocMethod): string {
         let result = `${output}(`;
 
         if (method.args?.length) {
@@ -49,7 +49,7 @@ export class MethodFormatterPipe implements PipeTransform {
         return result;
     }
 
-    private addParameters(output: string, method: MethodsClass): string {
+    private addParameters(output: string, method: DocMethod): string {
         let result = output;
 
         method.args.forEach((arg, argIndex) => {
@@ -62,7 +62,7 @@ export class MethodFormatterPipe implements PipeTransform {
         return result;
     }
 
-    private addReturnType(output: string, method: MethodsClass): string {
+    private addReturnType(output: string, method: DocMethod): string {
         return `${output}: <span class="text-primary">${method.returnType}</span>`;
     }
 }

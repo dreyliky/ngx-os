@@ -4,7 +4,7 @@
         
         <os-dropdown
             [placeholder]="'Choose direction'"
-            [formControl]="formGroup.controls.direction">
+            [formControl]="directionControl">
             <os-dropdown-item [data]="gridDirectionEnum.Horizontal">Horizontal</os-dropdown-item>
             <os-dropdown-item [data]="gridDirectionEnum.Vertical">Vertical</os-dropdown-item>
         </os-dropdown>
@@ -17,7 +17,7 @@
             [label]="'Size'"
             [minValueLabel]="'50 pixels'"
             [maxValueLabel]="'150 pixels'"
-            [formControl]="formGroup.controls.cellSize">
+            [formControl]="cellSizeControl">
         </os-slider>
     </os-form-field>
 </form>

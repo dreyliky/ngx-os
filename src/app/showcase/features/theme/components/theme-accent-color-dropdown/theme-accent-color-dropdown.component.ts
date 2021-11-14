@@ -22,10 +22,10 @@ interface AccentColor {
 })
 export class ThemeAccentColorDropdownComponent implements OnInit {
     @Input()
-    public readonly selectedColor: ThemeRgbColor;
+    public selectedColor: ThemeRgbColor;
 
     @Output()
-    public readonly colorChanged = new EventEmitter<ThemeRgbColor>();
+    public colorChanged = new EventEmitter<ThemeRgbColor>();
 
     public accentColors: AccentColor[];
 

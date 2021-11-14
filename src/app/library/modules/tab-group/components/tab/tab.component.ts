@@ -58,7 +58,7 @@ export class TabComponent extends OsBaseComponent implements OnInit {
 
     /** Stylelist for the tab button */
     @Input()
-    public tabButtonStyle: string;
+    public tabButtonStyle: object;
 
     /** Classlist for the tab button */
     @Input()

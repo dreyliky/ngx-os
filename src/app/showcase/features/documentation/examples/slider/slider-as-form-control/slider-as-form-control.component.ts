@@ -8,7 +8,9 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderAsFormControlComponent {
+    public readonly sliderControl = new FormControl(10);
+
     public readonly formGroup = new FormGroup({
-        sliderValue: new FormControl(10)
+        sliderValue: this.sliderControl
     });
 }

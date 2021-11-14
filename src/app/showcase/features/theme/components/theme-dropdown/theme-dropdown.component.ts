@@ -11,7 +11,7 @@ import { Theme } from '../../interfaces';
 })
 export class ThemeDropdownComponent {
     @Input()
-    public readonly selectedTheme: Theme;
+    public selectedTheme: Theme;
 
     @Output()
     public themeChanged = new EventEmitter<Theme>();

@@ -38,31 +38,31 @@ export abstract class OsBaseButtonComponent extends OsBaseComponent {
 
     /** Target internal element focus event */
     @Output()
-    public readonly osFocus: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osFocus: EventEmitter<FocusEvent> = new EventEmitter();
 
     /** Target internal element blur event */
     @Output()
-    public readonly osBlur: EventEmitter<MouseEvent> = new EventEmitter();
+    public readonly osBlur: EventEmitter<FocusEvent> = new EventEmitter();
 
     /** @internal */
     @HostBinding('attr.tabindex')
-    public get _hostTabIndexAttr(): number {
+    public get _hostTabIndexAttr(): number | null {
         return (this.isDisabled) ? null : 0;
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    protected onFocus(event: MouseEvent): void {
+    protected onFocus(event: FocusEvent): void {
         this.osFocus.emit(event);
     }
 
     /** The handler will be fired on the host element in response to an event. */
-    protected onBlur(event: MouseEvent): void {
+    protected onBlur(event: FocusEvent): void {
         this.osBlur.emit(event);
     }
 
     protected initElementEventObservers(element: HTMLElement): void {
-        element.onfocus = (event: MouseEvent) => this.onFocus(event);
-        element.onblur = (event: MouseEvent) => this.onBlur(event);
+        element.onfocus = (event) => this.onFocus(event);
+        element.onblur = (event) => this.onBlur(event);
 
         super.initElementEventObservers(element);
     }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import marked from 'marked';
+import * as marked from 'marked';
 import { OsBaseViewComponent, TextComponent } from 'ngx-os';
 import { takeWhile } from 'rxjs/operators';
 import { MARKDOWN_CODE_BLOCKS } from '../../data';
@@ -36,9 +36,9 @@ export class MarkdownPreviewerComponent extends OsBaseViewComponent {
         const element = event.target as HTMLElement;
 
         if (element.tagName === 'A') {
-            const href = element.getAttribute('href');
+            const href = element.getAttribute('href') as string;
 
-            window.open(href, '_blank').focus();
+            window.open(href, '_blank')?.focus();
             event.preventDefault();
         }
     }
@@ -71,7 +71,7 @@ export class MarkdownPreviewerComponent extends OsBaseViewComponent {
             const highlightedCode = this.highlighter.highlight(language, rawCode);
             blockElement.innerHTML = highlightedCode;
 
-            blockElement.parentElement.classList.add('code-wrapper', 'os-scroll-view');
+            blockElement.parentElement?.classList.add('code-wrapper', 'os-scroll-view');
             blockElement.classList.add('code-block');
         });
     }

@@ -8,7 +8,7 @@ import {
 } from '@features/documentation';
 import { TreeNode } from 'ngx-os';
 import { Observable, Subject } from 'rxjs';
-import { filter, map, startWith, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { SideBarItem } from './side-bar-item.interface';
 
 @Injectable()
@@ -77,8 +77,8 @@ export class SideBarItemsService implements OnDestroy {
             .filter((section) => !this.isSectionForbidden(section, metaInfo))
             .map((section) => {
                 const sectionUrl = `/${AppRouteEnum.Components}/` +
-                    `${metaInfo.type}/${section.data.sectionUrl}`;
-                const imageUrl = section.data.imageUrl;
+                    `${metaInfo.type}/${section.data?.sectionUrl}`;
+                const imageUrl = section.data?.imageUrl;
 
                 return {
                     ...section,
@@ -100,8 +100,7 @@ export class SideBarItemsService implements OnDestroy {
         this.router.events
             .pipe(
                 takeUntil(this.destroyed$),
-                startWith(this.router.url),
-                filter<NavigationEnd>((event) => event instanceof NavigationEnd)
+                filter((event): event is NavigationEnd => (event instanceof NavigationEnd))
             )
             .subscribe(({ url }) => this.initCurrentRouteByUrl(url));
     }
@@ -116,8 +115,8 @@ export class SideBarItemsService implements OnDestroy {
         section: TreeNode<SideBarItem>,
         metaInfo: ComponentMetaInfo
     ): boolean {
-        const sectionUrl = section.data.sectionUrl as RouteEnum;
+        const sectionUrl = section.data?.sectionUrl as RouteEnum;
 
-        return metaInfo.forbiddenOverviewSections?.includes(sectionUrl);
+        return !!metaInfo.forbiddenOverviewSections?.includes(sectionUrl);
     }
 }

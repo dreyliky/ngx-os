@@ -9,6 +9,7 @@ import {
     OnInit,
     Output,
     QueryList,
+    TrackByFunction,
     ViewEncapsulation
 } from '@angular/core';
 import { merge, Subject } from 'rxjs';
@@ -68,7 +69,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     }
 
     /** @internal */
-    public _trackByFn = (_: TabComponent, index: number): number => {
+    public _trackByFn: TrackByFunction<TabComponent> = (index: number): number => {
         return index;
     };
 
@@ -92,7 +93,7 @@ export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDest
     private initTabSelection(): void {
         const targetTab = this.__tabComponentList.get(this.selectedTabIndex ?? 0);
 
-        targetTab.setSelectionState(true);
+        targetTab?.setSelectionState(true);
     }
 
     private deselectAllTabs(): void {

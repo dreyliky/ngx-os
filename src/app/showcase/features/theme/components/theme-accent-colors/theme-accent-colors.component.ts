@@ -10,7 +10,7 @@ import { ACCENT_COLORS } from '../../data';
 })
 export class ThemeAccentColorsComponent {
     @Input()
-    public readonly selectedColor: ThemeRgbColor;
+    public selectedColor: ThemeRgbColor;
 
     @Output()
     public accentColorClick = new EventEmitter<ThemeRgbColor>();

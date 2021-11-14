@@ -19,7 +19,9 @@ export class DropdownAsFormControlComponent {
         { text: 'Option 3', value: 3 }
     ];
 
+    public readonly selectedItemControl = new FormControl(this.items[1]);
+
     public readonly formGroup = new FormGroup({
-        selectedItem: new FormControl(this.items[1])
+        selectedItem: this.selectedItemControl
     });
 }

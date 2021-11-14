@@ -1,6 +1,6 @@
 <form [formGroup]="formGroup">
     <os-dropdown
-        [formControl]="formGroup.controls.selectedItem">
+        [formControl]="selectedItemControl">
         <os-dropdown-item
             *ngFor="let item of items"
             [data]="item">

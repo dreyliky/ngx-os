@@ -8,7 +8,9 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailBoxAsFormControlComponent {
+    public readonly emailBoxControl = new FormControl('');
+
     public readonly formGroup = new FormGroup({
-        emailBoxValue: new FormControl('')
+        emailBoxValue: this.emailBoxControl
     });
 }

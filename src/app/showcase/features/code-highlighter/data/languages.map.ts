@@ -1,4 +1,4 @@
-import type PrismJS from 'prismjs';
+import type * as PrismJS from 'prismjs';
 import { CodeLanguageInfo } from '../interfaces';
 import { CodeLanguageType } from '../types';
 

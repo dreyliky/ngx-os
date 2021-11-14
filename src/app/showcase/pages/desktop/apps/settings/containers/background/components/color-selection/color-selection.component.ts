@@ -11,7 +11,7 @@ import { BackgroundControlService } from '../../services';
 })
 export class ColorSelectionComponent {
     @Input()
-    public readonly currentBackground: BackgroundMetadata;
+    public currentBackground: BackgroundMetadata;
 
     public get isCurrentBackgroundColor(): boolean {
         return (this.currentBackground.type === BackgroundTypeEnum.Color);

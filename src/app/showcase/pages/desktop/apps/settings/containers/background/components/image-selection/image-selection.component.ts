@@ -22,7 +22,7 @@ import { BackgroundControlService } from '../../services';
 })
 export class ImageSelectionComponent {
     @Input()
-    public readonly currentBackground: BackgroundMetadata;
+    public currentBackground: BackgroundMetadata;
 
     @ViewChild('fileUploader')
     private readonly fileUploaderRef: ElementRef<HTMLInputElement>;

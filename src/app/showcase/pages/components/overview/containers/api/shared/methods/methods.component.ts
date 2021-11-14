@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MethodsClass } from '@features/documentation';
+import { DocMethod } from '@features/documentation';
 
 @Component({
     selector: 'api-methods',
@@ -12,13 +12,13 @@ import { MethodsClass } from '@features/documentation';
 })
 export class MethodsComponent {
     @Input()
-    public set classMethods(methods: MethodsClass[]) {
+    public set classMethods(methods: DocMethod[]) {
         if (methods) {
             this.processMethods(methods);
         }
     }
 
-    public methods: MethodsClass[];
+    public methods: DocMethod[];
 
     private readonly publicModifierIds = [122, 123];
 
@@ -30,7 +30,7 @@ export class MethodsComponent {
         'writeValue'
     ];
 
-    private processMethods(methods: MethodsClass[]): void {
+    private processMethods(methods: DocMethod[]): void {
         this.methods = methods
             .filter((method) => {
                 return (
@@ -42,7 +42,7 @@ export class MethodsComponent {
             .sort((a, b) => (a.line - b.line));
     }
 
-    private isMethodModifierValid(method: MethodsClass): boolean {
+    private isMethodModifierValid(method: DocMethod): boolean {
         if (method.modifierKind) {
             return this.publicModifierIds
                 .some((modifierId) => method.modifierKind.includes(modifierId));

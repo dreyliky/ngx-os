@@ -9,7 +9,7 @@ import { GuideDocumentationEnum, MARKDOWN_GUIDE_DOCUMENTATIONS } from '@features
 })
 export class SideBarComponent {
     @Input()
-    public readonly selectedGuideId: GuideDocumentationEnum;
+    public selectedGuideId: GuideDocumentationEnum;
 
     @Output()
     public readonly guideSelected = new EventEmitter<GuideDocumentationEnum>();

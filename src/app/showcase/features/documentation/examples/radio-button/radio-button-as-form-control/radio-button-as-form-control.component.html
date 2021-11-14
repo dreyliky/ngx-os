@@ -3,7 +3,7 @@
         *ngFor="let item of items"
         [data]="item"
         [name]="'radio-group-1'"
-        [formControl]="formGroup.controls.selectedValue">
+        [formControl]="selectedValueControl">
         {{ item.text }}
     </os-radio-button>
 </form>

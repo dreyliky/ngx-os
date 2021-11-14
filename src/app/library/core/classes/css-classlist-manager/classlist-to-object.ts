@@ -1,10 +1,12 @@
+import { RawObject } from '../../types';
+
 /** @internal */
 export namespace CssClasslistToObjectHelper {
     export function transform(classList: string | string[] | object): object {
         if (typeof classList === 'string') {
-            return this.fromString(classList);
+            return fromString(classList);
         } else if (Array.isArray(classList)) {
-            return this.fromArray(classList);
+            return fromArray(classList);
         } else if (classList === Object(classList)) {
             return classList;
         }
@@ -25,6 +27,6 @@ export namespace CssClasslistToObjectHelper {
                 accumulator[className] = true;
 
                 return accumulator;
-            }, {});
+            }, {} as RawObject<boolean>);
     }
 }

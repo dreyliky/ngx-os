@@ -9,7 +9,7 @@ import { Section, SectionEnum } from '../../core';
 })
 export class ContentComponent {
     @Input()
-    public readonly selectedSection: Section;
+    public selectedSection: Section;
 
     public readonly sectionEnum = SectionEnum;
 }

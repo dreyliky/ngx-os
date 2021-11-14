@@ -8,7 +8,9 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaAsFormControlComponent {
+    public readonly textareaBoxControl = new FormControl('Hi there!');
+
     public readonly formGroup = new FormGroup({
-        textareaBoxValue: new FormControl('Hi there!')
+        textareaBoxValue: this.textareaBoxControl
     });
 }

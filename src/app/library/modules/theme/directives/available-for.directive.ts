@@ -17,7 +17,7 @@ import { ThemeService } from '../services';
 export class AvailableForOsDirective<T = any> implements OnInit, OnDestroy {
     /** An array of theme names for which will be displayed the wrapped HTML element */
     @Input('osAvailableFor')
-    private themes: T[];
+    public themes: T[];
 
     private isViewCreated = false;
     private themeSubscription: Subscription;

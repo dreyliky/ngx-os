@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class SelectorComponent {
     @Input()
-    public readonly name: string;
+    public name: string;
 
     public onSelectorTextboxClick(event: MouseEvent): void {
         const inputElement = event.target as HTMLInputElement;

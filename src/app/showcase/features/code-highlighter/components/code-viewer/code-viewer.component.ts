@@ -9,10 +9,10 @@ import { CodeLanguageType } from '../../types';
 })
 export class CodeViewerComponent implements OnChanges {
     @Input()
-    public readonly language: CodeLanguageType;
+    public language: CodeLanguageType;
 
     @Input()
-    public readonly code: string;
+    public code: string;
 
     public parsedResult: string;
 

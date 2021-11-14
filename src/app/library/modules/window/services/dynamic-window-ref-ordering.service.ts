@@ -39,7 +39,7 @@ export class DynamicWindowRefOrderingService {
         this.windowOrderIds.push(id);
     }
 
-    public getHighestOpened(): DynamicWindowRefModel {
+    public getHighestOpened(): DynamicWindowRefModel | null {
         let index = (this.windowOrderIds.length - 1);
 
         while (index >= 0) {
@@ -52,5 +52,7 @@ export class DynamicWindowRefOrderingService {
 
             index--;
         }
+
+        return null;
     }
 }

@@ -9,7 +9,7 @@ import { Section, SECTIONS } from '../../core';
 })
 export class SidebarComponent {
     @Input()
-    public readonly selectedSection: Section;
+    public selectedSection: Section;
 
     @Output()
     public sectionChange = new EventEmitter<Section>();

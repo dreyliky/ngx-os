@@ -89,11 +89,11 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
 
     /** @internal */
     @ContentChild('gridItemIcon')
-    public readonly _gridItemIconTemplate: TemplateRef<HTMLElement>;
+    public readonly _gridItemIconTemplate: TemplateRef<any>;
 
     /** @internal */
     @ContentChild('gridItemLabel')
-    public readonly _gridItemLabelTemplate: TemplateRef<HTMLElement>;
+    public readonly _gridItemLabelTemplate: TemplateRef<any>;
 
     /** @internal */
     public _iconUrl: string;

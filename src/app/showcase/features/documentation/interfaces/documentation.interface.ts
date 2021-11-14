@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 // FIXME: All interfaces were auto-generated.
 // Need to reduce the number of duplicate interfaces.
 // Each exported interface should have a "Doc" prefix.
@@ -92,7 +91,7 @@ export interface DocComponent {
     inputsClass: InputsClass[];
     outputsClass: OutputsClass[];
     propertiesClass: DocClassProperty[];
-    methodsClass: MethodsClass[];
+    methodsClass: DocMethod[];
     hostBindings: any[];
     hostListeners: HostListener[];
     description?: string;
@@ -128,32 +127,6 @@ interface HostListener {
     line: number;
 }
 
-export interface MethodsClass {
-    name: string;
-    args: Arg4[];
-    optional: boolean;
-    returnType: string;
-    typeParameters: any[];
-    line: number;
-    description?: string;
-    modifierKind: number[];
-    jsdoctags?: Jsdoctag4[];
-}
-
-interface Jsdoctag4 {
-    name: string;
-    type: string;
-    tagName: TagName;
-    defaultValue?: string;
-}
-
-interface Arg4 {
-    name: string;
-    type: string;
-    defaultValue?: string;
-    optional: boolean;
-}
-
 export interface DocClassProperty {
     name: string;
     defaultValue?: string;
@@ -185,8 +158,8 @@ export interface DocDirective {
     hostBindings: any[];
     hostListeners: any[];
     propertiesClass: DocClassProperty[];
-    methodsClass: (Methods2 | MethodsClass2)[];
-    constructorObj: ConstructorObj2;
+    methodsClass: DocMethod[];
+    constructorObj: ConstructorObj;
     readme?: string;
     implements?: string[];
     accessors?: DocAccessors;
@@ -210,24 +183,6 @@ export interface DocSetSignature {
     line: number;
     jsdoctags: Jsdoctag[];
     description?: string;
-}
-
-interface ConstructorObj2 {
-    name: string;
-    description: string;
-    args: Arg[];
-    line: number;
-    jsdoctags: Jsdoctag[];
-}
-
-interface MethodsClass2 {
-    name: string;
-    args: any[];
-    optional: boolean;
-    returnType: string;
-    typeParameters: any[];
-    line: number;
-    modifierKind: number[];
 }
 
 export interface OutputsClass {
@@ -255,7 +210,7 @@ export interface DocClass {
     type: string;
     sourceCode: string;
     properties: DocClassProperty[];
-    methods: (Method2 | Methods2 | Methods3 | Methods4 | Methods5 | Methods6)[];
+    methods: DocMethod[];
     indexSignatures: any[];
     extends?: string;
     inputsClass: any[];
@@ -269,105 +224,6 @@ export interface DocClass {
     readme?: string;
 }
 
-interface Methods6 {
-    name: string;
-    args: (Arg | Args2)[];
-    optional: boolean;
-    returnType: string;
-    typeParameters: any[];
-    line: number;
-    modifierKind: number[];
-    jsdoctags?: Jsdoctag2[];
-}
-
-interface Args2 {
-    name: string;
-    type: string;
-    optional: boolean;
-}
-
-interface Methods5 {
-    name: string;
-    args: Arg3[];
-    optional: boolean;
-    returnType: string;
-    typeParameters: any[];
-    line: number;
-    modifierKind: number[];
-    jsdoctags: Jsdoctag3[];
-}
-
-interface Jsdoctag3 {
-    name: string;
-    type: string;
-    defaultValue: string;
-    tagName: TagName;
-}
-
-interface Arg3 {
-    name: string;
-    type: string;
-    defaultValue: string;
-}
-
-interface Methods4 {
-    name: string;
-    args: Arg[];
-    optional: boolean;
-    returnType: string;
-    typeParameters: any[];
-    line: number;
-    modifierKind: number[];
-    jsdoctags: Jsdoctag[];
-}
-
-interface Methods3 {
-    name: string;
-    args: Arg[];
-    optional: boolean;
-    returnType: string;
-    typeParameters: any[];
-    line: number;
-    modifierKind: number[];
-    jsdoctags?: Jsdoctag[];
-    inheritance?: Inheritance;
-}
-
-interface Methods2 {
-    name: string;
-    args: Arg[];
-    optional: boolean;
-    returnType: string;
-    typeParameters: any[];
-    line: number;
-    modifierKind: number[];
-    jsdoctags?: Jsdoctag[];
-}
-
-interface Method2 {
-    name: string;
-    args: Arg2[];
-    optional: boolean;
-    returnType: string;
-    typeParameters: string[];
-    line: number;
-    modifierKind: number[];
-    jsdoctags: Jsdoctag2[];
-}
-
-interface Jsdoctag2 {
-    name: string;
-    type: string;
-    tagName: TagName;
-    optional?: boolean;
-}
-
-interface Arg2 {
-    name: string;
-    type: string;
-    optional?: boolean;
-}
-
 interface Inheritance {
     file: string;
 }
@@ -377,7 +233,7 @@ export interface DocInjectable {
     id: string;
     file: string;
     properties: DocClassProperty[];
-    methods: Method[];
+    methods: DocMethod[];
     readme?: string;
     description?: string;
     sourceCode: string;
@@ -402,15 +258,17 @@ interface ConstructorObj {
     jsdoctags?: Jsdoctag[];
 }
 
-export interface Method {
+export interface DocMethod {
     name: string;
-    args: (Arg | Arg)[];
+    args: Arg[];
     optional: boolean;
     returnType: string;
     typeParameters: any[];
     line: number;
     modifierKind: number[];
+    description?: string;
     jsdoctags?: Jsdoctag[];
+    inheritance?: Inheritance;
 }
 
 interface Jsdoctag {
@@ -426,6 +284,8 @@ interface TagName {
 interface Arg {
     name: string;
     type: string;
+    optional: boolean;
+    defaultValue?: string;
 }
 
 export interface DocInterface {
@@ -437,34 +297,7 @@ export interface DocInterface {
     properties: DocClassProperty[];
     indexSignatures: any[];
     kind: number;
-    methods: DocInterfaceMethod[];
+    methods: DocMethod[];
     description?: string;
     readme?: string;
-}
-
-export interface DocInterfaceMethod {
-    args: {
-        name: string;
-        type: string;
-        deprecated: boolean;
-        deprecationMessage: string;
-        optional: true;
-    }[];
-    deprecated: boolean;
-    deprecationMessage: string;
-    jsdoctags: {
-        deprecated: boolean;
-        deprecationMessage: string;
-        name: string;
-        optional: boolean;
-        tagName: {
-            text: string;
-        };
-    }[];
-    line: number;
-    name: string;
-    optional: boolean;
-    returnType: string;
-    typeParameters: string[];
-    description?: string;
 }
