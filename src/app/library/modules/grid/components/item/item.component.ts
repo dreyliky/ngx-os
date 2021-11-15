@@ -123,7 +123,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     }
 
     private initClickOutsideObserver(): void {
-        this.globalEvents.fromDocument('click')
+        this.globalEvents.fromDocument('mousedown')
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 filter(() => this.isSelected),
