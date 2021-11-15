@@ -18,7 +18,7 @@
 
     <div class="buttons-wrapper">
         <os-button
-            *ngFor="let amountOfWindows of windowAmoutsToSpawn"
+            *ngFor="let amountOfWindows of windowAmountToSpawnArray"
             (osClick)="spawnWindows(amountOfWindows)">
             {{ amountOfWindows }}
         </os-button>

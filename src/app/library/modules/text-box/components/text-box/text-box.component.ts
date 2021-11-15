@@ -34,7 +34,7 @@ export class TextBoxComponent extends OsBaseFieldComponent implements AfterViewI
     @Output()
     public osChange: EventEmitter<TextBoxChangeEvent> = new EventEmitter();
 
-    @ViewChild('textbox')
+    @ViewChild('textBox')
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     /** @internal */
@@ -64,10 +64,10 @@ export class TextBoxComponent extends OsBaseFieldComponent implements AfterViewI
 
     protected onFieldValueChange(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
-        const textboxValue: string = targetElement.value;
+        const value: string = targetElement.value;
 
-        this.onChange?.(textboxValue);
-        this.osChange.emit({ originalEvent, value: textboxValue });
+        this.onChange?.(value);
+        this.osChange.emit({ originalEvent, value });
         this.changeDetector.markForCheck();
     }
 }

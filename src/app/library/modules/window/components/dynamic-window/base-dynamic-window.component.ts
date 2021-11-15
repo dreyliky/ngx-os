@@ -1,6 +1,6 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import {
-    CachableReturnInstance,
+    CacheableReturnInstance,
     CssClasslistToObjectHelper,
     OsBaseViewComponent,
     WhenViewInit
@@ -65,7 +65,7 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         return (this.config.isTitleBarVisible) ? '' : 'none';
     }
 
-    @CachableReturnInstance
+    @CacheableReturnInstance
     public get windowStyle(): object {
         return {
             [CssVariable.Left]: `${this.config.positionX}px`,
@@ -83,7 +83,7 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         };
     }
 
-    @CachableReturnInstance
+    @CacheableReturnInstance
     public get windowStyleClass(): object {
         return {
             ...CssClasslistToObjectHelper.transform(this.config.styleClass),
@@ -100,7 +100,7 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
     }
 
     @WhenViewInit()
-    @CachableReturnInstance
+    @CacheableReturnInstance
     public get draggerConfig(): object {
         return {
             draggableElement: this.titleBarElement,
@@ -112,7 +112,7 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
     }
 
     @WhenViewInit()
-    @CachableReturnInstance
+    @CacheableReturnInstance
     public get resizerConfig(): object {
         return {
             targetElement: this.windowElement,

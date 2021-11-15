@@ -28,7 +28,7 @@ import { WindowsPositionShuffleService } from './services';
 export class ExperimentsAppComponent implements OnInit {
     public totalWindowsAlive$: Observable<number>;
 
-    public readonly windowAmoutsToSpawn: number[] = [
+    public readonly windowAmountToSpawnArray: number[] = [
         5, 10, 25, 50, 100, 200, 400
     ];
 

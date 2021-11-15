@@ -28,5 +28,6 @@
     "[markdown]": {
         "editor.wordWrap": "off"
     },
-    "editor.guides.bracketPairs": true
+    "editor.guides.bracketPairs": true,
+    "cSpell.enabled": true
 }

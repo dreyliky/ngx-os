@@ -40,7 +40,7 @@ export class EmailBoxComponent
     @Output()
     public osChange: EventEmitter<EmailBoxChangeEvent> = new EventEmitter();
 
-    @ViewChild('emailbox')
+    @ViewChild('emailBox')
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     /** @internal */

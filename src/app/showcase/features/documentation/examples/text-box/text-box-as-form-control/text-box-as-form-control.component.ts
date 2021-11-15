@@ -8,9 +8,9 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextBoxAsFormControlComponent {
-    public readonly textboxControl = new FormControl('Hi there!');
+    public readonly textBoxControl = new FormControl('Hi there!');
 
     public readonly formGroup = new FormGroup({
-        textboxValue: this.textboxControl
+        textBoxValue: this.textBoxControl
     });
 }

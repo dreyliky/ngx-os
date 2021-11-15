@@ -64,7 +64,7 @@ export class NumberBoxComponent
     @Output()
     public osChange: EventEmitter<NumberBoxChangeEvent> = new EventEmitter();
 
-    @ViewChild('numberbox')
+    @ViewChild('numberBox')
     private readonly inputRef: ElementRef<HTMLInputElement>;
 
     /** @internal */

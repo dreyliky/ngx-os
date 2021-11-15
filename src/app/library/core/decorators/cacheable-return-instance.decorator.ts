@@ -6,7 +6,7 @@ import { isObjectsWithSameData } from '../helpers';
  * Returns a new instance of the object only when DATA inside new instance
  * is different than DATA in instance returned previous time.
  **/
-export function CachableReturnInstance<T>(
+export function CacheableReturnInstance<T>(
     baseView: OsBaseViewComponent,
     methodName: string,
     { get, enumerable, value }: TypedPropertyDescriptor<T>
@@ -16,7 +16,7 @@ export function CachableReturnInstance<T>(
     }
 
     if (typeof(value) !== 'function') {
-        throw new Error('CachableReturnInstance can only be used with functions or getters');
+        throw new Error('CacheableReturnInstance can only be used with functions or getters');
     }
 
     return patchMethod(enumerable, methodName, value);
