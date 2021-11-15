@@ -1,6 +1,6 @@
 {
   "name": "ngx-os",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
