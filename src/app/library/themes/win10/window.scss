@@ -149,6 +149,12 @@
         }
     }
 
+    &.os-dragging, &.os-resizing {
+        .os-window-body {
+            pointer-events: none;
+        }
+    }
+
     &.os-fullscreen, &.os-entering-fullscreen {
         &.os-active .os-title-bar {
             .os-title-bar-button[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {

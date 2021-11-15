@@ -146,6 +146,12 @@
         display: none !important;
     }
 
+    &.os-dragging, &.os-resizing {
+        .os-window-body {
+            pointer-events: none;
+        }
+    }
+
     &.os-fullscreen, &.os-entering-fullscreen {
         .os-title-bar-button[aria-label="Fullscreen"] {
             .os-icon {
