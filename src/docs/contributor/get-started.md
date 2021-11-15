@@ -9,6 +9,16 @@
 - `npm run start`;
 - Open `http://localhost:4200`;
 
+## How to build the library?
+
+- `npm run build-lib`;
+- Open `dist/ngx-os` folder;
+
+## How to build the showcase?
+
+- `npm run build`;
+- Open `dist/ngx-os-showcase` folder;
+
 ## Recommended Development Environment
 
 ### Editor
