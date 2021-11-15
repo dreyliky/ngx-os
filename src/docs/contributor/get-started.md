@@ -16,6 +16,7 @@
 
 ## How to build the showcase?
 
+- `npm run doc`;
 - `npm run build`;
 - Open `dist/ngx-os-showcase` folder;
 
