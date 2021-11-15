@@ -23,37 +23,37 @@ export interface ResizerConfig {
     /**
      * Name of CSS property X-Axis from the left side of the HTML element.
      *
-     * For example: `left`, `marginLeft`
+     * For example: `left`, `margin-left`
      **/
     xAxisLeftStyleProperty?: string;
     /**
      * Name of CSS property X-Axis from the right side of the HTML element.
      *
-     * For example: `right`, `marginRight`
+     * For example: `right`, `margin-right`
      **/
     xAxisRightStyleProperty?: string;
     /**
      * Name of CSS property Y-Axis from the top side of the HTML element.
      *
-     * For example: `top`, `marginTop`
+     * For example: `top`, `margin-top`
      **/
     yAxisTopStyleProperty?: string;
     /**
      * Name of CSS property Y-Axis from the bottom side of the HTML element.
      *
-     * For example: `bottom`, `marginBottom`
+     * For example: `bottom`, `margin-bottom`
      **/
     yAxisBottomStyleProperty?: string;
     /**
      * Name of CSS property for width of the HTML element.
      *
-     * For example: `width`, `minWidth`
+     * For example: `width`, `min-width`
      **/
     widthStyleProperty?: string;
     /**
      * Name of CSS property for height of the HTML element.
      *
-     * For example: `height`, `minHeight`
+     * For example: `height`, `min-height`
      **/
     heightStyleProperty?: string;
     /** Is resizing should affect position of the HTML element */
