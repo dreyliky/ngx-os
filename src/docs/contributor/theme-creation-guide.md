@@ -18,6 +18,10 @@ Now, you can see and apply your theme via the dropdown at the header in the `sho
 - Add this file into your `angular.json` with short `bundleName` like in `Get Started Guide`;
 - Inject `ThemeService` and call `themeService.apply(BUNDLE_NAME)` (where `BUNDLE_NAME` - your `bundleName` from your `angular.json`);
 
+## Assets
+
+All assets you need like icons, fonts you should store at `src/assets/themes`.
+
 ## Advices
 
 - Main file of the theme `index.scss`;
