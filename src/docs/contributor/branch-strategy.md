@@ -14,10 +14,13 @@ Stages:
 - dev;
 - prod;
 
+Type
+- alpha;
+- beta;
+- rc;
+
 Naming:
-- alpha: `0.0.x-stage`;
-- beta: `0.x.x-stage`;
-- release: `x.x.x-stage`;
+`x.x.x-type?-stage`;
 
 Merge strategy:
 - Stable changes of the `version-dev` branch are merged into the `version-prod` branch;
@@ -25,7 +28,7 @@ Merge strategy:
 
 **Important to always have different version branches alive to have the ability to support that codebase.**
 
-Examples: `0.0.1-prod`, `0.1.0-prod`, `1.0.0-dev`.
+Examples: `1.0.0-alpha` (stage: prod), `2.0.0-beta-dev`, `3.0.0-dev`.
 
 ## version/feature_FEATURE_NAME branch
 
@@ -34,7 +37,7 @@ Contains new feature development.
 Merge strategy:
 - Changes are merged into the `version-dev` branch;
 
-Examples: `0.0.2/feature_MacOS-Theme`, `0.0.2/feature_ContextMenu-module`.
+Examples: `1.0.2/feature_MacOS-Theme`, `1.0.2/feature_ContextMenu-module`.
 
 ## version/bugfix_BUGFIX_NAME branch
 
@@ -43,4 +46,4 @@ Contains bugfix development.
 Merge strategy:
 - Changes are merged into the `version-dev` branch;
 
-Examples: `0.0.2/bugfix_Grid-Item-incorrect-naming`, `0.0.2/bugfix_Dropdown-Item-disabled-state`.
+Examples: `1.0.2/bugfix_Grid-Item-incorrect-naming`, `1.0.2/bugfix_Dropdown-Item-disabled-state`.
