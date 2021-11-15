@@ -12,7 +12,15 @@ function copyFolderSync(from, to) {
     });
 }
 
+function copyReadme() {
+    const readmePath = 'README.md';
+    const destinationFolder = 'dist/ngx-os';
+
+    fs.copyFileSync(readmePath, `${destinationFolder}/${readmePath}`);
+}
+
 copyFolderSync(
     'src/assets/themes',
     'dist/ngx-os/assets/themes'
 );
+copyReadme();

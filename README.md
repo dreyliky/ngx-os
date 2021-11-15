@@ -2,9 +2,9 @@
 
 <table border="0">
 <tr>
-<td>
+<td width="96">
 <img
-  src="src/assets/showcase/icons/icon.png"
+  src="https://ngx-os.io/assets/showcase/icons/icon.png"
   alt="ngx-os icon"
   width="96"
   height="96" />
@@ -18,7 +18,7 @@
 </tr>
 </table>
 
-[![Preview](/src/assets/demo/preview.jpg)](https://ngx-os.io)
+[![Preview](https://ngx-os.io/assets/demo/preview.jpg)](https://ngx-os.io)
 
 ## For end-users
 
@@ -47,10 +47,10 @@ Check Roadmap at the [Trello](https://trello.com/b/RxLewteC/ngx-os-roadmap)
 ## Screenshots from demo desktop page
 
 ### Windows 10 theme
-[![Desktop Windows 10](/src/assets/demo/desktop-win10.jpg)](https://ngx-os.io)
+[![Desktop Windows 10](https://ngx-os.io/assets/demo/desktop-win10.jpg)](https://ngx-os.io)
 
 ### Windows XP theme
-[![Desktop Windows XP](/src/assets/demo/desktop-winxp.jpg)](https://ngx-os.io)
+[![Desktop Windows XP](https://ngx-os.io/assets/demo/desktop-winxp.jpg)](https://ngx-os.io)
 
 ### Windows 98 theme
-[![Desktop Windows 98](/src/assets/demo/desktop-win98.jpg)](https://ngx-os.io)
+[![Desktop Windows 98](https://ngx-os.io/assets/demo/desktop-win98.jpg)](https://ngx-os.io)
