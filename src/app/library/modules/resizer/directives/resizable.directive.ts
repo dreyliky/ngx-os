@@ -177,8 +177,8 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         const resizeInfo = this.getResizeInfo(event);
         this._resizer = this.resizerFactory.create(resizerId, this);
 
+        event.stopPropagation();
         this.osResizeStart.emit(resizeInfo);
-        event.preventDefault();
         this._resizer.init(this._resizableElement, event);
         this._resizableElement.classList.add(CssClass.Resizing);
         this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
@@ -194,12 +194,14 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
             this._resizer.resizeElement(event);
         }
 
+        event.stopPropagation();
         this.osResizing.emit(resizeInfo);
     };
 
     private readonly documentMouseUpHandler = (event: MouseEvent): void => {
         this._resizableElement.classList.remove(CssClass.Resizing);
         this.document.removeEventListener('mousemove', this.documentMouseMoveHandler);
+        event.stopPropagation();
         this.osResizeEnd.emit(this.getResizeInfo(event));
     };
 
