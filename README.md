@@ -2,7 +2,7 @@
 
 <table border="0">
 <tr>
-<td width="96">
+<td width="128">
 <img
   src="https://ngx-os.io/assets/showcase/icons/icon.png"
   alt="ngx-os icon"
