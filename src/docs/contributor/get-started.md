@@ -18,6 +18,7 @@ Visual Studio Code;
 ### VS Code extensions
 
 - Angular Language Service;
+- Code Spell Checker;
 - ESLint;
 - TODO Highlight;
 - Material Icon Theme;
