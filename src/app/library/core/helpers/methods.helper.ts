@@ -4,10 +4,16 @@ export function isNil(value: any): boolean {
 }
 
 /** @internal */
+export function isNumber(value: any): boolean {
+    return (typeof value === 'number');
+}
+
+/** @internal */
 export function osParseInt(value: string): number {
     return Number.parseInt(value, 10);
 }
 
+/** @internal */
 export function deepClone<T>(data: T): T {
     return JSON.parse(JSON.stringify(data));
 }

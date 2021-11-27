@@ -6,7 +6,7 @@ import { DynamicWindowConfig as IDynamicWindowConfig } from '../interfaces';
 import { WindowReferencesState } from '../states';
 import { DynamicWindowActivityService } from './dynamic-window-activity.service';
 import { DynamicWindowRefOrderingService } from './dynamic-window-ref-ordering.service';
-import { DynamicWindowsCoordinatesService } from './dynamic-windows-coordinates.service';
+import { DynamicWindowsDefaultCoordinatesService } from './dynamic-windows-coordinates.service';
 
 /** @internal */
 @Injectable({
@@ -27,7 +27,7 @@ export class DynamicWindowReferencesService implements OnDestroy {
         private readonly state: WindowReferencesState,
         private readonly activityService: DynamicWindowActivityService,
         private readonly orderingService: DynamicWindowRefOrderingService,
-        private readonly coordinatesService: DynamicWindowsCoordinatesService
+        private readonly defaultCoordinatesService: DynamicWindowsDefaultCoordinatesService
     ) {}
 
     public ngOnDestroy(): void {
@@ -38,7 +38,7 @@ export class DynamicWindowReferencesService implements OnDestroy {
     public register(windowRef: DynamicWindowRefModel, config: IDynamicWindowConfig): void {
         windowRef.init(new DynamicWindowConfigModel(config));
         this.state.add(windowRef);
-        this.coordinatesService.applyDefault(windowRef);
+        this.defaultCoordinatesService.applyIfSpecificAbsent(windowRef);
         this.initHighestWindowActivityObserver(windowRef);
         this.initIsActiveStateObserver(windowRef);
     }
