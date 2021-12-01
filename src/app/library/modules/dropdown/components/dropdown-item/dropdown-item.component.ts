@@ -8,10 +8,8 @@ import {
     Host,
     HostBinding,
     Input,
-    OnChanges,
     OnInit,
     Output,
-    SimpleChanges,
     ViewEncapsulation
 } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
@@ -30,10 +28,18 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
 })
 export class DropdownItemComponent<T = any>
     extends OsBaseComponent
-    implements OnInit, AfterViewInit, OnChanges {
+    implements OnInit, AfterViewInit {
     /** Data of the dropdown item */
     @Input()
-    public data: T;
+    public set data(data: T) {
+        this._data = data;
+
+        this.initDefaultValueIfAbsent();
+    }
+
+    public get data(): T {
+        return this._data;
+    }
 
     /** Is dropdown item disabled? */
     @Input()
@@ -48,16 +54,14 @@ export class DropdownItemComponent<T = any>
     @HostBinding(`class.${CommonCssClassEnum.Selected}`)
     public isSelected: boolean = false;
 
+    private _data: T;
+
     constructor(
         @Host() private readonly dropdown: DropdownComponent<T>,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-    }
-
-    public ngOnChanges(changes: SimpleChanges): void {
-        this.processValueOnChanges(changes);
     }
 
     public ngOnInit(): void {
@@ -86,17 +90,9 @@ export class DropdownItemComponent<T = any>
         }
     }
 
-    private processValueOnChanges(changes: SimpleChanges): void {
-        if (this.hostRef && (changes?.value?.previousValue !== changes?.value?.currentValue)) {
-            if (isNil(changes.value.currentValue)) {
-                this.initDefaultValueIfAbsent();
-            }
-        }
-    }
-
     private initDefaultValueIfAbsent(): void {
         if (isNil(this.data)) {
-            this.data = this.getLabel() as any;
+            this._data = this.getLabel() as any;
         }
     }
 
