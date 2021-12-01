@@ -1,8 +1,9 @@
 <os-form-field>
     <os-dropdown
+        [ngModel]="null"
         [placeholder]="'Default'">
-        <os-dropdown-item>Item 1</os-dropdown-item>
-        <os-dropdown-item>Item 2</os-dropdown-item>
+        <os-dropdown-item [data]="1">Item 1</os-dropdown-item>
+        <os-dropdown-item [data]="2">Item 2</os-dropdown-item>
         <os-dropdown-item [isDisabled]="true">Item 3 (disabled)</os-dropdown-item>
     </os-dropdown>
 </os-form-field>
