@@ -1,6 +1,6 @@
 # ngx-os
 
-Components in operating systems style for Angular 12.
+Components in operating systems style for Angular 12+.
 
 Visit the [ngx-os website](https://ngx-os.io/guides) for general information, examples, demos and documentation.
 
