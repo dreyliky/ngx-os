@@ -1,7 +1,7 @@
-import { RawObject } from '../../types';
+import { ɵRawObject } from '../../types';
 
 /** @internal */
-export namespace CssClasslistToObjectHelper {
+export namespace ɵCssClasslistToObjectHelper {
     export function transform(classList: string | string[] | object): object {
         if (typeof classList === 'string') {
             return fromString(classList);
@@ -27,6 +27,6 @@ export namespace CssClasslistToObjectHelper {
                 accumulator[className] = true;
 
                 return accumulator;
-            }, {} as RawObject<boolean>);
+            }, {} as ɵRawObject<boolean>);
     }
 }

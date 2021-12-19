@@ -6,7 +6,7 @@ import {
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OsBaseViewComponent } from 'ngx-os';
+import { ɵOsBaseViewComponent } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -15,7 +15,7 @@ import { takeUntil } from 'rxjs/operators';
     styleUrls: ['./element-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ElementHeaderComponent extends OsBaseViewComponent implements OnInit {
+export class ElementHeaderComponent extends ɵOsBaseViewComponent implements OnInit {
     @Input()
     public title: string;
 

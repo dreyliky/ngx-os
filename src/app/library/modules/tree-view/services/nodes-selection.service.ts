@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { isNil } from '../../../core';
+import { ɵIsNil } from '../../../core';
 import { TreeNode, TreeNodeSelectionEvent } from '../interfaces';
-import { TreeNodesState } from '../states';
+import { ɵTreeNodesState } from '../states';
 
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly */
 @Injectable()
@@ -12,7 +12,7 @@ export class TreeNodesSelectionService<T = any> {
     public _osDeselected: EventEmitter<TreeNodeSelectionEvent<T>> = new EventEmitter();
 
     constructor(
-        private readonly state: TreeNodesState<T>
+        private readonly state: ɵTreeNodesState<T>
     ) {}
 
     /** @internal */
@@ -75,7 +75,7 @@ export class TreeNodesSelectionService<T = any> {
         this.state.flatData.forEach((node) => {
             const newState = getState(node);
 
-            if (!isNil(newState) && (newState !== node.isSelected)) {
+            if (!ɵIsNil(newState) && (newState !== node.isSelected)) {
                 (newState) ? this.select(node) : this.deselect(node);
             }
         });

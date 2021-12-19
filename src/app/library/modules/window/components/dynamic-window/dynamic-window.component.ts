@@ -14,15 +14,12 @@ import {
 } from '@angular/core';
 import { combineLatest, fromEvent, Observable, timer } from 'rxjs';
 import { filter, map, skip, skipUntil, takeUntil } from 'rxjs/operators';
-import { EventOutside, GlobalEvents } from '../../../../core';
+import { ɵEventOutside, ɵGlobalEvents } from '../../../../core';
 import { DraggableDirective } from '../../../drag-and-drop';
 import { ResizableDirective, ResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG as SHARED_CONFIG } from '../../data';
-import {
-    DynamicStateEnum as DynamicState,
-    DynamicWindowCssVariableEnum as CssVariable
-} from '../../enums';
-import { mergeConfigs } from '../../helpers';
+import { ɵDynamicStateEnum as DynamicState, ɵDynamicWindowCssVariableEnum as CssVariable } from '../../enums';
+import { ɵMergeConfigs } from '../../helpers';
 import { DynamicWindowConfig } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
 
@@ -54,7 +51,7 @@ export class DynamicWindowComponent
     constructor(
         @Inject(SHARED_CONFIG) private readonly sharedConfig$: Observable<DynamicWindowConfig>,
         private readonly hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: GlobalEvents,
+        private readonly globalEvents: ɵGlobalEvents,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -184,7 +181,7 @@ export class DynamicWindowComponent
                 takeUntil(this.viewDestroyed$),
                 skipUntil(timer()),
                 filter(() => this.windowRef.isActive),
-                filter((event) => EventOutside.checkForElement(this.windowElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.windowElement, event))
             )
             .subscribe(() => this.windowRef.makeInactive());
     }
@@ -238,7 +235,7 @@ export class DynamicWindowComponent
         ])
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(([sharedConfig, updatedConfig]) => {
-                this.config = mergeConfigs(updatedConfig, sharedConfig);
+                this.config = ɵMergeConfigs(updatedConfig, sharedConfig);
 
                 this.changeDetector.detectChanges();
             });

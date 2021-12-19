@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { GridDirectionEnum, OsBaseViewComponent } from 'ngx-os';
+import { GridDirectionEnum, ɵOsBaseViewComponent } from 'ngx-os';
 import { filter, takeUntil } from 'rxjs/operators';
 import { APPS } from '../../apps';
 import { AppMetadata, ExecService } from '../../features/exec';
@@ -11,7 +11,7 @@ import { ShortcutSettingsService } from '../../features/shortcut';
     styleUrls: ['./shortcuts-zone.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShortcutsZoneComponent extends OsBaseViewComponent implements OnInit {
+export class ShortcutsZoneComponent extends ɵOsBaseViewComponent implements OnInit {
     public gridDirection = GridDirectionEnum.Vertical;
     public cellSize = 72;
 

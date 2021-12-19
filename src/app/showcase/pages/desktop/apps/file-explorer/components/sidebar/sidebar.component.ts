@@ -7,7 +7,7 @@ import {
     Output,
     ViewChild
 } from '@angular/core';
-import { OsBaseViewComponent, TreeNode, TreeNodeSelectionEvent, TreeViewComponent } from 'ngx-os';
+import { TreeNode, TreeNodeSelectionEvent, TreeViewComponent, ɵOsBaseViewComponent } from 'ngx-os';
 import { Section } from '../../core';
 
 @Component({
@@ -16,7 +16,7 @@ import { Section } from '../../core';
     styleUrls: ['./sidebar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SidebarComponent extends OsBaseViewComponent {
+export class SidebarComponent extends ɵOsBaseViewComponent {
     @Input()
     public sections: TreeNode<Section>[];
 

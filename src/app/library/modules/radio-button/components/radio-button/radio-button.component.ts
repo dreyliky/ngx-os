@@ -14,7 +14,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
 import { RadioButtonValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -27,7 +27,7 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonComponent<T = any>
-    extends OsBaseFormControlComponent<T>
+    extends ɵOsBaseFormControlComponent<T>
     implements OnInit, ControlValueAccessor {
     /** Name of the radio-button group */
     @Input()
@@ -35,12 +35,12 @@ export class RadioButtonComponent<T = any>
 
     /** Is radio-button checked? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Checked}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Checked}`)
     public isChecked: boolean;
 
     /** Is radio-button disabled? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean;
 
     /** Data of the radio-button */

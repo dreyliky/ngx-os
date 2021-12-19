@@ -1,34 +1,34 @@
-import { isNil } from '../../../core';
+import { ɵIsNil } from '../../../core';
 import { GridDirectionEnum } from '../enums';
-import { GridParams } from '../interfaces';
-import { BaseDirectionStrategy, GridDirectionStrategyFactory } from './direction';
-import { Cell } from './grid-cell';
+import { ɵGridParams } from '../interfaces';
+import { ɵBaseDirectionStrategy, ɵGridDirectionStrategyFactory } from './direction';
+import { ɵCell } from './grid-cell';
 
 /** @internal */
-export class Grid<T = any> implements GridParams {
+export class ɵGrid<T = any> implements ɵGridParams {
     public xAxisCellsCount: number = 10;
     public yAxisCellsCount: number = 10;
     public readonly directionType: GridDirectionEnum = GridDirectionEnum.Horizontal;
-    public readonly directionStrategy: BaseDirectionStrategy<T>;
-    public structure: Cell<T>[][] = [];
+    public readonly directionStrategy: ɵBaseDirectionStrategy<T>;
+    public structure: ɵCell<T>[][] = [];
 
-    constructor(params: GridParams) {
+    constructor(params: ɵGridParams) {
         Object.assign(this, params);
         this.validateCellsCount();
 
-        this.directionStrategy = GridDirectionStrategyFactory.create(this.directionType, this);
+        this.directionStrategy = ɵGridDirectionStrategyFactory.create(this.directionType, this);
 
         this.reset();
     }
 
-    public getCell(x: number, y: number): Cell<T> {
+    public getCell(x: number, y: number): ɵCell<T> {
         return this.structure[y][x];
     }
 
-    public getFirstEmptyCell(): Cell<T> {
+    public getFirstEmptyCell(): ɵCell<T> {
         const firstCell = this.getCell(0, 0);
 
-        if (isNil(firstCell.getData())) {
+        if (ɵIsNil(firstCell.getData())) {
             return firstCell;
         }
 
@@ -42,7 +42,7 @@ export class Grid<T = any> implements GridParams {
             this.structure[y] = [];
 
             for (let x = 0; x < this.xAxisCellsCount; x++) {
-                this.structure[y][x] = new Cell({ x, y, data: null, context: this });
+                this.structure[y][x] = new ɵCell({ x, y, data: null, context: this });
             }
         }
     }

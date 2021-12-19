@@ -17,13 +17,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { filter, takeUntil } from 'rxjs/operators';
-import {
-    CommonCssClassEnum,
-    EventOutside,
-    GlobalEvents,
-    isNil,
-    OsBaseFormControlComponent
-} from '../../../../core';
+import { ɵCommonCssClassEnum, ɵEventOutside, ɵGlobalEvents, ɵIsNil, ɵOsBaseFormControlComponent } from '../../../../core';
 import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-window-context.token';
 import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
@@ -96,11 +90,11 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent<T = any>
-    extends OsBaseFormControlComponent<T>
+    extends ɵOsBaseFormControlComponent<T>
     implements OnInit, ControlValueAccessor {
     /** Is dropdown disabled? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
     /** Is dropdown overlay should be created inside the `body` HTML element? */
@@ -136,17 +130,17 @@ export class DropdownComponent<T = any>
 
     /** @internal */
     public get _isListAppendToBody(): boolean {
-        return (!isNil(this.isAppendToBody)) ? this.isAppendToBody : !this.isDynamicWindowContext;
+        return (!ɵIsNil(this.isAppendToBody)) ? this.isAppendToBody : !this.isDynamicWindowContext;
     }
 
     /** @internal */
     public get _isPlaceholderVisible(): boolean {
-        return (!isNil(this.placeholder) && (isNil(this.value) || isNil(this.label)));
+        return (!ɵIsNil(this.placeholder) && (ɵIsNil(this.value) || ɵIsNil(this.label)));
     }
 
     /** @internal */
     public get _isValueExist(): boolean {
-        return !isNil(this.value);
+        return !ɵIsNil(this.value);
     }
 
     /** Dropdown value */
@@ -157,7 +151,7 @@ export class DropdownComponent<T = any>
     constructor(
         @Self() @Optional() controlDir: NgControl,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
-        private readonly globalEvents: GlobalEvents,
+        private readonly globalEvents: ɵGlobalEvents,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
@@ -226,7 +220,7 @@ export class DropdownComponent<T = any>
                 takeUntil(this.viewDestroyed$),
                 filter((event) => (
                     this.isOverlayOpened &&
-                    EventOutside.checkForElement(this.hostRef.nativeElement, event)
+                    ɵEventOutside.checkForElement(this.hostRef.nativeElement, event)
                 ))
             )
             .subscribe(() => this.close());

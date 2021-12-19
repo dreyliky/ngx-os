@@ -1,11 +1,11 @@
-import { DragStrategyEnum } from '../../enums';
+import { ɵDragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
-import { BaseDragStrategyImpl } from './base-drag-impl.strategy';
+import { ɵBaseDragStrategyImpl } from './base-drag-impl.strategy';
 import { DragStrategyByTranslate3d } from './by-translate3d-drag.strategy';
 
 /** @internal */
-export class DragStrategyByTranslate3dImpl extends BaseDragStrategyImpl {
-    public readonly type = DragStrategyEnum.ByTranslate3d;
+export class ɵDragStrategyByTranslate3dImpl extends ɵBaseDragStrategyImpl {
+    public readonly type = ɵDragStrategyEnum.ByTranslate3d;
 
     protected config: DragStrategyByTranslate3d;
 

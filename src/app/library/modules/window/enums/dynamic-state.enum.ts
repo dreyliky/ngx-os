@@ -1,5 +1,5 @@
 /** @internal */
-export enum DynamicStateEnum {
+export enum ɵDynamicStateEnum {
     Opening = 1,
     Hiding,
     Showing,

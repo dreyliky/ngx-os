@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { OsBaseViewComponent } from './view';
+import { ɵOsBaseViewComponent } from './view';
 
 @Component({
     template: '',
@@ -7,7 +7,7 @@ import { OsBaseViewComponent } from './view';
         class: 'os-element'
     }
 })
-export abstract class OsBaseComponent extends OsBaseViewComponent {
+export abstract class ɵOsBaseComponent extends ɵOsBaseViewComponent {
     /** Target internal element stylelist */
     @Input()
     @HostBinding('style')

@@ -1,21 +1,21 @@
 import { DraggableDirective } from '../../directives/draggable.directive';
-import { DragStrategyEnum } from '../../enums';
+import { ɵDragStrategyEnum } from '../../enums';
 import { DragStrategyType } from '../../types';
-import { BaseDragStrategyImpl } from './base-drag-impl.strategy';
-import { DragStrategyByAxisPropertiesImpl } from './by-axis-properties-drag-impl.strategy';
-import { DragStrategyByTranslate3dImpl } from './by-translate3d-drag-impl.strategy';
+import { ɵBaseDragStrategyImpl } from './base-drag-impl.strategy';
+import { ɵDragStrategyByAxisPropertiesImpl } from './by-axis-properties-drag-impl.strategy';
+import { ɵDragStrategyByTranslate3dImpl } from './by-translate3d-drag-impl.strategy';
 
 /** @internal */
-export abstract class DragStrategyFactory {
+export abstract class ɵDragStrategyFactory {
     public static create(
         strategyConfig: DragStrategyType,
         context: DraggableDirective
-    ): BaseDragStrategyImpl {
+    ): ɵBaseDragStrategyImpl {
         switch (strategyConfig.type) {
-            case DragStrategyEnum.ByAxisProperties:
-                return new DragStrategyByAxisPropertiesImpl(context);
-            case DragStrategyEnum.ByTranslate3d:
-                return new DragStrategyByTranslate3dImpl(context);
+            case ɵDragStrategyEnum.ByAxisProperties:
+                return new ɵDragStrategyByAxisPropertiesImpl(context);
+            case ɵDragStrategyEnum.ByTranslate3d:
+                return new ɵDragStrategyByTranslate3dImpl(context);
             default:
                 throw new Error(
                     `Incorrect type of strategyConfig. ` +

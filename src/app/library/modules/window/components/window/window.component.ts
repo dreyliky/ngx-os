@@ -7,7 +7,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
 
 /**
  * ## Content Projection Slots
@@ -33,10 +33,10 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WindowComponent extends OsBaseComponent implements OnInit {
+export class WindowComponent extends ɵOsBaseComponent implements OnInit {
     /** Marks window as active (means user works with it right now) */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Active}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
     public isActive: boolean = false;
 
     /** Stylelist for scroll view component of the window */

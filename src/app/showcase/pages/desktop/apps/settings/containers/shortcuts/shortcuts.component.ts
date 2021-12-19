@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { GridDirectionEnum, OsBaseViewComponent } from 'ngx-os';
+import { GridDirectionEnum, ɵOsBaseViewComponent } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 import { ShortcutSettingsService } from '../../../../features/shortcut';
 
@@ -10,7 +10,7 @@ import { ShortcutSettingsService } from '../../../../features/shortcut';
     styleUrls: ['./shortcuts.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShortcutsComponent extends OsBaseViewComponent implements OnInit {
+export class ShortcutsComponent extends ɵOsBaseViewComponent implements OnInit {
     public gridDirectionEnum = GridDirectionEnum;
     public formGroup: FormGroup;
 

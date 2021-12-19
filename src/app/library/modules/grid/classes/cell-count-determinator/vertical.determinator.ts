@@ -1,10 +1,10 @@
 import { GridDirectionEnum } from '../../enums';
 import {
-    BaseGridCellCountDeterminator as BaseDeterminator
+    ɵBaseGridCellCountDeterminator as BaseDeterminator
 } from './base.determinator';
 
 /** @internal */
-export class VerticalGridCellCountDeterminator extends BaseDeterminator {
+export class ɵVerticalGridCellCountDeterminator extends BaseDeterminator {
     public readonly type = GridDirectionEnum.Vertical;
 
     public calculateForAxisY(): number {

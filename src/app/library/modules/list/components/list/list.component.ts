@@ -6,7 +6,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list',
@@ -17,7 +17,7 @@ import { OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent extends OsBaseComponent implements OnInit {
+export class ListComponent extends ɵOsBaseComponent implements OnInit {
     /** Stylelist for scroll view component of the list */
     @Input()
     public scrollViewStyle: object;

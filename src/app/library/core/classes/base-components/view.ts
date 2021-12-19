@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 @Component({
     template: ''
 })
-export abstract class OsBaseViewComponent implements AfterViewInit, OnDestroy {
+export abstract class ɵOsBaseViewComponent implements AfterViewInit, OnDestroy {
     public get whenViewInit$(): Observable<boolean> {
         return this._whenViewInit$
             .asObservable()

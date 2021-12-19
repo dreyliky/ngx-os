@@ -4,7 +4,7 @@ import { ResizerConfig, ResizerEnum } from '../../resizer';
 import { DynamicWindowConfig, DynamicWindowFullscreenOffset } from '../interfaces';
 
 /** @internal */
-export class DynamicWindowConfigModel<D = any, T = any> implements DynamicWindowConfig {
+export class ɵDynamicWindowConfigModel<D = any, T = any> implements DynamicWindowConfig {
     public title?: string;
     public data?: D;
     public type?: T;

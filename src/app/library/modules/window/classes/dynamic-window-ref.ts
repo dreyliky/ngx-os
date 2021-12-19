@@ -1,13 +1,13 @@
 import { ComponentRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { IdGenerator } from '../../../core';
+import { ɵIdGenerator } from '../../../core';
 import { DraggableDirective } from '../../drag-and-drop';
 import { ResizableDirective } from '../../resizer';
 import { DynamicWindowComponent } from '../components';
 import { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
 
 /** @internal */
-export class DynamicWindowRefModel implements DynamicWindowRef {
+export class ɵDynamicWindowRefModel implements DynamicWindowRef {
     public get isHidden$(): Observable<boolean> {
         return this._isHidden$.asObservable();
     }
@@ -80,7 +80,7 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
     private readonly _beforeHidden$ = new Subject<unknown>();
     private readonly _afterClosed$ = new Subject<unknown>();
 
-    private readonly _id = IdGenerator.generate();
+    private readonly _id = ɵIdGenerator.generate();
     private _windowElement: HTMLElement;
     private _draggableDirective: DraggableDirective;
     private _resizableDirective: ResizableDirective;

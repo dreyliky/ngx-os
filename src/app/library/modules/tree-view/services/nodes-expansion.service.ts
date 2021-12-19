@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { isNil } from '../../../core';
+import { ɵIsNil } from '../../../core';
 import { TreeNode, TreeNodeExpansionEvent } from '../interfaces';
-import { TreeNodesState } from '../states';
+import { ɵTreeNodesState } from '../states';
 
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly. */
 @Injectable()
@@ -12,13 +12,13 @@ export class TreeNodesExpansionService<T = any> {
     public _osCollapsed: EventEmitter<TreeNodeExpansionEvent<T>> = new EventEmitter();
 
     constructor(
-        private readonly state: TreeNodesState<T>
+        private readonly state: ɵTreeNodesState<T>
     ) {}
 
     /** @internal */
     public _initDefaultStateForAll(commonDefaultState: boolean): void {
         this.setStateForAll((node) => (
-            (!isNil(node.isExpanded)) ? node.isExpanded : commonDefaultState
+            (!ɵIsNil(node.isExpanded)) ? node.isExpanded : commonDefaultState
         ));
     }
 
@@ -70,7 +70,7 @@ export class TreeNodesExpansionService<T = any> {
         this.state.flatData.forEach((node) => {
             const newState = getState(node);
 
-            if (!isNil(newState) && (newState !== node.isExpanded)) {
+            if (!ɵIsNil(newState) && (newState !== node.isExpanded)) {
                 (newState) ? this.expand(node) : this.collapse(node);
             }
         });

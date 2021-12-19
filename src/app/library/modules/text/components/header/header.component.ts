@@ -7,7 +7,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-header',
@@ -18,7 +18,7 @@ import { OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent extends OsBaseComponent implements OnInit {
+export class HeaderComponent extends ɵOsBaseComponent implements OnInit {
     /** Header size from 1 to 6 (like `<h1>` - `<h6>`) */
     @Input()
     public set size(newSize: number) {

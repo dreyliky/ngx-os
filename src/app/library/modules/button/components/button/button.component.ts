@@ -5,7 +5,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseButtonComponent } from '../../../../core';
+import { ɵOsBaseButtonComponent } from '../../../../core';
 
 @Component({
     selector: 'os-button',
@@ -16,7 +16,7 @@ import { OsBaseButtonComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent extends OsBaseButtonComponent implements OnInit {
+export class ButtonComponent extends ɵOsBaseButtonComponent implements OnInit {
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>
     ) {

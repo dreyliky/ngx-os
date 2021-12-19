@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import * as marked from 'marked';
-import { OsBaseViewComponent, TextComponent } from 'ngx-os';
+import { TextComponent, ɵOsBaseViewComponent } from 'ngx-os';
 import { takeWhile } from 'rxjs/operators';
 import { MARKDOWN_CODE_BLOCKS } from '../../data';
 import { CodeHighlighterService } from '../../services';
@@ -12,7 +12,7 @@ import { CodeLanguageType } from '../../types';
     styleUrls: ['./markdown-previewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MarkdownPreviewerComponent extends OsBaseViewComponent {
+export class MarkdownPreviewerComponent extends ɵOsBaseViewComponent {
     @Input()
     public set data(data: string) {
         this.onNewData(data);

@@ -1,12 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import { Injector } from '@angular/core';
-import { osParseInt } from '../../../core';
+import { ɵParseInt } from '../../../core';
 import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
-import { ResizerConfigModel } from './resizer-config';
+import { ɵResizerConfigModel } from './resizer-config';
 
 /** @internal */
-export abstract class BaseResizer {
+export abstract class ɵBaseResizer {
     public static id: ResizerEnum = null;
 
     protected readonly documentElement: HTMLElement;
@@ -20,7 +20,7 @@ export abstract class BaseResizer {
     protected originalY = 20;
     protected originalMouseX = 20;
     protected originalMouseY = 20;
-    protected config: ResizerConfigModel;
+    protected config: ɵResizerConfigModel;
     protected resizableElement: HTMLElement;
 
     private minSize = 20;
@@ -50,10 +50,10 @@ export abstract class BaseResizer {
         const computedStyles = getComputedStyle(this.resizableElement);
         const { minWidth, maxWidth, minHeight, maxHeight } = computedStyles;
 
-        this.minWidth = this.config.minWidth || osParseInt(minWidth) || this.minSize;
-        this.maxWidth = this.config.maxWidth || osParseInt(maxWidth) || this.minSize;
-        this.minHeight = this.config.minHeight || osParseInt(minHeight) || this.minSize;
-        this.maxHeight = this.config.maxHeight || osParseInt(maxHeight) || this.minSize;
+        this.minWidth = this.config.minWidth || ɵParseInt(minWidth) || this.minSize;
+        this.maxWidth = this.config.maxWidth || ɵParseInt(maxWidth) || this.minSize;
+        this.minHeight = this.config.minHeight || ɵParseInt(minHeight) || this.minSize;
+        this.maxHeight = this.config.maxHeight || ɵParseInt(maxHeight) || this.minSize;
     }
 
     public abstract resizeElement(event: MouseEvent): void;

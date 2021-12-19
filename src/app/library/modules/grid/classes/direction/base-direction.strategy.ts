@@ -1,16 +1,16 @@
-import { Grid } from '../grid';
-import { Cell } from '../grid-cell';
+import { ɵGrid } from '../grid';
+import { ɵCell } from '../grid-cell';
 
 /** @internal */
-export abstract class BaseDirectionStrategy<T = any> {
+export abstract class ɵBaseDirectionStrategy<T = any> {
     constructor(
-        public readonly context: Grid<T>
+        public readonly context: ɵGrid<T>
     ) {}
 
-    public abstract next(cell: Cell<T>): Cell<T>;
-    public abstract nextWithoutData(cell: Cell<T>): Cell<T>;
-    public abstract nextWithData(cell: Cell<T>): Cell<T>;
-    public abstract previous(cell: Cell<T>): Cell<T>;
-    public abstract previousWithoutData(cell: Cell<T>): Cell<T>;
-    public abstract previousWithData(cell: Cell<T>): Cell<T>;
+    public abstract next(cell: ɵCell<T>): ɵCell<T>;
+    public abstract nextWithoutData(cell: ɵCell<T>): ɵCell<T>;
+    public abstract nextWithData(cell: ɵCell<T>): ɵCell<T>;
+    public abstract previous(cell: ɵCell<T>): ɵCell<T>;
+    public abstract previousWithoutData(cell: ɵCell<T>): ɵCell<T>;
+    public abstract previousWithData(cell: ɵCell<T>): ɵCell<T>;
 }

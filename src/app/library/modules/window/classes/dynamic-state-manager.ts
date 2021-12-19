@@ -1,23 +1,23 @@
-import { DynamicStateEnum } from '../enums';
+import { ɵDynamicStateEnum } from '../enums';
 
 /** @internal */
-export class DynamicStateManager {
-    public get state(): DynamicStateEnum {
+export class ɵDynamicStateManager {
+    public get state(): ɵDynamicStateEnum {
         return this._state;
     }
 
-    private _state: DynamicStateEnum;
+    private _state: ɵDynamicStateEnum;
 
     private afterStartCallback: () => void;
     private afterEndCallback: () => void;
     private currentStateTimeoutId: number;
     private readonly cssAnimationClassDuration: number = 500;
 
-    public is(state: DynamicStateEnum): boolean {
+    public is(state: ɵDynamicStateEnum): boolean {
         return (state === this._state);
     }
 
-    public apply(state: DynamicStateEnum): void {
+    public apply(state: ɵDynamicStateEnum): void {
         if (this.state === state) {
             return;
         }

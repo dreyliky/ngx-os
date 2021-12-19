@@ -12,11 +12,7 @@ import {
 } from '@angular/core';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
-    CommonCssClassEnum,
-    Coordinate,
-    EventOutside,
-    GlobalEvents,
-    OsBaseComponent
+    Coordinate, ɵCommonCssClassEnum, ɵEventOutside, ɵGlobalEvents, ɵOsBaseComponent
 } from '../../../../core';
 
 /**
@@ -60,10 +56,10 @@ import {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridItemComponent extends OsBaseComponent implements OnInit {
+export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     /** Is grid item selected? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
     public isSelected: boolean;
 
     /** URL to the icon of the grid item */
@@ -104,7 +100,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     constructor(
         /** @internal */
         public readonly hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: GlobalEvents,
+        private readonly globalEvents: ɵGlobalEvents,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
@@ -127,7 +123,7 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 filter(() => this.isSelected),
-                filter((event) => EventOutside.checkForElement(this.hostRef.nativeElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event))
             )
             .subscribe(() => {
                 this.isSelected = false;

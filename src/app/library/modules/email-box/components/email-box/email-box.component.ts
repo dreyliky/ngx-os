@@ -12,8 +12,8 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { OsBaseFieldComponent } from '../../../../core';
-import { DEFAULT_EMAIL_VALIDATION_PATTERN } from '../../data';
+import { ɵOsBaseFieldComponent } from '../../../../core';
+import { ɵDEFAULT_EMAIL_VALIDATION_PATTERN } from '../../data';
 import { EmailBoxChangeEvent } from '../../interfaces';
 
 @Component({
@@ -26,7 +26,7 @@ import { EmailBoxChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailBoxComponent
-    extends OsBaseFieldComponent
+    extends ɵOsBaseFieldComponent
     implements AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
@@ -34,7 +34,7 @@ export class EmailBoxComponent
 
     /** RegExp for email validation */
     @Input()
-    public pattern: RegExp = DEFAULT_EMAIL_VALIDATION_PATTERN;
+    public pattern: RegExp = ɵDEFAULT_EMAIL_VALIDATION_PATTERN;
 
     /** Fires when the email-box value change */
     @Output()

@@ -6,7 +6,7 @@ import {
     OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { DynamicWindowService, OsBaseViewComponent } from 'ngx-os';
+import { DynamicWindowService, ɵOsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { BackgroundService } from './features/background';
@@ -29,7 +29,7 @@ import { DesktopBackgroundService, DesktopTaskbarService } from './services';
         DesktopTaskbarService
     ]
 })
-export class DesktopComponent extends OsBaseViewComponent implements OnInit {
+export class DesktopComponent extends ɵOsBaseViewComponent implements OnInit {
     @HostBinding('style.background')
     public hostBackgroundStylelist: string;
 

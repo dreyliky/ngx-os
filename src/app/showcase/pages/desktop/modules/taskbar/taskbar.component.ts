@@ -13,7 +13,7 @@ import {
     ButtonComponent,
     DynamicWindowRef,
     DynamicWindowService,
-    OsBaseViewComponent
+    ɵOsBaseViewComponent
 } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 import { TaskbarService } from './taskbar.service';
@@ -31,7 +31,7 @@ import { TaskbarService } from './taskbar.service';
         TaskbarService
     ]
 })
-export class TaskbarComponent extends OsBaseViewComponent implements OnInit, AfterViewInit {
+export class TaskbarComponent extends ɵOsBaseViewComponent implements OnInit, AfterViewInit {
     @ViewChildren(ButtonComponent, { read: ElementRef })
     public set windowRefElements(data: QueryList<ElementRef<HTMLElement>>) {
         this.taskbarService.setWindowRefElements(data);

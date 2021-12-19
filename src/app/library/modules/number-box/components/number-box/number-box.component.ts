@@ -16,8 +16,8 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { isNil, OsBaseFieldComponent } from '../../../../core';
-import { NumericalValueConverter } from '../../helpers/numerical-value-converter.helper';
+import { ɵIsNil, ɵOsBaseFieldComponent } from '../../../../core';
+import { ɵNumericalValueConverter } from '../../helpers/numerical-value-converter.helper';
 import { NumberBoxChangeEvent } from '../../interfaces';
 
 @Component({
@@ -30,7 +30,7 @@ import { NumberBoxChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberBoxComponent
-    extends OsBaseFieldComponent
+    extends ɵOsBaseFieldComponent
     implements OnInit, OnChanges, AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
@@ -72,7 +72,7 @@ export class NumberBoxComponent
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
 
-    private readonly converter = new NumericalValueConverter(this);
+    private readonly converter = new ɵNumericalValueConverter(this);
 
     constructor(
         @Self() @Optional() controlDir: NgControl,
@@ -97,7 +97,7 @@ export class NumberBoxComponent
 
     /** @internal */
     public writeValue(value: string | number): void {
-        if (!isNil(value)) {
+        if (!ɵIsNil(value)) {
             this.value = this.converter.toValid(value);
         } else {
             this.initDefaultValue();

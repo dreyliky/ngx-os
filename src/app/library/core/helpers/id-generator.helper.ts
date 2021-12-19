@@ -1,9 +1,9 @@
-import { RandomHelper } from './random.helper';
+import { ɵRandomHelper } from './random.helper';
 
 /** @internal */
-export abstract class IdGenerator {
+export abstract class ɵIdGenerator {
     public static generate(name: string = ''): string {
-        const randomId = RandomHelper.getRandomInt(1, 1000000);
+        const randomId = ɵRandomHelper.getRandomInt(1, 1000000);
         const nameAsPrefix = (name) ? `${name}-` : '';
 
         return `${nameAsPrefix}${randomId}`;

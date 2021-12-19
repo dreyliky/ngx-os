@@ -1,15 +1,15 @@
-import { CellParams } from '../interfaces';
-import { Grid } from './grid';
+import { ɵCellParams } from '../interfaces';
+import { ɵGrid } from './grid';
 
 /** @internal */
-export class Cell<T = any> {
+export class ɵCell<T = any> {
     public readonly x: number;
     public readonly y: number;
 
     private data: T;
-    private context: Grid<T>;
+    private context: ɵGrid<T>;
 
-    constructor(params: CellParams<T>) {
+    constructor(params: ɵCellParams<T>) {
         Object.assign(this, params);
     }
 
@@ -25,27 +25,27 @@ export class Cell<T = any> {
         this.data = null;
     }
 
-    public getNext(): Cell<T> {
+    public getNext(): ɵCell<T> {
         return this.context.directionStrategy.next(this);
     }
 
-    public getNextWithoutData(): Cell<T> {
+    public getNextWithoutData(): ɵCell<T> {
         return this.context.directionStrategy.nextWithoutData(this);
     }
 
-    public getNextWithData(): Cell<T> {
+    public getNextWithData(): ɵCell<T> {
         return this.context.directionStrategy.nextWithData(this);
     }
 
-    public getPrevious(): Cell<T> {
+    public getPrevious(): ɵCell<T> {
         return this.context.directionStrategy.previous(this);
     }
 
-    public getPreviousWithoutData(): Cell<T> {
+    public getPreviousWithoutData(): ɵCell<T> {
         return this.context.directionStrategy.previousWithoutData(this);
     }
 
-    public getPreviousWithData(): Cell<T> {
+    public getPreviousWithData(): ɵCell<T> {
         return this.context.directionStrategy.previousWithData(this);
     }
 }

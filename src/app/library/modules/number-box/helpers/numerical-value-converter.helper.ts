@@ -1,8 +1,8 @@
-import { isNil } from '../../../core';
+import { ɵIsNil } from '../../../core';
 import { NumberBoxComponent } from '../components/number-box/number-box.component';
 
 /** @internal */
-export class NumericalValueConverter {
+export class ɵNumericalValueConverter {
     constructor(
         private readonly context: NumberBoxComponent
     ) {}
@@ -37,7 +37,7 @@ export class NumericalValueConverter {
     private processMinBoundary(value: string): string {
         const result = +value;
 
-        if (!isNil(this.context.min) && (result < this.context.min)) {
+        if (!ɵIsNil(this.context.min) && (result < this.context.min)) {
             return this.context.min.toString();
         }
 
@@ -47,7 +47,7 @@ export class NumericalValueConverter {
     private processMaxBoundary(value: string): string {
         const result = +value;
 
-        if (!isNil(this.context.max) && (result > this.context.max)) {
+        if (!ɵIsNil(this.context.max) && (result > this.context.max)) {
             return this.context.max.toString();
         }
 
@@ -66,8 +66,8 @@ export class NumericalValueConverter {
 
     private processMinFractionDigits(value: string, digits: string, dotIndex: number): string {
         if (
-            !isNil(this.context.minFractionDigits) &&
-            !isNil(digits) &&
+            !ɵIsNil(this.context.minFractionDigits) &&
+            !ɵIsNil(digits) &&
             (digits.length < this.context.minFractionDigits)
         ) {
             return value.slice(0, dotIndex);
@@ -78,8 +78,8 @@ export class NumericalValueConverter {
 
     private processMaxFractionDigits(value: string, digits: string, dotIndex: number): string {
         if (
-            !isNil(this.context.maxFractionDigits) &&
-            !isNil(digits) &&
+            !ɵIsNil(this.context.maxFractionDigits) &&
+            !ɵIsNil(digits) &&
             (digits.length > this.context.maxFractionDigits)
         ) {
             return (

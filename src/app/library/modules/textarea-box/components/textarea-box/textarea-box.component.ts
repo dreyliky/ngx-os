@@ -13,7 +13,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { OsBaseFieldComponent } from '../../../../core';
+import { ɵOsBaseFieldComponent } from '../../../../core';
 import { TextareaBoxChangeEvent } from '../../interfaces';
 
 @Component({
@@ -26,7 +26,7 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaBoxComponent
-    extends OsBaseFieldComponent
+    extends ɵOsBaseFieldComponent
     implements AfterViewInit, ControlValueAccessor {
     /** Specifies the visible height of a textarea-box, in lines. */
     @Input()

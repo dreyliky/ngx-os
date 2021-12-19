@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
-import { OsBaseComponent } from './component';
+import { ɵOsBaseComponent } from './component';
 
 @Component({
     template: ''
 })
-export abstract class OsBaseFormControlComponent<T = any>
-    extends OsBaseComponent implements ControlValueAccessor {
+export abstract class ɵOsBaseFormControlComponent<T = any>
+    extends ɵOsBaseComponent implements ControlValueAccessor {
     /** @internal */
     public onChange: (value: T) => void;
     /** @internal */
@@ -36,7 +36,7 @@ export abstract class OsBaseFormControlComponent<T = any>
 
     protected initControlDir(
         controlDir: NgControl,
-        valueAccessor: OsBaseFormControlComponent
+        valueAccessor: ɵOsBaseFormControlComponent
     ): void {
         if (controlDir) {
             this.controlDir = controlDir;

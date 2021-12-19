@@ -1,12 +1,12 @@
-import { isNil } from '../../../../core';
+import { ɵIsNil } from '../../../../core';
 import { DraggableDirective } from '../../directives/draggable.directive';
-import { DragStrategyEnum } from '../../enums';
+import { ɵDragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
 import { DragStrategyType } from '../../types';
 
 /** @internal */
-export abstract class BaseDragStrategyImpl {
-    public readonly type: DragStrategyEnum;
+export abstract class ɵBaseDragStrategyImpl {
+    public readonly type: ɵDragStrategyEnum;
 
     protected mouseDownEvent: MouseEvent;
     protected shiftX: number;
@@ -28,7 +28,7 @@ export abstract class BaseDragStrategyImpl {
     }
 
     private setShiftX(event: MouseEvent, elementDomRect: DOMRect): void {
-        if (!isNil(this.context.config.shiftX)) {
+        if (!ɵIsNil(this.context.config.shiftX)) {
             this.shiftX = this.context.config.shiftX;
         } else {
             this.shiftX = event.clientX - elementDomRect.left + scrollX;
@@ -36,7 +36,7 @@ export abstract class BaseDragStrategyImpl {
     }
 
     private setShiftY(event: MouseEvent, elementDomRect: DOMRect): void {
-        if (!isNil(this.context.config.shiftY)) {
+        if (!ɵIsNil(this.context.config.shiftY)) {
             this.shiftY = this.context.config.shiftY;
         } else {
             this.shiftY = event.clientY - elementDomRect.top + scrollY;

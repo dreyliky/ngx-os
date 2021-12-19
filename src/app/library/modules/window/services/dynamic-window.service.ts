@@ -11,10 +11,10 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
-import { DynamicWindowInjector, DynamicWindowRefModel } from '../classes';
+import { ɵDynamicWindowInjector, ɵDynamicWindowRefModel } from '../classes';
 import { DynamicWindowComponent } from '../components';
-import { DynamicWindowConfig, DynamicWindowInputParams, DynamicWindowRef } from '../interfaces';
-import { DynamicWindowReferencesService } from './dynamic-window-references.service';
+import { DynamicWindowConfig, DynamicWindowRef, ɵDynamicWindowInputParams } from '../interfaces';
+import { ɵDynamicWindowReferencesService } from './dynamic-window-references.service';
 
 /** Allows open your component inside an OS-styled window **/
 @Injectable({
@@ -36,7 +36,7 @@ export class DynamicWindowService {
         private readonly injector: Injector,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly applicationRef: ApplicationRef,
-        private readonly referencesService: DynamicWindowReferencesService
+        private readonly referencesService: ɵDynamicWindowReferencesService
     ) {}
 
     /** Opens a window containing the given component */
@@ -55,9 +55,9 @@ export class DynamicWindowService {
             .forEach((windowRef) => windowRef.close());
     }
 
-    private createDynamicWindow(): DynamicWindowRefModel {
-        const windowRef = new DynamicWindowRefModel();
-        const windowInjector = new DynamicWindowInjector({ injector: this.injector, windowRef });
+    private createDynamicWindow(): ɵDynamicWindowRefModel {
+        const windowRef = new ɵDynamicWindowRefModel();
+        const windowInjector = new ɵDynamicWindowInjector({ injector: this.injector, windowRef });
         const componentRef = this.createComponentRef(windowInjector);
 
         windowRef.setComponentRef(componentRef);
@@ -68,7 +68,7 @@ export class DynamicWindowService {
     }
 
     private createComponentRef(
-        windowInjector: DynamicWindowInjector
+        windowInjector: ɵDynamicWindowInjector
     ): ComponentRef<DynamicWindowComponent> {
         return this.componentFactoryResolver
             .resolveComponentFactory(DynamicWindowComponent)
@@ -84,7 +84,7 @@ export class DynamicWindowService {
     }
 
     private initWindowRefAfterClosedObserver(
-        windowRef: DynamicWindowRefModel,
+        windowRef: ɵDynamicWindowRefModel,
         componentRef: ComponentRef<DynamicWindowComponent>
     ): void {
         const destroyDelayInMs = 300;
@@ -98,7 +98,7 @@ export class DynamicWindowService {
     }
 
     private applyDataForCreatedWindowInstance(
-        { windowRef, component }: DynamicWindowInputParams
+        { windowRef, component }: ɵDynamicWindowInputParams
     ): void {
         const { instance: windowInstance } = windowRef.componentRef;
 

@@ -1,8 +1,8 @@
 import { Injector } from '@angular/core';
-import { DynamicWindowRefModel } from '../classes';
+import { ɵDynamicWindowRefModel } from '../classes';
 
 /** @internal */
-export interface DynamicWindowDiParams {
+export interface ɵDynamicWindowDiParams {
     injector: Injector;
-    windowRef: DynamicWindowRefModel;
+    windowRef: ɵDynamicWindowRefModel;
 }

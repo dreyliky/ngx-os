@@ -12,20 +12,18 @@ import {
 } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { CommonCssClassEnum as CommonCssClass } from '../../../core';
-import { BaseResizer, ResizerConfigModel, ResizerFactory } from '../classes';
-import { RESIZERS_ARRAY } from '../data';
+import { ɵCommonCssClassEnum as CommonCssClass } from '../../../core';
+import { ɵBaseResizer, ɵResizerConfigModel, ɵResizerFactory } from '../classes';
+import { ɵRESIZERS_ARRAY } from '../data';
 import {
-    ResizerCssClassEnum as CssClass,
-    ResizerElementTagEnum as ElementTag,
-    ResizerEnum
+    ResizerEnum, ɵResizerCssClassEnum as CssClass, ɵResizerElementTagEnum as ElementTag
 } from '../enums';
 import { ResizeInfo, ResizerConfig } from '../interfaces';
 
 @Directive({
     selector: '[osResizable]',
     providers: [
-        ResizerFactory
+        ɵResizerFactory
     ]
 })
 export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
@@ -59,25 +57,25 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     /** Target resizer */
-    public get resizer(): BaseResizer {
+    public get resizer(): ɵBaseResizer {
         return this._resizer;
     }
 
     /** Configuration of resizing */
-    public get config(): ResizerConfigModel {
+    public get config(): ɵResizerConfigModel {
         return this._config;
     }
 
     private _resizableElement: HTMLElement;
     private _resizersWrapperElement: HTMLElement;
-    private _resizer: BaseResizer;
-    private _config = new ResizerConfigModel();
+    private _resizer: ɵBaseResizer;
+    private _config = new ɵResizerConfigModel();
     private _whenViewInit$ = new ReplaySubject();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         private readonly hostRef: ElementRef<HTMLElement>,
-        private readonly resizerFactory: ResizerFactory
+        private readonly resizerFactory: ɵResizerFactory
     ) {}
 
     public ngOnChanges(): void {
@@ -127,7 +125,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     private initResizerElements(): void {
-        RESIZERS_ARRAY.forEach((resizer) => {
+        ɵRESIZERS_ARRAY.forEach((resizer) => {
             const targetExisting = this._resizersWrapperElement.querySelector(`.${resizer}`);
             const isTargetAllowed = this.config.allowedResizers.includes(resizer);
 

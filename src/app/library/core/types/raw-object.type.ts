@@ -1,4 +1,4 @@
 /** @internal */
-export type RawObject<T> = {
+export type ɵRawObject<T> = {
     [key: string]: T;
 }

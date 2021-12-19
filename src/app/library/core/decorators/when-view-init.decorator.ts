@@ -1,4 +1,4 @@
-import { OsBaseViewComponent } from '../classes';
+import { ɵOsBaseViewComponent } from '../classes';
 
 /**
  * @internal
@@ -6,9 +6,9 @@ import { OsBaseViewComponent } from '../classes';
  *
  * If `viewInit` is false then will be returned the value of @param defaultValue which is `null` by default.
  **/
-export function WhenViewInit<T>(defaultValue: any = null): any {
+export function ɵWhenViewInit<T>(defaultValue: any = null): any {
     return function(
-        baseView: OsBaseViewComponent,
+        baseView: ɵOsBaseViewComponent,
         methodName: string,
         { get, enumerable, value }: TypedPropertyDescriptor<T>
     ): TypedPropertyDescriptor<T> {
@@ -28,7 +28,7 @@ function patchMethod<T>(enumerable: boolean, defaultValue: any, originalMethod: 
     return {
         enumerable,
         get(): T {
-            if ((this as OsBaseViewComponent).isViewInit) {
+            if ((this as ɵOsBaseViewComponent).isViewInit) {
                 return originalMethod.call(this);
             }
 

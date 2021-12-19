@@ -12,7 +12,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 
 /**
  * ## Templates
@@ -47,7 +47,7 @@ import { OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent extends OsBaseComponent implements OnInit {
+export class TabComponent extends ɵOsBaseComponent implements OnInit {
     /** Label text of the tab */
     @Input()
     public label: string;

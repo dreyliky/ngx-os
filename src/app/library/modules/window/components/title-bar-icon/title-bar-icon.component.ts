@@ -7,7 +7,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar-icon',
@@ -18,7 +18,7 @@ import { OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarIconComponent extends OsBaseComponent implements OnInit {
+export class TitleBarIconComponent extends ɵOsBaseComponent implements OnInit {
     /** The URL to the icon */
     @Input()
     public set url(value: string) {

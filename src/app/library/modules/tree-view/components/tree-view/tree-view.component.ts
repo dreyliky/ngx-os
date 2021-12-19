@@ -13,7 +13,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 import { ScrollViewComponent } from '../../../scroll-view';
 import {
     TreeNode,
@@ -22,7 +22,7 @@ import {
     TreeNodeSelectionEvent
 } from '../../interfaces';
 import { TreeNodesExpansionService, TreeNodesSelectionService } from '../../services';
-import { TreeNodesState } from '../../states';
+import { ɵTreeNodesState } from '../../states';
 
 /**
  * ## Content Projection Slots
@@ -89,12 +89,12 @@ import { TreeNodesState } from '../../states';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
-        TreeNodesState,
+        ɵTreeNodesState,
         TreeNodesExpansionService,
         TreeNodesSelectionService
     ]
 })
-export class TreeViewComponent<T = any> extends OsBaseComponent implements OnInit, OnChanges {
+export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnInit, OnChanges {
     /** An array of tree nodes */
     @Input()
     public data: TreeNode<T>[];
@@ -172,7 +172,7 @@ export class TreeViewComponent<T = any> extends OsBaseComponent implements OnIni
         public readonly nodesSelection: TreeNodesSelectionService<T>,
         /** The service for manipulating of nodes expansion states */
         public readonly nodesExpansion: TreeNodesExpansionService<T>,
-        private readonly nodesState: TreeNodesState<T>,
+        private readonly nodesState: ɵTreeNodesState<T>,
         private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();

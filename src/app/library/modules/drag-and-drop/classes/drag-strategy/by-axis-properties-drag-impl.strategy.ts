@@ -1,10 +1,10 @@
-import { DragStrategyEnum } from '../../enums';
-import { BaseDragStrategyImpl } from './base-drag-impl.strategy';
+import { ɵDragStrategyEnum } from '../../enums';
+import { ɵBaseDragStrategyImpl } from './base-drag-impl.strategy';
 import { DragStrategyByAxisProperties } from './by-axis-properties-drag.strategy';
 
 /** @internal */
-export class DragStrategyByAxisPropertiesImpl extends BaseDragStrategyImpl {
-    public readonly type = DragStrategyEnum.ByAxisProperties;
+export class ɵDragStrategyByAxisPropertiesImpl extends ɵBaseDragStrategyImpl {
+    public readonly type = ɵDragStrategyEnum.ByAxisProperties;
 
     public updateElementPosition(event: MouseEvent): void {
         if (this.context.config.isAllowMoveElement) {

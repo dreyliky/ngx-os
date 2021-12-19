@@ -13,7 +13,7 @@ import {
     TitleBarIconComponent,
     WindowComponent
 } from './components';
-import { DYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
+import { ɵDYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
 
 @NgModule({
     declarations: [
@@ -41,7 +41,7 @@ import { DYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
         WindowComponent
     ],
     providers: [
-        DYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER
+        ɵDYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER
     ]
 })
 export class WindowModule {}

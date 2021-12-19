@@ -1,9 +1,9 @@
-import { Grid } from '../classes';
+import { ɵGrid } from '../classes';
 
 /** @internal */
-export interface CellParams<T = any> {
+export interface ɵCellParams<T = any> {
     x: number;
     y: number;
     data: T;
-    context: Grid<T>;
+    context: ɵGrid<T>;
 }

@@ -1,5 +1,5 @@
-import { InvertedKeysOfType } from '../../../../core';
-import { DragStrategyEnum } from '../../enums';
+import { ɵInvertedKeysOfType } from '../../../../core';
+import { ɵDragStrategyEnum } from '../../enums';
 
 /**
  * Affects to move element by CSS `transform: translate3d` function.
@@ -7,13 +7,13 @@ import { DragStrategyEnum } from '../../enums';
  **/
 export class DragStrategyByTranslate3d {
     /** @internal */
-    public readonly type = DragStrategyEnum.ByTranslate3d;
+    public readonly type = ɵDragStrategyEnum.ByTranslate3d;
     /** Forbids to drag by X-Axis */
     public isLockAxisX?: boolean = false;
     /** Forbids to drag by Y-Axis */
     public isLockAxisY?: boolean = false;
 
-    constructor(params?: InvertedKeysOfType<DragStrategyByTranslate3d, DragStrategyEnum>) {
+    constructor(params?: ɵInvertedKeysOfType<DragStrategyByTranslate3d, ɵDragStrategyEnum>) {
         Object.assign(this, params);
     }
 }

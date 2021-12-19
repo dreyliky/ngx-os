@@ -1,19 +1,19 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { CommonCssClassEnum } from '../../enums';
-import { OsBaseComponent } from './component';
+import { ɵCommonCssClassEnum } from '../../enums';
+import { ɵOsBaseComponent } from './component';
 
 @Component({
     template: ''
 })
-export abstract class OsBaseButtonComponent extends OsBaseComponent {
+export abstract class ɵOsBaseButtonComponent extends ɵOsBaseComponent {
     /** Is button disabled */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean;
 
     /** Is button focused */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Focused}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Focused}`)
     public isFocused: boolean;
 
     /** Metadata of destination of the button */

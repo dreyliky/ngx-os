@@ -7,11 +7,7 @@ import {
     OnInit
 } from '@angular/core';
 import { filter } from 'rxjs/operators';
-import {
-    EventOutside,
-    GlobalEvents,
-    IntervalCheckerHelper as IntervalChecker
-} from '../../../core';
+import { ɵEventOutside, ɵGlobalEvents, ɵIntervalCheckerHelper as IntervalChecker } from '../../../core';
 import { FixedToParentConfig } from '../classes';
 
 /**
@@ -43,7 +39,7 @@ export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit 
 
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: GlobalEvents
+        private readonly globalEvents: ɵGlobalEvents
     ) {}
 
     public ngOnChanges(): void {
@@ -68,7 +64,7 @@ export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit 
         this.globalEvents.fromDocument('wheel')
             .pipe(
                 filter(() => this._config.isEnabled),
-                filter((event) => EventOutside.checkForElement(this.targetElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.targetElement, event))
             )
             .subscribe(() => {
                 this.intervalChecker.start({

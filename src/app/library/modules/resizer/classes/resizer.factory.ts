@@ -1,35 +1,35 @@
 import { Injectable, Injector } from '@angular/core';
 import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
-import { BaseResizer } from './base-resizer';
-import { BottomLeftResizer } from './bottom-left-resizer';
-import { BottomResizer } from './bottom-resizer';
-import { BottomRightResizer } from './bottom-right-resizer';
-import { LeftResizer } from './left-resizer';
-import { RightResizer } from './right-resizer';
-import { TopLeftResizer } from './top-left-resizer';
-import { TopResizer } from './top-resizer';
-import { TopRightResizer } from './top-right-resizer';
+import { ɵBaseResizer } from './base-resizer';
+import { ɵBottomLeftResizer } from './bottom-left-resizer';
+import { ɵBottomResizer } from './bottom-resizer';
+import { ɵBottomRightResizer } from './bottom-right-resizer';
+import { ɵLeftResizer } from './left-resizer';
+import { ɵRightResizer } from './right-resizer';
+import { ɵTopLeftResizer } from './top-left-resizer';
+import { ɵTopResizer } from './top-resizer';
+import { ɵTopRightResizer } from './top-right-resizer';
 
 /** @internal */
 @Injectable()
-export class ResizerFactory {
+export class ɵResizerFactory {
     private readonly resizers = [
-        TopLeftResizer,
-        TopResizer,
-        TopRightResizer,
-        LeftResizer,
-        RightResizer,
-        BottomLeftResizer,
-        BottomResizer,
-        BottomRightResizer
+        ɵTopLeftResizer,
+        ɵTopResizer,
+        ɵTopRightResizer,
+        ɵLeftResizer,
+        ɵRightResizer,
+        ɵBottomLeftResizer,
+        ɵBottomResizer,
+        ɵBottomRightResizer
     ];
 
     constructor(
         private readonly injector: Injector
     ) {}
 
-    public create(id: ResizerEnum, context: ResizableDirective): BaseResizer {
+    public create(id: ResizerEnum, context: ResizableDirective): ɵBaseResizer {
         const ResizerType = this.resizers
             .find((resizer) => resizer.id === id);
 

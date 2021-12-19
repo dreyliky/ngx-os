@@ -1,5 +1,5 @@
 /** @internal */
-export enum CommonCssClassEnum {
+export enum ɵCommonCssClassEnum {
     Active = 'os-active',
     Focused = 'os-focused',
     Disabled = 'os-disabled',

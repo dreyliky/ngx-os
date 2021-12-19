@@ -11,8 +11,8 @@ import {
     Output
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { BaseDragStrategyImpl, DraggerConfigModel, DragStrategyFactory } from '../classes';
-import { DraggerCssClassEnum as CssClass } from '../enums';
+import { ɵBaseDragStrategyImpl, ɵDraggerConfigModel, ɵDragStrategyFactory } from '../classes';
+import { ɵDraggerCssClassEnum as CssClass } from '../enums';
 import { DraggerConfig, DragInfo } from '../interfaces';
 
 /** Makes HTML element draggable by mouse */
@@ -55,7 +55,7 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     /** Target dragging strategy */
-    public get strategy(): BaseDragStrategyImpl {
+    public get strategy(): ɵBaseDragStrategyImpl {
         return this._strategy;
     }
 
@@ -71,8 +71,8 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
 
     private _draggableElement: HTMLElement;
     private _movableElement: HTMLElement;
-    private _strategy: BaseDragStrategyImpl;
-    private _config = new DraggerConfigModel();
+    private _strategy: ɵBaseDragStrategyImpl;
+    private _config = new ɵDraggerConfigModel();
     private _whenViewInit$ = new ReplaySubject();
 
     constructor(
@@ -112,8 +112,8 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     private initStrategy(): void {
-        if (DragStrategyFactory.isDifferent(this._config.strategy, this)) {
-            this._strategy = DragStrategyFactory.create(this._config.strategy, this);
+        if (ɵDragStrategyFactory.isDifferent(this._config.strategy, this)) {
+            this._strategy = ɵDragStrategyFactory.create(this._config.strategy, this);
         }
     }
 

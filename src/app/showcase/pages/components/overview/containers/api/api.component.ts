@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/cor
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts/containers';
-import { OsBaseViewComponent } from 'ngx-os';
+import { ɵOsBaseViewComponent } from 'ngx-os';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../../overview.service';
 
@@ -13,7 +13,7 @@ import { OverviewService } from '../../overview.service';
     styleUrls: ['./api.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ApiComponent extends OsBaseViewComponent implements OnInit {
+export class ApiComponent extends ɵOsBaseViewComponent implements OnInit {
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         @Inject(MAIN_LAYOUT) private readonly mainLayout: MainLayoutComponent,

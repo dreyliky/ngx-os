@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 import { TabComponent } from '../tab';
 
 @Component({
@@ -26,7 +26,7 @@ import { TabComponent } from '../tab';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupComponent extends OsBaseComponent implements OnInit, OnDestroy {
+export class TabGroupComponent extends ɵOsBaseComponent implements OnInit, OnDestroy {
     /** Index of the tab which is selected */
     @Input()
     public selectedTabIndex: number = 0;

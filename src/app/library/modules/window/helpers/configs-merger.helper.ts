@@ -1,7 +1,7 @@
 import { DynamicWindowConfig } from '../interfaces';
 
 /** @internal */
-export function mergeConfigs(
+export function ɵMergeConfigs(
     updated: DynamicWindowConfig,
     shared: DynamicWindowConfig
 ): DynamicWindowConfig {

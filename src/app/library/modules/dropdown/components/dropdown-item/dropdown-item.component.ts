@@ -13,7 +13,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
-import { CommonCssClassEnum, isNil, OsBaseComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵIsNil, ɵOsBaseComponent } from '../../../../core';
 import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 
@@ -27,7 +27,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownItemComponent<T = any>
-    extends OsBaseComponent
+    extends ɵOsBaseComponent
     implements OnInit, AfterViewInit {
     /** Data of the dropdown item */
     @Input()
@@ -43,7 +43,7 @@ export class DropdownItemComponent<T = any>
 
     /** Is dropdown item disabled? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
     /** Fires when the dropdown item selected */
@@ -51,7 +51,7 @@ export class DropdownItemComponent<T = any>
     public osSelected: EventEmitter<DropdownValueChangeEvent<T>> = new EventEmitter();
 
     /** Is dropdown item selected? */
-    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
     public isSelected: boolean = false;
 
     private _data: T;
@@ -91,7 +91,7 @@ export class DropdownItemComponent<T = any>
     }
 
     private initDefaultValueIfAbsent(): void {
-        if (isNil(this.data)) {
+        if (ɵIsNil(this.data)) {
             this._data = this.getLabel() as any;
         }
     }

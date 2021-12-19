@@ -1,5 +1,5 @@
 /** @internal */
-export enum ResizerCssClassEnum {
+export enum ɵResizerCssClassEnum {
     Resizable = 'os-resizable',
     Resizing = 'os-resizing'
 }

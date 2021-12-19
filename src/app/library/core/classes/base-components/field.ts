@@ -1,19 +1,19 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { CommonCssClassEnum } from '../../enums';
-import { OsBaseFormControlComponent } from './form-control-element';
+import { ɵCommonCssClassEnum } from '../../enums';
+import { ɵOsBaseFormControlComponent } from './form-control-element';
 
 @Component({
     template: ''
 })
-export abstract class OsBaseFieldComponent extends OsBaseFormControlComponent {
+export abstract class ɵOsBaseFieldComponent extends ɵOsBaseFormControlComponent {
     /** Is field disabled? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
     /** Is field readonly? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Readonly}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Readonly}`)
     public isReadonly: boolean = false;
 
     /** Is field autofocused? */

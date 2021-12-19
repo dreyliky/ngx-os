@@ -13,7 +13,7 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class GlobalEvents {
+export class ɵGlobalEvents {
     private documentEventMap = new Map<string, Observable<Event>>();
 
     constructor(

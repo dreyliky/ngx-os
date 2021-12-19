@@ -6,7 +6,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseButtonComponent } from '../../../../core';
+import { ɵOsBaseButtonComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar-button',
@@ -17,7 +17,7 @@ import { OsBaseButtonComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarButtonComponent extends OsBaseButtonComponent implements OnInit {
+export class TitleBarButtonComponent extends ɵOsBaseButtonComponent implements OnInit {
     /** Link to the icon */
     @Input()
     public iconUrl: string;

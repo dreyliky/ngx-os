@@ -1,8 +1,8 @@
 import { ResizerEnum } from '../enums';
-import { BaseResizer } from './base-resizer';
+import { ɵBaseResizer } from './base-resizer';
 
 /** @internal */
-export class BottomResizer extends BaseResizer {
+export class ɵBottomResizer extends ɵBaseResizer {
     public static id = ResizerEnum.Bottom;
 
     public resizeElement(event: MouseEvent): void {

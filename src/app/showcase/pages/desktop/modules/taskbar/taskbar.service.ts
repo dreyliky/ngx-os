@@ -3,7 +3,7 @@ import {
     DynamicWindowRef,
     DynamicWindowService,
     DynamicWindowSharedConfigService,
-    elementResizingObserver
+    ɵElementResizingObserver
 } from 'ngx-os';
 import { combineLatest, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -48,7 +48,7 @@ export class TaskbarService implements OnDestroy {
 
     private initChangesObserver(taskbarElement: HTMLElement): void {
         combineLatest([
-            elementResizingObserver(taskbarElement),
+            ɵElementResizingObserver(taskbarElement),
             this.placementService.data$
         ])
             .pipe(

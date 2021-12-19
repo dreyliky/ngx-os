@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { DevExamplesVisibilityService } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
-import { KeysOfType, OsBaseViewComponent } from 'ngx-os';
+import { ɵKeysOfType, ɵOsBaseViewComponent } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../../../overview.service';
 
@@ -21,7 +21,7 @@ interface ListItem {
 interface ApiElement {
     name: string;
     iconUrl: string;
-    serviceDataPropName: KeysOfType<OverviewService, { name: string }[]>;
+    serviceDataPropName: ɵKeysOfType<OverviewService, { name: string }[]>;
 }
 
 @Component({
@@ -30,7 +30,7 @@ interface ApiElement {
     styleUrls: ['./side-bar-api-plan.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SideBarApiPlanComponent extends OsBaseViewComponent implements OnInit {
+export class SideBarApiPlanComponent extends ɵOsBaseViewComponent implements OnInit {
     public apiPlanItems: ListItem[] = [];
     public routeFragment: string;
 

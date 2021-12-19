@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { DynamicWindowCssVariableEnum as WindowCssVariable, DynamicWindowService } from 'ngx-os';
+import { DynamicWindowService, ɵDynamicWindowCssVariableEnum as WindowCssVariable } from 'ngx-os';
 
 @Component({
     selector: 'settings-general-section',

@@ -5,7 +5,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-text',
@@ -16,7 +16,7 @@ import { OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextComponent extends OsBaseComponent implements OnInit {
+export class TextComponent extends ɵOsBaseComponent implements OnInit {
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>
     ) {

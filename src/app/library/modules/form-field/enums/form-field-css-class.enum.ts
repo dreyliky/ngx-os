@@ -1,4 +1,4 @@
 /** @internal */
-export enum FormFieldCssClassEnum {
+export enum ɵFormFieldCssClassEnum {
     Stacked = 'os-stacked'
 }

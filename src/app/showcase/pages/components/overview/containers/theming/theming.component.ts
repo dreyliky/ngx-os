@@ -8,7 +8,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { LibraryThemingDocumentationService } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts/containers';
-import { OsBaseViewComponent } from 'ngx-os';
+import { ɵOsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../../overview.service';
@@ -19,7 +19,7 @@ import { OverviewService } from '../../overview.service';
     styleUrls: ['./theming.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ThemingComponent extends OsBaseViewComponent implements OnInit {
+export class ThemingComponent extends ɵOsBaseViewComponent implements OnInit {
     public markdownContent$: Observable<string>;
     public contentGithubUrl: string;
 

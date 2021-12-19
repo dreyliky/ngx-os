@@ -1,17 +1,17 @@
 import { GridComponent } from '../../components';
 import { GridDirectionEnum } from '../../enums';
 import {
-    BaseGridCellCountDeterminator as BaseStrategy
+    ɵBaseGridCellCountDeterminator as BaseStrategy
 } from './base.determinator';
 import {
-    HorizontalGridCellCountDeterminator as HorizontalStrategy
+    ɵHorizontalGridCellCountDeterminator as HorizontalStrategy
 } from './horizontal.determinator';
 import {
-    VerticalGridCellCountDeterminator as VerticalStrategy
+    ɵVerticalGridCellCountDeterminator as VerticalStrategy
 } from './vertical.determinator';
 
 /** @internal */
-export abstract class GridCellCountDeterminatorFactory {
+export abstract class ɵGridCellCountDeterminatorFactory {
     public static create(direction: GridDirectionEnum, context: GridComponent): BaseStrategy {
         switch (direction) {
             case GridDirectionEnum.Horizontal:

@@ -13,7 +13,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { OsBaseFieldComponent } from '../../../../core';
+import { ɵOsBaseFieldComponent } from '../../../../core';
 import { TextBoxChangeEvent } from '../../interfaces';
 
 @Component({
@@ -25,7 +25,7 @@ import { TextBoxChangeEvent } from '../../interfaces';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextBoxComponent extends OsBaseFieldComponent implements AfterViewInit {
+export class TextBoxComponent extends ɵOsBaseFieldComponent implements AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;

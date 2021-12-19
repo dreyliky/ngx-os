@@ -6,7 +6,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-group-box',
@@ -17,7 +17,7 @@ import { OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GroupBoxComponent extends OsBaseComponent implements OnInit {
+export class GroupBoxComponent extends ɵOsBaseComponent implements OnInit {
     /** Label of group */
     @Input()
     public label: string;

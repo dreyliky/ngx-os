@@ -1,7 +1,7 @@
 import { InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
 import { DYNAMIC_WINDOW_REF, IS_DYNAMIC_WINDOW_CONTEXT } from '../data';
-import { DynamicWindowDiParams } from '../interfaces';
-import { DynamicWindowRefModel } from './dynamic-window-ref';
+import { ɵDynamicWindowDiParams } from '../interfaces';
+import { ɵDynamicWindowRefModel } from './dynamic-window-ref';
 
 /**
  * @internal
@@ -9,13 +9,13 @@ import { DynamicWindowRefModel } from './dynamic-window-ref';
  * Allows injecting these data using InjectionTokens
  * in the component rendered inside the dynamic window
  **/
-export class DynamicWindowInjector implements Injector {
+export class ɵDynamicWindowInjector implements Injector {
     private readonly parentInjector: Injector;
-    private readonly windowRef: DynamicWindowRefModel;
+    private readonly windowRef: ɵDynamicWindowRefModel;
     private additionalTokens: WeakMap<object, unknown>;
 
     constructor(
-        { injector, windowRef }: DynamicWindowDiParams
+        { injector, windowRef }: ɵDynamicWindowDiParams
     ) {
         this.parentInjector = injector;
         this.windowRef = windowRef;

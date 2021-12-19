@@ -9,7 +9,7 @@ import {
     DynamicWindowRef,
     DynamicWindowService,
     DYNAMIC_WINDOW_REF,
-    KeysOfType
+    ɵKeysOfType
 } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -75,7 +75,7 @@ export class ExperimentsAppComponent implements OnInit {
         });
     }
 
-    public makeGroupWindowsAction(action: KeysOfType<DynamicWindowRef, () => any>): void {
+    public makeGroupWindowsAction(action: ɵKeysOfType<DynamicWindowRef, () => any>): void {
         clearInterval(this.currentActionIntervalId);
 
         let currentWindowRefIndex = 0;

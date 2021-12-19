@@ -14,7 +14,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
 import { SliderValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -27,7 +27,7 @@ import { SliderValueChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderComponent
-    extends OsBaseFormControlComponent<number>
+    extends ɵOsBaseFormControlComponent<number>
     implements AfterViewInit, ControlValueAccessor {
     /** Label text near the slider */
     @Input()
@@ -43,7 +43,7 @@ export class SliderComponent
 
     /** Is slider disabled? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean;
 
     /** Minimum possible value of the slider */

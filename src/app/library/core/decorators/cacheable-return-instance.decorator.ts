@@ -1,13 +1,13 @@
-import { OsBaseViewComponent } from '../classes';
-import { isObjectsWithSameData } from '../helpers';
+import { ɵOsBaseViewComponent } from '../classes';
+import { ɵIsObjectsWithSameData } from '../helpers';
 
 /**
  * @internal
  * Returns a new instance of the object only when DATA inside new instance
  * is different than DATA in instance returned previous time.
  **/
-export function CacheableReturnInstance<T>(
-    baseView: OsBaseViewComponent,
+export function ɵCacheableReturnInstance<T>(
+    baseView: ɵOsBaseViewComponent,
     methodName: string,
     { get, enumerable, value }: TypedPropertyDescriptor<T>
 ): any {
@@ -29,7 +29,7 @@ function patchMethod<T>(enumerable: boolean, methodName: string, originalMethod:
             const previousInstance = this[`ɵ${methodName}`];
             const newInstance = originalMethod.call(this);
 
-            if (!previousInstance || !isObjectsWithSameData(previousInstance, newInstance)) {
+            if (!previousInstance || !ɵIsObjectsWithSameData(previousInstance, newInstance)) {
                 this[`ɵ${methodName}`] = newInstance;
 
                 return newInstance;

@@ -13,13 +13,8 @@ import {
 } from '@angular/core';
 import { timer } from 'rxjs';
 import { debounce, takeUntil } from 'rxjs/operators';
-import { elementResizingObserver, ErrorHelper, OsBaseComponent } from '../../../../core';
-import {
-    BaseGridCellCountDeterminator,
-    Cell,
-    Grid,
-    GridCellCountDeterminatorFactory
-} from '../../classes';
+import { ɵElementResizingObserver, ɵErrorHelper, ɵOsBaseComponent } from '../../../../core';
+import { ɵBaseGridCellCountDeterminator, ɵCell, ɵGrid, ɵGridCellCountDeterminatorFactory } from '../../classes';
 import { GridDirectionEnum } from '../../enums';
 import { GridItemComponent } from '../item';
 
@@ -44,7 +39,7 @@ import { GridItemComponent } from '../item';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridComponent extends OsBaseComponent implements OnInit, OnChanges, AfterViewInit {
+export class GridComponent extends ɵOsBaseComponent implements OnInit, OnChanges, AfterViewInit {
     /** Direction of grid items */
     @Input()
     public direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
@@ -98,8 +93,8 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         return this.grid ? this.repaintDelayInMs : 4;
     }
 
-    private grid: Grid<ElementRef<HTMLElement>>;
-    private cellCountDeterminator: BaseGridCellCountDeterminator;
+    private grid: ɵGrid<ElementRef<HTMLElement>>;
+    private cellCountDeterminator: ɵBaseGridCellCountDeterminator;
     private _cellSize: number = 72;
     private _cellMinSize: number = 50;
     private gridItemComponents: QueryList<GridItemComponent>;
@@ -161,7 +156,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     private initGrid(): void {
         if (this.hostElement.offsetParent) {
-            this.grid = new Grid({
+            this.grid = new ɵGrid({
                 xAxisCellsCount: this.cellCountDeterminator.calculateForAxisX(),
                 yAxisCellsCount: this.cellCountDeterminator.calculateForAxisY(),
                 directionType: this.direction
@@ -173,7 +168,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     private initCellCountDeterminator(): void {
         if (this.cellCountDeterminator?.type !== this.direction) {
-            this.cellCountDeterminator = GridCellCountDeterminatorFactory
+            this.cellCountDeterminator = ɵGridCellCountDeterminatorFactory
                 .create(this.direction, this);
         }
     }
@@ -185,7 +180,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
     }
 
     private initHostSizeChangeObserver(): void {
-        elementResizingObserver(this.hostElement)
+        ɵElementResizingObserver(this.hostElement)
             .pipe(
                 takeUntil(this.viewDestroyed$),
                 debounce(() => timer(this.hostResizeDelayBeforeCalculation))
@@ -197,7 +192,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
         gridItem.hostRef.nativeElement.style.display = 'none';
     }
 
-    private initCellStyles(cell: Cell<ElementRef<HTMLElement>>): void {
+    private initCellStyles(cell: ɵCell<ElementRef<HTMLElement>>): void {
         const cellStyle = cell?.getData().nativeElement.style;
 
         if (cellStyle) {
@@ -211,7 +206,7 @@ export class GridComponent extends OsBaseComponent implements OnInit, OnChanges,
 
     private validateCellSize(): void {
         if (this._cellSize < this._cellMinSize) {
-            ErrorHelper.error(this, `Min cellSize is ${this._cellMinSize}`);
+            ɵErrorHelper.error(this, `Min cellSize is ${this._cellMinSize}`);
         }
     }
 }

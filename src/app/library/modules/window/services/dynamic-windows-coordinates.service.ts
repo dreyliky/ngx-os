@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { isNumber } from '../../../core';
-import { DynamicWindowRefModel } from '../classes';
+import { ɵIsNumber } from '../../../core';
+import { ɵDynamicWindowRefModel } from '../classes';
 
 /** @internal */
 @Injectable({
     providedIn: 'root'
 })
-export class DynamicWindowsDefaultCoordinatesService {
+export class ɵDynamicWindowsDefaultCoordinatesService {
     private readonly base = 96;
     private readonly multiplier = 32;
     private readonly maxAmountOfWindows = 8;
     private currentAmountOfWindows = 0;
 
-    public applyIfSpecificAbsent(windowRef: DynamicWindowRefModel): void {
-        if (!isNumber(windowRef.config.positionX) || !isNumber(windowRef.config.positionY)) {
+    public applyIfSpecificAbsent(windowRef: ɵDynamicWindowRefModel): void {
+        if (!ɵIsNumber(windowRef.config.positionX) || !ɵIsNumber(windowRef.config.positionY)) {
             this.resetCurrentAmountOfWindowsIfExceedsMax();
 
             const targetPosition = this.calculate();

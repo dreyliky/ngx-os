@@ -1,16 +1,16 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
 import {
-    CacheableReturnInstance,
-    CssClasslistToObjectHelper,
-    OsBaseViewComponent,
-    WhenViewInit
+    ɵCacheableReturnInstance,
+    ɵCssClasslistToObjectHelper,
+    ɵOsBaseViewComponent,
+    ɵWhenViewInit
 } from '../../../../core';
 import { DragStrategyByAxisProperties } from '../../../drag-and-drop';
-import { DynamicStateManager, DynamicWindowRefModel } from '../../classes';
+import { ɵDynamicStateManager, ɵDynamicWindowRefModel } from '../../classes';
 import {
-    DynamicStateEnum,
-    DynamicWindowCssClassEnum as CssClass,
-    DynamicWindowCssVariableEnum as CssVariable
+    ɵDynamicStateEnum,
+    ɵDynamicWindowCssClassEnum as CssClass,
+    ɵDynamicWindowCssVariableEnum as CssVariable
 } from '../../enums';
 import { DynamicWindowConfig } from '../../interfaces';
 
@@ -18,35 +18,35 @@ import { DynamicWindowConfig } from '../../interfaces';
 @Component({
     template: ''
 })
-export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent implements OnDestroy {
+export abstract class BaseDynamicWindowComponent extends ɵOsBaseViewComponent implements OnDestroy {
     @Input()
     public childComponentType: Type<any>;
 
     @Input()
-    public windowRef: DynamicWindowRefModel;
+    public windowRef: ɵDynamicWindowRefModel;
 
     public get isOpening(): boolean {
-        return this.dynamicStateManager.is(DynamicStateEnum.Opening);
+        return this.dynamicStateManager.is(ɵDynamicStateEnum.Opening);
     }
 
     public get isHiding(): boolean {
-        return this.dynamicStateManager.is(DynamicStateEnum.Hiding);
+        return this.dynamicStateManager.is(ɵDynamicStateEnum.Hiding);
     }
 
     public get isShowing(): boolean {
-        return this.dynamicStateManager.is(DynamicStateEnum.Showing);
+        return this.dynamicStateManager.is(ɵDynamicStateEnum.Showing);
     }
 
     public get isClosing(): boolean {
-        return this.dynamicStateManager.is(DynamicStateEnum.Closing);
+        return this.dynamicStateManager.is(ɵDynamicStateEnum.Closing);
     }
 
     public get isEnteringFullscreen(): boolean {
-        return this.dynamicStateManager.is(DynamicStateEnum.EnteringFullscreen);
+        return this.dynamicStateManager.is(ɵDynamicStateEnum.EnteringFullscreen);
     }
 
     public get isEnteringWindowed(): boolean {
-        return this.dynamicStateManager.is(DynamicStateEnum.EnteringWindowed);
+        return this.dynamicStateManager.is(ɵDynamicStateEnum.EnteringWindowed);
     }
 
     public get isHidden(): boolean {
@@ -65,7 +65,7 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         return (this.config.isTitleBarVisible) ? '' : 'none';
     }
 
-    @CacheableReturnInstance
+    @ɵCacheableReturnInstance
     public get windowStyle(): object {
         return {
             [CssVariable.Left]: `${this.config.positionX}px`,
@@ -83,10 +83,10 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         };
     }
 
-    @CacheableReturnInstance
+    @ɵCacheableReturnInstance
     public get windowStyleClass(): object {
         return {
-            ...CssClasslistToObjectHelper.transform(this.config.styleClass),
+            ...ɵCssClasslistToObjectHelper.transform(this.config.styleClass),
             [CssClass.Opening]: this.isOpening,
             [CssClass.Hiding]: this.isHiding,
             [CssClass.Showing]: this.isShowing,
@@ -99,8 +99,8 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         };
     }
 
-    @WhenViewInit()
-    @CacheableReturnInstance
+    @ɵWhenViewInit()
+    @ɵCacheableReturnInstance
     public get draggerConfig(): object {
         return {
             draggableElement: this.titleBarElement,
@@ -111,8 +111,8 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
         };
     }
 
-    @WhenViewInit()
-    @CacheableReturnInstance
+    @ɵWhenViewInit()
+    @ɵCacheableReturnInstance
     public get resizerConfig(): object {
         return {
             targetElement: this.windowElement,
@@ -138,7 +138,7 @@ export abstract class BaseDynamicWindowComponent extends OsBaseViewComponent imp
     public titleBarElement: HTMLElement;
     public titleBarButtons: HTMLElement[] = [];
 
-    protected readonly dynamicStateManager = new DynamicStateManager();
+    protected readonly dynamicStateManager = new ɵDynamicStateManager();
     protected readonly baseZIndex: number = 1000;
     protected readonly alwaysOnTopBaseZIndex: number = 5000;
 

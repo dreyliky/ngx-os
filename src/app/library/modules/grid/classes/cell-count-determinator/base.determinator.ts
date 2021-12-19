@@ -2,7 +2,7 @@ import { GridComponent } from '../../components';
 import { GridDirectionEnum } from '../../enums';
 
 /** @internal */
-export abstract class BaseGridCellCountDeterminator {
+export abstract class ɵBaseGridCellCountDeterminator {
     public abstract readonly type: GridDirectionEnum;
 
     constructor(

@@ -13,7 +13,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
 import { CheckboxValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -26,7 +26,7 @@ import { CheckboxValueChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent<T = any>
-    extends OsBaseFormControlComponent<boolean>
+    extends ɵOsBaseFormControlComponent<boolean>
     implements OnInit, ControlValueAccessor {
     /** Name of the checkbox group */
     @Input()
@@ -34,7 +34,7 @@ export class CheckboxComponent<T = any>
 
     /** Is checkbox disabled? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean;
 
     /** Data of the checkbox */
@@ -46,7 +46,7 @@ export class CheckboxComponent<T = any>
     public osChange: EventEmitter<CheckboxValueChangeEvent<T>> = new EventEmitter();
 
     /** Is checkbox checked? */
-    @HostBinding(`class.${CommonCssClassEnum.Checked}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Checked}`)
     public isChecked: boolean;
 
     @ViewChild('checkbox')

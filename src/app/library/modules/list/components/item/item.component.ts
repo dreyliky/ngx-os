@@ -9,7 +9,7 @@ import {
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list-item',
@@ -20,18 +20,18 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListItemComponent<T = any> extends OsBaseComponent implements OnInit {
+export class ListItemComponent<T = any> extends ɵOsBaseComponent implements OnInit {
     /** Data of the list item */
     @Input()
     public data: T;
 
     /** Is list item selected? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
     public isSelected: boolean = false;
 
     /** Is list item disabled? */
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     @Input()
     public isDisabled: boolean = false;
 

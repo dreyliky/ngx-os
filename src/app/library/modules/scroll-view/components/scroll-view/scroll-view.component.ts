@@ -7,7 +7,7 @@ import {
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-scroll-view',
@@ -18,7 +18,7 @@ import { OsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScrollViewComponent extends OsBaseComponent implements OnInit {
+export class ScrollViewComponent extends ɵOsBaseComponent implements OnInit {
     /** Is vertical scroll enabled? */
     @Input()
     public isVerticalScrollEnabled: boolean = true;
