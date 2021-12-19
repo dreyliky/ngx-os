@@ -14,6 +14,7 @@ export class UtilsFixedToParentOverviewComponent {
     ];
 
     public selectedItem: string;
+    public isFixedToParentEnabled = true;
     public isOverlayVisible = false;
 
     @HostListener('document:click')
