@@ -71,9 +71,6 @@ export class TaskbarComponent extends ɵOsBaseViewComponent implements OnInit, A
         } else {
             windowRef.toggleVisibility();
         }
-
-        // Disable outside click checking for window (which removes active state)
-        event.stopPropagation();
     }
 
     private initWindowRefsObserver(): void {
