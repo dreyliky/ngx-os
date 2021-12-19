@@ -146,7 +146,7 @@
         display: none !important;
     }
 
-    &:hover:not(.os-fullscreen) os-resizers {
+    &:hover:not(.os-fullscreen):not(.os-entering-fullscreen) os-resizers {
         display: inherit;
     }
 
