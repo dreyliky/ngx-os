@@ -37,6 +37,7 @@ export class DropdownItemComponent<T = any>
         this.initDefaultValueIfAbsent();
     }
 
+    /** Data of the dropdown item */
     public get data(): T {
         return this._data;
     }
