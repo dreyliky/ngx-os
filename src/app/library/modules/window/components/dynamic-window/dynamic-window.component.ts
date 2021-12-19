@@ -185,6 +185,7 @@ export class DynamicWindowComponent
                 takeUntil(this._viewDestroyedOrWindowInactive$),
                 // Waiting ~4 ms for skipping currently bubbling click event, which probably triggered our dynamic window.
                 skipUntil(timer()),
+                filter(() => this.isWindowed || this.isFullscreen),
                 filter((event) => ɵEventOutside.checkForElement(this.windowElement, event))
             )
             .subscribe(() => this.windowRef.makeInactive());
