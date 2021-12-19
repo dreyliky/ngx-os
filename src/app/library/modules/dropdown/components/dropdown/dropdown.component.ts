@@ -16,6 +16,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
     ɵCommonCssClassEnum,
@@ -132,7 +133,9 @@ export class DropdownComponent<T = any>
     public _valueTemplate: TemplateRef<HTMLElement>;
 
     /** Is dropdown overlay with items opened? */
-    public isOverlayOpened: boolean = false;
+    public get isOverlayOpened(): boolean {
+        return this._isOverlayOpened$.getValue();
+    }
 
     /** @internal */
     public get _isListAppendToBody(): boolean {
@@ -154,6 +157,16 @@ export class DropdownComponent<T = any>
     /** Dropdown label */
     public label: string;
 
+    private get _viewDestroyedOrOverlayBecomeClosed$(): Observable<boolean> {
+        return merge(
+            this.viewDestroyed$,
+            this._isOverlayOpened$
+                .pipe(filter((isOpened) => !isOpened))
+        );
+    }
+
+    private _isOverlayOpened$ = new BehaviorSubject<boolean>(false);
+
     constructor(
         @Self() @Optional() controlDir: NgControl,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
@@ -167,20 +180,18 @@ export class DropdownComponent<T = any>
 
     public ngOnInit(): void {
         this.initElementEventObservers(this.hostRef.nativeElement);
-        this.initClickOutsideObserver();
     }
 
     /** Opens the dropdown overlay */
     public open(): void {
-        this.isOverlayOpened = true;
-
+        this._isOverlayOpened$.next(true);
+        this.initClickOutsideObserver();
         this.changeDetector.detectChanges();
     }
 
     /** Closes the dropdown overlay */
     public close(): void {
-        this.isOverlayOpened = false;
-
+        this._isOverlayOpened$.next(false);
         this.changeDetector.detectChanges();
     }
 
@@ -223,11 +234,8 @@ export class DropdownComponent<T = any>
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('click')
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                filter((event) => (
-                    this.isOverlayOpened &&
-                    ɵEventOutside.checkForElement(this.hostRef.nativeElement, event)
-                ))
+                takeUntil(this._viewDestroyedOrOverlayBecomeClosed$),
+                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event))
             )
             .subscribe(() => this.close());
     }
