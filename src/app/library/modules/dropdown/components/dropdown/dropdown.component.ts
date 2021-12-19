@@ -17,7 +17,13 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { filter, takeUntil } from 'rxjs/operators';
-import { ɵCommonCssClassEnum, ɵEventOutside, ɵGlobalEvents, ɵIsNil, ɵOsBaseFormControlComponent } from '../../../../core';
+import {
+    ɵCommonCssClassEnum,
+    ɵEventOutside,
+    ɵGlobalEvents,
+    ɵIsNil,
+    ɵOsBaseFormControlComponent
+} from '../../../../core';
 import { IS_DYNAMIC_WINDOW_CONTEXT } from '../../../window/data/is-dynamic-window-context.token';
 import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownItemComponent as ItemComponent } from '../dropdown-item';

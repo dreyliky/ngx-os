@@ -14,7 +14,12 @@ import {
 import { timer } from 'rxjs';
 import { debounce, takeUntil } from 'rxjs/operators';
 import { ɵElementResizingObserver, ɵErrorHelper, ɵOsBaseComponent } from '../../../../core';
-import { ɵBaseGridCellCountDeterminator, ɵCell, ɵGrid, ɵGridCellCountDeterminatorFactory } from '../../classes';
+import {
+    ɵBaseGridCellCountDeterminator,
+    ɵCell,
+    ɵGrid,
+    ɵGridCellCountDeterminatorFactory
+} from '../../classes';
 import { GridDirectionEnum } from '../../enums';
 import { GridItemComponent } from '../item';
 

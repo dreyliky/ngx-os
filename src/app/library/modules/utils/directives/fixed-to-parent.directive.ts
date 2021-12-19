@@ -7,7 +7,11 @@ import {
     OnInit
 } from '@angular/core';
 import { filter } from 'rxjs/operators';
-import { ɵEventOutside, ɵGlobalEvents, ɵIntervalCheckerHelper as IntervalChecker } from '../../../core';
+import {
+    ɵEventOutside,
+    ɵGlobalEvents,
+    ɵIntervalCheckerHelper as IntervalChecker
+} from '../../../core';
 import { FixedToParentConfig } from '../classes';
 
 /**

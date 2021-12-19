@@ -18,7 +18,10 @@ import { ɵEventOutside, ɵGlobalEvents } from '../../../../core';
 import { DraggableDirective } from '../../../drag-and-drop';
 import { ResizableDirective, ResizeInfo } from '../../../resizer';
 import { DYNAMIC_WINDOW_SHARED_CONFIG as SHARED_CONFIG } from '../../data';
-import { ɵDynamicStateEnum as DynamicState, ɵDynamicWindowCssVariableEnum as CssVariable } from '../../enums';
+import {
+    ɵDynamicStateEnum as DynamicState,
+    ɵDynamicWindowCssVariableEnum as CssVariable
+} from '../../enums';
 import { ɵMergeConfigs } from '../../helpers';
 import { DynamicWindowConfig } from '../../interfaces';
 import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
