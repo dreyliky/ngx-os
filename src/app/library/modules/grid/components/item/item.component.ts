@@ -10,6 +10,7 @@ import {
     TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
+import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
     Coordinate, ɵCommonCssClassEnum, ɵEventOutside, ɵGlobalEvents, ɵOsBaseComponent
@@ -60,7 +61,18 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     /** Is grid item selected? */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
-    public isSelected: boolean;
+    public set isSelected(isSelected: boolean) {
+        this._isSelected$.next(isSelected);
+
+        if (isSelected) {
+            this.initClickOutsideObserver();
+        }
+    }
+
+    /** Is grid item selected? */
+    public get isSelected(): boolean {
+        return this._isSelected$.getValue();
+    }
 
     /** URL to the icon of the grid item */
     @Input()
@@ -97,6 +109,16 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     /** @internal */
     public _iconBackgroundCssUrl: string;
 
+    private _isSelected$ = new BehaviorSubject<boolean>(false);
+
+    private get _viewDestroyedOrBecomeDeselected$(): Observable<boolean> {
+        return merge(
+            this.viewDestroyed$,
+            this._isSelected$
+                .pipe(filter((isSelected) => !isSelected))
+        );
+    }
+
     constructor(
         /** @internal */
         public readonly hostRef: ElementRef<HTMLElement>,
@@ -108,7 +130,6 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
 
     public ngOnInit(): void {
         this.initElementEventObservers(this.hostRef.nativeElement);
-        this.initClickOutsideObserver();
     }
 
     protected onMouseDown(event: MouseEvent): void {
@@ -121,8 +142,7 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('mousedown')
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                filter(() => this.isSelected),
+                takeUntil(this._viewDestroyedOrBecomeDeselected$),
                 filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event))
             )
             .subscribe(() => {
