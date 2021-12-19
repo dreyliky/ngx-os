@@ -69,6 +69,7 @@ export class DynamicWindowComponent
         this.initIsFullscreenStateObserver();
         this.initAfterClosedStateObserver();
         this.initWindowIdOrderObserver();
+        this.initIsActiveObserver();
         this.initOutsideClickObserver();
     }
 
@@ -175,15 +176,18 @@ export class DynamicWindowComponent
     private initMousedownObserver(): void {
         fromEvent(this.windowElement, 'mousedown')
             .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe(() => this.windowRef.makeActive());
+            .subscribe(() => {
+                this.windowRef.makeActive();
+                this.initOutsideClickObserver();
+            });
     }
 
     private initOutsideClickObserver(): void {
         this.globalEvents.fromDocument('click')
             .pipe(
-                takeUntil(this.viewDestroyed$),
+                takeUntil(this._viewDestroyedOrWindowInactive$),
+                // Waiting 4 ms for the current click event bubbling, which probably triggered our dynamic window.
                 skipUntil(timer()),
-                filter(() => this.windowRef.isActive),
                 filter((event) => ɵEventOutside.checkForElement(this.windowElement, event))
             )
             .subscribe(() => this.windowRef.makeInactive());
@@ -224,6 +228,11 @@ export class DynamicWindowComponent
                 ))
             )
             .subscribe((dynamicState) => this.dynamicStateManager.apply(dynamicState));
+    }
+
+    private initIsActiveObserver(): void {
+        this.windowRef.isActive$
+            .subscribe(() => this.changeDetector.detectChanges());
     }
 
     private initAfterClosedStateObserver(): void {

@@ -1,4 +1,6 @@
 import { Component, ComponentRef, Input, OnDestroy, Type } from '@angular/core';
+import { merge, Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import {
     ɵCacheableReturnInstance,
     ɵCssClasslistToObjectHelper,
@@ -63,6 +65,14 @@ export abstract class BaseDynamicWindowComponent extends ɵOsBaseViewComponent i
 
     public get _titleBarDisplayAttr(): string {
         return (this.config.isTitleBarVisible) ? '' : 'none';
+    }
+
+    public get _viewDestroyedOrWindowInactive$(): Observable<boolean> {
+        return merge(
+            this.viewDestroyed$,
+            this.windowRef.isActive$
+                .pipe(filter((isActive) => !isActive))
+        );
     }
 
     @ɵCacheableReturnInstance

@@ -3,7 +3,7 @@
     [styleClass]="windowStyleClass"
     [style]="windowStyle"
     [attr.id]="windowRef.id"
-    [isActive]="windowRef.isActive$ | async"
+    [isActive]="windowRef.isActive"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
     (osResizeStart)="onResizeStart()"
