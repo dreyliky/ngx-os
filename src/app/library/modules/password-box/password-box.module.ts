@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { PasswordBoxComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { PasswordBoxComponent } from './components';
         PasswordBoxComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         PasswordBoxComponent

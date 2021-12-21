@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { ButtonComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { ButtonComponent } from './components';
         ButtonComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         ButtonComponent

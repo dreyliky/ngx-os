@@ -20,7 +20,9 @@ import { DynamicWindowConfig } from '../../interfaces';
 @Component({
     template: ''
 })
-export abstract class BaseDynamicWindowComponent extends ɵOsBaseViewComponent implements OnDestroy {
+export abstract class ɵBaseDynamicWindowComponent
+    extends ɵOsBaseViewComponent
+    implements OnDestroy {
     @Input()
     public childComponentType: Type<any>;
 

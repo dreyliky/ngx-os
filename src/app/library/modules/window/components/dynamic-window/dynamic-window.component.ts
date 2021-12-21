@@ -24,7 +24,7 @@ import {
 } from '../../enums';
 import { ɵMergeConfigs } from '../../helpers';
 import { DynamicWindowConfig } from '../../interfaces';
-import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
+import { ɵBaseDynamicWindowComponent } from './base-dynamic-window.component';
 
 /**
  * @internal
@@ -39,8 +39,8 @@ import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicWindowComponent
-    extends BaseDynamicWindowComponent
+export class ɵDynamicWindowComponent
+    extends ɵBaseDynamicWindowComponent
     implements OnInit, AfterViewInit {
     @ViewChild('content', { read: ViewContainerRef, static: true })
     private readonly contentViewRef: ViewContainerRef;

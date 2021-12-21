@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { HeaderComponent, LabelComponent, TextComponent } from './components';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { HeaderComponent, LabelComponent, TextComponent } from './components';
         LabelComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         TextComponent,

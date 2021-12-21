@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ScrollViewModule } from '../scroll-view';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { TreeViewComponent } from './components';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { TreeViewComponent } from './components';
         TreeViewComponent
     ],
     imports: [
-        SharedModule,
+        ɵSharedModule,
         ScrollViewModule
     ],
     exports: [

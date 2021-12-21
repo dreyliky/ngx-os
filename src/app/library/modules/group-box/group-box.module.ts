@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { GroupBoxComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { GroupBoxComponent } from './components';
         GroupBoxComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         GroupBoxComponent

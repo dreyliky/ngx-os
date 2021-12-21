@@ -12,7 +12,7 @@ import {
 import { Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { ɵDynamicWindowInjector, ɵDynamicWindowRefModel } from '../classes';
-import { DynamicWindowComponent } from '../components';
+import { ɵDynamicWindowComponent } from '../components';
 import { DynamicWindowConfig, DynamicWindowRef, ɵDynamicWindowInputParams } from '../interfaces';
 import { ɵDynamicWindowReferencesService } from './dynamic-window-references.service';
 
@@ -69,13 +69,13 @@ export class DynamicWindowService {
 
     private createComponentRef(
         windowInjector: ɵDynamicWindowInjector
-    ): ComponentRef<DynamicWindowComponent> {
+    ): ComponentRef<ɵDynamicWindowComponent> {
         return this.componentFactoryResolver
-            .resolveComponentFactory(DynamicWindowComponent)
+            .resolveComponentFactory(ɵDynamicWindowComponent)
             .create(windowInjector);
     }
 
-    private appendWindowComponentToBody(componentRef: ComponentRef<DynamicWindowComponent>): void {
+    private appendWindowComponentToBody(componentRef: ComponentRef<ɵDynamicWindowComponent>): void {
         const componentHostView = componentRef.hostView as EmbeddedViewRef<unknown>;
         const componentHtmlElement = componentHostView.rootNodes[0] as HTMLElement;
 
@@ -85,7 +85,7 @@ export class DynamicWindowService {
 
     private initWindowRefAfterClosedObserver(
         windowRef: ɵDynamicWindowRefModel,
-        componentRef: ComponentRef<DynamicWindowComponent>
+        componentRef: ComponentRef<ɵDynamicWindowComponent>
     ): void {
         const destroyDelayInMs = 300;
 

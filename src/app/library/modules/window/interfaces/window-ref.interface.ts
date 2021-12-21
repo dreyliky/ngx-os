@@ -2,7 +2,7 @@ import { ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DraggableDirective } from '../../drag-and-drop';
 import { ResizableDirective } from '../../resizer';
-import { DynamicWindowComponent } from '../components';
+import { ɵDynamicWindowComponent } from '../components';
 import { DynamicWindowConfig } from './config.interface';
 
 /**
@@ -37,7 +37,7 @@ export interface DynamicWindowRef {
     /** The HTML element of the dynamic window */
     windowElement: HTMLElement;
     /** The component rendered inside the dynamic window */
-    componentRef: ComponentRef<DynamicWindowComponent>;
+    componentRef: ComponentRef<ɵDynamicWindowComponent>;
     /** {@link DraggableDirective} of the dynamic window. Might be used to track events */
     draggableDirective: DraggableDirective;
     /** {@link ResizableDirective} of the dynamic window. Might be used to track events */

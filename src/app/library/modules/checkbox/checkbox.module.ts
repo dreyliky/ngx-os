@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { CheckboxComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { CheckboxComponent } from './components';
         CheckboxComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         CheckboxComponent

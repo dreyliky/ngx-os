@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { TextBoxComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { TextBoxComponent } from './components';
         TextBoxComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         TextBoxComponent

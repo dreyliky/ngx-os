@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ScrollViewModule } from '../scroll-view';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { ListComponent, ListItemComponent } from './components';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { ListComponent, ListItemComponent } from './components';
         ListItemComponent
     ],
     imports: [
-        SharedModule,
+        ɵSharedModule,
         ScrollViewModule
     ],
     exports: [

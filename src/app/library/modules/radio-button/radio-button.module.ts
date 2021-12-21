@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { RadioButtonComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { RadioButtonComponent } from './components';
         RadioButtonComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         RadioButtonComponent

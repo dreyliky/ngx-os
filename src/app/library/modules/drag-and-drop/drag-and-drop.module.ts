@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { DraggableDirective } from './directives';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { DraggableDirective } from './directives';
         DraggableDirective
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         DraggableDirective

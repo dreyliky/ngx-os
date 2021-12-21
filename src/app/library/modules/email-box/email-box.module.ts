@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { EmailBoxComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { EmailBoxComponent } from './components';
         EmailBoxComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         EmailBoxComponent

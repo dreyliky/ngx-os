@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { GridComponent, GridItemComponent } from './components';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { GridComponent, GridItemComponent } from './components';
         GridItemComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         GridComponent,

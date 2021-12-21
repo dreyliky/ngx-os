@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { NumberBoxComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { NumberBoxComponent } from './components';
         NumberBoxComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         NumberBoxComponent

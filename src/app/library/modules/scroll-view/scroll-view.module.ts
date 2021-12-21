@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { ScrollViewComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { ScrollViewComponent } from './components';
         ScrollViewComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         ScrollViewComponent

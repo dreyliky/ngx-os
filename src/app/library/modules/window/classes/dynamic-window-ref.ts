@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ɵIdGenerator } from '../../../core';
 import { DraggableDirective } from '../../drag-and-drop';
 import { ResizableDirective } from '../../resizer';
-import { DynamicWindowComponent } from '../components';
+import { ɵDynamicWindowComponent } from '../components';
 import { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
 
 /** @internal */
@@ -60,7 +60,7 @@ export class ɵDynamicWindowRefModel implements DynamicWindowRef {
         return this._windowElement;
     }
 
-    public get componentRef(): ComponentRef<DynamicWindowComponent> {
+    public get componentRef(): ComponentRef<ɵDynamicWindowComponent> {
         return this._componentRef;
     }
 
@@ -84,7 +84,7 @@ export class ɵDynamicWindowRefModel implements DynamicWindowRef {
     private _windowElement: HTMLElement;
     private _draggableDirective: DraggableDirective;
     private _resizableDirective: ResizableDirective;
-    private _componentRef: ComponentRef<DynamicWindowComponent>;
+    private _componentRef: ComponentRef<ɵDynamicWindowComponent>;
 
     public init(config: DynamicWindowConfig): void {
         this.updateConfig(config);
@@ -167,7 +167,7 @@ export class ɵDynamicWindowRefModel implements DynamicWindowRef {
         this._windowElement = element;
     }
 
-    public setComponentRef(componentRef: ComponentRef<DynamicWindowComponent>): void {
+    public setComponentRef(componentRef: ComponentRef<ɵDynamicWindowComponent>): void {
         if (this._componentRef) {
             throw new Error(`Can't change componentRef`);
         }
