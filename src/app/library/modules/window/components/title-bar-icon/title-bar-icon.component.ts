@@ -1,10 +1,9 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     HostBinding,
+    Injector,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
@@ -18,7 +17,7 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarIconComponent extends ɵOsBaseComponent implements OnInit {
+export class TitleBarIconComponent extends ɵOsBaseComponent {
     /** The URL to the icon */
     @Input()
     public set url(value: string) {
@@ -31,12 +30,8 @@ export class TitleBarIconComponent extends ɵOsBaseComponent implements OnInit {
     public _iconCssBackground: string;
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 }

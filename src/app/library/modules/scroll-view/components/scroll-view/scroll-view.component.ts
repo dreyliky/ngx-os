@@ -1,10 +1,9 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     HostBinding,
+    Injector,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
@@ -18,7 +17,7 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScrollViewComponent extends ɵOsBaseComponent implements OnInit {
+export class ScrollViewComponent extends ɵOsBaseComponent {
     /** Is vertical scroll enabled? */
     @Input()
     public isVerticalScrollEnabled: boolean = true;
@@ -56,13 +55,9 @@ export class ScrollViewComponent extends ɵOsBaseComponent implements OnInit {
     }
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 
     /** Scrolls to given coordinates. Recommend to use this method instead of directly via HTML element */

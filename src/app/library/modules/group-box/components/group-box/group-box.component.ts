@@ -1,9 +1,8 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
+    Injector,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
@@ -17,18 +16,14 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GroupBoxComponent extends ɵOsBaseComponent implements OnInit {
+export class GroupBoxComponent extends ɵOsBaseComponent {
     /** Label of group */
     @Input()
     public label: string;
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 }

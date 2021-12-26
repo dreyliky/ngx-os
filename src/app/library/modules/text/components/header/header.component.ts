@@ -1,10 +1,9 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     HostBinding,
+    Injector,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
@@ -18,7 +17,7 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent extends ɵOsBaseComponent implements OnInit {
+export class HeaderComponent extends ɵOsBaseComponent {
     /** Header size from 1 to 6 (like `<h1>` - `<h6>`) */
     @Input()
     public set size(newSize: number) {
@@ -44,13 +43,9 @@ export class HeaderComponent extends ɵOsBaseComponent implements OnInit {
     private _size: number = this.minSize;
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 
     private validateSize(value: number): void {

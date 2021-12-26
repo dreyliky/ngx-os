@@ -1,9 +1,8 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
+    Injector,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
@@ -17,7 +16,7 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent extends ɵOsBaseComponent implements OnInit {
+export class ListComponent extends ɵOsBaseComponent {
     /** Stylelist for scroll view component of the list */
     @Input()
     public scrollViewStyle: object;
@@ -27,12 +26,8 @@ export class ListComponent extends ɵOsBaseComponent implements OnInit {
     public scrollViewStyleClass: string;
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 }

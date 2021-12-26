@@ -1,18 +1,16 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ElementRef,
-    EventEmitter,
+    Injector,
     Input,
-    Optional,
+    OnInit,
     Output,
-    Self,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { ɵOsBaseFieldComponent } from '../../../../core';
 import { TextareaBoxChangeEvent } from '../../interfaces';
 
@@ -27,7 +25,7 @@ import { TextareaBoxChangeEvent } from '../../interfaces';
 })
 export class TextareaBoxComponent
     extends ɵOsBaseFieldComponent
-    implements AfterViewInit, ControlValueAccessor {
+    implements OnInit, ControlValueAccessor {
     /** Specifies the visible height of a textarea-box, in lines. */
     @Input()
     public rows: number;
@@ -38,22 +36,22 @@ export class TextareaBoxComponent
 
     /** Fires when the textarea-box value change */
     @Output()
-    public osChange: EventEmitter<TextareaBoxChangeEvent> = new EventEmitter();
+    public osChange: Observable<TextareaBoxChangeEvent> = this.createEvent('change')
+        .pipe(
+            map((event) => this.transformChangeEvent(event))
+        );
 
-    @ViewChild('textarea')
-    private readonly textareaElementRef: ElementRef<HTMLInputElement>;
+    protected targetInternalElementSelector = 'textarea';
 
     constructor(
-        @Self() @Optional() controlDir: NgControl,
+        injector: Injector,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-        this.initControlDir(controlDir, this);
+        super(injector);
     }
 
-    public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.textareaElementRef.nativeElement);
-        this.autoFocusFieldIfNeeded(this.textareaElementRef.nativeElement);
+    public ngOnInit(): void {
+        this.initValueChangeObserver();
     }
 
     /** @internal */
@@ -63,12 +61,19 @@ export class TextareaBoxComponent
         this.changeDetector.detectChanges();
     }
 
-    protected onFieldValueChange(originalEvent: Event): void {
+    private transformChangeEvent(originalEvent: Event): TextareaBoxChangeEvent {
         const targetElement = originalEvent.target as HTMLTextAreaElement;
         const value = targetElement.value;
 
-        this.onChange?.(value);
-        this.osChange.emit({ originalEvent, value });
-        this.changeDetector.markForCheck();
+        return { originalEvent, value };
+    }
+
+    private initValueChangeObserver(): void {
+        this.osChange
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(({ value }) => {
+                this.onChange?.(value);
+                this.changeDetector.markForCheck();
+            });
     }
 }

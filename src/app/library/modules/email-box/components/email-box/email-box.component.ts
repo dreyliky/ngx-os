@@ -1,17 +1,15 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ElementRef,
-    EventEmitter,
-    Input, Optional,
+    Injector,
+    Input,
+    OnInit,
     Output,
-    Self,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { ɵOsBaseFieldComponent } from '../../../../core';
 import { ɵDEFAULT_EMAIL_VALIDATION_PATTERN } from '../../data';
 import { EmailBoxChangeEvent } from '../../interfaces';
@@ -25,9 +23,7 @@ import { EmailBoxChangeEvent } from '../../interfaces';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EmailBoxComponent
-    extends ɵOsBaseFieldComponent
-    implements AfterViewInit {
+export class EmailBoxComponent extends ɵOsBaseFieldComponent implements OnInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
@@ -38,27 +34,27 @@ export class EmailBoxComponent
 
     /** Fires when the email-box value change */
     @Output()
-    public osChange: EventEmitter<EmailBoxChangeEvent> = new EventEmitter();
-
-    @ViewChild('emailBox')
-    private readonly inputElementRef: ElementRef<HTMLInputElement>;
+    public osChange: Observable<EmailBoxChangeEvent> = this.createEvent('change')
+        .pipe(
+            map((event) => this.transformChangeEvent(event))
+        );
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
 
+    protected targetInternalElementSelector = 'input';
+
     constructor(
-        @Self() @Optional() controlDir: NgControl,
+        injector: Injector,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-        this.initControlDir(controlDir, this);
+        super(injector);
     }
 
-    public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.inputElementRef.nativeElement);
-        this.autoFocusFieldIfNeeded(this.inputElementRef.nativeElement);
+    public ngOnInit(): void {
+        this.initValueChangeObserver();
     }
 
     /** @internal */
@@ -68,13 +64,20 @@ export class EmailBoxComponent
         this.changeDetector.detectChanges();
     }
 
-    protected onFieldValueChange(originalEvent: Event): void {
+    private transformChangeEvent(originalEvent: Event): EmailBoxChangeEvent {
         const targetElement = originalEvent.target as HTMLInputElement;
         const value = targetElement.value;
         const isValid = this.pattern.test(value);
 
-        this.onChange?.(value);
-        this.osChange.emit({ originalEvent, value, isValid });
-        this.changeDetector.markForCheck();
+        return { originalEvent, value, isValid };
+    }
+
+    private initValueChangeObserver(): void {
+        this.osChange
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(({ value }) => {
+                this.onChange?.(value);
+                this.changeDetector.markForCheck();
+            });
     }
 }

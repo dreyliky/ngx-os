@@ -1,10 +1,9 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     HostBinding,
+    Injector,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
@@ -33,7 +32,7 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WindowComponent extends ɵOsBaseComponent implements OnInit {
+export class WindowComponent extends ɵOsBaseComponent {
     /** Marks window as active (means user works with it right now) */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
@@ -48,12 +47,8 @@ export class WindowComponent extends ɵOsBaseComponent implements OnInit {
     public scrollViewStyleClass: string | string[] | object;
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 }

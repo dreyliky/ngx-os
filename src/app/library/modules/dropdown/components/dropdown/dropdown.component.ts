@@ -3,19 +3,17 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChild,
-    ElementRef,
     EventEmitter,
     HostBinding,
     Inject,
+    Injector,
     Input,
     OnInit,
-    Optional,
     Output,
-    Self,
     TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
@@ -168,18 +166,16 @@ export class DropdownComponent<T = any>
     private _isOverlayOpened$ = new BehaviorSubject<boolean>(false);
 
     constructor(
-        @Self() @Optional() controlDir: NgControl,
+        injector: Injector,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
         private readonly globalEvents: ɵGlobalEvents,
-        private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-        this.initControlDir(controlDir, this);
+        super(injector);
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        this.initClickObserver();
     }
 
     /** Opens the dropdown overlay */
@@ -208,7 +204,7 @@ export class DropdownComponent<T = any>
     }
 
     /** @internal */
-    public initSelectedItem(item: ItemComponent<T>): void {
+    public _initSelectedItem(item: ItemComponent<T>): void {
         this.value = item?.data ?? null;
         this.label = item?.getLabel();
 
@@ -216,19 +212,20 @@ export class DropdownComponent<T = any>
     }
 
     /** @internal */
-    public onItemSelect(event: DropdownValueChangeEvent<T>, item: ItemComponent<T>): void {
-        this.initSelectedItem(item);
+    public _onItemSelect(event: DropdownValueChangeEvent<T>, item: ItemComponent<T>): void {
+        this._initSelectedItem(item);
         this.osChange.emit(event);
         this.onChange?.(event.data);
         this.close();
     }
 
-    protected onClick(event: PointerEvent): void {
-        super.onClick(event);
-
-        if (!this.isDisabled) {
-            this.toggle();
-        }
+    private initClickObserver(): void {
+        this.osClick
+            .pipe(
+                takeUntil(this.viewDestroyed$),
+                filter(() => !this.isDisabled)
+            )
+            .subscribe(() => this.toggle());
     }
 
     private initClickOutsideObserver(): void {

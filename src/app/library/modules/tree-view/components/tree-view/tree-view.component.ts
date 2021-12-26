@@ -2,11 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     ContentChild,
-    ElementRef,
     EventEmitter,
+    Injector,
     Input,
     OnChanges,
-    OnInit,
     Output,
     SimpleChanges,
     TemplateRef,
@@ -94,7 +93,7 @@ import { ɵTreeNodesState } from '../../states';
         TreeNodesSelectionService
     ]
 })
-export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnInit, OnChanges {
+export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnChanges {
     /** An array of tree nodes */
     @Input()
     public data: TreeNode<T>[];
@@ -168,22 +167,18 @@ export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnI
     public readonly _nodeContentTemplate: TemplateRef<any>;
 
     constructor(
+        injector: Injector,
         /** The service for manipulating of nodes selection states */
         public readonly nodesSelection: TreeNodesSelectionService<T>,
         /** The service for manipulating of nodes expansion states */
         public readonly nodesExpansion: TreeNodesExpansionService<T>,
-        private readonly nodesState: ɵTreeNodesState<T>,
-        private readonly hostRef: ElementRef<HTMLElement>
+        private readonly nodesState: ɵTreeNodesState<T>
     ) {
-        super();
+        super(injector);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
         this.processDataAfterValueChanged(changes);
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     /** @internal */

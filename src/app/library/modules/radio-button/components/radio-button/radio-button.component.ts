@@ -5,15 +5,15 @@ import {
     ElementRef,
     EventEmitter,
     HostBinding,
+    Injector,
     Input,
     OnInit,
-    Optional,
     Output,
-    Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
 import { RadioButtonValueChangeEvent } from '../../interfaces';
 
@@ -56,23 +56,21 @@ export class RadioButtonComponent<T = any>
     public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
     @ViewChild('radioButton')
-    private readonly radioElementRef: ElementRef<HTMLInputElement>;
+    private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        @Self() @Optional() controlDir: NgControl,
-        private readonly hostRef: ElementRef<HTMLElement>,
+        injector: Injector,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-        this.initControlDir(controlDir, this);
+        super(injector);
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        this.initClickObserver();
     }
 
     /** @internal */
-    public onRadioButtonChange(originalEvent: Event): void {
+    public _onRadioButtonChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
 
         this.onChange?.(this.data);
@@ -91,15 +89,18 @@ export class RadioButtonComponent<T = any>
         this.changeDetector.detectChanges();
     }
 
-    protected onClick(event: PointerEvent): void {
-        const currentState = this.radioElementRef.nativeElement.checked;
+    private initClickObserver(): void {
+        this.osClick
+            .pipe(
+                takeUntil(this.viewDestroyed$),
+                map(() => this.inputElementRef.nativeElement),
+                filter((element) => !this.isDisabled && !element.checked)
+            )
+            .subscribe((element) => {
+                element.checked = true;
 
-        if (!this.isDisabled && !currentState) {
-            this.radioElementRef.nativeElement.checked = true;
-
-            this.radioElementRef.nativeElement.dispatchEvent(new Event('change'));
-            this.radioElementRef.nativeElement.focus();
-            super.onClick(event);
-        }
+                element.dispatchEvent(new Event('change'));
+                element.focus();
+            });
     }
 }

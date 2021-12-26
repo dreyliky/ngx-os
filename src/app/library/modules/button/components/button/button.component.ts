@@ -1,10 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    OnInit,
-    ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
 import { ɵOsBaseButtonComponent } from '../../../../core';
 
 @Component({
@@ -16,14 +10,10 @@ import { ɵOsBaseButtonComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent extends ɵOsBaseButtonComponent implements OnInit {
+export class ButtonComponent extends ɵOsBaseButtonComponent {
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 }

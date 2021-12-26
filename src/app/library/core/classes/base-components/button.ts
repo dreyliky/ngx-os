@@ -1,4 +1,5 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { Component, HostBinding, Injector, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ɵCommonCssClassEnum } from '../../enums';
 import { ɵOsBaseComponent } from './component';
 
@@ -38,11 +39,11 @@ export abstract class ɵOsBaseButtonComponent extends ɵOsBaseComponent {
 
     /** Target internal element focus event */
     @Output()
-    public readonly osFocus: EventEmitter<FocusEvent> = new EventEmitter();
+    public osFocus: Observable<FocusEvent> = this.createEvent<WheelEvent>('focus');
 
     /** Target internal element blur event */
     @Output()
-    public readonly osBlur: EventEmitter<FocusEvent> = new EventEmitter();
+    public osBlur: Observable<FocusEvent> = this.createEvent<WheelEvent>('blur');
 
     /** @internal */
     @HostBinding('attr.tabindex')
@@ -50,20 +51,9 @@ export abstract class ɵOsBaseButtonComponent extends ɵOsBaseComponent {
         return (this.isDisabled) ? null : 0;
     }
 
-    /** The handler will be fired on the host element in response to an event. */
-    protected onFocus(event: FocusEvent): void {
-        this.osFocus.emit(event);
-    }
-
-    /** The handler will be fired on the host element in response to an event. */
-    protected onBlur(event: FocusEvent): void {
-        this.osBlur.emit(event);
-    }
-
-    protected initElementEventObservers(element: HTMLElement): void {
-        element.onfocus = (event) => this.onFocus(event);
-        element.onblur = (event) => this.onBlur(event);
-
-        super.initElementEventObservers(element);
+    constructor(
+        injector: Injector
+    ) {
+        super(injector);
     }
 }

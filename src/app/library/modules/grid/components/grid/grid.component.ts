@@ -5,9 +5,9 @@ import {
     ContentChildren,
     ElementRef,
     HostBinding,
+    Injector,
     Input,
     OnChanges,
-    OnInit,
     QueryList,
     ViewEncapsulation
 } from '@angular/core';
@@ -44,7 +44,7 @@ import { GridItemComponent } from '../item';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridComponent extends ɵOsBaseComponent implements OnInit, OnChanges, AfterViewInit {
+export class GridComponent extends ɵOsBaseComponent implements OnChanges, AfterViewInit {
     /** Direction of grid items */
     @Input()
     public direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
@@ -105,16 +105,13 @@ export class GridComponent extends ɵOsBaseComponent implements OnInit, OnChange
     private gridItemComponents: QueryList<GridItemComponent>;
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostElement);
+        super(injector);
     }
 
     public ngAfterViewInit(): void {
+        super.ngAfterViewInit();
         this.initHostSizeChangeObserver();
     }
 
@@ -138,7 +135,7 @@ export class GridComponent extends ɵOsBaseComponent implements OnInit, OnChange
                 const { x, y } = gridItem.coordinate;
                 const targetCell = this.grid.getCell(x, y);
 
-                targetCell?.setData(gridItem.hostRef);
+                targetCell?.setData(gridItem._hostRef);
                 this.initCellStyles(targetCell);
             }
         });
@@ -151,7 +148,7 @@ export class GridComponent extends ɵOsBaseComponent implements OnInit, OnChange
             if (!actualCell) {
                 this.initExcessGridItemStyles(gridItem);
             } else if (!gridItem.coordinate) {
-                actualCell.setData(gridItem.hostRef);
+                actualCell.setData(gridItem._hostRef);
                 this.initCellStyles(actualCell);
 
                 actualCell = actualCell.getNextWithoutData();
@@ -194,7 +191,7 @@ export class GridComponent extends ɵOsBaseComponent implements OnInit, OnChange
     }
 
     private initExcessGridItemStyles(gridItem: GridItemComponent): void {
-        gridItem.hostRef.nativeElement.style.display = 'none';
+        gridItem._hostRef.nativeElement.style.display = 'none';
     }
 
     private initCellStyles(cell: ɵCell<ElementRef<HTMLElement>>): void {

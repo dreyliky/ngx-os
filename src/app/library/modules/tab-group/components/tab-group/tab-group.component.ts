@@ -2,11 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     ContentChildren,
-    ElementRef,
     EventEmitter,
+    Injector,
     Input,
     OnDestroy,
-    OnInit,
     Output,
     QueryList,
     TrackByFunction,
@@ -26,7 +25,7 @@ import { TabComponent } from '../tab';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupComponent extends ɵOsBaseComponent implements OnInit, OnDestroy {
+export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
     /** Index of the tab which is selected */
     @Input()
     public selectedTabIndex: number = 0;
@@ -54,13 +53,9 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnInit, OnDe
     private tabsChanged$ = new Subject();
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 
     public ngOnDestroy(): void {
@@ -85,7 +80,7 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnInit, OnDe
             .pipe(takeUntil(changesOrDestroyed$))
             .subscribe(() => {
                 this.deselectAllTabs();
-                tabComponent.setSelectionState(true);
+                tabComponent._setSelectionState(true);
                 this.selectedTabIndexChange.emit(tabIndex);
             });
     }
@@ -93,11 +88,11 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnInit, OnDe
     private initTabSelection(): void {
         const targetTab = this.__tabComponentList.get(this.selectedTabIndex ?? 0);
 
-        targetTab?.setSelectionState(true);
+        targetTab?._setSelectionState(true);
     }
 
     private deselectAllTabs(): void {
         this._tabComponentList
-            .forEach((tabComponent) => tabComponent.setSelectionState(false));
+            .forEach((tabComponent) => tabComponent._setSelectionState(false));
     }
 }

@@ -3,10 +3,9 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChild,
-    ElementRef,
     EventEmitter,
+    Injector,
     Input,
-    OnInit,
     Output,
     TemplateRef,
     ViewChild,
@@ -47,7 +46,7 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent extends ɵOsBaseComponent implements OnInit {
+export class TabComponent extends ɵOsBaseComponent {
     /** Label text of the tab */
     @Input()
     public label: string;
@@ -88,25 +87,21 @@ export class TabComponent extends ɵOsBaseComponent implements OnInit {
     public _isSelected: boolean = false;
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>,
+        injector: Injector,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 
     /** @internal */
-    public onTabButtonClick(event: MouseEvent): void {
+    public _onTabButtonClick(event: MouseEvent): void {
         if (!this.isDisabled) {
             this.osTabSelected.emit(event);
         }
     }
 
     /** @internal */
-    public setSelectionState(state: boolean): void {
+    public _setSelectionState(state: boolean): void {
         this._isSelected = state;
 
         this.changeDetector.detectChanges();

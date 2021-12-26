@@ -1,4 +1,15 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+/* eslint-disable @typescript-eslint/member-ordering */
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    HostBinding,
+    Injector,
+    Input,
+    Output
+} from '@angular/core';
+import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
+import { filter, share, switchMap } from 'rxjs/operators';
 import { ɵOsBaseViewComponent } from './view';
 
 @Component({
@@ -7,7 +18,11 @@ import { ɵOsBaseViewComponent } from './view';
         class: 'os-element'
     }
 })
-export abstract class ɵOsBaseComponent extends ɵOsBaseViewComponent {
+export abstract class ɵOsBaseComponent
+    extends ɵOsBaseViewComponent
+    implements AfterViewInit {
+    private _targetInternalElement$ = new BehaviorSubject<HTMLElement>(null);
+
     /** Target internal element stylelist */
     @Input()
     @HostBinding('style')
@@ -25,108 +40,90 @@ export abstract class ɵOsBaseComponent extends ɵOsBaseViewComponent {
 
     /** Target internal element click event */
     @Output()
-    public readonly osClick: EventEmitter<MouseEvent> = new EventEmitter();
+    public osClick: Observable<PointerEvent> = this.createEvent<PointerEvent>('click');
 
     /** Target internal element dblclick event */
     @Output()
-    public readonly osDblClick: EventEmitter<MouseEvent> = new EventEmitter();
+    public osDblClick: Observable<PointerEvent> = this.createEvent<PointerEvent>('dblclick');
 
     /** Target internal element mousedown event */
     @Output()
-    public readonly osMouseDown: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element mousemove event */
-    @Output()
-    public readonly osMouseMove: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element mouseout event */
-    @Output()
-    public readonly osMouseOut: EventEmitter<MouseEvent> = new EventEmitter();
-
-    /** Target internal element mouseover event */
-    @Output()
-    public readonly osMouseOver: EventEmitter<MouseEvent> = new EventEmitter();
+    public osMouseDown: Observable<PointerEvent> = this.createEvent<PointerEvent>('mousedown');
 
     /** Target internal element mouseup event */
     @Output()
-    public readonly osMouseUp: EventEmitter<MouseEvent> = new EventEmitter();
+    public osMouseUp: Observable<PointerEvent> = this.createEvent<PointerEvent>('mouseup');
+
+    /** Target internal element mousemove event */
+    @Output()
+    public osMouseMove: Observable<PointerEvent> = this.createEvent<PointerEvent>('mousemove');
+
+    /** Target internal element mouseout event */
+    @Output()
+    public osMouseOut: Observable<PointerEvent> = this.createEvent<PointerEvent>('mouseout');
+
+    /** Target internal element mouseover event */
+    @Output()
+    public osMouseOver: Observable<PointerEvent> = this.createEvent<PointerEvent>('mouseover');
 
     /** Target internal element wheel event */
     @Output()
-    public readonly osWheel: EventEmitter<MouseEvent> = new EventEmitter();
+    public osWheel: Observable<WheelEvent> = this.createEvent<WheelEvent>('wheel');
 
     /** Target internal element keydown event */
     @Output()
-    public readonly osKeyDown: EventEmitter<KeyboardEvent> = new EventEmitter();
+    public osKeyDown: Observable<KeyboardEvent> = this.createEvent<KeyboardEvent>('keydown');
 
     /** Target internal element keyup event */
     @Output()
-    public readonly osKeyUp: EventEmitter<KeyboardEvent> = new EventEmitter();
+    public osKeyUp: Observable<KeyboardEvent> = this.createEvent<KeyboardEvent>('keyup');
 
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onClick(event: MouseEvent): void {
-        this.osClick.emit(event);
+    protected get targetInternalElement(): HTMLElement {
+        return this._targetInternalElement$.getValue();
     }
 
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onDblClick(event: MouseEvent): void {
-        this.osDblClick.emit(event);
+    protected get targetInternalElement$(): Observable<HTMLElement> {
+        return this._targetInternalElement$.asObservable();
     }
 
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onMouseDown(event: MouseEvent): void {
-        this.osMouseDown.emit(event);
-    }
-
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onMouseMove(event: MouseEvent): void {
-        this.osMouseMove.emit(event);
-    }
-
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onMouseOut(event: MouseEvent): void {
-        this.osMouseOut.emit(event);
-    }
-
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onMouseOver(event: MouseEvent): void {
-        this.osMouseOver.emit(event);
-    }
-
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onMouseUp(event: MouseEvent): void {
-        this.osMouseUp.emit(event);
-    }
-
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onWheel(event: WheelEvent): void {
-        this.osWheel.emit(event);
-    }
-
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onKeyDown(event: KeyboardEvent): void {
-        this.osKeyDown.emit(event);
-    }
-
-    /** The handler will be fired on the target internal element in response to an event. */
-    protected onKeyUp(event: KeyboardEvent): void {
-        this.osKeyUp.emit(event);
-    }
-
-    /** The method applies observers to the target element.
-     * This approach was made to avoid using the HostListener directive
-     * because it triggers ChangeDetection every time and we don't need it.
+    /**
+     * Allows defining a selector of a child (relative to the host) HTML element for which
+     * all event handlers will be defined as output emitters.
      */
-    protected initElementEventObservers(element: HTMLElement): void {
-        element.onclick = (event) => this.onClick(event);
-        element.ondblclick = (event) => this.onDblClick(event);
-        element.onmousedown = (event) => this.onMouseDown(event);
-        element.onmouseup = (event) => this.onMouseUp(event);
-        element.onmousemove = (event) => this.onMouseMove(event);
-        element.onmouseout = (event) => this.onMouseOut(event);
-        element.onmouseover = (event) => this.onMouseOver(event);
-        element.onwheel = (event) => this.onWheel(event);
-        element.onkeydown = (event) => this.onKeyDown(event);
-        element.onkeyup = (event) => this.onKeyUp(event);
+    protected readonly targetInternalElementSelector: string;
+    protected readonly hostRef: ElementRef<HTMLElement>;
+
+    constructor(
+        injector: Injector
+    ) {
+        super();
+
+        this.hostRef = injector.get(ElementRef);
+    }
+
+    public ngAfterViewInit(): void {
+        super.ngAfterViewInit();
+        this.initTargetInternalElement();
+    }
+
+    /**
+     * Allows creation event listener of the specific event for target internal element.
+     * The listener will be created after subscription to it.
+     **/
+    protected createEvent<T = Event>(eventName: keyof HTMLElementEventMap): Observable<T> {
+        return this.targetInternalElement$
+            .pipe(
+                filter((element) => !!element),
+                switchMap((element) => fromEvent<T>(element, eventName as string)),
+                share()
+            );
+    }
+
+    private initTargetInternalElement(): void {
+        const hostElement = this.hostRef.nativeElement;
+        const selector = this.targetInternalElementSelector;
+        const element = (selector) ? hostElement.querySelector<HTMLElement>(selector) : hostElement;
+
+        this._targetInternalElement$.next(element);
     }
 }

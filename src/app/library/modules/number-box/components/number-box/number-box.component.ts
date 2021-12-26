@@ -3,19 +3,16 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ElementRef,
-    EventEmitter,
+    Injector,
     Input,
     OnChanges,
     OnInit,
-    Optional,
     Output,
-    Self,
     SimpleChanges,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { ɵIsNil, ɵOsBaseFieldComponent } from '../../../../core';
 import { ɵNumericalValueConverter } from '../../helpers/numerical-value-converter.helper';
 import { NumberBoxChangeEvent } from '../../interfaces';
@@ -62,33 +59,35 @@ export class NumberBoxComponent
 
     /** Fires when the number-box value change */
     @Output()
-    public osChange: EventEmitter<NumberBoxChangeEvent> = new EventEmitter();
-
-    @ViewChild('numberBox')
-    private readonly inputRef: ElementRef<HTMLInputElement>;
+    public osChange: Observable<NumberBoxChangeEvent> = this.createEvent('change')
+        .pipe(
+            map((event) => this.transformChangeEvent(event))
+        );
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
 
+    protected targetInternalElementSelector = 'input';
+
     private readonly converter = new ɵNumericalValueConverter(this);
 
     constructor(
-        @Self() @Optional() controlDir: NgControl,
+        injector: Injector,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-        this.initControlDir(controlDir, this);
+        super(injector);
     }
 
     public ngOnInit(): void {
         this.initDefaultValue();
+        this.initValueChangeObserver();
     }
 
     public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.inputRef.nativeElement);
-        this.autoFocusFieldIfNeeded(this.inputRef.nativeElement);
+        super.ngAfterViewInit();
+        this.initInputObserver();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -106,15 +105,8 @@ export class NumberBoxComponent
         this.changeDetector.detectChanges();
     }
 
-    protected onInput(event: Event): void {
-        const inputElement = event.target as HTMLInputElement;
-        inputElement.value = this.converter.toRaw(inputElement.value);
-
-        super.onInput(event);
-    }
-
-    protected onFieldValueChange(originalEvent: Event): void {
-        const inputElement = this.inputRef.nativeElement;
+    private transformChangeEvent(originalEvent: Event): NumberBoxChangeEvent {
+        const inputElement = originalEvent.target as HTMLInputElement;
         this.value = this.converter.toValid(inputElement.value);
 
         if (!this.value.length) {
@@ -123,9 +115,25 @@ export class NumberBoxComponent
 
         inputElement.value = this.value;
 
-        this.onChange?.(+this.value);
-        this.osChange.emit({ originalEvent, value: +this.value });
-        this.changeDetector.markForCheck();
+        return { originalEvent, value: +this.value };
+    }
+
+    private initValueChangeObserver(): void {
+        this.osChange
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(({ value }) => {
+                this.onChange?.(value);
+                this.changeDetector.markForCheck();
+            });
+    }
+
+    private initInputObserver(): void {
+        this.osInput
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe((event) => {
+                const inputElement = event.target as HTMLInputElement;
+                inputElement.value = this.converter.toRaw(inputElement.value);
+            });
     }
 
     private processValueFromSimpleChanges(changes: SimpleChanges): void {

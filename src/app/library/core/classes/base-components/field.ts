@@ -1,11 +1,14 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, Injector, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ɵCommonCssClassEnum } from '../../enums';
 import { ɵOsBaseFormControlComponent } from './form-control-element';
 
 @Component({
     template: ''
 })
-export abstract class ɵOsBaseFieldComponent extends ɵOsBaseFormControlComponent {
+export abstract class ɵOsBaseFieldComponent
+    extends ɵOsBaseFormControlComponent
+    implements AfterViewInit {
     /** Is field disabled? */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
@@ -32,57 +35,41 @@ export abstract class ɵOsBaseFieldComponent extends ɵOsBaseFormControlComponen
     @Input()
     public size: number;
 
-    /** The handler will be fired when the value changes. */
+    /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public readonly valueChange: EventEmitter<string> = new EventEmitter();
+    public osFocus: Observable<FocusEvent> = this.createEvent<WheelEvent>('focus');
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public readonly osFocus: EventEmitter<FocusEvent> = new EventEmitter();
+    public osBlur: Observable<FocusEvent> = this.createEvent<WheelEvent>('blur');
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public readonly osBlur: EventEmitter<FocusEvent> = new EventEmitter();
-
-    /** The handler will be fired on the internal element in response to an event. */
-    @Output()
-    public readonly osInput: EventEmitter<Event> = new EventEmitter();
+    public osInput: Observable<Event> = this.createEvent<WheelEvent>('input');
 
     /** Value of the field as text */
     public value: string = '';
 
-    /** @internal */
-    public abstract osChange: EventEmitter<any>;
+    /**
+     * @internal
+     * Each field-component must define it's own `osChange` output with specific event type.
+     **/
+    public abstract osChange: Observable<unknown>;
 
-    /** The handler will be fired on the internal element in response to an event. */
-    protected onFocus(event: FocusEvent): void {
-        this.osFocus.emit(event);
+    constructor(
+        injector: Injector
+    ) {
+        super(injector);
     }
 
-    /** The handler will be fired on the internal element in response to an event. */
-    protected onBlur(event: FocusEvent): void {
-        this.osBlur.emit(event);
+    public ngAfterViewInit(): void {
+        super.ngAfterViewInit();
+        this.autoFocusFieldIfNeeded();
     }
 
-    /** The handler will be fired on the internal element in response to an event. */
-    protected onInput(event: Event): void {
-        this.osInput.emit(event);
-    }
-
-    protected initElementEventObservers(element: HTMLElement): void {
-        element.onfocus = (event) => this.onFocus(event);
-        element.onblur = (event) => this.onBlur(event);
-        element.oninput = (event) => this.onInput(event);
-        element.onchange = (event) => this.onFieldValueChange(event);
-
-        super.initElementEventObservers(element);
-    }
-
-    protected autoFocusFieldIfNeeded(field: HTMLInputElement): void {
+    private autoFocusFieldIfNeeded(): void {
         if (this.isAutofocused) {
-            field.focus();
+            this.targetInternalElement.focus();
         }
     }
-
-    protected abstract onFieldValueChange(event: Event): void;
 }

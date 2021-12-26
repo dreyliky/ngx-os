@@ -1,18 +1,15 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ElementRef,
-    EventEmitter,
+    Injector,
     Input,
-    Optional,
+    OnInit,
     Output,
-    Self,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { ɵOsBaseFieldComponent } from '../../../../core';
 import { TextBoxChangeEvent } from '../../interfaces';
 
@@ -25,34 +22,34 @@ import { TextBoxChangeEvent } from '../../interfaces';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextBoxComponent extends ɵOsBaseFieldComponent implements AfterViewInit {
+export class TextBoxComponent extends ɵOsBaseFieldComponent implements OnInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
     public isAutocompleteEnabled: boolean = false;
 
     /** Fires when the text-box value change */
     @Output()
-    public osChange: EventEmitter<TextBoxChangeEvent> = new EventEmitter();
-
-    @ViewChild('textBox')
-    private readonly inputElementRef: ElementRef<HTMLInputElement>;
+    public osChange: Observable<TextBoxChangeEvent> = this.createEvent('change')
+        .pipe(
+            map((event) => this.transformChangeEvent(event))
+        );
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
 
+    protected targetInternalElementSelector = 'input';
+
     constructor(
-        @Self() @Optional() controlDir: NgControl,
+        injector: Injector,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-        this.initControlDir(controlDir, this);
+        super(injector);
     }
 
-    public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.inputElementRef.nativeElement);
-        this.autoFocusFieldIfNeeded(this.inputElementRef.nativeElement);
+    public ngOnInit(): void {
+        this.initValueChangeObserver();
     }
 
     /** @internal */
@@ -62,12 +59,19 @@ export class TextBoxComponent extends ɵOsBaseFieldComponent implements AfterVie
         this.changeDetector.detectChanges();
     }
 
-    protected onFieldValueChange(originalEvent: Event): void {
-        const targetElement = originalEvent.target as HTMLInputElement;
-        const value: string = targetElement.value;
+    private transformChangeEvent(originalEvent: Event): TextBoxChangeEvent {
+        const targetElement = originalEvent.target as HTMLTextAreaElement;
+        const value = targetElement.value;
 
-        this.onChange?.(value);
-        this.osChange.emit({ originalEvent, value });
-        this.changeDetector.markForCheck();
+        return { originalEvent, value };
+    }
+
+    private initValueChangeObserver(): void {
+        this.osChange
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(({ value }) => {
+                this.onChange?.(value);
+                this.changeDetector.markForCheck();
+            });
     }
 }

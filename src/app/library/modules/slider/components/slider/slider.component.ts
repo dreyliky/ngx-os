@@ -1,19 +1,15 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ElementRef,
     EventEmitter,
     HostBinding,
+    Injector,
     Input,
-    Optional,
     Output,
-    Self,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
 import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
 import { SliderValueChangeEvent } from '../../interfaces';
 
@@ -28,7 +24,7 @@ import { SliderValueChangeEvent } from '../../interfaces';
 })
 export class SliderComponent
     extends ɵOsBaseFormControlComponent<number>
-    implements AfterViewInit, ControlValueAccessor {
+    implements ControlValueAccessor {
     /** Label text near the slider */
     @Input()
     public label: string;
@@ -58,22 +54,14 @@ export class SliderComponent
     @Output()
     public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
 
-    @ViewChild('slider')
-    private readonly inputElementRef: ElementRef<HTMLInputElement>;
-
     /** Value of the slider */
     public value: number = 0;
 
     constructor(
-        @Self() @Optional() controlDir: NgControl,
+        injector: Injector,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-        this.initControlDir(controlDir, this);
-    }
-
-    public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.inputElementRef.nativeElement);
+        super(injector);
     }
 
     /** @internal */

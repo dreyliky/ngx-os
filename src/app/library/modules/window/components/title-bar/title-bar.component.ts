@@ -1,10 +1,9 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     HostBinding,
+    Injector,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
@@ -18,19 +17,15 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarComponent extends ɵOsBaseComponent implements OnInit {
+export class TitleBarComponent extends ɵOsBaseComponent {
     /** Marks title bar as active (means user works with it right now) */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
     public isActive: boolean = true;
 
     constructor(
-        protected readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        super(injector);
     }
 }

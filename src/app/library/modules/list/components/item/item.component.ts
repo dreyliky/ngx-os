@@ -1,14 +1,15 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     EventEmitter,
     HostBinding,
+    Injector,
     Input,
     OnInit,
     Output,
     ViewEncapsulation
 } from '@angular/core';
+import { filter, takeUntil } from 'rxjs/operators';
 import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
 
 @Component({
@@ -40,20 +41,21 @@ export class ListItemComponent<T = any> extends ɵOsBaseComponent implements OnI
     public osSelected = new EventEmitter<T>();
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
+        super(injector);
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        this.initClickObserver();
     }
 
-    protected onClick(event: PointerEvent): void {
-        if (!this.isDisabled) {
-            this.osSelected.emit(this.data);
-
-            super.onClick(event);
-        }
+    private initClickObserver(): void {
+        this.osClick
+            .pipe(
+                takeUntil(this.viewDestroyed$),
+                filter(() => !this.isDisabled)
+            )
+            .subscribe(() => this.osSelected.emit(this.data));
     }
 }

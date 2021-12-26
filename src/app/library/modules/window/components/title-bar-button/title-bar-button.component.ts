@@ -1,11 +1,12 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
+    Injector,
     Input,
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
 import { ɵOsBaseButtonComponent } from '../../../../core';
 
 @Component({
@@ -36,17 +37,18 @@ export class TitleBarButtonComponent extends ɵOsBaseButtonComponent implements 
     }
 
     constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
+        injector: Injector
     ) {
-        super();
+        super(injector);
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        this.initClickObserver();
     }
 
-    public onClick(event: MouseEvent): void {
-        super.onClick(event);
-        event.stopPropagation();
+    private initClickObserver(): void {
+        this.osClick
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe((event) => event.stopPropagation());
     }
 }

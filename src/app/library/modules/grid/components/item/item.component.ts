@@ -5,6 +5,7 @@ import {
     ContentChild,
     ElementRef,
     HostBinding,
+    Injector,
     Input,
     OnInit,
     TemplateRef,
@@ -120,30 +121,34 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     }
 
     constructor(
+        injector: Injector,
         /** @internal */
-        public readonly hostRef: ElementRef<HTMLElement>,
+        public readonly _hostRef: ElementRef<HTMLElement>,
         private readonly globalEvents: ɵGlobalEvents,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
+        super(injector);
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        this.initMouseDownObserver();
     }
 
-    protected onMouseDown(event: MouseEvent): void {
-        this.isSelected = true;
+    private initMouseDownObserver(): void {
+        this.osMouseDown
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(() => {
+                this.isSelected = true;
 
-        super.onMouseDown(event);
-        this.changeDetector.markForCheck();
+                this.changeDetector.markForCheck();
+            });
     }
 
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('mousedown')
             .pipe(
                 takeUntil(this._viewDestroyedOrBecomeDeselected$),
-                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this._hostRef.nativeElement, event))
             )
             .subscribe(() => {
                 this.isSelected = false;

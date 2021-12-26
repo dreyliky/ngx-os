@@ -1,18 +1,19 @@
 import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
-    Component, ElementRef,
+    Component,
+    ElementRef,
     EventEmitter,
     HostBinding,
+    Injector,
     Input,
     OnInit,
-    Optional,
     Output,
-    Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
 import { CheckboxValueChangeEvent } from '../../interfaces';
 
@@ -53,19 +54,18 @@ export class CheckboxComponent<T = any>
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        @Self() @Optional() controlDir: NgControl,
-        private readonly hostRef: ElementRef<HTMLElement>,
+        injector: Injector,
         private readonly changeDetector: ChangeDetectorRef
     ) {
-        super();
-        this.initControlDir(controlDir, this);
+        super(injector);
     }
 
     public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+        this.initClickObserver();
     }
 
-    public onCheckboxValueChange(originalEvent: Event): void {
+    /** @internal */
+    public _onCheckboxValueChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
         this.isChecked = inputElement.checked;
 
@@ -77,20 +77,25 @@ export class CheckboxComponent<T = any>
         });
     }
 
+    /** @internal */
     public writeValue(value: boolean): void {
         this.isChecked = value;
 
-        this.changeDetector.markForCheck();
+        this.changeDetector.detectChanges();
     }
 
-    protected onClick(event: PointerEvent): void {
-        if (!this.isDisabled) {
-            const currentState = this.inputElementRef.nativeElement.checked;
-            this.inputElementRef.nativeElement.checked = !currentState;
+    private initClickObserver(): void {
+        this.osClick
+            .pipe(
+                takeUntil(this.viewDestroyed$),
+                filter(() => !this.isDisabled),
+                map(() => this.inputElementRef.nativeElement)
+            )
+            .subscribe((element) => {
+                element.checked = !element.checked;
 
-            this.inputElementRef.nativeElement.dispatchEvent(new Event('change'));
-            this.inputElementRef.nativeElement.focus();
-            super.onClick(event);
-        }
+                element.dispatchEvent(new Event('change'));
+                element.focus();
+            });
     }
 }
