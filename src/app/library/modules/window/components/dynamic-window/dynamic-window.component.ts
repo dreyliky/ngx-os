@@ -182,11 +182,11 @@ export class ɵDynamicWindowComponent
     private initOutsideClickObserver(): void {
         this.globalEvents.fromDocument('click')
             .pipe(
-                takeUntil(this._viewDestroyedOrWindowInactive$),
                 // Waiting ~4 ms for skipping currently bubbling click event, which probably triggered our dynamic window.
                 skipUntil(timer()),
                 filter(() => this.isWindowed || this.isFullscreen),
-                filter((event) => ɵEventOutside.checkForElement(this.windowElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.windowElement, event)),
+                takeUntil(this._viewDestroyedOrWindowInactive$)
             )
             .subscribe(() => this.windowRef.makeInactive());
     }

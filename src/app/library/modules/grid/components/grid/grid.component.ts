@@ -184,8 +184,8 @@ export class GridComponent extends ɵOsBaseComponent implements OnChanges, After
     private initHostSizeChangeObserver(): void {
         ɵElementResizingObserver(this.hostElement)
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                debounce(() => timer(this.hostResizeDelayBeforeCalculation))
+                debounce(() => timer(this.hostResizeDelayBeforeCalculation)),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe(() => this.update());
     }

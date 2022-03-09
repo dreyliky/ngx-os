@@ -52,8 +52,8 @@ export class TaskbarService implements OnDestroy {
             this.placementService.data$
         ])
             .pipe(
-                takeUntil(this.destroyed$),
-                debounceTime(50)
+                debounceTime(50),
+                takeUntil(this.destroyed$)
             )
             .subscribe(() => {
                 this.updateWindowSharedConfig(taskbarElement);

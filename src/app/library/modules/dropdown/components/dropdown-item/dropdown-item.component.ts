@@ -1,7 +1,6 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     EventEmitter,
     Host,
@@ -59,8 +58,7 @@ export class DropdownItemComponent<T = any>
 
     constructor(
         injector: Injector,
-        @Host() private readonly dropdown: DropdownComponent<T>,
-        private readonly changeDetector: ChangeDetectorRef
+        @Host() private readonly dropdown: DropdownComponent<T>
     ) {
         super(injector);
     }
@@ -83,9 +81,9 @@ export class DropdownItemComponent<T = any>
     private initClickObserver(): void {
         this.osClick
             .pipe(
-                takeUntil(this.viewDestroyed$),
                 tap((event) => event.stopPropagation()),
-                filter(() => !this.isDisabled)
+                filter(() => !this.isDisabled),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe((originalEvent) => {
                 const event: DropdownValueChangeEvent<T> = { originalEvent, data: this.data };

@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     EventEmitter,
     HostBinding,
@@ -58,25 +57,17 @@ export class SliderComponent
     public value: number = 0;
 
     constructor(
-        injector: Injector,
-        private readonly changeDetector: ChangeDetectorRef
+        injector: Injector
     ) {
         super(injector);
     }
 
     /** @internal */
-    public onSliderValueChange(originalEvent: Event): void {
+    public _onSliderInputEvent(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
         const value: number = +targetElement.value;
 
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value });
-    }
-
-    /** @internal */
-    public writeValue(value: number): void {
-        this.value = value;
-
-        this.changeDetector.detectChanges();
     }
 }

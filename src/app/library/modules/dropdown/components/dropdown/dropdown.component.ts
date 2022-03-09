@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ContentChild,
     EventEmitter,
@@ -168,8 +167,7 @@ export class DropdownComponent<T = any>
     constructor(
         injector: Injector,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
-        private readonly globalEvents: ɵGlobalEvents,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly globalEvents: ɵGlobalEvents
     ) {
         super(injector);
     }
@@ -197,13 +195,6 @@ export class DropdownComponent<T = any>
     }
 
     /** @internal */
-    public writeValue(value: T): void {
-        this.value = value;
-
-        this.changeDetector.markForCheck();
-    }
-
-    /** @internal */
     public _initSelectedItem(item: ItemComponent<T>): void {
         this.value = item?.data ?? null;
         this.label = item?.getLabel();
@@ -222,8 +213,8 @@ export class DropdownComponent<T = any>
     private initClickObserver(): void {
         this.osClick
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                filter(() => !this.isDisabled)
+                filter(() => !this.isDisabled),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe(() => this.toggle());
     }
@@ -231,8 +222,8 @@ export class DropdownComponent<T = any>
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('click')
             .pipe(
-                takeUntil(this._viewDestroyedOrOverlayBecomeClosed$),
-                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event)),
+                takeUntil(this._viewDestroyedOrOverlayBecomeClosed$)
             )
             .subscribe(() => this.close());
     }

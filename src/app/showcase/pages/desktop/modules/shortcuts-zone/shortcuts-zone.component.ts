@@ -36,8 +36,8 @@ export class ShortcutsZoneComponent extends ɵOsBaseViewComponent implements OnI
     private initShortcutSettingsObserver(): void {
         this.shortcutSettingsService.data$
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                filter((settings) => !!settings)
+                filter((settings) => !!settings),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe(({ direction, cellSize }) => {
                 this.gridDirection = direction;

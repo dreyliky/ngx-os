@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -59,14 +58,20 @@ export class RadioButtonComponent<T = any>
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        injector: Injector,
-        private readonly changeDetector: ChangeDetectorRef
+        injector: Injector
     ) {
         super(injector);
     }
 
     public ngOnInit(): void {
         this.initClickObserver();
+    }
+
+    /** @internal */
+    public writeValue(value: T): void {
+        this.isChecked = (this.data === value);
+
+        this.changeDetector.detectChanges();
     }
 
     /** @internal */
@@ -82,19 +87,12 @@ export class RadioButtonComponent<T = any>
         });
     }
 
-    /** @internal */
-    public writeValue(value: T): void {
-        this.isChecked = (this.data === value);
-
-        this.changeDetector.detectChanges();
-    }
-
     private initClickObserver(): void {
         this.osClick
             .pipe(
-                takeUntil(this.viewDestroyed$),
                 map(() => this.inputElementRef.nativeElement),
-                filter((element) => !this.isDisabled && !element.checked)
+                filter((element) => !this.isDisabled && !element.checked),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe((element) => {
                 element.checked = true;
