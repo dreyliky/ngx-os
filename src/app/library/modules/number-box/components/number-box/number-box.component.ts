@@ -26,7 +26,7 @@ import { NumberBoxChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberBoxComponent
-    extends ɵOsBaseFieldComponent
+    extends ɵOsBaseFieldComponent<string, number>
     implements OnInit, OnChanges, AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
@@ -123,7 +123,7 @@ export class NumberBoxComponent
                 const validValue = this.converter.toValid(inputElement.value);
                 inputElement.value = this.converter.toRaw(inputElement.value);
 
-                this.onChange?.(validValue);
+                this.onChange?.(+validValue);
                 this.changeDetector.markForCheck();
             });
     }

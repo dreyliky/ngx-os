@@ -7,11 +7,11 @@ import { ɵOsBaseComponent } from './component';
 @Component({
     template: ''
 })
-export abstract class ɵOsBaseFormControlComponent<T = any>
+export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
     extends ɵOsBaseComponent
     implements ControlValueAccessor {
     /** @internal */
-    public onChange: (value: T) => void;
+    public onChange: (value: OutputT) => void;
     /** @internal */
     public onTouched: () => void;
 
