@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     Injector,
     Input,
@@ -42,21 +41,15 @@ export class PasswordBoxComponent extends ɵOsBaseFieldComponent implements OnIn
     protected targetInternalElementSelector = 'input';
 
     constructor(
-        injector: Injector,
-        private readonly changeDetector: ChangeDetectorRef
+        injector: Injector
     ) {
         super(injector);
+
+        this.value = '';
     }
 
     public ngOnInit(): void {
-        this.initValueChangeObserver();
-    }
-
-    /** @internal */
-    public writeValue(value: string): void {
-        this.value = value;
-
-        this.changeDetector.detectChanges();
+        this.initInputEventObserver();
     }
 
     private transformChangeEvent(originalEvent: Event): PasswordBoxChangeEvent {
@@ -66,10 +59,13 @@ export class PasswordBoxComponent extends ɵOsBaseFieldComponent implements OnIn
         return { originalEvent, value };
     }
 
-    private initValueChangeObserver(): void {
-        this.osChange
-            .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe(({ value }) => {
+    private initInputEventObserver(): void {
+        this.osInput
+            .pipe(
+                map(({ target }) => (target as HTMLInputElement).value),
+                takeUntil(this.viewDestroyed$)
+            )
+            .subscribe((value) => {
                 this.onChange?.(value);
                 this.changeDetector.markForCheck();
             });

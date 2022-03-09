@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ContentChild,
     EventEmitter,
@@ -87,8 +86,7 @@ export class TabComponent extends ɵOsBaseComponent {
     public _isSelected: boolean = false;
 
     constructor(
-        injector: Injector,
-        private readonly changeDetector: ChangeDetectorRef
+        injector: Injector
     ) {
         super(injector);
     }

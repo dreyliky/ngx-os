@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ContentChild,
     EventEmitter,
@@ -168,8 +167,7 @@ export class DropdownComponent<T = any>
     constructor(
         injector: Injector,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
-        private readonly globalEvents: ɵGlobalEvents,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly globalEvents: ɵGlobalEvents
     ) {
         super(injector);
     }
@@ -194,13 +192,6 @@ export class DropdownComponent<T = any>
     /** Toggle the dropdown overlay open or close */
     public toggle(): void {
         (this.isOverlayOpened) ? this.close() : this.open();
-    }
-
-    /** @internal */
-    public writeValue(value: T): void {
-        this.value = value;
-
-        this.changeDetector.markForCheck();
     }
 
     /** @internal */

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     HostBinding,
@@ -92,6 +93,7 @@ export abstract class ɵOsBaseComponent
      */
     protected readonly targetInternalElementSelector: string;
     protected readonly hostRef: ElementRef<HTMLElement>;
+    protected readonly changeDetector: ChangeDetectorRef;
 
     constructor(
         injector: Injector
@@ -99,6 +101,7 @@ export abstract class ɵOsBaseComponent
         super();
 
         this.hostRef = injector.get(ElementRef);
+        this.changeDetector = injector.get(ChangeDetectorRef);
     }
 
     public ngAfterViewInit(): void {

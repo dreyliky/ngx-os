@@ -1,7 +1,6 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     Injector,
     Input,
@@ -74,15 +73,13 @@ export class NumberBoxComponent
     private readonly converter = new ɵNumericalValueConverter(this);
 
     constructor(
-        injector: Injector,
-        private readonly changeDetector: ChangeDetectorRef
+        injector: Injector
     ) {
         super(injector);
     }
 
     public ngOnInit(): void {
         this.initDefaultValue();
-        this.initValueChangeObserver();
     }
 
     public ngAfterViewInit(): void {
@@ -118,21 +115,16 @@ export class NumberBoxComponent
         return { originalEvent, value: +this.value };
     }
 
-    private initValueChangeObserver(): void {
-        this.osChange
-            .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe(({ value }) => {
-                this.onChange?.(value);
-                this.changeDetector.markForCheck();
-            });
-    }
-
     private initInputObserver(): void {
         this.osInput
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((event) => {
                 const inputElement = event.target as HTMLInputElement;
+                const validValue = this.converter.toValid(inputElement.value);
                 inputElement.value = this.converter.toRaw(inputElement.value);
+
+                this.onChange?.(validValue);
+                this.changeDetector.markForCheck();
             });
     }
 

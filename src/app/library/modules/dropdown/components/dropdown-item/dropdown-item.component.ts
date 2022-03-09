@@ -1,7 +1,6 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     EventEmitter,
     Host,
@@ -59,8 +58,7 @@ export class DropdownItemComponent<T = any>
 
     constructor(
         injector: Injector,
-        @Host() private readonly dropdown: DropdownComponent<T>,
-        private readonly changeDetector: ChangeDetectorRef
+        @Host() private readonly dropdown: DropdownComponent<T>
     ) {
         super(injector);
     }

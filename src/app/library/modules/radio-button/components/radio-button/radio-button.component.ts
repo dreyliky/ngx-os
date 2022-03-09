@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -59,8 +58,7 @@ export class RadioButtonComponent<T = any>
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        injector: Injector,
-        private readonly changeDetector: ChangeDetectorRef
+        injector: Injector
     ) {
         super(injector);
     }
@@ -80,13 +78,6 @@ export class RadioButtonComponent<T = any>
             data: this.data,
             isChecked: inputElement.checked
         });
-    }
-
-    /** @internal */
-    public writeValue(value: T): void {
-        this.isChecked = (this.data === value);
-
-        this.changeDetector.detectChanges();
     }
 
     private initClickObserver(): void {

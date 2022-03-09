@@ -14,7 +14,7 @@
     [attr.min]="min"
     [attr.max]="max"
     [value]="value"
-    (change)="onSliderValueChange($event)" />
+    (input)="onSliderInputEvent($event)" />
 
 <label class="os-element os-max-val-label">
     {{ maxValueLabel }}

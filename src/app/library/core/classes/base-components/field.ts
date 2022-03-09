@@ -1,5 +1,13 @@
-import { AfterViewInit, Component, HostBinding, Injector, Input, Output } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    HostBinding,
+    Injector,
+    Input,
+    Output
+} from '@angular/core';
 import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ɵCommonCssClassEnum } from '../../enums';
 import { ɵOsBaseFormControlComponent } from './form-control-element';
 
@@ -7,7 +15,7 @@ import { ɵOsBaseFormControlComponent } from './form-control-element';
     template: ''
 })
 export abstract class ɵOsBaseFieldComponent
-    extends ɵOsBaseFormControlComponent
+    extends ɵOsBaseFormControlComponent<string>
     implements AfterViewInit {
     /** Is field disabled? */
     @Input()
@@ -45,10 +53,7 @@ export abstract class ɵOsBaseFieldComponent
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public osInput: Observable<Event> = this.createEvent('input');
-
-    /** Value of the field as text */
-    public value: string = '';
+    public osInput: Observable<InputEvent> = this.createEvent('input');
 
     /**
      * @internal
@@ -64,6 +69,7 @@ export abstract class ɵOsBaseFieldComponent
 
     public ngAfterViewInit(): void {
         super.ngAfterViewInit();
+        this.initBlurEventObserver();
         this.autoFocusFieldIfNeeded();
     }
 
@@ -71,5 +77,14 @@ export abstract class ɵOsBaseFieldComponent
         if (this.isAutofocused) {
             this.targetInternalElement.focus();
         }
+    }
+
+    private initBlurEventObserver(): void {
+        this.osBlur
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(() => {
+                this.onTouched?.();
+                this.changeDetector.markForCheck();
+            });
     }
 }

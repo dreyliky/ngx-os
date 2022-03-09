@@ -15,6 +15,9 @@ export abstract class ɵOsBaseFormControlComponent<T = any>
     /** @internal */
     public onTouched: () => void;
 
+    /** Value of the control */
+    public value: T = null;
+
     /** @internal */
     public get formControlValue$(): Observable<T> | undefined {
         return this.controlDir?.control?.valueChanges
@@ -42,6 +45,12 @@ export abstract class ɵOsBaseFormControlComponent<T = any>
         this.onTouched = fn;
     }
 
+    public writeValue(value: T): void {
+        this.value = value;
+
+        this.changeDetector.detectChanges();
+    }
+
     private initControlDir(injector: Injector): void {
         const controlDir = injector.get(NgControl, null, InjectFlags.Self);
 
@@ -53,6 +62,4 @@ export abstract class ɵOsBaseFormControlComponent<T = any>
             this.controlDir.valueAccessor = this;
         }
     }
-
-    public abstract writeValue(value: T): void;
 }

@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ContentChild,
     ElementRef,
@@ -124,8 +123,7 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
         injector: Injector,
         /** @internal */
         public readonly _hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: ɵGlobalEvents,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly globalEvents: ɵGlobalEvents
     ) {
         super(injector);
     }

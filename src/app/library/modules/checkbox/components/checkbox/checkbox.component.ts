@@ -1,6 +1,5 @@
 import {
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -54,8 +53,7 @@ export class CheckboxComponent<T = any>
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        injector: Injector,
-        private readonly changeDetector: ChangeDetectorRef
+        injector: Injector
     ) {
         super(injector);
     }
@@ -75,13 +73,6 @@ export class CheckboxComponent<T = any>
             data: this.data,
             isChecked: this.isChecked
         });
-    }
-
-    /** @internal */
-    public writeValue(value: boolean): void {
-        this.isChecked = value;
-
-        this.changeDetector.detectChanges();
     }
 
     private initClickObserver(): void {
