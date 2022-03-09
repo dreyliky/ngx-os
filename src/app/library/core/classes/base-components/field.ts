@@ -37,15 +37,15 @@ export abstract class ɵOsBaseFieldComponent
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public osFocus: Observable<FocusEvent> = this.createEvent<WheelEvent>('focus');
+    public osFocus: Observable<FocusEvent> = this.createEvent('focus');
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public osBlur: Observable<FocusEvent> = this.createEvent<WheelEvent>('blur');
+    public osBlur: Observable<FocusEvent> = this.createEvent('blur');
 
     /** The handler will be fired on the internal element in response to an event. */
     @Output()
-    public osInput: Observable<Event> = this.createEvent<WheelEvent>('input');
+    public osInput: Observable<Event> = this.createEvent('input');
 
     /** Value of the field as text */
     public value: string = '';

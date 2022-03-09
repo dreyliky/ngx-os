@@ -39,11 +39,11 @@ export abstract class ɵOsBaseButtonComponent extends ɵOsBaseComponent {
 
     /** Target internal element focus event */
     @Output()
-    public osFocus: Observable<FocusEvent> = this.createEvent<WheelEvent>('focus');
+    public osFocus: Observable<FocusEvent> = this.createEvent('focus');
 
     /** Target internal element blur event */
     @Output()
-    public osBlur: Observable<FocusEvent> = this.createEvent<WheelEvent>('blur');
+    public osBlur: Observable<FocusEvent> = this.createEvent('blur');
 
     /** @internal */
     @HostBinding('attr.tabindex')

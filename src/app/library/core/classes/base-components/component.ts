@@ -40,43 +40,43 @@ export abstract class ɵOsBaseComponent
 
     /** Target internal element click event */
     @Output()
-    public osClick: Observable<PointerEvent> = this.createEvent<PointerEvent>('click');
+    public osClick: Observable<PointerEvent> = this.createEvent('click');
 
     /** Target internal element dblclick event */
     @Output()
-    public osDblClick: Observable<PointerEvent> = this.createEvent<PointerEvent>('dblclick');
+    public osDblClick: Observable<PointerEvent> = this.createEvent('dblclick');
 
     /** Target internal element mousedown event */
     @Output()
-    public osMouseDown: Observable<PointerEvent> = this.createEvent<PointerEvent>('mousedown');
+    public osMouseDown: Observable<PointerEvent> = this.createEvent('mousedown');
 
     /** Target internal element mouseup event */
     @Output()
-    public osMouseUp: Observable<PointerEvent> = this.createEvent<PointerEvent>('mouseup');
+    public osMouseUp: Observable<PointerEvent> = this.createEvent('mouseup');
 
     /** Target internal element mousemove event */
     @Output()
-    public osMouseMove: Observable<PointerEvent> = this.createEvent<PointerEvent>('mousemove');
+    public osMouseMove: Observable<PointerEvent> = this.createEvent('mousemove');
 
     /** Target internal element mouseout event */
     @Output()
-    public osMouseOut: Observable<PointerEvent> = this.createEvent<PointerEvent>('mouseout');
+    public osMouseOut: Observable<PointerEvent> = this.createEvent('mouseout');
 
     /** Target internal element mouseover event */
     @Output()
-    public osMouseOver: Observable<PointerEvent> = this.createEvent<PointerEvent>('mouseover');
+    public osMouseOver: Observable<PointerEvent> = this.createEvent('mouseover');
 
     /** Target internal element wheel event */
     @Output()
-    public osWheel: Observable<WheelEvent> = this.createEvent<WheelEvent>('wheel');
+    public osWheel: Observable<WheelEvent> = this.createEvent('wheel');
 
     /** Target internal element keydown event */
     @Output()
-    public osKeyDown: Observable<KeyboardEvent> = this.createEvent<KeyboardEvent>('keydown');
+    public osKeyDown: Observable<KeyboardEvent> = this.createEvent('keydown');
 
     /** Target internal element keyup event */
     @Output()
-    public osKeyUp: Observable<KeyboardEvent> = this.createEvent<KeyboardEvent>('keyup');
+    public osKeyUp: Observable<KeyboardEvent> = this.createEvent('keyup');
 
     protected get targetInternalElement(): HTMLElement {
         return this._targetInternalElement$.getValue();
