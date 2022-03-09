@@ -30,7 +30,7 @@
     --fullscreen-top: calc(-1px + var(--os-fullscreen-offset-top));
     --fullscreen-left: calc(-1px + var(--os-fullscreen-offset-left));
 
-    @keyframes opening {
+    @keyframes os-window-opening {
         from {
             transform: scale(.85);
             opacity: 0;
@@ -42,7 +42,7 @@
         }
     }
     
-    @keyframes closing {
+    @keyframes os-window-closing {
         from {
             transform: scale(1);
             opacity: 1;
@@ -54,7 +54,7 @@
         }
     }
 
-    @keyframes hiding {
+    @keyframes os-window-hiding {
         from {
             transform: scale(1);
             opacity: 1;
@@ -68,7 +68,7 @@
         }
     }
 
-    @keyframes showing {
+    @keyframes os-window-showing {
         from {
             transform: scale(.1);
             top: calc(var(--os-coordinate-y-for-hiding) - var(--os-real-height) / 2);
@@ -82,7 +82,7 @@
         }
     }
     
-    @keyframes entering-fullscreen {
+    @keyframes os-window-entering-fullscreen {
         to {
             width: var(--fullscreen-width);
             height: var(--fullscreen-height);
@@ -92,7 +92,7 @@
         }
     }
 
-    @keyframes entering-windowed {
+    @keyframes os-window-entering-windowed {
         from {
             width: var(--fullscreen-width);
             height: 29px !important;
@@ -107,11 +107,11 @@
     }
 
     &.os-opening {
-        animation: opening .3s ease forwards;
+        animation: os-window-opening .3s ease forwards;
     }
 
     &.os-hiding {
-        animation: hiding .4s ease forwards;
+        animation: os-window-hiding .4s ease forwards;
         z-index: 9999 !important;
     }
 
@@ -120,19 +120,19 @@
     }
 
     &.os-showing {
-        animation: showing .4s ease forwards;
+        animation: os-window-showing .4s ease forwards;
     }
 
     &.os-closing {
-        animation: closing .25s ease forwards;
+        animation: os-window-closing .25s ease forwards;
     }
 
     &.os-entering-fullscreen {
-        animation: entering-fullscreen .17s ease forwards;
+        animation: os-window-entering-fullscreen .17s ease forwards;
     }
 
     &.os-entering-windowed {
-        animation: entering-windowed .17s ease forwards;
+        animation: os-window-entering-windowed .17s ease forwards;
     }
 
     &.os-fullscreen {

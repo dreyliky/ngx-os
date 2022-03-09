@@ -46,7 +46,7 @@
     --fullscreen-top: calc(-2px + var(--os-fullscreen-offset-top));
     --fullscreen-left: calc(-3px + var(--os-fullscreen-offset-left));
 
-    @keyframes showing {
+    @keyframes os-window-showing {
         0% {
             height: 27px;
             transform: scale(.2);
@@ -63,7 +63,7 @@
         }
     }
 
-    @keyframes hiding {
+    @keyframes os-window-hiding {
         from {
             height: 27px;
             transform: scale(1);
@@ -79,7 +79,7 @@
         }
     }
 
-    @keyframes entering-fullscreen {
+    @keyframes os-window-entering-fullscreen {
         0% {
             height: 27px;
         }
@@ -96,7 +96,7 @@
         }
     }
 
-    @keyframes entering-windowed {
+    @keyframes os-window-entering-windowed {
         0% {
             width: var(--fullscreen-width);
             height: 27px;
@@ -115,19 +115,19 @@
     }
 
     &.os-showing {
-        animation: showing .4s ease forwards;
+        animation: os-window-showing .4s ease forwards;
     }
 
     &.os-entering-fullscreen {
-        animation: entering-fullscreen .4s ease forwards;
+        animation: os-window-entering-fullscreen .4s ease forwards;
     }
 
     &.os-entering-windowed {
-        animation: entering-windowed .4s ease forwards;
+        animation: os-window-entering-windowed .4s ease forwards;
     }
 
     &.os-hiding {
-        animation: hiding .4s ease forwards;
+        animation: os-window-hiding .4s ease forwards;
         z-index: 9999 !important;
     }
 
