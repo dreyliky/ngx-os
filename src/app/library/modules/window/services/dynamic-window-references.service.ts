@@ -54,8 +54,8 @@ export class ɵDynamicWindowReferencesService implements OnDestroy {
             windowRef.afterClosed$
         )
             .pipe(
-                takeUntil(this.destroyed$),
-                map(() => this.orderingService.getHighestOpened())
+                map(() => this.orderingService.getHighestOpened()),
+                takeUntil(this.destroyed$)
             )
             .subscribe((highestWindow) => highestWindow?.makeActive());
     }
@@ -63,8 +63,8 @@ export class ɵDynamicWindowReferencesService implements OnDestroy {
     private initIsActiveStateObserver(windowRef: ɵDynamicWindowRefModel): void {
         windowRef.isActive$
             .pipe(
-                takeUntil(this.destroyed$),
-                filter(Boolean)
+                filter(Boolean),
+                takeUntil(this.destroyed$)
             )
             .subscribe(() => {
                 this.orderingService.moveToTop(windowRef.id);

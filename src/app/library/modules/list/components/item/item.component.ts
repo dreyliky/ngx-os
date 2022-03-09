@@ -53,8 +53,8 @@ export class ListItemComponent<T = any> extends ɵOsBaseComponent implements OnI
     private initClickObserver(): void {
         this.osClick
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                filter(() => !this.isDisabled)
+                filter(() => !this.isDisabled),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe(() => this.osSelected.emit(this.data));
     }

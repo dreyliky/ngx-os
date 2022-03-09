@@ -213,8 +213,8 @@ export class DropdownComponent<T = any>
     private initClickObserver(): void {
         this.osClick
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                filter(() => !this.isDisabled)
+                filter(() => !this.isDisabled),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe(() => this.toggle());
     }
@@ -222,8 +222,8 @@ export class DropdownComponent<T = any>
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('click')
             .pipe(
-                takeUntil(this._viewDestroyedOrOverlayBecomeClosed$),
-                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event)),
+                takeUntil(this._viewDestroyedOrOverlayBecomeClosed$)
             )
             .subscribe(() => this.close());
     }

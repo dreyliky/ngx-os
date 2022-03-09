@@ -145,8 +145,8 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('mousedown')
             .pipe(
-                takeUntil(this._viewDestroyedOrBecomeDeselected$),
-                filter((event) => ɵEventOutside.checkForElement(this._hostRef.nativeElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event)),
+                takeUntil(this._viewDestroyedOrBecomeDeselected$)
             )
             .subscribe(() => {
                 this.isSelected = false;

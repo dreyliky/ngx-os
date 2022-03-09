@@ -33,9 +33,9 @@ export class ApiComponent extends ɵOsBaseViewComponent implements OnInit {
     private initRouteFragmentObserver(): void {
         this.activatedRoute.fragment
             .pipe(
-                takeUntil(this.viewDestroyed$),
                 filter((fragment) => !!fragment),
-                map((fragment) => this.document.getElementById(fragment))
+                map((fragment) => this.document.getElementById(fragment)),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe((targetElement) => targetElement.scrollIntoView());
     }

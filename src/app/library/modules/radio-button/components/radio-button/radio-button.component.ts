@@ -90,9 +90,9 @@ export class RadioButtonComponent<T = any>
     private initClickObserver(): void {
         this.osClick
             .pipe(
-                takeUntil(this.viewDestroyed$),
                 map(() => this.inputElementRef.nativeElement),
-                filter((element) => !this.isDisabled && !element.checked)
+                filter((element) => !this.isDisabled && !element.checked),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe((element) => {
                 element.checked = true;

@@ -85,9 +85,9 @@ export class CheckboxComponent<T = any>
     private initClickObserver(): void {
         this.osClick
             .pipe(
-                takeUntil(this.viewDestroyed$),
                 filter(() => !this.isDisabled),
-                map(() => this.inputElementRef.nativeElement)
+                map(() => this.inputElementRef.nativeElement),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe((element) => {
                 element.checked = !element.checked;

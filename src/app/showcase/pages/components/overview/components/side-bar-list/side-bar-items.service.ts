@@ -99,8 +99,8 @@ export class SideBarItemsService implements OnDestroy {
     private initRouteUrlObserver(): void {
         this.router.events
             .pipe(
-                takeUntil(this.destroyed$),
-                filter((event): event is NavigationEnd => (event instanceof NavigationEnd))
+                filter((event): event is NavigationEnd => (event instanceof NavigationEnd)),
+                takeUntil(this.destroyed$)
             )
             .subscribe(({ url }) => this.initCurrentRouteByUrl(url));
     }

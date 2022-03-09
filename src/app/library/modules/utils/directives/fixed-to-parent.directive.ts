@@ -85,8 +85,8 @@ export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit,
     private initDocumentWheelObserver(): void {
         this.globalEvents.fromDocument('wheel')
             .pipe(
-                takeUntil(this.destroyedOrDisabled$),
-                filter((event) => ɵEventOutside.checkForElement(this.targetElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.targetElement, event)),
+                takeUntil(this.destroyedOrDisabled$)
             )
             .subscribe(() => {
                 this.intervalChecker.start({
