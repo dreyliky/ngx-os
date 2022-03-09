@@ -45,6 +45,7 @@ export abstract class ɵOsBaseFormControlComponent<T = any>
         this.onTouched = fn;
     }
 
+    /** @internal */
     public writeValue(value: T): void {
         this.value = value;
 
