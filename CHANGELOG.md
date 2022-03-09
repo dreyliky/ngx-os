@@ -1,6 +1,6 @@
 # Changelog
 
-## [v. 1.0.7-alpha]
+## [v. 1.0.8-alpha]
 
 ### Features
 
