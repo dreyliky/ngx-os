@@ -6,6 +6,7 @@ export * from './email-box';
 export * from './form-field';
 export * from './grid';
 export * from './group-box';
+export * from './hint';
 export * from './list';
 export * from './number-box';
 export * from './password-box';

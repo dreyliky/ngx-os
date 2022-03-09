@@ -5,6 +5,7 @@ export enum OsComponentEnum {
     EmailBox = 'email-box',
     FormField = 'form-field',
     GroupBox = 'group-box',
+    Hint = 'hint',
     List = 'list',
     NumberBox = 'number-box',
     PasswordBox = 'password-box',

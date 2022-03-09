@@ -21,6 +21,7 @@ import {
     GridItemWithStaticCoordinateComponent,
     GridOverviewComponent,
     GroupBoxOverviewComponent,
+    HintOverviewComponent,
     ListCustomTemplateComponent,
     ListOverviewComponent,
     NumberBoxAsFormControlComponent,
@@ -59,6 +60,7 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
+import { HintWithSliderComponent } from './examples/hint/hint-with-slider/hint-with-slider.component';
 
 @NgModule({
     declarations: [
@@ -82,6 +84,7 @@ import {
         GridItemWithStaticCoordinateComponent,
         GridOverviewComponent,
         GroupBoxOverviewComponent,
+        HintOverviewComponent,
         ListCustomTemplateComponent,
         ListOverviewComponent,
         NumberBoxAsFormControlComponent,
@@ -114,11 +117,12 @@ import {
         TreeViewWithCustomTemplateComponent,
         UtilsAppendToBodyOverviewComponent,
         UtilsFixedToParentOverviewComponent,
+        WindowDynamicCustomDraggingLogicComponent,
+        WindowDynamicObserveEventsComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
         WindowTitleBarComponent,
-        WindowDynamicObserveEventsComponent,
-        WindowDynamicCustomDraggingLogicComponent
+        HintWithSliderComponent
     ],
     imports: [
         SharedModule

@@ -6,6 +6,7 @@ export * from './email-box/public-api';
 export * from './form-field/public-api';
 export * from './grid/public-api';
 export * from './group-box/public-api';
+export * from './hint/public-api';
 export * from './list/public-api';
 export * from './number-box/public-api';
 export * from './password-box/public-api';
