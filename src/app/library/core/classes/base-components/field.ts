@@ -14,8 +14,8 @@ import { ɵOsBaseFormControlComponent } from './form-control-element';
 @Component({
     template: ''
 })
-export abstract class ɵOsBaseFieldComponent
-    extends ɵOsBaseFormControlComponent<string>
+export abstract class ɵOsBaseFieldComponent<T = string, OutputT = string>
+    extends ɵOsBaseFormControlComponent<T, OutputT>
     implements AfterViewInit {
     /** Is field disabled? */
     @Input()
