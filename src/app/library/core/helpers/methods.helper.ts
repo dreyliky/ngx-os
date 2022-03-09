@@ -1,11 +1,23 @@
+import { TemplateRef } from '@angular/core';
+
 /** @internal */
-export function ɵIsNil(value: any): boolean {
+export function ɵIsNil(value: unknown): value is undefined | null {
     return (value === undefined || value === null);
 }
 
 /** @internal */
-export function ɵIsNumber(value: any): boolean {
+export function ɵIsNumber(value: unknown): value is number {
     return (typeof value === 'number');
+}
+
+/** @internal */
+export function ɵIsString(value: unknown): value is string {
+    return (typeof value === 'string');
+}
+
+/** @internal */
+export function ɵIsTemplateRef(value: unknown): value is TemplateRef<unknown> {
+    return (value instanceof TemplateRef);
 }
 
 /** @internal */

@@ -2,14 +2,15 @@ import { DOCUMENT } from '@angular/common';
 import {
     Directive,
     ElementRef,
-    Inject, Input,
+    Inject,
+    Input,
     OnDestroy,
     OnInit,
-    TemplateRef,
-    ViewContainerRef
+    TemplateRef
 } from '@angular/core';
 import { fromEvent, merge, Observable, Subject, timer } from 'rxjs';
 import { debounce, filter, finalize, share, takeUntil } from 'rxjs/operators';
+import { ɵIsString, ɵIsTemplateRef } from '../../../core';
 import { ɵHintCssClassEnum as CssClass } from '../enums';
 
 @Directive({
@@ -30,7 +31,7 @@ export class HintDirective implements OnInit, OnDestroy {
 
     /** Hint delay before showing in milliseconds */
     @Input()
-    public osHintDisplayDelay = 500;
+    public osHintDisplayDelay = 300;
 
     /** Is hint enabled? */
     @Input()
@@ -38,8 +39,10 @@ export class HintDirective implements OnInit, OnDestroy {
 
     private hintContainerElement: HTMLDivElement | null;
 
-    private readonly mouseLeave$ = fromEvent(this.hostRef.nativeElement, 'mouseleave')
-        .pipe(share());
+    private readonly mouseLeave$ = fromEvent<MouseEvent>(this.hostRef.nativeElement, 'mouseleave')
+        .pipe(
+            share()
+        );
 
     private get destroyedOrMouseLeave$(): Observable<unknown> {
         return merge(
@@ -48,12 +51,12 @@ export class HintDirective implements OnInit, OnDestroy {
         );
     }
 
+    private readonly delayBeforeDestroy = 600;
     private readonly destroyed$ = new Subject<boolean>();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        private readonly hostRef: ElementRef<HTMLElement>,
-        private viewContainerRef: ViewContainerRef
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
     public ngOnInit(): void {
@@ -67,53 +70,68 @@ export class HintDirective implements OnInit, OnDestroy {
     }
 
     private show(event: MouseEvent): void {
-        const { pageX, pageY } = event;
+        this.createContainerElementIfAbsent();
+        this.adaptContainerElementPosition(event);
+        this.applyContentForContainerElement();
+    }
 
+    private hide(): void {
+        if (this.hintContainerElement) {
+            const hintContainerElement = this.hintContainerElement;
+            this.hintContainerElement = null;
+
+            hintContainerElement.classList.add(CssClass.Hiding);
+
+            setTimeout(() => {
+                this.document.body.removeChild(hintContainerElement);
+            }, this.delayBeforeDestroy);
+        }
+    }
+
+    private createContainerElementIfAbsent(): void {
         if (!this.hintContainerElement) {
             this.hintContainerElement = document.createElement('div');
 
             this.hintContainerElement.classList.add(CssClass.Hint);
             this.document.body.appendChild(this.hintContainerElement);
         }
-
-        this.hintContainerElement.style.left = `${pageX + this.osHintMouseOffsetX}px`;
-        this.hintContainerElement.style.top = `${pageY + this.osHintMouseOffsetY}px`;
-
-        this.applyContentForContainerElement();
     }
 
-    private hide(): void {
-        if (this.hintContainerElement) {
-            this.document.body.removeChild(this.hintContainerElement);
-            this.hintContainerElement = null;
-        }
+    private adaptContainerElementPosition(event: MouseEvent): void {
+        const x = (event.pageX + this.osHintMouseOffsetX);
+        const y = (event.pageY + this.osHintMouseOffsetY);
+
+        this.hintContainerElement.style.left = `${x}px`;
+        this.hintContainerElement.style.top = `${y}px`;
     }
 
     private applyContentForContainerElement(): void {
+        const content = this.content;
         this.hintContainerElement.innerHTML = '';
 
-        if (typeof this.content === 'string') {
-            this.hintContainerElement.innerHTML = this.content;
-        } else {
-            const content = this.content as TemplateRef<unknown>;
-            const view = content.createEmbeddedView(null);
-
-            view.detectChanges();
-
-            view.rootNodes
-                .forEach((node) => this.hintContainerElement.appendChild(node));
+        if (ɵIsString(content)) {
+            this.hintContainerElement.innerHTML = content;
+        } else if (ɵIsTemplateRef(content)) {
+            this.fillContainerElementContentByTemplateRef(content);
         }
     }
 
+    private fillContainerElementContentByTemplateRef(template: TemplateRef<unknown>): void {
+        const view = template.createEmbeddedView(null);
+
+        view.detectChanges();
+        view.rootNodes.forEach((node) => this.hintContainerElement.appendChild(node));
+    }
+
     private initMouseOverObserver(): void {
-        fromEvent(this.hostRef.nativeElement, 'mousemove')
+        fromEvent<MouseEvent>(this.hostRef.nativeElement, 'mousemove')
             .pipe(
                 filter(() => this.osHintEnabled),
                 debounce(() => timer(this.osHintDisplayDelay)),
                 finalize(() => this.hide()),
                 takeUntil(this.destroyedOrMouseLeave$)
             )
-            .subscribe((event: MouseEvent) => this.show(event));
+            .subscribe((event) => this.show(event));
     }
 
     private initMouseLeaveObserver(): void {
