@@ -63,7 +63,7 @@ export class SliderComponent
     }
 
     /** @internal */
-    public onSliderInputEvent(originalEvent: Event): void {
+    public _onSliderInputEvent(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
         const value: number = +targetElement.value;
 

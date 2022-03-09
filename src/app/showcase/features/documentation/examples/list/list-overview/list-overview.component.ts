@@ -24,7 +24,7 @@ export class ListOverviewComponent implements OnInit {
         this.selectedItem = this.items[1];
     }
 
-    public onItemClick(item: Item): void {
+    public onItemSelected(item: Item): void {
         this.selectedItem = item;
     }
 }

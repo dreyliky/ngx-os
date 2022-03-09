@@ -68,6 +68,13 @@ export class RadioButtonComponent<T = any>
     }
 
     /** @internal */
+    public writeValue(value: T): void {
+        this.isChecked = (this.data === value);
+
+        this.changeDetector.detectChanges();
+    }
+
+    /** @internal */
     public _onRadioButtonChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
 

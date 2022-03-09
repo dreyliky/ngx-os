@@ -63,6 +63,13 @@ export class CheckboxComponent<T = any>
     }
 
     /** @internal */
+    public writeValue(value: boolean): void {
+        this.isChecked = value;
+
+        this.changeDetector.detectChanges();
+    }
+
+    /** @internal */
     public _onCheckboxValueChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
         this.isChecked = inputElement.checked;
