@@ -51,7 +51,7 @@ export class HintDirective implements OnInit, OnDestroy {
         );
     }
 
-    private readonly delayBeforeDestroy = 600;
+    private readonly delayBeforeDestroy = 500;
     private readonly destroyed$ = new Subject<boolean>();
 
     constructor(
