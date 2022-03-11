@@ -1,0 +1,16 @@
+<div
+    [osContextMenu]="myContextMenuTemplate"
+    class="container">
+    <os-text>
+        Right-click here to call ContextMenu
+    </os-text>
+</div>
+
+<ng-template #myContextMenuTemplate>
+    <div class="context-menu-wrapper">
+        <os-list-item>View</os-list-item>
+        <os-list-item>Copy</os-list-item>
+        <os-list-item>Move</os-list-item>
+        <os-list-item>Delete</os-list-item>
+    </div>
+</ng-template>

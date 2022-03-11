@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {
     ButtonModule,
     CheckboxModule,
+    ContextMenuModule,
     DragAndDropModule,
     DropdownModule,
     EmailBoxModule,
@@ -29,6 +30,7 @@ import {
     exports: [
         ButtonModule,
         CheckboxModule,
+        ContextMenuModule,
         DragAndDropModule,
         DropdownModule,
         EmailBoxModule,

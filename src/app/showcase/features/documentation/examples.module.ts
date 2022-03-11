@@ -59,6 +59,7 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
+import { ContextMenuOverviewComponent } from './examples/context-menu/context-menu-overview/context-menu-overview.component';
 
 @NgModule({
     declarations: [
@@ -118,7 +119,8 @@ import {
         WindowOverviewComponent,
         WindowTitleBarComponent,
         WindowDynamicObserveEventsComponent,
-        WindowDynamicCustomDraggingLogicComponent
+        WindowDynamicCustomDraggingLogicComponent,
+        ContextMenuOverviewComponent
     ],
     imports: [
         SharedModule

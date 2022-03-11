@@ -1,0 +1,13 @@
+.os-context-menu {
+    min-width: 25px;
+    min-height: 10px;
+    border: solid 1px rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+    position: absolute;
+    z-index: 9999;
+
+    &.os-context-menu-hiding {
+        display: none;
+    }
+}
