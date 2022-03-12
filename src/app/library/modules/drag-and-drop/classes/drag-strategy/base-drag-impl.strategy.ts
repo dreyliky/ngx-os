@@ -1,4 +1,4 @@
-import { ɵIsNil, ɵIsPointerEvent } from '../../../../core';
+import { ɵIsNil, ɵPointerHelper } from '../../../../core';
 import { DraggableDirective } from '../../directives/draggable.directive';
 import { ɵDragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
@@ -27,27 +27,11 @@ export abstract class ɵBaseDragStrategyImpl {
         this.setShiftY(mouseEvent, elementDomRect);
     }
 
-    protected getClientX(event: PointerEvent | TouchEvent): number {
-        if (ɵIsPointerEvent(event)) {
-            return event.clientX;
-        }
-
-        return event.changedTouches[0].clientX;
-    }
-
-    protected getClientY(event: PointerEvent | TouchEvent): number {
-        if (ɵIsPointerEvent(event)) {
-            return event.clientY;
-        }
-
-        return event.changedTouches[0].clientY;
-    }
-
     private setShiftX(event: PointerEvent | TouchEvent, elementDomRect: DOMRect): void {
         if (!ɵIsNil(this.context.config.shiftX)) {
             this.shiftX = this.context.config.shiftX;
         } else {
-            this.shiftX = this.getClientX(event) - elementDomRect.left + scrollX;
+            this.shiftX = ɵPointerHelper.getClientX(event) - elementDomRect.left + scrollX;
         }
     }
 
@@ -55,7 +39,7 @@ export abstract class ɵBaseDragStrategyImpl {
         if (!ɵIsNil(this.context.config.shiftY)) {
             this.shiftY = this.context.config.shiftY;
         } else {
-            this.shiftY = this.getClientY(event) - elementDomRect.top + scrollY;
+            this.shiftY = ɵPointerHelper.getClientY(event) - elementDomRect.top + scrollY;
         }
     }
 

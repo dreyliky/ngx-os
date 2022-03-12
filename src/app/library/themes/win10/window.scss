@@ -179,7 +179,7 @@
         }
     }
 
-    &:hover:not(.os-fullscreen):not(.os-entering-fullscreen) os-resizers {
+    &:not(.os-fullscreen):not(.os-entering-fullscreen) os-resizers {
         display: inherit;
     }
 

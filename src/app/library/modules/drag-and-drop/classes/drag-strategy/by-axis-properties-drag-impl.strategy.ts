@@ -1,3 +1,4 @@
+import { ɵPointerHelper } from '../../../../core';
 import { ɵDragStrategyEnum } from '../../enums';
 import { ɵBaseDragStrategyImpl } from './base-drag-impl.strategy';
 import { DragStrategyByAxisProperties } from './by-axis-properties-drag.strategy';
@@ -12,12 +13,12 @@ export class ɵDragStrategyByAxisPropertiesImpl extends ɵBaseDragStrategyImpl {
 
             this.context.movableElement.style.setProperty(
                 strategyConfig.xAxisLeftStyleProperty,
-                `${this.getClientX(event) - this.shiftX}px`
+                `${ɵPointerHelper.getClientX(event) - this.shiftX}px`
             );
 
             this.context.movableElement.style.setProperty(
                 strategyConfig.yAxisTopStyleProperty,
-                `${this.getClientY(event) - this.shiftY}px`
+                `${ɵPointerHelper.getClientY(event) - this.shiftY}px`
             );
         }
     }

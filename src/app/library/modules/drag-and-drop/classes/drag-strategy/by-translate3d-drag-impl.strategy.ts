@@ -1,3 +1,4 @@
+import { ɵPointerHelper } from '../../../../core';
 import { ɵDragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
 import { ɵBaseDragStrategyImpl } from './base-drag-impl.strategy';
@@ -35,14 +36,14 @@ export class ɵDragStrategyByTranslate3dImpl extends ɵBaseDragStrategyImpl {
 
     private calculateElementPositionX(event: PointerEvent | TouchEvent): string {
         const position = (!this.config.isLockAxisX) ?
-            (this.getClientX(event) - this.initialX - this.shiftX) : 0;
+            (ɵPointerHelper.getClientX(event) - this.initialX - this.shiftX) : 0;
 
         return `${position}px`;
     }
 
     private calculateElementPositionY(event: PointerEvent | TouchEvent): string {
         const position = (!this.config.isLockAxisY) ?
-            (this.getClientY(event) - this.initialY - this.shiftY) : 0;
+            (ɵPointerHelper.getClientY(event) - this.initialY - this.shiftY) : 0;
 
         return `${position}px`;
     }

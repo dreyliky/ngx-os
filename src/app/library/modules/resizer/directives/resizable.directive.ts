@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { ɵCommonCssClassEnum as CommonCssClass } from '../../../core';
+import { ɵCommonCssClassEnum as CommonCssClass, ɵPointerHelper } from '../../../core';
 import { ɵBaseResizer, ɵResizerConfigModel, ɵResizerFactory } from '../classes';
 import { ɵRESIZERS_ARRAY } from '../data';
 import {
@@ -89,7 +89,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.document.removeEventListener('mouseup', this.documentMouseUpHandler);
+        this.document.removeEventListener('mouseup', this.onPointerUp);
         this._whenViewInit$.complete();
     }
 
@@ -142,10 +142,15 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     private createResizer(resizer: ResizerEnum): void {
         const resizerElement = this.document.createElement(ElementTag.Resizer);
 
+        const pointerDownHandler = (event: PointerEvent | TouchEvent): void => {
+            this.onPointerDown(event, resizer);
+        };
+
         resizerElement.classList.add(resizer);
-        resizerElement.addEventListener('mousedown', (event: PointerEvent) => {
-            this.resizerMouseDownHandler(event, resizer);
-        });
+        resizerElement.addEventListener('mousedown', pointerDownHandler);
+        resizerElement.addEventListener('touchstart', pointerDownHandler);
+        resizerElement.addEventListener('touchmove', this.onPointerMove, { passive: false });
+        resizerElement.addEventListener('touchend', this.onPointerUp);
         this._resizersWrapperElement.appendChild(resizerElement);
     }
 
@@ -167,7 +172,10 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         classList[action](CommonCssClass.Active);
     }
 
-    private resizerMouseDownHandler(event: PointerEvent, resizerId: ResizerEnum): void {
+    private readonly onPointerDown = (
+        event: PointerEvent | TouchEvent,
+        resizerId: ResizerEnum
+    ): void => {
         if (!this.isResizeAllowed(event)) {
             return;
         }
@@ -179,11 +187,11 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         this.osResizeStart.emit(resizeInfo);
         this._resizer.init(this._resizableElement, event);
         this._resizableElement.classList.add(CssClass.Resizing);
-        this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
-        this.document.addEventListener('mouseup', this.documentMouseUpHandler);
+        this.document.addEventListener('mousemove', this.onPointerMove);
+        this.document.addEventListener('mouseup', this.onPointerUp);
     }
 
-    private readonly documentMouseMoveHandler = (event: PointerEvent): void => {
+    private readonly onPointerMove = (event: PointerEvent | TouchEvent): void => {
         const resizeInfo = this.getResizeInfo(event);
 
         if (this.config.mouseMoveHandler) {
@@ -193,27 +201,33 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         }
 
         event.stopPropagation();
+
+        if (event.cancelable) {
+            event.preventDefault();
+        }
         this.osResizing.emit(resizeInfo);
     };
 
-    private readonly documentMouseUpHandler = (event: PointerEvent): void => {
+    private readonly onPointerUp = (event: PointerEvent | TouchEvent): void => {
         this._resizableElement.classList.remove(CssClass.Resizing);
-        this.document.removeEventListener('mousemove', this.documentMouseMoveHandler);
+        this.document.removeEventListener('mousemove', this.onPointerMove);
+        this.document.addEventListener('mouseup', this.onPointerUp);
         event.stopPropagation();
         this.osResizeEnd.emit(this.getResizeInfo(event));
     };
 
-    private getResizeInfo(originalEvent: PointerEvent): ResizeInfo {
+    private getResizeInfo(originalEvent: PointerEvent | TouchEvent): ResizeInfo {
         return {
             resizableElement: this._resizableElement,
             originalEvent
         };
     }
 
-    private isResizeAllowed(event: PointerEvent): boolean {
-        return (
-            this.config.isEnabled &&
-            this.config.allowedMouseButtons?.includes(event.button)
-        );
+    private isResizeAllowed(event: PointerEvent | TouchEvent): boolean {
+        const isMouseButtonAvailable = ɵPointerHelper.isPointerEvent(event) ?
+            this.config.allowedMouseButtons?.includes(event.button) :
+            (event.touches.length === 1);
+
+        return (this.config.isEnabled && isMouseButtonAvailable);
     }
 }

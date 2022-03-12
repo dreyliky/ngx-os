@@ -11,7 +11,7 @@ import {
     Output
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { ɵIsPointerEvent } from '../../../core';
+import { ɵPointerHelper } from '../../../core';
 import { ɵBaseDragStrategyImpl, ɵDraggerConfigModel, ɵDragStrategyFactory } from '../classes';
 import { ɵDraggerCssClassEnum as CssClass } from '../enums';
 import { DraggerConfig, DragInfo } from '../interfaces';
@@ -189,7 +189,7 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     private isDragAllowed(event: PointerEvent | TouchEvent): boolean {
-        const isMouseButtonAvailable = ɵIsPointerEvent(event) ?
+        const isMouseButtonAvailable = ɵPointerHelper.isPointerEvent(event) ?
             this.config.allowedMouseButtons?.includes(event.button) :
             (event.touches.length === 1);
 
