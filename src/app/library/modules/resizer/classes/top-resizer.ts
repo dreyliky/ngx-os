@@ -5,7 +5,7 @@ import { ɵBaseResizer } from './base-resizer';
 export class ɵTopResizer extends ɵBaseResizer {
     public static id = ResizerEnum.Top;
 
-    public resizeElement(event: MouseEvent): void {
+    public resizeElement(event: PointerEvent): void {
         const height = this.originalHeight - (event.pageY - this.originalMouseY);
 
         if (height > this.minHeight && height < this.maxHeight) {

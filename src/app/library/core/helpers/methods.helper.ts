@@ -9,6 +9,13 @@ export function ɵIsNumber(value: any): boolean {
 }
 
 /** @internal */
+export function ɵIsPointerEvent(event: Event): event is PointerEvent {
+    const mouseEvent = event as PointerEvent;
+
+    return !ɵIsNil(mouseEvent.clientX) && !ɵIsNil(mouseEvent.clientY);
+}
+
+/** @internal */
 export function ɵParseInt(value: string): number {
     return Number.parseInt(value, 10);
 }

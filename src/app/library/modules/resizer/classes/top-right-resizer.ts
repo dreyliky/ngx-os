@@ -5,12 +5,12 @@ import { ɵBaseResizer } from './base-resizer';
 export class ɵTopRightResizer extends ɵBaseResizer {
     public static id = ResizerEnum.TopRight;
 
-    public resizeElement(event: MouseEvent): void {
+    public resizeElement(event: PointerEvent): void {
         this.processAxisX(event);
         this.processAxisY(event);
     }
 
-    private processAxisX(event: MouseEvent): void {
+    private processAxisX(event: PointerEvent): void {
         const width = this.originalWidth + (event.pageX - this.originalMouseX);
 
         if (width > this.minWidth && width < this.maxWidth) {
@@ -25,7 +25,7 @@ export class ɵTopRightResizer extends ɵBaseResizer {
         }
     }
 
-    private processAxisY(event: MouseEvent): void {
+    private processAxisY(event: PointerEvent): void {
         const height = this.originalHeight - (event.pageY - this.originalMouseY);
 
         if (height > this.minHeight && height < this.maxHeight) {

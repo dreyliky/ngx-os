@@ -28,9 +28,9 @@ export class TreeNodesSelectionService<T = any> {
 
     /**
      * Selects node
-     * @param originalEvent - MouseEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
+     * @param originalEvent - PointerEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public select(node: TreeNode<T>, originalEvent?: MouseEvent): void {
+    public select(node: TreeNode<T>, originalEvent?: PointerEvent): void {
         node.isSelected = true;
         const allSelected = this.getAllSelected();
 
@@ -42,7 +42,7 @@ export class TreeNodesSelectionService<T = any> {
      * Deselects node
      * @param originalEvent - Event which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public deselect(node: TreeNode<T>, originalEvent?: MouseEvent): void {
+    public deselect(node: TreeNode<T>, originalEvent?: PointerEvent): void {
         node.isSelected = false;
         const allSelected = this.getAllSelected();
 
@@ -52,9 +52,9 @@ export class TreeNodesSelectionService<T = any> {
 
     /**
      * Selects and deselects node (sets the opposite state)
-     * @param originalEvent - MouseEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
+     * @param originalEvent - PointerEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public toggle(node: TreeNode<T>, originalEvent?: MouseEvent): void {
+    public toggle(node: TreeNode<T>, originalEvent?: PointerEvent): void {
         if (node.isSelected) {
             this.deselect(node, originalEvent);
         } else {

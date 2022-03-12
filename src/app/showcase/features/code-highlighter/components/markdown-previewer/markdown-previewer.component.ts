@@ -27,12 +27,12 @@ export class MarkdownPreviewerComponent extends ɵOsBaseViewComponent {
         super();
     }
 
-    public onClick(event: MouseEvent): void {
+    public onClick(event: PointerEvent): void {
         this.processLinkClick(event);
         event.stopImmediatePropagation();
     }
 
-    private processLinkClick(event: MouseEvent): void {
+    private processLinkClick(event: PointerEvent): void {
         const element = event.target as HTMLElement;
 
         if (element.tagName === 'A') {

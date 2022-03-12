@@ -5,7 +5,7 @@ import { ɵBaseResizer } from './base-resizer';
 export class ɵLeftResizer extends ɵBaseResizer {
     public static id = ResizerEnum.Left;
 
-    public resizeElement(event: MouseEvent): void {
+    public resizeElement(event: PointerEvent): void {
         const width = this.originalWidth - (event.pageX - this.originalMouseX);
 
         if (width > this.minWidth && width < this.maxWidth) {

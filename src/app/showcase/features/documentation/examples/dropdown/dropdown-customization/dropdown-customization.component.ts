@@ -42,7 +42,7 @@ export class DropdownСustomizationComponent implements OnInit {
         }
     }
 
-    public onClearButtonClick(event: MouseEvent): void {
+    public onClearButtonClick(event: PointerEvent): void {
         this.selectedComponent = null;
 
         event.stopPropagation();

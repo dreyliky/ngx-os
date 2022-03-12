@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
-    DragInfo,
     DragStrategyByAxisProperties,
     DynamicWindowRef,
     DynamicWindowService,
     DYNAMIC_WINDOW_REF
 } from 'ngx-os';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'showcase-window-dynamic-custom-dragging-logic',
@@ -53,15 +51,15 @@ class MyAppComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.initWindowDragStartObserver();
-        this.initWindowDragEndObserver();
-        this.windowRef.updateConfig({
-            draggerConfig: {
-                mouseMoveHandler: (event) => {
-                    this.calculateWindowPositionX(event);
-                    this.calculateWindowPositionY(event);
-                }
-            }
-        });
+        // this.initWindowDragEndObserver();
+        // this.windowRef.updateConfig({
+        //     draggerConfig: {
+        //         mouseMoveHandler: (event) => {
+        //             this.calculateWindowPositionX(event);
+        //             this.calculateWindowPositionY(event);
+        //         }
+        //     }
+        // });
     }
 
     public ngOnDestroy(): void {
@@ -70,58 +68,58 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     private initWindowDragStartObserver(): void {
-        this.windowRef.draggableDirective.osDragStart
-            .pipe(takeUntil(this.viewDestroy$))
-            .subscribe(({ originalEvent, movableElement }) => {
-                this.shiftX = (originalEvent.clientX - movableElement.offsetLeft);
-                this.shiftY = (originalEvent.clientY - movableElement.offsetTop);
-            });
+        // this.windowRef.draggableDirective.osDragStart
+        //     .pipe(takeUntil(this.viewDestroy$))
+        //     .subscribe(({ originalEvent, movableElement }) => {
+        //         this.shiftX = (originalEvent.clientX - movableElement.offsetLeft);
+        //         this.shiftY = (originalEvent.clientY - movableElement.offsetTop);
+        //     });
     }
 
-    private initWindowDragEndObserver(): void {
-        this.windowRef.draggableDirective.osDragEnd
-            .pipe(takeUntil(this.viewDestroy$))
-            .subscribe(({ movableElement }) => this.onDragEnd(movableElement));
-    }
+    // private initWindowDragEndObserver(): void {
+    //     this.windowRef.draggableDirective.osDragEnd
+    //         .pipe(takeUntil(this.viewDestroy$))
+    //         .subscribe(({ movableElement }) => this.onDragEnd(movableElement));
+    // }
 
-    private calculateWindowPositionX(
-        { originalEvent: { clientX }, movableElement }: DragInfo
-    ): void {
-        const axisPropertyName = this.dragStrategy.xAxisLeftStyleProperty;
+    // private calculateWindowPositionX(
+    //     { originalEvent: { clientX }, movableElement }: DragInfo
+    // ): void {
+    //     const axisPropertyName = this.dragStrategy.xAxisLeftStyleProperty;
 
-        if (this.shiftX > clientX) {
-            movableElement.style.setProperty(axisPropertyName, '0px');
-        } else if ((clientX - this.shiftX + movableElement.clientWidth) < innerWidth) {
-            movableElement.style.setProperty(axisPropertyName, `${clientX - this.shiftX}px`);
-        } else {
-            const coordinate = `${innerWidth - movableElement.clientWidth}px`;
+    //     if (this.shiftX > clientX) {
+    //         movableElement.style.setProperty(axisPropertyName, '0px');
+    //     } else if ((clientX - this.shiftX + movableElement.clientWidth) < innerWidth) {
+    //         movableElement.style.setProperty(axisPropertyName, `${clientX - this.shiftX}px`);
+    //     } else {
+    //         const coordinate = `${innerWidth - movableElement.clientWidth}px`;
 
-            movableElement.style.setProperty(axisPropertyName, coordinate);
-        }
-    }
+    //         movableElement.style.setProperty(axisPropertyName, coordinate);
+    //     }
+    // }
 
-    private calculateWindowPositionY(
-        { originalEvent: { clientY }, movableElement }: DragInfo
-    ): void {
-        const axisPropertyName = this.dragStrategy.yAxisTopStyleProperty;
+    // private calculateWindowPositionY(
+    //     { originalEvent: { clientY }, movableElement }: DragInfo
+    // ): void {
+    //     const axisPropertyName = this.dragStrategy.yAxisTopStyleProperty;
 
-        if (this.shiftY > clientY) {
-            movableElement.style.setProperty(axisPropertyName, '0px');
-        } else if ((clientY - this.shiftY + movableElement.clientHeight) < innerHeight) {
-            movableElement.style.setProperty(axisPropertyName, `${clientY - this.shiftY}px`);
-        } else {
-            const coordinate = `${innerHeight - movableElement.clientHeight}px`;
+    //     if (this.shiftY > clientY) {
+    //         movableElement.style.setProperty(axisPropertyName, '0px');
+    //     } else if ((clientY - this.shiftY + movableElement.clientHeight) < innerHeight) {
+    //         movableElement.style.setProperty(axisPropertyName, `${clientY - this.shiftY}px`);
+    //     } else {
+    //         const coordinate = `${innerHeight - movableElement.clientHeight}px`;
 
-            movableElement.style.setProperty(axisPropertyName, coordinate);
-        }
-    }
+    //         movableElement.style.setProperty(axisPropertyName, coordinate);
+    //     }
+    // }
 
-    private onDragEnd(windowElement: HTMLElement): void {
-        if (
-            windowElement.offsetLeft <= 0 ||
-            (windowElement.offsetLeft + windowElement.clientWidth) >= innerWidth
-        ) {
-            this.windowRef.goFullscreen();
-        }
-    }
+    // private onDragEnd(windowElement: HTMLElement): void {
+    //     if (
+    //         windowElement.offsetLeft <= 0 ||
+    //         (windowElement.offsetLeft + windowElement.clientWidth) >= innerWidth
+    //     ) {
+    //         this.windowRef.goFullscreen();
+    //     }
+    // }
 }

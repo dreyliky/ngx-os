@@ -33,7 +33,7 @@ export abstract class ɵBaseResizer {
         this.documentElement = this.injector.get(DOCUMENT)?.documentElement;
     }
 
-    public init(resizableElement: HTMLElement, event: MouseEvent): void {
+    public init(resizableElement: HTMLElement, event: PointerEvent): void {
         const { width, height, left, top } = resizableElement.getBoundingClientRect();
         this.originalWidth = width;
         this.originalHeight = height;
@@ -56,5 +56,5 @@ export abstract class ɵBaseResizer {
         this.maxHeight = this.config.maxHeight || ɵParseInt(maxHeight) || this.minSize;
     }
 
-    public abstract resizeElement(event: MouseEvent): void;
+    public abstract resizeElement(event: PointerEvent): void;
 }

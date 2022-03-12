@@ -143,7 +143,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         const resizerElement = this.document.createElement(ElementTag.Resizer);
 
         resizerElement.classList.add(resizer);
-        resizerElement.addEventListener('mousedown', (event: MouseEvent) => {
+        resizerElement.addEventListener('mousedown', (event: PointerEvent) => {
             this.resizerMouseDownHandler(event, resizer);
         });
         this._resizersWrapperElement.appendChild(resizerElement);
@@ -167,7 +167,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         classList[action](CommonCssClass.Active);
     }
 
-    private resizerMouseDownHandler(event: MouseEvent, resizerId: ResizerEnum): void {
+    private resizerMouseDownHandler(event: PointerEvent, resizerId: ResizerEnum): void {
         if (!this.isResizeAllowed(event)) {
             return;
         }
@@ -183,7 +183,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         this.document.addEventListener('mouseup', this.documentMouseUpHandler);
     }
 
-    private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
+    private readonly documentMouseMoveHandler = (event: PointerEvent): void => {
         const resizeInfo = this.getResizeInfo(event);
 
         if (this.config.mouseMoveHandler) {
@@ -196,21 +196,21 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         this.osResizing.emit(resizeInfo);
     };
 
-    private readonly documentMouseUpHandler = (event: MouseEvent): void => {
+    private readonly documentMouseUpHandler = (event: PointerEvent): void => {
         this._resizableElement.classList.remove(CssClass.Resizing);
         this.document.removeEventListener('mousemove', this.documentMouseMoveHandler);
         event.stopPropagation();
         this.osResizeEnd.emit(this.getResizeInfo(event));
     };
 
-    private getResizeInfo(originalEvent: MouseEvent): ResizeInfo {
+    private getResizeInfo(originalEvent: PointerEvent): ResizeInfo {
         return {
             resizableElement: this._resizableElement,
             originalEvent
         };
     }
 
-    private isResizeAllowed(event: MouseEvent): boolean {
+    private isResizeAllowed(event: PointerEvent): boolean {
         return (
             this.config.isEnabled &&
             this.config.allowedMouseButtons?.includes(event.button)

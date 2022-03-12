@@ -8,7 +8,7 @@
         [ngClass]="tabButtonStyleClass"
         [attr.role]="'tab'"
         [attr.aria-selected]="_isSelected"
-        (click)="_onTabButtonClick($event)">
+        (click)="_onTabButtonClick($any($event))">
         <ng-container
             *ngIf="_tabLabelTemplate; else defaultLabelTemplate">
             <ng-container
