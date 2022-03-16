@@ -5,6 +5,8 @@ import {
     ButtonOverviewComponent,
     CheckboxAsFormControlComponent,
     CheckboxOverviewComponent,
+    ContextMenuOverviewComponent,
+    DividerOverviewComponent,
     DraggerOnAbsoluteElementComponent,
     DraggerOverviewComponent,
     DraggerViaHandleComponent,
@@ -59,7 +61,6 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
-import { DividerOverviewComponent } from './examples/divider/divider-overview/divider-overview.component';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,8 @@ import { DividerOverviewComponent } from './examples/divider/divider-overview/di
         ButtonOverviewComponent,
         CheckboxAsFormControlComponent,
         CheckboxOverviewComponent,
+        ContextMenuOverviewComponent,
+        DividerOverviewComponent,
         DraggerOnAbsoluteElementComponent,
         DraggerOverviewComponent,
         DraggerViaHandleComponent,
@@ -115,12 +118,11 @@ import { DividerOverviewComponent } from './examples/divider/divider-overview/di
         TreeViewWithCustomTemplateComponent,
         UtilsAppendToBodyOverviewComponent,
         UtilsFixedToParentOverviewComponent,
+        WindowDynamicCustomDraggingLogicComponent,
+        WindowDynamicObserveEventsComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent,
-        WindowDynamicObserveEventsComponent,
-        WindowDynamicCustomDraggingLogicComponent,
-        DividerOverviewComponent
+        WindowTitleBarComponent
     ],
     imports: [
         SharedModule

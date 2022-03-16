@@ -10,26 +10,27 @@
     .os-scroll-view {
         height: 100%;
     }
+}
 
-    .os-list-item {
-        width: 100%;
-        min-height: 15px;
-        display: flex;
-        align-items: center;
-        padding: 0px 2px;
-        box-sizing: border-box;
+.os-list-item {
+    width: 100%;
+    min-height: 15px;
+    display: flex;
+    align-items: center;
+    padding: 0px 2px;
+    box-sizing: border-box;
+    cursor: default;
 
-        &:hover:not(.os-disabled) {
-            background-color: rgba(215, 215, 215, .4);
-        }
+    &:hover:not(.os-disabled) {
+        background-color: rgba(215, 215, 215, .4);
+    }
 
-        &.os-disabled {
-            color: #b1b1af;
-        }
+    &.os-disabled {
+        color: #b1b1af;
+    }
 
-        &.os-selected {
-            background-color: rgba(var(--os-primary-color), .6) !important;
-            color: #ffffff;
-        }
+    &.os-selected {
+        background-color: rgba(var(--os-primary-color), .6) !important;
+        color: #ffffff;
     }
 }
