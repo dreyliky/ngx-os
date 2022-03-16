@@ -1,5 +1,6 @@
 export * from './button';
 export * from './checkbox';
+export * from './divider';
 export * from './drag-and-drop';
 export * from './dropdown';
 export * from './email-box';

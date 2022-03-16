@@ -1,0 +1,16 @@
+.os-divider {
+    width: 100%;
+    height: 9px;
+    display: flex;
+    align-items: center;
+    padding: 0px 8px;
+    box-sizing: border-box;
+    
+    &::before {
+        width: 100%;
+        height: 1px;
+        display: block;
+        background-color: #919191;
+        content: '';
+    }
+}

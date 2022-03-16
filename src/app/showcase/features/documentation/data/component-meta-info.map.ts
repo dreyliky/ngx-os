@@ -3,6 +3,7 @@ import { ComponentMetaInfo } from '../interfaces';
 import {
     BUTTON_META_INFO,
     CHECKBOX_META_INFO,
+    DIVIDER_META_INFO,
     DRAG_AND_DROP_META_INFO,
     DROPDOWN_META_INFO,
     EMAIL_BOX_META_INFO,
@@ -34,6 +35,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.Checkbox,
         CHECKBOX_META_INFO
+    )
+    .set(
+        OsComponentEnum.Divider,
+        DIVIDER_META_INFO
     )
     .set(
         OsComponentEnum.DragAndDrop,

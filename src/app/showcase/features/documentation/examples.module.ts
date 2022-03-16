@@ -59,6 +59,7 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
+import { DividerOverviewComponent } from './examples/divider/divider-overview/divider-overview.component';
 
 @NgModule({
     declarations: [
@@ -118,7 +119,8 @@ import {
         WindowOverviewComponent,
         WindowTitleBarComponent,
         WindowDynamicObserveEventsComponent,
-        WindowDynamicCustomDraggingLogicComponent
+        WindowDynamicCustomDraggingLogicComponent,
+        DividerOverviewComponent
     ],
     imports: [
         SharedModule

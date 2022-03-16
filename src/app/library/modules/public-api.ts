@@ -1,5 +1,6 @@
 export * from './button/public-api';
 export * from './checkbox/public-api';
+export * from './divider/public-api';
 export * from './drag-and-drop/public-api';
 export * from './dropdown/public-api';
 export * from './email-box/public-api';
