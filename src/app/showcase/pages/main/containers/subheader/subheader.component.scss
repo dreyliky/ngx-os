@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     flex-direction: column;
     background-image: url('/assets/showcase/icons/icon.png');
     background-color: rgba(var(--os-primary-color), .8);
@@ -11,6 +12,15 @@
     background-position-x: 100%;
     background-size: contain;
     color: #ffffff;
+
+    @media (max-width: 950px) {
+        background-image: none;
+
+        .components-showcase {
+            width: 216px;
+            height: 144px;
+        }
+    }
 }
 
 os-header {
