@@ -11,7 +11,8 @@ export const BUTTON_META_INFO: ComponentMetaInfo = {
         'ButtonModule'
     ],
     libComponents: [
-        'ButtonComponent'
+        'ButtonComponent',
+        'ButtonLinkComponent'
     ],
     demoComponents: [
         {

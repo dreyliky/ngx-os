@@ -6,7 +6,6 @@
     justify-content: center;
     padding: 6px 18px;
     font-family: var(--segoe-ui);
-    font-size: 13px;
     box-sizing: border-box;
     border: 2px solid transparent;
     background: rgb(215, 215, 215);
@@ -37,8 +36,50 @@
             border-color: rgba(0, 0, 0, .4);
         }
 
+        &:focus,
         &.os-focused {
             border: solid 2px #000;
+        }
+    }
+}
+
+.os-button-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 6px;
+    font-family: var(--segoe-ui);
+    box-sizing: border-box;
+    border: solid 2px transparent;
+    background: transparent;
+    border-radius: 0px;
+    font-weight: 500;
+    font-size: 14px;
+    outline: 0;
+    user-select: none;
+    cursor: pointer;
+    color: rgb(var(--os-primary-color));
+
+    &.os-disabled {
+        color: #909090;
+        cursor: default;
+    }
+
+    &:not(.os-disabled) {
+        &:hover {
+            color: #7d7d7d;
+        }
+
+        &:active,
+        &.os-active {
+            color: #acacac;
+        }
+
+        &:not(:active, .os-active) {
+            &:focus,
+            &.os-focused {
+                border: solid 2px #000;
+            }
         }
     }
 }

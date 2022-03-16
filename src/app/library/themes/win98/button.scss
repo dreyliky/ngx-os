@@ -37,3 +37,36 @@
         border: 0;
     }
 }
+
+.os-button-link {
+    line-height: 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0px;
+    box-sizing: border-box;
+    border: none;
+    background: transparent;
+    border-radius: 0px;
+    font-weight: 500;
+    font-size: 11px;
+    outline: 0;
+    user-select: none;
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(var(--os-primary-color));
+
+    &.os-disabled {
+        color: grey;
+        text-shadow: 1px 1px 0 #fff;
+        cursor: default;
+    }
+
+    &:not(.os-disabled) {
+        &:focus,
+        &.os-focused {
+            outline: 1px dotted #000000;
+            text-decoration: none;
+        }
+    }
+}

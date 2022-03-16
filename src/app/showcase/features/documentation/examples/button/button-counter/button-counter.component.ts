@@ -16,4 +16,8 @@ export class ButtonCounterComponent {
     public onDecreaseButtonClick(): void {
         this.counter--;
     }
+
+    public onResetButtonClick(): void {
+        this.counter = 0;
+    }
 }
