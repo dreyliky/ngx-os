@@ -1,0 +1,21 @@
+.wrapper {
+    width: 100%;
+    max-width: 640px;
+    display: flex !important;
+    flex-direction: row;
+}
+
+.container {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 15px;
+    padding: 5px;
+    background-color: rgba(var(--os-primary-color), .95);
+    color: #fff;
+    z-index: 1;
+    cursor: help;
+}

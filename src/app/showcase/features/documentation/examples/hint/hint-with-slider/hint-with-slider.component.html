@@ -1,0 +1,19 @@
+<os-slider
+    [osHint]="sliderHintTemplate"
+    [osHintDisplayDelay]="0"
+    [osHintMouseOffsetX]="-24"
+    [osHintMouseOffsetY]="-56"
+    [osHintEnabled]="isHintEnabled"
+    [label]="'This slider have hint with it\'s value'"
+    [min]="sliderMinValue"
+    [max]="sliderMaxValue"
+    [(ngModel)]="sliderValue"
+    (osMouseDown)="onSliderMouseDown()"
+    (osMouseOut)="onSliderMouseLeave()">
+</os-slider>
+
+<ng-template #sliderHintTemplate>
+    <div class="text-align-center">
+        {{ sliderValue }}
+    </div>
+</ng-template>

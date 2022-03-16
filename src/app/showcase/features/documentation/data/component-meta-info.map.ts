@@ -11,6 +11,7 @@ import {
     FORM_FIELD_META_INFO,
     GRID_META_INFO,
     GROUP_BOX_META_INFO,
+    HINT_META_INFO,
     LIST_META_INFO,
     NUMBER_BOX_META_INFO,
     PASSWORD_BOX_META_INFO,
@@ -56,6 +57,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.GroupBox,
         GROUP_BOX_META_INFO
+    )
+    .set(
+        OsComponentEnum.Hint,
+        HINT_META_INFO
     )
     .set(
         OsComponentEnum.Grid,
