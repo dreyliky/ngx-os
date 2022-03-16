@@ -9,6 +9,7 @@ export enum OsComponentEnum {
     GroupBox = 'group-box',
     Hint = 'hint',
     List = 'list',
+    MenuBar = 'menu-bar',
     NumberBox = 'number-box',
     PasswordBox = 'password-box',
     RadioButton = 'radio-button',

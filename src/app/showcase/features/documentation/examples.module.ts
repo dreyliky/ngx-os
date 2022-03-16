@@ -27,6 +27,7 @@ import {
     HintWithSliderComponent,
     ListCustomTemplateComponent,
     ListOverviewComponent,
+    MenuBarOverviewComponent,
     NumberBoxAsFormControlComponent,
     NumberBoxOverviewComponent,
     PasswordBoxAsFormControlComponent,
@@ -92,6 +93,7 @@ import {
         HintWithSliderComponent,
         ListCustomTemplateComponent,
         ListOverviewComponent,
+        MenuBarOverviewComponent,
         NumberBoxAsFormControlComponent,
         NumberBoxOverviewComponent,
         PasswordBoxAsFormControlComponent,
@@ -126,7 +128,8 @@ import {
         WindowDynamicObserveEventsComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        MenuBarOverviewComponent
     ],
     imports: [
         SharedModule

@@ -10,6 +10,7 @@ export * from './grid';
 export * from './group-box';
 export * from './hint';
 export * from './list';
+export * from './menu-bar';
 export * from './number-box';
 export * from './password-box';
 export * from './radio-button';

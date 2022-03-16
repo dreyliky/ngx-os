@@ -13,6 +13,7 @@ import {
     GROUP_BOX_META_INFO,
     HINT_META_INFO,
     LIST_META_INFO,
+    MENU_BAR_META_INFO,
     NUMBER_BOX_META_INFO,
     PASSWORD_BOX_META_INFO,
     RADIO_BUTTON_META_INFO,
@@ -69,6 +70,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.List,
         LIST_META_INFO
+    )
+    .set(
+        OsComponentEnum.MenuBar,
+        MENU_BAR_META_INFO
     )
     .set(
         OsComponentEnum.RadioButton,

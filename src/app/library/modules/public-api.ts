@@ -10,6 +10,7 @@ export * from './grid/public-api';
 export * from './group-box/public-api';
 export * from './hint/public-api';
 export * from './list/public-api';
+export * from './menu-bar/public-api';
 export * from './number-box/public-api';
 export * from './password-box/public-api';
 export * from './radio-button/public-api';
