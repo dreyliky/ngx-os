@@ -6,7 +6,7 @@ export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
     name: 'Textarea Box',
     type: OsComponentEnum.TextareaBox,
     shortInfo: 'Provides the text field for entering a multi-line text.',
-    imageUrl: '/assets/showcase/icons/components/text-box.png',
+    imageUrl: '/assets/showcase/icons/components/textarea-box.png',
     libModules: [
         'TextareaBoxModule'
     ],
