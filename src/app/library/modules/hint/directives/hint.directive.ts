@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { fromEvent, merge, Observable, Subject, timer } from 'rxjs';
 import { debounce, filter, finalize, share, takeUntil } from 'rxjs/operators';
-import { ɵIsString, ɵIsTemplateRef } from '../../../core';
+import { ɵGlobalEvents, ɵIsString, ɵIsTemplateRef } from '../../../core';
 import { ɵHintCssClassEnum as CssClass } from '../enums';
 
 @Directive({
@@ -31,7 +31,7 @@ export class HintDirective implements OnInit, OnDestroy {
 
     /** Hint delay before showing in milliseconds */
     @Input()
-    public osHintDisplayDelay = 300;
+    public osHintDisplayDelay = 700;
 
     /** Is hint enabled? */
     @Input()
@@ -44,10 +44,18 @@ export class HintDirective implements OnInit, OnDestroy {
             share()
         );
 
-    private get destroyedOrMouseLeave$(): Observable<unknown> {
+    private get destroyOrMouseLeave$(): Observable<unknown> {
         return merge(
             this.destroyed$,
             this.mouseLeave$
+        );
+    }
+
+    private get hintShouldBeHiddenWhen$(): Observable<unknown> {
+        return merge(
+            this.globalEvents.fromDocument('mousedown'),
+            this.globalEvents.fromDocument('touchstart'),
+            this.globalEvents.fromDocument('contextmenu')
         );
     }
 
@@ -56,12 +64,14 @@ export class HintDirective implements OnInit, OnDestroy {
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
+        private readonly globalEvents: ɵGlobalEvents,
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
     public ngOnInit(): void {
         this.initMouseOverObserver();
         this.initMouseLeaveObserver();
+        this.initHintShouldBeHiddenWhenObserver();
     }
 
     public ngOnDestroy(): void {
@@ -123,13 +133,19 @@ export class HintDirective implements OnInit, OnDestroy {
         view.rootNodes.forEach((node) => this.hintContainerElement.appendChild(node));
     }
 
+    private initHintShouldBeHiddenWhenObserver(): void {
+        this.hintShouldBeHiddenWhen$
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe(() => this.hide());
+    }
+
     private initMouseOverObserver(): void {
         fromEvent<MouseEvent>(this.hostRef.nativeElement, 'mousemove')
             .pipe(
                 filter(() => this.osHintEnabled),
                 debounce(() => timer(this.osHintDisplayDelay)),
                 finalize(() => this.hide()),
-                takeUntil(this.destroyedOrMouseLeave$)
+                takeUntil(this.destroyOrMouseLeave$)
             )
             .subscribe((event) => this.show(event));
     }

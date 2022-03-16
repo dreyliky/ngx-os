@@ -3,6 +3,7 @@
     [cellSize]="cellSize">
     <os-grid-item
         *ngFor="let program of programs"
+        [osHint]="program.shortcutParams.label"
         [iconUrl]="program.shortcutParams.iconUrl"
         [label]="program.shortcutParams.label"
         (osDblClick)="onProgramShortcutDblClick(program)">

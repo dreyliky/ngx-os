@@ -17,7 +17,7 @@
         min-height: 17px;
         padding: 3px 17px;
 
-        &:hover {
+        &:hover:not(.os-disabled) {
             background-color: rgb(var(--os-primary-color)) !important;
             color: #fff;
         }

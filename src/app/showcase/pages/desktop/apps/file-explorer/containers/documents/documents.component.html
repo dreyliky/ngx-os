@@ -7,6 +7,7 @@
         <os-grid [isHeightResizing]="true">
             <os-grid-item
                 *ngFor="let poem of poems"
+                [osHint]="poem.title"
                 [label]="poem.title | slice:0:30"
                 [iconUrl]="'/assets/showcase/icons/file.png'"
                 (osDblClick)="onPoemDblClick(poem)">

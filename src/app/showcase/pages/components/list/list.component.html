@@ -16,6 +16,7 @@
         [direction]="gridDirection">
         <os-grid-item
             *ngFor="let component of (filteredComponents$ | async)"
+            [osHint]="component.name"
             [label]="component.name"
             [iconUrl]="component.imageUrl"
             (osDblClick)="onComponentDblClick(component.type)">
