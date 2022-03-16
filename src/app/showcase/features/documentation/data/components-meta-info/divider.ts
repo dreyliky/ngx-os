@@ -6,7 +6,7 @@ export const DIVIDER_META_INFO: ComponentMetaInfo = {
     name: 'Divider',
     type: OsComponentEnum.Divider,
     shortInfo: 'Provides OS-styled divider component.',
-    imageUrl: '/assets/showcase/icons/components/button.png',
+    imageUrl: '/assets/showcase/icons/components/divider.png',
     libModules: [
         'DividerModule'
     ],
