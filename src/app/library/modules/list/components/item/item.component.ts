@@ -2,15 +2,12 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    HostBinding,
-    Injector,
-    Input,
     OnInit,
     Output,
     ViewEncapsulation
 } from '@angular/core';
 import { filter, takeUntil } from 'rxjs/operators';
-import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseOptionComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list-item',
@@ -21,30 +18,10 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListItemComponent<T = any> extends ɵOsBaseComponent implements OnInit {
-    /** Data of the list item */
-    @Input()
-    public data: T;
-
-    /** Is list item selected? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
-    public isSelected: boolean = false;
-
-    /** Is list item disabled? */
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    @Input()
-    public isDisabled: boolean = false;
-
+export class ListItemComponent<T = any> extends ɵOsBaseOptionComponent<T> implements OnInit {
     /** Fires when the list item selected */
     @Output()
-    public osSelected = new EventEmitter<T>();
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
+    public readonly osSelected: EventEmitter<T> = new EventEmitter();
 
     public ngOnInit(): void {
         this.initClickObserver();

@@ -4,6 +4,7 @@ import { AppRouteEnum } from '@core/enums';
 import {
     ComponentMetaInfo,
     LibraryComponentsSearchService,
+    OsComponentEnum,
     OsComponentOverviewSectionEnum as RouteEnum
 } from '@features/documentation';
 import { TreeNode } from 'ngx-os';
@@ -59,7 +60,7 @@ export class SideBarItemsService implements OnDestroy {
         return metaInfos.map((metaInfo) => {
             const sectionUrl = `/${AppRouteEnum.Components}/` +
                 `${metaInfo.type}/${RouteEnum.Documentation}`;
-            const isSectionUrlActive = this.currentRoute.includes(metaInfo.type);
+            const isSectionUrlActive = this.isSectionUrlActive(metaInfo.type);
 
             return {
                 label: metaInfo.name,
@@ -109,6 +110,12 @@ export class SideBarItemsService implements OnDestroy {
         let fragmentIndex = url.indexOf('#');
         fragmentIndex = (fragmentIndex === -1) ? url.length : fragmentIndex;
         this.currentRoute = url.slice(0, fragmentIndex);
+    }
+
+    private isSectionUrlActive(section: OsComponentEnum): boolean {
+        return this.currentRoute
+            .split('/')
+            .some((routePart) => routePart.startsWith(section));
     }
 
     private isSectionForbidden(

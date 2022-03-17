@@ -25,6 +25,8 @@
             position: absolute;
             display: block;
             white-space: nowrap;
+            padding: 0px 3px;
+            box-sizing: border-box;
             overflow: hidden;
             text-overflow: ellipsis;
             left: 0;
