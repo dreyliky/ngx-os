@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { ɵSharedModule } from '../shared.module';
+import { ContextMenuItemComponent } from './components';
 import { ContextMenuDirective } from './directives';
 
 @NgModule({
     declarations: [
-        ContextMenuDirective
+        ContextMenuDirective,
+        ContextMenuItemComponent
     ],
     imports: [
         ɵSharedModule
     ],
     exports: [
-        ContextMenuDirective
+        ContextMenuDirective,
+        ContextMenuItemComponent
     ]
 })
 export class ContextMenuModule {}

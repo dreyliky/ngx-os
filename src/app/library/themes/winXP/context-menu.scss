@@ -1,3 +1,5 @@
+@import "./base/option.scss";
+
 .os-context-menu {
     min-width: 25px;
     min-height: 10px;
@@ -6,20 +8,23 @@
     color: #000000;
     border: solid 1px #aca899;
     box-shadow: 3px 3px 4px -2px rgba(0, 0, 0, .8);
+    user-select: none;
     z-index: 9999;
     position: absolute;
 
     &.os-context-menu-hiding {
         display: none;
     }
+}
 
-    .os-list-item {
-        min-height: 17px;
-        padding: 3px 17px;
+.os-context-menu-item {
+    @include os-base-option;
 
-        &:hover:not(.os-disabled) {
-            background-color: rgb(var(--os-primary-color)) !important;
-            color: #fff;
-        }
+    min-height: 17px;
+    padding: 3px 17px;
+
+    &:hover:not(.os-disabled) {
+        background-color: rgb(var(--os-primary-color)) !important;
+        color: #fff;
     }
 }

@@ -10,6 +10,9 @@ export const CONTEXT_MENU_META_INFO: ComponentMetaInfo = {
     libModules: [
         'ContextMenuModule'
     ],
+    libComponents: [
+        'ContextMenuComponent'
+    ],
     libDirectives: [
         'ContextMenuDirective'
     ],
