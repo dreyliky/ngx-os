@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
     selector: 'os-divider',
@@ -9,4 +10,4 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DividerComponent {}
+export class DividerComponent extends ɵOsBaseComponent {}

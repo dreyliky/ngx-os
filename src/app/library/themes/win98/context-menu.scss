@@ -1,22 +1,8 @@
+@import "./base/context-menu-container.scss";
 @import "./base/option.scss";
 
-.os-context-menu {
-    min-width: 25px;
-    min-height: 10px;
-    padding: 3px;
-    background-color: #d4d0c8;
-    color: #000000;
-    box-shadow:
-        var(--border-raised-outer),
-        var(--border-raised-inner),
-        3px 3px 4px -2px rgba(0, 0, 0, .8);
-    user-select: none;
-    z-index: 9999;
-    position: absolute;
-
-    &.os-context-menu-hiding {
-        display: none;
-    }
+.os-context-menu-container {
+    @include os-base-context-menu-container;
 }
 
 .os-context-menu-item {
@@ -26,7 +12,7 @@
     padding: 3px 17px;
 
     &:hover:not(.os-disabled) {
-        background-color: rgb(var(--os-primary-color)) !important;
+        background-color: rgb(var(--os-primary-color));
         color: #fff;
     }
 }

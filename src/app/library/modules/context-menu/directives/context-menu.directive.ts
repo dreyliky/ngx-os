@@ -65,7 +65,7 @@ export class ContextMenuDirective implements OnDestroy {
         if (!this.containerElement) {
             this.containerElement = document.createElement('div');
 
-            this.containerElement.classList.add(CssClass.ContextMenu);
+            this.containerElement.classList.add(CssClass.Container);
             this.document.body.appendChild(this.containerElement);
         }
     }

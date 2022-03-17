@@ -1,12 +1,13 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ContentChildren,
-    QueryList,
+    EventEmitter,
+    Injector,
+    Output,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
-import { MenuBarButtonComponent } from '../menu-bar-button';
+import { MenuBarButtonComponent } from '../button';
 
 @Component({
     selector: 'os-menu-bar',
@@ -18,6 +19,41 @@ import { MenuBarButtonComponent } from '../menu-bar-button';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuBarComponent extends ɵOsBaseComponent {
-    @ContentChildren(MenuBarButtonComponent)
-    private readonly menuBarButtons: QueryList<MenuBarButtonComponent>;
+    /** @internal */
+    @Output()
+    public activeButtonChange: EventEmitter<MenuBarButtonComponent> = new EventEmitter();
+
+    /** @internal */
+    @Output()
+    public activeButtonReset: EventEmitter<MenuBarButtonComponent> = new EventEmitter();
+
+    /** @internal */
+    public get activeButton(): MenuBarButtonComponent {
+        return this._activeButton;
+    }
+
+    private _activeButton: MenuBarButtonComponent | null = null;
+
+    constructor(
+        injector: Injector
+    ) {
+        super(injector);
+    }
+
+    /** @internal */
+    public _setActiveButtonComponent(buttonComponent: MenuBarButtonComponent): void {
+        this._activeButton = buttonComponent;
+        this._activeButton._setIsActive(true);
+
+        this.activeButtonChange.emit(this.activeButton);
+    }
+
+    /** @internal */
+    public _resetActiveButtonComponent(): void {
+        const activeButtonToReset = this._activeButton;
+        this._activeButton = null;
+
+        activeButtonToReset._setIsActive(false);
+        this.activeButtonReset.emit(activeButtonToReset);
+    }
 }
