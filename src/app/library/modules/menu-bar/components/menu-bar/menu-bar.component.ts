@@ -2,6 +2,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
+    HostListener,
     Injector,
     Output,
     ViewEncapsulation
@@ -24,10 +25,6 @@ export class MenuBarComponent extends ɵOsBaseComponent {
     public activeButtonChange: EventEmitter<MenuBarButtonComponent> = new EventEmitter();
 
     /** @internal */
-    @Output()
-    public activeButtonReset: EventEmitter<MenuBarButtonComponent> = new EventEmitter();
-
-    /** @internal */
     public get activeButton(): MenuBarButtonComponent {
         return this._activeButton;
     }
@@ -38,6 +35,12 @@ export class MenuBarComponent extends ɵOsBaseComponent {
         injector: Injector
     ) {
         super(injector);
+    }
+
+    /** @internal */
+    @HostListener('contextmenu', ['$event'])
+    public _onContextMenuEvent(event: PointerEvent): void {
+        event.preventDefault();
     }
 
     /** @internal */
@@ -54,6 +57,6 @@ export class MenuBarComponent extends ɵOsBaseComponent {
         this._activeButton = null;
 
         activeButtonToReset._setIsActive(false);
-        this.activeButtonReset.emit(activeButtonToReset);
+        this.activeButtonChange.emit(this.activeButton);
     }
 }

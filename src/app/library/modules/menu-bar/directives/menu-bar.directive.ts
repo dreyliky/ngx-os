@@ -12,7 +12,7 @@ import {
     TemplateRef
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
-import { filter, first, takeUntil } from 'rxjs/operators';
+import { filter, first, map, takeUntil } from 'rxjs/operators';
 import { ɵEventOutside } from '../../../core';
 import { MenuBarButtonComponent, MenuBarComponent } from '../components';
 import { ɵMenuBarCssClassEnum as CssClass } from '../enums';
@@ -41,7 +41,6 @@ export class MenuBarDirective implements OnInit, OnDestroy {
     public ngOnInit(): void {
         this.initMouseOverObserver();
         this.initButtonComponentActiveObserver();
-        this.initButtonComponentResetObserver();
     }
 
     public ngOnDestroy(): void {
@@ -49,6 +48,7 @@ export class MenuBarDirective implements OnInit, OnDestroy {
         this.destroyed$.complete();
     }
 
+    /** @internal */
     @HostListener('mousedown', ['$event'])
     public onHostMouseDown(event: PointerEvent): void {
         if (!this.containerElement) {
@@ -56,7 +56,6 @@ export class MenuBarDirective implements OnInit, OnDestroy {
             this.initClickOutsideObserver();
             this.menuBarComponent._setActiveButtonComponent(this.buttonComponent);
             event.stopPropagation();
-            event.preventDefault();
         } else {
             this.hide();
         }
@@ -91,8 +90,7 @@ export class MenuBarDirective implements OnInit, OnDestroy {
     }
 
     private adaptContainerElementPosition(): void {
-        const { top, left, height } = this.hostRef.nativeElement.getBoundingClientRect();
-        const x = left;
+        const { top, left: x, height } = this.hostRef.nativeElement.getBoundingClientRect();
         const y = (top + height);
 
         this.containerElement.style.left = `${x}px`;
@@ -130,19 +128,10 @@ export class MenuBarDirective implements OnInit, OnDestroy {
     private initButtonComponentActiveObserver(): void {
         this.menuBarComponent.activeButtonChange
             .pipe(
-                filter((button) => (button === this.buttonComponent)),
+                map((button) => (button === this.buttonComponent)),
                 takeUntil(this.destroyed$)
             )
-            .subscribe(() => this.show());
-    }
-
-    private initButtonComponentResetObserver(): void {
-        this.menuBarComponent.activeButtonReset
-            .pipe(
-                filter((button) => (button === this.buttonComponent)),
-                takeUntil(this.destroyed$)
-            )
-            .subscribe(() => this.hide());
+            .subscribe((isActive) => (isActive) ? this.show() : this.hide());
     }
 
     private initClickOutsideObserver(): void {
