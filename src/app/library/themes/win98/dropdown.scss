@@ -1,3 +1,5 @@
+@import "./base/option.scss";
+
 .os-dropdown {
     width: 100%;
     height: 21px;
@@ -61,6 +63,10 @@
         display: flex;
         align-items: center;
     }
+}
+
+.os-dropdown-item {
+    @include os-base-option;
 }
 
 .os-list.os-part-of-dropdown {

@@ -18,7 +18,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
     selector: 'os-dropdown-item',
     template: '<ng-content></ng-content>',
     host: {
-        'class': 'os-dropdown-item os-list-item'
+        'class': 'os-dropdown-item'
     },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
