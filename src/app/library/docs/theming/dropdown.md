@@ -25,6 +25,6 @@ to get more information.
 ### CSS Classes
 | Name                             | Description                       |
 | -------------------------------- | --------------------------------- |
-| `.os-dropdown-item.os-list-item` | Host element                      |
+| `.os-dropdown-item             ` | Host element                      |
 | `.os-selected`                   | Is selected?                      |
 | `.os-disabled`                   | Is disabled?                      |
