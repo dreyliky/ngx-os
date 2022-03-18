@@ -2,12 +2,24 @@
     @keyframes os-context-menu-showing {
         from {
             opacity: 0;
-            transform: scale(1, 0) translateY(-50%);
+            transform: scaleY(0.5) translateY(-35%);
         }
 
         to {
             opacity: 1;
-            transform: scale(1, 1) translateY(0);
+            transform: scaleY(1) translateY(0);
+        }
+    }
+
+    @keyframes os-context-menu-content-showing {
+        from {
+            opacity: 0;
+            transform: translateY(-75%);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 
@@ -32,7 +44,12 @@
     z-index: 9999;
     user-select: none;
     box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, .5);
-    animation: os-context-menu-showing .25s ease forwards;
+    animation: os-context-menu-showing .35s ease forwards;
+    overflow: hidden;
+
+    > * {
+        animation: os-context-menu-content-showing .45s ease forwards;
+    }
 
     &.os-hiding {
         animation: os-context-menu-hiding .1s linear forwards;

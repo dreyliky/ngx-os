@@ -1,8 +1,33 @@
 @import "./base/context-menu-container.scss";
 @import "./base/option.scss";
 
+.os-menu-bar {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #f6f6f6;
+    user-select: none
+}
+
 .os-menu-bar-container {
     @include os-base-context-menu-container;
+}
+
+.os-menu-bar-button {
+    padding: 6px 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    cursor: default;
+
+    &:hover {
+        background-color: #efefef;
+    }
+
+    &:active, &.os-active {
+        background-color: #efefef;
+    }
 }
 
 .os-menu-bar-item {
