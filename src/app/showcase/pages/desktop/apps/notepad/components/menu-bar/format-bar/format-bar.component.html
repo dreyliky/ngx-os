@@ -1,0 +1,17 @@
+<os-menu-bar-button
+    [osMenuBar]="menuBar">
+    Format
+</os-menu-bar-button>
+
+<ng-template #menuBar>
+    <div class="menu-bar">
+        <os-menu-bar-item>
+            Word wrap
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            (osClick)="onFontButtonClick()">
+            Font
+        </os-menu-bar-item>
+    </div>
+</ng-template>

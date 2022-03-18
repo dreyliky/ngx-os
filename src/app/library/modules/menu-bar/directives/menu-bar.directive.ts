@@ -1,17 +1,18 @@
 import { DOCUMENT } from '@angular/common';
 import {
     Directive,
+    DoCheck,
     ElementRef,
-    Host,
-    HostListener,
+    EmbeddedViewRef, HostListener,
     Inject,
     Input,
     OnDestroy,
     OnInit,
     Self,
-    TemplateRef
+    TemplateRef,
+    ViewContainerRef
 } from '@angular/core';
-import { fromEvent, Subject } from 'rxjs';
+import { fromEvent, merge, Observable, Subject, Subscription } from 'rxjs';
 import { filter, first, map, takeUntil } from 'rxjs/operators';
 import { ɵEventOutside } from '../../../core';
 import { MenuBarButtonComponent, MenuBarComponent } from '../components';
@@ -21,20 +22,31 @@ import { ɵMenuBarCssClassEnum as CssClass } from '../enums';
     selector: 'os-menu-bar-button[osMenuBar]',
     exportAs: 'osMenuBar'
 })
-export class MenuBarDirective implements OnInit, OnDestroy {
+export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     /** Content to show inside */
     @Input('osMenuBar')
     public content: TemplateRef<unknown>;
 
+    private get destroyedOrHidden$(): Observable<boolean> {
+        return merge(
+            this.destroyed$,
+            this.hidden$
+        );
+    }
+
     private containerElement: HTMLDivElement | null;
+    private viewRef: EmbeddedViewRef<unknown> | null;
+    private clickOutsideSubscription: Subscription | null;
 
     private readonly delayBeforeDestroy = 500;
+    private readonly hidden$ = new Subject<boolean>();
     private readonly destroyed$ = new Subject<boolean>();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        @Host() private readonly menuBarComponent: MenuBarComponent,
         @Self() private readonly buttonComponent: MenuBarButtonComponent,
+        private readonly menuBarComponent: MenuBarComponent,
+        private readonly containerRef: ViewContainerRef,
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
@@ -46,18 +58,20 @@ export class MenuBarDirective implements OnInit, OnDestroy {
     public ngOnDestroy(): void {
         this.destroyed$.next(true);
         this.destroyed$.complete();
+        this.hide();
+    }
+
+    public ngDoCheck(): void {
+        this.viewRef?.detectChanges();
     }
 
     /** @internal */
-    @HostListener('mousedown', ['$event'])
-    public onHostMouseDown(event: PointerEvent): void {
+    @HostListener('mousedown')
+    public onHostMouseDown(): void {
         if (!this.containerElement) {
-            this.show();
-            this.initClickOutsideObserver();
-            this.menuBarComponent._setActiveButtonComponent(this.buttonComponent);
-            event.stopPropagation();
+            this.menuBarComponent._openMenuBar(this.buttonComponent);
         } else {
-            this.hide();
+            this.menuBarComponent._hideAllMenuBars();
         }
     }
 
@@ -72,12 +86,24 @@ export class MenuBarDirective implements OnInit, OnDestroy {
                 this.document.body.removeChild(hintContainerElement);
             }, this.delayBeforeDestroy);
         }
+
+        this.hidden$.next(true);
+        this.onHide();
     }
 
     private show(): void {
         this.createContainerElementIfAbsent();
         this.adaptContainerElementPosition();
         this.applyContentForContainerElement();
+        this.onShow();
+    }
+
+    private onShow(): void {
+        setTimeout(() => this.initClickOutsideObserver());
+    }
+
+    private onHide(): void {
+        this.clickOutsideSubscription?.unsubscribe();
     }
 
     private createContainerElementIfAbsent(): void {
@@ -85,6 +111,7 @@ export class MenuBarDirective implements OnInit, OnDestroy {
             this.containerElement = document.createElement('div');
 
             this.containerElement.classList.add(CssClass.Container);
+            this.containerElement.addEventListener('click', (event) => event.stopPropagation());
             this.document.body.appendChild(this.containerElement);
         }
     }
@@ -104,10 +131,9 @@ export class MenuBarDirective implements OnInit, OnDestroy {
     }
 
     private fillContainerElementContentByTemplateRef(template: TemplateRef<unknown>): void {
-        const view = template.createEmbeddedView(null);
+        this.viewRef = this.containerRef.createEmbeddedView(template);
 
-        view.detectChanges();
-        this.containerElement.append(...view.rootNodes);
+        this.containerElement.append(...this.viewRef.rootNodes);
     }
 
     private initMouseOverObserver(): void {
@@ -120,8 +146,8 @@ export class MenuBarDirective implements OnInit, OnDestroy {
                 takeUntil(this.destroyed$)
             )
             .subscribe(() => {
-                this.menuBarComponent._resetActiveButtonComponent();
-                this.menuBarComponent._setActiveButtonComponent(this.buttonComponent);
+                this.menuBarComponent._hideAllMenuBars();
+                this.menuBarComponent._openMenuBar(this.buttonComponent);
             });
     }
 
@@ -135,12 +161,12 @@ export class MenuBarDirective implements OnInit, OnDestroy {
     }
 
     private initClickOutsideObserver(): void {
-        fromEvent<PointerEvent>(this.document, 'mousedown')
+        this.clickOutsideSubscription = fromEvent<PointerEvent>(this.document, 'mousedown')
             .pipe(
                 filter((event) => ɵEventOutside.checkForElement(this.containerElement, event)),
                 first(),
-                takeUntil(this.destroyed$)
+                takeUntil(this.destroyedOrHidden$)
             )
-            .subscribe(() => this.menuBarComponent._resetActiveButtonComponent());
+            .subscribe(() => this.menuBarComponent._hideAllMenuBars());
     }
 }

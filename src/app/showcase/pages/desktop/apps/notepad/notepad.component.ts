@@ -1,12 +1,4 @@
-import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    Inject,
-    ViewChild
-} from '@angular/core';
-import { DynamicWindowRef, DYNAMIC_WINDOW_REF } from 'ngx-os';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'notepad-app',
@@ -14,20 +6,4 @@ import { DynamicWindowRef, DYNAMIC_WINDOW_REF } from 'ngx-os';
     styleUrls: ['./notepad.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotepadAppComponent implements AfterViewInit {
-    @ViewChild('editor', { static: true })
-    private readonly editorElementRef: ElementRef<HTMLDivElement>;
-
-    constructor(
-        @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRef
-    ) {}
-
-    public ngAfterViewInit(): void {
-        this.initDefaultContent();
-        this.editorElementRef.nativeElement.focus();
-    }
-
-    private initDefaultContent(): void {
-        this.editorElementRef.nativeElement.innerHTML = this.windowRef.config.data ?? '';
-    }
-}
+export class NotepadAppComponent {}

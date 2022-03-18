@@ -183,7 +183,6 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         const resizeInfo = this.getResizeInfo(event);
         this._resizer = this.resizerFactory.create(resizerId, this);
 
-        event.stopPropagation();
         this.osResizeStart.emit(resizeInfo);
         this._resizer.init(this._resizableElement, event);
         this._resizableElement.classList.add(CssClass.Resizing);

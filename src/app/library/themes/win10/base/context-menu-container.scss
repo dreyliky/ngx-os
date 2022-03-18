@@ -44,11 +44,11 @@
     z-index: 9999;
     user-select: none;
     box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, .5);
-    animation: os-context-menu-showing .35s ease forwards;
+    animation: os-context-menu-showing .25s ease forwards;
     overflow: hidden;
 
     > * {
-        animation: os-context-menu-content-showing .45s ease forwards;
+        animation: os-context-menu-content-showing .35s ease forwards;
     }
 
     &.os-hiding {

@@ -1,9 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    HostBinding,
-    Input,
-    ViewEncapsulation
+    HostBinding, ViewEncapsulation
 } from '@angular/core';
 import { ɵCommonCssClassEnum, ɵOsBaseButtonComponent } from '../../../../core';
 
@@ -17,13 +15,13 @@ import { ɵCommonCssClassEnum, ɵOsBaseButtonComponent } from '../../../../core'
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuBarButtonComponent extends ɵOsBaseButtonComponent {
-    @Input()
+    /** @internal */
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
-    public isActive = false;
+    public _isActive = false;
 
     /** @internal */
     public _setIsActive(state: boolean): void {
-        this.isActive = state;
+        this._isActive = state;
 
         this.changeDetector.markForCheck();
     }

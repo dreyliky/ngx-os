@@ -28,16 +28,16 @@ export class ScrollViewComponent extends ɵOsBaseComponent {
 
     /** Does the vertical scroll hide when it is not needed? */
     @Input()
-    public isVerticalScrollHiding: boolean = false;
+    public isVerticalScrollHiding: boolean = true;
 
     /** Does the horizontal scroll hide when it is not needed? */
     @Input()
-    public isHorizontalScrollHiding: boolean = false;
+    public isHorizontalScrollHiding: boolean = true;
 
     /** @internal */
     @HostBinding('style.overflow-x')
     public get _hostOverflowX(): string {
-        if (!this.isHorizontalScrollHiding) {
+        if (this.isHorizontalScrollHiding) {
             return (this.isHorizontalScrollEnabled) ? 'auto' : 'hidden';
         }
 
@@ -47,7 +47,7 @@ export class ScrollViewComponent extends ɵOsBaseComponent {
     /** @internal */
     @HostBinding('style.overflow-y')
     public get _hostOverflowY(): string {
-        if (!this.isVerticalScrollHiding) {
+        if (this.isVerticalScrollHiding) {
             return (this.isVerticalScrollEnabled) ? 'auto' : 'hidden';
         }
 

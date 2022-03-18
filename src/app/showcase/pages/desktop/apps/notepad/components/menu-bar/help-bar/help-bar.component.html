@@ -1,0 +1,13 @@
+<os-menu-bar-button
+    [osMenuBar]="menuBar">
+    Help
+</os-menu-bar-button>
+
+<ng-template #menuBar>
+    <div class="menu-bar">
+        <os-menu-bar-item
+            (osClick)="onAboutNotepadButtonClick()">
+            About Notepad
+        </os-menu-bar-item>
+    </div>
+</ng-template>

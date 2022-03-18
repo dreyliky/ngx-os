@@ -8,11 +8,11 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
-import { MenuBarButtonComponent } from '../button';
+import { MenuBarButtonComponent } from '../button/button.component';
 
 @Component({
     selector: 'os-menu-bar',
-    template: '<ng-content select="os-menu-bar-button"></ng-content>',
+    template: '<ng-content></ng-content>',
     host: {
         'class': 'os-menu-bar'
     },
@@ -44,7 +44,7 @@ export class MenuBarComponent extends ɵOsBaseComponent {
     }
 
     /** @internal */
-    public _setActiveButtonComponent(buttonComponent: MenuBarButtonComponent): void {
+    public _openMenuBar(buttonComponent: MenuBarButtonComponent): void {
         this._activeButton = buttonComponent;
         this._activeButton._setIsActive(true);
 
@@ -52,11 +52,11 @@ export class MenuBarComponent extends ɵOsBaseComponent {
     }
 
     /** @internal */
-    public _resetActiveButtonComponent(): void {
+    public _hideAllMenuBars(): void {
         const activeButtonToReset = this._activeButton;
         this._activeButton = null;
 
-        activeButtonToReset._setIsActive(false);
+        activeButtonToReset?._setIsActive(false);
         this.activeButtonChange.emit(this.activeButton);
     }
 }
