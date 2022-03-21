@@ -13,4 +13,14 @@ export class FileReaderService {
             callback(reader.result as string);
         };
     }
+
+    public readAsText(file: File, callback: (data: string) => any): void {
+        const reader = new FileReader();
+
+        reader.readAsText(file);
+
+        reader.onloadend = () => {
+            callback(reader.result as string);
+        };
+    }
 }

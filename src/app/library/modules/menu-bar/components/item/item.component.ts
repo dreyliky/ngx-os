@@ -5,7 +5,6 @@ import {
     Injector,
     Input,
     OnInit,
-    Optional,
     Output,
     ViewEncapsulation
 } from '@angular/core';
@@ -31,7 +30,7 @@ export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> im
 
     constructor(
         injector: Injector,
-        @Optional() private readonly menuBarComponent: MenuBarComponent
+        private readonly menuBarComponent: MenuBarComponent
     ) {
         super(injector);
     }

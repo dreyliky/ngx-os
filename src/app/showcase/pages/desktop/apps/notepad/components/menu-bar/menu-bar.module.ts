@@ -23,4 +23,4 @@ import { ViewBarComponent } from './view-bar';
         MenuBarComponent
     ]
 })
-export class NotepadMenuBarModule {}
+export class MenuBarModule {}

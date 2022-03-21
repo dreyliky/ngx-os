@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '@shared';
 import { FontWindowComponent } from './font-window.component';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { FontWindowComponent } from './font-window.component';
         FontWindowComponent
     ],
     imports: [
-        CommonModule
+        SharedModule
     ]
 })
 export class FontWindowModule {}

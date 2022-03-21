@@ -1,1 +1,48 @@
-<p>font-window works!</p>
+<os-group-box
+    class="body"
+    [label]="'Font Settings'">
+    <form [formGroup]="formGroup">
+        <os-form-field>
+            <os-label>Font</os-label>
+
+            <os-dropdown
+                [scrollViewStyle]="{ height: '150px' }"
+                [formControlName]="'font'">
+                <os-dropdown-item
+                    *ngFor="let font of fonts"
+                    [data]="font"
+                    [style.fontFamily]="font">
+                    {{ font }}
+                </os-dropdown-item>
+            </os-dropdown>
+        </os-form-field>
+
+        <os-form-field>
+            <os-label>Size</os-label>
+
+            <os-slider
+                [min]="minFontSize"
+                [max]="maxFontSize"
+                [minValueLabel]="minValueLabel"
+                [maxValueLabel]="maxValueLabel"
+                [formControlName]="'fontSizeInPx'">
+            </os-slider>
+        </os-form-field>
+
+        <os-form-field>
+            <os-label>Word Wrap</os-label>
+
+            <os-checkbox
+                [formControlName]="'isWordWrapEnabled'">
+                Is Word Wrap Enabled?
+            </os-checkbox>
+        </os-form-field>
+    </form>
+</os-group-box>
+
+<div class="footer">
+    <os-button
+        (osClick)="onOkButtonClick()">
+        OK
+    </os-button>
+</div>

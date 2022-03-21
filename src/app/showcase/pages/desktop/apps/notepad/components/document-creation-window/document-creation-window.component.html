@@ -1,0 +1,23 @@
+<div class="body">
+    <os-form-field [isStacked]="true">
+        <os-label>File Name</os-label>
+    
+        <os-text-box
+            [isAutofocused]="true"
+            [formControl]="fileNameControl">
+        </os-text-box>
+    </os-form-field>
+</div>
+
+<div class="footer">
+    <os-button
+        (osClick)="onCancelButtonClick()">
+        Cancel
+    </os-button>
+
+    <os-button
+        [isFocused]="true"
+        (osClick)="onSaveButtonClick()">
+        Save
+    </os-button>
+</div>

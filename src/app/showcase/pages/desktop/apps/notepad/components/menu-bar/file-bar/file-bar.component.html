@@ -6,11 +6,28 @@
 <ng-template #menuBar>
     <div class="menu-bar">
         <os-menu-bar-item>Open</os-menu-bar-item>
-        <os-menu-bar-item>Save</os-menu-bar-item>
+        <os-menu-bar-item
+            (osClick)="onSaveButtonClick()">
+            Save
+        </os-menu-bar-item>
 
         <os-divider></os-divider>
 
-        <os-menu-bar-item>Upload</os-menu-bar-item>
-        <os-menu-bar-item>Download</os-menu-bar-item>
+        <os-menu-bar-item
+            (osClick)="onUploadButtonClick()">
+            Upload
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            (osClick)="onDownloadButtonClick()">
+            Download
+        </os-menu-bar-item>
     </div>
+
+    <input
+        #fileUploader
+        type="file"
+        accept=".txt"
+        hidden
+        (change)="onFileUpload($event)" />
 </ng-template>

@@ -1,11 +1,14 @@
 import { DOCUMENT } from '@angular/common';
 import {
     Directive,
+    DoCheck,
+    EmbeddedViewRef,
     HostListener,
     Inject,
     Input,
     OnDestroy,
-    TemplateRef
+    TemplateRef,
+    ViewContainerRef
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { filter, first, takeUntil } from 'rxjs/operators';
@@ -16,19 +19,25 @@ import { ɵContextMenuCssClassEnum as CssClass } from '../enums';
     selector: '[osContextMenu]',
     exportAs: 'osContextMenu'
 })
-export class ContextMenuDirective implements OnDestroy {
+export class ContextMenuDirective implements DoCheck, OnDestroy {
     /** Content to show inside */
     @Input('osContextMenu')
     public content: TemplateRef<unknown>;
 
     private containerElement: HTMLDivElement | null;
+    private viewRef: EmbeddedViewRef<unknown>;
 
     private readonly delayBeforeDestroy = 500;
     private readonly destroyed$ = new Subject<boolean>();
 
     constructor(
-        @Inject(DOCUMENT) private readonly document: Document
+        @Inject(DOCUMENT) private readonly document: Document,
+        private readonly containerRef: ViewContainerRef
     ) {}
+
+    public ngDoCheck(): void {
+        this.viewRef?.detectChanges();
+    }
 
     public ngOnDestroy(): void {
         this.destroyed$.next(true);
@@ -40,17 +49,18 @@ export class ContextMenuDirective implements OnDestroy {
         this.show(event);
         this.initClickOutsideObserver();
         event.preventDefault();
+        event.stopPropagation();
     }
 
     public hide(): void {
         if (this.containerElement) {
-            const hintContainerElement = this.containerElement;
+            const menuContainerElement = this.containerElement;
             this.containerElement = null;
 
-            hintContainerElement.classList.add(CssClass.Hiding);
+            menuContainerElement.classList.add(CssClass.Hiding);
 
             setTimeout(() => {
-                this.document.body.removeChild(hintContainerElement);
+                this.document.body.removeChild(menuContainerElement);
             }, this.delayBeforeDestroy);
         }
     }
@@ -66,6 +76,7 @@ export class ContextMenuDirective implements OnDestroy {
             this.containerElement = document.createElement('div');
 
             this.containerElement.classList.add(CssClass.Container);
+            this.containerElement.addEventListener('click', (event) => event.stopPropagation());
             this.document.body.appendChild(this.containerElement);
         }
     }
@@ -84,10 +95,9 @@ export class ContextMenuDirective implements OnDestroy {
     private fillContainerElementContentByTemplateRef(
         template: TemplateRef<unknown>
     ): void {
-        const view = template.createEmbeddedView(null);
+        this.viewRef = this.containerRef.createEmbeddedView(template);
 
-        view.detectChanges();
-        this.containerElement.append(...view.rootNodes);
+        this.containerElement.append(...this.viewRef.rootNodes);
     }
 
     private initClickOutsideObserver(): void {

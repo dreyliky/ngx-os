@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DynamicWindowService } from 'ngx-os';
-import { FontWindowComponent } from '../../font-window';
+import { FontWindowComponent, FONT_WINDOW_CONFIG } from '../../font-window';
 
 @Component({
     selector: 'notepad-menu-bar-format',
     templateUrl: './format-bar.component.html',
     styleUrls: ['./format-bar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        DynamicWindowService
+    ]
 })
 export class FormatBarComponent {
     constructor(
@@ -14,6 +17,6 @@ export class FormatBarComponent {
     ) {}
 
     public onFontButtonClick(): void {
-        this.windowService.open(FontWindowComponent);
+        this.windowService.open(FontWindowComponent, FONT_WINDOW_CONFIG);
     }
 }

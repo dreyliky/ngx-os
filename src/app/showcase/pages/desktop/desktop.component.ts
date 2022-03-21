@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { BackgroundService } from './features/background';
 import { ExecService } from './features/exec';
+import { TextDocumentsService, TextDocumentsState } from './features/file-system';
 import { ShortcutSettingsService } from './features/shortcut';
 import { TaskbarPlacement } from './modules';
 import { DesktopBackgroundService, DesktopTaskbarService } from './services';
@@ -24,6 +25,8 @@ import { DesktopBackgroundService, DesktopTaskbarService } from './services';
         DynamicWindowService,
         ExecService,
         BackgroundService,
+        TextDocumentsService,
+        TextDocumentsState,
         ShortcutSettingsService,
         DesktopBackgroundService,
         DesktopTaskbarService

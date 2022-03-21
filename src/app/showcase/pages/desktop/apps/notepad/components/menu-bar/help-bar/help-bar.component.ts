@@ -6,7 +6,10 @@ import { AboutWindowComponent, ABOUT_WINDOW_CONFIG } from '../../about-window';
     selector: 'notepad-menu-bar-help',
     templateUrl: './help-bar.component.html',
     styleUrls: ['./help-bar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        DynamicWindowService
+    ]
 })
 export class HelpBarComponent {
     constructor(

@@ -53,5 +53,6 @@
 
     &.os-hiding {
         animation: os-context-menu-hiding .1s linear forwards;
+        pointer-events: none;
     }
 }
