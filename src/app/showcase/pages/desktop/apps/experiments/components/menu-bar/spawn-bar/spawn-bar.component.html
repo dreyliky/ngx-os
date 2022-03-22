@@ -1,0 +1,14 @@
+<os-menu-bar-button
+    [osMenuBar]="menuBar">
+    Spawn
+</os-menu-bar-button>
+
+<ng-template #menuBar>
+    <div class="menu-bar">
+        <os-menu-bar-item
+            *ngFor="let windowAmount of windowAmountToSpawnArray"
+            (osSelected)="onSpawnWindowsButtonClick(windowAmount)">
+            {{ windowAmount }} windows
+        </os-menu-bar-item>
+    </div>
+</ng-template>

@@ -1,71 +1,33 @@
-<os-header [size]="3">Experiments with windows</os-header>
+<experiments-menu-bar>
+</experiments-menu-bar>
 
-<os-header [size]="6">
-    Total spawned: {{ totalSpawned }}; Alive: {{ (totalWindowsAlive$ | async) }};
-</os-header>
+<div class="body">
+    <os-header
+        [size]="3">
+        Experiments with windows
+    </os-header>
 
-<os-form-field [isStacked]="true">
-    <os-label>Actions delay in milliseconds</os-label>
+    <os-header [size]="6">
+        Total spawned: {{ totalSpawnedWindows$ | async }};
+        Alive: {{ (totalWindowsAlive$ | async) }};
+    </os-header>
 
-    <os-number-box
-        [placeholder]="'Enter actions delay in milliseconds'"
-        [(ngModel)]="actionsDelay">
-    </os-number-box>
-</os-form-field>
+    <os-form-field [isStacked]="true">
+        <os-label>Actions delay in milliseconds</os-label>
 
-<os-form-field [isStacked]="true">
-    <os-label>Spawn amount of windows</os-label>
+        <os-number-box
+            [placeholder]="'Enter actions delay in milliseconds'"
+            [ngModel]="(actionsDelay$ | async)"
+            (osChange)="onActionsDelayNumberBoxValueChange($event)">
+        </os-number-box>
+    </os-form-field>
 
-    <div class="buttons-wrapper">
-        <os-button
-            *ngFor="let amountOfWindows of windowAmountToSpawnArray"
-            (osClick)="spawnWindows(amountOfWindows)">
-            {{ amountOfWindows }}
-        </os-button>
-    </div>
-</os-form-field>
-
-<os-form-field [isStacked]="true">
-    <os-label>Group actions</os-label>
-
-    <div class="buttons-wrapper">
-        <os-button
-            (osClick)="makeGroupWindowsAction('hide')">
-            Hide
-        </os-button>
+    <os-form-field [isStacked]="true">
+        <os-label>Stop current actions</os-label>
 
         <os-button
-            (osClick)="makeGroupWindowsAction('show')">
-            Show
+            (osClick)="onStopCurrentActionsButtonClick()">
+            Stop
         </os-button>
-
-        <os-button
-            (osClick)="makeGroupWindowsAction('goFullscreen')">
-            Fullscreen
-        </os-button>
-
-        <os-button
-            (osClick)="makeGroupWindowsAction('goWindowed')">
-            Windowed
-        </os-button>
-
-        <os-button
-            (osClick)="shuffleWindowsPositions()">
-            Shuffle positions
-        </os-button>
-
-        <os-button
-            (osClick)="makeGroupWindowsAction('close')">
-            Close
-        </os-button>
-    </div>
-</os-form-field>
-
-<os-form-field [isStacked]="true">
-    <os-label>Stop current actions</os-label>
-
-    <os-button
-        (osClick)="onStopCurrentActionsButtonClick()">
-        Stop
-    </os-button>
-</os-form-field>
+    </os-form-field>
+</div>

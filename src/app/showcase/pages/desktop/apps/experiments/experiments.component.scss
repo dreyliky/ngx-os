@@ -1,7 +1,11 @@
 :host {
-    display: block;
-    margin: 7px;
+    display: flex;
+    flex-direction: column;
     user-select: none;
+}
+
+.body {
+    margin: 7px;
 }
 
 .os-form-field {
