@@ -9,6 +9,8 @@ enum Action {
     PushItem = 'push item',
     UnshiftItem = 'unshift item',
     InsertItem = 'insert item',
+    ShiftItem = 'shift item',
+    PopItem = 'pop item',
     RemoveItem = 'remove item',
     RemoveItemByFieldValue = 'remove item by field value',
     UpdateItemByIndex = 'update item by index',
@@ -59,6 +61,28 @@ export abstract class ArrayState<T> extends BaseState<T[]> {
 
             items.splice(index, 0, item);
             this.set(items);
+        });
+    }
+
+    public shiftItem(): T {
+        return this.tryDoAction(Action.ShiftItem, () => {
+            const items = [...this.data];
+            const removedItem = items.shift();
+
+            this.set(items);
+
+            return removedItem;
+        });
+    }
+
+    public popItem(): T {
+        return this.tryDoAction(Action.PopItem, () => {
+            const items = [...this.data];
+            const removedItem = items.pop();
+
+            this.set(items);
+
+            return removedItem;
         });
     }
 

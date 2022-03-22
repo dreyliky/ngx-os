@@ -5,7 +5,6 @@ import { FileBarComponent } from './file-bar';
 import { FormatBarComponent } from './format-bar';
 import { HelpBarComponent } from './help-bar';
 import { MenuBarComponent } from './menu-bar.component';
-import { ViewBarComponent } from './view-bar';
 
 @NgModule({
     declarations: [
@@ -13,7 +12,6 @@ import { ViewBarComponent } from './view-bar';
         FileBarComponent,
         FormatBarComponent,
         HelpBarComponent,
-        ViewBarComponent,
         EditBarComponent
     ],
     imports: [

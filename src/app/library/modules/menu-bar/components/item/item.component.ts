@@ -8,7 +8,7 @@ import {
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { filter, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil, tap } from 'rxjs/operators';
 import { ɵOsBaseOptionComponent } from '../../../../core';
 import { MenuBarComponent } from '../menu-bar';
 
@@ -42,6 +42,8 @@ export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> im
     private initClickObserver(): void {
         this.osClick
             .pipe(
+                filter(() => !this.isDisabled),
+                tap(() => this.osSelected.emit(this.data)),
                 filter(() => this.isHideMenuOnClick),
                 takeUntil(this.viewDestroyed$)
             )

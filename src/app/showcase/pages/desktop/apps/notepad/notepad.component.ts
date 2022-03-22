@@ -1,23 +1,15 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { DynamicWindowRef, DYNAMIC_WINDOW_REF } from 'ngx-os';
 import { TextDocument } from '../../features/file-system';
-import { DocumentEventService } from './events';
-import { EditorSelectionService, EditorService, SettingsService } from './services';
-import { EditorState, OpenedDocumentState } from './states';
+import { NOTEPAD_PROVIDERS } from './notepad-providers.array';
+import { OpenedDocumentState } from './states';
 
 @Component({
     selector: 'notepad-app',
     templateUrl: './notepad.component.html',
     styleUrls: ['./notepad.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        EditorService,
-        EditorSelectionService,
-        EditorState,
-        DocumentEventService,
-        OpenedDocumentState,
-        SettingsService
-    ]
+    providers: NOTEPAD_PROVIDERS
 })
 export class NotepadAppComponent implements OnInit {
     constructor(
@@ -26,8 +18,16 @@ export class NotepadAppComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        this.openedDocumentState.set(this.windowRef.config.data);
+        this.initOpenedDocumentState();
         this.initDynamicWindowTitle();
+    }
+
+    private initOpenedDocumentState(): void {
+        const openedDocument = this.windowRef.config.data as TextDocument;
+
+        if (openedDocument) {
+            this.openedDocumentState.set(openedDocument);
+        }
     }
 
     private initDynamicWindowTitle(): void {

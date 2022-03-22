@@ -30,6 +30,7 @@
     z-index: 9999;
     box-shadow: 0px 4px 20px -8px rgba(0, 0, 0, .5);
     pointer-events: none;
+    user-select: none;
     animation: os-hint-showing .15s linear forwards;
 
     &.os-hint-hiding {

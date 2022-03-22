@@ -3,6 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     HostBinding,
+    HostListener,
     OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -56,6 +57,11 @@ export class DesktopComponent extends ɵOsBaseViewComponent implements OnInit {
         this.titleService.setTitle('ngx-os - Desktop');
         this.initHostBackgroundStylelistObserver();
         this.initHostClasslistObserver();
+    }
+
+    @HostListener('document:contextmenu', ['$event'])
+    public onDocumentContextMenuEvent(event: Event): void {
+        event.preventDefault();
     }
 
     private initHostBackgroundStylelistObserver(): void {

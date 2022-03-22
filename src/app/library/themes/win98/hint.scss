@@ -31,6 +31,7 @@
     font-family: Tahoma;
     box-shadow: 3px 3px 4px -2px rgba(0, 0, 0, .8);
     pointer-events: none;
+    user-select: none;
     animation: os-hint-showing .15s linear forwards;
 
     &.os-hint-hiding {

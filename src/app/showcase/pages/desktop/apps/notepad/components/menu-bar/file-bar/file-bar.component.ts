@@ -38,12 +38,9 @@ export class FileBarComponent {
         const inputElement = event.target as HTMLInputElement;
         const uploadedFile = inputElement.files[0];
 
-        this.fileReader.readAsText(uploadedFile, (data) => {
-            this.documentEventService.emitOnDocumentUploaded({
-                name: uploadedFile.name,
-                data
-            });
-        });
+        if (uploadedFile) {
+            this.uploadFile(uploadedFile);
+        }
     }
 
     public onSaveButtonClick(): void {
@@ -58,5 +55,14 @@ export class FileBarComponent {
             DocumentDownloaderWindowComponent,
             DOCUMENT_DOWNLOADER_WINDOW_CONFIG
         );
+    }
+
+    private uploadFile(file: File): void {
+        this.fileReader.readAsText(file, (data) => {
+            this.documentEventService.emitOnDocumentUploaded({
+                name: file.name,
+                data
+            });
+        });
     }
 }

@@ -12,11 +12,11 @@ export class EditorService {
         return this.stateService.data;
     }
 
-    public get onPast$(): Observable<string> {
-        return this._onPast$.asObservable();
+    public get onPaste$(): Observable<string> {
+        return this._onPaste$.asObservable();
     }
 
-    private _onPast$ = new Subject<string>();
+    private _onPaste$ = new Subject<string>();
 
     constructor(
         private readonly stateService: EditorState
@@ -26,7 +26,7 @@ export class EditorService {
         this.stateService.set(data);
     }
 
-    public past(data: string): void {
-        this._onPast$.next(data);
+    public paste(data: string): void {
+        this._onPaste$.next(data);
     }
 }

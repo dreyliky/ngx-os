@@ -14,7 +14,7 @@ export class ContextMenuComponent extends ɵOsBaseViewComponent implements OnIni
     public clipboardData!: string;
 
     public get isSelectionEmpty(): boolean {
-        return this.editorSelectionService.isSelectionEmpty;
+        return this.editorSelectionService.isEmpty;
     }
 
     public get isPasteButtonDisabled(): boolean {
@@ -41,8 +41,8 @@ export class ContextMenuComponent extends ɵOsBaseViewComponent implements OnIni
         this.editorSelectionService.copy();
     }
 
-    public onPastButtonClick(): void {
-        this.editorSelectionService.pastFromClipboard();
+    public onPasteButtonClick(): void {
+        this.editorSelectionService.pasteFromClipboard();
     }
 
     public onDeleteButtonClick(): void {
