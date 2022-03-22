@@ -13,6 +13,10 @@
         &.os-selected {
             font-weight: bold;
         }
+
+        &:not(.os-root-node) {
+            font-style: italic;
+        }
     }
 }
 
