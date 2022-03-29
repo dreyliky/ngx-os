@@ -1,8 +1,10 @@
 <os-grid
+    osSelectionZone
     [direction]="gridDirection"
     [cellSize]="cellSize">
     <os-grid-item
         *ngFor="let program of programs"
+        osSelectionItem
         [osHint]="program.shortcutParams.label"
         [iconUrl]="program.shortcutParams.iconUrl"
         [label]="program.shortcutParams.label"

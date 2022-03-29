@@ -1,8 +1,11 @@
 <os-scroll-view [osContextMenu]="documentsContextMenu">
     <ng-container *ngIf="(documents$ | async) as documents; else loaderTemplate">
-        <os-grid [isHeightResizing]="true">
+        <os-grid
+            osSelectionZone
+            [isHeightResizing]="true">
             <os-grid-item
                 *ngFor="let document of documents"
+                osSelectionItem
                 [osContextMenu]="documentContextMenu"
                 [osHint]="document.name"
                 [label]="document.name | slice:0:30"

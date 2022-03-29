@@ -1,4 +1,23 @@
-<div
+<os-grid
     osSelectionZone
     class="my-selection-zone">
-</div>
+    <os-grid-item
+        #buttonGridItem
+        osSelectionItem
+        [iconUrl]="'/assets/showcase/icons/components/button.png'"
+        [label]="'Button component'"
+        [coordinate]="{ x: 1, y: 0 }"
+        (osItemSelected)="buttonGridItem.isSelected = true;"
+        (osItemDeselected)="buttonGridItem.isSelected = false;">
+    </os-grid-item>
+
+    <os-grid-item
+        #windowGridItem
+        osSelectionItem
+        [iconUrl]="'/assets/showcase/icons/components/window.png'"
+        [label]="'Window component'"
+        [coordinate]="{ x: 3, y: 1 }"
+        (osItemSelected)="windowGridItem.isSelected = true;"
+        (osItemDeselected)="windowGridItem.isSelected = false;">
+    </os-grid-item>
+</os-grid>

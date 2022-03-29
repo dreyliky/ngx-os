@@ -1,15 +1,54 @@
 import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, Inject, OnDestroy, OnInit } from '@angular/core';
+import {
+    ContentChildren,
+    Directive,
+    ElementRef,
+    EventEmitter,
+    Inject,
+    OnDestroy,
+    OnInit,
+    Output,
+    QueryList
+} from '@angular/core';
 import { fromEvent, merge, Observable, Subject } from 'rxjs';
 import { filter, first, takeUntil } from 'rxjs/operators';
 import { ɵCommonCssClassEnum as CommonCssClass, ɵGlobalEvents } from '../../../core';
 import { ɵSelectionCssClassEnum as CssClass } from '../enums';
-import { ɵContainerStyleCalculationHelper } from '../helpers';
+import { ɵContainerStyleCalculationHelper, ɵItemsSelectorHelper } from '../helpers';
+import { SelectionItemDirective } from './selection-item.directive';
 
 @Directive({
     selector: '[osSelectionZone]'
 })
 export class SelectionZoneDirective implements OnInit, OnDestroy {
+    @Output()
+    public osSelectionStart = new EventEmitter();
+
+    @Output()
+    public osSelectionChange = new EventEmitter();
+
+    @Output()
+    public osSelectionEnd = new EventEmitter();
+
+    /** @internal */
+    @ContentChildren(SelectionItemDirective, { descendants: true })
+    public _selectionItems: QueryList<SelectionItemDirective>;
+
+    /** @internal */
+    public get _containerElement(): HTMLDivElement {
+        return this.containerElement;
+    }
+
+    /** @internal */
+    public get _initialMouseDownEvent(): PointerEvent {
+        return this.initialMouseDownEvent;
+    }
+
+    /** @internal */
+    public get _zoneHtmlElement(): HTMLElement {
+        return this.hostRef.nativeElement;
+    }
+
     private get destroyedOrDocumentMouseUp$(): Observable<unknown> {
         return merge(
             this.destroyed$,
@@ -17,11 +56,11 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
         );
     }
 
-    private readonly containerStyleUpdater = new ɵContainerStyleCalculationHelper(
-        this.hostRef.nativeElement
-    );
+    private readonly containerStyleUpdater = new ɵContainerStyleCalculationHelper(this);
+    private readonly itemsSelector = new ɵItemsSelectorHelper(this);
 
     private containerElement: HTMLDivElement;
+    private initialMouseDownEvent: PointerEvent;
 
     private destroyed$ = new Subject<boolean>();
 
@@ -44,7 +83,6 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
     private createContainerElement(): void {
         this.containerElement = this.document.createElement('div');
 
-        this.containerStyleUpdater.setContainerElement(this.containerElement);
         this.containerElement.classList.add(CssClass.Container);
         this.hostRef.nativeElement.appendChild(this.containerElement);
     }
@@ -52,10 +90,33 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
     private removeContainerElement(): void {
         if (this.containerElement) {
             this.hostRef.nativeElement.removeChild(this.containerElement);
-            this.containerStyleUpdater.removeContainerElement();
 
             this.containerElement = null;
         }
+    }
+
+    private onSelectionStart(event: PointerEvent): void {
+        this.initialMouseDownEvent = event;
+
+        this.document.body.classList.add(CommonCssClass.UserSelectNone);
+        this.removeContainerElement();
+        this.createContainerElement();
+        this.containerStyleUpdater.calculateAll(event);
+        this.initMouseMoveObserver();
+        this.initMouseUpObserver();
+        this.osSelectionStart.emit();
+    }
+
+    private onSelectionChange(event: PointerEvent): void {
+        this.containerStyleUpdater.calculateAll(event);
+        this.itemsSelector.processAll();
+        this.osSelectionChange.emit();
+    }
+
+    private onSelectionEnd(): void {
+        this.document.body.classList.remove(CommonCssClass.UserSelectNone);
+        this.removeContainerElement();
+        this.osSelectionEnd.emit();
     }
 
     private initMouseDownObserver(): void {
@@ -64,21 +125,13 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
                 filter(({ target }) => (target === this.hostRef.nativeElement)),
                 takeUntil(this.destroyed$)
             )
-            .subscribe((event) => {
-                this.document.body.classList.add(CommonCssClass.UserSelectNone);
-                this.removeContainerElement();
-                this.createContainerElement();
-                this.containerStyleUpdater.setInitialMouseDownEvent(event);
-                this.containerStyleUpdater.calculateAll(event);
-                this.initMouseMoveObserver();
-                this.initMouseUpObserver();
-            });
+            .subscribe((event) => this.onSelectionStart(event));
     }
 
     private initMouseMoveObserver(): void {
         this.globalEvents.fromDocument<PointerEvent>('mousemove')
             .pipe(takeUntil(this.destroyedOrDocumentMouseUp$))
-            .subscribe((event) => this.containerStyleUpdater.calculateAll(event));
+            .subscribe((event) => this.onSelectionChange(event));
     }
 
     private initMouseUpObserver(): void {
@@ -87,9 +140,6 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
                 first(),
                 takeUntil(this.destroyed$)
             )
-            .subscribe(() => {
-                this.document.body.classList.remove(CommonCssClass.UserSelectNone);
-                this.removeContainerElement();
-            });
+            .subscribe(() => this.onSelectionEnd());
     }
 }
