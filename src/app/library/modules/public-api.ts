@@ -16,6 +16,7 @@ export * from './password-box/public-api';
 export * from './radio-button/public-api';
 export * from './resizer/public-api';
 export * from './scroll-view/public-api';
+export * from './selection/public-api';
 export * from './slider/public-api';
 export * from './tab-group/public-api';
 export * from './text-box/public-api';

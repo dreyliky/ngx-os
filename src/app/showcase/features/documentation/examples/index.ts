@@ -16,6 +16,7 @@ export * from './password-box';
 export * from './radio-button';
 export * from './resizer';
 export * from './scroll-view';
+export * from './selection';
 export * from './slider';
 export * from './tab-group';
 export * from './text';

@@ -18,6 +18,7 @@ import {
     RadioButtonModule,
     ResizerModule,
     ScrollViewModule,
+    SelectionModule,
     SliderModule,
     TabGroupModule,
     TextareaBoxModule,
@@ -27,7 +28,7 @@ import {
     TreeViewModule,
     UtilsModule,
     WindowModule
-} from './modules';
+} from './modules/public-api';
 
 @NgModule({
     exports: [
@@ -49,6 +50,7 @@ import {
         RadioButtonModule,
         ResizerModule,
         ScrollViewModule,
+        SelectionModule,
         SliderModule,
         TabGroupModule,
         TextareaBoxModule,

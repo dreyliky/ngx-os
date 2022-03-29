@@ -19,6 +19,7 @@ import {
     RADIO_BUTTON_META_INFO,
     RESIZER_META_INFO,
     SCROLL_VIEW_META_INFO,
+    SELECTION_META_INFO,
     SLIDER_META_INFO,
     TAB_GROUP_META_INFO,
     TEXTAREA_BOX_META_INFO,
@@ -86,6 +87,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.ScrollView,
         SCROLL_VIEW_META_INFO
+    )
+    .set(
+        OsComponentEnum.Selection,
+        SELECTION_META_INFO
     )
     .set(
         OsComponentEnum.Dropdown,
