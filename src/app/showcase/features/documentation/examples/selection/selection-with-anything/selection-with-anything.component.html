@@ -1,0 +1,42 @@
+<div
+    osSelectionZone
+    class="my-selection-zone">
+    <os-checkbox
+        #checkbox
+        osSelectionItem
+        (osItemSelected)="checkbox.isChecked = true;"
+        (osItemDeselected)="checkbox.isChecked = false;">
+        My checkbox
+    </os-checkbox>
+
+    <os-radio-button
+        #radioButton
+        osSelectionItem
+        (osItemSelected)="radioButton.isChecked = true;"
+        (osItemDeselected)="radioButton.isChecked = false;">
+        My radio-button
+    </os-radio-button>
+
+    <div
+        osSelectionItem
+        class="custom-element"
+        [class.selected]="isCustomElementSelected"
+        (osItemSelected)="isCustomElementSelected = true;"
+        (osItemDeselected)="isCustomElementSelected = false;">
+        My custom element
+    </div>
+
+    <os-grid
+        class="my-grid"
+        [cellSize]="75"
+        [class.selected]="gridItem.isSelected">
+        <os-grid-item
+            #gridItem
+            osSelectionItem
+            [iconUrl]="'/assets/showcase/icons/bug.png'"
+            [label]="'My grid item'"
+            (osItemSelected)="gridItem.isSelected = true;"
+            (osItemDeselected)="gridItem.isSelected = false;">
+        </os-grid-item>
+    </os-grid>
+</div>

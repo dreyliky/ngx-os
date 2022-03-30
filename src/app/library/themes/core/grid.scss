@@ -37,9 +37,11 @@
             color: #ffffff;
         }
 
-        &.os-selected {
+        &.os-selected, :focus {
             z-index: 999;
+        }
 
+        &:focus {
             .os-label {
                 height: auto;
                 top: calc(100% - var(--os-label-height));

@@ -1,5 +1,5 @@
 import { OsComponentEnum } from '../../enums';
-import { SelectionOverviewComponent } from '../../examples';
+import { SelectionOverviewComponent, SelectionWithAnythingComponent } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const SELECTION_META_INFO: ComponentMetaInfo = {
@@ -19,6 +19,11 @@ export const SELECTION_META_INFO: ComponentMetaInfo = {
             title: 'Selection Overview',
             componentName: 'SelectionOverviewComponent',
             component: SelectionOverviewComponent
+        },
+        {
+            title: 'Selection with anything',
+            componentName: 'SelectionWithAnythingComponent',
+            component: SelectionWithAnythingComponent
         }
     ]
 };

@@ -1,3 +1,4 @@
+import { ɵPointerHelper } from '../../../core';
 import { SelectionZoneDirective } from '../directives/selection-zone.directive';
 
 /** @internal */
@@ -8,7 +9,7 @@ export class ɵContainerStyleCalculationHelper {
         private readonly context: SelectionZoneDirective
     ) {}
 
-    public calculateAll(event: PointerEvent): void {
+    public calculateAll(event: PointerEvent | TouchEvent): void {
         this.zoneElementDomRect = this.context._zoneHtmlElement.getBoundingClientRect();
 
         this.calculateLeft(event);
@@ -17,38 +18,44 @@ export class ɵContainerStyleCalculationHelper {
         this.calculateHeight(event);
     }
 
-    private calculateLeft(event: PointerEvent): void {
-        const { clientX: initialX } = this.context._initialMouseDownEvent;
+    private calculateLeft(event: PointerEvent | TouchEvent): void {
+        const initialX = ɵPointerHelper.getClientX(this.context._initialPointerDownEvent);
+        const eventClientX = ɵPointerHelper.getClientX(event);
         const { x: zoneX } = this.zoneElementDomRect;
-        let left = (event.clientX - zoneX);
+        let left = (eventClientX - zoneX);
 
-        if (event.clientX >= initialX) {
+        if (eventClientX >= initialX) {
             left = (initialX - zoneX);
         }
 
         this.context._containerElement.style.left = `${left}px`;
     }
 
-    private calculateTop(event: PointerEvent): void {
-        const { clientY: initialY } = this.context._initialMouseDownEvent;
+    private calculateTop(event: PointerEvent | TouchEvent): void {
+        const initialY = ɵPointerHelper.getClientY(this.context._initialPointerDownEvent);
+        const eventClientY = ɵPointerHelper.getClientY(event);
         const { y: zoneY } = this.zoneElementDomRect;
-        let top = (event.clientY - zoneY);
+        let top = (eventClientY - zoneY);
 
-        if (event.clientY >= initialY) {
+        if (eventClientY >= initialY) {
             top = (initialY - zoneY);
         }
 
         this.context._containerElement.style.top = `${top}px`;
     }
 
-    private calculateWidth(event: PointerEvent): void {
-        const width = Math.abs(event.clientX - this.context._initialMouseDownEvent.clientX);
+    private calculateWidth(event: PointerEvent | TouchEvent): void {
+        const initialClientX = ɵPointerHelper.getClientX(this.context._initialPointerDownEvent);
+        const eventClientX = ɵPointerHelper.getClientX(event);
+        const width = Math.abs(eventClientX - initialClientX);
 
         this.context._containerElement.style.width = `${width}px`;
     }
 
-    private calculateHeight(event: PointerEvent): void {
-        const height = Math.abs(event.clientY - this.context._initialMouseDownEvent.clientY);
+    private calculateHeight(event: PointerEvent | TouchEvent): void {
+        const initialClientY = ɵPointerHelper.getClientY(this.context._initialPointerDownEvent);
+        const eventClientY = ɵPointerHelper.getClientY(event);
+        const height = Math.abs(eventClientY - initialClientY);
 
         this.context._containerElement.style.height = `${height}px`;
     }

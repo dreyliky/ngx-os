@@ -11,24 +11,28 @@ import {
     QueryList
 } from '@angular/core';
 import { fromEvent, merge, Observable, Subject } from 'rxjs';
-import { filter, first, takeUntil } from 'rxjs/operators';
+import { filter, first, takeUntil, tap } from 'rxjs/operators';
 import { ɵCommonCssClassEnum as CommonCssClass, ɵGlobalEvents } from '../../../core';
 import { ɵSelectionCssClassEnum as CssClass } from '../enums';
 import { ɵContainerStyleCalculationHelper, ɵItemsSelectorHelper } from '../helpers';
+import { SelectionInfo } from '../interfaces';
 import { SelectionItemDirective } from './selection-item.directive';
 
 @Directive({
     selector: '[osSelectionZone]'
 })
-export class SelectionZoneDirective implements OnInit, OnDestroy {
+export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
     @Output()
-    public osSelectionStart = new EventEmitter();
+    public osSelectionStart: EventEmitter<SelectionInfo> = new EventEmitter();
 
     @Output()
-    public osSelectionChange = new EventEmitter();
+    public osSelectionChange: EventEmitter<SelectionInfo> = new EventEmitter();
 
     @Output()
-    public osSelectionEnd = new EventEmitter();
+    public osSelectionEnd: EventEmitter<SelectionInfo> = new EventEmitter();
+
+    @Output()
+    public osItemsSelectionChange: EventEmitter<T[]> = new EventEmitter();
 
     /** @internal */
     @ContentChildren(SelectionItemDirective, { descendants: true })
@@ -40,8 +44,8 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
     }
 
     /** @internal */
-    public get _initialMouseDownEvent(): PointerEvent {
-        return this.initialMouseDownEvent;
+    public get _initialPointerDownEvent(): PointerEvent | TouchEvent {
+        return this.initialPointerDownEvent;
     }
 
     /** @internal */
@@ -49,18 +53,19 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
         return this.hostRef.nativeElement;
     }
 
-    private get destroyedOrDocumentMouseUp$(): Observable<unknown> {
+    private get destroyedOrDocumentPointerUp$(): Observable<unknown> {
         return merge(
             this.destroyed$,
-            this.globalEvents.fromDocument('mouseup')
+            this.globalEvents.fromDocument('mouseup'),
+            this.globalEvents.fromDocument('touchend')
         );
     }
 
     private readonly containerStyleUpdater = new ɵContainerStyleCalculationHelper(this);
-    private readonly itemsSelector = new ɵItemsSelectorHelper(this);
+    private readonly itemsSelector = new ɵItemsSelectorHelper<T>(this);
 
     private containerElement: HTMLDivElement;
-    private initialMouseDownEvent: PointerEvent;
+    private initialPointerDownEvent: PointerEvent | TouchEvent;
 
     private destroyed$ = new Subject<boolean>();
 
@@ -72,12 +77,14 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.hostRef.nativeElement.classList.add(CssClass.Zone);
-        this.initMouseDownObserver();
+        this.initPointerDownObserver();
+        this.initSelectedItemsEventObserver();
     }
 
     public ngOnDestroy(): void {
         this.destroyed$.next(true);
         this.destroyed$.complete();
+        this.itemsSelector.onDestroy();
     }
 
     private createContainerElement(): void {
@@ -95,51 +102,78 @@ export class SelectionZoneDirective implements OnInit, OnDestroy {
         }
     }
 
-    private onSelectionStart(event: PointerEvent): void {
-        this.initialMouseDownEvent = event;
+    private onSelectionStart(event: PointerEvent | TouchEvent): void {
+        const selectionInfo = this.getSelectionInfo(event);
+        this.initialPointerDownEvent = event;
 
         this.document.body.classList.add(CommonCssClass.UserSelectNone);
         this.removeContainerElement();
         this.createContainerElement();
         this.containerStyleUpdater.calculateAll(event);
-        this.initMouseMoveObserver();
-        this.initMouseUpObserver();
-        this.osSelectionStart.emit();
+        this.initPointerMoveObserver();
+        this.initPointerUpObserver();
+        this.osSelectionStart.emit(selectionInfo);
     }
 
-    private onSelectionChange(event: PointerEvent): void {
+    private onSelectionChange(event: PointerEvent | TouchEvent): void {
+        const selectionInfo = this.getSelectionInfo(event);
+
         this.containerStyleUpdater.calculateAll(event);
-        this.itemsSelector.processAll();
-        this.osSelectionChange.emit();
+        this.itemsSelector.onSelection();
+        this.osSelectionChange.emit(selectionInfo);
     }
 
-    private onSelectionEnd(): void {
+    private onSelectionEnd(event: PointerEvent | TouchEvent): void {
+        const selectionInfo = this.getSelectionInfo(event);
+
         this.document.body.classList.remove(CommonCssClass.UserSelectNone);
         this.removeContainerElement();
-        this.osSelectionEnd.emit();
+        this.osSelectionEnd.emit(selectionInfo);
     }
 
-    private initMouseDownObserver(): void {
-        fromEvent<PointerEvent>(this.hostRef.nativeElement, 'mousedown')
+    private initPointerDownObserver(): void {
+        merge(
+            fromEvent<PointerEvent>(this.hostRef.nativeElement, 'mousedown'),
+            fromEvent<TouchEvent>(this.hostRef.nativeElement, 'touchstart')
+        )
             .pipe(
+                tap(() => this.itemsSelector.onDeselection()),
                 filter(({ target }) => (target === this.hostRef.nativeElement)),
                 takeUntil(this.destroyed$)
             )
             .subscribe((event) => this.onSelectionStart(event));
     }
 
-    private initMouseMoveObserver(): void {
-        this.globalEvents.fromDocument<PointerEvent>('mousemove')
-            .pipe(takeUntil(this.destroyedOrDocumentMouseUp$))
+    private initPointerMoveObserver(): void {
+        merge(
+            this.globalEvents.fromDocument<PointerEvent>('mousemove'),
+            this.globalEvents.fromDocument<TouchEvent>('touchmove', { passive: false })
+        )
+            .pipe(takeUntil(this.destroyedOrDocumentPointerUp$))
             .subscribe((event) => this.onSelectionChange(event));
     }
 
-    private initMouseUpObserver(): void {
-        this.globalEvents.fromDocument<PointerEvent>('mouseup')
+    private initPointerUpObserver(): void {
+        merge(
+            this.globalEvents.fromDocument<PointerEvent>('mouseup'),
+            this.globalEvents.fromDocument<TouchEvent>('touchend')
+        )
             .pipe(
                 first(),
                 takeUntil(this.destroyed$)
             )
-            .subscribe(() => this.onSelectionEnd());
+            .subscribe((event) => this.onSelectionEnd(event));
+    }
+
+    private initSelectedItemsEventObserver(): void {
+        this.itemsSelector.selectedItems$
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe((items) => this.osItemsSelectionChange.emit(items));
+    }
+
+    private getSelectionInfo(originalEvent: PointerEvent | TouchEvent): SelectionInfo {
+        return {
+            originalEvent
+        };
     }
 }

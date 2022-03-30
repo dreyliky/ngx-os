@@ -4,14 +4,14 @@ import { Directive, ElementRef, EventEmitter, Input, Output } from '@angular/cor
     selector: '[osSelectionItem]'
 })
 export class SelectionItemDirective<T = any> {
-    @Input()
-    public selectionData: T;
+    @Input('osSelectionItem')
+    public data: T;
 
     @Output()
-    public osItemSelected = new EventEmitter<T>();
+    public osItemSelected: EventEmitter<T> = new EventEmitter();
 
     @Output()
-    public osItemDeselected = new EventEmitter<T>();
+    public osItemDeselected: EventEmitter<T> = new EventEmitter();
 
     public get isSelected(): boolean {
         return this._isSelected;
@@ -31,13 +31,13 @@ export class SelectionItemDirective<T = any> {
     public _select(): void {
         this._isSelected = true;
 
-        this.osItemSelected.emit(this.selectionData);
+        this.osItemSelected.emit(this.data);
     }
 
     /** @internal */
     public _deselect(): void {
         this._isSelected = false;
 
-        this.osItemDeselected.emit(this.selectionData);
+        this.osItemDeselected.emit(this.data);
     }
 }

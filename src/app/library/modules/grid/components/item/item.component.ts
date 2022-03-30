@@ -52,7 +52,8 @@ import {
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
     host: {
-        'class': 'os-grid-item'
+        'class': 'os-grid-item',
+        'tabindex': '0'
     },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush

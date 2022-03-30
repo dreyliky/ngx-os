@@ -16,7 +16,7 @@
                 inset 1px 1px rgba(255, 255, 255, .4);
         }
 
-        &.os-selected {
+        &.os-selected, &:focus {
             height: auto !important;
             min-height: var(--os-cell-size) !important;
             background: linear-gradient(

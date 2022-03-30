@@ -39,6 +39,7 @@ import {
     ResizerSpecificSidesComponent,
     ScrollViewOverviewComponent,
     SelectionOverviewComponent,
+    SelectionWithAnythingComponent,
     SliderAsFormControlComponent,
     SliderOverviewComponent,
     TabGroupLabelCustomizationComponent,
@@ -106,6 +107,7 @@ import {
         ResizerSpecificSidesComponent,
         ScrollViewOverviewComponent,
         SelectionOverviewComponent,
+        SelectionWithAnythingComponent,
         SliderAsFormControlComponent,
         SliderOverviewComponent,
         TabGroupLabelCustomizationComponent,
@@ -132,7 +134,8 @@ import {
         WindowOverviewComponent,
         WindowTitleBarComponent,
         MenuBarOverviewComponent,
-        SelectionOverviewComponent
+        SelectionOverviewComponent,
+        SelectionWithAnythingComponent
     ],
     imports: [
         SharedModule
