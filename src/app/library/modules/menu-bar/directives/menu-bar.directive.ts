@@ -12,7 +12,7 @@ import {
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-import { fromEvent, merge, Observable, Subject, Subscription } from 'rxjs';
+import { fromEvent, merge, Observable, Subject } from 'rxjs';
 import { filter, first, map, takeUntil } from 'rxjs/operators';
 import { ɵEventOutside } from '../../../core';
 import { MenuBarButtonComponent, MenuBarComponent } from '../components';
@@ -36,7 +36,6 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
 
     private containerElement: HTMLDivElement | null;
     private viewRef: EmbeddedViewRef<unknown> | null;
-    private clickOutsideSubscription: Subscription | null;
 
     private readonly delayBeforeDestroy = 500;
     private readonly hidden$ = new Subject<boolean>();
@@ -88,22 +87,14 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
         }
 
         this.hidden$.next(true);
-        this.onHide();
     }
 
     private show(): void {
         this.createContainerElementIfAbsent();
         this.adaptContainerElementPosition();
         this.applyContentForContainerElement();
-        this.onShow();
-    }
-
-    private onShow(): void {
+        // Waiting ~4 ms for skipping currently bubbling click event, which probably triggered our MenuBar.
         setTimeout(() => this.initClickOutsideObserver());
-    }
-
-    private onHide(): void {
-        this.clickOutsideSubscription?.unsubscribe();
     }
 
     private createContainerElementIfAbsent(): void {
@@ -161,7 +152,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     }
 
     private initClickOutsideObserver(): void {
-        this.clickOutsideSubscription = fromEvent<PointerEvent>(this.document, 'mousedown')
+        fromEvent<PointerEvent>(this.document, 'mousedown')
             .pipe(
                 filter((event) => ɵEventOutside.checkForElement(this.containerElement, event)),
                 first(),
