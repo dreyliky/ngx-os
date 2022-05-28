@@ -24,18 +24,15 @@ export class FormValidationComponent {
 
     public setControlsTouchedState(state: boolean): void {
         this.controls.forEach((control) => {
-            const actionFn = (state) ? control.markAsTouched : control.markAsUntouched;
+            (state) ? control.markAsTouched() : control.markAsUntouched();
 
-            actionFn.call(control);
             control.updateValueAndValidity();
         });
     }
 
     public setControlsDisabledState(state: boolean): void {
         this.controls.forEach((control) => {
-            const actionFn = (state) ? control.disable : control.enable;
-
-            actionFn.call(control);
+            (state) ? control.disable() : control.enable();
         });
     }
 
