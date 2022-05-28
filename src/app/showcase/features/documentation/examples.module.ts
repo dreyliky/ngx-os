@@ -7,6 +7,7 @@ import {
     CheckboxOverviewComponent,
     ContextMenuOverviewComponent,
     DividerOverviewComponent,
+    DraggableZoneOverviewComponent,
     DraggerOnAbsoluteElementComponent,
     DraggerOverviewComponent,
     DraggerViaHandleComponent,
@@ -75,6 +76,7 @@ import {
         CheckboxOverviewComponent,
         ContextMenuOverviewComponent,
         DividerOverviewComponent,
+        DraggableZoneOverviewComponent,
         DraggerOnAbsoluteElementComponent,
         DraggerOverviewComponent,
         DraggerViaHandleComponent,
@@ -132,10 +134,7 @@ import {
         WindowDynamicObserveEventsComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent,
-        MenuBarOverviewComponent,
-        SelectionOverviewComponent,
-        SelectionWithAnythingComponent
+        WindowTitleBarComponent
     ],
     imports: [
         SharedModule
