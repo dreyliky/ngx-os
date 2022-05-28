@@ -4,7 +4,6 @@ import {
     ElementRef,
     EventEmitter,
     HostBinding,
-    Injector,
     Input,
     OnInit,
     Output,
@@ -56,12 +55,6 @@ export class RadioButtonComponent<T = any>
 
     @ViewChild('radioButton')
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     public ngOnInit(): void {
         this.initClickObserver();

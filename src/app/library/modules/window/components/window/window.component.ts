@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     HostBinding,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
@@ -45,10 +44,4 @@ export class WindowComponent extends ɵOsBaseComponent {
     /** Classlist for scroll view component of the window */
     @Input()
     public scrollViewStyleClass: string | string[] | object;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 }

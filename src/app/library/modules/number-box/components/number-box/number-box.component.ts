@@ -2,7 +2,6 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy,
     Component,
-    Injector,
     Input,
     OnChanges,
     OnInit,
@@ -71,12 +70,6 @@ export class NumberBoxComponent
     protected targetInternalElementSelector = 'input';
 
     private readonly converter = new ɵNumericalValueConverter(this);
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     public ngOnInit(): void {
         this.value = this.getDefaultValue();

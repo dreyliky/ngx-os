@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
-    selector: 'os-title-bar-controls',
+    selector: 'os-error',
     template: '<ng-content></ng-content>',
     host: {
-        'class': 'os-title-bar-controls'
+        'class': 'os-error'
     },
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarControlsComponent extends ɵOsBaseComponent {}
+export class ErrorComponent extends ɵOsBaseComponent {}

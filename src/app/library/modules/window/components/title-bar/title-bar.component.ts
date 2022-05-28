@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     HostBinding,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
@@ -22,10 +21,4 @@ export class TitleBarComponent extends ɵOsBaseComponent {
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
     public isActive: boolean = true;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 }

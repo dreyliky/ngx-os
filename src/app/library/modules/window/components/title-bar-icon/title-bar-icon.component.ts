@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     HostBinding,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
@@ -28,10 +27,4 @@ export class TitleBarIconComponent extends ɵOsBaseComponent {
 
     @HostBinding('style.backgroundImage')
     public _iconCssBackground: string;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 }

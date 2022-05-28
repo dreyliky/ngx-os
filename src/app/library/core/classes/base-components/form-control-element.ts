@@ -1,7 +1,8 @@
-import { Component, InjectFlags, Injector } from '@angular/core';
+import { Component, HostBinding, InjectFlags, Injector, Input } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
+import { ɵCommonCssClassEnum } from '../../enums';
 import { ɵOsBaseComponent } from './component';
 
 @Component({
@@ -10,6 +11,11 @@ import { ɵOsBaseComponent } from './component';
 export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
     extends ɵOsBaseComponent
     implements ControlValueAccessor {
+    /** Is component disabled? */
+    @Input()
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
+    public isDisabled: boolean = false;
+
     /** @internal */
     public onChange: (value: OutputT) => void;
     /** @internal */
@@ -43,6 +49,12 @@ export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
     /** @internal */
     public registerOnTouched(fn: () => void): void {
         this.onTouched = fn;
+    }
+
+    public setDisabledState(state: boolean): void {
+        this.isDisabled = state;
+
+        this.changeDetector.markForCheck();
     }
 
     /** @internal */

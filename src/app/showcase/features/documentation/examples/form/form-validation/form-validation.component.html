@@ -1,0 +1,56 @@
+<form [formGroup]="formGroup">
+    <os-form-field>
+        <os-checkbox
+            (osChange)="setControlsTouchedState($event.isChecked)">
+            Mark as touched
+        </os-checkbox>
+
+        <os-checkbox
+            (osChange)="setControlsDisabledState($event.isChecked)">
+            Disable controls
+        </os-checkbox>
+    </os-form-field>
+
+    <os-divider></os-divider>
+
+    <os-form-field>
+        <os-label>Login</os-label>
+    
+        <os-text-box
+            [placeholder]="'Enter your login'"
+            [formControl]="loginControl">
+        </os-text-box>
+
+        <os-error *ngIf="isControlHasRequiredError(loginControl)">
+            Login is required
+        </os-error>
+    </os-form-field>
+
+    <os-form-field>
+        <os-label>Info</os-label>
+    
+        <os-textarea-box
+            [placeholder]="'Enter short info about you'"
+            [formControl]="infoControl">
+        </os-textarea-box>
+
+        <os-error *ngIf="isControlHasRequiredError(infoControl)">
+            Info is required
+        </os-error>
+    </os-form-field>
+
+    <os-form-field>
+        <os-label>Gender</os-label>
+    
+        <os-dropdown
+            [placeholder]="'Choose your gender'"
+            [formControl]="genderControl">
+            <os-dropdown-item [data]="'m'">Male</os-dropdown-item>
+            <os-dropdown-item [data]="'f'">Female</os-dropdown-item>
+        </os-dropdown>
+
+        <os-error *ngIf="isControlHasRequiredError(genderControl)">
+            Gender is required
+        </os-error>
+    </os-form-field>
+</form>

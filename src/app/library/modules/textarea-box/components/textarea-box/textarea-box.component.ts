@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    Injector,
     Input,
     OnInit,
     Output,
@@ -42,15 +41,9 @@ export class TextareaBoxComponent
 
     protected targetInternalElementSelector = 'textarea';
 
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-
-        this.value = '';
-    }
-
     public ngOnInit(): void {
+        this.value = '';
+
         this.initInputEventObserver();
     }
 

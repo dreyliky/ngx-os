@@ -3,7 +3,6 @@ import {
     Component,
     ContentChild,
     EventEmitter,
-    Injector,
     Input,
     Output,
     TemplateRef,
@@ -84,12 +83,6 @@ export class TabComponent extends ɵOsBaseComponent {
 
     /** @internal */
     public _isSelected: boolean = false;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     /** @internal */
     public _onTabButtonClick(event: PointerEvent): void {

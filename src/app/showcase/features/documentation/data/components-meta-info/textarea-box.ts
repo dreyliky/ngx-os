@@ -1,5 +1,9 @@
 import { OsComponentEnum } from '../../enums';
-import { TextareaAsFormControlComponent, TextareaOverviewComponent } from '../../examples';
+import {
+    FormValidationComponent,
+    TextareaAsFormControlComponent,
+    TextareaOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
@@ -26,6 +30,11 @@ export const TEXTAREA_BOX_META_INFO: ComponentMetaInfo = {
             title: 'Textarea Box as FormControl',
             componentName: 'TextareaAsFormControlComponent',
             component: TextareaAsFormControlComponent
+        },
+        {
+            title: 'Reactive Forms integration',
+            componentName: 'FormValidationComponent',
+            component: FormValidationComponent
         }
     ]
 };

@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
@@ -20,10 +19,4 @@ export class GroupBoxComponent extends ɵOsBaseComponent {
     /** Label of group */
     @Input()
     public label: string;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 }

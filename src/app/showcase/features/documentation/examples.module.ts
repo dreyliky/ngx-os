@@ -67,6 +67,7 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
+import { FormValidationComponent } from './examples/form/form-validation/form-validation.component';
 
 @NgModule({
     declarations: [
@@ -134,7 +135,8 @@ import {
         WindowDynamicObserveEventsComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        FormValidationComponent
     ],
     imports: [
         SharedModule

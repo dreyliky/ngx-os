@@ -2,7 +2,8 @@ import { OsComponentEnum } from '../../enums';
 import {
     EmailBoxAsFormControlComponent,
     EmailBoxOverviewComponent,
-    EmailBoxValidityOverviewComponent
+    EmailBoxValidityOverviewComponent,
+    FormValidationComponent
 } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
@@ -35,6 +36,11 @@ export const EMAIL_BOX_META_INFO: ComponentMetaInfo = {
             title: 'Email Box Validity Overview',
             componentName: 'EmailBoxValidityOverviewComponent',
             component: EmailBoxValidityOverviewComponent
+        },
+        {
+            title: 'Reactive Forms integration',
+            componentName: 'FormValidationComponent',
+            component: FormValidationComponent
         }
     ]
 };

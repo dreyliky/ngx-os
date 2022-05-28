@@ -1,5 +1,9 @@
 import { OsComponentEnum } from '../../enums';
-import { PasswordBoxAsFormControlComponent, PasswordBoxOverviewComponent } from '../../examples';
+import {
+    FormValidationComponent,
+    PasswordBoxAsFormControlComponent,
+    PasswordBoxOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const PASSWORD_BOX_META_INFO: ComponentMetaInfo = {
@@ -26,6 +30,11 @@ export const PASSWORD_BOX_META_INFO: ComponentMetaInfo = {
             title: 'Password Box as FormControl',
             componentName: 'PasswordBoxAsFormControlComponent',
             component: PasswordBoxAsFormControlComponent
+        },
+        {
+            title: 'Reactive Forms integration',
+            componentName: 'FormValidationComponent',
+            component: FormValidationComponent
         }
     ]
 };

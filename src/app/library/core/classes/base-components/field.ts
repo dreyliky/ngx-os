@@ -2,7 +2,6 @@ import {
     AfterViewInit,
     Component,
     HostBinding,
-    Injector,
     Input,
     Output
 } from '@angular/core';
@@ -17,11 +16,6 @@ import { ɵOsBaseFormControlComponent } from './form-control-element';
 export abstract class ɵOsBaseFieldComponent<T = string, OutputT = string>
     extends ɵOsBaseFormControlComponent<T, OutputT>
     implements AfterViewInit {
-    /** Is field disabled? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean = false;
-
     /** Is field readonly? */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Readonly}`)
@@ -60,12 +54,6 @@ export abstract class ɵOsBaseFieldComponent<T = string, OutputT = string>
      * Each field-component must define it's own `osChange` output with specific event type.
      **/
     public abstract osChange: Observable<unknown>;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     public ngAfterViewInit(): void {
         super.ngAfterViewInit();

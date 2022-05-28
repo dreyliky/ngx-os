@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    Injector,
     Input,
     OnInit,
     Output,
@@ -45,15 +44,9 @@ export class EmailBoxComponent extends ɵOsBaseFieldComponent implements OnInit 
 
     protected targetInternalElementSelector = 'input';
 
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-
-        this.value = '';
-    }
-
     public ngOnInit(): void {
+        this.value = '';
+
         this.initInputEventObserver();
     }
 
