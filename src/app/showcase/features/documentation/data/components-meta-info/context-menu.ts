@@ -11,7 +11,7 @@ export const CONTEXT_MENU_META_INFO: ComponentMetaInfo = {
         'ContextMenuModule'
     ],
     libComponents: [
-        'ContextMenuComponent'
+        'ContextMenuItemComponent'
     ],
     libDirectives: [
         'ContextMenuDirective'

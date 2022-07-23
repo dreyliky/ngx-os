@@ -1,5 +1,6 @@
 /** @internal */
 export enum ɵHintCssClassEnum {
     Hint = 'os-hint',
-    Hiding = 'os-hint-hiding',
+    Opening = 'os-hint-opening',
+    Hiding = 'os-hint-hiding'
 }
