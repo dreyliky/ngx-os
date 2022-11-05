@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class TextareaAsFormControlComponent {
     public readonly textareaBoxControl = new FormControl('Hi there!');
+    public readonly textareaBoxDisabledControl = new FormControl({ value: '', disabled: true });
 
     public readonly formGroup = new FormGroup({
         textareaBoxValue: this.textareaBoxControl

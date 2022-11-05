@@ -6,6 +6,12 @@
         [formControl]="selectedValueControl">
         {{ item.text }}
     </os-radio-button>
+
+    <os-radio-button
+        [name]="'radio-group-2'"
+        [formControl]="radioButtonDisabledControl">
+        Radio Button [Disabled]
+    </os-radio-button>
 </form>
 
 <os-text>

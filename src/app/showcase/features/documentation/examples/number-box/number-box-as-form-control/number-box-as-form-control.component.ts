@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class NumberBoxAsFormControlComponent {
     public readonly numberBoxControl = new FormControl();
+    public readonly numberBoxDisabledControl = new FormControl({ value: '', disabled: true });
 
     public readonly formGroup = new FormGroup({
         numberBoxValue: this.numberBoxControl

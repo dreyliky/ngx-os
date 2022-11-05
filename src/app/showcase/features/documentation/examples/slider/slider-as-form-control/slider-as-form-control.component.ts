@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SliderAsFormControlComponent {
     public readonly sliderControl = new FormControl(10);
+    public readonly sliderDisabledControl = new FormControl({ value: 0, disabled: true });
 
     public readonly formGroup = new FormGroup({
         sliderValue: this.sliderControl

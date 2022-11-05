@@ -75,6 +75,13 @@ export class RadioButtonComponent<T = any>
     }
 
     /** @internal */
+    public setDisabledState(isDisabled: boolean): void {
+        this.isDisabled = isDisabled;
+
+        this.changeDetector.markForCheck();
+    }
+
+    /** @internal */
     public _onRadioButtonChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
 

@@ -1,10 +1,19 @@
 <form [formGroup]="formGroup">
-    <os-email-box
-        [placeholder]="'Enter your email'"
-        [formControl]="emailBoxControl">
-    </os-email-box>
+    <os-form-field [isStacked]="true">
+        <os-email-box
+            [placeholder]="'Enter your email'"
+            [formControl]="emailBoxControl">
+        </os-email-box>
+
+        <os-text>
+            {{ formGroup.value | json }}
+        </os-text>
+    </os-form-field>
 </form>
 
-<os-text>
-    {{ formGroup.value | json }}
-</os-text>
+<os-form-field>
+    <os-email-box
+        [placeholder]="'Email Box [Disabled]'"
+        [formControl]="emailBoxDisabledControl">
+    </os-email-box>
+</os-form-field>

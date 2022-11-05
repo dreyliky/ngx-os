@@ -1,14 +1,24 @@
 <form [formGroup]="formGroup">
-    <os-dropdown
-        [formControl]="selectedItemControl">
-        <os-dropdown-item
-            *ngFor="let item of items"
-            [data]="item">
-            {{ item.text }}
-        </os-dropdown-item>
-    </os-dropdown>
+    <os-form-field [isStacked]="true">
+        <os-dropdown
+            [formControl]="selectedItemControl">
+            <os-dropdown-item
+                *ngFor="let item of items"
+                [data]="item">
+                {{ item.text }}
+            </os-dropdown-item>
+        </os-dropdown>
+
+        <os-text>
+            {{ formGroup.value | json }}
+        </os-text>
+    </os-form-field>
 </form>
 
-<os-text>
-    {{ formGroup.value | json }}
-</os-text>
+<os-form-field>
+    <os-dropdown
+        class="dropdown-disabled"
+        [placeholder]="'Disabled Dropdown'"
+        [formControl]="disabledItemControl">
+    </os-dropdown>
+</os-form-field>

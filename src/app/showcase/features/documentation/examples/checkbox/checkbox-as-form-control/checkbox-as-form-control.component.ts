@@ -8,11 +8,13 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxAsFormControlComponent {
-    public readonly checkbox1Control = new FormControl(false);
-    public readonly checkbox2Control = new FormControl(false);
+    public readonly checkboxControl1 = new FormControl(false);
+    public readonly checkboxControl2 = new FormControl(true);
+    public readonly checkboxControl3 = new FormControl({ value: false, disabled: true });
 
     public readonly formGroup = new FormGroup({
-        checkbox1: this.checkbox1Control,
-        checkbox2: this.checkbox2Control
+        checkbox1: this.checkboxControl1,
+        checkbox2: this.checkboxControl2,
+        checkbox3: this.checkboxControl3
     });
 }

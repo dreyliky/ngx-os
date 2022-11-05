@@ -73,6 +73,13 @@ export abstract class ɵOsBaseFieldComponent<T = string, OutputT = string>
         this.autoFocusFieldIfNeeded();
     }
 
+    /** @internal */
+    public setDisabledState(isDisabled: boolean): void {
+        this.isDisabled = isDisabled;
+
+        this.changeDetector.markForCheck();
+    }
+
     private autoFocusFieldIfNeeded(): void {
         if (this.isAutofocused) {
             this.targetInternalElement.focus();

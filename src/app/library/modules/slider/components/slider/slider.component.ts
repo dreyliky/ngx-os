@@ -63,6 +63,13 @@ export class SliderComponent
     }
 
     /** @internal */
+    public setDisabledState(isDisabled: boolean): void {
+        this.isDisabled = isDisabled;
+
+        this.changeDetector.markForCheck();
+    }
+
+    /** @internal */
     public _onSliderInputEvent(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
         const value: number = +targetElement.value;

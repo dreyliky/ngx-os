@@ -20,6 +20,7 @@ export class DropdownAsFormControlComponent {
     ];
 
     public readonly selectedItemControl = new FormControl(this.items[1]);
+    public readonly disabledItemControl = new FormControl({ value: null, disabled: true });
 
     public readonly formGroup = new FormGroup({
         selectedItem: this.selectedItemControl

@@ -70,6 +70,13 @@ export class CheckboxComponent<T = any>
     }
 
     /** @internal */
+    public setDisabledState(isDisabled: boolean): void {
+        this.isDisabled = isDisabled;
+
+        this.changeDetector.markForCheck();
+    }
+
+    /** @internal */
     public _onCheckboxValueChange(originalEvent: Event): void {
         const inputElement = originalEvent.target as HTMLInputElement;
         this.isChecked = inputElement.checked;

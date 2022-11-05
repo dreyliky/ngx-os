@@ -19,6 +19,7 @@ export class RadioButtonAsFormControlComponent {
     ];
 
     public readonly selectedValueControl = new FormControl(this.items[1]);
+    public readonly radioButtonDisabledControl = new FormControl({ value: true, disabled: true });
 
     public readonly formGroup = new FormGroup({
         selectedValue: this.selectedValueControl

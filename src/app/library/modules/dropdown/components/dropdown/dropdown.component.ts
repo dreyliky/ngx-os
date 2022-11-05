@@ -195,6 +195,13 @@ export class DropdownComponent<T = any>
     }
 
     /** @internal */
+    public setDisabledState(isDisabled: boolean): void {
+        this.isDisabled = isDisabled;
+
+        this.changeDetector.markForCheck();
+    }
+
+    /** @internal */
     public _initSelectedItem(item: ItemComponent<T>): void {
         this.value = item?.data ?? null;
         this.label = item?.getLabel();

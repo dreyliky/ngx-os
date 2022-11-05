@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class EmailBoxAsFormControlComponent {
     public readonly emailBoxControl = new FormControl('');
+    public readonly emailBoxDisabledControl = new FormControl({ value: '', disabled: true });
 
     public readonly formGroup = new FormGroup({
         emailBoxValue: this.emailBoxControl

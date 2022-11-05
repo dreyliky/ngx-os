@@ -1,15 +1,22 @@
 <form [formGroup]="formGroup">
     <os-form-field>
         <os-checkbox
-            [formControl]="checkbox1Control">
+            [formControl]="checkboxControl1">
             Checkbox 1
         </os-checkbox>
     </os-form-field>
 
     <os-form-field>
         <os-checkbox
-            [formControl]="checkbox2Control">
+            [formControl]="checkboxControl2">
             Checkbox 2
+        </os-checkbox>
+    </os-form-field>
+
+    <os-form-field>
+        <os-checkbox
+            [formControl]="checkboxControl3">
+            Checkbox 3 [Disabled]
         </os-checkbox>
     </os-form-field>
 </form>
