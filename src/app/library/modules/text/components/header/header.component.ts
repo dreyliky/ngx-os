@@ -1,9 +1,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    HostBinding,
-    Injector,
-    Input,
+    HostBinding, Input,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
@@ -41,12 +39,6 @@ export class HeaderComponent extends ɵOsBaseComponent {
     private readonly maxSize: number = 6;
 
     private _size: number = this.minSize;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     private validateSize(value: number): void {
         if (typeof(value) !== 'number') {

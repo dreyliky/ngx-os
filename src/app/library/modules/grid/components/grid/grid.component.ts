@@ -5,7 +5,6 @@ import {
     ContentChildren,
     ElementRef,
     HostBinding,
-    Injector,
     Input,
     OnChanges,
     QueryList,
@@ -103,12 +102,6 @@ export class GridComponent extends ɵOsBaseComponent implements OnChanges, After
     private _cellSize: number = 72;
     private _cellMinSize: number = 50;
     private gridItemComponents: QueryList<GridItemComponent>;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     public ngAfterViewInit(): void {
         super.ngAfterViewInit();

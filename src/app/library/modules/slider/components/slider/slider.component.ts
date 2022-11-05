@@ -3,7 +3,6 @@ import {
     Component,
     EventEmitter,
     HostBinding,
-    Injector,
     Input,
     Output,
     ViewEncapsulation
@@ -55,12 +54,6 @@ export class SliderComponent
 
     /** Value of the slider */
     public value: number = 0;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     /** @internal */
     public setDisabledState(isDisabled: boolean): void {

@@ -1,3 +1,4 @@
+export * from './element-apply-self-destroyed-class.helper';
 export * from './element-resizing-observer.helper';
 export * from './error.helper';
 export * from './event-outside.helper';

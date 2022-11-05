@@ -5,6 +5,7 @@ export * from './divider';
 export * from './drag-and-drop';
 export * from './dropdown';
 export * from './email-box';
+export * from './form';
 export * from './form-field';
 export * from './grid';
 export * from './group-box';

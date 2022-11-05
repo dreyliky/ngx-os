@@ -1,4 +1,4 @@
-import { Component, HostBinding, Injector, Input, Output } from '@angular/core';
+import { Component, HostBinding, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ɵCommonCssClassEnum } from '../../enums';
 import { ɵOsBaseComponent } from './component';
@@ -49,11 +49,5 @@ export abstract class ɵOsBaseButtonComponent extends ɵOsBaseComponent {
     @HostBinding('attr.tabindex')
     public get _hostTabIndexAttr(): number | null {
         return (this.isDisabled) ? null : 0;
-    }
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
     }
 }

@@ -12,7 +12,11 @@ import {
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { filter, first, takeUntil } from 'rxjs/operators';
-import { ɵEventOutside } from '../../../core';
+import {
+    ɵApplyAutoDestroyClass,
+    ɵElementPositionWithinViewport,
+    ɵEventOutside
+} from '../../../core';
 import { ɵContextMenuCssClassEnum as CssClass } from '../enums';
 
 @Directive({
@@ -24,6 +28,14 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
     @Input('osContextMenu')
     public content: TemplateRef<unknown>;
 
+    /** Context Menu offset in pixels from the pointer by X-axis */
+    @Input('osContextMenuPointerOffsetX')
+    public offsetX = 0;
+
+    /** Context Menu offset in pixels from the pointer by Y-axis */
+    @Input('osContextMenuPointerOffsetY')
+    public offsetY = 0;
+
     private containerElement: HTMLDivElement | null;
     private viewRef: EmbeddedViewRef<unknown>;
 
@@ -32,6 +44,7 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
+        private readonly elementPositionWithinViewport: ɵElementPositionWithinViewport,
         private readonly containerRef: ViewContainerRef
     ) {}
 
@@ -44,6 +57,7 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
         this.destroyed$.complete();
     }
 
+    /** @internal */
     @HostListener('contextmenu', ['$event'])
     public onDocumentContextMenuEvent(event: MouseEvent): void {
         this.show(event);
@@ -52,6 +66,7 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
         event.stopPropagation();
     }
 
+    /** Hide Context Menu */
     public hide(): void {
         if (this.containerElement) {
             const menuContainerElement = this.containerElement;
@@ -67,8 +82,9 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
 
     private show(event: MouseEvent): void {
         this.createContainerElementIfAbsent();
-        this.adaptContainerElementPosition(event);
         this.applyContentForContainerElement();
+        this.adaptContainerElementPosition(event);
+        ɵApplyAutoDestroyClass(this.containerElement, CssClass.Opening);
     }
 
     private createContainerElementIfAbsent(): void {
@@ -82,8 +98,17 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
     }
 
     private adaptContainerElementPosition(event: MouseEvent): void {
-        this.containerElement.style.left = `${event.pageX}px`;
-        this.containerElement.style.top = `${event.pageY}px`;
+        const containerRect = this.containerElement.getBoundingClientRect();
+        const { x, y } = this.elementPositionWithinViewport.calculateNearPointer({
+            pointerPosition: { x: event.clientX, y: event.clientY },
+            element: {
+                width: containerRect.width,
+                height: containerRect.height,
+                offset: { x: this.offsetX, y: this.offsetY }
+            }
+        });
+        this.containerElement.style.left = `${x}px`;
+        this.containerElement.style.top = `${y}px`;
     }
 
     private applyContentForContainerElement(): void {

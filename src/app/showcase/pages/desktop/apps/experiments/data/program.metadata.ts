@@ -4,11 +4,11 @@ import { ExperimentsAppComponent } from '../experiments.component';
 export const EXPERIMENTS_APP: AppMetadata = {
     componentRef: () => ExperimentsAppComponent,
     shortcutParams: {
-        label: 'Experiments with dynamic windows',
+        label: 'Experiments with Dynamic Windows',
         iconUrl: 'assets/showcase/icons/bug.png'
     },
     windowParams: {
-        title: 'Experiments with dynamic windows',
+        title: 'Experiments with Dynamic Windows',
         iconUrl: 'assets/showcase/icons/bug.png',
         isAlwaysOnTop: true,
         minWidth: 500,

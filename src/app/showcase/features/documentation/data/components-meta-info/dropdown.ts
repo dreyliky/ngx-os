@@ -3,7 +3,8 @@ import {
     DropdownAsFormControlComponent,
     DropdownOverviewComponent,
     DropdownWithIntervalValueChangeComponent,
-    DropdownСustomizationComponent
+    DropdownСustomizationComponent,
+    FormValidationComponent
 } from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
@@ -37,6 +38,11 @@ export const DROPDOWN_META_INFO: ComponentMetaInfo = {
             title: 'Dropdown customization',
             componentName: 'DropdownСustomizationComponent',
             component: DropdownСustomizationComponent
+        },
+        {
+            title: 'Reactive Forms integration',
+            componentName: 'FormValidationComponent',
+            component: FormValidationComponent
         },
         {
             title: 'Dropdown with interval value changing',

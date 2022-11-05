@@ -10,7 +10,13 @@ import {
 } from '@angular/core';
 import { fromEvent, merge, Observable, Subject, timer } from 'rxjs';
 import { debounce, filter, finalize, share, takeUntil } from 'rxjs/operators';
-import { ɵGlobalEvents, ɵIsString, ɵIsTemplateRef } from '../../../core';
+import {
+    ɵApplyAutoDestroyClass,
+    ɵElementPositionWithinViewport,
+    ɵGlobalEvents,
+    ɵIsString,
+    ɵIsTemplateRef
+} from '../../../core';
 import { ɵHintCssClassEnum as CssClass } from '../enums';
 
 @Directive({
@@ -22,12 +28,12 @@ export class HintDirective implements OnInit, OnDestroy {
     public content: string | TemplateRef<unknown>;
 
     /** Hint offset in pixels from the mouse by X-axis */
-    @Input()
-    public osHintMouseOffsetX = 16;
+    @Input('osHintMouseOffsetX')
+    public offsetX = 16;
 
     /** Hint offset in pixels from the mouse by Y-axis */
-    @Input()
-    public osHintMouseOffsetY = 16;
+    @Input('osHintMouseOffsetY')
+    public offsetY = 16;
 
     /** Hint delay before showing in milliseconds */
     @Input()
@@ -37,7 +43,7 @@ export class HintDirective implements OnInit, OnDestroy {
     @Input()
     public osHintEnabled = true;
 
-    private hintContainerElement: HTMLDivElement | null;
+    private containerElement: HTMLDivElement | null;
 
     private readonly mouseLeave$ = fromEvent<MouseEvent>(this.hostRef.nativeElement, 'mouseleave')
         .pipe(
@@ -65,6 +71,7 @@ export class HintDirective implements OnInit, OnDestroy {
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         private readonly globalEvents: ɵGlobalEvents,
+        private readonly elementPositionWithinViewport: ɵElementPositionWithinViewport,
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
 
@@ -81,46 +88,53 @@ export class HintDirective implements OnInit, OnDestroy {
 
     private show(event: MouseEvent): void {
         this.createContainerElementIfAbsent();
-        this.adaptContainerElementPosition(event);
         this.applyContentForContainerElement();
+        this.adaptContainerElementPosition(event);
+        ɵApplyAutoDestroyClass(this.containerElement, CssClass.Opening);
     }
 
     private hide(): void {
-        if (this.hintContainerElement) {
-            const hintContainerElement = this.hintContainerElement;
-            this.hintContainerElement = null;
+        if (this.containerElement) {
+            const containerElement = this.containerElement;
+            this.containerElement = null;
 
-            hintContainerElement.classList.add(CssClass.Hiding);
+            containerElement.classList.add(CssClass.Hiding);
 
             setTimeout(() => {
-                this.document.body.removeChild(hintContainerElement);
+                this.document.body.removeChild(containerElement);
             }, this.delayBeforeDestroy);
         }
     }
 
     private createContainerElementIfAbsent(): void {
-        if (!this.hintContainerElement) {
-            this.hintContainerElement = document.createElement('div');
+        if (!this.containerElement) {
+            this.containerElement = document.createElement('div');
 
-            this.hintContainerElement.classList.add(CssClass.Hint);
-            this.document.body.appendChild(this.hintContainerElement);
+            this.containerElement.classList.add(CssClass.Hint);
+            this.document.body.appendChild(this.containerElement);
         }
     }
 
     private adaptContainerElementPosition(event: MouseEvent): void {
-        const x = (event.pageX + this.osHintMouseOffsetX);
-        const y = (event.pageY + this.osHintMouseOffsetY);
-
-        this.hintContainerElement.style.left = `${x}px`;
-        this.hintContainerElement.style.top = `${y}px`;
+        const containerRect = this.containerElement.getBoundingClientRect();
+        const { x, y } = this.elementPositionWithinViewport.calculateNearPointer({
+            pointerPosition: { x: event.clientX, y: event.clientY },
+            element: {
+                width: containerRect.width,
+                height: containerRect.height,
+                offset: { x: this.offsetX, y: this.offsetY }
+            }
+        });
+        this.containerElement.style.left = `${x}px`;
+        this.containerElement.style.top = `${y}px`;
     }
 
     private applyContentForContainerElement(): void {
         const content = this.content;
-        this.hintContainerElement.innerHTML = '';
+        this.containerElement.innerHTML = '';
 
         if (ɵIsString(content)) {
-            this.hintContainerElement.innerHTML = content;
+            this.containerElement.innerHTML = content;
         } else if (ɵIsTemplateRef(content)) {
             this.fillContainerElementContentByTemplateRef(content);
         }
@@ -130,7 +144,7 @@ export class HintDirective implements OnInit, OnDestroy {
         const view = template.createEmbeddedView(null);
 
         view.detectChanges();
-        view.rootNodes.forEach((node) => this.hintContainerElement.appendChild(node));
+        view.rootNodes.forEach((node) => this.containerElement.appendChild(node));
     }
 
     private initHintShouldBeHiddenWhenObserver(): void {

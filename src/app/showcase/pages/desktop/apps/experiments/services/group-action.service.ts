@@ -43,7 +43,10 @@ export class GroupActionService {
         this.currentActionIntervalId = setInterval(() => {
             currentAmount++;
             this._totalSpawnedWindows$.next(this.totalSpawnedWindows + 1);
-            this.dynamicWindowService.open(EmptyWindowComponent, { width: 250, height: 125 });
+            this.dynamicWindowService.open(
+                EmptyWindowComponent,
+                { width: 250, height: 125, title: 'Empty Test Window' }
+            );
 
             if (currentAmount >= amount) {
                 clearInterval(this.currentActionIntervalId);

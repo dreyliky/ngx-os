@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ɵOsBaseButtonComponent } from '../../../../core';
 
 @Component({
@@ -10,10 +10,4 @@ import { ɵOsBaseButtonComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonLinkComponent extends ɵOsBaseButtonComponent {
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
-}
+export class ButtonLinkComponent extends ɵOsBaseButtonComponent {}

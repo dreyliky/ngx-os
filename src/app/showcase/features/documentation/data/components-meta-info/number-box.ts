@@ -1,5 +1,9 @@
 import { OsComponentEnum } from '../../enums';
-import { NumberBoxAsFormControlComponent, NumberBoxOverviewComponent } from '../../examples';
+import {
+    FormValidationComponent,
+    NumberBoxAsFormControlComponent,
+    NumberBoxOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const NUMBER_BOX_META_INFO: ComponentMetaInfo = {
@@ -26,6 +30,11 @@ export const NUMBER_BOX_META_INFO: ComponentMetaInfo = {
             title: 'Number Box as FormControl',
             componentName: 'NumberBoxAsFormControlComponent',
             component: NumberBoxAsFormControlComponent
+        },
+        {
+            title: 'Reactive Forms integration',
+            componentName: 'FormValidationComponent',
+            component: FormValidationComponent
         }
     ]
 };

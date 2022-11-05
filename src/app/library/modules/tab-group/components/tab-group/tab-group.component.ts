@@ -3,7 +3,6 @@ import {
     Component,
     ContentChildren,
     EventEmitter,
-    Injector,
     Input,
     OnDestroy,
     Output,
@@ -51,12 +50,6 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
 
     private __tabComponentList: QueryList<TabComponent>;
     private tabsChanged$ = new Subject();
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     public ngOnDestroy(): void {
         super.ngOnDestroy();

@@ -9,8 +9,8 @@
     cursor: default;
     font-family: var(--segoe-ui);
     font-size: 11px;
-    padding: 3px 4px;
-    border: 2px solid #acacac;
+    padding: 3px 8px;
+    border: 2px solid #999999;
     background-color: #ffffff;
     box-sizing: border-box;
     appearance: none;
@@ -45,7 +45,7 @@
     }
 
     .os-placeholder {
-        color: gray;
+        color: #666666;
         font-size: 16px;
         white-space: nowrap;
         overflow: hidden;
@@ -58,6 +58,10 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    &.ng-touched.ng-invalid {
+        background-color: rgba(var(--os-danger-color), .05);
     }
 }
 

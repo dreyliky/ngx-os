@@ -3,7 +3,6 @@ import {
     Component,
     EventEmitter,
     HostListener,
-    Injector,
     Output,
     ViewEncapsulation
 } from '@angular/core';
@@ -30,12 +29,6 @@ export class MenuBarComponent extends ɵOsBaseComponent {
     }
 
     private _activeButton: MenuBarButtonComponent | null = null;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     /** @internal */
     @HostListener('contextmenu', ['$event'])

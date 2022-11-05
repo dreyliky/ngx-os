@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
@@ -24,10 +23,4 @@ export class ListComponent extends ɵOsBaseComponent {
     /** Classlist for scroll view component of the list */
     @Input()
     public scrollViewStyleClass: string;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 }

@@ -7,6 +7,7 @@ import {
     CheckboxOverviewComponent,
     ContextMenuOverviewComponent,
     DividerOverviewComponent,
+    DraggableZoneOverviewComponent,
     DraggerOnAbsoluteElementComponent,
     DraggerOverviewComponent,
     DraggerViaHandleComponent,
@@ -66,6 +67,7 @@ import {
     WindowOverviewComponent,
     WindowTitleBarComponent
 } from './examples';
+import { FormValidationComponent } from './examples/form/form-validation/form-validation.component';
 
 @NgModule({
     declarations: [
@@ -75,6 +77,7 @@ import {
         CheckboxOverviewComponent,
         ContextMenuOverviewComponent,
         DividerOverviewComponent,
+        DraggableZoneOverviewComponent,
         DraggerOnAbsoluteElementComponent,
         DraggerOverviewComponent,
         DraggerViaHandleComponent,
@@ -133,9 +136,7 @@ import {
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
         WindowTitleBarComponent,
-        MenuBarOverviewComponent,
-        SelectionOverviewComponent,
-        SelectionWithAnythingComponent
+        FormValidationComponent
     ],
     imports: [
         SharedModule

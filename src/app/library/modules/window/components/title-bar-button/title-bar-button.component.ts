@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    Injector,
     Input,
     OnInit,
     ViewEncapsulation
@@ -34,12 +33,6 @@ export class TitleBarButtonComponent extends ɵOsBaseButtonComponent implements 
     /** @internal */
     public get _iconCssUrl(): string {
         return (this.iconUrl) ? `url(${this.iconUrl})` : null;
-    }
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
     }
 
     public ngOnInit(): void {

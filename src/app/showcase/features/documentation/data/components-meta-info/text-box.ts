@@ -1,5 +1,9 @@
 import { OsComponentEnum } from '../../enums';
-import { TextBoxAsFormControlComponent, TextBoxOverviewComponent } from '../../examples';
+import {
+    FormValidationComponent,
+    TextBoxAsFormControlComponent,
+    TextBoxOverviewComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
@@ -26,6 +30,11 @@ export const TEXT_BOX_META_INFO: ComponentMetaInfo = {
             title: 'Text Box as FormControl',
             componentName: 'TextBoxAsFormControlComponent',
             component: TextBoxAsFormControlComponent
+        },
+        {
+            title: 'Reactive Forms integration',
+            componentName: 'FormValidationComponent',
+            component: FormValidationComponent
         }
     ]
 };

@@ -4,7 +4,6 @@ import {
     ElementRef,
     EventEmitter,
     HostBinding,
-    Injector,
     Input,
     OnInit,
     Output,
@@ -51,12 +50,6 @@ export class CheckboxComponent<T = any>
 
     @ViewChild('checkbox')
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     public ngOnInit(): void {
         this.initClickObserver();

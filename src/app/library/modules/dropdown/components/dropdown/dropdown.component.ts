@@ -186,7 +186,8 @@ export class DropdownComponent<T = any>
     /** Closes the dropdown overlay */
     public close(): void {
         this._isOverlayOpened$.next(false);
-        this.changeDetector.detectChanges();
+        this.onTouched?.();
+        this.changeDetector.markForCheck();
     }
 
     /** Toggle the dropdown overlay open or close */

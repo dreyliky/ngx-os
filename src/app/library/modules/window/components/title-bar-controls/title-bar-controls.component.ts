@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ɵOsBaseComponent } from '../../../../core';
 
 @Component({
@@ -10,10 +10,4 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarControlsComponent extends ɵOsBaseComponent {
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
-}
+export class TitleBarControlsComponent extends ɵOsBaseComponent {}

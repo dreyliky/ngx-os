@@ -3,7 +3,8 @@ import {
     Directive,
     DoCheck,
     ElementRef,
-    EmbeddedViewRef, HostListener,
+    EmbeddedViewRef,
+    HostListener,
     Inject,
     Input,
     OnDestroy,
@@ -76,13 +77,13 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
 
     public hide(): void {
         if (this.containerElement) {
-            const hintContainerElement = this.containerElement;
+            const containerElement = this.containerElement;
             this.containerElement = null;
 
-            hintContainerElement.classList.add(CssClass.Hiding);
+            containerElement.classList.add(CssClass.Hiding);
 
             setTimeout(() => {
-                this.document.body.removeChild(hintContainerElement);
+                this.document.body.removeChild(containerElement);
             }, this.delayBeforeDestroy);
         }
 

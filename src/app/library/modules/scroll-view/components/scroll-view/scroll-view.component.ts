@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     HostBinding,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
@@ -52,12 +51,6 @@ export class ScrollViewComponent extends ɵOsBaseComponent {
         }
 
         return (this.isVerticalScrollEnabled) ? 'scroll' : 'hidden';
-    }
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
     }
 
     /** Scrolls to given coordinates. Recommend to use this method instead of directly via HTML element */
