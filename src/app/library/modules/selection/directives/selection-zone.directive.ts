@@ -11,7 +11,7 @@ import {
     QueryList
 } from '@angular/core';
 import { fromEvent, merge, Observable, Subject } from 'rxjs';
-import { filter, first, takeUntil, tap } from 'rxjs/operators';
+import { filter, first, takeUntil, tap, throttleTime } from 'rxjs/operators';
 import { ɵCommonCssClassEnum as CommonCssClass, ɵGlobalEvents } from '../../../core';
 import { ɵSelectionCssClassEnum as CssClass } from '../enums';
 import { ɵContainerStyleCalculationHelper, ɵItemsSelectorHelper } from '../helpers';
@@ -22,15 +22,19 @@ import { SelectionItemDirective } from './selection-item.directive';
     selector: '[osSelectionZone]'
 })
 export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
+    /** Fires when selection starts. */
     @Output()
     public osSelectionStart: EventEmitter<SelectionInfo> = new EventEmitter();
 
+    /** Fires when selection zone size changed. */
     @Output()
     public osSelectionChange: EventEmitter<SelectionInfo> = new EventEmitter();
 
+    /** Fires when selection ends. */
     @Output()
     public osSelectionEnd: EventEmitter<SelectionInfo> = new EventEmitter();
 
+    /** Fires when some `osSelectionItem` became either `selected` or `deselected`. */
     @Output()
     public osItemsSelectionChange: EventEmitter<T[]> = new EventEmitter();
 
@@ -60,6 +64,8 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
             this.globalEvents.fromDocument('touchend')
         );
     }
+
+    private throttleTimeInMs = 10;
 
     private readonly containerStyleUpdater = new ɵContainerStyleCalculationHelper(this);
     private readonly itemsSelector = new ɵItemsSelectorHelper<T>(this);
@@ -118,7 +124,6 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
     private onSelectionChange(event: PointerEvent | TouchEvent): void {
         const selectionInfo = this.getSelectionInfo(event);
 
-        this.containerStyleUpdater.calculateAll(event);
         this.itemsSelector.onSelection();
         this.osSelectionChange.emit(selectionInfo);
     }
@@ -149,7 +154,11 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
             this.globalEvents.fromDocument<PointerEvent>('mousemove'),
             this.globalEvents.fromDocument<TouchEvent>('touchmove', { passive: false })
         )
-            .pipe(takeUntil(this.destroyedOrDocumentPointerUp$))
+            .pipe(
+                tap((event) => this.containerStyleUpdater.calculateAll(event)),
+                throttleTime(this.throttleTimeInMs),
+                takeUntil(this.destroyedOrDocumentPointerUp$)
+            )
             .subscribe((event) => this.onSelectionChange(event));
     }
 

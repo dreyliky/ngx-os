@@ -7,7 +7,7 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 1,
   "workbench.sideBar.location": "left",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
