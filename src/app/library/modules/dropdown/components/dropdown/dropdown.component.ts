@@ -5,7 +5,6 @@ import {
     EventEmitter,
     HostBinding,
     Inject,
-    Injector,
     Input,
     OnInit,
     Output,
@@ -165,11 +164,10 @@ export class DropdownComponent<T = any>
     private _isOverlayOpened$ = new BehaviorSubject<boolean>(false);
 
     constructor(
-        injector: Injector,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
         private readonly globalEvents: ɵGlobalEvents
     ) {
-        super(injector);
+        super();
     }
 
     public ngOnInit(): void {

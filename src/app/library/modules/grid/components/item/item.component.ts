@@ -4,7 +4,6 @@ import {
     ContentChild,
     ElementRef,
     HostBinding,
-    Injector,
     Input,
     OnInit,
     TemplateRef,
@@ -121,12 +120,11 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     }
 
     constructor(
-        injector: Injector,
         /** @internal */
         public readonly _hostRef: ElementRef<HTMLElement>,
         private readonly globalEvents: ɵGlobalEvents
     ) {
-        super(injector);
+        super();
     }
 
     public ngOnInit(): void {

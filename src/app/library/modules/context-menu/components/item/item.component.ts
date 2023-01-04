@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    Injector,
     Input,
     OnInit,
     Output,
@@ -30,10 +29,9 @@ export class ContextMenuItemComponent<T = any> extends ɵOsBaseOptionComponent<T
     public readonly osSelected: EventEmitter<T> = new EventEmitter();
 
     constructor(
-        injector: Injector,
         private readonly contextMenu: ContextMenuDirective
     ) {
-        super(injector);
+        super();
     }
 
     public ngOnInit(): void {

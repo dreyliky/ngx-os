@@ -3,7 +3,6 @@ import {
     Component,
     ContentChild,
     EventEmitter,
-    Injector,
     Input,
     OnChanges,
     Output,
@@ -167,14 +166,13 @@ export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnC
     public readonly _nodeContentTemplate: TemplateRef<any>;
 
     constructor(
-        injector: Injector,
         /** The service for manipulating of nodes selection states */
         public readonly nodesSelection: TreeNodesSelectionService<T>,
         /** The service for manipulating of nodes expansion states */
         public readonly nodesExpansion: TreeNodesExpansionService<T>,
         private readonly nodesState: ɵTreeNodesState<T>
     ) {
-        super(injector);
+        super();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {

@@ -1,4 +1,4 @@
-import { Component, HostBinding, InjectFlags, Injector, Input } from '@angular/core';
+import { Component, HostBinding, inject, Input } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
@@ -34,11 +34,9 @@ export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
 
     protected controlDir: NgControl;
 
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-        this.initControlDir(injector);
+    constructor() {
+        super();
+        this.initControlDir();
     }
 
     /** @internal */
@@ -64,8 +62,8 @@ export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
         this.changeDetector.detectChanges();
     }
 
-    private initControlDir(injector: Injector): void {
-        const controlDir = injector.get(NgControl, null, InjectFlags.Self);
+    private initControlDir(): void {
+        const controlDir = inject(NgControl, { optional: true, self: true });
 
         // For some strange reason, sometimes injector injects parent's controlDir
         // and this condition helps to filter incorrect controlDir.

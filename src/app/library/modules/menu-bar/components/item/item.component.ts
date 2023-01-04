@@ -2,7 +2,6 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    Injector,
     Input,
     OnInit,
     Output,
@@ -29,10 +28,9 @@ export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> im
     public readonly osSelected: EventEmitter<T> = new EventEmitter();
 
     constructor(
-        injector: Injector,
         private readonly menuBarComponent: MenuBarComponent
     ) {
-        super(injector);
+        super();
     }
 
     public ngOnInit(): void {

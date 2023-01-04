@@ -4,7 +4,6 @@ import {
     Component,
     EventEmitter,
     Host,
-    Injector,
     OnInit,
     Output,
     ViewEncapsulation
@@ -31,10 +30,9 @@ export class DropdownItemComponent<T = any>
     public osSelected: EventEmitter<DropdownValueChangeEvent<T>> = new EventEmitter();
 
     constructor(
-        injector: Injector,
         @Host() private readonly dropdown: DropdownComponent<T>
     ) {
-        super(injector);
+        super();
     }
 
     public ngOnInit(): void {

@@ -5,7 +5,7 @@ import {
     Component,
     ElementRef,
     HostBinding,
-    Injector,
+    inject,
     Input,
     Output
 } from '@angular/core';
@@ -92,17 +92,8 @@ export abstract class ɵOsBaseComponent
      * all event handlers will be defined as output emitters.
      */
     protected readonly targetInternalElementSelector: string;
-    protected readonly hostRef: ElementRef<HTMLElement>;
-    protected readonly changeDetector: ChangeDetectorRef;
-
-    constructor(
-        injector: Injector
-    ) {
-        super();
-
-        this.hostRef = injector.get(ElementRef);
-        this.changeDetector = injector.get(ChangeDetectorRef);
-    }
+    protected readonly hostRef: ElementRef<HTMLElement> = inject(ElementRef);
+    protected readonly changeDetector = inject(ChangeDetectorRef);
 
     public ngAfterViewInit(): void {
         super.ngAfterViewInit();
