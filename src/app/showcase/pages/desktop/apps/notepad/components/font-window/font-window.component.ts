@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DynamicWindowRef, DYNAMIC_WINDOW_REF, ɵOsBaseViewComponent } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 import { FONTS, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../../data';
@@ -12,7 +12,7 @@ import { SettingsService } from '../../services';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FontWindowComponent extends ɵOsBaseViewComponent implements OnInit {
-    public formGroup!: FormGroup;
+    public formGroup!: UntypedFormGroup;
 
     public readonly minFontSize = MIN_FONT_SIZE;
     public readonly maxFontSize = MAX_FONT_SIZE;
@@ -46,10 +46,10 @@ export class FontWindowComponent extends ɵOsBaseViewComponent implements OnInit
     private initFormGroup(): void {
         const settings = this.settingsService.data;
 
-        this.formGroup = new FormGroup({
-            font: new FormControl(settings?.font),
-            fontSizeInPx: new FormControl(settings?.fontSizeInPx),
-            isWordWrapEnabled: new FormControl(settings?.isWordWrapEnabled)
+        this.formGroup = new UntypedFormGroup({
+            font: new UntypedFormControl(settings?.font),
+            fontSizeInPx: new UntypedFormControl(settings?.fontSizeInPx),
+            isWordWrapEnabled: new UntypedFormControl(settings?.isWordWrapEnabled)
         });
     }
 

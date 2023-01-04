@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { DynamicWindowRef, DYNAMIC_WINDOW_REF } from 'ngx-os';
 import { TextDocumentsService } from '../../../../features/file-system';
 import { EditorService } from '../../services';
@@ -11,7 +11,7 @@ import { EditorService } from '../../services';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DocumentCreationWindowComponent {
-    public fileNameControl = new FormControl('My File');
+    public fileNameControl = new UntypedFormControl('My File');
 
     constructor(
         @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRef,

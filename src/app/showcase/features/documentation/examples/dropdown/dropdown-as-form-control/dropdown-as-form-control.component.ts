@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 interface MyItem {
     text: string;
@@ -19,10 +19,10 @@ export class DropdownAsFormControlComponent {
         { text: 'Option 3', value: 3 }
     ];
 
-    public readonly selectedItemControl = new FormControl(this.items[1]);
-    public readonly disabledItemControl = new FormControl({ value: null, disabled: true });
+    public readonly selectedItemControl = new UntypedFormControl(this.items[1]);
+    public readonly disabledItemControl = new UntypedFormControl({ value: null, disabled: true });
 
-    public readonly formGroup = new FormGroup({
+    public readonly formGroup = new UntypedFormGroup({
         selectedItem: this.selectedItemControl
     });
 }

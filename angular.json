@@ -52,7 +52,7 @@
               }
             ],
             "scripts": [
-                "node_modules/prismjs/prism.js"
+              "node_modules/prismjs/prism.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -126,19 +126,6 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -167,7 +154,7 @@
       "prefix": "os",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "src/app/library/tsconfig.lib.json",
             "project": "src/app/library/ng-package.json"
@@ -185,26 +172,19 @@
             "tsConfig": "src/app/library/tsconfig.spec.json",
             "karmaConfig": "src/app/library/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/app/library/tsconfig.lib.json",
-              "src/app/library/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }
   },
-  "defaultProject": "ngx-os-showcase",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
     }
   }
 }

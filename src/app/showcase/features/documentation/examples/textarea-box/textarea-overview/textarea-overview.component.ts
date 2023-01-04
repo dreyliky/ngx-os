@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
     selector: 'showcase-textarea-overview',
@@ -8,7 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaOverviewComponent {
-    public readonly formGroup = new FormGroup({
-        textareaBoxValue: new FormControl('Hi there!')
+    public readonly formGroup = new UntypedFormGroup({
+        textareaBoxValue: new UntypedFormControl('Hi there!')
     });
 }

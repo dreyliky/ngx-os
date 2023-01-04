@@ -31,7 +31,7 @@ export abstract class ɵOsBaseViewComponent implements AfterViewInit, OnDestroy 
     }
 
     public ngOnDestroy(): void {
-        this._viewDestroyed$.next();
+        this._viewDestroyed$.next(true);
         this._viewDestroyed$.complete();
         this._whenViewInit$.complete();
     }

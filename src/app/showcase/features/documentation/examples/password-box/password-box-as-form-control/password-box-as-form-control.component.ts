@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
     selector: 'showcase-password-box-as-form-control',
@@ -8,10 +8,10 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PasswordBoxAsFormControlComponent {
-    public readonly passwordBoxControl = new FormControl();
-    public readonly passwordBoxDisabledControl = new FormControl({ value: '', disabled: true });
+    public readonly passwordBoxControl = new UntypedFormControl();
+    public readonly passwordBoxDisabledControl = new UntypedFormControl({ value: '', disabled: true });
 
-    public readonly formGroup = new FormGroup({
+    public readonly formGroup = new UntypedFormGroup({
         passwordBoxValue: this.passwordBoxControl
     });
 }

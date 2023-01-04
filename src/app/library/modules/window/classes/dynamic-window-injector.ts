@@ -1,4 +1,4 @@
-import { InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
+import { InjectionToken, Injector, Type } from '@angular/core';
 import { DYNAMIC_WINDOW_REF, IS_DYNAMIC_WINDOW_CONTEXT } from '../data';
 import { ɵDynamicWindowDiParams } from '../interfaces';
 import { ɵDynamicWindowRefModel } from './dynamic-window-ref';
@@ -25,11 +25,9 @@ export class ɵDynamicWindowInjector implements Injector {
 
     public get<T>(
         token: Type<T> | InjectionToken<T>,
-        notFoundValue?: T,
-        flags?: InjectFlags
-    ): T;
-    public get(token: any, notFoundValue?: any): any {
-        const value = this.additionalTokens.get(token);
+        notFoundValue?: T
+    ): T {
+        const value = this.additionalTokens.get(token) as T;
 
         if (value) {
             return value;

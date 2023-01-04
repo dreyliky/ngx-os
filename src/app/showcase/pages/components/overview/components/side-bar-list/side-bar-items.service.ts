@@ -12,6 +12,7 @@ import { Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { SideBarItem } from './side-bar-item.interface';
 
+// FIXME: Refactor
 @Injectable()
 export class SideBarItemsService implements OnDestroy {
     public data$: Observable<TreeNode<SideBarItem>[]>;
@@ -38,18 +39,19 @@ export class SideBarItemsService implements OnDestroy {
     ];
 
     private currentRoute: string;
-    private destroyed$ = new Subject();
+    private destroyed$ = new Subject<boolean>();
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
         private readonly router: Router
     ) {
+        this.initCurrentRouteByUrl(this.router.url);
         this.initRouteUrlObserver();
         this.initDataObservable();
     }
 
     public ngOnDestroy(): void {
-        this.destroyed$.next();
+        this.destroyed$.next(true);
         this.destroyed$.complete();
     }
 

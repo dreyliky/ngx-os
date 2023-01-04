@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { FileDownloaderService } from '@core/services';
 import { DynamicWindowRef, DYNAMIC_WINDOW_REF } from 'ngx-os';
 import { EditorService } from '../../services';
@@ -12,7 +12,7 @@ import { OpenedDocumentState } from '../../states';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DocumentDownloaderWindowComponent implements OnInit {
-    public fileNameControl = new FormControl();
+    public fileNameControl = new UntypedFormControl();
 
     constructor(
         @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRef,

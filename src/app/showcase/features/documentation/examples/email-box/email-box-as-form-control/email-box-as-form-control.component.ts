@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
     selector: 'showcase-email-box-as-form-control',
@@ -8,10 +8,10 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailBoxAsFormControlComponent {
-    public readonly emailBoxControl = new FormControl('');
-    public readonly emailBoxDisabledControl = new FormControl({ value: '', disabled: true });
+    public readonly emailBoxControl = new UntypedFormControl('');
+    public readonly emailBoxDisabledControl = new UntypedFormControl({ value: '', disabled: true });
 
-    public readonly formGroup = new FormGroup({
+    public readonly formGroup = new UntypedFormGroup({
         emailBoxValue: this.emailBoxControl
     });
 }

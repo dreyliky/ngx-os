@@ -21,7 +21,7 @@ export class ɵDynamicWindowReferencesService implements OnDestroy {
         return [...this.state.data];
     }
 
-    private destroyed$ = new Subject();
+    private destroyed$ = new Subject<boolean>();
 
     constructor(
         private readonly state: ɵWindowReferencesState,
@@ -31,7 +31,7 @@ export class ɵDynamicWindowReferencesService implements OnDestroy {
     ) {}
 
     public ngOnDestroy(): void {
-        this.destroyed$.next();
+        this.destroyed$.next(true);
         this.destroyed$.complete();
     }
 

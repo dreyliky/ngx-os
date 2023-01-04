@@ -44,7 +44,7 @@ class MyAppComponent implements OnInit, OnDestroy {
     public isDragging: boolean = false;
     public isResizing: boolean = false;
 
-    private viewDestroyed$ = new Subject();
+    private viewDestroyed$ = new Subject<boolean>();
 
     constructor(
         @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRef,
@@ -61,7 +61,7 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.viewDestroyed$.next();
+        this.viewDestroyed$.next(true);
         this.viewDestroyed$.complete();
     }
 

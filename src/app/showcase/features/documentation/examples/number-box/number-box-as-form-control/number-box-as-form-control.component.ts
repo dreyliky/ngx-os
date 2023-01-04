@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
     selector: 'showcase-number-box-as-form-control',
@@ -8,10 +8,10 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberBoxAsFormControlComponent {
-    public readonly numberBoxControl = new FormControl();
-    public readonly numberBoxDisabledControl = new FormControl({ value: '', disabled: true });
+    public readonly numberBoxControl = new UntypedFormControl();
+    public readonly numberBoxDisabledControl = new UntypedFormControl({ value: '', disabled: true });
 
-    public readonly formGroup = new FormGroup({
+    public readonly formGroup = new UntypedFormGroup({
         numberBoxValue: this.numberBoxControl
     });
 }

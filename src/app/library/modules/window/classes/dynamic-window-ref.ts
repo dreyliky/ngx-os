@@ -77,7 +77,7 @@ export class ɵDynamicWindowRefModel implements DynamicWindowRef {
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
     private readonly _isActive$ = new BehaviorSubject<boolean>(true);
     private readonly _orderIndex$ = new BehaviorSubject<number>(0);
-    private readonly _beforeHidden$ = new Subject<unknown>();
+    private readonly _beforeHidden$ = new Subject<boolean>();
     private readonly _afterClosed$ = new Subject<unknown>();
 
     private readonly _id = ɵIdGenerator.generate();
@@ -98,7 +98,7 @@ export class ɵDynamicWindowRefModel implements DynamicWindowRef {
 
     public hide(): void {
         if (!this.isHidden) {
-            this._beforeHidden$.next();
+            this._beforeHidden$.next(true);
             this._isHidden$.next(true);
             this.makeInactive();
         }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import * as marked from 'marked';
+import { marked } from 'marked';
 import { TextComponent, ɵOsBaseViewComponent } from 'ngx-os';
 import { takeWhile } from 'rxjs/operators';
 import { MARKDOWN_CODE_BLOCKS } from '../../data';

@@ -70,7 +70,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     private _resizersWrapperElement: HTMLElement;
     private _resizer: ɵBaseResizer;
     private _config = new ɵResizerConfigModel();
-    private _whenViewInit$ = new ReplaySubject();
+    private _whenViewInit$ = new ReplaySubject<true>();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
@@ -85,7 +85,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
 
     public ngAfterViewInit(): void {
         this.initResizersWrapperElement();
-        this._whenViewInit$.next();
+        this._whenViewInit$.next(true);
     }
 
     public ngOnDestroy(): void {

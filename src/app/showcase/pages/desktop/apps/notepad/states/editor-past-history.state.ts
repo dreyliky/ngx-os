@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ArrayState } from '@core/classes';
+import { ArrayState, NgxState } from 'ngx-base-state';
 
 @Injectable()
+@NgxState()
 export class EditorPastHistoryState extends ArrayState<string> {
     constructor() {
         super([]);
@@ -9,7 +10,7 @@ export class EditorPastHistoryState extends ArrayState<string> {
 
     public resetIfLastStateRemained(): void {
         if (this.data.length === 1) {
-            this.reset();
+            this.restoreInitialData();
         }
     }
 }

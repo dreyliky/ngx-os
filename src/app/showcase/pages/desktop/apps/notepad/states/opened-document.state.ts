@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BaseState } from '@core/classes';
+import { NgxState, ObjectState } from 'ngx-base-state';
 import { TextDocument } from '../../../features/file-system';
 
 @Injectable()
-export class OpenedDocumentState extends BaseState<TextDocument> {}
+@NgxState()
+export class OpenedDocumentState extends ObjectState<TextDocument> {}

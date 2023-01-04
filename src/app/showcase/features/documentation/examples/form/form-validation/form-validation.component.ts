@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'showcase-form-validation',
@@ -8,11 +8,11 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormValidationComponent {
-    public readonly loginControl = new FormControl('', [Validators.required]);
-    public readonly infoControl = new FormControl('', [Validators.required]);
-    public readonly genderControl = new FormControl(null, [Validators.required]);
+    public readonly loginControl = new UntypedFormControl('', [Validators.required]);
+    public readonly infoControl = new UntypedFormControl('', [Validators.required]);
+    public readonly genderControl = new UntypedFormControl(null, [Validators.required]);
 
-    public readonly formGroup = new FormGroup({
+    public readonly formGroup = new UntypedFormGroup({
         login: this.loginControl,
         info: this.infoControl,
         gender: this.genderControl
@@ -36,7 +36,7 @@ export class FormValidationComponent {
         });
     }
 
-    public isControlHasRequiredError(control: FormControl): boolean {
+    public isControlHasRequiredError(control: UntypedFormControl): boolean {
         return (control.touched && control.hasError('required'));
     }
 }

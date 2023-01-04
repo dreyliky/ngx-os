@@ -38,7 +38,7 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
     public set _tabComponentList(data: QueryList<TabComponent>) {
         this.__tabComponentList = data;
 
-        this.tabsChanged$.next();
+        this.tabsChanged$.next(true);
         this.initTabSelection();
         this.initTabsSelectionObservers();
     }
@@ -49,7 +49,7 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
     }
 
     private __tabComponentList: QueryList<TabComponent>;
-    private tabsChanged$ = new Subject();
+    private tabsChanged$ = new Subject<boolean>();
 
     public ngOnDestroy(): void {
         super.ngOnDestroy();

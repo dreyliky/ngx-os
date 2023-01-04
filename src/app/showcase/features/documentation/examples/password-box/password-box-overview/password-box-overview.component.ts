@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
     selector: 'showcase-password-box-overview',
@@ -8,7 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PasswordBoxOverviewComponent {
-    public readonly formGroup = new FormGroup({
-        passwordBoxValue: new FormControl()
+    public readonly formGroup = new UntypedFormGroup({
+        passwordBoxValue: new UntypedFormControl()
     });
 }

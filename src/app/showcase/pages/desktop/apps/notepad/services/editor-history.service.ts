@@ -29,13 +29,14 @@ export class EditorHistoryService {
 
     public registerEditorState(state: string): void {
         this.pastHistory.pushItem(state);
-        this.futureHistory.reset();
+        this.futureHistory.restoreInitialData();
         this.adjustPastHistorySize();
         this.updateActionAvailabilityStates();
     }
 
     public undo(): void {
-        const removedItem = this.pastHistory.popItem();
+        const lastItemIndex = (this.pastHistory.data!.length - 1);
+        const removedItem = this.pastHistory.removeItemByIndex(lastItemIndex);
 
         this.futureHistory.pushItem(removedItem);
         this.adjustFutureHistorySize();
@@ -45,7 +46,8 @@ export class EditorHistoryService {
     }
 
     public redo(): void {
-        const removedItem = this.futureHistory.popItem();
+        const lastItemIndex = (this.futureHistory.data!.length - 1);
+        const removedItem = this.futureHistory.removeItemByIndex(lastItemIndex);
 
         this.pastHistory.pushItem(removedItem);
         this.adjustPastHistorySize();
@@ -55,13 +57,13 @@ export class EditorHistoryService {
 
     private adjustPastHistorySize(): void {
         if (this.pastHistory.data.length > this.maxStates) {
-            this.pastHistory.shiftItem();
+            this.pastHistory.shift();
         }
     }
 
     private adjustFutureHistorySize(): void {
         if (this.futureHistory.data.length > this.maxStates) {
-            this.futureHistory.shiftItem();
+            this.futureHistory.shift();
         }
     }
 

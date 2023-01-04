@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseState } from '@core/classes';
+import { NgxState, PrimitiveState } from 'ngx-base-state';
 
 @Injectable()
-export class EditorState extends BaseState<string> {}
+@NgxState()
+export class EditorState extends PrimitiveState<string> {}
