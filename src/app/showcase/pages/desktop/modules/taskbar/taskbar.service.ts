@@ -52,7 +52,7 @@ export class TaskbarService implements OnDestroy {
             this.placementService.data$
         ])
             .pipe(
-                debounceTime(50),
+                debounceTime(10),
                 takeUntil(this.destroyed$)
             )
             .subscribe(() => {
@@ -91,7 +91,6 @@ export class TaskbarService implements OnDestroy {
 
             if (windowRef) {
                 this.updateWindowRefHidesIntoCoordinate(windowRef, element);
-
             }
         });
     }

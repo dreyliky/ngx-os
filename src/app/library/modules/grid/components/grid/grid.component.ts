@@ -67,7 +67,7 @@ export class GridComponent extends ɵOsBaseComponent implements OnChanges, After
 
     /** How long in milliseconds, the grid should wait after changes before recalculate and repaint all grid items? */
     @Input()
-    public repaintDelayInMs: number = 200;
+    public repaintDelayInMs: number = 10;
 
     /** @internal */
     @ContentChildren(GridItemComponent)
