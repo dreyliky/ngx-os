@@ -1,19 +1,19 @@
 {
-  "name": "ngx-os",
+  "name": "@ngx-os/kit",
   "version": "1.1.0-alpha",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
     "test": "ng test",
-    "lint": "ng lint",
     "e2e": "ng e2e",
-    "eslint-check": "eslint ./src/**/*.ts",
-    "eslint-fix": "eslint ./src/**/*.ts --fix",
-    "build-lib": "ng build library --configuration production && node scripts/on-library-builded.js",
-    "doc": "npm run build-lib-doc && npm run build-showcase-doc",
-    "build-lib-doc": "compodoc -c compodoc-lib-config.json",
-    "build-showcase-doc": "compodoc -c compodoc-showcase-config.json"
+    "lint": "eslint ./src/**/*.ts",
+    "lint:fix": "eslint ./src/**/*.ts --fix",
+    "build:library": "ng build library --configuration production && node scripts/on-library-builded.js",
+    "build:doc": "npm run build:doc-library && npm run build:doc-showcase",
+    "build:doc-library": "compodoc -c compodoc-lib-config.json",
+    "build:doc-showcase": "compodoc -c compodoc-showcase-config.json",
+    "test:library": "ng test library"
   },
   "private": true,
   "dependencies": {
