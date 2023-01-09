@@ -9,7 +9,10 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 })
 export class PasswordBoxAsFormControlComponent {
     public readonly passwordBoxControl = new UntypedFormControl();
-    public readonly passwordBoxDisabledControl = new UntypedFormControl({ value: '', disabled: true });
+    public readonly passwordBoxDisabledControl = new UntypedFormControl({
+        value: '',
+        disabled: true
+    });
 
     public readonly formGroup = new UntypedFormGroup({
         passwordBoxValue: this.passwordBoxControl

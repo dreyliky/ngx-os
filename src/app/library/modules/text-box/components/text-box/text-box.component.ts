@@ -28,9 +28,9 @@ export class TextBoxComponent extends ɵOsBaseFieldComponent implements OnInit {
     /** Fires when the text-box value change */
     @Output()
     public osChange: Observable<TextBoxChangeEvent> = this.createEvent('change')
-        .pipe(
-            map((event) => this.transformChangeEvent(event))
-        );
+            .pipe(
+                map((event) => this.transformChangeEvent(event))
+            );
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {

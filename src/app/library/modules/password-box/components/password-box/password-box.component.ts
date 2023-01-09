@@ -28,9 +28,9 @@ export class PasswordBoxComponent extends ɵOsBaseFieldComponent implements OnIn
     /** Fires when the password-box value change */
     @Output()
     public osChange: Observable<PasswordBoxChangeEvent> = this.createEvent('change')
-        .pipe(
-            map((event) => this.transformChangeEvent(event))
-        );
+            .pipe(
+                map((event) => this.transformChangeEvent(event))
+            );
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {

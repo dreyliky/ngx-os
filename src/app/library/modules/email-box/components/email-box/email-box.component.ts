@@ -33,9 +33,9 @@ export class EmailBoxComponent extends ɵOsBaseFieldComponent implements OnInit 
     /** Fires when the email-box value change */
     @Output()
     public osChange: Observable<EmailBoxChangeEvent> = this.createEvent('change')
-        .pipe(
-            map((event) => this.transformChangeEvent(event))
-        );
+            .pipe(
+                map((event) => this.transformChangeEvent(event))
+            );
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {

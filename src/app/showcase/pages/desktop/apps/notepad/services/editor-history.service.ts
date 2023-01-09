@@ -35,7 +35,7 @@ export class EditorHistoryService {
     }
 
     public undo(): void {
-        const lastItemIndex = (this.pastHistory.data!.length - 1);
+        const lastItemIndex = (this.pastHistory.data.length - 1);
         const removedItem = this.pastHistory.removeItemByIndex(lastItemIndex);
 
         this.futureHistory.pushItem(removedItem);
@@ -46,7 +46,7 @@ export class EditorHistoryService {
     }
 
     public redo(): void {
-        const lastItemIndex = (this.futureHistory.data!.length - 1);
+        const lastItemIndex = (this.futureHistory.data.length - 1);
         const removedItem = this.futureHistory.removeItemByIndex(lastItemIndex);
 
         this.pastHistory.pushItem(removedItem);

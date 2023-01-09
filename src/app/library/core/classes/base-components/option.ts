@@ -31,11 +31,11 @@ export abstract class ɵOsBaseOptionComponent<T>
     @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
-    /** Fires when the option item selected */
-    @Output()
-    public readonly abstract osSelected: EventEmitter<unknown>;
-
     protected readonly _dataUpdated$ = new Subject<T>();
 
     private _data: T;
+
+    /** Fires when the option item selected */
+    @Output()
+    public readonly abstract osSelected: EventEmitter<unknown>;
 }

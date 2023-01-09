@@ -9,7 +9,10 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 })
 export class NumberBoxAsFormControlComponent {
     public readonly numberBoxControl = new UntypedFormControl();
-    public readonly numberBoxDisabledControl = new UntypedFormControl({ value: '', disabled: true });
+    public readonly numberBoxDisabledControl = new UntypedFormControl({
+        value: '',
+        disabled: true
+    });
 
     public readonly formGroup = new UntypedFormGroup({
         numberBoxValue: this.numberBoxControl

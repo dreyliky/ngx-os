@@ -58,9 +58,9 @@ export class NumberBoxComponent
     /** Fires when the number-box value change */
     @Output()
     public osChange: Observable<NumberBoxChangeEvent> = this.createEvent('change')
-        .pipe(
-            map((event) => this.transformChangeEvent(event))
-        );
+            .pipe(
+                map((event) => this.transformChangeEvent(event))
+            );
 
     /** @internal */
     public get _inputAutocompleteAttrValue(): string {

@@ -35,9 +35,9 @@ export class TextareaBoxComponent
     /** Fires when the textarea-box value change */
     @Output()
     public osChange: Observable<TextareaBoxChangeEvent> = this.createEvent('change')
-        .pipe(
-            map((event) => this.transformChangeEvent(event))
-        );
+            .pipe(
+                map((event) => this.transformChangeEvent(event))
+            );
 
     protected override targetInternalElementSelector = 'textarea';
 

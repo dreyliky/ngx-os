@@ -24,6 +24,7 @@ export class ɵResizerFactory {
         return new ResizerType(context, this.injector);
     }
 
+    // eslint-disable-next-line max-lines-per-function
     private getResizerClassById(id: ResizerEnum): typeof ɵTopResizer {
         switch (id) {
             case ResizerEnum.TopLeft:

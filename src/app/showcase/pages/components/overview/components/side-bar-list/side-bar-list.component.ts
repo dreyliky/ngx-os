@@ -25,11 +25,11 @@ import { SideBarItemsService } from './side-bar-items.service';
     ]
 })
 export class SideBarListComponent implements OnInit, AfterViewInit {
-    @ViewChild(TreeViewComponent)
-    private readonly treeView: TreeViewComponent<SideBarItem>;
-
     public metaInfo$: Observable<ComponentMetaInfo>;
     public nodes$: Observable<TreeNode<SideBarItem>[]>;
+
+    @ViewChild(TreeViewComponent)
+    private readonly treeView: TreeViewComponent<SideBarItem>;
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,

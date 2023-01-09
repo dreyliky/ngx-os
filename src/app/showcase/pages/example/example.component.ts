@@ -25,11 +25,11 @@ import { RouteParam } from './route-param.enum';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExampleComponent implements OnInit, AfterViewInit {
-    @ViewChild('exampleContainer', { read: ViewContainerRef })
-    private readonly exampleContainer: ViewContainerRef;
-
     public componentType: OsComponentEnum;
     public demoMetaInfo: DemoComponentMetaInfo;
+
+    @ViewChild('exampleContainer', { read: ViewContainerRef })
+    private readonly exampleContainer: ViewContainerRef;
 
     private exampleComponentName: string;
 

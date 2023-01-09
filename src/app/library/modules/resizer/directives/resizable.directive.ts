@@ -188,7 +188,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         this._resizableElement.classList.add(CssClass.Resizing);
         this.document.addEventListener('mousemove', this.onPointerMove);
         this.document.addEventListener('mouseup', this.onPointerUp);
-    }
+    };
 
     private readonly onPointerMove = (event: PointerEvent | TouchEvent): void => {
         const resizeInfo = this.getResizeInfo(event);

@@ -15,13 +15,13 @@ import { DraggerConfig } from 'ngx-os';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DraggerViaHandleComponent implements AfterViewInit {
+    public draggerConfig: DraggerConfig;
+
     @ViewChild('container')
     private readonly containerElement: ElementRef<HTMLDivElement>;
 
     @ViewChild('handle')
     private readonly handleElement: ElementRef<HTMLDivElement>;
-
-    public draggerConfig: DraggerConfig;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef

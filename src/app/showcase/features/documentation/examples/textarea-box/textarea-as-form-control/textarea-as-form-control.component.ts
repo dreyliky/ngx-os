@@ -9,7 +9,10 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 })
 export class TextareaAsFormControlComponent {
     public readonly textareaBoxControl = new UntypedFormControl('Hi there!');
-    public readonly textareaBoxDisabledControl = new UntypedFormControl({ value: '', disabled: true });
+    public readonly textareaBoxDisabledControl = new UntypedFormControl({
+        value: '',
+        disabled: true
+    });
 
     public readonly formGroup = new UntypedFormGroup({
         textareaBoxValue: this.textareaBoxControl

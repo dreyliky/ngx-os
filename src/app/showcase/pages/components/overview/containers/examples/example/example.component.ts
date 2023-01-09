@@ -3,7 +3,8 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver, Input, ViewChild,
+    Input,
+    ViewChild,
     ViewContainerRef
 } from '@angular/core';
 import { AppRouteEnum } from '@core/enums';
@@ -39,9 +40,6 @@ export class ExampleComponent implements AfterViewInit {
         return this._demoComponentMetaInfo;
     }
 
-    @ViewChild('exampleTemplate', { read: ViewContainerRef })
-    private readonly exampleContainer: ViewContainerRef;
-
     public get isScssExist(): boolean {
         return !!this.docComponent?.styleUrlsData?.[0]?.data;
     }
@@ -58,22 +56,21 @@ export class ExampleComponent implements AfterViewInit {
     public openedSection = SectionEnum.Demo;
     public docComponent: DocComponent;
 
+    @ViewChild('exampleTemplate', { read: ViewContainerRef })
+    private readonly exampleContainer: ViewContainerRef;
+
     private _demoComponentMetaInfo: DemoComponentMetaInfo;
 
     constructor(
         private readonly overviewService: OverviewService,
         private readonly docService: ExamplesDocumentationService,
-        private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly dynamicWindowService: DynamicWindowService,
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
     public ngAfterViewInit(): void {
-        const componentFactory = this.componentFactoryResolver
-            .resolveComponentFactory(this._demoComponentMetaInfo.component);
-
         this.exampleContainer.clear();
-        this.exampleContainer.createComponent(componentFactory);
+        this.exampleContainer.createComponent(this._demoComponentMetaInfo.component);
         this.changeDetector.detectChanges();
     }
 
