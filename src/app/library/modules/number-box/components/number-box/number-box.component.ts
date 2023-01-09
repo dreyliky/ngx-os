@@ -67,7 +67,7 @@ export class NumberBoxComponent
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
 
-    protected targetInternalElementSelector = 'input';
+    protected override targetInternalElementSelector = 'input';
 
     private readonly converter = new ɵNumericalValueConverter(this);
 
@@ -75,7 +75,7 @@ export class NumberBoxComponent
         this.value = this.getDefaultValue();
     }
 
-    public ngAfterViewInit(): void {
+    public override ngAfterViewInit(): void {
         super.ngAfterViewInit();
         this.initChangeEventObserver();
         this.initInputEventObserver();
@@ -86,7 +86,7 @@ export class NumberBoxComponent
     }
 
     /** @internal */
-    public writeValue(value: string | number): void {
+    public override writeValue(value: string | number): void {
         if (!ɵIsNil(value)) {
             this.value = this.converter.toValid(value);
         } else {

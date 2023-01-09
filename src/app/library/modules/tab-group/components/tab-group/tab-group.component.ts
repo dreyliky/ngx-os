@@ -51,7 +51,7 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
     private __tabComponentList: QueryList<TabComponent>;
     private tabsChanged$ = new Subject<boolean>();
 
-    public ngOnDestroy(): void {
+    public override ngOnDestroy(): void {
         super.ngOnDestroy();
         this.tabsChanged$.complete();
     }

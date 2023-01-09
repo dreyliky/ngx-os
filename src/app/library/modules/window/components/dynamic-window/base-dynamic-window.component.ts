@@ -163,7 +163,7 @@ export abstract class ɵBaseDynamicWindowComponent
         yAxisTopStyleProperty: CssVariable.Top
     });
 
-    public ngOnDestroy(): void {
+    public override ngOnDestroy(): void {
         super.ngOnDestroy();
         this.childComponentRef?.destroy();
         this.windowRef.destroy();

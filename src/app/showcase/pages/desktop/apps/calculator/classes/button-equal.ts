@@ -4,7 +4,7 @@ import { CalculationService } from '../services';
 import { BaseButton } from './base-button';
 
 export class ButtonEqual extends BaseButton {
-    public readonly group = ButtonGroupEnum.Action;
+    public override readonly group = ButtonGroupEnum.Action;
 
     public label = '=';
 

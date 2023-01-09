@@ -31,11 +31,7 @@ export class CheckboxComponent<T = any>
     @Input()
     public name: string = '';
 
-    /** Is checkbox disabled? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean;
-
+    // FIXME: Investigate or Remove "data". "value" already exists.
     /** Data of the checkbox */
     @Input()
     public data: T;
@@ -56,17 +52,10 @@ export class CheckboxComponent<T = any>
     }
 
     /** @internal */
-    public writeValue(value: boolean): void {
+    public override writeValue(value: boolean): void {
         this.isChecked = value;
 
         this.changeDetector.detectChanges();
-    }
-
-    /** @internal */
-    public setDisabledState(isDisabled: boolean): void {
-        this.isDisabled = isDisabled;
-
-        this.changeDetector.markForCheck();
     }
 
     /** @internal */

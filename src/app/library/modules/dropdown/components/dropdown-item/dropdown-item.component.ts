@@ -39,7 +39,7 @@ export class DropdownItemComponent<T = any>
         this.initClickObserver();
     }
 
-    public ngAfterViewInit(): void {
+    public override ngAfterViewInit(): void {
         super.ngAfterViewInit();
         this.initDefaultValueIfAbsent();
         queueMicrotask(() => this.initDropdownFormControlValueObserver());

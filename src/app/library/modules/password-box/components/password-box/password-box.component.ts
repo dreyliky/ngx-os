@@ -37,7 +37,7 @@ export class PasswordBoxComponent extends ɵOsBaseFieldComponent implements OnIn
         return (this.isAutocompleteEnabled) ? '' : 'off';
     }
 
-    protected targetInternalElementSelector = 'input';
+    protected override targetInternalElementSelector = 'input';
 
     public ngOnInit(): void {
         this.value = '';

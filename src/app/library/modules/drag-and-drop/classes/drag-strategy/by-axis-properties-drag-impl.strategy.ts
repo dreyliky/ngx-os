@@ -5,7 +5,7 @@ import { DragStrategyByAxisProperties } from './by-axis-properties-drag.strategy
 
 /** @internal */
 export class ɵDragStrategyByAxisPropertiesImpl extends ɵBaseDragStrategyImpl {
-    public readonly type = ɵDragStrategyEnum.ByAxisProperties;
+    public override readonly type = ɵDragStrategyEnum.ByAxisProperties;
 
     public updateElementPosition(event: PointerEvent | TouchEvent): void {
         if (this.context.config.isAllowMoveElement) {

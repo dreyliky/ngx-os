@@ -2,13 +2,10 @@ import { DOCUMENT } from '@angular/common';
 import { Injector } from '@angular/core';
 import { ɵParseInt, ɵPointerHelper } from '../../../core';
 import { ResizableDirective } from '../directives';
-import { ResizerEnum } from '../enums';
 import { ɵResizerConfigModel } from './resizer-config';
 
 /** @internal */
 export abstract class ɵBaseResizer {
-    public static id: ResizerEnum = null;
-
     protected readonly documentElement: HTMLElement;
     protected minWidth: number;
     protected maxWidth: number;

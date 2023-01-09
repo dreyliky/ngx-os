@@ -3,7 +3,7 @@ import { ButtonGroupEnum, NumberEnum } from '../enums';
 import { BaseButton } from './base-button';
 
 export class ButtonNumber extends BaseButton {
-    public readonly group = ButtonGroupEnum.Number;
+    public override readonly group = ButtonGroupEnum.Number;
 
     constructor(
         injector: Injector,

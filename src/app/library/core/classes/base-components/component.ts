@@ -95,7 +95,7 @@ export abstract class ɵOsBaseComponent
     protected readonly hostRef: ElementRef<HTMLElement> = inject(ElementRef);
     protected readonly changeDetector = inject(ChangeDetectorRef);
 
-    public ngAfterViewInit(): void {
+    public override ngAfterViewInit(): void {
         super.ngAfterViewInit();
         this.initTargetInternalElement();
     }

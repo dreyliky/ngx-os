@@ -36,11 +36,7 @@ export class RadioButtonComponent<T = any>
     @HostBinding(`class.${ɵCommonCssClassEnum.Checked}`)
     public isChecked: boolean;
 
-    /** Is radio-button disabled? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean;
-
+    // FIXME: Investigate or Remove "data". "value" already exists.
     /** Data of the radio-button */
     @Input()
     public data: T;
@@ -60,18 +56,12 @@ export class RadioButtonComponent<T = any>
         this.initClickObserver();
     }
 
+    // FIXME: Investigate: Maybe should be called super.writeValue();
     /** @internal */
-    public writeValue(value: T): void {
+    public override writeValue(value: T): void {
         this.isChecked = (this.data === value);
 
         this.changeDetector.detectChanges();
-    }
-
-    /** @internal */
-    public setDisabledState(isDisabled: boolean): void {
-        this.isDisabled = isDisabled;
-
-        this.changeDetector.markForCheck();
     }
 
     /** @internal */

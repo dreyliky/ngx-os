@@ -103,7 +103,7 @@ export class GridComponent extends ɵOsBaseComponent implements OnChanges, After
     private _cellMinSize: number = 50;
     private gridItemComponents: QueryList<GridItemComponent>;
 
-    public ngAfterViewInit(): void {
+    public override ngAfterViewInit(): void {
         super.ngAfterViewInit();
         this.initHostSizeChangeObserver();
     }

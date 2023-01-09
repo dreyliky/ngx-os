@@ -55,17 +55,10 @@ export abstract class ɵOsBaseFieldComponent<T = string, OutputT = string>
      **/
     public abstract osChange: Observable<unknown>;
 
-    public ngAfterViewInit(): void {
+    public override ngAfterViewInit(): void {
         super.ngAfterViewInit();
         this.initBlurEventObserver();
         this.autoFocusFieldIfNeeded();
-    }
-
-    /** @internal */
-    public setDisabledState(isDisabled: boolean): void {
-        this.isDisabled = isDisabled;
-
-        this.changeDetector.markForCheck();
     }
 
     private autoFocusFieldIfNeeded(): void {

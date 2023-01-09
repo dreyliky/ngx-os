@@ -39,7 +39,7 @@ export class TextareaBoxComponent
             map((event) => this.transformChangeEvent(event))
         );
 
-    protected targetInternalElementSelector = 'textarea';
+    protected override targetInternalElementSelector = 'textarea';
 
     public ngOnInit(): void {
         this.value = '';

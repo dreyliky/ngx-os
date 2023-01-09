@@ -68,7 +68,8 @@ export class EditorComponent extends ɵOsBaseViewComponent implements OnInit, Af
         this.initSettingsObserver();
     }
 
-    public ngAfterViewInit(): void {
+    public override ngAfterViewInit(): void {
+        super.ngAfterViewInit();
         this.initDefaultContent();
         this.editorElementRef.nativeElement.focus();
     }

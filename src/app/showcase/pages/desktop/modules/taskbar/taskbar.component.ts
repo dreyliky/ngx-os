@@ -57,7 +57,8 @@ export class TaskbarComponent extends ɵOsBaseViewComponent implements OnInit, A
         this.initWindowRefsObserver();
     }
 
-    public ngAfterViewInit(): void {
+    public override ngAfterViewInit(): void {
+        super.ngAfterViewInit();
         this.taskbarService.init(this.hostRef.nativeElement);
     }
 

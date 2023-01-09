@@ -3,7 +3,6 @@ import {
     Component,
     ContentChild,
     EventEmitter,
-    HostBinding,
     Inject,
     Input,
     OnInit,
@@ -15,7 +14,6 @@ import { ControlValueAccessor } from '@angular/forms';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
-    ɵCommonCssClassEnum,
     ɵEventOutside,
     ɵGlobalEvents,
     ɵIsNil,
@@ -95,11 +93,6 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
 export class DropdownComponent<T = any>
     extends ɵOsBaseFormControlComponent<T>
     implements OnInit, ControlValueAccessor {
-    /** Is dropdown disabled? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean = false;
-
     /** Is dropdown overlay should be created inside the `body` HTML element? */
     @Input()
     public isAppendToBody: boolean;
@@ -148,8 +141,6 @@ export class DropdownComponent<T = any>
         return !ɵIsNil(this.value);
     }
 
-    /** Dropdown value */
-    public value: T;
     /** Dropdown label */
     public label: string;
 
@@ -191,13 +182,6 @@ export class DropdownComponent<T = any>
     /** Toggle the dropdown overlay open or close */
     public toggle(): void {
         (this.isOverlayOpened) ? this.close() : this.open();
-    }
-
-    /** @internal */
-    public setDisabledState(isDisabled: boolean): void {
-        this.isDisabled = isDisabled;
-
-        this.changeDetector.markForCheck();
     }
 
     /** @internal */

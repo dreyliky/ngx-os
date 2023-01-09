@@ -3,11 +3,9 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver,
     ElementRef,
     Inject,
     OnInit,
-    Type,
     ViewChild,
     ViewContainerRef,
     ViewEncapsulation
@@ -55,7 +53,6 @@ export class ɵDynamicWindowComponent
         @Inject(SHARED_CONFIG) private readonly sharedConfig$: Observable<DynamicWindowConfig>,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly globalEvents: ɵGlobalEvents,
-        private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
@@ -73,9 +70,10 @@ export class ɵDynamicWindowComponent
         this.initOutsideClickObserver();
     }
 
-    public ngAfterViewInit(): void {
+    public override ngAfterViewInit(): void {
+        this.childComponentRef = this.contentViewRef.createComponent(this.childComponentType);
+
         super.ngAfterViewInit();
-        this.initChildComponent(this.childComponentType);
         this.initHtmlElements();
         this.initWindowSizes();
         this.initMousedownObserver();
@@ -142,11 +140,6 @@ export class ɵDynamicWindowComponent
 
     public onResizeEnd(): void {
         this.changeDetector.reattach();
-    }
-
-    private initChildComponent(componentType: Type<any>): void {
-        const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-        this.childComponentRef = this.contentViewRef.createComponent(factory);
     }
 
     private initDynamicStateManager(): void {
