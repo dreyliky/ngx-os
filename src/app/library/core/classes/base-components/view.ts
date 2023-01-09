@@ -1,28 +1,24 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
     template: ''
 })
 export abstract class ɵOsBaseViewComponent implements AfterViewInit, OnDestroy {
-    public get whenViewInit$(): Observable<boolean> {
-        return this._whenViewInit$
-            .asObservable()
-            .pipe(first());
-    }
-
-    public get viewDestroyed$(): Observable<boolean> {
-        return this._viewDestroyed$.asObservable();
-    }
-
-    public get isViewInit(): boolean {
-        return this._isViewInit;
-    }
-
-    private _isViewInit: boolean;
     private _viewDestroyed$ = new Subject<boolean>();
     private _whenViewInit$ = new ReplaySubject<boolean>();
+    private _isViewInit: boolean;
+
+    protected whenViewInit$ = this._whenViewInit$.asObservable()
+        .pipe(first());
+
+    protected viewDestroyed$ = this._viewDestroyed$.asObservable();
+
+    protected get isViewInit(): boolean {
+        return this._isViewInit;
+    }
 
     public ngAfterViewInit(): void {
         this._isViewInit = true;

@@ -1,5 +1,6 @@
 import { ɵOsBaseViewComponent } from '../classes';
 
+// FIXME: Remove this decorator!
 /**
  * @internal
  * Called wrapped method or getter only when `viewInit` property of {@link OsBaseViewComponent} is true.
@@ -28,7 +29,7 @@ function patchMethod<T>(enumerable: boolean, defaultValue: any, originalMethod: 
     return {
         enumerable,
         get(): T {
-            if ((this as ɵOsBaseViewComponent).isViewInit) {
+            if ((this as any).isViewInit) {
                 return originalMethod.call(this);
             }
 

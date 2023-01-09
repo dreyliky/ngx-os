@@ -6,4 +6,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./context-menu-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContextMenuOverviewComponent {}
+export class ContextMenuOverviewComponent {
+    public onPropertiesContextMenuItemClick(): void {
+        alert('Properties MenuItem click');
+    }
+}

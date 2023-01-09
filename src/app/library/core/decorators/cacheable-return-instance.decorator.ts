@@ -1,6 +1,7 @@
 import { ɵOsBaseViewComponent } from '../classes';
 import { ɵIsObjectsWithSameData } from '../helpers';
 
+// FIXME: Remove this decorator!
 /**
  * @internal
  * Returns a new instance of the object only when DATA inside new instance

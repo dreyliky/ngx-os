@@ -5,6 +5,7 @@ import {
     EmbeddedViewRef,
     HostListener,
     Inject,
+    Injector,
     Input,
     OnDestroy,
     TemplateRef,
@@ -45,7 +46,8 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         private readonly elementPositionWithinViewport: ɵElementPositionWithinViewport,
-        private readonly containerRef: ViewContainerRef
+        private readonly containerRef: ViewContainerRef,
+        private readonly injector: Injector
     ) {}
 
     public ngDoCheck(): void {
@@ -120,7 +122,8 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
     private fillContainerElementContentByTemplateRef(
         template: TemplateRef<unknown>
     ): void {
-        this.viewRef = this.containerRef.createEmbeddedView(template);
+        this.viewRef = this.containerRef
+            .createEmbeddedView(template, null, { injector: this.injector });
 
         this.containerElement.append(...this.viewRef.rootNodes);
     }
