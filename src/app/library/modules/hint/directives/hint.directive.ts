@@ -50,14 +50,14 @@ export class HintDirective implements OnInit, OnDestroy {
             share()
         );
 
-    private get destroyOrMouseLeave$(): Observable<unknown> {
+    private get destroyedOrMouseLeave$(): Observable<unknown> {
         return merge(
             this.destroyed$,
             this.mouseLeave$
         );
     }
 
-    private get hintShouldBeHiddenWhen$(): Observable<unknown> {
+    private get shouldBeHiddenWhen$(): Observable<unknown> {
         return merge(
             this.globalEvents.fromDocument('mousedown'),
             this.globalEvents.fromDocument('touchstart'),
@@ -148,7 +148,7 @@ export class HintDirective implements OnInit, OnDestroy {
     }
 
     private initHintShouldBeHiddenWhenObserver(): void {
-        this.hintShouldBeHiddenWhen$
+        this.shouldBeHiddenWhen$
             .pipe(takeUntil(this.destroyed$))
             .subscribe(() => this.hide());
     }
@@ -159,7 +159,7 @@ export class HintDirective implements OnInit, OnDestroy {
                 filter(() => this.osHintEnabled),
                 debounce(() => timer(this.osHintDisplayDelay)),
                 finalize(() => this.hide()),
-                takeUntil(this.destroyOrMouseLeave$)
+                takeUntil(this.destroyedOrMouseLeave$)
             )
             .subscribe((event) => this.show(event));
     }
