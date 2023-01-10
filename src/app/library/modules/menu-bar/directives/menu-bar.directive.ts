@@ -6,6 +6,7 @@ import {
     EmbeddedViewRef,
     HostListener,
     Inject,
+    Injector,
     Input,
     OnDestroy,
     OnInit,
@@ -15,7 +16,7 @@ import {
 } from '@angular/core';
 import { fromEvent, merge, Observable, Subject } from 'rxjs';
 import { filter, first, map, takeUntil } from 'rxjs/operators';
-import { ɵEventOutside } from '../../../core';
+import { ɵApplyAutoDestroyClass, ɵEventOutside } from '../../../core';
 import { MenuBarButtonComponent, MenuBarComponent } from '../components';
 import { ɵMenuBarCssClassEnum as CssClass } from '../enums';
 
@@ -47,7 +48,8 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
         @Self() private readonly buttonComponent: MenuBarButtonComponent,
         private readonly menuBarComponent: MenuBarComponent,
         private readonly containerRef: ViewContainerRef,
-        private readonly hostRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly injector: Injector
     ) {}
 
     public ngOnInit(): void {
@@ -94,6 +96,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
         this.createContainerElementIfAbsent();
         this.adaptContainerElementPosition();
         this.applyContentForContainerElement();
+        ɵApplyAutoDestroyClass(this.containerElement, CssClass.Opening);
         // Waiting ~4 ms for skipping currently bubbling click event, which probably triggered our MenuBar.
         setTimeout(() => this.initClickOutsideObserver());
     }
@@ -123,7 +126,8 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     }
 
     private fillContainerElementContentByTemplateRef(template: TemplateRef<unknown>): void {
-        this.viewRef = this.containerRef.createEmbeddedView(template);
+        this.viewRef = this.containerRef
+            .createEmbeddedView(template, null, { injector: this.injector });
 
         this.containerElement.append(...this.viewRef.rootNodes);
     }
