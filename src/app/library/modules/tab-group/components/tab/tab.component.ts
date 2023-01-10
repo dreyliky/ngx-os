@@ -15,7 +15,6 @@ import { ɵOsBaseComponent } from '../../../../core';
  * ## Templates
  * `#tabLabel`: Template for the label of the tab button.
  *
- * @example
  * ```html
  * <os-tab>
  *     <ng-template #tabLabel>
@@ -26,7 +25,6 @@ import { ɵOsBaseComponent } from '../../../../core';
  *
  * `#tabContent`: Template for the content lazy loading.
  *
- * @example
  * ```html
  * <os-tab>
  *     <ng-template #tabContent>

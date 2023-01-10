@@ -14,7 +14,6 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
  * or use your custom element instead of default title-bar
  * - `Others`: Will be placed inside the body of the window
  *
- * @example
  * ```html
  * <os-window>
  *     <os-title-bar>MY CUSTOM TITLE BAR CONTENT HERE</os-title-bar>

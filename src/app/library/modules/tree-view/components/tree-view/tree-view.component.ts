@@ -30,7 +30,6 @@ import { ɵTreeNodesState } from '../../states';
  * somehow instead of auto-generated based on `data`)
  * - Attribute `os-tree-view-footer`: Slot for your custom content below nodes and custom content
  *
- * @example
  * ```html
  * <os-tree-view>
  *     <div os-tree-view-header>YOUR HEADER CONTENT</div>
@@ -47,7 +46,6 @@ import { ɵTreeNodesState } from '../../states';
  * - `$implicit`: {@link TreeNode} node data;
  * - `depth`: depth data (0 - root node; 1 and more - child node);
  *
- * @example
  * ```html
  * <os-tree-view>
  *     <ng-template

@@ -31,7 +31,6 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
  * - Components `os-dropdown-item`: Slot for `DropdownItemComponent`'s which are will be rendered inside the overlay.
  * - Attribute `os-dropdown-footer`: Slot for your custom content inside overlay at the bottom.
  *
- * @example
  * ```html
  * <os-dropdown>
  *     <div os-dropdown-header>MY HEADER CONTENT</div>
@@ -45,7 +44,6 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
  *
  * `#dropdownPlaceholder`: Custom template which will be rendered instead of the default placeholder.
  *
- * @example
  * ```html
  * <os-dropdown>
  *     <ng-template #dropdownPlaceholder>
@@ -64,7 +62,6 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
  * Context:
  * - `$implicit`: {@link T} value from the selected dropdown item;
  *
- * @example
  * ```html
  * <os-dropdown>
  *     <ng-template

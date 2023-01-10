@@ -3,6 +3,7 @@ import {
     Directive,
     ElementRef,
     Inject,
+    Injector,
     Input,
     OnDestroy,
     OnInit,
@@ -72,7 +73,8 @@ export class HintDirective implements OnInit, OnDestroy {
         @Inject(DOCUMENT) private readonly document: Document,
         private readonly globalEvents: ɵGlobalEvents,
         private readonly elementPositionWithinViewport: ɵElementPositionWithinViewport,
-        private readonly hostRef: ElementRef<HTMLElement>
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly injector: Injector
     ) {}
 
     public ngOnInit(): void {
@@ -141,7 +143,7 @@ export class HintDirective implements OnInit, OnDestroy {
     }
 
     private fillContainerElementContentByTemplateRef(template: TemplateRef<unknown>): void {
-        const view = template.createEmbeddedView(null);
+        const view = template.createEmbeddedView(null, this.injector);
 
         view.detectChanges();
         view.rootNodes.forEach((node) => this.containerElement.appendChild(node));

@@ -19,7 +19,6 @@ import {
  * ## Templates
  * `#gridItemIcon`: Custom template which will be rendered instead of the default icon.
  *
- * @example
  * ```html
  * <os-grid-item>
  *     <ng-template #gridItemIcon>
@@ -36,7 +35,6 @@ import {
  *
  * `#gridItemLabel`: Custom template which will be rendered instead of the default label text.
  *
- * @example
  * ```html
  * <os-grid-item>
  *     <ng-template #gridItemLabel>
