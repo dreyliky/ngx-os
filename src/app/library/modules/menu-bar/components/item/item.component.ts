@@ -2,14 +2,12 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    Input,
     OnInit,
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { filter, takeUntil, tap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { ɵOsBaseOptionComponent } from '../../../../core';
-import { MenuBarComponent } from '../menu-bar';
 
 @Component({
     selector: 'os-menu-bar-item',
@@ -21,17 +19,8 @@ import { MenuBarComponent } from '../menu-bar';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> implements OnInit {
-    @Input()
-    public isHideMenuOnClick = true;
-
     @Output()
     public readonly osSelected: EventEmitter<T> = new EventEmitter();
-
-    constructor(
-        private readonly menuBarComponent: MenuBarComponent
-    ) {
-        super();
-    }
 
     public ngOnInit(): void {
         this.initClickObserver();
@@ -40,11 +29,8 @@ export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> im
     private initClickObserver(): void {
         this.osClick
             .pipe(
-                filter(() => !this.isDisabled),
-                tap(() => this.osSelected.emit(this.data)),
-                filter(() => this.isHideMenuOnClick),
-                takeUntil(this.viewDestroyed$)
+                filter(() => !this.isDisabled)
             )
-            .subscribe(() => this.menuBarComponent._hideAllMenuBars());
+            .subscribe(() => this.osSelected.emit(this.data));
     }
 }

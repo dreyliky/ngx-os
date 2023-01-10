@@ -1,7 +1,10 @@
 <os-window
-    [osResizable]="resizerConfig"
-    [styleClass]="windowStyleClass"
-    [style]="windowStyle"
+    osDynamicWindowCssVariablesBinding
+    osDynamicWindowCssClassesBinding
+    osDynamicWindowResizable
+    [ngClass]="config.styleClass"
+    [ngStyle]="config.style"
+    [style.zIndex]="(zIndex$ | async)"
     [attr.id]="windowRef.id"
     [isActive]="windowRef.isActive"
     [scrollViewStyle]="config.scrollViewStyle"
@@ -10,7 +13,7 @@
     (osResizing)="onResizing($event)"
     (osResizeEnd)="onResizeEnd()">
     <os-title-bar
-        [osDraggable]="draggerConfig"
+        osDynamicWindowDraggable
         [isActive]="windowRef.isActive"
         [style.display]="_titleBarDisplayAttr"
         [style]="config.titleBarStyle"

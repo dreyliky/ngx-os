@@ -1,9 +1,13 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    HostBinding, ViewEncapsulation
+    HostBinding,
+    OnInit,
+    ViewEncapsulation
 } from '@angular/core';
+import { filter, map, takeUntil } from 'rxjs';
 import { ɵCommonCssClassEnum, ɵOsBaseButtonComponent } from '../../../../core';
+import { ɵMenuBarActiveButtonState } from '../../states';
 
 @Component({
     selector: 'os-menu-bar-button',
@@ -14,15 +18,32 @@ import { ɵCommonCssClassEnum, ɵOsBaseButtonComponent } from '../../../../core'
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuBarButtonComponent extends ɵOsBaseButtonComponent {
+export class MenuBarButtonComponent extends ɵOsBaseButtonComponent implements OnInit {
     /** @internal */
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
     public _isActive = false;
 
-    /** @internal */
-    public _setIsActive(state: boolean): void {
-        this._isActive = state;
+    constructor(
+        private readonly activeButtonState: ɵMenuBarActiveButtonState
+    ) {
+        super();
+    }
 
-        this.changeDetector.markForCheck();
+    public ngOnInit(): void {
+        this.initMenuBarActiveButtonObserver();
+    }
+
+    private initMenuBarActiveButtonObserver(): void {
+        this.activeButtonState.data$
+            .pipe(
+                map((activeButton) => (activeButton === this)),
+                filter((isButtonActive) => (isButtonActive !== this._isActive)),
+                takeUntil(this.viewDestroyed$)
+            )
+            .subscribe((isButtonActive) => {
+                this._isActive = isButtonActive;
+
+                this.changeDetector.markForCheck();
+            });
     }
 }

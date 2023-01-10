@@ -14,15 +14,19 @@ import {
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-import { fromEvent, merge, Observable, Subject } from 'rxjs';
+import { fromEvent, merge, Observable, skip, Subject } from 'rxjs';
 import { filter, first, map, takeUntil } from 'rxjs/operators';
-import { ɵApplyAutoDestroyClass, ɵEventOutside } from '../../../core';
-import { MenuBarButtonComponent, MenuBarComponent } from '../components';
+import { ɵApplyAutoDestroyClass, ɵDestroyService, ɵEventOutside } from '../../../core';
+import { MenuBarButtonComponent } from '../components';
 import { ɵMenuBarCssClassEnum as CssClass } from '../enums';
+import { ɵMenuBarActiveButtonState } from '../states';
 
 @Directive({
     selector: 'os-menu-bar-button[osMenuBar]',
-    exportAs: 'osMenuBar'
+    exportAs: 'osMenuBar',
+    providers: [
+        ɵDestroyService
+    ]
 })
 export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     /** Content to show inside */
@@ -31,7 +35,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
 
     private get destroyedOrHidden$(): Observable<boolean> {
         return merge(
-            this.destroyed$,
+            this.viewDestroyed$,
             this.hidden$
         );
     }
@@ -41,12 +45,12 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
 
     private readonly delayBeforeDestroy = 500;
     private readonly hidden$ = new Subject<boolean>();
-    private readonly destroyed$ = new Subject<boolean>();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
         @Self() private readonly buttonComponent: MenuBarButtonComponent,
-        private readonly menuBarComponent: MenuBarComponent,
+        private readonly viewDestroyed$: ɵDestroyService,
+        private readonly activeButtonState: ɵMenuBarActiveButtonState,
         private readonly containerRef: ViewContainerRef,
         private readonly hostRef: ElementRef<HTMLElement>,
         private readonly injector: Injector
@@ -58,8 +62,6 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     }
 
     public ngOnDestroy(): void {
-        this.destroyed$.next(true);
-        this.destroyed$.complete();
         this.hide();
     }
 
@@ -71,9 +73,9 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     @HostListener('mousedown')
     public onHostMouseDown(): void {
         if (!this.containerElement) {
-            this.menuBarComponent._openMenuBar(this.buttonComponent);
+            this.activeButtonState.set(this.buttonComponent);
         } else {
-            this.menuBarComponent._hideAllMenuBars();
+            this.activeButtonState.clear();
         }
     }
 
@@ -135,23 +137,19 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     private initMouseOverObserver(): void {
         fromEvent<PointerEvent>(this.hostRef.nativeElement, 'mouseover')
             .pipe(
-                filter(() => (
-                    !!this.menuBarComponent.activeButton &&
-                    (this.menuBarComponent.activeButton !== this.buttonComponent)
-                )),
-                takeUntil(this.destroyed$)
+                filter(() => !!this.activeButtonState.data),
+                filter(() => (this.activeButtonState.data !== this.buttonComponent)),
+                takeUntil(this.viewDestroyed$)
             )
-            .subscribe(() => {
-                this.menuBarComponent._hideAllMenuBars();
-                this.menuBarComponent._openMenuBar(this.buttonComponent);
-            });
+            .subscribe(() => this.activeButtonState.set(this.buttonComponent));
     }
 
     private initButtonComponentActiveObserver(): void {
-        this.menuBarComponent.activeButtonChange
+        this.activeButtonState.data$
             .pipe(
-                map((button) => (button === this.buttonComponent)),
-                takeUntil(this.destroyed$)
+                skip(1),
+                map((activeButton) => (activeButton === this.buttonComponent)),
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe((isActive) => (isActive) ? this.show() : this.hide());
     }
@@ -163,6 +161,6 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
                 first(),
                 takeUntil(this.destroyedOrHidden$)
             )
-            .subscribe(() => this.menuBarComponent._hideAllMenuBars());
+            .subscribe(() => this.activeButtonState.clear());
     }
 }

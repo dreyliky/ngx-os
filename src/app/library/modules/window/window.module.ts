@@ -10,13 +10,22 @@ import {
     TitleBarContentComponent,
     TitleBarControlsComponent,
     TitleBarIconComponent,
-    WindowComponent, ɵDynamicWindowComponent
+    WindowComponent,
+    ɵDynamicWindowComponent,
+    ɵDynamicWindowCssClassesBindingDirective,
+    ɵDynamicWindowCssVariablesBindingDirective,
+    ɵDynamicWindowDraggableDirective,
+    ɵDynamicWindowResizableDirective
 } from './components';
 import { ɵDYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
 
 @NgModule({
     declarations: [
         ɵDynamicWindowComponent,
+        ɵDynamicWindowCssVariablesBindingDirective,
+        ɵDynamicWindowCssClassesBindingDirective,
+        ɵDynamicWindowResizableDirective,
+        ɵDynamicWindowDraggableDirective,
         TitleBarButtonComponent,
         TitleBarComponent,
         TitleBarContentComponent,

@@ -20,36 +20,10 @@
     </os-title-bar>
 
     <os-menu-bar>
-        <os-menu-bar-button [osMenuBar]="fileMenuBar">File</os-menu-bar-button>
-        <os-menu-bar-button [osMenuBar]="editMenuBar">Edit</os-menu-bar-button>
-        <os-menu-bar-button [osMenuBar]="viewMenuBar">View</os-menu-bar-button>
-        <os-menu-bar-button [osMenuBar]="helpMenuBar">Help</os-menu-bar-button>
-
-        <ng-template #fileMenuBar>
-            <os-menu-bar-item>New File</os-menu-bar-item>
-            <os-menu-bar-item>New Window</os-menu-bar-item>
-            <os-divider></os-divider>
-            <os-menu-bar-item>Open File</os-menu-bar-item>
-            <os-menu-bar-item>Open Window</os-menu-bar-item>
-            <os-divider></os-divider>
-            <os-menu-bar-item [isDisabled]="true">Close</os-menu-bar-item>
-        </ng-template>
-
-        <ng-template #editMenuBar>
-            <os-menu-bar-item>Undo</os-menu-bar-item>
-            <os-menu-bar-item>Redo</os-menu-bar-item>
-        </ng-template>
-
-        <ng-template #viewMenuBar>
-            <os-menu-bar-item>Font</os-menu-bar-item>
-        </ng-template>
-
-        <ng-template #helpMenuBar>
-            <os-menu-bar-item>Help and Support Center</os-menu-bar-item>
-            <os-divider></os-divider>
-            <os-menu-bar-item>License agreement</os-menu-bar-item>
-            <os-menu-bar-item>About the program</os-menu-bar-item>
-        </ng-template>
+        <os-menu-bar-button [osMenuBar]="fileMenuBarTemplate">File</os-menu-bar-button>
+        <os-menu-bar-button [osMenuBar]="editMenuBarTemplate">Edit</os-menu-bar-button>
+        <os-menu-bar-button [osMenuBar]="viewMenuBarTemplate">View</os-menu-bar-button>
+        <os-menu-bar-button [osMenuBar]="helpMenuBarTemplate">Help</os-menu-bar-button>
     </os-menu-bar>
 
     <div class="app-content">
@@ -58,3 +32,31 @@
         </os-header>
     </div>
 </os-window>
+
+<ng-template #fileMenuBarTemplate>
+    <os-menu-bar-item osMenuBarAction>
+        <b>New File</b>
+    </os-menu-bar-item>
+    <os-menu-bar-item>New Window</os-menu-bar-item>
+    <os-divider></os-divider>
+    <os-menu-bar-item>Open File</os-menu-bar-item>
+    <os-menu-bar-item>Open Window</os-menu-bar-item>
+    <os-divider></os-divider>
+    <os-menu-bar-item [isDisabled]="true">Close</os-menu-bar-item>
+</ng-template>
+
+<ng-template #editMenuBarTemplate>
+    <os-menu-bar-item>Undo</os-menu-bar-item>
+    <os-menu-bar-item>Redo</os-menu-bar-item>
+</ng-template>
+
+<ng-template #viewMenuBarTemplate>
+    <os-menu-bar-item>Font</os-menu-bar-item>
+</ng-template>
+
+<ng-template #helpMenuBarTemplate>
+    <os-menu-bar-item>Help and Support Center</os-menu-bar-item>
+    <os-divider></os-divider>
+    <os-menu-bar-item>License agreement</os-menu-bar-item>
+    <os-menu-bar-item>About the program</os-menu-bar-item>
+</ng-template>
