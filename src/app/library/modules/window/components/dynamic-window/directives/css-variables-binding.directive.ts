@@ -1,10 +1,7 @@
-import { Directive, ElementRef } from '@angular/core';
-import { takeUntil } from 'rxjs';
-import { ɵDestroyService } from '../../../../../core';
-import {
-    ɵDynamicWindowCssVariableEnum as CssVariable
-} from '../../../enums';
-import { DynamicWindowConfig } from '../../../interfaces';
+import { ChangeDetectorRef, Directive, ElementRef, HostBinding } from '@angular/core';
+import { debounceTime, filter, takeUntil } from 'rxjs';
+import { ɵDestroyService, ɵElementResizingObserver } from '../../../../../core';
+import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
 import { ɵMergedConfigService } from '../services';
 
 /** @internal */
@@ -12,38 +9,58 @@ import { ɵMergedConfigService } from '../services';
     selector: 'os-window[osDynamicWindowCssVariablesBinding]'
 })
 export class ɵDynamicWindowCssVariablesBindingDirective {
+    @HostBinding('style')
+    public cssVariables: object = {};
+
+    @HostBinding(`style.${CssVariable.RealWidth}`)
+    public realWidthInPx: string;
+
+    @HostBinding(`style.${CssVariable.RealHeight}`)
+    public realHeightInPx: string;
+
     constructor(
         private readonly mergedConfigService: ɵMergedConfigService,
         private readonly viewDestroyed$: ɵDestroyService,
-        private readonly elementRef: ElementRef<HTMLElement>
+        private readonly elementRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
+        this.initElementSizeObserver();
         this.initMergedConfigObserver();
     }
 
     private initMergedConfigObserver(): void {
         this.mergedConfigService.data$
             .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe((config) => this.applyCssVariablesToElementRef(config));
+            .subscribe((config) => {
+                this.cssVariables = {
+                    [CssVariable.Left]: `${config.positionX}px`,
+                    [CssVariable.Top]: `${config.positionY}px`,
+                    [CssVariable.Width]: `${config.width}px`,
+                    [CssVariable.Height]: `${config.height}px`,
+                    [CssVariable.CoordinateForHidingX]: config.hidesInto?.x,
+                    [CssVariable.CoordinateForHidingY]: config.hidesInto?.y,
+                    [CssVariable.FullscreenOffsetTop]: config.fullscreenOffset?.top,
+                    [CssVariable.FullscreenOffsetRight]: config.fullscreenOffset?.right,
+                    [CssVariable.FullscreenOffsetBottom]: config.fullscreenOffset?.bottom,
+                    [CssVariable.FullscreenOffsetLeft]: config.fullscreenOffset?.left
+                };
+
+                this.changeDetector.markForCheck();
+            });
     }
 
-    private applyCssVariablesToElementRef(config: DynamicWindowConfig): void {
-        const windowElement = this.elementRef.nativeElement;
+    private initElementSizeObserver(): void {
+        ɵElementResizingObserver(this.elementRef.nativeElement)
+            .pipe(
+                debounceTime(50),
+                filter(({ offsetWidth, offsetHeight }) => (!!offsetWidth && !!offsetHeight)),
+                takeUntil(this.viewDestroyed$)
+            )
+            .subscribe((windowElement) => {
+                this.realWidthInPx = `${windowElement.offsetWidth}px`;
+                this.realHeightInPx = `${windowElement.offsetHeight}px`;
 
-        this.applyCssVariable(CssVariable.Left, `${config.positionX}px`);
-        this.applyCssVariable(CssVariable.Top, `${config.positionY}px`);
-        this.applyCssVariable(CssVariable.RealWidth, `${windowElement.offsetWidth}px`);
-        this.applyCssVariable(CssVariable.RealHeight, `${windowElement.offsetHeight}px`);
-        this.applyCssVariable(CssVariable.CoordinateForHidingX, config.hidesInto?.x);
-        this.applyCssVariable(CssVariable.CoordinateForHidingY, config.hidesInto?.y);
-        this.applyCssVariable(CssVariable.FullscreenOffsetTop, config.fullscreenOffset?.top);
-        this.applyCssVariable(CssVariable.FullscreenOffsetRight, config.fullscreenOffset?.right);
-        this.applyCssVariable(CssVariable.FullscreenOffsetBottom, config.fullscreenOffset?.bottom);
-        this.applyCssVariable(CssVariable.FullscreenOffsetLeft, config.fullscreenOffset?.left);
-    }
-
-    private applyCssVariable(variable: CssVariable, value: any): void {
-        const windowElement = this.elementRef.nativeElement;
-
-        windowElement.style.setProperty(variable, value);
+                this.changeDetector.markForCheck();
+            });
     }
 }

@@ -1,5 +1,4 @@
 <os-window
-    osDynamicWindowSizeCssVariablesBinding
     osDynamicWindowCssVariablesBinding
     osDynamicWindowCssClassesBinding
     osDynamicWindowResizable
@@ -10,9 +9,8 @@
     [isActive]="windowRef.isActive"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
-    (osResizeStart)="onResizeStart()"
-    (osResizing)="onResizing($event)"
-    (osResizeEnd)="onResizeEnd()">
+    (osResizeStart)="changeDetector.detach()"
+    (osResizeEnd)="changeDetector.reattach()">
     <os-title-bar
         osDynamicWindowDraggable
         [isActive]="windowRef.isActive"
@@ -20,9 +18,9 @@
         [style]="config.titleBarStyle"
         [styleClass]="config.titleBarStyleClass"
         (osDblClick)="onTitleBarDblClick()"
-        (osDragStart)="onDragStart()"
+        (osDragStart)="changeDetector.detach()"
         (osDragging)="onDragging()"
-        (osDragEnd)="onDragEnd()">
+        (osDragEnd)="changeDetector.reattach()">
         <ng-container *ngIf="config.titleBarCustomContent; else defaultTitleBarContentTemplateOutlet">
             <ng-container *ngComponentOutlet="config.titleBarCustomContent"></ng-container>
         </ng-container>

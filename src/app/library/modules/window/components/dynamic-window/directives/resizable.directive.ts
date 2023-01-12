@@ -2,9 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { ɵDestroyService } from '../../../../../core';
 import { ResizableDirective, ɵResizerFactory } from '../../../../resizer';
-import {
-    ɵDynamicWindowCssVariableEnum as CssVariable
-} from '../../../enums';
+import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
 import { DynamicWindowConfig } from '../../../interfaces';
 import { ɵMergedConfigService } from '../services';
 

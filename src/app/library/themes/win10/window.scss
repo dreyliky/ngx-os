@@ -151,7 +151,7 @@
     }
 
     &.os-dragging, &.os-resizing {
-        .os-window-body {
+        .os-window-body, .os-title-bar-controls {
             pointer-events: none;
         }
     }

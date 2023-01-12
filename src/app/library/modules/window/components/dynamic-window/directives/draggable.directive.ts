@@ -1,24 +1,41 @@
-import { AfterViewInit, Directive, inject } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
+import { filter, forkJoin, of, switchMap, take, takeUntil } from 'rxjs';
 import { ɵDestroyService } from '../../../../../core';
 import { DraggableDirective, DragStrategyByAxisProperties } from '../../../../drag-and-drop';
-import {
-    ɵDynamicWindowCssVariableEnum as CssVariable
-} from '../../../enums';
+import { ɵDynamicWindowRefModel } from '../../../classes';
+import { DYNAMIC_WINDOW_REF } from '../../../data';
+import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
 import { DynamicWindowConfig } from '../../../interfaces';
-import { ɵDynamicWindowComponent } from '../dynamic-window.component';
+import { ɵExitFromFullscreenHelper } from '../helpers';
 import { ɵMergedConfigService } from '../services';
 
 /** @internal */
 @Directive({
     selector: 'os-title-bar[osDynamicWindowDraggable]'
 })
-export class ɵDynamicWindowDraggableDirective
-    extends DraggableDirective
-    implements AfterViewInit {
+export class ɵDynamicWindowDraggableDirective extends DraggableDirective implements AfterViewInit {
+    public get _windowElement(): HTMLElement {
+        return this.windowElementRef.nativeElement;
+    }
+
+    public get _titleBarControlsElementWidth(): number {
+        const element = this._titleBarElement.querySelector('.os-title-bar-controls');
+
+        return element.clientWidth;
+    }
+
+    public get _titleBarElement(): HTMLElement {
+        return this.titleBarElementRef.nativeElement;
+    }
+
     private readonly mergedConfigService = inject(ɵMergedConfigService);
-    private readonly context = inject(ɵDynamicWindowComponent);
+    private readonly titleBarElementRef = inject(ElementRef);
+    private readonly windowElementRef = inject(ElementRef, { skipSelf: true });
+    private readonly windowRef = inject<ɵDynamicWindowRefModel>(DYNAMIC_WINDOW_REF);
     private readonly viewDestroyed$ = inject(ɵDestroyService);
+
+    private readonly mergedConfigOnce$ = this.mergedConfigService.data$
+        .pipe(take(1));
 
     private readonly draggerStrategy = new DragStrategyByAxisProperties({
         xAxisLeftStyleProperty: CssVariable.Left,
@@ -27,7 +44,42 @@ export class ɵDynamicWindowDraggableDirective
 
     public override ngAfterViewInit(): void {
         super.ngAfterViewInit();
-        setTimeout(() => this.initMergedConfigObserver());
+        setTimeout(() => {
+            this.initDragStartObserver();
+            this.onDragEndObserver();
+            this.initMergedConfigObserver();
+        });
+    }
+
+    // eslint-disable-next-line max-lines-per-function
+    private initDragStartObserver(): void {
+        this.osDragStart
+            .pipe(
+                switchMap(({ originalEvent }) => forkJoin({
+                    config: this.mergedConfigOnce$,
+                    // FIXME: For touch devices
+                    clientX: of((originalEvent as MouseEvent).clientX)
+                })),
+                filter(({ config }) => (
+                    this.windowRef.isFullscreen &&
+                    config.isExitFullscreenByDragTitleBar
+                )),
+                takeUntil(this.viewDestroyed$)
+            )
+            .subscribe(({ clientX }) => {
+                const exitFullscreenHelper = new ɵExitFromFullscreenHelper(this);
+
+                this.updateConfigWithoutChanges({
+                    shiftX: exitFullscreenHelper.getPointerShiftX(clientX),
+                    shiftY: exitFullscreenHelper.getPointerShiftY()
+                });
+            });
+    }
+
+    private onDragEndObserver(): void {
+        this.osDragEnd
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(() => this.updateConfigWithoutChanges({ shiftX: null, shiftY: null }));
     }
 
     private initMergedConfigObserver(): void {
@@ -38,9 +90,11 @@ export class ɵDynamicWindowDraggableDirective
 
     private updateParametersByDynamicWindowConfig(config: DynamicWindowConfig): void {
         this.parameters = {
-            draggableElement: this.context.titleBarElement,
-            movableElement: this.context.windowElement,
-            childElementsBlackList: this.context.titleBarButtons,
+            draggableElement: this._titleBarElement,
+            movableElement: this._windowElement,
+            childElementsBlackList: Array.from(
+                this._titleBarElement.querySelectorAll('.os-title-bar-button .os-icon')
+            ),
             strategy: this.draggerStrategy,
             ...config.draggerConfig
         };
