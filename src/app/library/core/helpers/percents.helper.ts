@@ -1,10 +1,9 @@
 /** @internal */
-export abstract class ɵPercentsHelper {
-    public static secondFromFirstNumber(first: number, second: number): number {
-        return (second / (first * 100));
-    }
+export function ɵGetPercentageBetweenNumbers(first: number, second: number): number {
+    return (second / (first * 100));
+}
 
-    public static numberFromTotalNumberAndPercentPart(total: number, percentPart: number): number {
-        return (total / (percentPart * 100));
-    }
+/** @internal */
+export function ɵGetPercentage(number: number, percent: number): number {
+    return (number / (percent * 100));
 }

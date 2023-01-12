@@ -58,7 +58,7 @@ export class ɵDynamicWindowDraggableDirective extends DraggableDirective implem
                 switchMap(({ originalEvent }) => forkJoin({
                     config: this.mergedConfigOnce$,
                     // FIXME: For touch devices
-                    clientX: of((originalEvent as MouseEvent).clientX)
+                    event: of(originalEvent as MouseEvent)
                 })),
                 filter(({ config }) => (
                     this.windowRef.isFullscreen &&
@@ -66,12 +66,12 @@ export class ɵDynamicWindowDraggableDirective extends DraggableDirective implem
                 )),
                 takeUntil(this.viewDestroyed$)
             )
-            .subscribe(({ clientX }) => {
+            .subscribe(({ event }) => {
                 const exitFullscreenHelper = new ɵExitFromFullscreenHelper(this);
 
                 this.updateConfigWithoutChanges({
-                    shiftX: exitFullscreenHelper.getPointerShiftX(clientX),
-                    shiftY: exitFullscreenHelper.getPointerShiftY()
+                    shiftX: exitFullscreenHelper.getPointerShiftX(event),
+                    shiftY: exitFullscreenHelper.getPointerShiftY(event)
                 });
             });
     }
