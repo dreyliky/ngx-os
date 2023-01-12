@@ -65,7 +65,6 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
         this.show(event);
         this.initClickOutsideObserver();
         event.preventDefault();
-        event.stopPropagation();
     }
 
     /** Hide Context Menu */
@@ -94,7 +93,6 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
             this.containerElement = document.createElement('div');
 
             this.containerElement.classList.add(CssClass.Container);
-            this.containerElement.addEventListener('click', (event) => event.stopPropagation());
             this.document.body.appendChild(this.containerElement);
         }
     }

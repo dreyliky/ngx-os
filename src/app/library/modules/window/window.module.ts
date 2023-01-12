@@ -15,7 +15,8 @@ import {
     ɵDynamicWindowCssClassesBindingDirective,
     ɵDynamicWindowCssVariablesBindingDirective,
     ɵDynamicWindowDraggableDirective,
-    ɵDynamicWindowResizableDirective
+    ɵDynamicWindowResizableDirective,
+    ɵDynamicWindowSizeCssVariablesBindingDirective
 } from './components';
 import { ɵDYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
 
@@ -26,6 +27,7 @@ import { ɵDYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
         ɵDynamicWindowCssClassesBindingDirective,
         ɵDynamicWindowResizableDirective,
         ɵDynamicWindowDraggableDirective,
+        ɵDynamicWindowSizeCssVariablesBindingDirective,
         TitleBarButtonComponent,
         TitleBarComponent,
         TitleBarContentComponent,

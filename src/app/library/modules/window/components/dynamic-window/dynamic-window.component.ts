@@ -109,7 +109,6 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
     public ngOnInit(): void {
         this.initConfigObserver();
         this.initIsActiveObserver();
-        this.initOutsideClickObserver();
     }
 
     public ngAfterViewInit(): void {

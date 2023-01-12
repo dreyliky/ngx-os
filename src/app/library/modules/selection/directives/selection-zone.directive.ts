@@ -10,16 +10,23 @@ import {
     Output,
     QueryList
 } from '@angular/core';
-import { fromEvent, merge, Observable, Subject } from 'rxjs';
+import { fromEvent, merge, Observable } from 'rxjs';
 import { filter, first, takeUntil, tap, throttleTime } from 'rxjs/operators';
-import { ɵCommonCssClassEnum as CommonCssClass, ɵGlobalEvents } from '../../../core';
+import {
+    ɵCommonCssClassEnum as CommonCssClass,
+    ɵDestroyService,
+    ɵGlobalEvents
+} from '../../../core';
 import { ɵSelectionCssClassEnum as CssClass } from '../enums';
 import { ɵContainerStyleCalculationHelper, ɵItemsSelectorHelper } from '../helpers';
 import { SelectionInfo } from '../interfaces';
 import { SelectionItemDirective } from './selection-item.directive';
 
 @Directive({
-    selector: '[osSelectionZone]'
+    selector: '[osSelectionZone]',
+    providers: [
+        ɵDestroyService
+    ]
 })
 export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
     /** Fires when selection starts. */
@@ -59,7 +66,7 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
 
     private get destroyedOrDocumentPointerUp$(): Observable<unknown> {
         return merge(
-            this.destroyed$,
+            this.viewDestroyed$,
             this.globalEvents.fromDocument('mouseup'),
             this.globalEvents.fromDocument('touchend')
         );
@@ -73,10 +80,9 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
     private containerElement: HTMLDivElement;
     private initialPointerDownEvent: PointerEvent | TouchEvent;
 
-    private destroyed$ = new Subject<boolean>();
-
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
+        private readonly viewDestroyed$: ɵDestroyService,
         private readonly globalEvents: ɵGlobalEvents,
         private readonly hostRef: ElementRef<HTMLElement>
     ) {}
@@ -88,8 +94,6 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.destroyed$.next(true);
-        this.destroyed$.complete();
         this.itemsSelector.onDestroy();
     }
 
@@ -132,7 +136,7 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
         const selectionInfo = this.getSelectionInfo(event);
 
         this.document.body.classList.remove(CommonCssClass.UserSelectNone);
-        this.removeContainerElement();
+        setTimeout(() => this.removeContainerElement());
         this.osSelectionEnd.emit(selectionInfo);
     }
 
@@ -144,7 +148,7 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
             .pipe(
                 tap(() => this.itemsSelector.onDeselection()),
                 filter(({ target }) => (target === this.hostRef.nativeElement)),
-                takeUntil(this.destroyed$)
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe((event) => this.onSelectionStart(event));
     }
@@ -169,14 +173,14 @@ export class SelectionZoneDirective<T = any> implements OnInit, OnDestroy {
         )
             .pipe(
                 first(),
-                takeUntil(this.destroyed$)
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe((event) => this.onSelectionEnd(event));
     }
 
     private initSelectedItemsEventObserver(): void {
         this.itemsSelector.selectedItems$
-            .pipe(takeUntil(this.destroyed$))
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((items) => this.osItemsSelectionChange.emit(items));
     }
 

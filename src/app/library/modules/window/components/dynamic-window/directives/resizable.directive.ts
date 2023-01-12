@@ -1,9 +1,7 @@
-import { AfterViewInit, Directive, inject } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { ɵDestroyService } from '../../../../../core';
 import { ResizableDirective, ɵResizerFactory } from '../../../../resizer';
-import { ɵDynamicWindowRefModel } from '../../../classes';
-import { DYNAMIC_WINDOW_REF } from '../../../data';
 import {
     ɵDynamicWindowCssVariableEnum as CssVariable
 } from '../../../enums';
@@ -21,12 +19,12 @@ export class ɵDynamicWindowResizableDirective
     extends ResizableDirective
     implements AfterViewInit {
     private readonly mergedConfigService = inject(ɵMergedConfigService);
-    private readonly windowRef = inject<ɵDynamicWindowRefModel>(DYNAMIC_WINDOW_REF);
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
     private readonly viewDestroyed$ = inject(ɵDestroyService);
 
     public override ngAfterViewInit(): void {
         super.ngAfterViewInit();
-        setTimeout(() => this.initMergedConfigObserver());
+        this.initMergedConfigObserver();
     }
 
     private initMergedConfigObserver(): void {
@@ -37,12 +35,12 @@ export class ɵDynamicWindowResizableDirective
 
     private updateParametersByDynamicWindowConfig(config: DynamicWindowConfig): void {
         this.parameters = {
-            targetElement: this.windowRef.windowElement,
-            minWidth: this.config.minWidth,
-            minHeight: this.config.minHeight,
-            maxWidth: this.config.maxWidth,
-            maxHeight: this.config.maxHeight,
-            allowedResizers: this.config.allowedResizers,
+            targetElement: this.elementRef.nativeElement,
+            minWidth: config.minWidth,
+            minHeight: config.minHeight,
+            maxWidth: config.maxWidth,
+            maxHeight: config.maxHeight,
+            allowedResizers: config.allowedResizers,
             xAxisLeftStyleProperty: CssVariable.Left,
             yAxisTopStyleProperty: CssVariable.Top,
             widthStyleProperty: CssVariable.Width,
