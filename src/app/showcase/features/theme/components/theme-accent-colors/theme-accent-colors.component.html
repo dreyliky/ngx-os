@@ -1,7 +1,8 @@
-<os-button
+<button
     *ngFor="let accentColor of accentColors"
+    os-button
     class="color-button"
     [class.os-focused]="isAccentColorSelected(accentColor)"
     [style.background]="transformAccentColorToCssFormat(accentColor)"
     (click)="accentColorClick.emit(accentColor)">
-</os-button>
+</button>

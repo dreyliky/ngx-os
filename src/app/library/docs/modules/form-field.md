@@ -27,10 +27,10 @@ Might be used as a wrapper for some items of form.
         </os-password-box>
     </os-form-field>
 
-    <os-button
-        (osClick)="onLogInButtonClick()">
+    <button os-button
+        (click)="onLogInButtonClick()">
         Log In
-    </os-button>
+    </button>
 </form>
 ```
 

@@ -19,11 +19,12 @@
     cursor: default;
     color: #000;
 
+    &:disabled,
     &.os-disabled {
         color: #909090;
     }
 
-    &:not(.os-disabled) {
+    &:not(:disabled, .os-disabled) {
         &:active,
         &.os-active {
             background-color: #999999;
@@ -60,12 +61,13 @@
     cursor: pointer;
     color: rgb(var(--os-primary-color));
 
+    &:disabled,
     &.os-disabled {
         color: #909090;
         cursor: default;
     }
 
-    &:not(.os-disabled) {
+    &:not(:disabled, .os-disabled) {
         &:hover {
             color: #7d7d7d;
         }

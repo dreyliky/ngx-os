@@ -46,22 +46,25 @@
     </os-title-bar-content>
 
     <os-title-bar-controls>
-        <os-title-bar-button
-            [isDisabled]="!config.isAllowHide"
-            [ariaLabel]="'Hide'"
-            (osClick)="onHideButtonClick()">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            aria-label="Hide"
+            [disabled]="!config.isAllowHide"
+            (click)="onHideButtonClick()">
+        </button>
 
-        <os-title-bar-button
-            [isDisabled]="!config.isAllowFullscreen"
-            [ariaLabel]="'Fullscreen'"
-            (osClick)="onFullscreenButtonClick()">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            aria-label="Fullscreen"
+            [disabled]="!config.isAllowFullscreen"
+            (click)="onFullscreenButtonClick()">
+        </button>
 
-        <os-title-bar-button
-            [isDisabled]="!config.isAllowClose"
-            [ariaLabel]="'Close'"
-            (osClick)="onCloseButtonClick()">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            aria-label="Close"
+            [disabled]="!config.isAllowClose"
+            (click)="onCloseButtonClick()">
+        </button>
     </os-title-bar-controls>
 </ng-template>

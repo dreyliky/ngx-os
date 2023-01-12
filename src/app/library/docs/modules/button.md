@@ -4,5 +4,5 @@ The Button represents a clickable button, used to submit forms or
 anywhere in a document for accessible, standard button functionality.
 
 ```html
-<os-button>Hello world!</os-button>
+<button os-button>Hello world!</button>
 ```

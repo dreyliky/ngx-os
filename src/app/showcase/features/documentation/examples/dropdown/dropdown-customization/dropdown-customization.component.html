@@ -30,11 +30,11 @@
             [innerText]="component.name">
         </b>
 
-        <os-button
+        <button os-button
             class="clear-button"
-            (osClick)="onClearButtonClick($event)">
+            (click)="onClearButtonClick($event)">
             Clear
-        </os-button>
+        </button>
     </ng-template>
 
     <os-dropdown-item
@@ -56,12 +56,12 @@
         *ngIf="!searchString"
         os-dropdown-footer
         class="pagination-container">
-        <os-button
+        <button os-button
             *ngFor="let pageIndex of pages"
             [class.os-focused]="(pageIndex === activePage)"
             [innerText]="(pageIndex + 1)"
-            (osClick)="onPageButtonClick(pageIndex)">
-        </os-button>
+            (click)="onPageButtonClick(pageIndex)">
+        </button>
     </div>
 </os-dropdown>
 

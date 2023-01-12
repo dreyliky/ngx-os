@@ -1,16 +1,17 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     HostBinding,
     OnInit,
     ViewEncapsulation
 } from '@angular/core';
 import { filter, map, takeUntil } from 'rxjs';
-import { ɵCommonCssClassEnum, ɵOsBaseButtonComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
 import { ɵMenuBarActiveButtonState } from '../../states';
 
 @Component({
-    selector: 'os-menu-bar-button',
+    selector: 'button[os-menu-bar-button]',
     template: '<ng-content></ng-content>',
     host: {
         'class': 'os-menu-bar-button'
@@ -18,13 +19,14 @@ import { ɵMenuBarActiveButtonState } from '../../states';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuBarButtonComponent extends ɵOsBaseButtonComponent implements OnInit {
+export class MenuBarButtonComponent extends ɵOsBaseViewComponent implements OnInit {
     /** @internal */
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
     public _isActive = false;
 
     constructor(
-        private readonly activeButtonState: ɵMenuBarActiveButtonState
+        private readonly activeButtonState: ɵMenuBarActiveButtonState,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }

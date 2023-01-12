@@ -5,13 +5,14 @@
     <a
         class="show-isolated-button"
         [routerLink]="isolatedPath">
-        <os-button-link>Isolate mode</os-button-link>
+        <button os-button-link>Isolate mode</button>
     </a>
 
-    <os-button-link
-        (osClick)="onOpenInsideDynamicWindowButtonClick()">
+    <button
+        os-button-link
+        (click)="onOpenInsideDynamicWindowButtonClick()">
         Inside Dynamic Window
-    </os-button-link>
+    </button>
 </os-header>
 
 <div class="wrapper">

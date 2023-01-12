@@ -1,24 +1,27 @@
 <div class="bg-images">
-    <os-button
+    <button
+        os-button
         class="bg-button"
         [style.backgroundImage]="getCustomBackgroundCssUrl()"
         [class.os-focused]="isCurrentBackgroundCustomImage">
-    </os-button>
+    </button>
 
-    <os-button
+    <button
         *ngFor="let backgroundUrl of defaultBackgroundUrls"
+        os-button
         class="bg-button"
         [style.backgroundImage]="getCssUrl(backgroundUrl)"
         [class.os-focused]="getIsImageSelected(backgroundUrl)"
         (click)="onBackgroundImageClick(backgroundUrl)">
-    </os-button>
+    </button>
 </div>
 
-<os-button
+<button
+    os-button
     class="custom-image-button"
-    (osClick)="onUploadButtonClick()">
+    (click)="onUploadButtonClick()">
     Apply custom texture
-</os-button>
+</button>
 
 <input
     #fileUploader

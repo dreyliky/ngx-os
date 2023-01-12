@@ -65,7 +65,7 @@ export class TaskbarComponent extends ɵOsBaseViewComponent implements OnInit, A
         return `url(${iconUrl || '/assets/showcase/icons/icon.png'})`;
     }
 
-    public onWindowReferenceIconClick(event: PointerEvent, windowRef: DynamicWindowRef): void {
+    public onWindowReferenceIconClick(event: MouseEvent, windowRef: DynamicWindowRef): void {
         if (!windowRef.isHidden && !windowRef.isActive) {
             windowRef.makeActive();
         } else {

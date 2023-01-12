@@ -6,6 +6,16 @@
         .os-title-bar {
             user-select: none;
         }
+
+        &.os-dragging, &.os-resizing {
+            .os-window-body, .os-title-bar-controls {
+                pointer-events: none;
+            }
+
+            os-resizer {
+                cursor: default;
+            }
+        }
     }
 
     .os-window,

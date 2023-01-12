@@ -22,7 +22,7 @@ import { ɵMenuBarCssClassEnum as CssClass } from '../enums';
 import { ɵMenuBarActiveButtonState } from '../states';
 
 @Directive({
-    selector: 'os-menu-bar-button[osMenuBar]',
+    selector: 'button[os-menu-bar-button][osMenuBar]',
     exportAs: 'osMenuBar',
     providers: [
         ɵDestroyService

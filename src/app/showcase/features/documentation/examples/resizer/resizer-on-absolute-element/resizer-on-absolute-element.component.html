@@ -1,7 +1,7 @@
-<os-button
-    (osClick)="onToggleContainerVisibilityButtonClick()">
+<button os-button
+    (click)="onToggleContainerVisibilityButtonClick()">
     {{ labelOfToggleVisibilityButton }}
-</os-button>
+</button>
 
 <div
     osAppendToBody
@@ -13,9 +13,9 @@
         I change my "left" and "top" properties while resizing.<br />
     </os-text>
 
-    <os-button
+    <button os-button
         #containerHideButton
-        (osClick)="onToggleContainerVisibilityButtonClick()">
+        (click)="onToggleContainerVisibilityButtonClick()">
         {{ labelOfToggleVisibilityButton }}
-    </os-button>
+    </button>
 </div>

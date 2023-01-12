@@ -150,12 +150,6 @@
         }
     }
 
-    &.os-dragging, &.os-resizing {
-        .os-window-body, .os-title-bar-controls {
-            pointer-events: none;
-        }
-    }
-
     &.os-fullscreen, &.os-entering-fullscreen {
         &.os-active .os-title-bar {
             .os-title-bar-button[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
@@ -288,12 +282,12 @@
         background-repeat: no-repeat;
     }
 
-    &:hover:not(.os-disabled) {
+    &:hover:not(:disabled, .os-disabled) {
         background-color: #e5e5e5;
     }
 
     &[aria-label="Hide"] {
-        &:not(.os-disabled) {
+        &:not(:disabled, .os-disabled) {
             .os-icon {
                 background-position: 0px -29px;
 
@@ -303,6 +297,7 @@
             }
         }
 
+        &:disabled,
         &.os-disabled {
             .os-icon {
                 background-position: 0px -87px;
@@ -311,7 +306,7 @@
     }
 
     &[aria-label="Fullscreen"] {
-        &:not(.os-disabled) {
+        &:not(:disabled, .os-disabled) {
             .os-icon {
                 background-position: -45px -29px;
         
@@ -321,13 +316,14 @@
             }
         }
 
+        &:disabled,
         &.os-disabled .os-icon {
             background-position: -45px -87px;
         }
     }
 
     &[aria-label="Close"] {
-        &:not(.os-disabled) {
+        &:not(:disabled, .os-disabled) {
             :hover {
                 background-color: rgb(232, 17, 35);
             }
@@ -341,6 +337,7 @@
             }
         }
 
+        &:disabled,
         &.os-disabled {
             .os-icon {
                 background-position: -135px -87px;

@@ -3,12 +3,12 @@
         #nodeIcon
         let-node>
         <ng-container *ngIf="node.children">
-            <os-button class="my-custom-expandable-icon">
+            <button os-button class="my-custom-expandable-icon">
                 <img src="/assets/showcase/icons/icon.png" />
 
                 <ng-container *ngIf="node.isExpanded">collapse</ng-container>
                 <ng-container *ngIf="!node.isExpanded">expand</ng-container>
-            </os-button>
+            </button>
         </ng-container>
     </ng-template>
 </os-tree-view>

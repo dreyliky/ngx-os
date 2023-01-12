@@ -10,14 +10,16 @@
 </div>
 
 <div class="footer">
-    <os-button
-        (osClick)="onCancelButtonClick()">
+    <button
+        os-button
+        (click)="onCancelButtonClick()">
         Cancel
-    </os-button>
+    </button>
 
-    <os-button
-        [isFocused]="true"
-        (osClick)="onDownloadButtonClick()">
+    <button
+        os-button
+        autofocus
+        (click)="onDownloadButtonClick()">
         Download
-    </os-button>
+    </button>
 </div>

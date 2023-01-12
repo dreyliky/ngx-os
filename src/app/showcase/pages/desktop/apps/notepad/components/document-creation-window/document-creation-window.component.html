@@ -10,14 +10,16 @@
 </div>
 
 <div class="footer">
-    <os-button
-        (osClick)="onCancelButtonClick()">
+    <button
+        os-button
+        (click)="onCancelButtonClick()">
         Cancel
-    </os-button>
+    </button>
 
-    <os-button
-        [isFocused]="true"
-        (osClick)="onSaveButtonClick()">
+    <button
+        os-button
+        autofocus
+        (click)="onSaveButtonClick()">
         Save
-    </os-button>
+    </button>
 </div>

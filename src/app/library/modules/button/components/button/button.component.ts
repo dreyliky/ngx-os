@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { ɵOsBaseButtonComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
-    selector: 'os-button',
+    selector: 'button[os-button]',
     template: '<ng-content></ng-content>',
     host: {
         'class': 'os-button'
@@ -10,4 +10,4 @@ import { ɵOsBaseButtonComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent extends ɵOsBaseButtonComponent {}
+export class ButtonComponent extends ɵOsBaseViewComponent {}
