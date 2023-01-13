@@ -47,7 +47,7 @@ desktop-shortcuts-zone {
 desktop-taskbar {
     flex-grow: 1;
     flex-shrink: 0;
-    z-index: 9999;
+    z-index: 99;
 
     &.taskbar-left,
     &.taskbar-right {

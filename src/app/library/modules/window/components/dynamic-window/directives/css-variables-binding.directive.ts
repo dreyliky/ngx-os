@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Directive, ElementRef, HostBinding } from '@angular/
 import { debounceTime, filter, takeUntil } from 'rxjs';
 import { ɵDestroyService, ɵElementResizingObserver } from '../../../../../core';
 import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
+import { DynamicWindowConfig } from '../../../interfaces';
 import { ɵMergedConfigService } from '../services';
 
 /** @internal */
@@ -31,22 +32,7 @@ export class ɵDynamicWindowCssVariablesBindingDirective {
     private initMergedConfigObserver(): void {
         this.mergedConfigService.data$
             .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe((config) => {
-                this.cssVariables = {
-                    [CssVariable.Left]: `${config.positionX}px`,
-                    [CssVariable.Top]: `${config.positionY}px`,
-                    [CssVariable.Width]: `${config.width}px`,
-                    [CssVariable.Height]: `${config.height}px`,
-                    [CssVariable.CoordinateForHidingX]: config.hidesInto?.x,
-                    [CssVariable.CoordinateForHidingY]: config.hidesInto?.y,
-                    [CssVariable.FullscreenOffsetTop]: config.fullscreenOffset?.top,
-                    [CssVariable.FullscreenOffsetRight]: config.fullscreenOffset?.right,
-                    [CssVariable.FullscreenOffsetBottom]: config.fullscreenOffset?.bottom,
-                    [CssVariable.FullscreenOffsetLeft]: config.fullscreenOffset?.left
-                };
-
-                this.changeDetector.markForCheck();
-            });
+            .subscribe((config) => this.updateCssVariables(config));
     }
 
     private initElementSizeObserver(): void {
@@ -56,11 +42,30 @@ export class ɵDynamicWindowCssVariablesBindingDirective {
                 filter(({ offsetWidth, offsetHeight }) => (!!offsetWidth && !!offsetHeight)),
                 takeUntil(this.viewDestroyed$)
             )
-            .subscribe((windowElement) => {
-                this.realWidthInPx = `${windowElement.offsetWidth}px`;
-                this.realHeightInPx = `${windowElement.offsetHeight}px`;
+            .subscribe((windowElement) => this.updateRealSizeProperties(windowElement));
+    }
 
-                this.changeDetector.markForCheck();
-            });
+    private updateCssVariables(config: DynamicWindowConfig): void {
+        this.cssVariables = {
+            [CssVariable.Left]: `${config.positionX}px`,
+            [CssVariable.Top]: `${config.positionY}px`,
+            [CssVariable.Width]: `${config.width}px`,
+            [CssVariable.Height]: `${config.height}px`,
+            [CssVariable.CoordinateForHidingX]: config.hidesInto?.x,
+            [CssVariable.CoordinateForHidingY]: config.hidesInto?.y,
+            [CssVariable.FullscreenOffsetTop]: config.fullscreenOffset?.top,
+            [CssVariable.FullscreenOffsetRight]: config.fullscreenOffset?.right,
+            [CssVariable.FullscreenOffsetBottom]: config.fullscreenOffset?.bottom,
+            [CssVariable.FullscreenOffsetLeft]: config.fullscreenOffset?.left
+        };
+
+        this.changeDetector.markForCheck();
+    }
+
+    private updateRealSizeProperties(windowElement: HTMLElement): void {
+        this.realWidthInPx = `${windowElement.offsetWidth}px`;
+        this.realHeightInPx = `${windowElement.offsetHeight}px`;
+
+        this.changeDetector.markForCheck();
     }
 }
