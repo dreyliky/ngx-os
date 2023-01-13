@@ -10,7 +10,7 @@ to get more information.
 ### CSS Classes
 | Name             | Description                       |
 | ---------------- | --------------------------------- |
-| `.os-text-box`   | Host element                      |
+| `.os-input`      | Host element                      |
 | `.os-readonly`   | Is readonly?                      |
 | `.os-disabled`   | Is disabled?                      |
 

@@ -9,10 +9,10 @@ Allows you to get number input from the user.
 - Allows forbidding empty field when no value;
 
 ```html
-<os-number-box
-    [placeholder]="'Hello World'"
-    [(ngModel)]="myValueField">
-</os-number-box>
+<input
+    os-number-box
+    placeholder="Hello World"
+    [(ngModel)]="myValueField" />
 ```
 
 ## Use as a part of the Form Field
@@ -21,13 +21,13 @@ Allows you to get number input from the user.
 <os-form-field [isStacked]="true">
     <os-label>Age</os-label>
 
-    <os-number-box
-        [placeholder]="'Please enter your age'"
-        [(ngModel)]="userAge">
-    </os-number-box>
+    <input
+        os-number-box
+        placeholder="Please enter your age"
+        [(ngModel)]="userAge" />
 </os-form-field>
 ```
 
 ## Use with **@angular/forms**
 
-`<os-number-box>` is compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.
+`<input os-number-box>` is compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.

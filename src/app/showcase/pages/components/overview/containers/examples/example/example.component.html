@@ -16,7 +16,9 @@
 </os-header>
 
 <div class="wrapper">
-    <os-tab-group [(selectedTabIndex)]="openedSection">
+    <section
+        os-tab-group
+        [(selectedTabIndex)]="openedSection">
         <os-tab [label]="'Demo'">
             <div class="example-wrapper">
                 <ng-template #exampleTemplate></ng-template>
@@ -55,5 +57,5 @@
                 </showcase-code-viewer>
             </ng-template>
         </os-tab>
-    </os-tab-group>
+    </section>
 </div>

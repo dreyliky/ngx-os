@@ -10,15 +10,15 @@
                 [osHint]="document.name"
                 [label]="document.name | slice:0:30"
                 [iconUrl]="'/assets/showcase/icons/file.png'"
-                (osDblClick)="onDocumentEdit(document)">
+                (dblclick)="onDocumentEdit(document)">
                 <ng-template #documentContextMenu>
                     <os-context-menu-item
-                        (osClick)="onDocumentEdit(document)">
+                        (click)="onDocumentEdit(document)">
                         Edit
                     </os-context-menu-item>
 
                     <os-context-menu-item
-                        (osClick)="onDocumentDeleteButtonClick(document)">
+                        (click)="onDocumentDeleteButtonClick(document)">
                         Delete
                     </os-context-menu-item>
                 </ng-template>
@@ -28,7 +28,7 @@
 
     <ng-template #documentsContextMenu>
         <os-context-menu-item
-            (osClick)="onCreateDocumentButtonClick()">
+            (click)="onCreateDocumentButtonClick()">
             Create
         </os-context-menu-item>
     </ng-template>

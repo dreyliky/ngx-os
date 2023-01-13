@@ -1,18 +1,22 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
     ElementRef,
     HostBinding,
     Input,
-    OnInit,
     TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
-    Coordinate, ɵCommonCssClassEnum, ɵEventOutside, ɵGlobalEvents, ɵOsBaseComponent
+    Coordinate,
+    ɵCommonCssClassEnum,
+    ɵEventOutside,
+    ɵGlobalEvents,
+    ɵOsBaseViewComponent
 } from '../../../../core';
 
 /**
@@ -55,7 +59,7 @@ import {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
+export class GridItemComponent extends ɵOsBaseViewComponent {
     /** Is grid item selected? */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
@@ -120,29 +124,25 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     constructor(
         /** @internal */
         public readonly _hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: ɵGlobalEvents
+        private readonly globalEvents: ɵGlobalEvents,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
 
-    public ngOnInit(): void {
-        this.initMouseDownObserver();
-    }
+    /** @internal */
+    @HostBinding()
+    public _onMouseDown(): void {
+        this.isSelected = true;
 
-    private initMouseDownObserver(): void {
-        this.osMouseDown
-            .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe(() => {
-                this.isSelected = true;
-
-                this.changeDetector.markForCheck();
-            });
+        this.changeDetector.markForCheck();
     }
 
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('mousedown')
             .pipe(
-                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event)),
+                filter((event) => ɵEventOutside
+                    .checkForElement(this._hostRef.nativeElement, event)),
                 takeUntil(this._viewDestroyedOrBecomeDeselected$)
             )
             .subscribe(() => {

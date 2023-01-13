@@ -1,11 +1,12 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    ElementRef,
     HostBinding,
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-scroll-view',
@@ -16,7 +17,7 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScrollViewComponent extends ɵOsBaseComponent {
+export class ScrollViewComponent extends ɵOsBaseViewComponent {
     /** Is vertical scroll enabled? */
     @Input()
     public isVerticalScrollEnabled: boolean = true;
@@ -51,6 +52,12 @@ export class ScrollViewComponent extends ɵOsBaseComponent {
         }
 
         return (this.isVerticalScrollEnabled) ? 'scroll' : 'hidden';
+    }
+
+    constructor(
+        private readonly hostRef: ElementRef<HTMLElement>
+    ) {
+        super();
     }
 
     /** Scrolls to given coordinates. Recommend to use this method instead of directly via HTML element */

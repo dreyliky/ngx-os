@@ -1,31 +1,25 @@
-<section
+<menu
     class="os-element"
-    [ngStyle]="style"
-    [class]="styleClass"
-    [attr.id]="id">
-    <menu
-        class="os-element"
-        role="tablist">
-        <ng-template
-            ngFor
-            let-tab
-            [ngForOf]="_tabComponentList"
-            [ngForTrackBy]="_trackByFn">
-            <ng-container
-                *ngTemplateOutlet="tab._tabButtonInternalTemplate">
-            </ng-container>
-        </ng-template>
-    </menu>
-
+    role="tablist">
     <ng-template
         ngFor
         let-tab
         [ngForOf]="_tabComponentList"
         [ngForTrackBy]="_trackByFn">
-        <ng-template [ngIf]="tab._isSelected">
-            <ng-container
-                *ngTemplateOutlet="tab._tabContentInternalTemplate">
-            </ng-container>
-        </ng-template>
+        <ng-container
+            *ngTemplateOutlet="tab._tabButtonInternalTemplate">
+        </ng-container>
     </ng-template>
-</section>
+</menu>
+
+<ng-template
+    ngFor
+    let-tab
+    [ngForOf]="_tabComponentList"
+    [ngForTrackBy]="_trackByFn">
+    <ng-template [ngIf]="tab._isSelected">
+        <ng-container
+            *ngTemplateOutlet="tab._tabContentInternalTemplate">
+        </ng-container>
+    </ng-template>
+</ng-template>

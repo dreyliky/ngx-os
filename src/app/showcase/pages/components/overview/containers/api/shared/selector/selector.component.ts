@@ -10,7 +10,7 @@ export class SelectorComponent {
     @Input()
     public name: string;
 
-    public onSelectorTextBoxClick(event: PointerEvent): void {
+    public onSelectorTextBoxClick(event: MouseEvent): void {
         const inputElement = event.target as HTMLInputElement;
 
         inputElement.select();

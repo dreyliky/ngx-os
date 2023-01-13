@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
     EventEmitter,
@@ -9,7 +10,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 /**
  * ## Templates
@@ -42,7 +43,7 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent extends ɵOsBaseComponent {
+export class TabComponent extends ɵOsBaseViewComponent {
     /** Label text of the tab */
     @Input()
     public label: string;
@@ -81,6 +82,12 @@ export class TabComponent extends ɵOsBaseComponent {
 
     /** @internal */
     public _isSelected: boolean = false;
+
+    constructor(
+        private readonly changeDetector: ChangeDetectorRef
+    ) {
+        super();
+    }
 
     /** @internal */
     public _onTabButtonClick(event: PointerEvent): void {

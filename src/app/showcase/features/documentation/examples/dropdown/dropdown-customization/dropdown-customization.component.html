@@ -2,10 +2,10 @@
     <div
         os-dropdown-header
         class="search-container">
-        <os-text-box
+        <input
+            osInput
             [placeholder]="'Search by name'"
-            (osKeyUp)="onSearch($event)">
-        </os-text-box>
+            (keyup)="onSearch($event)" />
     </div>
 
     <ng-template #dropdownPlaceholder>

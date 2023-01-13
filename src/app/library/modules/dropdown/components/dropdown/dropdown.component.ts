@@ -1,11 +1,13 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
+    ElementRef,
     EventEmitter,
+    HostListener,
     Inject,
     Input,
-    OnInit,
     Output,
     TemplateRef,
     ViewEncapsulation
@@ -89,7 +91,7 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
 })
 export class DropdownComponent<T = any>
     extends ɵOsBaseFormControlComponent<T>
-    implements OnInit, ControlValueAccessor {
+    implements ControlValueAccessor {
     /** Is dropdown overlay should be created inside the `body` HTML element? */
     @Input()
     public isAppendToBody: boolean;
@@ -153,13 +155,11 @@ export class DropdownComponent<T = any>
 
     constructor(
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
-        private readonly globalEvents: ɵGlobalEvents
+        private readonly globalEvents: ɵGlobalEvents,
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-    }
-
-    public ngOnInit(): void {
-        this.initClickObserver();
     }
 
     /** Opens the dropdown overlay */
@@ -197,13 +197,12 @@ export class DropdownComponent<T = any>
         this.close();
     }
 
-    private initClickObserver(): void {
-        this.osClick
-            .pipe(
-                filter(() => !this.isDisabled),
-                takeUntil(this.viewDestroyed$)
-            )
-            .subscribe(() => this.toggle());
+    /** @internal */
+    @HostListener('click')
+    public _onClick(): void {
+        if (!this.isDisabled) {
+            this.toggle();
+        }
     }
 
     private initClickOutsideObserver(): void {

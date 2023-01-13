@@ -1,22 +1,24 @@
 <os-form-field [isStacked]="false">
     <os-label>Selection parameters</os-label>
 
-    <os-checkbox
-        [(ngModel)]="isAllowSelection">
-        Allow selection
-    </os-checkbox>
+    <div class="checkboxes">
+        <os-checkbox
+            [(ngModel)]="isAllowSelection">
+            Allow selection
+        </os-checkbox>
 
-    <os-checkbox
-        [isDisabled]="!isAllowSelection"
-        [(ngModel)]="isAllowMultipleSelection">
-        Multiple selection
-    </os-checkbox>
+        <os-checkbox
+            [isDisabled]="!isAllowSelection"
+            [(ngModel)]="isAllowMultipleSelection">
+            Multiple selection
+        </os-checkbox>
 
-    <os-checkbox
-        [isDisabled]="!isAllowSelection"
-        [(ngModel)]="isSelectionInToggleMode">
-        Toggle mode
-    </os-checkbox>
+        <os-checkbox
+            [isDisabled]="!isAllowSelection"
+            [(ngModel)]="isSelectionInToggleMode">
+            Toggle mode
+        </os-checkbox>
+    </div>
 </os-form-field>
 
 <os-tree-view

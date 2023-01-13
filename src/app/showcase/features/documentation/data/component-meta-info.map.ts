@@ -7,23 +7,19 @@ import {
     DIVIDER_META_INFO,
     DRAG_AND_DROP_META_INFO,
     DROPDOWN_META_INFO,
-    EMAIL_BOX_META_INFO,
     FORM_FIELD_META_INFO,
     GRID_META_INFO,
     GROUP_BOX_META_INFO,
     HINT_META_INFO,
+    INPUT_META_INFO,
     LIST_META_INFO,
     MENU_BAR_META_INFO,
-    NUMBER_BOX_META_INFO,
-    PASSWORD_BOX_META_INFO,
     RADIO_BUTTON_META_INFO,
     RESIZER_META_INFO,
     SCROLL_VIEW_META_INFO,
     SELECTION_META_INFO,
     SLIDER_META_INFO,
     TAB_GROUP_META_INFO,
-    TEXTAREA_BOX_META_INFO,
-    TEXT_BOX_META_INFO,
     TEXT_META_INFO,
     THEME_META_INFO,
     TREE_VIEW_META_INFO,
@@ -69,6 +65,10 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
         GRID_META_INFO
     )
     .set(
+        OsComponentEnum.Input,
+        INPUT_META_INFO
+    )
+    .set(
         OsComponentEnum.List,
         LIST_META_INFO
     )
@@ -107,26 +107,6 @@ export const ComponentMetaInfoMap = new Map<OsComponentEnum, ComponentMetaInfo>(
     .set(
         OsComponentEnum.Text,
         TEXT_META_INFO
-    )
-    .set(
-        OsComponentEnum.TextBox,
-        TEXT_BOX_META_INFO
-    )
-    .set(
-        OsComponentEnum.NumberBox,
-        NUMBER_BOX_META_INFO
-    )
-    .set(
-        OsComponentEnum.EmailBox,
-        EMAIL_BOX_META_INFO
-    )
-    .set(
-        OsComponentEnum.PasswordBox,
-        PASSWORD_BOX_META_INFO
-    )
-    .set(
-        OsComponentEnum.TextareaBox,
-        TEXTAREA_BOX_META_INFO
     )
     .set(
         OsComponentEnum.Theme,

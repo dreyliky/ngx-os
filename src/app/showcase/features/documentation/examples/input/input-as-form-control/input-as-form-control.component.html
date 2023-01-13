@@ -1,0 +1,19 @@
+<form [formGroup]="formGroup">
+    <os-form-field [isStacked]="true">
+        <input
+            osInput
+            placeholder="Enter your name"
+            [formControl]="inputControl" />
+
+        <os-text>
+            {{ formGroup.value | json }}
+        </os-text>
+    </os-form-field>
+</form>
+
+<os-form-field>
+    <input
+        osInput
+        placeholder="Text Box [Disabled]"
+        [formControl]="inputDisabledControl" />
+</os-form-field>

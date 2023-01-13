@@ -2,10 +2,10 @@
     <os-form-field [isStacked]="true">
         <os-label>File Name</os-label>
     
-        <os-text-box
-            [isAutofocused]="true"
-            [formControl]="fileNameControl">
-        </os-text-box>
+        <input
+            osInput
+            osAutofocus
+            [formControl]="fileNameControl" />
     </os-form-field>
 </div>
 
@@ -18,7 +18,7 @@
 
     <button
         os-button
-        autofocus
+        osAutofocus
         (click)="onDownloadButtonClick()">
         Download
     </button>

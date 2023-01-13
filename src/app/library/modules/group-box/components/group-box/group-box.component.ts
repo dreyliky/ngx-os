@@ -4,10 +4,10 @@ import {
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
-    selector: 'os-group-box',
+    selector: 'fieldset[os-group-box]',
     templateUrl: './group-box.component.html',
     host: {
         'class': 'os-group-box'
@@ -15,7 +15,7 @@ import { ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GroupBoxComponent extends ɵOsBaseComponent {
+export class GroupBoxComponent extends ɵOsBaseViewComponent {
     /** Label of group */
     @Input()
     public label: string;

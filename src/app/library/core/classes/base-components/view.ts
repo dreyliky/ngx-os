@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Directive } from '@angular/core';
 import { injectLocal } from 'ngx-local-injector';
 import { ɵDestroyService } from '../../services';
 
-@Component({
-    template: '',
+@Directive({
     host: {
         class: 'os-element'
     }

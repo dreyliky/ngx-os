@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { DynamicWindowService, NumberBoxChangeEvent } from 'ngx-os';
+import { DynamicWindowService } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GroupActionService, WindowsPositionShuffleService } from './services';
@@ -28,8 +28,10 @@ export class ExperimentsAppComponent implements OnInit {
         this.initTotalWindowsAliveObservable();
     }
 
-    public onActionsDelayNumberBoxValueChange({ value }: NumberBoxChangeEvent): void {
-        this.groupActionService.setActionsDelayValue(value);
+    public onActionsDelayNumberBoxValueChange(event: Event): void {
+        const targetElement = event.target as HTMLInputElement;
+
+        this.groupActionService.setActionsDelayValue(+targetElement.value);
     }
 
     public onStopCurrentActionsButtonClick(): void {

@@ -16,10 +16,10 @@
     <os-form-field>
         <os-label>Login</os-label>
     
-        <os-text-box
-            [placeholder]="'Enter your login'"
-            [formControl]="loginControl">
-        </os-text-box>
+        <input
+            osInput
+            placeholder="Enter your login"
+            [formControl]="loginControl" />
 
         <os-error *ngIf="isControlHasRequiredError(loginControl)">
             Login is required
@@ -29,10 +29,11 @@
     <os-form-field>
         <os-label>Info</os-label>
     
-        <os-textarea-box
-            [placeholder]="'Enter short info about you'"
-            [formControl]="infoControl">
-        </os-textarea-box>
+        <textarea
+            osInput
+            placeholder="Enter short info about you"
+            [formControl]="infoControl"
+        ></textarea>
 
         <os-error *ngIf="isControlHasRequiredError(infoControl)">
             Info is required

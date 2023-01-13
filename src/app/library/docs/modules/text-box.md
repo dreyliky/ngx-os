@@ -3,10 +3,10 @@
 Allows you to get short text input from the user.
 
 ```html
-<os-text-box
-    [placeholder]="'Hello World'"
-    [(ngModel)]="myValueField">
-</os-text-box>
+<input
+    osInput
+    placeholder="Hello World"
+    [(ngModel)]="myValueField" />
 ```
 
 ## Use as a part of the Form Field
@@ -15,13 +15,13 @@ Allows you to get short text input from the user.
 <os-form-field [isStacked]="true">
     <os-label>Name</os-label>
 
-    <os-text-box
-        [placeholder]="'Please enter your name'"
-        [(ngModel)]="userName">
-    </os-text-box>
+    <input
+        osInput
+        placeholder="Please enter your name"
+        [(ngModel)]="userName" />
 </os-form-field>
 ```
 
 ## Use with **@angular/forms**
 
-`<os-text-box>` is compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.
+`<input osInput />` is compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.

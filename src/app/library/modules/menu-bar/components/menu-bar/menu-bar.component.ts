@@ -4,7 +4,7 @@ import {
     HostListener,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 import { ɵMenuBarActiveButtonState } from '../../states';
 
 @Component({
@@ -19,7 +19,7 @@ import { ɵMenuBarActiveButtonState } from '../../states';
         ɵMenuBarActiveButtonState
     ]
 })
-export class MenuBarComponent extends ɵOsBaseComponent {
+export class MenuBarComponent extends ɵOsBaseViewComponent {
     /** @internal */
     @HostListener('contextmenu', ['$event'])
     public _onContextMenuEvent(event: PointerEvent): void {

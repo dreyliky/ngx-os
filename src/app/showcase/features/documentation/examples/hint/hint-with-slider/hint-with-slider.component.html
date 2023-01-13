@@ -8,8 +8,8 @@
     [min]="sliderMinValue"
     [max]="sliderMaxValue"
     [(ngModel)]="sliderValue"
-    (osMouseDown)="onSliderMouseDown()"
-    (osMouseOut)="onSliderMouseLeave()">
+    (mousedown)="onSliderMouseDown()"
+    (mouseout)="onSliderMouseLeave()">
 </os-slider>
 
 <ng-template #sliderHintTemplate>

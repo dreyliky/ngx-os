@@ -12,11 +12,11 @@ import {
 } from '@angular/core';
 import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 import { TabComponent } from '../tab';
 
 @Component({
-    selector: 'os-tab-group',
+    selector: 'section[os-tab-group]',
     templateUrl: './tab-group.component.html',
     host: {
         'class': 'os-tab-group'
@@ -24,7 +24,7 @@ import { TabComponent } from '../tab';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
+export class TabGroupComponent extends ɵOsBaseViewComponent implements OnDestroy {
     /** Index of the tab which is selected */
     @Input()
     public selectedTabIndex: number = 0;

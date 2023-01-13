@@ -11,7 +11,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 import { ScrollViewComponent } from '../../../scroll-view';
 import {
     TreeNode,
@@ -90,7 +90,7 @@ import { ɵTreeNodesState } from '../../states';
         TreeNodesSelectionService
     ]
 })
-export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnChanges {
+export class TreeViewComponent<T = any> extends ɵOsBaseViewComponent implements OnChanges {
     /** An array of tree nodes */
     @Input()
     public data: TreeNode<T>[];

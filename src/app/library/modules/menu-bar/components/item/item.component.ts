@@ -2,11 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    OnInit,
+    HostListener,
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { filter } from 'rxjs/operators';
 import { ɵOsBaseOptionComponent } from '../../../../core';
 
 @Component({
@@ -18,19 +17,14 @@ import { ɵOsBaseOptionComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> implements OnInit {
+export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
     @Output()
     public readonly osSelected: EventEmitter<T> = new EventEmitter();
 
-    public ngOnInit(): void {
-        this.initClickObserver();
-    }
-
-    private initClickObserver(): void {
-        this.osClick
-            .pipe(
-                filter(() => !this.isDisabled)
-            )
-            .subscribe(() => this.osSelected.emit(this.data));
+    @HostListener('click')
+    public _onClick(): void {
+        if (!this.isDisabled) {
+            this.osSelected.emit(this.data);
+        }
     }
 }

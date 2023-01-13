@@ -6,10 +6,10 @@
         <os-form-field
             os-tree-view-header
             class="search-container">
-            <os-text-box
-                [placeholder]="'Search'"
-                (osKeyUp)="onSearch($event)">
-            </os-text-box>
+            <input
+                osInput
+                placeholder="Search"
+                (keyup)="onSearch($event)" />
         </os-form-field>
 
         <ng-template

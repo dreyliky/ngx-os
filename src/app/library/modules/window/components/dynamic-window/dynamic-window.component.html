@@ -15,9 +15,9 @@
         osDynamicWindowDraggable
         [isActive]="windowRef.isActive"
         [style.display]="_titleBarDisplayAttr"
-        [style]="config.titleBarStyle"
-        [styleClass]="config.titleBarStyleClass"
-        (osDblClick)="onTitleBarDblClick()"
+        [ngStyle]="config.titleBarStyle"
+        [ngClass]="config.titleBarStyleClass"
+        (dblclick)="onTitleBarDblClick()"
         (osDragStart)="changeDetector.detach()"
         (osDragging)="onDragging()"
         (osDragEnd)="changeDetector.reattach()">

@@ -5,7 +5,7 @@ import {
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
 
 /**
  * ## Content Projection Slots
@@ -30,7 +30,7 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WindowComponent extends ɵOsBaseComponent {
+export class WindowComponent extends ɵOsBaseViewComponent {
     /** Marks window as active (means user works with it right now) */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)

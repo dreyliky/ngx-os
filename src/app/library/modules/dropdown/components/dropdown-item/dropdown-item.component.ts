@@ -1,14 +1,16 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
     Host,
-    OnInit,
+    HostListener,
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { filter, takeUntil, tap } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { ɵIsNil, ɵOsBaseOptionComponent } from '../../../../core';
 import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownComponent } from '../dropdown/dropdown.component';
@@ -24,23 +26,20 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
 })
 export class DropdownItemComponent<T = any>
     extends ɵOsBaseOptionComponent<T>
-    implements OnInit, AfterViewInit {
+    implements AfterViewInit {
     /** Fires when the dropdown item selected */
     @Output()
     public osSelected: EventEmitter<DropdownValueChangeEvent<T>> = new EventEmitter();
 
     constructor(
-        @Host() private readonly dropdown: DropdownComponent<T>
+        @Host() private readonly dropdown: DropdownComponent<T>,
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
 
-    public ngOnInit(): void {
-        this.initClickObserver();
-    }
-
-    public override ngAfterViewInit(): void {
-        super.ngAfterViewInit();
+    public ngAfterViewInit(): void {
         this.initDefaultValueIfAbsent();
         queueMicrotask(() => this.initDropdownFormControlValueObserver());
     }
@@ -50,19 +49,17 @@ export class DropdownItemComponent<T = any>
         return this.hostRef.nativeElement.innerText || this.data?.toString() || null;
     }
 
-    private initClickObserver(): void {
-        this.osClick
-            .pipe(
-                tap((event) => event.stopPropagation()),
-                filter(() => !this.isDisabled),
-                takeUntil(this.viewDestroyed$)
-            )
-            .subscribe((originalEvent) => {
-                const event: DropdownValueChangeEvent<T> = { originalEvent, data: this.data };
+    /** @internal */
+    @HostListener('click', ['$event'])
+    public _onClick(originalEvent: PointerEvent): void {
+        originalEvent.stopPropagation();
 
-                this.dropdown._onItemSelect(event, this);
-                this.osSelected.emit(event);
-            });
+        if (!this.isDisabled) {
+            const event: DropdownValueChangeEvent<T> = { originalEvent, data: this.data };
+
+            this.dropdown._onItemSelect(event, this);
+            this.osSelected.emit(event);
+        }
     }
 
     private initDefaultValueIfAbsent(): void {

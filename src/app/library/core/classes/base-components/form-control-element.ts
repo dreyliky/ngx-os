@@ -1,15 +1,13 @@
-import { Component, HostBinding, inject, Input } from '@angular/core';
+import { ChangeDetectorRef, Directive, HostBinding, inject, Input } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 import { ɵCommonCssClassEnum } from '../../enums';
-import { ɵOsBaseComponent } from './component';
+import { ɵOsBaseViewComponent } from './view';
 
-@Component({
-    template: ''
-})
+@Directive({})
 export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
-    extends ɵOsBaseComponent
+    extends ɵOsBaseViewComponent
     implements ControlValueAccessor {
     /** Is component disabled? */
     @Input()
@@ -34,6 +32,8 @@ export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
 
     protected controlDir: NgControl;
 
+    private readonly __cdr = inject(ChangeDetectorRef);
+
     constructor() {
         super();
         this.initControlDir();
@@ -52,14 +52,14 @@ export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
     public setDisabledState(state: boolean): void {
         this.isDisabled = state;
 
-        this.changeDetector.markForCheck();
+        this.__cdr.markForCheck();
     }
 
     /** @internal */
     public writeValue(value: T): void {
         this.value = value;
 
-        this.changeDetector.detectChanges();
+        this.__cdr.detectChanges();
     }
 
     private initControlDir(): void {

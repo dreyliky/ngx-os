@@ -2,11 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    OnInit,
+    HostListener,
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { filter, takeUntil } from 'rxjs/operators';
 import { ɵOsBaseOptionComponent } from '../../../../core';
 
 @Component({
@@ -18,21 +17,16 @@ import { ɵOsBaseOptionComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContextMenuItemComponent<T = any> extends ɵOsBaseOptionComponent<T> implements OnInit {
+export class ContextMenuItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
     /** Fires when the list item selected */
     @Output()
     public readonly osSelected: EventEmitter<T> = new EventEmitter();
 
-    public ngOnInit(): void {
-        this.initClickObserver();
-    }
-
-    private initClickObserver(): void {
-        this.osClick
-            .pipe(
-                filter(() => !this.isDisabled),
-                takeUntil(this.viewDestroyed$)
-            )
-            .subscribe(() => this.osSelected.emit(this.data));
+    /** @internal */
+    @HostListener('click')
+    public _onClick(): void {
+        if (!this.isDisabled) {
+            this.osSelected.emit(this.data);
+        }
     }
 }

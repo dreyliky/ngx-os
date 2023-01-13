@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { timer } from 'rxjs';
 import { debounce, takeUntil } from 'rxjs/operators';
-import { ɵElementResizingObserver, ɵErrorHelper, ɵOsBaseComponent } from '../../../../core';
+import { ɵElementResizingObserver, ɵErrorHelper, ɵOsBaseViewComponent } from '../../../../core';
 import {
     ɵBaseGridCellCountDeterminator,
     ɵCell,
@@ -42,7 +42,7 @@ import { GridItemComponent } from '../item';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridComponent extends ɵOsBaseComponent implements OnChanges, AfterViewInit {
+export class GridComponent extends ɵOsBaseViewComponent implements OnChanges, AfterViewInit {
     /** Direction of grid items */
     @Input()
     public direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
@@ -102,8 +102,13 @@ export class GridComponent extends ɵOsBaseComponent implements OnChanges, After
     private _cellMinSize: number = 50;
     private gridItemComponents: QueryList<GridItemComponent>;
 
-    public override ngAfterViewInit(): void {
-        super.ngAfterViewInit();
+    constructor(
+        private readonly hostRef: ElementRef<HTMLElement>
+    ) {
+        super();
+    }
+
+    public ngAfterViewInit(): void {
         this.initHostSizeChangeObserver();
     }
 

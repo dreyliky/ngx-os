@@ -6,17 +6,18 @@
 <os-form-field [isStacked]="isFieldsStacked">
     <os-label>Name</os-label>
 
-    <os-text-box
-        [placeholder]="'Enter user name'">
-    </os-text-box>
+    <input
+        osInput
+        placeholder="Enter user name" />
 </os-form-field>
 
 <os-form-field [isStacked]="isFieldsStacked">
     <os-label>BIO</os-label>
 
-    <os-textarea-box
-        [placeholder]="'Enter user bio'">
-    </os-textarea-box>
+    <textarea
+        osInput
+        placeholder="Enter user bio"
+    ></textarea>
 </os-form-field>
 
 <os-form-field [isStacked]="isFieldsStacked">

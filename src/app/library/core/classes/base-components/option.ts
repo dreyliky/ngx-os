@@ -1,14 +1,10 @@
-import { AfterViewInit, Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { Directive, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ɵCommonCssClassEnum } from '../../enums';
-import { ɵOsBaseComponent } from './component';
+import { ɵOsBaseViewComponent } from './view';
 
-@Component({
-    template: ''
-})
-export abstract class ɵOsBaseOptionComponent<T>
-    extends ɵOsBaseComponent
-    implements AfterViewInit {
+@Directive({})
+export abstract class ɵOsBaseOptionComponent<T> extends ɵOsBaseViewComponent {
     /** Data of the option item */
     @Input()
     public set data(data: T) {

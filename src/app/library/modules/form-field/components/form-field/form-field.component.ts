@@ -5,7 +5,7 @@ import {
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 import { ɵFormFieldCssClassEnum as CssClass } from '../../enums';
 
 @Component({
@@ -17,7 +17,7 @@ import { ɵFormFieldCssClassEnum as CssClass } from '../../enums';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormFieldComponent extends ɵOsBaseComponent {
+export class FormFieldComponent extends ɵOsBaseViewComponent {
     /** Is the label placed above the element or in one row with it? */
     @Input()
     @HostBinding(`class.${CssClass.Stacked}`)

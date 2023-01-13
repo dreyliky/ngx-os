@@ -4,7 +4,7 @@
             *ngFor="let file of files"
             [iconUrl]="file.iconUrl"
             [label]="file.getLabel()"
-            (osClick)="onFileClick($event, file)">
+            (click)="onFileClick($event, file)">
             <ng-container *ngIf="file.type === 'png'">
                 <ng-template #gridItemIcon>
                     <picture
@@ -21,12 +21,13 @@
                     [innerText]="file.getLabel()">
                 </os-label>
 
-                <os-textarea-box
+                <textarea
                     *ngIf="file.isEditing"
-                    [isAutofocused]="true"
+                    osInput
+                    osAutofocus
                     [(ngModel)]="file.name"
-                    (click)="$event.stopPropagation()">
-                </os-textarea-box>
+                    (click)="$event.stopPropagation()"
+                ></textarea>
             </ng-template>
         </os-grid-item>
     </os-grid>

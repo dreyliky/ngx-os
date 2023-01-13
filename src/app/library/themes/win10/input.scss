@@ -1,0 +1,5 @@
+@import "./base/text-box.scss";
+
+.os-input {
+    @include base-text-box;
+}

@@ -5,7 +5,7 @@ import {
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar',
@@ -16,7 +16,7 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarComponent extends ɵOsBaseComponent {
+export class TitleBarComponent extends ɵOsBaseViewComponent {
     /** Marks title bar as active (means user works with it right now) */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
