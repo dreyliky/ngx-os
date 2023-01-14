@@ -44,11 +44,9 @@ export class ɵDynamicWindowDraggableDirective extends DraggableDirective implem
 
     public override ngAfterViewInit(): void {
         super.ngAfterViewInit();
-        setTimeout(() => {
-            this.initDragStartObserver();
-            this.onDragEndObserver();
-            this.initMergedConfigObserver();
-        });
+        this.initDragStartObserver();
+        this.onDragEndObserver();
+        this.initMergedConfigObserver();
     }
 
     // eslint-disable-next-line max-lines-per-function

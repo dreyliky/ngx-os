@@ -32,7 +32,9 @@
         </ng-template>
     </os-title-bar>
 
-    <ng-template #content></ng-template>
+    <ng-container
+        *ngComponentOutlet="childComponentType">
+    </ng-container>
 </os-window>
 
 <ng-template #defaultTitleBarContent>

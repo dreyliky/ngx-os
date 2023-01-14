@@ -1,5 +1,6 @@
 @mixin base-text-box {
     width: 100%;
+    height: fit-content;
     padding: 4px 8px;
     outline: 0;
     font-size: 16px;

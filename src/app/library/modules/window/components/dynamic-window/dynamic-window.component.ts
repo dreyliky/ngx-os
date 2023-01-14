@@ -3,7 +3,6 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ComponentRef,
     ElementRef,
     Inject,
     Input,
@@ -11,11 +10,10 @@ import {
     OnInit,
     Type,
     ViewChild,
-    ViewContainerRef,
     ViewEncapsulation
 } from '@angular/core';
-import { fromEvent, merge, timer } from 'rxjs';
-import { filter, map, skipUntil, takeUntil } from 'rxjs/operators';
+import { fromEvent, merge } from 'rxjs';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { ɵDestroyService, ɵEventOutside, ɵGlobalEvents } from '../../../../core';
 import { ɵDynamicWindowRefModel } from '../../classes';
 import { DYNAMIC_WINDOW_REF } from '../../data';
@@ -72,9 +70,6 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
 
     public config: DynamicWindowConfig;
 
-    @ViewChild('content', { read: ViewContainerRef, static: true })
-    private readonly contentViewRef: ViewContainerRef;
-
     @ViewChild(WindowComponent, { read: ElementRef })
     private readonly windowElementRef: ElementRef<HTMLElement>;
 
@@ -86,8 +81,6 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
 
     private readonly baseZIndex: number = 1000;
     private readonly alwaysOnTopBaseZIndex: number = 5000;
-
-    private childComponentRef: ComponentRef<any>;
 
     constructor(
         @Inject(DYNAMIC_WINDOW_REF) public readonly windowRef: ɵDynamicWindowRefModel,
@@ -105,18 +98,14 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
     }
 
     public ngAfterViewInit(): void {
-        this.childComponentRef = this.contentViewRef.createComponent(this.childComponentType);
-
         this.initDynamicStateChangeObserver();
         this.initMousedownObserver();
         this.windowRef.setWindowElement(this.windowElementRef.nativeElement);
         this.windowRef.setDraggableDirective(this.draggableDirective);
         this.windowRef.setResizableDirective(this.resizableDirective);
-        this.changeDetector.detectChanges();
     }
 
     public ngOnDestroy(): void {
-        this.childComponentRef?.destroy();
         this.windowRef.destroy();
     }
 
@@ -156,16 +145,11 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
             .subscribe(() => this.windowRef.makeActive());
     }
 
-    private initOutsideClickObserver(): void {
-        this.globalEvents.fromDocument('click')
+    private initOutsideMouseDownObserver(): void {
+        this.globalEvents.fromDocument('mousedown')
             .pipe(
-                // Waiting ~4 ms for skipping currently bubbling click event, which probably triggered our dynamic window.
-                skipUntil(timer(4)),
-                filter(() => this.stateManager.isWindowed || this.stateManager.isFullscreen),
-                filter((event) => ɵEventOutside.checkForElement(
-                    this.windowElementRef.nativeElement,
-                    event
-                )),
+                filter(() => (this.stateManager.isWindowed || this.stateManager.isFullscreen)),
+                filter((event) => this.isEventOutside(event)),
                 takeUntil(this._viewDestroyedOrWindowInactive$)
             )
             .subscribe(() => this.windowRef.makeInactive());
@@ -175,7 +159,7 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
         this.windowRef.isActive$
             .subscribe((isActive) => {
                 if (isActive) {
-                    this.initOutsideClickObserver();
+                    this.initOutsideMouseDownObserver();
                 }
 
                 this.changeDetector.detectChanges();
@@ -195,5 +179,9 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
 
                 this.changeDetector.detectChanges();
             });
+    }
+
+    private isEventOutside(event: Event): boolean {
+        return ɵEventOutside.checkForElement(this.windowElementRef.nativeElement, event);
     }
 }
