@@ -29,7 +29,7 @@ export class ShortcutsZoneComponent extends ɵOsBaseViewComponent implements OnI
         this.initShortcutSettingsObserver();
     }
 
-    public onProgramShortcutDblClick(program: AppMetadata): void {
+    public openProgram(program: AppMetadata): void {
         this.execService.run(program);
     }
 

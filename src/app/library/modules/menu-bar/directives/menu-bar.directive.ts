@@ -14,7 +14,7 @@ import {
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-import { fromEvent, merge, Observable, skip, Subject } from 'rxjs';
+import { BehaviorSubject, fromEvent, merge, Observable, skip } from 'rxjs';
 import { filter, first, map, takeUntil } from 'rxjs/operators';
 import { ɵApplyAutoDestroyClass, ɵDestroyService, ɵEventOutside } from '../../../core';
 import { MenuBarButtonComponent } from '../components';
@@ -33,10 +33,22 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     @Input('osMenuBar')
     public content: TemplateRef<unknown>;
 
-    private get destroyedOrHidden$(): Observable<boolean> {
+    public get isOpened(): boolean {
+        return this._isOpened$.getValue();
+    }
+
+    public get isOpened$(): Observable<boolean> {
+        return this._isOpened$.asObservable();
+    }
+
+    private get destroyedOrClosed$(): Observable<boolean> {
         return merge(
             this.viewDestroyed$,
-            this.hidden$
+            this._isOpened$
+                .pipe(
+                    skip(1),
+                    filter((isOpened) => !isOpened)
+                )
         );
     }
 
@@ -44,7 +56,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     private viewRef: EmbeddedViewRef<unknown> | null;
 
     private readonly delayBeforeDestroy = 500;
-    private readonly hidden$ = new Subject<boolean>();
+    private readonly _isOpened$ = new BehaviorSubject<boolean>(false);
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
@@ -81,6 +93,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
 
     /** Open MenuBar container */
     public open(): void {
+        this._isOpened$.next(true);
         this.activeButtonState.set(this.buttonComponent);
     }
 
@@ -95,9 +108,8 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
             setTimeout(() => {
                 this.document.body.removeChild(containerElement);
             }, this.delayBeforeDestroy);
+            this._isOpened$.next(false);
         }
-
-        this.hidden$.next(true);
     }
 
     private show(): void {
@@ -114,7 +126,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
             this.containerElement = document.createElement('div');
 
             this.containerElement.classList.add(CssClass.Container);
-            this.containerElement.addEventListener('click', (event) => event.stopPropagation());
+            this.containerElement.addEventListener('mousedown', (event) => event.stopPropagation());
             this.document.body.appendChild(this.containerElement);
         }
     }
@@ -165,7 +177,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
             .pipe(
                 filter((event) => ɵEventOutside.checkForElement(this.containerElement, event)),
                 first(),
-                takeUntil(this.destroyedOrHidden$)
+                takeUntil(this.destroyedOrClosed$)
             )
             .subscribe(() => this.activeButtonState.clear());
     }

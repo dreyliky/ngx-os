@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import {
     Directive,
     DoCheck,
+    ElementRef,
     EmbeddedViewRef,
     HostListener,
     Inject,
@@ -11,10 +12,11 @@ import {
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-import { fromEvent, Subject } from 'rxjs';
+import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { filter, first, takeUntil } from 'rxjs/operators';
 import {
     ɵApplyAutoDestroyClass,
+    ɵDestroyService,
     ɵElementPositionWithinViewport,
     ɵEventOutside
 } from '../../../core';
@@ -22,9 +24,15 @@ import { ɵContextMenuCssClassEnum as CssClass } from '../enums';
 
 @Directive({
     selector: '[osContextMenu]',
-    exportAs: 'osContextMenu'
+    exportAs: 'osContextMenu',
+    providers: [
+        ɵDestroyService
+    ]
 })
 export class ContextMenuDirective implements DoCheck, OnDestroy {
+    // Using to ignore opening parent ContextMenu's
+    private static currentlyOpenedContextMenuEvent: Event;
+
     /** Content to show inside */
     @Input('osContextMenu')
     public content: TemplateRef<unknown>;
@@ -37,14 +45,28 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
     @Input('osContextMenuPointerOffsetY')
     public offsetY = 0;
 
+    public get isOpened(): boolean {
+        return this._isOpened$.getValue();
+    }
+
+    public get isOpened$(): Observable<boolean> {
+        return this._isOpened$.asObservable();
+    }
+
+    private get hostElement(): HTMLElement {
+        return this.hostRef.nativeElement;
+    }
+
     private containerElement: HTMLDivElement | null;
     private viewRef: EmbeddedViewRef<unknown>;
 
     private readonly delayBeforeDestroy = 500;
-    private readonly destroyed$ = new Subject<boolean>();
+    private readonly _isOpened$ = new BehaviorSubject<boolean>(false);
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly viewDestroyed$: ɵDestroyService,
         private readonly elementPositionWithinViewport: ɵElementPositionWithinViewport,
         private readonly containerRef: ViewContainerRef,
         private readonly injector: Injector
@@ -55,24 +77,15 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.destroyed$.next(true);
-        this.destroyed$.complete();
+        this.close();
     }
 
-    /** @internal */
-    @HostListener('contextmenu', ['$event'])
-    public onDocumentContextMenuEvent(event: MouseEvent): void {
+    /** Open Context Menu */
+    public open(event: MouseEvent): void {
         this.show(event);
-        this.initClickOutsideObserver();
-        event.preventDefault();
-    }
 
-    /** Show Context Menu */
-    public show(event: MouseEvent): void {
-        this.createContainerElementIfAbsent();
-        this.applyContentForContainerElement();
-        this.adaptContainerElementPosition(event);
-        ɵApplyAutoDestroyClass(this.containerElement, CssClass.Opening);
+        ContextMenuDirective.currentlyOpenedContextMenuEvent = event;
+        this._isOpened$.next(true);
     }
 
     /** Close Context Menu */
@@ -80,6 +93,8 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
         if (this.containerElement) {
             const menuContainerElement = this.containerElement;
             this.containerElement = null;
+            ContextMenuDirective.currentlyOpenedContextMenuEvent = null;
+            this._isOpened$.next(false);
 
             menuContainerElement.classList.add(CssClass.Hiding);
 
@@ -89,11 +104,34 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
         }
     }
 
+    @HostListener('contextmenu', ['$event'])
+    protected onDocumentContextMenuEvent(event: MouseEvent): void {
+        const currentEvent = ContextMenuDirective.currentlyOpenedContextMenuEvent;
+        const isContextMenuCanBeOpened = (
+            !currentEvent ||
+            (currentEvent && ɵEventOutside.checkForElement(this.hostElement, currentEvent))
+        );
+
+        if (isContextMenuCanBeOpened) {
+            this.open(event);
+            this.initClickOutsideObserver();
+            event.preventDefault();
+        }
+    }
+
+    private show(event: MouseEvent): void {
+        this.createContainerElementIfAbsent();
+        this.applyContentForContainerElement();
+        this.adaptContainerElementPosition(event);
+        ɵApplyAutoDestroyClass(this.containerElement, CssClass.Opening);
+    }
+
     private createContainerElementIfAbsent(): void {
         if (!this.containerElement) {
             this.containerElement = document.createElement('div');
 
             this.containerElement.classList.add(CssClass.Container);
+            this.containerElement.addEventListener('mousedown', (event) => event.stopPropagation());
             this.document.body.appendChild(this.containerElement);
         }
     }
@@ -132,7 +170,7 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
             .pipe(
                 filter((event) => ɵEventOutside.checkForElement(this.containerElement, event)),
                 first(),
-                takeUntil(this.destroyed$)
+                takeUntil(this.viewDestroyed$)
             )
             .subscribe(() => this.close());
     }

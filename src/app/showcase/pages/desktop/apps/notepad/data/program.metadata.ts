@@ -10,7 +10,9 @@ export const NOTEPAD_APP: AppMetadata = {
     windowParams: {
         title: 'Notepad',
         iconUrl: 'assets/showcase/icons/notepad.png',
-        minWidth: 640,
-        minHeight: 350
+        minWidth: 300,
+        minHeight: 150,
+        width: 640,
+        height: 350
     }
 };

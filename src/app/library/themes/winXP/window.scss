@@ -152,7 +152,7 @@
                 background-position: -42px 0px;
             }
 
-            &:not(.os-disabled) .os-icon:active {
+            &:not(:disabled) .os-icon:active {
                 background-position: -42px -21px;
             }
         }
@@ -307,8 +307,7 @@ os-title-bar {
             background-position: 0px 0px;
         }
 
-        &:disabled,
-        &.os-disabled {
+        &:disabled {
             opacity: .3;
         }
     }
@@ -318,8 +317,7 @@ os-title-bar {
             background-position: -21px 0px;
         }
 
-        &:disabled,
-        &.os-disabled {
+        &:disabled {
             opacity: .3;
         }
     }
@@ -331,8 +329,7 @@ os-title-bar {
             background-position: -63px 0px;
         }
 
-        &:disabled,
-        &.os-disabled {
+        &:disabled {
             opacity: .3;
         }
     }

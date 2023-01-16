@@ -9,10 +9,11 @@ import {
     OnInit,
     TemplateRef
 } from '@angular/core';
-import { fromEvent, merge, Observable, Subject, timer } from 'rxjs';
+import { fromEvent, merge, timer } from 'rxjs';
 import { debounce, filter, finalize, share, takeUntil } from 'rxjs/operators';
 import {
     ɵApplyAutoDestroyClass,
+    ɵDestroyService,
     ɵElementPositionWithinViewport,
     ɵGlobalEvents,
     ɵIsString,
@@ -21,7 +22,10 @@ import {
 import { ɵHintCssClassEnum as CssClass } from '../enums';
 
 @Directive({
-    selector: '[osHint]'
+    selector: '[osHint]',
+    providers: [
+        ɵDestroyService
+    ]
 })
 export class HintDirective implements OnInit, OnDestroy {
     /** Content to show inside */
@@ -47,30 +51,28 @@ export class HintDirective implements OnInit, OnDestroy {
     private containerElement: HTMLDivElement | null;
 
     private readonly mouseLeave$ = fromEvent<MouseEvent>(this.hostRef.nativeElement, 'mouseleave')
-        .pipe(
-            share()
-        );
+        .pipe(share());
 
-    private get destroyedOrMouseLeave$(): Observable<unknown> {
-        return merge(
-            this.destroyed$,
-            this.mouseLeave$
-        );
-    }
+    private readonly mouseDown$ = fromEvent(this.hostRef.nativeElement, 'mousedown')
+        .pipe(share());
 
-    private get shouldBeHiddenWhen$(): Observable<unknown> {
-        return merge(
-            this.globalEvents.fromDocument('mousedown'),
-            this.globalEvents.fromDocument('touchstart'),
-            this.globalEvents.fromDocument('contextmenu')
-        );
-    }
+    private readonly destroyedOrMouseDownOrLeave$ = merge(
+        this.viewDestroyed$,
+        this.mouseLeave$,
+        this.mouseDown$
+    );
+
+    private readonly shouldBeHiddenWhen$ = merge(
+        this.globalEvents.fromDocument('mousedown'),
+        this.globalEvents.fromDocument('touchstart'),
+        this.globalEvents.fromDocument('contextmenu')
+    );
 
     private readonly delayBeforeDestroy = 500;
-    private readonly destroyed$ = new Subject<boolean>();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
+        private readonly viewDestroyed$: ɵDestroyService,
         private readonly globalEvents: ɵGlobalEvents,
         private readonly elementPositionWithinViewport: ɵElementPositionWithinViewport,
         private readonly hostRef: ElementRef<HTMLElement>,
@@ -84,8 +86,7 @@ export class HintDirective implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.destroyed$.next(true);
-        this.destroyed$.complete();
+        this.hide();
     }
 
     private show(event: MouseEvent): void {
@@ -151,7 +152,7 @@ export class HintDirective implements OnInit, OnDestroy {
 
     private initHintShouldBeHiddenWhenObserver(): void {
         this.shouldBeHiddenWhen$
-            .pipe(takeUntil(this.destroyed$))
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => this.hide());
     }
 
@@ -161,14 +162,14 @@ export class HintDirective implements OnInit, OnDestroy {
                 filter(() => this.osHintEnabled),
                 debounce(() => timer(this.osHintDisplayDelay)),
                 finalize(() => this.hide()),
-                takeUntil(this.destroyedOrMouseLeave$)
+                takeUntil(this.destroyedOrMouseDownOrLeave$)
             )
             .subscribe((event) => this.show(event));
     }
 
     private initMouseLeaveObserver(): void {
         this.mouseLeave$
-            .pipe(takeUntil(this.destroyed$))
+            .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
                 this.hide();
                 this.initMouseOverObserver();

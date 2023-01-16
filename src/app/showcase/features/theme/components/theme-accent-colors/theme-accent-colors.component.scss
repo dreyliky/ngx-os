@@ -1,5 +1,7 @@
 :host {
-    width: 461px;
+    width: 100%;
+    min-width: 200px;
+    max-width: 461px;
     display: flex;
     flex-wrap: wrap;
 }

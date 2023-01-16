@@ -1,17 +1,33 @@
 <button
     *ngFor="let windowRef of windowRefs"
+    #contextMenu="osContextMenu"
     os-button
     class="taskbar-button"
     [osHint]="windowRef.config.title"
+    [osHintEnabled]="!contextMenu.isOpened"
+    [osContextMenu]="windowRefButtonContextMenuTemplate"
     [attr.data-window-ref-id]="windowRef.id"
     [class.os-active]="(windowRef.isActive$ | async)"
-    (click)="onWindowReferenceIconClick($event, windowRef)">
+    (click)="onWindowReferenceIconClick(windowRef)"
+    (mousedown)="contextMenu.close(); $event.stopPropagation();">
     <div
         class="icon"
         [style.backgroundImage]="getTaskbarIconCssUrl(windowRef.config.iconUrl)">
     </div>
 
     <os-text class="text">
-        {{ windowRef.config.title || 'NO TITLE' }}
+        {{ getWindowRefTitle(windowRef) }}
     </os-text>
+
+    <ng-template #windowRefButtonContextMenuTemplate>
+        <os-context-menu-item (click)="onWindowRefDuplicateButtonClick(windowRef)">
+            <b>Open</b>&nbsp;{{ getWindowRefTitle(windowRef) }}
+        </os-context-menu-item>
+
+        <os-divider></os-divider>
+
+        <os-context-menu-item (click)="windowRef.close()">
+            Close
+        </os-context-menu-item>
+    </ng-template>
 </button>

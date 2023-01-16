@@ -65,12 +65,22 @@ export class TaskbarComponent extends ɵOsBaseViewComponent implements OnInit, A
         return `url(${iconUrl || '/assets/showcase/icons/icon.png'})`;
     }
 
-    public onWindowReferenceIconClick(event: MouseEvent, windowRef: DynamicWindowRef): void {
+    public getWindowRefTitle(windowRef: DynamicWindowRef): string {
+        return (windowRef.config.title || 'NO TITLE');
+    }
+
+    public onWindowReferenceIconClick(windowRef: DynamicWindowRef): void {
         if (!windowRef.isHidden && !windowRef.isActive) {
             windowRef.makeActive();
         } else {
             windowRef.toggleVisibility();
         }
+    }
+
+    public onWindowRefDuplicateButtonClick(windowRef: DynamicWindowRef): void {
+        const appComponent = windowRef.componentRef.instance.childComponentType;
+
+        this.dynamicWindowService.open(appComponent, windowRef.config);
     }
 
     private initWindowRefsObserver(): void {

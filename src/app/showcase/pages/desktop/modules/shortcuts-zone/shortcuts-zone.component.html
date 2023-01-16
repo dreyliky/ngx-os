@@ -4,10 +4,20 @@
     [cellSize]="cellSize">
     <os-grid-item
         *ngFor="let program of programs"
+        #gridItem
         osSelectionItem
+        [osContextMenu]="gridItemContextMenuTemplate"
         [osHint]="program.shortcutParams.label"
         [iconUrl]="program.shortcutParams.iconUrl"
         [label]="program.shortcutParams.label"
-        (dblclick)="onProgramShortcutDblClick(program)">
+        (dblclick)="openProgram(program)"
+        (osItemSelected)="gridItem.isSelected = true"
+        (osItemDeselected)="gridItem.isSelected = false">
+        <ng-template #gridItemContextMenuTemplate>
+            <os-context-menu-item
+                (click)="openProgram(program)">
+                Open
+            </os-context-menu-item>
+        </ng-template>
     </os-grid-item>
 </os-grid>

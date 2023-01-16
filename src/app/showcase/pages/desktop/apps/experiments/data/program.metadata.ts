@@ -11,7 +11,9 @@ export const EXPERIMENTS_APP: AppMetadata = {
         title: 'Experiments with Dynamic Windows',
         iconUrl: 'assets/showcase/icons/bug.png',
         isAlwaysOnTop: true,
-        minWidth: 500,
-        minHeight: 475
+        minWidth: 300,
+        minHeight: 175,
+        width: 500,
+        height: 475
     }
 };

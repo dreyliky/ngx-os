@@ -34,7 +34,7 @@ export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
     }
 
     @HostListener('click')
-    public _onClick(): void {
+    protected _onClick(): void {
         if (this.isDisabled) {
             return;
         }

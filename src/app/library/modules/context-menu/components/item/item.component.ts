@@ -33,9 +33,8 @@ export class ContextMenuItemComponent<T = any> extends ɵOsBaseOptionComponent<T
         super();
     }
 
-    /** @internal */
     @HostListener('click')
-    public _onClick(): void {
+    protected _onClick(): void {
         if (this.isDisabled) {
             return;
         }
