@@ -16,6 +16,7 @@ import { SliderValueChangeEvent } from '../../interfaces';
     host: {
         'class': 'os-slider'
     },
+    exportAs: 'osSlider',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

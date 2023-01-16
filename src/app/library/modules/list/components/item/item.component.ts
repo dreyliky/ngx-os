@@ -14,6 +14,7 @@ import { ɵOsBaseOptionComponent } from '../../../../core';
     host: {
         'class': 'os-list-item'
     },
+    exportAs: 'osListItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

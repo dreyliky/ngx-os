@@ -7,6 +7,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-button'
     },
+    exportAs: 'osButton',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

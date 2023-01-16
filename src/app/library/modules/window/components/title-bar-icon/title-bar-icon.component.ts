@@ -13,6 +13,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-title-bar-icon'
     },
+    exportAs: 'osTitleBarIcon',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

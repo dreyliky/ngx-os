@@ -14,6 +14,7 @@ import { ɵFormFieldCssClassEnum as CssClass } from '../../enums';
     host: {
         'class': 'os-form-field'
     },
+    exportAs: 'osFormField',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

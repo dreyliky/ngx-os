@@ -24,6 +24,7 @@ import { SelectionItemDirective } from './selection-item.directive';
 
 @Directive({
     selector: '[osSelectionZone]',
+    exportAs: 'osSelectionZone',
     providers: [
         ɵDestroyService
     ]

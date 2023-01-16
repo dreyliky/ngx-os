@@ -21,6 +21,7 @@ import { TabComponent } from '../tab';
     host: {
         'class': 'os-tab-group'
     },
+    exportAs: 'osTabGroup',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

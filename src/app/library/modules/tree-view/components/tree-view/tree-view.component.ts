@@ -82,6 +82,7 @@ import { ɵTreeNodesState } from '../../states';
     host: {
         'class': 'os-tree-view'
     },
+    exportAs: 'osTreeView',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [

@@ -7,6 +7,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-label os-text'
     },
+    exportAs: 'osLabel',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

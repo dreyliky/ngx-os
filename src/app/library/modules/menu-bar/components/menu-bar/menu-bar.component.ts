@@ -13,6 +13,7 @@ import { ɵMenuBarActiveButtonState } from '../../states';
     host: {
         'class': 'os-menu-bar'
     },
+    exportAs: 'osMenuBarComponent',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [

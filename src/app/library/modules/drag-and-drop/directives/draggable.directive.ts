@@ -18,7 +18,8 @@ import { DraggerConfig, DragInfo } from '../interfaces';
 
 /** Makes HTML element draggable by mouse */
 @Directive({
-    selector: '[osDraggable]'
+    selector: '[osDraggable]',
+    exportAs: 'osDraggable'
 })
 export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     /** Configuration of dragging */

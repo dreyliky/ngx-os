@@ -7,6 +7,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-divider'
     },
+    exportAs: 'osDivider',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

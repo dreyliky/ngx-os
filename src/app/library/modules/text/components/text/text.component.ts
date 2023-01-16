@@ -7,6 +7,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-text'
     },
+    exportAs: 'osText',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

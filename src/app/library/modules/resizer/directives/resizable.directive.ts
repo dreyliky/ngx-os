@@ -22,6 +22,7 @@ import { ResizeInfo, ResizerConfig } from '../interfaces';
 
 @Directive({
     selector: '[osResizable]',
+    exportAs: 'osResizable',
     providers: [
         ɵResizerFactory
     ]

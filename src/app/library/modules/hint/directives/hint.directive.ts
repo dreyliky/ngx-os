@@ -23,6 +23,7 @@ import { ɵHintCssClassEnum as CssClass } from '../enums';
 
 @Directive({
     selector: '[osHint]',
+    exportAs: 'osHint',
     providers: [
         ɵDestroyService
     ]

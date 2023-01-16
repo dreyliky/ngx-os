@@ -12,6 +12,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-list'
     },
+    exportAs: 'osList',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

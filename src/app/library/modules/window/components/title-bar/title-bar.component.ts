@@ -13,6 +13,7 @@ import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-title-bar'
     },
+    exportAs: 'osTitleBar',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

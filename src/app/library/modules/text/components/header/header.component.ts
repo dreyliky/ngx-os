@@ -13,6 +13,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-header'
     },
+    exportAs: 'osHeader',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -16,6 +16,7 @@ import { ContextMenuDirective } from '../../directives';
     host: {
         'class': 'os-context-menu-item'
     },
+    exportAs: 'osContextMenuItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

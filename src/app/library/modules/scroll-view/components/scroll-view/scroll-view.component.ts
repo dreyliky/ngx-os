@@ -14,6 +14,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-scroll-view'
     },
+    exportAs: 'osScrollView',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

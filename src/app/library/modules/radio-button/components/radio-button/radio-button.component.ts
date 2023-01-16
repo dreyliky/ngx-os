@@ -21,6 +21,7 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
     host: {
         'class': 'os-radio-button'
     },
+    exportAs: 'osRadioButton',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

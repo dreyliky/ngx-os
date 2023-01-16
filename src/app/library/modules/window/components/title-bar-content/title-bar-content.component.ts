@@ -7,6 +7,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-title-bar-content'
     },
+    exportAs: 'osTitleBarContent',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

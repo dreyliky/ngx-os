@@ -25,7 +25,8 @@ import { FixedToParentConfig } from '../classes';
  * as if it continues to be inside the parent element.
  **/
 @Directive({
-    selector: '[osFixedToParent]'
+    selector: '[osFixedToParent]',
+    exportAs: 'osFixedToParent'
 })
 export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy {
     /** Configuration of directive */

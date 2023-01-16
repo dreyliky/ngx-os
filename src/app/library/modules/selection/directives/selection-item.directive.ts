@@ -1,7 +1,8 @@
 import { Directive, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 
 @Directive({
-    selector: '[osSelectionItem]'
+    selector: '[osSelectionItem]',
+    exportAs: 'osSelectionItem'
 })
 export class SelectionItemDirective<T = any> {
     /** Payload with custom data of your item */

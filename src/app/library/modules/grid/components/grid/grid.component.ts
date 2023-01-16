@@ -39,6 +39,7 @@ import { GridItemComponent } from '../item';
     host: {
         'class': 'os-grid'
     },
+    exportAs: 'osGrid',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

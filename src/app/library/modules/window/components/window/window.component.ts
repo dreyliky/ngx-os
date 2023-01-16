@@ -27,6 +27,7 @@ import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-window'
     },
+    exportAs: 'osWindow',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

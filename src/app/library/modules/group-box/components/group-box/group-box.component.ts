@@ -12,6 +12,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-group-box'
     },
+    exportAs: 'osGroupBox',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

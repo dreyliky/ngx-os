@@ -16,7 +16,8 @@ import { ɵNumericalValueConverter } from '../helpers';
     selector: 'input[osInputNumber], textarea[osInputNumber]',
     host: {
         'class': 'os-input os-input-number'
-    }
+    },
+    exportAs: 'osInputNumber'
 })
 export class InputNumberDirective
     extends ɵOsBaseFormControlComponent

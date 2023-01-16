@@ -21,6 +21,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
     host: {
         'class': 'os-dropdown-item'
     },
+    exportAs: 'osDropdownItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

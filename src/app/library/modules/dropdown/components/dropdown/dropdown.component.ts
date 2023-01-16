@@ -86,6 +86,7 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
     host: {
         'class': 'os-dropdown'
     },
+    exportAs: 'osDropdown',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

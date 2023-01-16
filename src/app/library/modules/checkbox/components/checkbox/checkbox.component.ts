@@ -20,6 +20,7 @@ import { CheckboxValueChangeEvent } from '../../interfaces';
     host: {
         'class': 'os-checkbox'
     },
+    exportAs: 'osCheckbox',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

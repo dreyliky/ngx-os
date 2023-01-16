@@ -40,6 +40,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-tab'
     },
+    exportAs: 'osTab',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

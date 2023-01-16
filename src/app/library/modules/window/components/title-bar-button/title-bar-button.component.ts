@@ -13,6 +13,7 @@ import { ɵOsBaseViewComponent } from '../../../../core';
     host: {
         'class': 'os-title-bar-button'
     },
+    exportAs: 'osTitleBarButton',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

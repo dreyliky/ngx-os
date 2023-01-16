@@ -56,6 +56,7 @@ import {
         'class': 'os-grid-item',
         'tabindex': '0'
     },
+    exportAs: 'osGridItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
