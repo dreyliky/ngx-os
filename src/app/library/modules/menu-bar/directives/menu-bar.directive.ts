@@ -62,7 +62,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     }
 
     public ngOnDestroy(): void {
-        this.hide();
+        this.close();
     }
 
     public ngDoCheck(): void {
@@ -79,7 +79,13 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
         }
     }
 
-    public hide(): void {
+    /** Open MenuBar container */
+    public open(): void {
+        this.activeButtonState.set(this.buttonComponent);
+    }
+
+    /** Close MenuBar container */
+    public close(): void {
         if (this.containerElement) {
             const containerElement = this.containerElement;
             this.containerElement = null;
@@ -151,7 +157,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
                 map((activeButton) => (activeButton === this.buttonComponent)),
                 takeUntil(this.viewDestroyed$)
             )
-            .subscribe((isActive) => (isActive) ? this.show() : this.hide());
+            .subscribe((isActive) => (isActive) ? this.show() : this.close());
     }
 
     private initClickOutsideObserver(): void {

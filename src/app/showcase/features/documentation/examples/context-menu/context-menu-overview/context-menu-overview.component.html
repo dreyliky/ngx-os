@@ -8,7 +8,7 @@
 
 <ng-template #myContextMenuTemplate>
     <div class="context-menu-wrapper">
-        <os-context-menu-item osContextMenuAction>
+        <os-context-menu-item [isContextMenuCloseOnClick]="false">
             <b>Refresh</b>
         </os-context-menu-item>
         <os-context-menu-item>Sort shortcuts</os-context-menu-item>

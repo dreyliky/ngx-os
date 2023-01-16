@@ -34,7 +34,7 @@ export class WindowComponent extends ɵOsBaseViewComponent {
     /** Marks window as active (means user works with it right now) */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
-    public isActive: boolean = false;
+    public isActive: boolean = true;
 
     /** Stylelist for scroll view component of the window */
     @Input()

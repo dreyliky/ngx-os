@@ -21,14 +21,15 @@
     padding: 6px 10px;
     box-sizing: border-box;
     font-size: 14px;
+    background-color: transparent;
     cursor: default;
 
     &:hover {
-        background-color: #efefef;
+        background: #efefef;
     }
 
     &:active, &.os-active {
-        background-color: #efefef;
+        background: #efefef !important;
     }
 }
 

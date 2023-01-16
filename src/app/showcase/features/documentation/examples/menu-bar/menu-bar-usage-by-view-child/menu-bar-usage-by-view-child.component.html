@@ -1,0 +1,34 @@
+<os-window>
+    <os-title-bar>
+        <os-title-bar-content>
+            My Window
+        </os-title-bar-content>
+    </os-title-bar>
+
+    <os-menu-bar>
+        <button
+            #helpMenuBar="osMenuBar"
+            os-menu-bar-button
+            [osMenuBar]="helpMenuBarTemplate">
+            Help
+        </button>
+    </os-menu-bar>
+
+    <div class="content">
+        <button
+            os-button
+            (click)="helpMenuBar.open()">
+            Open help MenuBar
+        </button>
+    </div>
+</os-window>
+
+<ng-template #helpMenuBarTemplate>
+    <os-menu-bar-item>Documentation</os-menu-bar-item>
+    <os-menu-bar-item>Website</os-menu-bar-item>
+    <os-menu-bar-item
+        [isMenuBarCloseOnClick]="false"
+        (click)="onThirdMenuBarItemClick()">
+        Close after 1 second
+    </os-menu-bar-item>
+</ng-template>

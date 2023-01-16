@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { ɵSharedModule } from '../shared.module';
 import { MenuBarButtonComponent, MenuBarComponent, MenuBarItemComponent } from './components';
-import { MenuBarActionDirective, MenuBarDirective } from './directives';
+import { MenuBarDirective } from './directives';
 
 @NgModule({
     declarations: [
         MenuBarComponent,
         MenuBarButtonComponent,
         MenuBarItemComponent,
-        MenuBarDirective,
-        MenuBarActionDirective
+        MenuBarDirective
     ],
     imports: [
         ɵSharedModule
@@ -18,8 +17,7 @@ import { MenuBarActionDirective, MenuBarDirective } from './directives';
         MenuBarComponent,
         MenuBarButtonComponent,
         MenuBarItemComponent,
-        MenuBarDirective,
-        MenuBarActionDirective
+        MenuBarDirective
     ]
 })
 export class MenuBarModule {}

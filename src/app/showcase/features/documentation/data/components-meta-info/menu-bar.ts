@@ -1,5 +1,8 @@
 import { OsComponentEnum } from '../../enums';
-import { MenuBarOverviewComponent } from '../../examples';
+import {
+    MenuBarOverviewComponent,
+    MenuBarUsageByViewChildComponent
+} from '../../examples';
 import { ComponentMetaInfo } from '../../interfaces';
 
 export const MENU_BAR_META_INFO: ComponentMetaInfo = {
@@ -19,6 +22,11 @@ export const MENU_BAR_META_INFO: ComponentMetaInfo = {
             title: 'Menu Bar Overview',
             componentName: 'MenuBarOverviewComponent',
             component: MenuBarOverviewComponent
+        },
+        {
+            title: 'Menu Bar usage via ViewChild decorator',
+            componentName: 'MenuBarUsageByViewChildComponent',
+            component: MenuBarUsageByViewChildComponent
         }
     ]
 };

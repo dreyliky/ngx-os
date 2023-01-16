@@ -16,9 +16,12 @@
 }
 
 .os-menu-bar-button {
+    min-width: auto;
     padding: 3px 6px;
     box-sizing: border-box;
     font-size: 11px;
+    border: none;
+    background: transparent;
     cursor: default;
 
     &:hover {

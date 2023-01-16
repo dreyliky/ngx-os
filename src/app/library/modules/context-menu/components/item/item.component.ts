@@ -3,10 +3,12 @@ import {
     Component,
     EventEmitter,
     HostListener,
+    Input,
     Output,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseOptionComponent } from '../../../../core';
+import { ContextMenuDirective } from '../../directives';
 
 @Component({
     selector: 'os-context-menu-item',
@@ -18,15 +20,30 @@ import { ɵOsBaseOptionComponent } from '../../../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContextMenuItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
+    @Input()
+    public isContextMenuCloseOnClick: boolean = true;
+
     /** Fires when the list item selected */
     @Output()
     public readonly osSelected: EventEmitter<T> = new EventEmitter();
 
+    constructor(
+        private readonly contextMenu: ContextMenuDirective
+    ) {
+        super();
+    }
+
     /** @internal */
     @HostListener('click')
     public _onClick(): void {
-        if (!this.isDisabled) {
-            this.osSelected.emit(this.data);
+        if (this.isDisabled) {
+            return;
         }
+
+        if (this.isContextMenuCloseOnClick) {
+            this.contextMenu.close();
+        }
+
+        this.osSelected.emit(this.data);
     }
 }

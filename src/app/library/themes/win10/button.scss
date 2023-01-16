@@ -1,6 +1,6 @@
 .os-button {
     min-width: 75px;
-    height: 31px;
+    min-height: 31px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -8,7 +8,7 @@
     font-family: var(--segoe-ui);
     box-sizing: border-box;
     border: 2px solid transparent;
-    background: rgb(215, 215, 215);
+    background-color: rgb(215, 215, 215);
     border-radius: 0px;
     font-weight: 500;
     font-size: 14px;

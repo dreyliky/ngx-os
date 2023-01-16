@@ -67,8 +67,16 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
         event.preventDefault();
     }
 
-    /** Hide Context Menu */
-    public hide(): void {
+    /** Show Context Menu */
+    public show(event: MouseEvent): void {
+        this.createContainerElementIfAbsent();
+        this.applyContentForContainerElement();
+        this.adaptContainerElementPosition(event);
+        ɵApplyAutoDestroyClass(this.containerElement, CssClass.Opening);
+    }
+
+    /** Close Context Menu */
+    public close(): void {
         if (this.containerElement) {
             const menuContainerElement = this.containerElement;
             this.containerElement = null;
@@ -79,13 +87,6 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
                 this.document.body.removeChild(menuContainerElement);
             }, this.delayBeforeDestroy);
         }
-    }
-
-    private show(event: MouseEvent): void {
-        this.createContainerElementIfAbsent();
-        this.applyContentForContainerElement();
-        this.adaptContainerElementPosition(event);
-        ɵApplyAutoDestroyClass(this.containerElement, CssClass.Opening);
     }
 
     private createContainerElementIfAbsent(): void {
@@ -133,6 +134,6 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
                 first(),
                 takeUntil(this.destroyed$)
             )
-            .subscribe(() => this.hide());
+            .subscribe(() => this.close());
     }
 }

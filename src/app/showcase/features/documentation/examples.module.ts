@@ -30,6 +30,7 @@ import {
     ListCustomTemplateComponent,
     ListOverviewComponent,
     MenuBarOverviewComponent,
+    MenuBarUsageByViewChildComponent,
     RadioButtonAsFormControlComponent,
     RadioButtonOverviewComponent,
     ResizerOnAbsoluteElementComponent,
@@ -122,7 +123,8 @@ import {
         WindowDynamicObserveEventsComponent,
         WindowDynamicOpeningComponent,
         WindowOverviewComponent,
-        WindowTitleBarComponent
+        WindowTitleBarComponent,
+        MenuBarUsageByViewChildComponent
     ],
     imports: [
         SharedModule

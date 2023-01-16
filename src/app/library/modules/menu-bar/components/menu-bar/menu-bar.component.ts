@@ -20,9 +20,19 @@ import { ɵMenuBarActiveButtonState } from '../../states';
     ]
 })
 export class MenuBarComponent extends ɵOsBaseViewComponent {
-    /** @internal */
+    constructor(
+        private readonly menuBarActiveButtonState: ɵMenuBarActiveButtonState
+    ) {
+        super();
+    }
+
+    /** Close currently opened MenuBar container */
+    public close(): void {
+        this.menuBarActiveButtonState.clear();
+    }
+
     @HostListener('contextmenu', ['$event'])
-    public _onContextMenuEvent(event: PointerEvent): void {
+    protected _onContextMenuEvent(event: PointerEvent): void {
         event.preventDefault();
     }
 }

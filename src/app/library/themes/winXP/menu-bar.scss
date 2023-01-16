@@ -19,15 +19,17 @@
     padding: 3px 6px;
     box-sizing: border-box;
     font-size: 11px;
+    border: none;
+    background: transparent;
     cursor: default;
 
     &:hover {
-        background-color: rgb(var(--os-primary-color));
+        background: rgb(var(--os-primary-color));
         color: #fff;
     }
 
     &:active, &.os-active {
-        background-color: rgb(var(--os-primary-color));
+        background: rgb(var(--os-primary-color));
         color: #fff;
     }
 }
