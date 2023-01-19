@@ -28,10 +28,8 @@ export class ExperimentsAppComponent implements OnInit {
         this.initTotalWindowsAliveObservable();
     }
 
-    public onActionsDelayNumberBoxValueChange(event: Event): void {
-        const targetElement = event.target as HTMLInputElement;
-
-        this.groupActionService.setActionsDelayValue(+targetElement.value);
+    public onActionsDelayNumberBoxValueChange(value: number): void {
+        this.groupActionService.setActionsDelayValue(value);
     }
 
     public onStopCurrentActionsButtonClick(): void {

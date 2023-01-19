@@ -1,72 +1,62 @@
 <os-form-field [isStacked]="true">
     <os-label>Default</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Default" />
-</os-form-field>
-
-<os-form-field [isStacked]="true">
-    <os-label>Default & auto focused</os-label>
-
-    <input
-        osInputNumber
-        osAutofocus
-        placeholder="Default & auto focused" />
+    <os-input-number>
+        <input osInput placeholder="Default" />
+    </os-input-number>
 </os-form-field>
 
 <os-form-field [isStacked]="true">
     <os-label>Readonly</os-label>
 
-    <input
-        osInputNumber
-        value="123456"
-        readonly>
+    <os-input-number>
+        <input
+            osInput
+            value="123456"
+            readonly />
+    </os-input-number>
 </os-form-field>
 
 <os-form-field [isStacked]="true">
     <os-label>Min value: 5; Max value: 45;</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Min value: 5; Max value: 45;"
+    <os-input-number
         [min]="5"
-        [max]="45" />
+        [max]="45">
+        <input osInput placeholder="Min value: 5; Max value: 45;" />
+    </os-input-number>
 </os-form-field>
 
 <os-form-field [isStacked]="true">
     <os-label>Min fraction digits value: 2; Min fraction digits value: 4;</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Min fraction digits value: 2; Min fraction digits value: 4;"
+    <os-input-number
         [minFractionDigits]="2"
-        [maxFractionDigits]="4" />
+        [maxFractionDigits]="4">
+        <input osInput placeholder="Min fraction digits value: 2; Min fraction digits value: 4;" />
+    </os-input-number>
 </os-form-field>
 
 <os-form-field [isStacked]="true">
     <os-label>Forbid empty field</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Forbid empty field"
-        [isAllowEmpty]="false" />
+    <os-input-number [isAllowEmpty]="false">
+        <input osInput placeholder="Forbid empty field" />
+    </os-input-number>
 </os-form-field>
 
 <os-form-field [isStacked]="true">
     <os-label>Only integers</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Only integers"
-        [isAllowDecimal]="false" />
+    <os-input-number [isAllowDecimal]="false">
+        <input osInput placeholder="Only integers" />
+    </os-input-number>
 </os-form-field>
 
 <os-form-field [isStacked]="true">
     <os-label>Disabled</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Disabled"
-        disabled />
+    <os-input-number [formControl]="disabledInputControl">
+        <input osInput placeholder="Disabled" />
+    </os-input-number>
 </os-form-field>

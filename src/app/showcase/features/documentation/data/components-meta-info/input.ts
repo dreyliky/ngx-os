@@ -16,9 +16,11 @@ export const INPUT_META_INFO: ComponentMetaInfo = {
     libModules: [
         'InputModule'
     ],
+    libComponents: [
+        'InputNumberComponent'
+    ],
     libDirectives: [
         'InputDirective',
-        'InputNumberDirective',
         'AutofocusDirective'
     ],
     demoComponents: [

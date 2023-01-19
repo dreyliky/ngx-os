@@ -1,19 +1,52 @@
-<form [formGroup]="formGroup">
-    <os-form-field [isStacked]="true">
-        <input
-            osInput
-            placeholder="Enter your name"
-            [formControl]="inputControl" />
+<os-form-field [isStacked]="true">
+    <os-label>Text</os-label>
 
-        <os-text>
-            {{ formGroup.value | json }}
-        </os-text>
-    </os-form-field>
-</form>
-
-<os-form-field>
     <input
         osInput
-        placeholder="Text Box [Disabled]"
-        [formControl]="inputDisabledControl" />
+        placeholder="Enter your value"
+        [formControl]="inputControl" />
+
+    <os-text>
+        {{ inputControl.value | json }}
+    </os-text>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Number</os-label>
+
+    <os-input-number [formControl]="inputNumberControl">
+        <input osInput placeholder="Enter your value" />
+    </os-input-number>
+
+    <os-text>
+        {{ inputNumberControl.value | json }}
+    </os-text>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Password</os-label>
+
+    <input
+        osInput
+        type="password"
+        placeholder="Enter your password"
+        [formControl]="inputPasswordControl" />
+
+    <os-text>
+        {{ inputPasswordControl.value | json }}
+    </os-text>
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Textarea</os-label>
+
+    <textarea
+        osInput
+        placeholder="Enter your value"
+        [formControl]="textareaControl"
+    ></textarea>
+
+    <os-text>
+        {{ textareaControl.value | json }}
+    </os-text>
 </os-form-field>

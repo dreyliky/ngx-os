@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
     selector: 'showcase-input-as-form-control',
@@ -9,9 +9,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 })
 export class InputAsFormControlComponent {
     public readonly inputControl = new UntypedFormControl('Hi there!');
-    public readonly inputDisabledControl = new UntypedFormControl({ value: '', disabled: true });
-
-    public readonly formGroup = new UntypedFormGroup({
-        inputValue: this.inputControl
-    });
+    public readonly inputNumberControl = new UntypedFormControl(123);
+    public readonly inputPasswordControl = new UntypedFormControl();
+    public readonly textareaControl = new UntypedFormControl('Hi there!');
 }

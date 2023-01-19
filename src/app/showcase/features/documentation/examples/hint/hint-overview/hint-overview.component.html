@@ -1,28 +1,25 @@
 <os-form-field [isStacked]="true">
     <os-label>Display delay in milliseconds</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Enter Display Delay in milliseconds"
-        [(ngModel)]="hintDisplayDelay" />
+    <os-input-number [(ngModel)]="hintDisplayDelay">
+        <input osInput placeholder="Enter Display Delay in milliseconds" />
+    </os-input-number>
 </os-form-field>
 
 <os-form-field [isStacked]="true">
     <os-label>Offset X in pixels</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Enter Offset X in pixels"
-        [(ngModel)]="hintMouseOffsetX" />
+    <os-input-number [(ngModel)]="hintMouseOffsetX">
+        <input osInput placeholder="Enter Offset X in pixels" />
+    </os-input-number>
 </os-form-field>
 
 <os-form-field [isStacked]="true">
     <os-label>Offset Y in pixels</os-label>
 
-    <input
-        osInputNumber
-        placeholder="Enter Offset Y in pixels"
-        [(ngModel)]="hintMouseOffsetY" />
+    <os-input-number [(ngModel)]="hintMouseOffsetY">
+        <input osInput placeholder="Enter Offset Y in pixels" />
+    </os-input-number>
 </os-form-field>
 
 <div class="wrapper">

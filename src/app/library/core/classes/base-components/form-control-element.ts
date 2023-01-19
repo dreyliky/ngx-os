@@ -49,6 +49,7 @@ export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
         this.onTouched = fn;
     }
 
+    /** @internal */
     public setDisabledState(state: boolean): void {
         this.isDisabled = state;
 
