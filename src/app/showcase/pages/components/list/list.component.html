@@ -17,9 +17,31 @@
         <os-grid-item
             *ngFor="let component of (filteredComponents$ | async)"
             [osHint]="component.name"
+            [osContextMenu]="gridItemContextMenuTemplate"
             [label]="component.name"
             [iconUrl]="component.imageUrl"
-            (dblclick)="onComponentDblClick(component.type)">
+            (dblclick)="openOverviewSection(component.type, overviewSectionEnum.Documentation)">
+            <ng-template #gridItemContextMenuTemplate>
+                <os-context-menu-item
+                    (click)="openOverviewSection(component.type, overviewSectionEnum.Documentation)">
+                    Documentation
+                </os-context-menu-item>
+
+                <os-context-menu-item
+                    (click)="openOverviewSection(component.type, overviewSectionEnum.Examples)">
+                    Examples
+                </os-context-menu-item>
+
+                <os-context-menu-item
+                    (click)="openOverviewSection(component.type, overviewSectionEnum.Theming)">
+                    Theming
+                </os-context-menu-item>
+
+                <os-context-menu-item
+                    (click)="openOverviewSection(component.type, overviewSectionEnum.Api)">
+                    API
+                </os-context-menu-item>
+            </ng-template>
         </os-grid-item>
     </os-grid>
 </div>
