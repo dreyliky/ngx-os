@@ -1,4 +1,4 @@
-import { ɵGetPercentage, ɵGetPercentageBetweenNumbers } from '../../../../../core';
+import { ɵGetPercentage, ɵGetPercentageBetweenNumbers, ɵPointerHelper } from '../../../../../core';
 import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
 import { ɵDynamicWindowDraggableDirective } from '../directives/draggable.directive';
 
@@ -15,9 +15,10 @@ export class ɵExitFromFullscreenHelper {
         private readonly context: ɵDynamicWindowDraggableDirective
     ) {}
 
-    public getPointerShiftX(event: MouseEvent): number {
+    public getPointerShiftX(event: PointerEvent | TouchEvent): number {
+        const clientX = ɵPointerHelper.getClientX(event);
         const targetWindowWidth = this.windowWidthAtWindowedMode;
-        const xPointerInPercents = ɵGetPercentageBetweenNumbers(event.clientX, innerWidth);
+        const xPointerInPercents = ɵGetPercentageBetweenNumbers(clientX, innerWidth);
         const xPointerInWindowedWindow = ɵGetPercentage(targetWindowWidth, xPointerInPercents);
         const draggableZoneWidth = (
             targetWindowWidth - this.context._titleBarControlsElementWidth
@@ -31,9 +32,10 @@ export class ɵExitFromFullscreenHelper {
         return shiftX;
     }
 
-    public getPointerShiftY(event: MouseEvent): number {
+    public getPointerShiftY(event: PointerEvent | TouchEvent): number {
+        const clientY = ɵPointerHelper.getClientY(event);
         const titleBarClientRect = this.context._titleBarElement.getBoundingClientRect();
-        const yPointerInWindowedWindow = (event.clientY - titleBarClientRect.top);
+        const yPointerInWindowedWindow = (clientY - titleBarClientRect.top);
 
         return yPointerInWindowedWindow;
     }
