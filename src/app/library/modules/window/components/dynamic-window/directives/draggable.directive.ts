@@ -55,7 +55,7 @@ export class ɵDynamicWindowDraggableDirective extends DraggableDirective implem
             .pipe(
                 switchMap(({ originalEvent }) => forkJoin({
                     config: this.mergedConfigOnce$,
-                    event: of(originalEvent as PointerEvent | TouchEvent)
+                    event: of(originalEvent)
                 })),
                 filter(({ config }) => (
                     this.windowRef.isFullscreen &&
