@@ -11,24 +11,25 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseViewComponent } from '../../../../core';
+import { TabContentDirective, TabLabelDirective } from '../../directives';
 
 /**
  * ## Templates
- * `#tabLabel`: Template for the label of the tab button.
+ * `osTabLabel`: Template for the label of the tab button.
  *
  * ```html
  * <os-tab>
- *     <ng-template #tabLabel>
+ *     <ng-template osTabLabel>
  *         <!-- Your label content here -->
  *     </ng-template>
  * </os-tab>
  * ```
  *
- * `#tabContent`: Template for the content lazy loading.
+ * `osTabContent`: Template for the content lazy loading.
  *
  * ```html
  * <os-tab>
- *     <ng-template #tabContent>
+ *     <ng-template osTabContent>
  *         <!-- Your tab content here -->
  *     </ng-template>
  * </os-tab>
@@ -63,14 +64,14 @@ export class TabComponent extends ɵOsBaseViewComponent {
 
     /** Fires when the tab selected */
     @Output()
-    public osTabSelected = new EventEmitter<PointerEvent>();
+    public osTabSelected: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** @internal */
-    @ContentChild('tabLabel')
+    @ContentChild(TabLabelDirective, { read: TemplateRef })
     public readonly _tabLabelTemplate: TemplateRef<HTMLElement>;
 
     /** @internal */
-    @ContentChild('tabContent')
+    @ContentChild(TabContentDirective, { read: TemplateRef })
     public readonly _tabContentTemplate: TemplateRef<HTMLElement>;
 
     /** @internal */
@@ -91,7 +92,7 @@ export class TabComponent extends ɵOsBaseViewComponent {
     }
 
     /** @internal */
-    public _onTabButtonClick(event: PointerEvent): void {
+    public _onTabButtonClick(event: MouseEvent): void {
         if (!this.isDisabled) {
             this.osTabSelected.emit(event);
         }

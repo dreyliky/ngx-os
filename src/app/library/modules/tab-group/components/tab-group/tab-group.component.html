@@ -1,25 +1,17 @@
 <menu
     class="os-element"
     role="tablist">
-    <ng-template
-        ngFor
-        let-tab
-        [ngForOf]="_tabComponentList"
-        [ngForTrackBy]="_trackByFn">
+    <ng-container *ngFor="let tab of _tabComponentList; trackBy: _trackByFn">
         <ng-container
             *ngTemplateOutlet="tab._tabButtonInternalTemplate">
         </ng-container>
-    </ng-template>
+    </ng-container>
 </menu>
 
-<ng-template
-    ngFor
-    let-tab
-    [ngForOf]="_tabComponentList"
-    [ngForTrackBy]="_trackByFn">
-    <ng-template [ngIf]="tab._isSelected">
+<ng-container *ngFor="let tab of _tabComponentList; trackBy: _trackByFn">
+    <ng-container *ngIf="tab._isSelected">
         <ng-container
             *ngTemplateOutlet="tab._tabContentInternalTemplate">
         </ng-container>
-    </ng-template>
-</ng-template>
+    </ng-container>
+</ng-container>

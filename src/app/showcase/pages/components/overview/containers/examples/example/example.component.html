@@ -28,7 +28,7 @@
         <os-tab
             *ngIf="docComponent"
             [label]="'HTML'">
-            <ng-template #tabContent>
+            <ng-template osTabContent>
                 <showcase-code-viewer
                     [language]="'html'"
                     [code]="docComponent.templateData">
@@ -39,7 +39,7 @@
         <os-tab
             *ngIf="isScssExist"
             [label]="'SCSS'">
-            <ng-template #tabContent>
+            <ng-template osTabContent>
                 <showcase-code-viewer
                     [language]="'scss'"
                     [code]="docComponent.styleUrlsData[0].data">
@@ -50,7 +50,7 @@
         <os-tab
             *ngIf="docComponent"
             [label]="'TypeScript'">
-            <ng-template #tabContent>
+            <ng-template osTabContent>
                 <showcase-code-viewer
                     [language]="'ts'"
                     [code]="docComponent.sourceCode">
