@@ -11,7 +11,7 @@ export class MarkdownToHtmlPipe implements PipeTransform {
     ) {}
 
     public transform(markdown: string): SafeHtml {
-        const html = marked(markdown);
+        const html = (markdown) ? marked(markdown) : '';
 
         return this.domSanitizer.bypassSecurityTrustHtml(html);
     }
