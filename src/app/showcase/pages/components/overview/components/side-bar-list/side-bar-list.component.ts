@@ -8,7 +8,12 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComponentMetaInfo, LibraryComponentsSearchService } from '@features/documentation';
-import { TreeNode, TreeNodeSelectionEvent as Selection, TreeViewComponent } from 'ngx-os';
+import {
+    TreeNode,
+    TreeNodeSelectionEvent as Selection,
+    TreeViewComponent,
+    TREE_VIEW_CHILDREN_HANDLER
+} from 'ngx-os';
 import { Observable } from 'rxjs';
 import { OverviewService } from '../../overview.service';
 import { SideBarItem } from './side-bar-item.interface';
@@ -20,6 +25,10 @@ import { SideBarItemsService } from './side-bar-items.service';
     styleUrls: ['./side-bar-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
+        {
+            provide: TREE_VIEW_CHILDREN_HANDLER,
+            useValue: (item: TreeNode) => item.children
+        },
         LibraryComponentsSearchService,
         SideBarItemsService
     ]
@@ -29,7 +38,7 @@ export class SideBarListComponent implements OnInit, AfterViewInit {
     public nodes$: Observable<TreeNode<SideBarItem>[]>;
 
     @ViewChild(TreeViewComponent)
-    private readonly treeView: TreeViewComponent<SideBarItem>;
+    private readonly treeView: TreeViewComponent<TreeNode<SideBarItem>>;
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
@@ -54,7 +63,7 @@ export class SideBarListComponent implements OnInit, AfterViewInit {
         this.componentsSearchService.search(inputElement.value);
     }
 
-    public onNodeSelected({ node }: Selection<SideBarItem>): void {
+    public onNodeSelected({ node }: Selection<TreeNode<SideBarItem>>): void {
         this.router.navigateByUrl(node.data.sectionUrl);
 
         if (node.children?.length) {
@@ -72,7 +81,8 @@ export class SideBarListComponent implements OnInit, AfterViewInit {
             const nodeElement = this.hostRef.nativeElement
                 .querySelector(`#${selectedNode.id}`) as HTMLElement;
 
-            this.treeView.scrollView.scrollTo(0, nodeElement.offsetTop);
+            // FIXME: Fix scroll of tree-view
+            // this.treeView.scrollView.scrollTo(0, nodeElement.offsetTop);
         }
     }
 }

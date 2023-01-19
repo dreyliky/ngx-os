@@ -1,20 +1,24 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
     ChangeDetectionStrategy,
     Component,
     ContentChild,
     EventEmitter,
+    Inject,
     Input,
     OnChanges,
+    Optional,
     Output,
     SimpleChanges,
     TemplateRef,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseViewComponent } from '../../../../core';
-import { ScrollViewComponent } from '../../../scroll-view';
 import {
-    TreeNode,
+    TREE_VIEW_CHILDREN_HANDLER,
+    TREE_VIEW_DISABLED_HANDLER
+} from '../../constants';
+import {
     TreeNodeClickEvent,
     TreeNodeExpansionEvent,
     TreeNodeSelectionEvent
@@ -94,7 +98,7 @@ import { ɵTreeNodesState } from '../../states';
 export class TreeViewComponent<T = any> extends ɵOsBaseViewComponent implements OnChanges {
     /** An array of tree nodes */
     @Input()
-    public data: TreeNode<T>[];
+    public data: T[];
 
     /** Can the user select tree nodes? */
     @Input()
@@ -126,35 +130,27 @@ export class TreeViewComponent<T = any> extends ɵOsBaseViewComponent implements
 
     /** Fires when the node selected */
     @Output()
-    public get osNodeSelected(): EventEmitter<TreeNodeSelectionEvent<T>> {
-        return this.nodesSelection._osSelected;
-    }
+    public osNodeSelected: EventEmitter<TreeNodeSelectionEvent<T>> =
+            this.nodesSelection._osSelected;
 
     /** Fires when the node deselected */
     @Output()
-    public get osNodeDeselected(): EventEmitter<TreeNodeSelectionEvent<T>> {
-        return this.nodesSelection._osDeselected;
-    }
+    public osNodeDeselected: EventEmitter<TreeNodeSelectionEvent<T>> =
+            this.nodesSelection._osDeselected;
 
     /** Fires when the node expanded */
     @Output()
-    public get osNodeExpanded(): EventEmitter<TreeNodeExpansionEvent<T>> {
-        return this.nodesExpansion._osExpanded;
-    }
+    public osNodeExpanded: EventEmitter<TreeNodeExpansionEvent<T>> =
+            this.nodesExpansion._osExpanded;
 
     /** Fires when the node collapsed */
     @Output()
-    public get osNodeCollapsed(): EventEmitter<TreeNodeExpansionEvent<T>> {
-        return this.nodesExpansion._osCollapsed;
-    }
+    public osNodeCollapsed: EventEmitter<TreeNodeExpansionEvent<T>> =
+            this.nodesExpansion._osCollapsed;
 
     /** Fires when the node clicked by user */
     @Output()
     public osNodeClick: EventEmitter<TreeNodeClickEvent<T>> = new EventEmitter();
-
-    /** ScrollView component for scroll manipulations */
-    @ViewChild(ScrollViewComponent)
-    public readonly scrollView: ScrollViewComponent;
 
     /** @internal */
     @ContentChild('nodeIcon')
@@ -165,6 +161,13 @@ export class TreeViewComponent<T = any> extends ɵOsBaseViewComponent implements
     public readonly _nodeContentTemplate: TemplateRef<any>;
 
     constructor(
+        /** @internal */
+        @Inject(TREE_VIEW_CHILDREN_HANDLER)
+        public readonly childrenHandler: (item: T) => T[],
+        /** @internal */
+        @Inject(TREE_VIEW_DISABLED_HANDLER)
+        @Optional()
+        public readonly disabledHandler: (item: T) => boolean,
         /** The service for manipulating of nodes selection states */
         public readonly nodesSelection: TreeNodesSelectionService<T>,
         /** The service for manipulating of nodes expansion states */
@@ -179,11 +182,10 @@ export class TreeViewComponent<T = any> extends ɵOsBaseViewComponent implements
     }
 
     /** @internal */
-    public onNodeClick(originalEvent: PointerEvent, node: TreeNode<T>): void {
+    public onNodeClick(originalEvent: MouseEvent, node: T): void {
         this.osNodeClick.emit({ originalEvent, node });
-        node.onClick?.({ originalEvent, node });
 
-        if (node.isDisabled || !this.isAllowSelection) {
+        if (this.disabledHandler(node) || !this.isAllowSelection) {
             return;
         }
 
@@ -199,8 +201,8 @@ export class TreeViewComponent<T = any> extends ɵOsBaseViewComponent implements
     }
 
     /** @internal */
-    public onToggleExpandButtonClick(originalEvent: PointerEvent, node: TreeNode<T>): void {
-        if (!node.isDisabled) {
+    public onToggleExpandButtonClick(originalEvent: PointerEvent, node: T): void {
+        if (!this.disabledHandler(node)) {
             this.nodesExpansion.toggle(node, originalEvent);
         }
 

@@ -1,14 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode } from 'ngx-os';
+import { TreeNode, TREE_VIEW_CHILDREN_HANDLER } from 'ngx-os';
 
 @Component({
     selector: 'showcase-tree-view-overview',
     templateUrl: './tree-view-overview.component.html',
     styleUrls: ['./tree-view-overview.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+            provide: TREE_VIEW_CHILDREN_HANDLER,
+            useValue: (item: TreeNode) => item.children
+        }
+    ]
 })
 export class TreeViewOverviewComponent {
-    public items: TreeNode<any>[] = [
+    public items: TreeNode[] = [
         { label: 'Item 1' },
         {
             label: 'Item 2',

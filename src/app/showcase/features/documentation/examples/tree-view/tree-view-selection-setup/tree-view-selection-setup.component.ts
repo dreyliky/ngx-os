@@ -1,11 +1,17 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode, TreeNodeSelectionEvent } from 'ngx-os';
+import { TreeNode, TreeNodeSelectionEvent, TREE_VIEW_CHILDREN_HANDLER } from 'ngx-os';
 
 @Component({
     selector: 'showcase-tree-view-selection-setup',
     templateUrl: './tree-view-selection-setup.component.html',
     styleUrls: ['./tree-view-selection-setup.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+            provide: TREE_VIEW_CHILDREN_HANDLER,
+            useValue: (item: TreeNode) => item.children
+        }
+    ]
 })
 export class TreeViewSelectionSetupComponent {
     public isAllowSelection: boolean = true;

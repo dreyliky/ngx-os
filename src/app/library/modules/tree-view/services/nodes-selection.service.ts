@@ -11,6 +11,8 @@ export class TreeNodesSelectionService<T = any> {
     /** @internal */
     public _osDeselected: EventEmitter<TreeNodeSelectionEvent<T>> = new EventEmitter();
 
+    private _stateMap = new Map<T, boolean>();
+
     constructor(
         private readonly state: ɵTreeNodesState<T>
     ) {}
@@ -20,42 +22,44 @@ export class TreeNodesSelectionService<T = any> {
         this.setStateForNodes((node) => !!node.isSelected);
     }
 
+    public check(node: T): boolean {
+        return this._stateMap.get(node);
+    }
+
     /** Returns all selected nodes */
-    public getAllSelected(): TreeNode<T>[] {
+    public getAllSelected(): T[] {
         return this.state.flatData
-            .filter(({ isSelected }) => isSelected);
+            .filter((node) => this.check(node));
     }
 
     /**
      * Selects node
      * @param originalEvent - PointerEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public select(node: TreeNode<T>, originalEvent?: PointerEvent): void {
-        node.isSelected = true;
+    public select(node: T, originalEvent?: MouseEvent): void {
         const allSelected = this.getAllSelected();
 
+        this._stateMap.set(node, true);
         this._osSelected.emit({ originalEvent, node, allSelected });
-        node.onSelected?.({ originalEvent, node, allSelected });
     }
 
     /**
      * Deselects node
      * @param originalEvent - Event which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public deselect(node: TreeNode<T>, originalEvent?: PointerEvent): void {
-        node.isSelected = false;
+    public deselect(node: T, originalEvent?: MouseEvent): void {
         const allSelected = this.getAllSelected();
 
+        this._stateMap.delete(node);
         this._osDeselected.emit({ originalEvent, node, allSelected });
-        node.onDeselected?.({ originalEvent, node, allSelected });
     }
 
     /**
      * Selects and deselects node (sets the opposite state)
      * @param originalEvent - PointerEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
      **/
-    public toggle(node: TreeNode<T>, originalEvent?: PointerEvent): void {
-        if (node.isSelected) {
+    public toggle(node: T, originalEvent?: MouseEvent): void {
+        if (this.check(node)) {
             this.deselect(node, originalEvent);
         } else {
             this.select(node, originalEvent);
@@ -65,7 +69,7 @@ export class TreeNodesSelectionService<T = any> {
     /** Deselects all nodes except specific one */
     public deselectAllExceptSpecific(node: TreeNode<T>): void {
         this.state.flatData.forEach((currentNode) => {
-            if (currentNode.isSelected && currentNode !== node) {
+            if (this.check(currentNode) && currentNode !== node) {
                 this.deselect(currentNode);
             }
         });
@@ -75,7 +79,7 @@ export class TreeNodesSelectionService<T = any> {
         this.state.flatData.forEach((node) => {
             const newState = getState(node);
 
-            if (!ɵIsNil(newState) && (newState !== node.isSelected)) {
+            if (!ɵIsNil(newState) && (newState !== this.check(node))) {
                 (newState) ? this.select(node) : this.deselect(node);
             }
         });

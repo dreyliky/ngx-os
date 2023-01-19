@@ -1,16 +1,10 @@
-<os-scroll-view
-    [ngStyle]="scrollViewStyle"
-    [ngClass]="scrollViewStyleClass">
-    <ng-content select="[os-tree-view-header]"></ng-content>
+<ng-content select="[os-tree-view-header]"></ng-content>
 
-    <ng-content select="[os-tree-view-content]"></ng-content>
+<ng-container
+    *ngTemplateOutlet="treeNodesTemplate; context: { nodes: data, depth: 0 }">
+</ng-container>
 
-    <ng-container
-        *ngTemplateOutlet="treeNodesTemplate; context: { nodes: data, depth: 0 }">
-    </ng-container>
-
-    <ng-content select="[os-tree-view-footer]"></ng-content>
-</os-scroll-view>
+<ng-content select="[os-tree-view-footer]"></ng-content>
 
 <ng-template
     #treeNodesTemplate
@@ -21,21 +15,16 @@
             class="os-tree-node"
             tabindex="0"
             [style.--os-tree-node-depth]="depth"
-            [ngStyle]="node.style"
-            [ngClass]="node.styleClass"
-            [attr.id]="node.id"
             [class.os-root-node]="!depth"
-            [class.os-disabled]="node.isDisabled"
-            [class.os-expandable]="node.children?.length"
-            [class.os-flat]="!node.children?.length"
-            [class.os-expanded]="node.isExpanded"
-            [class.os-selected]="node.isSelected"
-            (click)="onNodeClick($any($event), node)">
+            [class.os-disabled]="disabledHandler(node)"
+            [class.os-expandable]="childrenHandler(node)?.length"
+            [class.os-flat]="!childrenHandler(node)?.length"
+            [class.os-expanded]="nodesExpansion.check(node)"
+            [class.os-selected]="nodesSelection.check(node)"
+            (click)="onNodeClick($event, node)">
             <div
                 class="os-icon"
                 [class.os-custom]="_nodeIconTemplate"
-                [ngClass]="node.iconStyleClass"
-                [ngStyle]="node.iconStyle"
                 (click)="onToggleExpandButtonClick($any($event), node)">
                 <ng-container *ngIf="_nodeIconTemplate">
                     <ng-container
@@ -58,11 +47,10 @@
             </ng-template>
         </div>
 
-        <ng-container *ngIf="node?.children && node.isExpanded">
+        <ng-container *ngIf="childrenHandler(node) && nodesExpansion.check(node)">
             <ng-container
                 *ngTemplateOutlet="treeNodesTemplate; context: { nodes: node.children, depth: depth + 1 }">
             </ng-container>
         </ng-container>
     </ng-container>
 </ng-template>
-

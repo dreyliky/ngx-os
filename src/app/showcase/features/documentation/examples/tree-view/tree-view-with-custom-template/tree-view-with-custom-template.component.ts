@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode } from 'ngx-os';
+import { TreeNode, TREE_VIEW_CHILDREN_HANDLER } from 'ngx-os';
 
 interface MyNodeData {
     iconUrl: string;
@@ -9,7 +9,13 @@ interface MyNodeData {
     selector: 'showcase-tree-view-with-custom-template',
     templateUrl: './tree-view-with-custom-template.component.html',
     styleUrls: ['./tree-view-with-custom-template.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+            provide: TREE_VIEW_CHILDREN_HANDLER,
+            useValue: (item: TreeNode) => item.children
+        }
+    ]
 })
 export class TreeViewWithCustomTemplateComponent {
     public readonly nodes: TreeNode<MyNodeData>[] = [
