@@ -4,7 +4,6 @@ import {
     DoCheck,
     ElementRef,
     EmbeddedViewRef,
-    HostListener,
     Inject,
     Injector,
     Input,
@@ -15,7 +14,7 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { BehaviorSubject, fromEvent, merge, Observable, skip } from 'rxjs';
-import { filter, first, map, takeUntil } from 'rxjs/operators';
+import { debounceTime, filter, first, map, takeUntil, tap } from 'rxjs/operators';
 import { ɵApplyAutoDestroyClass, ɵDestroyService, ɵEventOutside } from '../../../core';
 import { MenuBarButtonComponent } from '../components';
 import { ɵMenuBarCssClassEnum as CssClass } from '../enums';
@@ -69,6 +68,7 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     ) {}
 
     public ngOnInit(): void {
+        this.initMouseDownObserver();
         this.initMouseOverObserver();
         this.initButtonComponentActiveObserver();
     }
@@ -81,14 +81,23 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
         this.viewRef?.detectChanges();
     }
 
-    /** @internal */
-    @HostListener('mousedown')
-    public onHostMouseDown(): void {
-        if (!this.containerElement) {
-            this.activeButtonState.set(this.buttonComponent);
-        } else {
-            this.activeButtonState.clear();
-        }
+    public initMouseDownObserver(): void {
+        merge(
+            fromEvent(this.hostRef.nativeElement, 'mousedown'),
+            fromEvent(this.hostRef.nativeElement, 'touchstart')
+        )
+            .pipe(
+                tap((event) => event.stopPropagation()),
+                debounceTime(100),
+                takeUntil(this.viewDestroyed$)
+            )
+            .subscribe(() => {
+                if (!this.containerElement) {
+                    this.activeButtonState.set(this.buttonComponent);
+                } else {
+                    this.activeButtonState.clear();
+                }
+            });
     }
 
     /** Open MenuBar container */
@@ -126,7 +135,8 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
             this.containerElement = document.createElement('div');
 
             this.containerElement.classList.add(CssClass.Container);
-            this.containerElement.addEventListener('mousedown', (event) => event.stopPropagation());
+            this.containerElement.addEventListener('mousedown', (e) => e.stopPropagation());
+            this.containerElement.addEventListener('touchstart', (e) => e.stopPropagation());
             this.document.body.appendChild(this.containerElement);
         }
     }
@@ -173,7 +183,10 @@ export class MenuBarDirective implements OnInit, OnDestroy, DoCheck {
     }
 
     private initClickOutsideObserver(): void {
-        fromEvent<PointerEvent>(this.document, 'mousedown')
+        merge(
+            fromEvent<PointerEvent>(this.document, 'mousedown'),
+            fromEvent<PointerEvent>(this.document, 'touchstart')
+        )
             .pipe(
                 filter((event) => ɵEventOutside.checkForElement(this.containerElement, event)),
                 first(),
