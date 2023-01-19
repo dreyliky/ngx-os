@@ -4,6 +4,7 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChild,
+    DoCheck,
     ElementRef,
     EventEmitter,
     Input,
@@ -30,11 +31,7 @@ import { InputNumberChangeEvent } from '../../interfaces';
 })
 export class InputNumberComponent
     extends ɵOsBaseFormControlComponent<string, number>
-    implements OnChanges, AfterContentInit {
-    /** Is native autocomplete for the `input` element enabled? */
-    @Input()
-    public isAutocompleteEnabled: boolean = false;
-
+    implements OnChanges, AfterContentInit, DoCheck {
     /** Allows decimal numbers */
     @Input()
     public isAllowDecimal: boolean = true;
@@ -63,13 +60,6 @@ export class InputNumberComponent
     @Output()
     public osChange: EventEmitter<InputNumberChangeEvent> = new EventEmitter();
 
-    /** @internal */
-    public get _inputAutocompleteAttrValue(): string {
-        return (this.isAutocompleteEnabled) ? '' : 'off';
-    }
-
-    protected targetInternalElementSelector = 'input';
-
     @ContentChild(InputDirective, { read: ElementRef })
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
@@ -85,26 +75,30 @@ export class InputNumberComponent
         super();
     }
 
-    public ngAfterContentInit(): void {
-        this.throwErrorIfInputNotFound();
-
-        this.value = this.getInitialValue();
-        this.inputElement.value = this.value;
-
-        this.initChangeEventObserver();
-        this.initInputEventObserver();
+    public ngDoCheck(): void {
+        if (this.inputElementRef?.nativeElement) {
+            this.updateInputBindings();
+        }
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
         this.processValueFromSimpleChanges(changes);
     }
 
+    public ngAfterContentInit(): void {
+        this.throwErrorIfInputNotFound();
+        this.initValue();
+        this.initChangeEventObserver();
+        this.initInputEventObserver();
+        this.updateInputBindings();
+    }
+
     /** @internal */
     public override writeValue(value: string | number): void {
-        if (!ɵIsNil(value)) {
-            this.value = this.converter.toValid(value);
-        } else {
+        if (ɵIsNil(value)) {
             this.value = this.getDefaultValue();
+        } else {
+            this.value = this.converter.toValid(value);
         }
 
         this.changeDetector.detectChanges();
@@ -121,10 +115,10 @@ export class InputNumberComponent
         fromEvent(this.inputElementRef.nativeElement, 'input')
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => {
-                this.value = this.converter.toValid(this.inputElement.value);
-                this.inputElement.value = this.converter.toRaw(this.inputElement.value);
+                const validValue = this.converter.toValid(this.inputElement.value);
+                this.value = this.converter.toRaw(this.inputElement.value);
 
-                this.onChange?.(+this.value);
+                this.onChange?.(+validValue);
                 this.changeDetector.markForCheck();
             });
     }
@@ -135,11 +129,12 @@ export class InputNumberComponent
             .subscribe((event) => {
                 if (!this.value.length) {
                     this.value = this.getDefaultValue();
+                } else {
+                    this.value = this.converter.toValid(this.inputElement.value);
                 }
 
-                this.inputElement.value = this.value;
-
                 this.osChange.emit(this.transformChangeEvent(event));
+                this.changeDetector.markForCheck();
             });
     }
 
@@ -149,16 +144,28 @@ export class InputNumberComponent
         }
     }
 
-    private getInitialValue(): string {
-        if (this.inputElement.value) {
-            return this.converter.toRaw(this.inputElement.value);
+    private initValue(): void {
+        if (!this.inputElement.value) {
+            this.value = this.getDefaultValue();
+        } else {
+            this.value = this.converter.toValid(this.inputElement.value);
         }
-
-        return this.getDefaultValue();
     }
 
     private getDefaultValue(): string {
         return (this.isAllowEmpty) ? '' : '0';
+    }
+
+    private updateInputBindings(): void {
+        const rawValue = this.converter.toRaw(this.value);
+
+        if (this.inputElement.value !== rawValue) {
+            this.inputElement.value = rawValue;
+        }
+
+        if (this.inputElement.disabled !== this.isDisabled) {
+            this.inputElement.disabled = this.isDisabled;
+        }
     }
 
     private throwErrorIfInputNotFound(): void {
