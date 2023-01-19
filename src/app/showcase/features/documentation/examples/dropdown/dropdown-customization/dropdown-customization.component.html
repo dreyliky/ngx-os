@@ -30,7 +30,8 @@
             [innerText]="component.name">
         </b>
 
-        <button os-button
+        <button
+            osButton
             class="clear-button"
             (click)="onClearButtonClick($event)">
             Clear
@@ -56,8 +57,9 @@
         *ngIf="!searchString"
         os-dropdown-footer
         class="pagination-container">
-        <button os-button
+        <button
             *ngFor="let pageIndex of pages"
+            osButton
             [class.os-focused]="(pageIndex === activePage)"
             [innerText]="(pageIndex + 1)"
             (click)="onPageButtonClick(pageIndex)">

@@ -1,4 +1,5 @@
-<button os-button
+<button
+    osButton
     (click)="onToggleContainerVisibilityButtonClick()">
     {{ labelOfToggleVisibilityButton }}
 </button>
@@ -14,8 +15,9 @@
         <b>You can't drag by button below!</b>
     </os-text>
 
-    <button os-button
+    <button
         #containerHideButton
+        osButton
         (click)="onToggleContainerVisibilityButtonClick()">
         {{ labelOfToggleVisibilityButton }}
     </button>

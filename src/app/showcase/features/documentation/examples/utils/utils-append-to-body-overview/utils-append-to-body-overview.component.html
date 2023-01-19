@@ -1,4 +1,5 @@
-<button os-button
+<button
+    osButton
     (click)="onToggleContainerVisibilityButtonClick()">
     {{ labelOfToggleVisibilityButton }}
 </button>
@@ -9,8 +10,9 @@
     [ngStyle]="containerStyles">
     <os-text>I'm placed inside the body element!</os-text>
 
-    <button os-button
+    <button
         #containerHideButton
+        osButton
         (click)="onToggleContainerVisibilityButtonClick()">
         {{ labelOfToggleVisibilityButton }}
     </button>

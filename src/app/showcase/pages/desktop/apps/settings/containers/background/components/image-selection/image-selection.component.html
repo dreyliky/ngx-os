@@ -1,6 +1,6 @@
 <div class="bg-images">
     <button
-        os-button
+        osButton
         class="bg-button"
         [style.backgroundImage]="getCustomBackgroundCssUrl()"
         [class.os-focused]="isCurrentBackgroundCustomImage">
@@ -8,7 +8,7 @@
 
     <button
         *ngFor="let backgroundUrl of defaultBackgroundUrls"
-        os-button
+        osButton
         class="bg-button"
         [style.backgroundImage]="getCssUrl(backgroundUrl)"
         [class.os-focused]="getIsImageSelected(backgroundUrl)"
@@ -17,7 +17,7 @@
 </div>
 
 <button
-    os-button
+    osButton
     class="custom-image-button"
     (click)="onUploadButtonClick()">
     Apply custom texture

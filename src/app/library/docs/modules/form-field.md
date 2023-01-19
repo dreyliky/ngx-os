@@ -27,7 +27,8 @@ Might be used as a wrapper for some items of form.
         </os-password-box>
     </os-form-field>
 
-    <button os-button
+    <button 
+        osButton
         (click)="onLogInButtonClick()">
         Log In
     </button>

@@ -10,7 +10,7 @@ import {
     ViewChildren
 } from '@angular/core';
 import {
-    ButtonComponent,
+    ButtonDirective,
     DynamicWindowRef,
     DynamicWindowService,
     ɵOsBaseViewComponent
@@ -32,7 +32,7 @@ import { TaskbarService } from './taskbar.service';
     ]
 })
 export class TaskbarComponent extends ɵOsBaseViewComponent implements OnInit, AfterViewInit {
-    @ViewChildren(ButtonComponent, { read: ElementRef })
+    @ViewChildren(ButtonDirective, { read: ElementRef })
     public set windowRefElements(data: QueryList<ElementRef<HTMLElement>>) {
         this.taskbarService.setWindowRefElements(data);
     }
