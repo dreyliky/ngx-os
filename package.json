@@ -12,8 +12,7 @@
     "build:library": "ng build library --configuration production && node scripts/on-library-builded.js",
     "build:doc": "npm run build:doc-library && npm run build:doc-showcase",
     "build:doc-library": "compodoc -c compodoc-lib-config.json",
-    "build:doc-showcase": "compodoc -c compodoc-showcase-config.json",
-    "test:library": "ng test library"
+    "build:doc-showcase": "compodoc -c compodoc-showcase-config.json"
   },
   "private": true,
   "dependencies": {
