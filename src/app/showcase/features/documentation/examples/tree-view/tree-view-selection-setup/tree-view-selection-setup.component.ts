@@ -1,24 +1,27 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode, TreeNodeSelectionEvent, TREE_VIEW_CHILDREN_HANDLER } from 'ngx-os';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { TreeViewComponent } from 'ngx-os';
+
+interface Item {
+    label: string;
+    isDisabled?: boolean;
+    isExpandedByDefault?: boolean;
+    isSelectedByDefault?: boolean;
+    children?: Item[];
+}
 
 @Component({
     selector: 'showcase-tree-view-selection-setup',
     templateUrl: './tree-view-selection-setup.component.html',
     styleUrls: ['./tree-view-selection-setup.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: TREE_VIEW_CHILDREN_HANDLER,
-            useValue: (item: TreeNode) => item.children
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeViewSelectionSetupComponent {
     public isAllowSelection: boolean = true;
     public isAllowMultipleSelection: boolean = true;
     public isSelectionInToggleMode: boolean = true;
 
-    public readonly nodes: TreeNode[] = [
+    public readonly nodeType!: Item;
+    public readonly nodes: Item[] = [
         {
             label: 'Fruits',
             children: [
@@ -48,18 +51,21 @@ export class TreeViewSelectionSetupComponent {
                     isDisabled: true
                 }
             ],
-            isSelected: true,
-            isExpanded: true
+            isSelectedByDefault: true,
+            isExpandedByDefault: true
         },
         {
             label: 'Berries',
             children: [
                 { label: 'Strawberry', isDisabled: true }
             ],
-            isExpanded: true,
+            isExpandedByDefault: true,
             isDisabled: true
         }
     ];
+
+    @ViewChild(TreeViewComponent, { static: true })
+    private readonly treeView: TreeViewComponent<Item>;
 
     public get selectedNodesAsString(): string {
         return this._selectedNodes
@@ -67,9 +73,11 @@ export class TreeViewSelectionSetupComponent {
             .join(', ');
     }
 
-    private _selectedNodes: TreeNode[] = [];
+    private _selectedNodes: Item[] = [];
 
-    public onNodeToggleSelection({ allSelected }: TreeNodeSelectionEvent): void {
-        this._selectedNodes = allSelected;
+    public childrenHandler = (item: Item): Item[] => item.children;
+
+    public onNodeToggleSelection(): void {
+        this._selectedNodes = this.treeView.nodesSelection.getAllSelected();
     }
 }

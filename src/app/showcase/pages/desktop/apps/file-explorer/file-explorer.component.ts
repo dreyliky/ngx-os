@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode, ɵDeepClone } from 'ngx-os';
-import { Section, SECTIONS } from './core';
+import { Section } from './core';
 import { SelectedSectionState } from './states';
 
 @Component({
@@ -13,13 +12,11 @@ import { SelectedSectionState } from './states';
     ]
 })
 export class FileExplorerAppComponent {
-    public sections: TreeNode<Section>[] = ɵDeepClone(SECTIONS);
-
     constructor(
         private readonly selectedSectionState: SelectedSectionState
     ) {}
 
-    public onSectionChange(section: TreeNode<Section>): void {
+    public onSectionChange(section: Section): void {
         this.selectedSectionState.set(section);
     }
 }

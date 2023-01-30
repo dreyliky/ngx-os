@@ -1,41 +1,39 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode, TREE_VIEW_CHILDREN_HANDLER } from 'ngx-os';
 
-interface MyNodeData {
+interface TreeNode {
+    label: string;
     iconUrl: string;
+    children?: TreeNode[];
 }
 
 @Component({
     selector: 'showcase-tree-view-with-custom-template',
     templateUrl: './tree-view-with-custom-template.component.html',
     styleUrls: ['./tree-view-with-custom-template.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: TREE_VIEW_CHILDREN_HANDLER,
-            useValue: (item: TreeNode) => item.children
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeViewWithCustomTemplateComponent {
-    public readonly nodes: TreeNode<MyNodeData>[] = [
+    public readonly nodeType!: TreeNode;
+    public readonly nodes: TreeNode[] = [
         {
             label: 'My PC',
-            data: { iconUrl: '/assets/showcase/icons/my-pc.png' },
+            iconUrl: '/assets/showcase/icons/my-pc.png',
             children: [
                 {
                     label: 'Documents',
-                    data: { iconUrl: '/assets/showcase/icons/folder-opened.png' }
+                    iconUrl: '/assets/showcase/icons/folder-opened.png'
                 },
                 {
                     label: 'Downloads',
-                    data: { iconUrl: '/assets/showcase/icons/folder-opened.png' }
+                    iconUrl: '/assets/showcase/icons/folder-opened.png'
                 },
                 {
                     label: 'Images',
-                    data: { iconUrl: '/assets/showcase/icons/folder-opened.png' }
+                    iconUrl: '/assets/showcase/icons/folder-opened.png'
                 }
             ]
         }
     ];
+
+    public readonly childrenHandler = (item: TreeNode): TreeNode[] => item.children;
 }

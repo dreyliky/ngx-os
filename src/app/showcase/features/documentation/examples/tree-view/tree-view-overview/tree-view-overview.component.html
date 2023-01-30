@@ -1,4 +1,12 @@
 <os-tree-view
     [data]="items"
-    [isAllNodesExpanded]="true">
+    [childrenHandler]="childrenHandler">
+    <ng-template
+        osTreeViewNode
+        [ngTemplateType]="itemType"
+        let-item>
+        <os-tree-node [isDisabled]="item.isDisabled">
+            {{ item.name }}
+        </os-tree-node>
+    </ng-template>
 </os-tree-view>

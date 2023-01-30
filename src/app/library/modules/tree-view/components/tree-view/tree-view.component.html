@@ -1,55 +1,40 @@
-<ng-content select="[os-tree-view-header]"></ng-content>
+<ng-content select="[osTreeViewHeader]"></ng-content>
 
 <ng-container
-    *ngTemplateOutlet="treeNodesTemplate; context: { nodes: data, depth: 0 }">
+    *ngTemplateOutlet="
+        treeNodesTemplate;
+        context: { $implicit: data, depth: 0 };
+        injector: _injector;
+    ">
 </ng-container>
 
-<ng-content select="[os-tree-view-footer]"></ng-content>
+<ng-content select="[osTreeViewFooter]"></ng-content>
 
 <ng-template
     #treeNodesTemplate
-    let-nodes="nodes"
+    let-nodes
     let-depth="depth">
-    <ng-container *ngFor="let node of nodes">
-        <div
-            class="os-tree-node"
-            tabindex="0"
-            [style.--os-tree-node-depth]="depth"
-            [class.os-root-node]="!depth"
-            [class.os-disabled]="disabledHandler(node)"
-            [class.os-expandable]="childrenHandler(node)?.length"
-            [class.os-flat]="!childrenHandler(node)?.length"
-            [class.os-expanded]="nodesExpansion.check(node)"
-            [class.os-selected]="nodesSelection.check(node)"
-            (click)="onNodeClick($event, node)">
-            <div
-                class="os-icon"
-                [class.os-custom]="_nodeIconTemplate"
-                (click)="onToggleExpandButtonClick($any($event), node)">
-                <ng-container *ngIf="_nodeIconTemplate">
-                    <ng-container
-                        *ngTemplateOutlet="_nodeIconTemplate; context: { $implicit: node, depth: depth }">
-                    </ng-container>
-                </ng-container>
-            </div>
+    <ng-container *ngFor="let node of nodes; let index = index;">
+        <ng-container
+            *osTreeNodeOutlet="node; index: index; depth: depth;">
+        </ng-container>
 
-            <ng-container *ngIf="_nodeContentTemplate; else defaultLabelTemplate">
+        <ng-container *ngIf="{
+            children: childrenHandler(node),
+            isExpanded: nodesExpansion.check(node),
+            nextDepth: (depth + 1)
+        } as nodeInfo">
+            <ng-container *ngIf="nodeInfo.isExpanded">
                 <ng-container
-                    *ngTemplateOutlet="_nodeContentTemplate; context: { $implicit: node, depth: depth }">
+                    *ngTemplateOutlet="
+                        treeNodesTemplate;
+                        context: {
+                            $implicit: nodeInfo.children,
+                            depth: nodeInfo.nextDepth
+                        };
+                        injector: _injector;
+                    ">
                 </ng-container>
-            </ng-container>
-
-            <ng-template #defaultLabelTemplate>
-                <div
-                    class="os-label"
-                    [innerText]="node.label">
-                </div>
-            </ng-template>
-        </div>
-
-        <ng-container *ngIf="childrenHandler(node) && nodesExpansion.check(node)">
-            <ng-container
-                *ngTemplateOutlet="treeNodesTemplate; context: { nodes: node.children, depth: depth + 1 }">
             </ng-container>
         </ng-container>
     </ng-container>

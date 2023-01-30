@@ -1,0 +1,13 @@
+<ng-container
+    *ngIf="_nodeTrigger then customNodeTrigger; else defaultNodeTrigger;">
+</ng-container>
+
+<ng-template #defaultNodeTrigger>
+    <div osTreeNodeTrigger class="os-default-trigger"></div>
+</ng-template>
+
+<ng-template #customNodeTrigger>
+    <ng-content select="[osTreeNodeTrigger]"></ng-content>
+</ng-template>
+
+<ng-content></ng-content>

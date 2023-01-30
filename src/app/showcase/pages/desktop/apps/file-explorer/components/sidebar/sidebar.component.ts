@@ -1,18 +1,13 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    Input,
-    ViewChild
+    Component, ViewChild
 } from '@angular/core';
 import {
-    TreeNode,
     TreeViewComponent,
-    TREE_VIEW_CHILDREN_HANDLER,
     ɵOsBaseViewComponent
 } from 'ngx-os';
-import { Section } from '../../core';
+import { Section, SECTIONS } from '../../core';
 import { SelectedSectionState } from '../../states';
 
 // FIXME: Initialization of default section
@@ -20,34 +15,27 @@ import { SelectedSectionState } from '../../states';
     selector: 'file-explorer-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: TREE_VIEW_CHILDREN_HANDLER,
-            useValue: (item: TreeNode) => item.children
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent extends ɵOsBaseViewComponent implements AfterViewInit {
-    @Input()
-    public sections: TreeNode<Section>[];
+    public sections = SECTIONS;
+
+    public readonly sectionType!: Section;
 
     @ViewChild(TreeViewComponent)
-    private readonly treeView: TreeViewComponent<TreeNode<Section>>;
+    private readonly treeView: TreeViewComponent<Section>;
 
     constructor(
-        private readonly selectedSectionState: SelectedSectionState,
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly selectedSectionState: SelectedSectionState
     ) {
         super();
     }
 
-    public onTreeViewNodeSelected(section: TreeNode<Section>): void {
+    public onTreeViewNodeSelected(section: Section): void {
         this.selectedSectionState.set(section);
     }
 
     public ngAfterViewInit(): void {
         this.treeView.nodesSelection.select(this.selectedSectionState.data);
-        this.changeDetector.detectChanges();
     }
 }

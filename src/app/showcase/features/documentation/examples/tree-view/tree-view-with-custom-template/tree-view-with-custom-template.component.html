@@ -1,12 +1,16 @@
 <os-tree-view
-    [data]="nodes">
+    [data]="nodes"
+    [childrenHandler]="childrenHandler">
     <ng-template
-        #nodeContent
+        osTreeViewNode
+        [ngTemplateType]="nodeType"
         let-node>
-        <img
-            class="icon"
-            [attr.src]="node.data.iconUrl" />
+        <os-tree-node>
+            <img
+                class="icon"
+                [attr.src]="node.iconUrl" />
 
-        {{ node.label }}
+            {{ node.label }}
+        </os-tree-node>
     </ng-template>
 </os-tree-view>

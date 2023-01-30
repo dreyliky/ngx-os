@@ -1,9 +1,8 @@
-import { Inject, Injectable } from '@angular/core';
-import { TREE_VIEW_CHILDREN_HANDLER } from '../constants';
+import { Injectable, OnDestroy } from '@angular/core';
 
 /** @internal */
 @Injectable()
-export class ɵTreeNodesState<T = any> {
+export class ɵTreeNodesState<T = any> implements OnDestroy {
     /** Original data tree of nodes */
     public get data(): T[] {
         return this._data;
@@ -17,26 +16,20 @@ export class ɵTreeNodesState<T = any> {
     private _data: T[] = [];
     private _flatData: T[] = [];
 
-    constructor(
-        @Inject(TREE_VIEW_CHILDREN_HANDLER)
-        private readonly childrenHandler: (item: T) => T[]
-    ) {}
+    public ngOnDestroy(): void {
+        this._data = [];
+        this._flatData = [];
+    }
 
     public set(data: T[]): void {
         this._data = data;
-        this._flatData = [];
-
-        this.initFlatDataForNodesAndChildren(data);
     }
 
-    private initFlatDataForNodesAndChildren(nodes: T[]): void {
-        nodes.forEach((node) => {
-            this._flatData.push(node);
-            const children = this.childrenHandler(node);
+    public _clearFlatData(): void {
+        this._flatData = [];
+    }
 
-            if (children?.length) {
-                this.initFlatDataForNodesAndChildren(children);
-            }
-        });
+    public _pushToFlatData(node: T): void {
+        this._flatData.push(node);
     }
 }

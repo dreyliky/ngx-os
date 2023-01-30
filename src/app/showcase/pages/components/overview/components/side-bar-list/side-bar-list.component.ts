@@ -1,21 +1,18 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
-    OnInit,
     ViewChild
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ComponentMetaInfo, LibraryComponentsSearchService } from '@features/documentation';
+import { LibraryComponentsSearchService } from '@features/documentation';
 import {
-    TreeNode,
-    TreeNodeSelectionEvent as Selection,
     TreeViewComponent,
-    TREE_VIEW_CHILDREN_HANDLER
+    ɵOsBaseViewComponent
 } from 'ngx-os';
-import { Observable } from 'rxjs';
-import { OverviewService } from '../../overview.service';
+import { takeUntil } from 'rxjs';
 import { SideBarItem } from './side-bar-item.interface';
 import { SideBarItemsService } from './side-bar-items.service';
 
@@ -25,36 +22,35 @@ import { SideBarItemsService } from './side-bar-items.service';
     styleUrls: ['./side-bar-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
-        {
-            provide: TREE_VIEW_CHILDREN_HANDLER,
-            useValue: (item: TreeNode) => item.children
-        },
         LibraryComponentsSearchService,
         SideBarItemsService
     ]
 })
-export class SideBarListComponent implements OnInit, AfterViewInit {
-    public metaInfo$: Observable<ComponentMetaInfo>;
-    public nodes$: Observable<TreeNode<SideBarItem>[]>;
+export class SideBarListComponent extends ɵOsBaseViewComponent implements AfterViewInit {
+    public readonly nodeType!: SideBarItem;
+
+    public nodes: SideBarItem[];
 
     @ViewChild(TreeViewComponent)
-    private readonly treeView: TreeViewComponent<TreeNode<SideBarItem>>;
+    private readonly treeView: TreeViewComponent<SideBarItem>;
+
+    @ViewChild(TreeViewComponent, { read: ElementRef })
+    private readonly treeViewElementRef: ElementRef<HTMLElement>;
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
-        private readonly overviewService: OverviewService,
         private readonly itemsService: SideBarItemsService,
         private readonly router: Router,
-        private readonly hostRef: ElementRef<HTMLElement>
-    ) {}
-
-    public ngOnInit(): void {
-        this.metaInfo$ = this.overviewService.metaInfo$;
-        this.nodes$ = this.itemsService.data$;
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
+    ) {
+        super();
     }
 
+    public readonly childrenHandler = (node: SideBarItem): SideBarItem[] => (node.children ?? []);
+
     public ngAfterViewInit(): void {
-        this.scrollToSelectedNode();
+        this.initNodesObserver();
     }
 
     public onSearch(event: KeyboardEvent): void {
@@ -63,8 +59,8 @@ export class SideBarListComponent implements OnInit, AfterViewInit {
         this.componentsSearchService.search(inputElement.value);
     }
 
-    public onNodeSelected({ node }: Selection<TreeNode<SideBarItem>>): void {
-        this.router.navigateByUrl(node.data.sectionUrl);
+    public onNodeSelected(node: SideBarItem): void {
+        this.router.navigateByUrl(node.sectionUrl);
 
         if (node.children?.length) {
             this.treeView.nodesExpansion.collapseAll();
@@ -73,16 +69,26 @@ export class SideBarListComponent implements OnInit, AfterViewInit {
         this.treeView.nodesExpansion.expand(node);
     }
 
+    private initNodesObserver(): void {
+        this.itemsService.data$
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe((nodes) => {
+                this.nodes = nodes;
+
+                this.changeDetector.detectChanges();
+                this.scrollToSelectedNode();
+            });
+    }
+
     private scrollToSelectedNode(): void {
         const selectedNodes = this.treeView.nodesSelection.getAllSelected();
         const selectedNode = selectedNodes[0];
 
         if (selectedNode) {
             const nodeElement = this.hostRef.nativeElement
-                .querySelector(`#${selectedNode.id}`) as HTMLElement;
+                .querySelector<HTMLElement>(`#${selectedNode.id}`);
 
-            // FIXME: Fix scroll of tree-view
-            // this.treeView.scrollView.scrollTo(0, nodeElement.offsetTop);
+            this.treeViewElementRef.nativeElement.scrollTop = nodeElement.offsetTop;
         }
     }
 }

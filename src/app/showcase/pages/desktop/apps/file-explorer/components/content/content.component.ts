@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { TreeNode } from 'ngx-os';
-import { Section, SectionEnum } from '../../core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SectionEnum, SECTIONS } from '../../core';
 import { SelectedSectionState } from '../../states';
 
 @Component({
@@ -10,8 +9,7 @@ import { SelectedSectionState } from '../../states';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentComponent {
-    @Input()
-    public sections: TreeNode<Section>[];
+    public sections = SECTIONS;
 
     public readonly sectionEnum = SectionEnum;
 

@@ -1,4 +1,5 @@
 export * from './element-apply-self-destroyed-class.helper';
+export * from './element-content-observer.helper';
 export * from './element-resizing-observer.helper';
 export * from './error.helper';
 export * from './event-outside.helper';

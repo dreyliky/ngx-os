@@ -23,11 +23,22 @@
 
 <os-tree-view
     [data]="nodes"
+    [childrenHandler]="childrenHandler"
     [isAllowSelection]="isAllowSelection"
     [isAllowMultipleSelection]="isAllowMultipleSelection"
     [isSelectionInToggleMode]="isSelectionInToggleMode"
-    (osNodeSelected)="onNodeToggleSelection($event)"
-    (osNodeDeselected)="onNodeToggleSelection($event)">
+    (osNodeSelected)="onNodeToggleSelection()"
+    (osNodeDeselected)="onNodeToggleSelection()">
+    <ng-template
+        osTreeViewNode
+        [ngTemplateType]="nodeType"
+        let-node>
+        <os-tree-node
+            [isExpandedByDefault]="node.isExpandedByDefault"
+            [isSelectedByDefault]="node.isSelectedByDefault">
+            {{ node.label }}
+        </os-tree-node>
+    </ng-template>
 </os-tree-view>
 
 <os-text>

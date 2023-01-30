@@ -18,6 +18,12 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
     libComponents: [
         'TreeViewComponent'
     ],
+    libDirectives: [
+        'TreeViewHeaderDirective',
+        'TreeViewFooterDirective',
+        'TreeViewNodeContentDirective',
+        'TreeViewNodeIconDirective'
+    ],
     libServices: [
         'TreeNodesSelectionService',
         'TreeNodesExpansionService'

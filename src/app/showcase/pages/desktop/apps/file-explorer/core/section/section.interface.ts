@@ -1,5 +1,7 @@
 import { SectionEnum } from './section.enum';
 
 export interface Section {
-    id: SectionEnum;
+    readonly id: SectionEnum;
+    readonly label: string;
+    readonly isSelectedByDefault?: boolean;
 }

@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AppRouteEnum } from '@core/enums';
 import {
@@ -7,39 +7,35 @@ import {
     OsComponentEnum,
     OsComponentOverviewSectionEnum as RouteEnum
 } from '@features/documentation';
-import { TreeNode } from 'ngx-os';
-import { Observable, Subject } from 'rxjs';
+import { injectLocal } from 'ngx-local-injector';
+import { ɵDestroyService } from 'ngx-os/core';
+import { Observable } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { SideBarItem } from './side-bar-item.interface';
 
 // FIXME: Refactor
 @Injectable()
-export class SideBarItemsService implements OnDestroy {
-    public data$: Observable<TreeNode<SideBarItem>[]>;
+export class SideBarItemsService {
+    public data$: Observable<SideBarItem[]>;
 
-    private readonly baseSubSections: TreeNode<SideBarItem>[] = [
+    private readonly baseSubSections: SideBarItem[] = [
         {
             label: 'Examples',
-            data: {
-                sectionUrl: RouteEnum.Examples
-            }
+            sectionUrl: RouteEnum.Examples
         },
         {
             label: 'Theming',
-            data: {
-                sectionUrl: RouteEnum.Theming
-            }
+            sectionUrl: RouteEnum.Theming
         },
         {
             label: 'API',
-            data: {
-                sectionUrl: RouteEnum.Api
-            }
+            sectionUrl: RouteEnum.Api
         }
     ];
 
+    private readonly destroyed$ = injectLocal(ɵDestroyService);
+
     private currentRoute: string;
-    private destroyed$ = new Subject<boolean>();
 
     constructor(
         private readonly componentsSearchService: LibraryComponentsSearchService,
@@ -50,41 +46,36 @@ export class SideBarItemsService implements OnDestroy {
         this.initDataObservable();
     }
 
-    public ngOnDestroy(): void {
-        this.destroyed$.next(true);
-        this.destroyed$.complete();
-    }
-
-    private mapMetaInfosToTreeNodes(metaInfos: ComponentMetaInfo[]): TreeNode<SideBarItem>[] {
+    private mapMetaInfosToTreeNodes(metaInfos: ComponentMetaInfo[]): SideBarItem[] {
         return metaInfos.map((metaInfo) => {
             const sectionUrl = `/${AppRouteEnum.Components}/` +
                 `${metaInfo.type}/${RouteEnum.Documentation}`;
             const isSectionUrlActive = this.isSectionUrlActive(metaInfo.type);
 
             return {
+                sectionUrl,
                 label: metaInfo.name,
                 id: `${metaInfo.type}_${RouteEnum.Documentation}`,
-                isExpanded: isSectionUrlActive,
-                isSelected: (isSectionUrlActive && this.currentRoute === sectionUrl),
-                data: { sectionUrl, imageUrl: metaInfo.imageUrl },
+                isExpandedByDefault: isSectionUrlActive,
+                isSelectedByDefault: (isSectionUrlActive && this.currentRoute === sectionUrl),
+                imageUrl: metaInfo.imageUrl,
                 children: this.mapBaseSubSectionsForComponent(metaInfo)
             };
         });
     }
 
-    private mapBaseSubSectionsForComponent(metaInfo: ComponentMetaInfo): TreeNode<SideBarItem>[] {
+    private mapBaseSubSectionsForComponent(metaInfo: ComponentMetaInfo): SideBarItem[] {
         return this.baseSubSections
             .filter((section) => !this.isSectionForbidden(section, metaInfo))
-            .map((section) => {
+            .map((section: SideBarItem) => {
                 const sectionUrl = `/${AppRouteEnum.Components}/` +
-                    `${metaInfo.type}/${section.data?.sectionUrl}`;
-                const imageUrl = section.data?.imageUrl;
+                    `${metaInfo.type}/${section?.sectionUrl}`;
 
-                return {
+                return <SideBarItem>{
                     ...section,
                     id: `${metaInfo.type}_${section.label}_${RouteEnum.Documentation}`,
-                    isSelected: (this.currentRoute === sectionUrl),
-                    data: { sectionUrl, imageUrl }
+                    isSelectedByDefault: (this.currentRoute === sectionUrl),
+                    sectionUrl
                 };
             });
     }
@@ -118,10 +109,10 @@ export class SideBarItemsService implements OnDestroy {
     }
 
     private isSectionForbidden(
-        section: TreeNode<SideBarItem>,
+        section: SideBarItem,
         metaInfo: ComponentMetaInfo
     ): boolean {
-        const sectionUrl = section.data?.sectionUrl as RouteEnum;
+        const sectionUrl = section?.sectionUrl as RouteEnum;
 
         return !!metaInfo.forbiddenOverviewSections?.includes(sectionUrl);
     }
