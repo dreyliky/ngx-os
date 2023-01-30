@@ -14,9 +14,10 @@
 <os-form-field [isStacked]="true">
     <os-label>Number</os-label>
 
-    <os-input-number [formControl]="inputNumberControl">
-        <input osInput placeholder="Enter your value" />
-    </os-input-number>
+    <input
+        osInputNumber
+        [formControl]="inputNumberControl"
+        placeholder="Enter your value" />
 
     <os-text>
         {{ inputNumberControl.value | json }}

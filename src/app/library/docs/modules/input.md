@@ -45,12 +45,13 @@ Allows you to get **number** input from the user.
 - Allows forbidding empty field when no value;
 
 ```html
-<os-input-number [formControl]="ageControl">
-    <input osInput placeholder="Enter your age" />
-</os-input-number>
+<input
+    osInputNumber
+    [formControl]="ageControl"
+    placeholder="Enter your age" />
 ```
 
 ## Use with **@angular/forms**
 
-`<input osInput />`, `<textarea osInput>...</textarea>` and `<os-input-number>...</os-input-number>`
+`<input osInput />`, `<input osInputNumber />` and `<textarea osInput>...</textarea>`
 are compatible with **@angular/forms** and supports both `FormsModule` and `ReactiveFormsModule`.

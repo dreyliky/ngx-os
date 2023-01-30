@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { ɵSharedModule } from '../shared.module';
-import { InputNumberComponent } from './components';
 import {
     AutofocusDirective,
-    InputDirective
+    InputDirective,
+    InputNumberDirective
 } from './directives';
 
 @NgModule({
     declarations: [
         InputDirective,
-        AutofocusDirective,
-        InputNumberComponent
+        InputNumberDirective,
+        AutofocusDirective
     ],
     imports: [
         ɵSharedModule
     ],
     exports: [
         InputDirective,
-        AutofocusDirective,
-        InputNumberComponent
+        InputNumberDirective,
+        AutofocusDirective
     ]
 })
 export class InputModule {}

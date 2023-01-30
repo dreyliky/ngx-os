@@ -1,10 +1,10 @@
 import { ɵIsNil } from '../../../core';
-import { InputNumberComponent } from '../components';
+import { InputNumberDirective } from '../directives';
 
 /** @internal */
 export class ɵNumericalValueConverter {
     constructor(
-        private readonly context: InputNumberComponent
+        private readonly context: InputNumberDirective
     ) {}
 
     /** Convert value to numerical value by filtering excess symbols */

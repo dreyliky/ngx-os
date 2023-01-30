@@ -15,11 +15,11 @@
     <os-form-field [isStacked]="true">
         <os-label>Actions delay in milliseconds</os-label>
 
-        <os-input-number
+        <input
+            osInputNumber
             [ngModel]="(actionsDelay$ | async)"
-            (osChange)="onActionsDelayNumberBoxValueChange($event.value)">
-            <input osInput placeholder="Enter actions delay in milliseconds" />
-        </os-input-number>
+            placeholder="Enter actions delay in milliseconds"
+            (osChange)="onActionsDelayNumberBoxValueChange($event.value)" />
     </os-form-field>
 
     <os-form-field [isStacked]="true">
