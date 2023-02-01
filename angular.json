@@ -10,6 +10,16 @@
           "changeDetection": "OnPush",
           "style": "scss",
           "prefix": "showcase"
+        },
+        "@schematics/angular:directive": {
+          "prefix": "corn",
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
         }
       },
       "root": "",
