@@ -32,8 +32,11 @@
         </ng-template>
     </os-title-bar>
 
-    <ng-container
-        *ngComponentOutlet="childComponentType">
+    <!-- Create child-component after ngAfterViewInit hook -->
+    <ng-container *ngIf="windowRef.windowElement">
+        <ng-container
+            *ngComponentOutlet="childComponentType">
+        </ng-container>
     </ng-container>
 </os-window>
 

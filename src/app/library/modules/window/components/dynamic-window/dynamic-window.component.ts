@@ -103,6 +103,7 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
         this.windowRef.setWindowElement(this.windowElementRef.nativeElement);
         this.windowRef.setDraggableDirective(this.draggableDirective);
         this.windowRef.setResizableDirective(this.resizableDirective);
+        this.changeDetector.detectChanges();
     }
 
     public ngOnDestroy(): void {

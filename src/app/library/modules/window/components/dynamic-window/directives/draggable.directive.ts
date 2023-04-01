@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
 import { filter, forkJoin, of, switchMap, take, takeUntil } from 'rxjs';
 import { ɵDestroyService } from '../../../../../core';
-import { DraggableDirective, DragStrategyByAxisProperties } from '../../../../drag-and-drop';
+import { DragStrategyByAxisProperties, DraggableDirective } from '../../../../drag-and-drop';
 import { ɵDynamicWindowRefModel } from '../../../classes';
 import { DYNAMIC_WINDOW_REF } from '../../../data';
 import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
@@ -21,7 +21,7 @@ export class ɵDynamicWindowDraggableDirective extends DraggableDirective implem
     public get _titleBarControlsElementWidth(): number {
         const element = this._titleBarElement.querySelector('.os-title-bar-controls');
 
-        return element.clientWidth;
+        return element?.clientWidth;
     }
 
     public get _titleBarElement(): HTMLElement {
