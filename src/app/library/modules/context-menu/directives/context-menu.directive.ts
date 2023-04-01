@@ -12,7 +12,7 @@ import {
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, fromEvent } from 'rxjs';
 import { filter, first, takeUntil } from 'rxjs/operators';
 import {
     ɵApplyAutoDestroyClass,
@@ -45,10 +45,12 @@ export class ContextMenuDirective implements DoCheck, OnDestroy {
     @Input('osContextMenuPointerOffsetY')
     public offsetY = 0;
 
+    /** Is Context Menu opened? */
     public get isOpened(): boolean {
         return this._isOpened$.getValue();
     }
 
+    /** Opened state as Observable */
     public get isOpened$(): Observable<boolean> {
         return this._isOpened$.asObservable();
     }

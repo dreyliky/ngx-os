@@ -21,6 +21,7 @@ import { ContextMenuDirective } from '../../directives';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContextMenuItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
+    /** Do Context Menu should close on context-menu-item click automatically? Default: `true` */
     @Input()
     public isContextMenuCloseOnClick: boolean = true;
 
