@@ -12,6 +12,7 @@ import { ɵIsNil } from '../../../core';
 import { ɵNumericalValueConverter } from '../helpers';
 import { InputNumberChangeEvent } from '../interfaces';
 
+/** Transforms HTML input to input-number in os style */
 @Directive({
     selector: 'input[osInputNumber]',
     host: {

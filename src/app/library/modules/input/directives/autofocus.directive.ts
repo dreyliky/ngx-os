@@ -1,5 +1,6 @@
 import { AfterViewInit, Directive, ElementRef } from '@angular/core';
 
+/** Init focus for element at ngAfterViewInit hook */
 @Directive({
     selector: 'input[osAutofocus], textarea[osAutofocus], button[osAutofocus]',
     exportAs: 'osAutofocus'
