@@ -13,7 +13,7 @@ to get more information.
 | ------------------------------- | --------------------------------------------------- |
 | `.os-tree-view`                 | Host element                                        |
 
-## TreeNode (DIV ELEMENT)
+## TreeNodeComponent
 
 ### Local CSS Variables
 

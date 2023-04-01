@@ -28,16 +28,12 @@ import {
 
 /**
  * ## Content Projection Slots
- * - Attribute `osTreeViewHeader`: Slot for your custom content above nodes
- * - Attribute `os-tree-view-content`: Slot for your custom content above nodes
- * (might be used instead of default behavior. For example you want to display your own nodes
- * somehow instead of auto-generated based on `data`)
- * - Attribute `osTreeViewFooter`: Slot for your custom content below nodes and custom content
+ * - Directive `osTreeViewHeader`: Slot for your custom content above nodes
+ * - Directive `osTreeViewFooter`: Slot for your custom content below nodes and custom content
  *
  * ```html
  * <os-tree-view>
  *     <div osTreeViewHeader>YOUR HEADER CONTENT</div>
- *     <div os-tree-view-content>YOUR CONTENT</div>
  *     <!-- TREE NODES WILL BE RENDERED HERE -->
  *     <div osTreeViewFooter>YOUR FOOTER CONTENT</div>
  * </os-tree-view>
@@ -65,29 +61,6 @@ import {
  *          Now you are ready to build your custom content for each node.
  *        -->
  *      </ng-template>
- * </os-tree-view>
- * ```
- *
- * `osTreeViewNodeIcon`: Custom template for the node expansion icon.
- *
- * Context:
- * - `$implicit`: {@type T} node data;
- * - `depth`: depth of the node (0 - root node; 1 and more - child node);
- * - `index`: index of the node;
- *
- * ```html
- * <os-tree-view>
- *     <ng-template
- *        osTreeViewNodeIcon
- *        let-node
- *        let-depth="depth">
- *        <!--
- *          `node` contains the node data;
- *          `nodeDepth` contains depth of the node;
- *          `nodeIndex` contains index of the node;
- *          Place your custom content for the node expansion icon here.
- *        -->
- *     </ng-template>
  * </os-tree-view>
  * ```
  **/

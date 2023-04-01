@@ -29,10 +29,12 @@ import { TreeViewComponent } from '../tree-view';
     }
 })
 export class TreeNodeComponent<T = any> extends ɵOsBaseViewComponent implements OnInit {
+    /** Is disabled? */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
     public isDisabled: boolean = false;
 
+    /** Is expanded by default? */
     @Input()
     public set isExpandedByDefault(value: boolean) {
         if (value) {
@@ -40,6 +42,7 @@ export class TreeNodeComponent<T = any> extends ɵOsBaseViewComponent implements
         }
     }
 
+    /** Is selected by default? */
     @Input()
     public set isSelectedByDefault(value: boolean) {
         if (value) {
@@ -90,6 +93,7 @@ export class TreeNodeComponent<T = any> extends ɵOsBaseViewComponent implements
     constructor(
         /** @internal */
         public readonly _treeView: TreeViewComponent,
+        /** Custom data of the TreeNode */
         @Inject(ɵTREE_NODE) public readonly data: T,
         private readonly nodesDepthState: ɵTreeNodesDepthState<T>,
         private readonly changeDetector: ChangeDetectorRef

@@ -6,6 +6,7 @@ import {
 import { ɵDestroyService } from '../../../core';
 import { TreeNodeComponent, TreeViewComponent } from '../components';
 
+/** Marks element as the expander (action trigger) of the TreeNode. */
 @Directive({
     selector: '[osTreeNodeTrigger]',
     host: {
