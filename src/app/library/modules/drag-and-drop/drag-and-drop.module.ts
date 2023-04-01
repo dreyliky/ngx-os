@@ -12,9 +12,7 @@ import { DraggableDirective, DraggableItemDirective, DraggableZoneDirective } fr
         ɵSharedModule
     ],
     exports: [
-        DraggableDirective,
-        DraggableZoneDirective,
-        DraggableItemDirective
+        DraggableDirective
     ]
 })
 export class DragAndDropModule {}

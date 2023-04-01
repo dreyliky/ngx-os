@@ -17,9 +17,7 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
         'DragAndDropModule'
     ],
     libDirectives: [
-        'DraggableDirective',
-        'DraggableZoneDirective',
-        'DraggableItemDirective'
+        'DraggableDirective'
     ],
     libClasses: [
         'DragStrategyByTranslate3d',
@@ -59,7 +57,8 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
         {
             title: 'Draggable Zone Overview',
             componentName: 'DraggableZoneOverviewComponent',
-            component: DraggableZoneOverviewComponent
+            component: DraggableZoneOverviewComponent,
+            isOnlyForDevEnv: true
         }
     ]
 };
