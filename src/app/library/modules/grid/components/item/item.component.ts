@@ -5,11 +5,12 @@ import {
     ContentChild,
     ElementRef,
     HostBinding,
+    HostListener,
     Input,
     TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
-import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
     Coordinate,
@@ -132,18 +133,19 @@ export class GridItemComponent extends ɵOsBaseViewComponent {
     }
 
     /** @internal */
-    @HostBinding()
+    @HostListener('mousedown')
     public _onMouseDown(): void {
-        this.isSelected = true;
-
+        this._isSelected$.next(true);
+        this.initClickOutsideObserver();
         this.changeDetector.markForCheck();
     }
 
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('mousedown')
             .pipe(
-                filter((event) => ɵEventOutside
-                    .checkForElement(this._hostRef.nativeElement, event)),
+                filter((event) => (
+                    ɵEventOutside.checkForElement(this._hostRef.nativeElement, event)
+                )),
                 takeUntil(this._viewDestroyedOrBecomeDeselected$)
             )
             .subscribe(() => {
