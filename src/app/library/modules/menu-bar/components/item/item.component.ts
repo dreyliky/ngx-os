@@ -10,6 +10,7 @@ import {
 import { ɵOsBaseOptionComponent } from '../../../../core';
 import { ɵMenuBarActiveButtonState } from '../../states';
 
+/** MenuBar item it's button inside the MenuButton container. */
 @Component({
     selector: 'os-menu-bar-item',
     template: '<ng-content></ng-content>',
@@ -25,6 +26,7 @@ export class MenuBarItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
     @Input()
     public isMenuBarCloseOnClick: boolean = true;
 
+    /** Is MenuBar selected */
     @Output()
     public readonly osSelected: EventEmitter<T> = new EventEmitter();
 

@@ -15,7 +15,8 @@ export const MENU_BAR_META_INFO: ComponentMetaInfo = {
     ],
     libComponents: [
         'MenuBarComponent',
-        'MenuBarButtonComponent'
+        'MenuBarButtonComponent',
+        'MenuBarItemComponent'
     ],
     demoComponents: [
         {

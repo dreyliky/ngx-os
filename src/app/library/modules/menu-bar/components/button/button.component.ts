@@ -10,6 +10,7 @@ import { filter, map, takeUntil } from 'rxjs';
 import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
 import { ɵMenuBarActiveButtonState } from '../../states';
 
+/** Button which triggers MenuBar container with MenuBar items inside. */
 @Component({
     selector: 'button[os-menu-bar-button]',
     template: '<ng-content></ng-content>',
