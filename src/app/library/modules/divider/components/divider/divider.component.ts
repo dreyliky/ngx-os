@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ɵOsBaseViewComponent } from '../../../../core';
 
+/** A divider component is a thin line that groups content in lists and layouts. */
 @Component({
     selector: 'os-divider',
     template: '',
