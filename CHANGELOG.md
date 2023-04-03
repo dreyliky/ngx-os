@@ -1,6 +1,6 @@
 # Changelog
 
-## [v. 1.1.0-alpha]
+## [v. 2.0.0-alpha]
 
 ### Bug Fixes
 
