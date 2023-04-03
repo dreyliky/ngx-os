@@ -7,8 +7,7 @@ import {
     OsComponentEnum,
     OsComponentOverviewSectionEnum as RouteEnum
 } from '@features/documentation';
-import { injectLocal } from 'ngx-local-injector';
-import { ɵDestroyService } from 'ngx-os/core';
+import { ɵDestroyService, ɵInjectLocal } from 'ngx-os/core';
 import { Observable } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { SideBarItem } from './side-bar-item.interface';
@@ -33,7 +32,7 @@ export class SideBarItemsService {
         }
     ];
 
-    private readonly destroyed$ = injectLocal(ɵDestroyService);
+    private readonly destroyed$ = ɵInjectLocal(ɵDestroyService);
 
     private currentRoute: string;
 

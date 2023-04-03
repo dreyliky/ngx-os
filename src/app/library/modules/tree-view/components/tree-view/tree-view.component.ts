@@ -14,7 +14,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseViewComponent } from '../../../../core';
-import { TreeViewNodeDirective } from '../../directives';
+import { TreeViewNodeDirective } from '../../directives/node.directive';
 import { ɵNodeTemplateContext } from '../../interfaces';
 import {
     TreeNodesExpansionService,

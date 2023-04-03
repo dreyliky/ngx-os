@@ -33,5 +33,5 @@ export abstract class ɵOsBaseOptionComponent<T> extends ɵOsBaseViewComponent {
 
     /** Fires when the option item selected */
     @Output()
-    public readonly abstract osSelected: EventEmitter<unknown>;
+    public readonly abstract osSelected: EventEmitter<any>;
 }

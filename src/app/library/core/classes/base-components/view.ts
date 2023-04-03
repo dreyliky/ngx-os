@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { injectLocal } from 'ngx-local-injector';
+import { ɵInjectLocal } from '../../helpers';
 import { ɵDestroyService } from '../../services';
 
 @Directive({
@@ -8,5 +8,5 @@ import { ɵDestroyService } from '../../services';
     }
 })
 export abstract class ɵOsBaseViewComponent {
-    protected viewDestroyed$ = injectLocal(ɵDestroyService);
+    protected viewDestroyed$ = ɵInjectLocal(ɵDestroyService);
 }
