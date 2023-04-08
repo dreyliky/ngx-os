@@ -1,18 +1,21 @@
 .os-tree-view {
     width: 100%;
+    height: inherit;
     display: block;
     background: #fff;
     border: solid 1px #666666;
     cursor: default;
     box-sizing: border-box;
+    overflow: auto;
 
     .os-tree-node {
         width: 100%;
         height: 40px;
         display: flex;
         align-items: center;
+        box-sizing: border-box;
 
-        &.os-expandable .os-icon:not(.os-custom) {
+        &.os-expandable .os-tree-node-trigger.os-default-trigger {
             width: 16px;
             height: 16px;
             margin-right: 10px;
@@ -21,7 +24,7 @@
             background-repeat: no-repeat;
         }
 
-        &.os-expanded .os-icon:not(.os-custom) {
+        &.os-expanded .os-tree-node-trigger.os-default-trigger {
             background-position: -16px -16px;
         }
 
@@ -34,11 +37,11 @@
                 background-color: rgba(var(--os-primary-color), .2);
             }
 
-            .os-icon:not(.os-custom) {
+            .os-tree-node-trigger.os-default-trigger {
                 background-position: 0px 0px;
             }
 
-            &.os-expanded .os-icon:not(.os-custom) {
+            &.os-expanded .os-tree-node-trigger.os-default-trigger {
                 background-position: -16px 0px;
             }
         }

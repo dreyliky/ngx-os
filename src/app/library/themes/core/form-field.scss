@@ -2,7 +2,7 @@
     margin: 24px 0px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 
     &.os-stacked {
         flex-direction: column !important;
@@ -20,6 +20,11 @@
         width: 100px;
         min-width: 100px;
         display: flex;
+        margin-top: 3px;
         margin-right: 8px;
+    }
+
+    > .os-field-wrapper {
+        width: 100%;
     }
 }

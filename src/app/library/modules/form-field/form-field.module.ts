@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { FormFieldComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { FormFieldComponent } from './components';
         FormFieldComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         FormFieldComponent

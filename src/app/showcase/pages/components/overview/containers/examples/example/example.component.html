@@ -5,17 +5,20 @@
     <a
         class="show-isolated-button"
         [routerLink]="isolatedPath">
-        <os-button>Isolate mode</os-button>
+        <button osButtonLink>Isolate mode</button>
     </a>
 
-    <os-button
-        (osClick)="onOpenInsideDynamicWindowButtonClick()">
+    <button
+        osButtonLink
+        (click)="onOpenInsideDynamicWindowButtonClick()">
         Inside Dynamic Window
-    </os-button>
+    </button>
 </os-header>
 
 <div class="wrapper">
-    <os-tab-group [(selectedTabIndex)]="openedSection">
+    <section
+        os-tab-group
+        [(selectedTabIndex)]="openedSection">
         <os-tab [label]="'Demo'">
             <div class="example-wrapper">
                 <ng-template #exampleTemplate></ng-template>
@@ -25,7 +28,7 @@
         <os-tab
             *ngIf="docComponent"
             [label]="'HTML'">
-            <ng-template #tabContent>
+            <ng-template osTabContent>
                 <showcase-code-viewer
                     [language]="'html'"
                     [code]="docComponent.templateData">
@@ -36,7 +39,7 @@
         <os-tab
             *ngIf="isScssExist"
             [label]="'SCSS'">
-            <ng-template #tabContent>
+            <ng-template osTabContent>
                 <showcase-code-viewer
                     [language]="'scss'"
                     [code]="docComponent.styleUrlsData[0].data">
@@ -47,12 +50,12 @@
         <os-tab
             *ngIf="docComponent"
             [label]="'TypeScript'">
-            <ng-template #tabContent>
+            <ng-template osTabContent>
                 <showcase-code-viewer
                     [language]="'ts'"
                     [code]="docComponent.sourceCode">
                 </showcase-code-viewer>
             </ng-template>
         </os-tab>
-    </os-tab-group>
+    </section>
 </div>

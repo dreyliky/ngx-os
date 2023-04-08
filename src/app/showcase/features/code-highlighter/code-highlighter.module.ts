@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
-import { CodeViewerComponent, MarkdownPreviewerComponent } from './components';
+import { CodeViewerComponent, MarkdownPreviewerModule } from './components';
 
 @NgModule({
     declarations: [
-        CodeViewerComponent,
-        MarkdownPreviewerComponent
+        CodeViewerComponent
     ],
     imports: [
         SharedModule
     ],
     exports: [
         CodeViewerComponent,
-        MarkdownPreviewerComponent
+        MarkdownPreviewerModule
     ]
 })
 export class CodeHighlighterModule {}

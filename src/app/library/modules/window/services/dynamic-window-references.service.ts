@@ -1,70 +1,70 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
-import { DynamicWindowConfigModel, DynamicWindowRefModel } from '../classes';
+import { ɵDynamicWindowConfigModel, ɵDynamicWindowRefModel } from '../classes';
 import { DynamicWindowConfig as IDynamicWindowConfig } from '../interfaces';
-import { WindowReferencesState } from '../states';
-import { DynamicWindowActivityService } from './dynamic-window-activity.service';
-import { DynamicWindowRefOrderingService } from './dynamic-window-ref-ordering.service';
-import { DynamicWindowsCoordinatesService } from './dynamic-windows-coordinates.service';
+import { ɵWindowReferencesState } from '../states';
+import { ɵDynamicWindowActivityService } from './dynamic-window-activity.service';
+import { ɵDynamicWindowRefOrderingService } from './dynamic-window-ref-ordering.service';
+import { ɵDynamicWindowsDefaultCoordinatesService } from './dynamic-windows-coordinates.service';
 
 /** @internal */
 @Injectable({
     providedIn: 'root'
 })
-export class DynamicWindowReferencesService implements OnDestroy {
-    public get data$(): Observable<DynamicWindowRefModel[]> {
+export class ɵDynamicWindowReferencesService implements OnDestroy {
+    public get data$(): Observable<ɵDynamicWindowRefModel[]> {
         return this.state.data$;
     }
 
-    public get data(): DynamicWindowRefModel[] {
+    public get data(): ɵDynamicWindowRefModel[] {
         return [...this.state.data];
     }
 
-    private destroyed$ = new Subject();
+    private destroyed$ = new Subject<boolean>();
 
     constructor(
-        private readonly state: WindowReferencesState,
-        private readonly activityService: DynamicWindowActivityService,
-        private readonly orderingService: DynamicWindowRefOrderingService,
-        private readonly coordinatesService: DynamicWindowsCoordinatesService
+        private readonly state: ɵWindowReferencesState,
+        private readonly activityService: ɵDynamicWindowActivityService,
+        private readonly orderingService: ɵDynamicWindowRefOrderingService,
+        private readonly defaultCoordinatesService: ɵDynamicWindowsDefaultCoordinatesService
     ) {}
 
     public ngOnDestroy(): void {
-        this.destroyed$.next();
+        this.destroyed$.next(true);
         this.destroyed$.complete();
     }
 
-    public register(windowRef: DynamicWindowRefModel, config: IDynamicWindowConfig): void {
-        windowRef.init(new DynamicWindowConfigModel(config));
+    public register(windowRef: ɵDynamicWindowRefModel, config: IDynamicWindowConfig): void {
+        windowRef.init(new ɵDynamicWindowConfigModel(config));
         this.state.add(windowRef);
-        this.coordinatesService.applyDefault(windowRef);
+        this.defaultCoordinatesService.applyIfSpecificAbsent(windowRef);
         this.initHighestWindowActivityObserver(windowRef);
         this.initIsActiveStateObserver(windowRef);
     }
 
-    public remove(windowRef: DynamicWindowRefModel): void {
+    public remove(windowRef: ɵDynamicWindowRefModel): void {
         this.orderingService.remove(windowRef.id);
         this.state.remove(windowRef);
     }
 
-    private initHighestWindowActivityObserver(windowRef: DynamicWindowRefModel): void {
+    private initHighestWindowActivityObserver(windowRef: ɵDynamicWindowRefModel): void {
         merge(
             windowRef.isHidden$.pipe(filter(Boolean)),
             windowRef.afterClosed$
         )
             .pipe(
-                takeUntil(this.destroyed$),
-                map(() => this.orderingService.getHighestOpened())
+                map(() => this.orderingService.getHighestOpened()),
+                takeUntil(this.destroyed$)
             )
             .subscribe((highestWindow) => highestWindow?.makeActive());
     }
 
-    private initIsActiveStateObserver(windowRef: DynamicWindowRefModel): void {
+    private initIsActiveStateObserver(windowRef: ɵDynamicWindowRefModel): void {
         windowRef.isActive$
             .pipe(
-                takeUntil(this.destroyed$),
-                filter(Boolean)
+                filter(Boolean),
+                takeUntil(this.destroyed$)
             )
             .subscribe(() => {
                 this.orderingService.moveToTop(windowRef.id);

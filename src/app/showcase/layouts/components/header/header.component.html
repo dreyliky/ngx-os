@@ -1,47 +1,58 @@
-<a
-    class="logo"
-    [routerLink]="'/'">
-    <img
-        class="icon"
-        src="/assets/showcase/icons/icon.png" />
-</a>
-
-<os-button
-    [routerLink]="guidesPagePath"
-    [routerLinkActive]="'os-focused'">
-    Get Started
-</os-button>
-
-<os-button
-    [routerLink]="componentsPagePath"
-    [routerLinkActive]="'os-focused'">
-    Components
-</os-button>
-
-<os-button
-    [routerLink]="desktopPagePath">
-    Desktop
-</os-button>
-
-<header-theme-settings
-    class="theme-settings">
-</header-theme-settings>
-
-<div class="version">
-    <os-text>v. {{ libVersion }}</os-text>
+<div class="col">
+    <a
+        class="logo"
+        [routerLink]="'/'">
+        <img
+            class="icon"
+            src="/assets/showcase/icons/icon.png" />
+    </a>
 </div>
 
-<img
-    class="recommended-browser-icon"
-    src="/assets/showcase/icons/chrome.svg"
-    [attr.title]="recommendedBrowserText"
-    (click)="onChromeIconClick()" />
+<div class="col">
+    <button
+        osButton
+        [routerLink]="guidesPagePath"
+        [routerLinkActive]="'os-focused'">
+        Get Started
+    </button>
 
-<a
-    class="github"
-    target="_blank"
-    href="https://github.com/dreyliky/ngx-os">
+    <button
+        osButton
+        [routerLink]="componentsPagePath"
+        [routerLinkActive]="'os-focused'">
+        Components
+    </button>
+
+    <button
+        osButton
+        [routerLink]="desktopPagePath">
+        Desktop
+    </button>
+</div>
+
+<div class="col align-right">
+    <header-theme-settings
+        class="theme-settings">
+    </header-theme-settings>
+</div>
+
+<div class="col col-version">
+    <div class="version">
+        <os-text>v. {{ libVersion }}</os-text>
+    </div>
+    
     <img
-        class="github-icon"
-        src="/assets/showcase/icons/github.svg" />
-</a>
+        class="recommended-browser-icon"
+        src="/assets/showcase/icons/chrome.svg"
+        [attr.title]="recommendedBrowserText"
+        (click)="onChromeIconClick()" />
+    
+    <a
+        class="github"
+        target="_blank"
+        href="https://github.com/dreyliky/ngx-os">
+        <img
+            class="github-icon"
+            src="/assets/showcase/icons/github.svg" />
+    </a>
+</div>

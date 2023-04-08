@@ -1,0 +1,54 @@
+<os-form-field [isStacked]="true">
+    <os-label>Display delay in milliseconds</os-label>
+
+    <input
+        osInputNumber
+        [(ngModel)]="hintDisplayDelay"
+        placeholder="Enter Display Delay in milliseconds" />
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Offset X in pixels</os-label>
+
+    <input
+        osInputNumber
+        [(ngModel)]="hintMouseOffsetX"
+        placeholder="Enter Offset X in pixels" />
+</os-form-field>
+
+<os-form-field [isStacked]="true">
+    <os-label>Offset Y in pixels</os-label>
+
+    <input
+        osInputNumber
+        [(ngModel)]="hintMouseOffsetY"
+        placeholder="Enter Offset Y in pixels" />
+</os-form-field>
+
+<div class="wrapper">
+    <div
+        [osHint]="'Simple hint content!'"
+        [osHintDisplayDelay]="hintDisplayDelay"
+        [osHintMouseOffsetX]="hintMouseOffsetX"
+        [osHintMouseOffsetY]="hintMouseOffsetY"
+        class="container">
+        Simple hint with raw string inside
+    </div>
+
+    <div
+        [osHint]="myHintContentTemplate"
+        [osHintDisplayDelay]="hintDisplayDelay"
+        [osHintMouseOffsetX]="hintMouseOffsetX"
+        [osHintMouseOffsetY]="hintMouseOffsetY"
+        class="container">
+        Hint with custom content inside
+    </div>
+</div>
+
+<ng-template #myHintContentTemplate>
+    This is my hint <b>custom content</b>!
+
+    <hr />
+
+    <img src="/assets/showcase/icons/image.png" />
+</ng-template>

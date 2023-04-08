@@ -1,0 +1,39 @@
+<button
+    os-menu-bar-button
+    [osMenuBar]="menuBar">
+    Group actions
+</button>
+
+<ng-template #menuBar>
+    <div class="menu-bar">
+        <os-menu-bar-item
+            (osSelected)="makeGroupWindowsAction('hide')">
+            Hide
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            (osSelected)="makeGroupWindowsAction('show')">
+            Show
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            (osSelected)="makeGroupWindowsAction('goFullscreen')">
+            Fullscreen
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            (osSelected)="makeGroupWindowsAction('goWindowed')">
+            Windowed
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            (osSelected)="onShuffleButtonClick()">
+            Shuffle positions
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            (osSelected)="makeGroupWindowsAction('close')">
+            Close
+        </os-menu-bar-item>
+    </div>
+</ng-template>

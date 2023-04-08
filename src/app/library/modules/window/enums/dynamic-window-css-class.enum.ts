@@ -1,5 +1,5 @@
 /** @internal */
-export enum DynamicWindowCssClassEnum {
+export enum ɵDynamicWindowCssClassEnum {
     Opening = 'os-opening',
     Hiding = 'os-hiding',
     Showing = 'os-showing',

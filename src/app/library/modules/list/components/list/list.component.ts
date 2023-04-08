@@ -1,12 +1,10 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list',
@@ -14,10 +12,11 @@ import { OsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-list'
     },
+    exportAs: 'osList',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent extends OsBaseComponent implements OnInit {
+export class ListComponent extends ɵOsBaseViewComponent {
     /** Stylelist for scroll view component of the list */
     @Input()
     public scrollViewStyle: object;
@@ -25,14 +24,4 @@ export class ListComponent extends OsBaseComponent implements OnInit {
     /** Classlist for scroll view component of the list */
     @Input()
     public scrollViewStyleClass: string;
-
-    constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
-    ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
-    }
 }

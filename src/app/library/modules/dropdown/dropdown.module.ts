@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ListModule } from '../list';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { DropdownComponent, DropdownItemComponent } from './components';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { DropdownComponent, DropdownItemComponent } from './components';
         DropdownItemComponent
     ],
     imports: [
-        SharedModule,
+        ɵSharedModule,
         ListModule
     ],
     exports: [

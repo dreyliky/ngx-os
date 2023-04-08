@@ -11,7 +11,7 @@
 </td>
 
 <td>
-  Components in operating systems style for Angular.
+  Components in operating systems style for Angular 15.
 
   Visit the <a href="https://ngx-os.io">ngx-os website</a> for general information, examples, demos and documentation.
 </td>

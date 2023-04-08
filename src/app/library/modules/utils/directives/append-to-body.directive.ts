@@ -12,7 +12,8 @@ import { AppendToBodyConfig } from '../classes';
 
 /** Moves element into the `body` element **/
 @Directive({
-    selector: '[osAppendToBody]'
+    selector: '[osAppendToBody]',
+    exportAs: 'osAppendToBody'
 })
 export class AppendToBodyDirective implements AfterViewInit, OnDestroy, OnChanges {
     /** Configuration of directive */

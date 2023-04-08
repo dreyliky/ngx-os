@@ -13,18 +13,21 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class GlobalEvents {
+export class ɵGlobalEvents {
     private documentEventMap = new Map<string, Observable<Event>>();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document
     ) {}
 
-    public fromDocument<T extends Event>(eventName: keyof DocumentEventMap): Observable<T> {
+    public fromDocument<T extends Event>(
+        eventName: keyof DocumentEventMap,
+        options?: boolean | AddEventListenerOptions
+    ): Observable<T> {
         if (!this.documentEventMap.has(eventName)) {
             const emitter = new Subject<Event>();
 
-            this.document.addEventListener(eventName, (event) => emitter.next(event));
+            this.document.addEventListener(eventName, (event) => emitter.next(event), options);
             this.documentEventMap.set(eventName, emitter.asObservable());
         }
 

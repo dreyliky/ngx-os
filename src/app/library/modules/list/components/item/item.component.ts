@@ -1,15 +1,12 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     EventEmitter,
-    HostBinding,
-    Input,
-    OnInit,
+    HostListener,
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
+import { ɵOsBaseOptionComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list-item',
@@ -17,43 +14,20 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-list-item'
     },
+    exportAs: 'osListItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListItemComponent<T = any> extends OsBaseComponent implements OnInit {
-    /** Data of the list item */
-    @Input()
-    public data: T;
-
-    /** Is list item selected? */
-    @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
-    public isSelected: boolean = false;
-
-    /** Is list item disabled? */
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    @Input()
-    public isDisabled: boolean = false;
-
+export class ListItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
     /** Fires when the list item selected */
     @Output()
-    public osSelected = new EventEmitter<T>();
+    public readonly osSelected: EventEmitter<T> = new EventEmitter();
 
-    constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
-    ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
-    }
-
-    protected onClick(event: PointerEvent): void {
+    /** @internal */
+    @HostListener('click')
+    public _onClick(): void {
         if (!this.isDisabled) {
             this.osSelected.emit(this.data);
-
-            super.onClick(event);
         }
     }
 }

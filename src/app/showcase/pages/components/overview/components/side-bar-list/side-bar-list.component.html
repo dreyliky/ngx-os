@@ -1,30 +1,34 @@
-<ng-container *ngIf="(metaInfo$ | async) as metaInfo">
-    <os-tree-view
-        [data]="(nodes$ | async)"
-        [isAllowSelection]="true"
-        (osNodeSelected)="onNodeSelected($event)">
-        <os-form-field
-            os-tree-view-header
-            class="search-container">
-            <os-text-box
-                [placeholder]="'Search'"
-                (osKeyUp)="onSearch($event)">
-            </os-text-box>
-        </os-form-field>
+<os-tree-view
+    [data]="nodes"
+    [childrenHandler]="childrenHandler"
+    [isAllowSelection]="true"
+    (osNodeSelected)="onNodeSelected($event)">
+    <os-form-field
+        osTreeViewHeader
+        class="search-container">
+        <input
+            osInput
+            placeholder="Search"
+            (keyup)="onSearch($event)" />
+    </os-form-field>
 
-        <ng-template
-            #nodeContent
-            let-node>
-            <div class="node-content">
-                <os-label>{{ node.label }}</os-label>
+    <ng-template
+        osTreeViewNode
+        [ngTemplateType]="nodeType"
+        let-node>
+        <os-tree-node
+            [isExpandedByDefault]="node.isExpandedByDefault"
+            [isSelectedByDefault]="node.isSelectedByDefault"
+            [attr.id]="node.id"
+            class="node">
+            <os-label>{{ node.label }}</os-label>
 
-                <div class="icon-wrapper">
-                    <img
-                        *ngIf="node.data?.imageUrl"
-                        class="icon"
-                        [attr.src]="node.data.imageUrl" />
-                </div>
+            <div class="icon-wrapper">
+                <img
+                    *ngIf="node?.imageUrl"
+                    class="icon"
+                    [attr.src]="node.imageUrl" />
             </div>
-        </ng-template>
-    </os-tree-view>
-</ng-container>
+        </os-tree-node>
+    </ng-template>
+</os-tree-view>

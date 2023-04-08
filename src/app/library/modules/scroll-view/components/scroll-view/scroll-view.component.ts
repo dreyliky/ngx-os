@@ -4,10 +4,9 @@ import {
     ElementRef,
     HostBinding,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-scroll-view',
@@ -15,10 +14,11 @@ import { OsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-scroll-view'
     },
+    exportAs: 'osScrollView',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScrollViewComponent extends OsBaseComponent implements OnInit {
+export class ScrollViewComponent extends ɵOsBaseViewComponent {
     /** Is vertical scroll enabled? */
     @Input()
     public isVerticalScrollEnabled: boolean = true;
@@ -29,16 +29,16 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
 
     /** Does the vertical scroll hide when it is not needed? */
     @Input()
-    public isVerticalScrollHiding: boolean = false;
+    public isVerticalScrollHiding: boolean = true;
 
     /** Does the horizontal scroll hide when it is not needed? */
     @Input()
-    public isHorizontalScrollHiding: boolean = false;
+    public isHorizontalScrollHiding: boolean = true;
 
     /** @internal */
     @HostBinding('style.overflow-x')
     public get _hostOverflowX(): string {
-        if (!this.isHorizontalScrollHiding) {
+        if (this.isHorizontalScrollHiding) {
             return (this.isHorizontalScrollEnabled) ? 'auto' : 'hidden';
         }
 
@@ -48,7 +48,7 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
     /** @internal */
     @HostBinding('style.overflow-y')
     public get _hostOverflowY(): string {
-        if (!this.isVerticalScrollHiding) {
+        if (this.isVerticalScrollHiding) {
             return (this.isVerticalScrollEnabled) ? 'auto' : 'hidden';
         }
 
@@ -59,10 +59,6 @@ export class ScrollViewComponent extends OsBaseComponent implements OnInit {
         private readonly hostRef: ElementRef<HTMLElement>
     ) {
         super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     /** Scrolls to given coordinates. Recommend to use this method instead of directly via HTML element */

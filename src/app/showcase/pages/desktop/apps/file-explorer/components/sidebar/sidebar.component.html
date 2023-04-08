@@ -1,5 +1,14 @@
 <os-tree-view
     [data]="sections"
     [isAllowSelection]="true"
-    (osNodeSelected)="onTreeNodeSelected($event)">
+    (osNodeSelected)="onTreeViewNodeSelected($event)">
+    <ng-template
+        osTreeViewNode
+        [ngTemplateType]="sectionType"
+        let-section>
+        <os-tree-node
+            [isSelectedByDefault]="section.isSelectedByDefault">
+            {{ section.label }}
+        </os-tree-node>
+    </ng-template>
 </os-tree-view>

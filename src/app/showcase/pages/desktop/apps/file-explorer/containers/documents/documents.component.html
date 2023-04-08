@@ -1,18 +1,37 @@
-<os-scroll-view>
-    <os-text>
-        These images loaded from <i>poemist</i> server.
-    </os-text>
-
-    <ng-container *ngIf="(poems$ | async) as poems; else loaderTemplate">
-        <os-grid [isHeightResizing]="true">
+<os-scroll-view [osContextMenu]="documentsContextMenu">
+    <ng-container *ngIf="(documents$ | async) as documents; else loaderTemplate">
+        <os-grid
+            osSelectionZone
+            [isHeightResizing]="true">
             <os-grid-item
-                *ngFor="let poem of poems"
-                [label]="poem.title | slice:0:30"
+                *ngFor="let document of documents"
+                osSelectionItem
+                [osContextMenu]="documentContextMenu"
+                [osHint]="document.name"
+                [label]="document.name | slice:0:30"
                 [iconUrl]="'/assets/showcase/icons/file.png'"
-                (osDblClick)="onPoemDblClick(poem)">
+                (dblclick)="onDocumentEdit(document)">
+                <ng-template #documentContextMenu>
+                    <os-context-menu-item
+                        (click)="onDocumentEdit(document)">
+                        Edit
+                    </os-context-menu-item>
+
+                    <os-context-menu-item
+                        (click)="onDocumentDeleteButtonClick(document)">
+                        Delete
+                    </os-context-menu-item>
+                </ng-template>
             </os-grid-item>
         </os-grid>
     </ng-container>
+
+    <ng-template #documentsContextMenu>
+        <os-context-menu-item
+            (click)="onCreateDocumentButtonClick()">
+            Create
+        </os-context-menu-item>
+    </ng-template>
 </os-scroll-view>
 
 <ng-template #loaderTemplate>

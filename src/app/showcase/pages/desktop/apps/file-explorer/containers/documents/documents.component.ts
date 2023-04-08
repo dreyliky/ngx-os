@@ -1,32 +1,36 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ExecService } from '../../../../features/exec';
+import { TextDocument, TextDocumentsService } from '../../../../features/file-system';
 import { NOTEPAD_APP } from '../../../notepad';
-import { Poem } from './poem.interface';
-import { PoemsService } from './poems.service';
 
 @Component({
     selector: 'file-explorer-documents-section',
     templateUrl: './documents.component.html',
     styleUrls: ['./documents.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        PoemsService
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DocumentsComponent implements OnInit {
-    public poems$: Observable<Poem[]>;
+    public documents$: Observable<TextDocument[]>;
 
     constructor(
-        private readonly poemsService: PoemsService,
+        private readonly textDocumentsService: TextDocumentsService,
         private readonly execService: ExecService
     ) {}
 
     public ngOnInit(): void {
-        this.poems$ = this.poemsService.load();
+        this.documents$ = this.textDocumentsService.data$;
     }
 
-    public onPoemDblClick(poem: Poem): void {
-        this.execService.run(NOTEPAD_APP, poem.content);
+    public onDocumentEdit(document: TextDocument): void {
+        this.execService.run(NOTEPAD_APP, document);
+    }
+
+    public onDocumentDeleteButtonClick(document: TextDocument): void {
+        this.textDocumentsService.delete(document);
+    }
+
+    public onCreateDocumentButtonClick(): void {
+        this.execService.run(NOTEPAD_APP);
     }
 }

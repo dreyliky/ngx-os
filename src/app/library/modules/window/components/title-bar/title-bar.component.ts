@@ -1,13 +1,11 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     HostBinding,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar',
@@ -15,22 +13,13 @@ import { CommonCssClassEnum, OsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-title-bar'
     },
+    exportAs: 'osTitleBar',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarComponent extends OsBaseComponent implements OnInit {
+export class TitleBarComponent extends ɵOsBaseViewComponent {
     /** Marks title bar as active (means user works with it right now) */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Active}`)
+    @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
     public isActive: boolean = true;
-
-    constructor(
-        protected readonly hostRef: ElementRef<HTMLElement>
-    ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
-    }
 }

@@ -1,7 +1,7 @@
 import { ResizerEnum } from '../enums';
 
 /** @internal */
-export const RESIZERS_ARRAY: ResizerEnum[] = [
+export const ɵRESIZERS_ARRAY: ResizerEnum[] = [
     ResizerEnum.TopLeft,
     ResizerEnum.Top,
     ResizerEnum.TopRight,

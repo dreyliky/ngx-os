@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { GridDirectionEnum, OsBaseViewComponent } from 'ngx-os';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { GridDirectionEnum, ɵOsBaseViewComponent } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 import { ShortcutSettingsService } from '../../../../features/shortcut';
 
@@ -10,16 +10,16 @@ import { ShortcutSettingsService } from '../../../../features/shortcut';
     styleUrls: ['./shortcuts.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShortcutsComponent extends OsBaseViewComponent implements OnInit {
+export class ShortcutsComponent extends ɵOsBaseViewComponent implements OnInit {
     public gridDirectionEnum = GridDirectionEnum;
-    public formGroup: FormGroup;
+    public formGroup: UntypedFormGroup;
 
-    public get cellSizeControl(): FormControl {
-        return this.formGroup.controls.cellSize as FormControl;
+    public get cellSizeControl(): UntypedFormControl {
+        return this.formGroup.controls.cellSize as UntypedFormControl;
     }
 
-    public get directionControl(): FormControl {
-        return this.formGroup.controls.direction as FormControl;
+    public get directionControl(): UntypedFormControl {
+        return this.formGroup.controls.direction as UntypedFormControl;
     }
 
     constructor(
@@ -36,9 +36,9 @@ export class ShortcutsComponent extends OsBaseViewComponent implements OnInit {
     private initFormGroup(): void {
         const settings = this.shortcutSettingsService.data;
 
-        this.formGroup = new FormGroup({
-            direction: new FormControl(settings?.direction ?? GridDirectionEnum.Vertical),
-            cellSize: new FormControl(settings?.cellSize ?? 72)
+        this.formGroup = new UntypedFormGroup({
+            direction: new UntypedFormControl(settings?.direction ?? GridDirectionEnum.Vertical),
+            cellSize: new UntypedFormControl(settings?.cellSize ?? 72)
         });
     }
 

@@ -1,23 +1,23 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
+    HostListener,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseButtonComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
-    selector: 'os-title-bar-button',
+    selector: 'button[os-title-bar-button]',
     templateUrl: './title-bar-button.component.html',
     host: {
         'class': 'os-title-bar-button'
     },
+    exportAs: 'osTitleBarButton',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarButtonComponent extends OsBaseButtonComponent implements OnInit {
+export class TitleBarButtonComponent extends ɵOsBaseViewComponent {
     /** Link to the icon */
     @Input()
     public iconUrl: string;
@@ -35,18 +35,9 @@ export class TitleBarButtonComponent extends OsBaseButtonComponent implements On
         return (this.iconUrl) ? `url(${this.iconUrl})` : null;
     }
 
-    constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
-    ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
-    }
-
-    public onClick(event: MouseEvent): void {
-        super.onClick(event);
+    /** @internal */
+    @HostListener('click', ['$event'])
+    public _onClick(event: MouseEvent): void {
         event.stopPropagation();
     }
 }

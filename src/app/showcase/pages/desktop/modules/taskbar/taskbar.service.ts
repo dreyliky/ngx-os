@@ -3,7 +3,7 @@ import {
     DynamicWindowRef,
     DynamicWindowService,
     DynamicWindowSharedConfigService,
-    elementResizingObserver
+    ɵElementResizingObserver
 } from 'ngx-os';
 import { combineLatest, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class TaskbarService implements OnDestroy {
     private windowRefs: DynamicWindowRef[];
     private previousPlacement: TaskbarPlacement;
     private windowRefElements: QueryList<ElementRef<HTMLElement>>;
-    private destroyed$ = new Subject();
+    private destroyed$ = new Subject<boolean>();
 
     constructor(
         private readonly dynamicWindowService: DynamicWindowService,
@@ -24,7 +24,7 @@ export class TaskbarService implements OnDestroy {
     ) {}
 
     public ngOnDestroy(): void {
-        this.destroyed$.next();
+        this.destroyed$.next(true);
         this.destroyed$.complete();
         this.clearWindowSharedConfig();
     }
@@ -48,12 +48,12 @@ export class TaskbarService implements OnDestroy {
 
     private initChangesObserver(taskbarElement: HTMLElement): void {
         combineLatest([
-            elementResizingObserver(taskbarElement),
+            ɵElementResizingObserver(taskbarElement),
             this.placementService.data$
         ])
             .pipe(
-                takeUntil(this.destroyed$),
-                debounceTime(50)
+                debounceTime(10),
+                takeUntil(this.destroyed$)
             )
             .subscribe(() => {
                 this.updateWindowSharedConfig(taskbarElement);
@@ -91,7 +91,6 @@ export class TaskbarService implements OnDestroy {
 
             if (windowRef) {
                 this.updateWindowRefHidesIntoCoordinate(windowRef, element);
-
             }
         });
     }

@@ -1,10 +1,11 @@
-<os-group-box
+<fieldset
+    os-group-box
     [label]="'Group with few elements'">
     <os-form-field class="form-field">
-        <os-text-box
-            [placeholder]="'Enter your name'">
-        </os-text-box>
+        <input
+            osInput
+            placeholder="Enter your name" />
     </os-form-field>
 
-    <os-button>Submit</os-button>
-</os-group-box>
+    <button osButton>Submit</button>
+</fieldset>

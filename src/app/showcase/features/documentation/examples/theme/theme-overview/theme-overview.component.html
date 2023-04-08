@@ -3,10 +3,11 @@
 </os-header>
 
 <ng-container *ngIf="(appliedTheme$ | async) as appliedTheme">
-    <os-button
+    <button
         *ngFor="let theme of themes"
+        osButton
         [class.os-active]="theme === appliedTheme"
-        (osClick)="applyTheme(theme)">
+        (click)="applyTheme(theme)">
         {{ theme }}
-    </os-button>
+    </button>
 </ng-container>

@@ -30,7 +30,7 @@
     --fullscreen-top: calc(-1px + var(--os-fullscreen-offset-top));
     --fullscreen-left: calc(-1px + var(--os-fullscreen-offset-left));
 
-    @keyframes opening {
+    @keyframes os-window-opening {
         from {
             transform: scale(.85);
             opacity: 0;
@@ -42,7 +42,7 @@
         }
     }
     
-    @keyframes closing {
+    @keyframes os-window-closing {
         from {
             transform: scale(1);
             opacity: 1;
@@ -54,7 +54,7 @@
         }
     }
 
-    @keyframes hiding {
+    @keyframes os-window-hiding {
         from {
             transform: scale(1);
             opacity: 1;
@@ -68,7 +68,7 @@
         }
     }
 
-    @keyframes showing {
+    @keyframes os-window-showing {
         from {
             transform: scale(.1);
             top: calc(var(--os-coordinate-y-for-hiding) - var(--os-real-height) / 2);
@@ -82,7 +82,7 @@
         }
     }
     
-    @keyframes entering-fullscreen {
+    @keyframes os-window-entering-fullscreen {
         to {
             width: var(--fullscreen-width);
             height: var(--fullscreen-height);
@@ -92,7 +92,7 @@
         }
     }
 
-    @keyframes entering-windowed {
+    @keyframes os-window-entering-windowed {
         from {
             width: var(--fullscreen-width);
             height: 29px !important;
@@ -107,12 +107,13 @@
     }
 
     &.os-opening {
-        animation: opening .3s ease forwards;
+        animation: os-window-opening .3s ease forwards;
     }
 
     &.os-hiding {
-        animation: hiding .4s ease forwards;
+        animation: os-window-hiding .4s ease forwards;
         z-index: 9999 !important;
+        pointer-events: none;
     }
 
     &.os-hidden {
@@ -120,19 +121,19 @@
     }
 
     &.os-showing {
-        animation: showing .4s ease forwards;
+        animation: os-window-showing .4s ease forwards;
     }
 
     &.os-closing {
-        animation: closing .25s ease forwards;
+        animation: os-window-closing .25s ease forwards;
     }
 
     &.os-entering-fullscreen {
-        animation: entering-fullscreen .17s ease forwards;
+        animation: os-window-entering-fullscreen .17s ease forwards;
     }
 
     &.os-entering-windowed {
-        animation: entering-windowed .17s ease forwards;
+        animation: os-window-entering-windowed .17s ease forwards;
     }
 
     &.os-fullscreen {
@@ -149,21 +150,15 @@
         }
     }
 
-    &.os-dragging, &.os-resizing {
-        .os-window-body {
-            pointer-events: none;
-        }
-    }
-
     &.os-fullscreen, &.os-entering-fullscreen {
         &.os-active .os-title-bar {
-            .os-title-bar-button[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"]:not(:disabled) .os-icon {
                 background-position: -90px 0px;
             }
         }
 
         &:not(.os-active) .os-title-bar {
-            .os-title-bar-button[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"]:not(:disabled) .os-icon {
                 background-position: -90px -29px;
 
                 &:hover {
@@ -173,13 +168,13 @@
         }
 
         .os-title-bar {
-            .os-title-bar-button[aria-label="Fullscreen"].os-disabled .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"]:disabled .os-icon {
                 background-position: -90px -87px;
             }
         }
     }
 
-    &:hover:not(.os-fullscreen) os-resizers {
+    &:not(.os-fullscreen):not(.os-entering-fullscreen) os-resizers {
         display: inherit;
     }
 
@@ -205,23 +200,23 @@
         .os-title-bar-button {
             background-color: rgb(var(--os-primary-color));
 
-            &:hover:not(.os-disabled) {
+            &:hover:not(:disabled) {
                 background-color: rgba(255, 255, 255, .1);
             }
 
-            &:not(.os-disabled):active {
+            &:not(:disabled):active {
                 background-color: rgba(255, 255, 255, .2);
             }
 
-            &[aria-label="Hide"]:not(.os-disabled) .os-icon {
+            &[aria-label="Hide"]:not(:disabled) .os-icon {
                 background-position: 0px 0px;
             }
     
-            &[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
+            &[aria-label="Fullscreen"]:not(:disabled) .os-icon {
                 background-position: -45px 0px;
             }
     
-            &[aria-label="Close"]:not(.os-disabled) .os-icon {
+            &[aria-label="Close"]:not(:disabled) .os-icon {
                 background-position: -135px 0px;
     
                 &:hover {
@@ -287,12 +282,12 @@
         background-repeat: no-repeat;
     }
 
-    &:hover:not(.os-disabled) {
+    &:hover:not(:disabled) {
         background-color: #e5e5e5;
     }
 
     &[aria-label="Hide"] {
-        &:not(.os-disabled) {
+        &:not(:disabled) {
             .os-icon {
                 background-position: 0px -29px;
 
@@ -302,7 +297,7 @@
             }
         }
 
-        &.os-disabled {
+        &:disabled {
             .os-icon {
                 background-position: 0px -87px;
             }
@@ -310,7 +305,7 @@
     }
 
     &[aria-label="Fullscreen"] {
-        &:not(.os-disabled) {
+        &:not(:disabled) {
             .os-icon {
                 background-position: -45px -29px;
         
@@ -320,13 +315,13 @@
             }
         }
 
-        &.os-disabled .os-icon {
+        &:disabled .os-icon {
             background-position: -45px -87px;
         }
     }
 
     &[aria-label="Close"] {
-        &:not(.os-disabled) {
+        &:not(:disabled) {
             :hover {
                 background-color: rgb(232, 17, 35);
             }
@@ -340,7 +335,7 @@
             }
         }
 
-        &.os-disabled {
+        &:disabled {
             .os-icon {
                 background-position: -135px -87px;
             }

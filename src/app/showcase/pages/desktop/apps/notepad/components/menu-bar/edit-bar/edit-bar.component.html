@@ -1,0 +1,54 @@
+<button
+    os-menu-bar-button
+    [osMenuBar]="menuBar">
+    Edit
+</button>
+
+<ng-template #menuBar>
+    <div class="menu-bar">
+        <os-menu-bar-item
+            [isDisabled]="!(isUndoAvailable$ | async)"
+            (osSelected)="onUndoButtonClick()">
+            Undo
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            [isDisabled]="!(isRedoAvailable$ | async)"
+            (osSelected)="onRedoButtonClick()">
+            Redo
+        </os-menu-bar-item>
+
+        <os-divider></os-divider>
+
+        <os-menu-bar-item
+            [isDisabled]="isSelectionEmpty"
+            (osSelected)="onCutButtonClick()">
+            Cut
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            [isDisabled]="isSelectionEmpty"
+            (osSelected)="onCopyButtonClick()">
+            Copy
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            [isDisabled]="isPasteButtonDisabled"
+            (osSelected)="onPasteButtonClick()">
+            Past
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            [isDisabled]="isSelectionEmpty"
+            (osSelected)="onDeleteButtonClick()">
+            Delete
+        </os-menu-bar-item>
+
+        <os-divider></os-divider>
+
+        <os-menu-bar-item
+            (osSelected)="onSelectAllButtonClick()">
+            Select All
+        </os-menu-bar-item>
+    </div>
+</ng-template>

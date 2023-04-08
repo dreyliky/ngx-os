@@ -1,11 +1,5 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    OnInit,
-    ViewEncapsulation
-} from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-text',
@@ -13,17 +7,8 @@ import { OsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-text'
     },
+    exportAs: 'osText',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextComponent extends OsBaseComponent implements OnInit {
-    constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
-    ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
-    }
-}
+export class TextComponent extends ɵOsBaseViewComponent {}

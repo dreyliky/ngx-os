@@ -1,77 +1,74 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { isNil } from '../../../core';
-import { TreeNode, TreeNodeExpansionEvent } from '../interfaces';
-import { TreeNodesState } from '../states';
+import { EventEmitter, Injectable, OnDestroy } from '@angular/core';
+import { ɵTreeNodesState } from '../states';
 
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly. */
 @Injectable()
-export class TreeNodesExpansionService<T = any> {
+export class TreeNodesExpansionService<T = any> implements OnDestroy {
     /** @internal */
-    public _osExpanded: EventEmitter<TreeNodeExpansionEvent<T>> = new EventEmitter();
+    public _osExpanded: EventEmitter<T> = new EventEmitter();
     /** @internal */
-    public _osCollapsed: EventEmitter<TreeNodeExpansionEvent<T>> = new EventEmitter();
+    public _osCollapsed: EventEmitter<T> = new EventEmitter();
+
+    /** @internal */
+    private readonly _stateMap = new Map<T, boolean>();
 
     constructor(
-        private readonly state: TreeNodesState<T>
+        private readonly state: ɵTreeNodesState<T>
     ) {}
 
-    /** @internal */
-    public _initDefaultStateForAll(commonDefaultState: boolean): void {
-        this.setStateForAll((node) => (
-            (!isNil(node.isExpanded)) ? node.isExpanded : commonDefaultState
-        ));
+    public ngOnDestroy(): void {
+        this._stateMap.clear();
+    }
+
+    /** Check is node expanded */
+    public check(node: T): boolean {
+        return !!this._stateMap.get(node);
     }
 
     /** Expands all nodes */
     public expandAll(): void {
-        this.setStateForAll(() => true);
+        this.setStateForAll(true);
     }
 
     /** Collapses all nodes */
     public collapseAll(): void {
-        this.setStateForAll(() => false);
+        this.setStateForAll(false);
     }
 
     /**
      * Expands node
-     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     * @param node - The node to expand
      **/
-    public expand(node: TreeNode<T>, originalEvent?: MouseEvent): void {
-        node.isExpanded = true;
-
-        this._osExpanded.emit({ node, originalEvent });
-        node.onExpanded?.({ node, originalEvent });
+    public expand(node: T): void {
+        this._stateMap.set(node, true);
+        this._osExpanded.emit(node);
     }
 
     /**
      * Collapses node
-     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     * @param node - The node to collapse
      **/
-    public collapse(node: TreeNode<T>, originalEvent?: MouseEvent): void {
-        node.isExpanded = false;
-
-        this._osCollapsed.emit({ node, originalEvent });
-        node.onCollapsed?.({ node, originalEvent });
+    public collapse(node: T): void {
+        this._stateMap.delete(node);
+        this._osCollapsed.emit(node);
     }
 
     /**
      * Expands and collapses node (sets the opposite state)
-     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     * @param node - The node to toggle
      **/
-    public toggle(node: TreeNode<T>, originalEvent?: MouseEvent): void {
-        if (node.isExpanded) {
-            this.collapse(node, originalEvent);
+    public toggle(node: T): void {
+        if (this._stateMap.get(node)) {
+            this.collapse(node);
         } else {
-            this.expand(node, originalEvent);
+            this.expand(node);
         }
     }
 
-    private setStateForAll(getState: (node: TreeNode<T>) => boolean): void {
+    private setStateForAll(state: boolean): void {
         this.state.flatData.forEach((node) => {
-            const newState = getState(node);
-
-            if (!isNil(newState) && (newState !== node.isExpanded)) {
-                (newState) ? this.expand(node) : this.collapse(node);
+            if ((state !== this.check(node))) {
+                (state) ? this.expand(node) : this.collapse(node);
             }
         });
     }

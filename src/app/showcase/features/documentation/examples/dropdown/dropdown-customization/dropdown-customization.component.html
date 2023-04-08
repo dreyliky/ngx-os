@@ -2,10 +2,10 @@
     <div
         os-dropdown-header
         class="search-container">
-        <os-text-box
+        <input
+            osInput
             [placeholder]="'Search by name'"
-            (osKeyUp)="onSearch($event)">
-        </os-text-box>
+            (keyup)="onSearch($event)" />
     </div>
 
     <ng-template #dropdownPlaceholder>
@@ -30,11 +30,12 @@
             [innerText]="component.name">
         </b>
 
-        <os-button
+        <button
+            osButton
             class="clear-button"
-            (osClick)="onClearButtonClick($event)">
+            (click)="onClearButtonClick($event)">
             Clear
-        </os-button>
+        </button>
     </ng-template>
 
     <os-dropdown-item
@@ -56,12 +57,13 @@
         *ngIf="!searchString"
         os-dropdown-footer
         class="pagination-container">
-        <os-button
+        <button
             *ngFor="let pageIndex of pages"
+            osButton
             [class.os-focused]="(pageIndex === activePage)"
             [innerText]="(pageIndex + 1)"
-            (osClick)="onPageButtonClick(pageIndex)">
-        </os-button>
+            (click)="onPageButtonClick(pageIndex)">
+        </button>
     </div>
 </os-dropdown>
 

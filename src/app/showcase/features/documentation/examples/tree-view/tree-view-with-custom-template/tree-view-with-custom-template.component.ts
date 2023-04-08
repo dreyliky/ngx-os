@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode } from 'ngx-os';
 
-interface MyNodeData {
+interface TreeNode {
+    label: string;
     iconUrl: string;
+    children?: TreeNode[];
 }
 
 @Component({
@@ -12,24 +13,27 @@ interface MyNodeData {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeViewWithCustomTemplateComponent {
-    public readonly nodes: TreeNode<MyNodeData>[] = [
+    public readonly nodeType!: TreeNode;
+    public readonly nodes: TreeNode[] = [
         {
             label: 'My PC',
-            data: { iconUrl: '/assets/showcase/icons/my-pc.png' },
+            iconUrl: '/assets/showcase/icons/my-pc.png',
             children: [
                 {
                     label: 'Documents',
-                    data: { iconUrl: '/assets/showcase/icons/folder-opened.png' }
+                    iconUrl: '/assets/showcase/icons/folder-opened.png'
                 },
                 {
                     label: 'Downloads',
-                    data: { iconUrl: '/assets/showcase/icons/folder-opened.png' }
+                    iconUrl: '/assets/showcase/icons/folder-opened.png'
                 },
                 {
                     label: 'Images',
-                    data: { iconUrl: '/assets/showcase/icons/folder-opened.png' }
+                    iconUrl: '/assets/showcase/icons/folder-opened.png'
                 }
             ]
         }
     ];
+
+    public readonly childrenHandler = (item: TreeNode): TreeNode[] => item.children;
 }

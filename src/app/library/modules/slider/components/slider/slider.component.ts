@@ -1,20 +1,13 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
-    ElementRef,
     EventEmitter,
-    HostBinding,
     Input,
-    Optional,
     Output,
-    Self,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
+import { ControlValueAccessor } from '@angular/forms';
+import { ɵOsBaseFormControlComponent } from '../../../../core';
 import { SliderValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -23,12 +16,13 @@ import { SliderValueChangeEvent } from '../../interfaces';
     host: {
         'class': 'os-slider'
     },
+    exportAs: 'osSlider',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderComponent
-    extends OsBaseFormControlComponent<number>
-    implements AfterViewInit, ControlValueAccessor {
+    extends ɵOsBaseFormControlComponent<number>
+    implements ControlValueAccessor {
     /** Label text near the slider */
     @Input()
     public label: string;
@@ -40,11 +34,6 @@ export class SliderComponent
     /** Label text for the maximum value of the slider */
     @Input()
     public maxValueLabel: string;
-
-    /** Is slider disabled? */
-    @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean;
 
     /** Minimum possible value of the slider */
     @Input()
@@ -58,37 +47,15 @@ export class SliderComponent
     @Output()
     public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
 
-    @ViewChild('slider')
-    private readonly inputElementRef: ElementRef<HTMLInputElement>;
-
     /** Value of the slider */
-    public value: number = 0;
-
-    constructor(
-        @Self() @Optional() controlDir: NgControl,
-        private readonly changeDetector: ChangeDetectorRef
-    ) {
-        super();
-        this.initControlDir(controlDir, this);
-    }
-
-    public ngAfterViewInit(): void {
-        this.initElementEventObservers(this.inputElementRef.nativeElement);
-    }
+    public override value: number = 0;
 
     /** @internal */
-    public onSliderValueChange(originalEvent: Event): void {
+    public _onSliderInputEvent(originalEvent: Event): void {
         const targetElement = originalEvent.target as HTMLInputElement;
         const value: number = +targetElement.value;
 
         this.onChange?.(value);
         this.osChange.emit({ originalEvent, value });
-    }
-
-    /** @internal */
-    public writeValue(value: number): void {
-        this.value = value;
-
-        this.changeDetector.detectChanges();
     }
 }

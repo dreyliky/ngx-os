@@ -22,7 +22,7 @@
     --fullscreen-top: calc(-3px + var(--os-fullscreen-offset-top));
     --fullscreen-left: calc(-5px + var(--os-fullscreen-offset-left));
 
-    @keyframes showing {
+    @keyframes os-window-showing {
         0% {
             height: 20px;
             transform: scale(.2);
@@ -39,7 +39,7 @@
         }
     }
     
-    @keyframes hiding {
+    @keyframes os-window-hiding {
         from {
             height: 20px;
             transform: scale(1);
@@ -55,7 +55,7 @@
         }
     }
     
-    @keyframes entering-fullscreen {
+    @keyframes os-window-entering-fullscreen {
         0% {
             height: 20px;
         }
@@ -72,7 +72,7 @@
         }
     }
     
-    @keyframes entering-windowed {
+    @keyframes os-window-entering-windowed {
         0% {
             width: var(--fullscreen-width);
             height: 20px;
@@ -91,19 +91,19 @@
     }
 
     &.os-showing {
-        animation: showing .4s ease forwards;
+        animation: os-window-showing .4s ease forwards;
     }
 
     &.os-entering-fullscreen {
-        animation: entering-fullscreen .4s ease forwards;
+        animation: os-window-entering-fullscreen .4s ease forwards;
     }
 
     &.os-entering-windowed {
-        animation: entering-windowed .4s ease forwards;
+        animation: os-window-entering-windowed .4s ease forwards;
     }
 
     &.os-hiding {
-        animation: hiding .4s ease forwards;
+        animation: os-window-hiding .4s ease forwards;
         z-index: 9999 !important;
     }
 
@@ -118,15 +118,9 @@
         left: var(--fullscreen-left);
     }
 
-    &.os-dragging, &.os-resizing {
-        .os-window-body {
-            pointer-events: none;
-        }
-    }
-
     &.os-fullscreen, &.os-entering-fullscreen {
         .os-title-bar-button[aria-label="Fullscreen"] {
-            &:not(.os-disabled) {
+            &:not(:disabled) {
                 .os-icon {
                     background-position: -32px 0px;
                 }
@@ -136,7 +130,7 @@
                 }
             }
             
-            &.os-disabled .os-icon {
+            &:disabled .os-icon {
                 background-position: -32px -28px;
             }
         }
@@ -146,7 +140,7 @@
         display: none !important;
     }
 
-    &:hover:not(.os-fullscreen) os-resizers {
+    &:not(.os-fullscreen):not(.os-entering-fullscreen) os-resizers {
         display: inherit;
     }
 
@@ -210,6 +204,7 @@ os-title-bar {
     min-width: 16px;
     min-height: 14px;
     padding: 0;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,7 +223,7 @@ os-title-bar {
         background-repeat: no-repeat;
     }
 
-    &:not(.os-disabled):active {
+    &:not(:disabled):active {
         background-position: 0px -14px;
 
         &[aria-label="Hide"] .os-icon {
@@ -249,31 +244,31 @@ os-title-bar {
     }
 
     &[aria-label="Hide"] {
-        &:not(.os-disabled) .os-icon {
+        &:not(:disabled) .os-icon {
             background-position: 0px 0px;
         }
 
-        &.os-disabled .os-icon {
+        &:disabled .os-icon {
             background-position: 0px -28px;
         }
     }
 
     &[aria-label="Fullscreen"] {
-        &:not(.os-disabled) .os-icon {
+        &:not(:disabled) .os-icon {
             background-position: -16px 0px;
         }
 
-        &.os-disabled .os-icon {
+        &:disabled .os-icon {
             background-position: -16px -28px;
         }
     }
 
     &[aria-label="Close"] {
-        &:not(.os-disabled) .os-icon {
+        &:not(:disabled) .os-icon {
             background-position: -48px 0px;
         }
 
-        &.os-disabled .os-icon {
+        &:disabled .os-icon {
             background-position: -48px -28px;
         }
     }

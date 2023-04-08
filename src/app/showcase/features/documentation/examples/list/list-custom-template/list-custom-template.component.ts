@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DoCheck } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 interface Item {
     text: string;
@@ -12,7 +12,7 @@ interface Item {
     styleUrls: ['./list-custom-template.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListCustomTemplateComponent implements DoCheck {
+export class ListCustomTemplateComponent {
     public readonly items: Item[] = [
         {
             text: 'My PC',
@@ -38,7 +38,7 @@ export class ListCustomTemplateComponent implements DoCheck {
     public isAllItemsSelected: boolean;
     public selectedItemsAsString: string;
 
-    public ngDoCheck(): void {
+    public onCheckboxClick(): void {
         this.updateIsAllItemsSelected();
         this.updateSelectedItemsAsString();
     }
@@ -47,9 +47,9 @@ export class ListCustomTemplateComponent implements DoCheck {
         alert(`Open: ${item.text}`);
     }
 
-    public onToggleAll(): void {
-        this.items
-            .forEach((item) => item.selected = !this.isAllItemsSelected);
+    public onToggleAllCheckboxClick(): void {
+        this.items.forEach((item) => item.selected = !this.isAllItemsSelected);
+        this.onCheckboxClick();
     }
 
     private updateIsAllItemsSelected(): void {

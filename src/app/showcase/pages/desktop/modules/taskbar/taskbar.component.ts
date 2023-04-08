@@ -10,10 +10,10 @@ import {
     ViewChildren
 } from '@angular/core';
 import {
-    ButtonComponent,
+    ButtonDirective,
     DynamicWindowRef,
     DynamicWindowService,
-    OsBaseViewComponent
+    ɵOsBaseViewComponent
 } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 import { TaskbarService } from './taskbar.service';
@@ -31,8 +31,8 @@ import { TaskbarService } from './taskbar.service';
         TaskbarService
     ]
 })
-export class TaskbarComponent extends OsBaseViewComponent implements OnInit, AfterViewInit {
-    @ViewChildren(ButtonComponent, { read: ElementRef })
+export class TaskbarComponent extends ɵOsBaseViewComponent implements OnInit, AfterViewInit {
+    @ViewChildren(ButtonDirective, { read: ElementRef })
     public set windowRefElements(data: QueryList<ElementRef<HTMLElement>>) {
         this.taskbarService.setWindowRefElements(data);
     }
@@ -65,15 +65,22 @@ export class TaskbarComponent extends OsBaseViewComponent implements OnInit, Aft
         return `url(${iconUrl || '/assets/showcase/icons/icon.png'})`;
     }
 
-    public onWindowReferenceIconClick(event: MouseEvent, windowRef: DynamicWindowRef): void {
+    public getWindowRefTitle(windowRef: DynamicWindowRef): string {
+        return (windowRef.config.title || 'NO TITLE');
+    }
+
+    public onWindowReferenceIconClick(windowRef: DynamicWindowRef): void {
         if (!windowRef.isHidden && !windowRef.isActive) {
             windowRef.makeActive();
         } else {
             windowRef.toggleVisibility();
         }
+    }
 
-        // Disable outside click checking for window (which removes active state)
-        event.stopPropagation();
+    public onWindowRefDuplicateButtonClick(windowRef: DynamicWindowRef): void {
+        const appComponent = windowRef.componentRef.instance.childComponentType;
+
+        this.dynamicWindowService.open(appComponent, windowRef.config);
     }
 
     private initWindowRefsObserver(): void {

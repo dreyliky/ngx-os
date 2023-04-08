@@ -16,7 +16,7 @@ export class FeaturesComponent {
     public readonly cards: Card[] = [
         {
             iconUrl: '/assets/showcase/icons/components.png',
-            title: '20+ MODULES',
+            title: '25+ MODULES',
             description: 'Functional and easy to use components help you to build '
                         + 'an amazing app in operating system style.'
         },

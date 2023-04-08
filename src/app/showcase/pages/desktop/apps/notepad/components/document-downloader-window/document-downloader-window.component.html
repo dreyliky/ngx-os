@@ -1,0 +1,25 @@
+<div class="body">
+    <os-form-field [isStacked]="true">
+        <os-label>File Name</os-label>
+    
+        <input
+            osInput
+            osAutofocus
+            [formControl]="fileNameControl" />
+    </os-form-field>
+</div>
+
+<div class="footer">
+    <button
+        osButton
+        (click)="onCancelButtonClick()">
+        Cancel
+    </button>
+
+    <button
+        osButton
+        osAutofocus
+        (click)="onDownloadButtonClick()">
+        Download
+    </button>
+</div>

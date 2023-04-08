@@ -1,47 +1,41 @@
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild
+    Component, ViewChild
 } from '@angular/core';
-import { OsBaseViewComponent, TreeNode, TreeNodeSelectionEvent, TreeViewComponent } from 'ngx-os';
-import { Section } from '../../core';
+import {
+    TreeViewComponent,
+    ɵOsBaseViewComponent
+} from 'ngx-os';
+import { Section, SECTIONS } from '../../core';
+import { SelectedSectionState } from '../../states';
 
+// FIXME: Initialization of default section
 @Component({
     selector: 'file-explorer-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SidebarComponent extends OsBaseViewComponent {
-    @Input()
-    public sections: TreeNode<Section>[];
+export class SidebarComponent extends ɵOsBaseViewComponent implements AfterViewInit {
+    public sections = SECTIONS;
 
-    @Input()
-    public set selectedSection(section: TreeNode<Section>) {
-        this.whenViewInit$
-            .subscribe(() => {
-                this.treeView.nodesSelection.select(section);
-                this.changeDetector.detectChanges();
-            });
-    }
-
-    @Output()
-    public sectionSelected = new EventEmitter<TreeNode<Section>>();
+    public readonly sectionType!: Section;
 
     @ViewChild(TreeViewComponent)
     private readonly treeView: TreeViewComponent<Section>;
 
     constructor(
-        private readonly changeDetector: ChangeDetectorRef
+        private readonly selectedSectionState: SelectedSectionState
     ) {
         super();
     }
 
-    public onTreeNodeSelected({ node }: TreeNodeSelectionEvent<Section>): void {
-        this.sectionSelected.emit(node);
+    public onTreeViewNodeSelected(section: Section): void {
+        this.selectedSectionState.set(section);
+    }
+
+    public ngAfterViewInit(): void {
+        this.treeView.nodesSelection.select(this.selectedSectionState.data);
     }
 }

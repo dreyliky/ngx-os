@@ -1,5 +1,6 @@
 import { OsComponentEnum } from '../../enums';
 import {
+    DraggableZoneOverviewComponent,
     DraggerOnAbsoluteElementComponent,
     DraggerOverviewComponent,
     DraggerViaHandleComponent,
@@ -52,6 +53,12 @@ export const DRAG_AND_DROP_META_INFO: ComponentMetaInfo = {
             title: 'Dragger on absolute element which append to body',
             componentName: 'DraggerOnAbsoluteElementComponent',
             component: DraggerOnAbsoluteElementComponent
+        },
+        {
+            title: 'Draggable Zone Overview',
+            componentName: 'DraggableZoneOverviewComponent',
+            component: DraggableZoneOverviewComponent,
+            isOnlyForDevEnv: true
         }
     ]
 };

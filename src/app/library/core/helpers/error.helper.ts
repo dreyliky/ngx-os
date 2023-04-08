@@ -1,5 +1,5 @@
 /** @internal */
-export abstract class ErrorHelper {
+export abstract class ɵErrorHelper {
     public static warn(context: Object, message: string): void {
         const contextName = context.constructor.name;
 

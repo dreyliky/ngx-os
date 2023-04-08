@@ -8,7 +8,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { DemoComponentMetaInfo, DevExamplesVisibilityService } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
-import { OsBaseViewComponent } from 'ngx-os';
+import { ɵOsBaseViewComponent } from 'ngx-os';
 import { combineLatest } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -20,7 +20,7 @@ import { OverviewService } from '../../overview.service';
     styleUrls: ['./examples.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExamplesComponent extends OsBaseViewComponent implements OnInit {
+export class ExamplesComponent extends ɵOsBaseViewComponent implements OnInit {
     public readonly isDevExamplesCheckboxVisible = !environment.production;
     public isDevExamplesVisible: boolean;
 

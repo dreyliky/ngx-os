@@ -1,7 +1,7 @@
 import { Type } from '@angular/core';
 import { CssCoordinate } from '../../../core';
-import { DraggerConfig } from '../../drag-and-drop';
-import { ResizerConfig, ResizerEnum } from '../../resizer';
+import type { DraggerConfig } from '../../drag-and-drop';
+import type { ResizerConfig, ResizerEnum } from '../../resizer';
 import { DynamicWindowFullscreenOffset } from './fullscreen-offset.interface';
 
 /** The parameters to set up a dynamic window and pass some custom data for the component which will be rendered inside */

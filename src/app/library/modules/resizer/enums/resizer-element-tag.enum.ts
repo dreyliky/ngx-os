@@ -1,5 +1,5 @@
 /** @internal */
-export enum ResizerElementTagEnum {
+export enum ɵResizerElementTagEnum {
     Resizers = 'os-resizers',
     Resizer = 'os-resizer'
 }

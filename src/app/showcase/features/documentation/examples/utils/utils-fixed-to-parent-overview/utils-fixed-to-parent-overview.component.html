@@ -1,7 +1,12 @@
+<os-checkbox
+    [(ngModel)]="isFixedToParentEnabled">
+    Is FixedToParentDirective enabled?
+</os-checkbox>
+
 <div class="my-dropdown">
     <div
         class="my-dropdown-button"
-        (click)="onMyDropdownButtonClick($event)">
+        (click)="onMyDropdownButtonClick($any($event))">
         <os-text
             *ngIf="!selectedItem; else selectedItemTemplate"
             class="my-placeholder">
@@ -16,7 +21,7 @@
     <div
         *ngIf="isOverlayVisible"
         osAppendToBody
-        osFixedToParent
+        [osFixedToParent]="{ isEnabled: isFixedToParentEnabled }"
         class="my-dropdown-overlay">
         <os-text class="description">
             This overlay is rendered inside the body element,

@@ -3,21 +3,29 @@ import { ButtonModule } from '../button';
 import { DragAndDropModule } from '../drag-and-drop';
 import { ResizerModule } from '../resizer';
 import { ScrollViewModule } from '../scroll-view';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import {
-    DynamicWindowComponent,
     TitleBarButtonComponent,
     TitleBarComponent,
     TitleBarContentComponent,
     TitleBarControlsComponent,
     TitleBarIconComponent,
-    WindowComponent
+    WindowComponent,
+    ɵDynamicWindowComponent,
+    ɵDynamicWindowCssClassesBindingDirective,
+    ɵDynamicWindowCssVariablesBindingDirective,
+    ɵDynamicWindowDraggableDirective,
+    ɵDynamicWindowResizableDirective
 } from './components';
-import { DYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
+import { ɵDYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
 
 @NgModule({
     declarations: [
-        DynamicWindowComponent,
+        ɵDynamicWindowComponent,
+        ɵDynamicWindowCssVariablesBindingDirective,
+        ɵDynamicWindowCssClassesBindingDirective,
+        ɵDynamicWindowResizableDirective,
+        ɵDynamicWindowDraggableDirective,
         TitleBarButtonComponent,
         TitleBarComponent,
         TitleBarContentComponent,
@@ -26,7 +34,7 @@ import { DYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
         WindowComponent
     ],
     imports: [
-        SharedModule,
+        ɵSharedModule,
         ButtonModule,
         ScrollViewModule,
         ResizerModule,
@@ -41,7 +49,7 @@ import { DYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER } from './data';
         WindowComponent
     ],
     providers: [
-        DYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER
+        ɵDYNAMIC_WINDOW_SHARED_CONFIG_PROVIDER
     ]
 })
 export class WindowModule {}

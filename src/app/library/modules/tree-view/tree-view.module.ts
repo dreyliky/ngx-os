@@ -1,18 +1,39 @@
 import { NgModule } from '@angular/core';
 import { ScrollViewModule } from '../scroll-view';
-import { SharedModule } from '../shared.module';
-import { TreeViewComponent } from './components';
+import { ɵSharedModule } from '../shared.module';
+import {
+    TreeNodeComponent,
+    TreeViewComponent
+} from './components';
+import {
+    TreeNodeTriggerDirective,
+    TreeViewFooterDirective,
+    TreeViewHeaderDirective,
+    TreeViewNodeDirective,
+    ɵTreeNodeOutletDirective
+} from './directives';
 
 @NgModule({
     declarations: [
-        TreeViewComponent
+        TreeViewComponent,
+        TreeNodeComponent,
+        TreeViewFooterDirective,
+        TreeViewHeaderDirective,
+        TreeViewNodeDirective,
+        TreeNodeTriggerDirective,
+        ɵTreeNodeOutletDirective
     ],
     imports: [
-        SharedModule,
+        ɵSharedModule,
         ScrollViewModule
     ],
     exports: [
-        TreeViewComponent
+        TreeViewComponent,
+        TreeNodeComponent,
+        TreeViewFooterDirective,
+        TreeViewHeaderDirective,
+        TreeViewNodeDirective,
+        TreeNodeTriggerDirective
     ]
 })
 export class TreeViewModule {}

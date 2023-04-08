@@ -1,5 +1,5 @@
-import { InvertedKeysOfType } from '../../../../core';
-import { DragStrategyEnum } from '../../enums';
+import { ɵInvertedKeysOfType } from '../../../../core';
+import { ɵDragStrategyEnum } from '../../enums';
 
 /**
  * Affects to move element by CSS axises properties.
@@ -7,7 +7,7 @@ import { DragStrategyEnum } from '../../enums';
  **/
 export class DragStrategyByAxisProperties {
     /** @internal */
-    public readonly type = DragStrategyEnum.ByAxisProperties;
+    public readonly type = ɵDragStrategyEnum.ByAxisProperties;
     /**
      * Name of CSS property X-Axis from the left side of the HTML element.
      *
@@ -21,7 +21,7 @@ export class DragStrategyByAxisProperties {
      **/
     public yAxisTopStyleProperty?: string = 'top';
 
-    constructor(params?: InvertedKeysOfType<DragStrategyByAxisProperties, DragStrategyEnum>) {
+    constructor(params?: ɵInvertedKeysOfType<DragStrategyByAxisProperties, ɵDragStrategyEnum>) {
         Object.assign(this, params);
     }
 }

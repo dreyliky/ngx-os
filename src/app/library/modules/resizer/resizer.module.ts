@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { ResizableDirective } from './directives';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { ResizableDirective } from './directives';
         ResizableDirective
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         ResizableDirective

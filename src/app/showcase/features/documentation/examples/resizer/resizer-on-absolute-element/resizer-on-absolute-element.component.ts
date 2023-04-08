@@ -1,5 +1,6 @@
 import {
-    ChangeDetectionStrategy, Component,
+    ChangeDetectionStrategy,
+    Component,
     ElementRef,
     ViewChild
 } from '@angular/core';
@@ -11,9 +12,6 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResizerOnAbsoluteElementComponent {
-    @ViewChild('containerHideButton', { read: ElementRef })
-    private readonly containerHideButton: ElementRef<HTMLElement>;
-
     public isContainerVisible = false;
 
     public get labelOfToggleVisibilityButton(): string {
@@ -27,6 +25,9 @@ export class ResizerOnAbsoluteElementComponent {
             display: (this.isContainerVisible) ? '' : 'none'
         };
     }
+
+    @ViewChild('containerHideButton', { read: ElementRef })
+    public readonly containerHideButton: ElementRef<HTMLElement>;
 
     public onToggleContainerVisibilityButtonClick(): void {
         this.isContainerVisible = !this.isContainerVisible;

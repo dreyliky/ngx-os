@@ -1,0 +1,22 @@
+<os-scroll-view
+    [isHorizontalScrollEnabled]="true"
+    [isVerticalScrollEnabled]="true"
+    [isHorizontalScrollHiding]="false"
+    [isVerticalScrollHiding]="false">
+    <div
+        #editor
+        [osContextMenu]="editorContextMenu"
+        [style.fontFamily]="settings.font"
+        [style.fontSize]="cssFontSize"
+        [style.whiteSpace]="cssWhiteSpace"
+        class="editor"
+        tabindex="0"
+        contenteditable="true"
+        (paste)="onEditorPasteEvent($event)"
+        (input)="onEditorInputEvent($event)">
+        <ng-template #editorContextMenu>
+            <notepad-editor-context-menu>
+            </notepad-editor-context-menu>
+        </ng-template>
+    </div>
+</os-scroll-view>

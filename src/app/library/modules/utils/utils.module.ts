@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { AppendToBodyDirective, FixedToParentDirective } from './directives';
+import {
+    AppendToBodyDirective,
+    FixedToParentDirective
+} from './directives';
 
 @NgModule({
     declarations: [

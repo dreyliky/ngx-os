@@ -1,13 +1,13 @@
 import { ComponentRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { IdGenerator } from '../../../core';
-import { DraggableDirective } from '../../drag-and-drop';
-import { ResizableDirective } from '../../resizer';
-import { DynamicWindowComponent } from '../components';
-import { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
+import { ɵIdGenerator } from '../../../core';
+import type { DraggableDirective } from '../../drag-and-drop';
+import type { ResizableDirective } from '../../resizer';
+import type { ɵDynamicWindowComponent } from '../components';
+import type { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
 
 /** @internal */
-export class DynamicWindowRefModel implements DynamicWindowRef {
+export class ɵDynamicWindowRefModel implements DynamicWindowRef {
     public get isHidden$(): Observable<boolean> {
         return this._isHidden$.asObservable();
     }
@@ -60,7 +60,7 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         return this._windowElement;
     }
 
-    public get componentRef(): ComponentRef<DynamicWindowComponent> {
+    public get componentRef(): ComponentRef<ɵDynamicWindowComponent> {
         return this._componentRef;
     }
 
@@ -77,14 +77,14 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
     private readonly _isFullscreen$ = new BehaviorSubject<boolean>(false);
     private readonly _isActive$ = new BehaviorSubject<boolean>(true);
     private readonly _orderIndex$ = new BehaviorSubject<number>(0);
-    private readonly _beforeHidden$ = new Subject<unknown>();
+    private readonly _beforeHidden$ = new Subject<boolean>();
     private readonly _afterClosed$ = new Subject<unknown>();
 
-    private readonly _id = IdGenerator.generate();
+    private readonly _id = ɵIdGenerator.generate();
     private _windowElement: HTMLElement;
     private _draggableDirective: DraggableDirective;
     private _resizableDirective: ResizableDirective;
-    private _componentRef: ComponentRef<DynamicWindowComponent>;
+    private _componentRef: ComponentRef<ɵDynamicWindowComponent>;
 
     public init(config: DynamicWindowConfig): void {
         this.updateConfig(config);
@@ -98,7 +98,7 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
 
     public hide(): void {
         if (!this.isHidden) {
-            this._beforeHidden$.next();
+            this._beforeHidden$.next(true);
             this._isHidden$.next(true);
             this.makeInactive();
         }
@@ -167,7 +167,7 @@ export class DynamicWindowRefModel implements DynamicWindowRef {
         this._windowElement = element;
     }
 
-    public setComponentRef(componentRef: ComponentRef<DynamicWindowComponent>): void {
+    public setComponentRef(componentRef: ComponentRef<ɵDynamicWindowComponent>): void {
         if (this._componentRef) {
             throw new Error(`Can't change componentRef`);
         }

@@ -14,6 +14,7 @@ export class UtilsFixedToParentOverviewComponent {
     ];
 
     public selectedItem: string;
+    public isFixedToParentEnabled = true;
     public isOverlayVisible = false;
 
     @HostListener('document:click')
@@ -21,7 +22,7 @@ export class UtilsFixedToParentOverviewComponent {
         this.isOverlayVisible = false;
     }
 
-    public onMyDropdownButtonClick(event: MouseEvent): void {
+    public onMyDropdownButtonClick(event: PointerEvent): void {
         this.isOverlayVisible = !this.isOverlayVisible;
 
         event.stopPropagation();

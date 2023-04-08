@@ -1,15 +1,43 @@
-<os-form-field>
-    <os-button>Default</os-button>
-</os-form-field>
+<div class="wrapper">
+    <os-header [size]="3">
+        Common
+    </os-header>
 
-<os-form-field>
-    <os-button [styleClass]="'os-active'">Pressed</os-button>
-</os-form-field>
+    <os-form-field>
+        <button osButton>Default</button>
+    </os-form-field>
+    
+    <os-form-field>
+        <button osButton class="os-active">Pressed</button>
+    </os-form-field>
 
-<os-form-field>
-    <os-button [isDisabled]="true">Disabled</os-button>
-</os-form-field>
+    <os-form-field>
+        <button osButton disabled>Disabled</button>
+    </os-form-field>
 
-<os-form-field>
-    <os-button [styleClass]="'os-focused'">Focused</os-button>
-</os-form-field>
+    <os-form-field>
+        <button osButton class="os-focused">Focused</button>
+    </os-form-field>
+</div>
+
+<div class="wrapper">
+    <os-header [size]="3">
+        Link
+    </os-header>
+
+    <os-form-field>
+        <button osButtonLink>Default</button>
+    </os-form-field>
+    
+    <os-form-field>
+        <button osButtonLink class="os-active">Pressed</button>
+    </os-form-field>
+    
+    <os-form-field>
+        <button osButtonLink disabled>Disabled</button>
+    </os-form-field>
+    
+    <os-form-field>
+        <button osButtonLink class="os-focused">Focused</button>
+    </os-form-field>
+</div>

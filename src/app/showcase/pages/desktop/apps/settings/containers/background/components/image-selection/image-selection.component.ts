@@ -24,10 +24,10 @@ export class ImageSelectionComponent {
     @Input()
     public currentBackground: BackgroundMetadata;
 
+    public readonly defaultBackgroundUrls = BACKGROUND_URLS;
+
     @ViewChild('fileUploader')
     private readonly fileUploaderRef: ElementRef<HTMLInputElement>;
-
-    public readonly defaultBackgroundUrls = BACKGROUND_URLS;
 
     public get isCurrentBackgroundImage(): boolean {
         return (this.currentBackground.type === BackgroundTypeEnum.Image);

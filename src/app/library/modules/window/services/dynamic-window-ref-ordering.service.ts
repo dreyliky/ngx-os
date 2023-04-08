@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { DynamicWindowRefModel } from '../classes';
-import { WindowReferencesState } from '../states';
+import { ɵDynamicWindowRefModel } from '../classes';
+import { ɵWindowReferencesState } from '../states';
 
 /** @internal */
 @Injectable({
     providedIn: 'root'
 })
-export class DynamicWindowRefOrderingService {
+export class ɵDynamicWindowRefOrderingService {
     /** Array of window ids. The larger the index of id, the higher the window */
     private readonly windowOrderIds: string[] = [];
 
     constructor(
-        private readonly state: WindowReferencesState
+        private readonly state: ɵWindowReferencesState
     ) {}
 
     public getIndex(id: string): number {
@@ -39,7 +39,7 @@ export class DynamicWindowRefOrderingService {
         this.windowOrderIds.push(id);
     }
 
-    public getHighestOpened(): DynamicWindowRefModel | null {
+    public getHighestOpened(): ɵDynamicWindowRefModel | null {
         let index = (this.windowOrderIds.length - 1);
 
         while (index >= 0) {

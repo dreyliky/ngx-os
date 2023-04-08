@@ -12,7 +12,8 @@ import { ThemeService } from '../services';
 
 /** Allows to display HTML elements for specific themes */
 @Directive({
-    selector: '[osAvailableFor]'
+    selector: '[osAvailableFor]',
+    exportAs: 'osAvailableFor'
 })
 export class AvailableForOsDirective<T = any> implements OnInit, OnDestroy {
     /** An array of theme names for which will be displayed the wrapped HTML element */

@@ -11,7 +11,7 @@ interface StartParams {
 }
 
 /** @internal */
-export class IntervalCheckerHelper {
+export class ɵIntervalCheckerHelper {
     private delayBetweenChecksInMs: number;
     private maxCheckCount: number;
 

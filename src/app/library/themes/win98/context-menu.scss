@@ -1,0 +1,18 @@
+@import "./base/context-menu-container.scss";
+@import "./base/option.scss";
+
+.os-context-menu-container {
+    @include os-base-context-menu-container;
+}
+
+.os-context-menu-item {
+    @include os-base-option;
+
+    min-height: 17px;
+    padding: 3px 17px;
+
+    &:hover:not(.os-disabled) {
+        background-color: rgb(var(--os-primary-color));
+        color: #fff;
+    }
+}

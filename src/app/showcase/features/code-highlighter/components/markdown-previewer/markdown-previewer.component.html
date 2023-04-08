@@ -1,4 +1,6 @@
 <os-text
+    codeBlocksHighlighter
+    [innerHTML]="(data | markdownToHtml)"
     class="showcase-code-of-block"
-    (osClick)="onClick($event)">
+    (click)="onClick($event)">
 </os-text>

@@ -11,10 +11,10 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
-import { DynamicWindowInjector, DynamicWindowRefModel } from '../classes';
-import { DynamicWindowComponent } from '../components';
-import { DynamicWindowConfig, DynamicWindowInputParams, DynamicWindowRef } from '../interfaces';
-import { DynamicWindowReferencesService } from './dynamic-window-references.service';
+import { ɵDynamicWindowInjector, ɵDynamicWindowRefModel } from '../classes';
+import { ɵDynamicWindowComponent } from '../components';
+import { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
+import { ɵDynamicWindowReferencesService } from './dynamic-window-references.service';
 
 /** Allows open your component inside an OS-styled window **/
 @Injectable({
@@ -36,15 +36,15 @@ export class DynamicWindowService {
         private readonly injector: Injector,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
         private readonly applicationRef: ApplicationRef,
-        private readonly referencesService: DynamicWindowReferencesService
+        private readonly referencesService: ɵDynamicWindowReferencesService
     ) {}
 
     /** Opens a window containing the given component */
     public open(component: Type<any>, config: DynamicWindowConfig = {}): DynamicWindowRef {
         const windowRef = this.createDynamicWindow();
+        windowRef.componentRef.instance.childComponentType = component;
 
         this.referencesService.register(windowRef, config);
-        this.applyDataForCreatedWindowInstance({ component, windowRef });
 
         return windowRef;
     }
@@ -55,9 +55,9 @@ export class DynamicWindowService {
             .forEach((windowRef) => windowRef.close());
     }
 
-    private createDynamicWindow(): DynamicWindowRefModel {
-        const windowRef = new DynamicWindowRefModel();
-        const windowInjector = new DynamicWindowInjector({ injector: this.injector, windowRef });
+    private createDynamicWindow(): ɵDynamicWindowRefModel {
+        const windowRef = new ɵDynamicWindowRefModel();
+        const windowInjector = new ɵDynamicWindowInjector({ injector: this.injector, windowRef });
         const componentRef = this.createComponentRef(windowInjector);
 
         windowRef.setComponentRef(componentRef);
@@ -68,14 +68,14 @@ export class DynamicWindowService {
     }
 
     private createComponentRef(
-        windowInjector: DynamicWindowInjector
-    ): ComponentRef<DynamicWindowComponent> {
+        windowInjector: ɵDynamicWindowInjector
+    ): ComponentRef<ɵDynamicWindowComponent> {
         return this.componentFactoryResolver
-            .resolveComponentFactory(DynamicWindowComponent)
+            .resolveComponentFactory(ɵDynamicWindowComponent)
             .create(windowInjector);
     }
 
-    private appendWindowComponentToBody(componentRef: ComponentRef<DynamicWindowComponent>): void {
+    private appendWindowComponentToBody(componentRef: ComponentRef<ɵDynamicWindowComponent>): void {
         const componentHostView = componentRef.hostView as EmbeddedViewRef<unknown>;
         const componentHtmlElement = componentHostView.rootNodes[0] as HTMLElement;
 
@@ -84,8 +84,8 @@ export class DynamicWindowService {
     }
 
     private initWindowRefAfterClosedObserver(
-        windowRef: DynamicWindowRefModel,
-        componentRef: ComponentRef<DynamicWindowComponent>
+        windowRef: ɵDynamicWindowRefModel,
+        componentRef: ComponentRef<ɵDynamicWindowComponent>
     ): void {
         const destroyDelayInMs = 300;
 
@@ -95,14 +95,5 @@ export class DynamicWindowService {
                 delay(destroyDelayInMs)
             )
             .subscribe(() => componentRef.destroy());
-    }
-
-    private applyDataForCreatedWindowInstance(
-        { windowRef, component }: DynamicWindowInputParams
-    ): void {
-        const { instance: windowInstance } = windowRef.componentRef;
-
-        windowInstance.childComponentType = component;
-        windowInstance.windowRef = windowRef;
     }
 }

@@ -3,6 +3,12 @@
     display: block;
     padding: 15px;
     box-sizing: border-box;
+
+    @media (max-width: 950px) {
+        .wrapper {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
 }
 
 .title {

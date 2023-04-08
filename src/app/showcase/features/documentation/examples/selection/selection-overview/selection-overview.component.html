@@ -1,0 +1,33 @@
+<os-header [size]="3">
+    Block below is selectable
+</os-header>
+
+<os-grid
+    osSelectionZone
+    class="my-selection-zone"
+    (osItemsSelectionChange)="onItemsSelection($event)">
+    <os-grid-item
+        *ngFor="let shortcut of shortcuts"
+        #gridItem
+        [osSelectionItem]="shortcut"
+        [iconUrl]="shortcut.iconUrl"
+        [label]="shortcut.label"
+        [coordinate]="shortcut.coordinate"
+        (osItemSelected)="gridItem.isSelected = true;"
+        (osItemDeselected)="gridItem.isSelected = false;">
+    </os-grid-item>
+</os-grid>
+
+<os-text>
+    Selected shortcuts:
+
+    <ng-container *ngIf="selectedShortcuts.length">
+        <ng-container *ngFor="let shortcut of selectedShortcuts">
+            {{ shortcut.label }};
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="!selectedShortcuts.length">
+        <b>NOTHING SELECTED</b>
+    </ng-container>
+</os-text>

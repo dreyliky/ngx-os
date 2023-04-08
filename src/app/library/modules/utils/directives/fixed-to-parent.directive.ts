@@ -4,13 +4,15 @@ import {
     ElementRef,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit
 } from '@angular/core';
-import { filter } from 'rxjs/operators';
+import { BehaviorSubject, merge, Observable, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import {
-    EventOutside,
-    GlobalEvents,
-    IntervalCheckerHelper as IntervalChecker
+    ɵEventOutside,
+    ɵGlobalEvents,
+    ɵIntervalCheckerHelper as IntervalChecker
 } from '../../../core';
 import { FixedToParentConfig } from '../classes';
 
@@ -23,9 +25,10 @@ import { FixedToParentConfig } from '../classes';
  * as if it continues to be inside the parent element.
  **/
 @Directive({
-    selector: '[osFixedToParent]'
+    selector: '[osFixedToParent]',
+    exportAs: 'osFixedToParent'
 })
-export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit {
+export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit, OnDestroy {
     /** Configuration of directive */
     @Input('osFixedToParent')
     public parameters: FixedToParentConfig | undefined | '';
@@ -40,15 +43,26 @@ export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit 
     private parentElement: HTMLElement;
 
     private readonly intervalChecker = new IntervalChecker();
+    private readonly destroyed$ = new Subject<boolean>();
+    private readonly isEnabled$ = new BehaviorSubject<boolean>(true);
+
+    private get destroyedOrDisabled$(): Observable<boolean> {
+        return merge(
+            this.destroyed$,
+            this.isEnabled$
+                .pipe(filter((isEnabled) => !isEnabled))
+        );
+    }
 
     constructor(
         private readonly hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: GlobalEvents
+        private readonly globalEvents: ɵGlobalEvents
     ) {}
 
     public ngOnChanges(): void {
         this._config = { ...this._config, ...this.parameters };
 
+        this.isEnabled$.next(this._config.isEnabled);
         this.updateIntervalCheckerSettings();
     }
 
@@ -63,12 +77,17 @@ export class FixedToParentDirective implements OnChanges, OnInit, AfterViewInit 
         this.adjustCoordinates();
     }
 
+    public ngOnDestroy(): void {
+        this.destroyed$.next(true);
+        this.destroyed$.complete();
+    }
+
     /** @internal */
     private initDocumentWheelObserver(): void {
         this.globalEvents.fromDocument('wheel')
             .pipe(
-                filter(() => this._config.isEnabled),
-                filter((event) => EventOutside.checkForElement(this.targetElement, event))
+                filter((event) => ɵEventOutside.checkForElement(this.targetElement, event)),
+                takeUntil(this.destroyedOrDisabled$)
             )
             .subscribe(() => {
                 this.intervalChecker.start({

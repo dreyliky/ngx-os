@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentMetaInfoMap, OsComponentEnum } from '@features/documentation';
-import { OsBaseViewComponent } from 'ngx-os';
+import { ɵOsBaseViewComponent } from 'ngx-os';
 import { takeUntil } from 'rxjs/operators';
 import { OverviewService } from './overview.service';
 
@@ -14,7 +14,7 @@ import { OverviewService } from './overview.service';
         OverviewService
     ]
 })
-export class OverviewComponent extends OsBaseViewComponent implements OnInit {
+export class OverviewComponent extends ɵOsBaseViewComponent implements OnInit {
     constructor(
         private readonly overviewService: OverviewService,
         private readonly activatedRoute: ActivatedRoute

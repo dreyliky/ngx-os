@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { TreeNode } from 'ngx-os';
-import { Section, SectionEnum } from '../../core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SectionEnum, SECTIONS } from '../../core';
+import { SelectedSectionState } from '../../states';
 
 @Component({
     selector: 'file-explorer-content',
@@ -9,11 +9,13 @@ import { Section, SectionEnum } from '../../core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentComponent {
-    @Input()
-    public sections: TreeNode<Section>[];
-
-    @Input()
-    public selectedSection: TreeNode<Section>;
+    public sections = SECTIONS;
 
     public readonly sectionEnum = SectionEnum;
+
+    public readonly selectedSection$ = this.selectedSectionState.data$;
+
+    constructor(
+        private readonly selectedSectionState: SelectedSectionState
+    ) {}
 }

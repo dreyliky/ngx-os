@@ -1,3 +1,5 @@
+@import "./base/option.scss";
+
 .os-list {
     width: 100%;
     display: block;
@@ -11,36 +13,8 @@
     .os-scroll-view {
         height: 100%;
     }
+}
 
-    .os-list-item {
-        width: 100%;
-        min-height: 30px;
-        display: flex;
-        align-items: center;
-        font-size: 16px;
-        padding: 0px 10px;
-        margin: 1px 0px;
-        box-sizing: border-box;
-
-        &.os-disabled {
-            color: #909090;
-        }
-
-        &:hover:not(.os-disabled) {
-            background-color: rgba(215, 215, 215, .2);
-        }
-
-        &:active:not(.os-disabled) {
-            background-color: rgb(0, 0, 0, .2);
-            transition: ease all 0.1s;
-        }
-
-        &.os-selected {
-            background-color: rgba(var(--os-primary-color), .2);
-
-            &:hover {
-                background-color: rgba(var(--os-primary-color), .3);
-            }
-        }
-    }
+.os-list-item {
+    @include os-base-option;
 }

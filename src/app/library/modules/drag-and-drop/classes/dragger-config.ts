@@ -3,7 +3,8 @@ import { DraggerConfig, DragInfo } from '../interfaces';
 import { DragStrategyType } from '../types';
 import { DragStrategyByTranslate3d } from './drag-strategy';
 
-export class DraggerConfigModel implements DraggerConfig {
+/** @internal */
+export class ɵDraggerConfigModel implements DraggerConfig {
     public draggableElement?: HTMLElement;
     public movableElement?: HTMLElement;
     public childElementsBlackList?: HTMLElement[] = [];

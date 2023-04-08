@@ -3,28 +3,27 @@ import {
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver,
     ElementRef,
     Inject,
+    Input,
+    OnDestroy,
     OnInit,
     Type,
     ViewChild,
-    ViewContainerRef,
     ViewEncapsulation
 } from '@angular/core';
-import { combineLatest, fromEvent, Observable, timer } from 'rxjs';
-import { filter, map, skip, skipUntil, takeUntil } from 'rxjs/operators';
-import { EventOutside, GlobalEvents } from '../../../../core';
-import { DraggableDirective } from '../../../drag-and-drop';
-import { ResizableDirective, ResizeInfo } from '../../../resizer';
-import { DYNAMIC_WINDOW_SHARED_CONFIG as SHARED_CONFIG } from '../../data';
-import {
-    DynamicStateEnum as DynamicState,
-    DynamicWindowCssVariableEnum as CssVariable
-} from '../../enums';
-import { mergeConfigs } from '../../helpers';
+import { fromEvent, merge } from 'rxjs';
+import { filter, map, takeUntil } from 'rxjs/operators';
+import { ɵDestroyService, ɵEventOutside, ɵGlobalEvents } from '../../../../core';
+import { ɵDynamicWindowRefModel } from '../../classes';
+import { DYNAMIC_WINDOW_REF } from '../../data';
 import { DynamicWindowConfig } from '../../interfaces';
-import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
+import { WindowComponent } from '../window';
+import type {
+    ɵDynamicWindowDraggableDirective,
+    ɵDynamicWindowResizableDirective
+} from './directives';
+import { ɵDynamicStateManager, ɵMergedConfigService, ɵStateManager } from './services';
 
 /**
  * @internal
@@ -37,51 +36,81 @@ import { BaseDynamicWindowComponent } from './base-dynamic-window.component';
         'class': 'os-dynamic-window'
     },
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        ɵStateManager,
+        ɵDynamicStateManager,
+        ɵMergedConfigService,
+        ɵDestroyService
+    ]
 })
-export class DynamicWindowComponent
-    extends BaseDynamicWindowComponent
-    implements OnInit, AfterViewInit {
-    @ViewChild('content', { read: ViewContainerRef, static: true })
-    private readonly contentViewRef: ViewContainerRef;
+export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestroy {
+    @Input()
+    public childComponentType: Type<unknown>;
 
-    @ViewChild(DraggableDirective, { static: true })
-    private readonly draggableDirective: DraggableDirective;
-
-    @ViewChild(ResizableDirective, { static: true })
-    private readonly resizableDirective: ResizableDirective;
-
-    constructor(
-        @Inject(SHARED_CONFIG) private readonly sharedConfig$: Observable<DynamicWindowConfig>,
-        private readonly hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: GlobalEvents,
-        private readonly componentFactoryResolver: ComponentFactoryResolver,
-        private readonly changeDetector: ChangeDetectorRef
-    ) {
-        super();
+    public get _titleBarDisplayAttr(): string {
+        return (this.config.isTitleBarVisible) ? '' : 'none';
     }
 
+    public readonly _viewDestroyedOrWindowInactive$ = merge(
+        this.viewDestroyed$,
+        this.windowRef.isActive$
+            .pipe(filter((isActive) => !isActive))
+    );
+
+    public readonly zIndex$ = this.windowRef.orderIndex$
+        .pipe(
+            map((orderIndex) => {
+                let zIndex = (this.baseZIndex + orderIndex);
+
+                if (this.config.isAlwaysOnTop) {
+                    zIndex += this.alwaysOnTopBaseZIndex;
+                }
+
+                return zIndex;
+            })
+        );
+
+    public config: DynamicWindowConfig;
+
+    @ViewChild(WindowComponent, { read: ElementRef })
+    private readonly windowElementRef: ElementRef<HTMLElement>;
+
+    @ViewChild('draggableDir', { static: true })
+    private readonly draggableDirective: ɵDynamicWindowDraggableDirective;
+
+    @ViewChild('resizableDir', { static: true })
+    private readonly resizableDirective: ɵDynamicWindowResizableDirective;
+
+    private readonly baseZIndex: number = 1000;
+    private readonly alwaysOnTopBaseZIndex: number = 5000;
+
+    constructor(
+        @Inject(DYNAMIC_WINDOW_REF) public readonly windowRef: ɵDynamicWindowRefModel,
+        public readonly stateManager: ɵStateManager,
+        public readonly changeDetector: ChangeDetectorRef,
+        private readonly mergedConfigService: ɵMergedConfigService,
+        private readonly dynamicStateManager: ɵDynamicStateManager,
+        private readonly viewDestroyed$: ɵDestroyService,
+        private readonly globalEvents: ɵGlobalEvents
+    ) {}
+
     public ngOnInit(): void {
-        this.initDynamicStateManager();
         this.initConfigObserver();
-        this.initBeforeHiddenStateObserver();
-        this.initIsHiddenStateObserver();
-        this.initIsFullscreenStateObserver();
-        this.initAfterClosedStateObserver();
-        this.initWindowIdOrderObserver();
-        this.initOutsideClickObserver();
+        this.initIsActiveObserver();
     }
 
     public ngAfterViewInit(): void {
-        super.ngAfterViewInit();
-        this.initChildComponent(this.childComponentType);
-        this.initHtmlElements();
-        this.initWindowSizes();
+        this.initDynamicStateChangeObserver();
         this.initMousedownObserver();
-        this.windowRef.setWindowElement(this.windowElement);
+        this.windowRef.setWindowElement(this.windowElementRef.nativeElement);
         this.windowRef.setDraggableDirective(this.draggableDirective);
         this.windowRef.setResizableDirective(this.resizableDirective);
         this.changeDetector.detectChanges();
+    }
+
+    public ngOnDestroy(): void {
+        this.windowRef.destroy();
     }
 
     public onHideButtonClick(): void {
@@ -102,26 +131,10 @@ export class DynamicWindowComponent
         }
     }
 
-    public onDragStart(): void {
-        if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
-            this.draggableDirective.updateConfigWithoutChanges({
-                shiftX: (this.widthAtWindowedMode / 2),
-                shiftY: (this.titleBarElement.clientHeight / 2)
-            });
-        }
-
-        this.changeDetector.detach();
-    }
-
     public onDragging(): void {
         if (this.config.isExitFullscreenByDragTitleBar && this.windowRef.isFullscreen) {
             this.windowRef.goWindowed();
         }
-    }
-
-    public onDragEnd(): void {
-        this.draggableDirective.updateConfigWithoutChanges({ shiftX: null, shiftY: null });
-        this.changeDetector.reattach();
     }
 
     public onTitleBarDblClick(): void {
@@ -130,117 +143,49 @@ export class DynamicWindowComponent
         }
     }
 
-    public onResizeStart(): void {
-        this.changeDetector.detach();
-    }
-
-    public onResizing({ resizableElement }: ResizeInfo): void {
-        this.widthAtWindowedMode = resizableElement.offsetWidth;
-        this.heightAtWindowedMode = resizableElement.offsetHeight;
-    }
-
-    public onResizeEnd(): void {
-        this.changeDetector.reattach();
-    }
-
-    private initChildComponent(componentType: Type<any>): void {
-        const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-        this.childComponentRef = this.contentViewRef.createComponent(factory);
-    }
-
-    private initDynamicStateManager(): void {
-        this.dynamicStateManager.apply(DynamicState.Opening);
-        this.dynamicStateManager
-            .registerAfterStartCallback(() => this.changeDetector.detectChanges());
-        this.dynamicStateManager
-            .registerAfterEndCallback(() => this.changeDetector.markForCheck());
-    }
-
-    private initWindowSizes(): void {
-        this.widthAtWindowedMode = (this.config.width ?? this.windowElement.offsetWidth);
-        this.heightAtWindowedMode = (this.config.height ?? this.windowElement.offsetHeight);
-
-        this.windowElement.style.setProperty(CssVariable.Width, `${this.widthAtWindowedMode}px`);
-        this.windowElement.style.setProperty(CssVariable.Height, `${this.heightAtWindowedMode}px`);
-    }
-
-    private initHtmlElements(): void {
-        this.windowElement = this.hostRef.nativeElement.querySelector('.os-window');
-        this.titleBarElement = this.windowElement.querySelector('.os-title-bar');
-        this.titleBarButtons = Array.from(
-            this.titleBarElement.querySelectorAll('.os-title-bar-button .os-icon')
-        );
-    }
-
     private initMousedownObserver(): void {
-        fromEvent(this.windowElement, 'mousedown')
+        fromEvent(this.windowElementRef.nativeElement, 'mousedown')
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe(() => this.windowRef.makeActive());
     }
 
-    private initOutsideClickObserver(): void {
-        this.globalEvents.fromDocument('click')
+    private initOutsideMouseDownObserver(): void {
+        this.globalEvents.fromDocument('mousedown')
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                skipUntil(timer()),
-                filter(() => this.windowRef.isActive),
-                filter((event) => EventOutside.checkForElement(this.windowElement, event))
+                filter(() => (this.stateManager.isWindowed || this.stateManager.isFullscreen)),
+                filter((event) => this.isEventOutside(event)),
+                takeUntil(this._viewDestroyedOrWindowInactive$)
             )
             .subscribe(() => this.windowRef.makeInactive());
     }
 
-    private initWindowIdOrderObserver(): void {
-        this.windowRef.orderIndex$
-            .subscribe((orderIndex) => {
-                this.windowOrderIndex = orderIndex;
+    private initIsActiveObserver(): void {
+        this.windowRef.isActive$
+            .subscribe((isActive) => {
+                if (isActive) {
+                    this.initOutsideMouseDownObserver();
+                }
 
-                this.updateZIndex();
                 this.changeDetector.detectChanges();
             });
     }
 
-    private initBeforeHiddenStateObserver(): void {
-        this.windowRef.beforeHidden$
-            .subscribe(() => this.dynamicStateManager.apply(DynamicState.Hiding));
-    }
-
-    private initIsHiddenStateObserver(): void {
-        this.windowRef.isHidden$
-            .pipe(
-                skip(1),
-                filter((isHidden) => !isHidden)
-            )
-            .subscribe(() => this.dynamicStateManager.apply(DynamicState.Showing));
-    }
-
-    private initIsFullscreenStateObserver(): void {
-        this.windowRef.isFullscreen$
-            .pipe(
-                skip(1),
-                map((state) => (
-                    (state) ?
-                        DynamicState.EnteringFullscreen :
-                        DynamicState.EnteringWindowed
-                ))
-            )
-            .subscribe((dynamicState) => this.dynamicStateManager.apply(dynamicState));
-    }
-
-    private initAfterClosedStateObserver(): void {
-        this.windowRef.afterClosed$
-            .subscribe(() => this.dynamicStateManager.apply(DynamicState.Closing));
+    private initDynamicStateChangeObserver(): void {
+        this.dynamicStateManager.state$
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(() => this.changeDetector.detectChanges());
     }
 
     private initConfigObserver(): void {
-        combineLatest([
-            this.sharedConfig$,
-            this.windowRef.config$
-        ])
-            .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe(([sharedConfig, updatedConfig]) => {
-                this.config = mergeConfigs(updatedConfig, sharedConfig);
+        this.mergedConfigService.data$
+            .subscribe((config) => {
+                this.config = config;
 
                 this.changeDetector.detectChanges();
             });
+    }
+
+    private isEventOutside(event: Event): boolean {
+        return ɵEventOutside.checkForElement(this.windowElementRef.nativeElement, event);
     }
 }

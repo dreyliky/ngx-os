@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RESIZERS_ARRAY } from '../../resizer';
-import { DynamicWindowConfigModel } from '../classes/dynamic-window-config';
-import { mergeConfigs } from '../helpers';
+import { ɵRESIZERS_ARRAY } from '../../resizer';
+import { ɵDynamicWindowConfigModel } from '../classes/dynamic-window-config';
+import { ɵMergeConfigs } from '../helpers';
 import { DynamicWindowConfig } from '../interfaces';
 
 /** Allows manipulation with shared config for all windows */
@@ -21,7 +21,7 @@ export class DynamicWindowSharedConfigService {
     }
 
     private readonly _data$ = new BehaviorSubject<DynamicWindowConfig>(
-        new DynamicWindowConfigModel({
+        new ɵDynamicWindowConfigModel({
             title: 'OS dynamic window',
             minWidth: 275,
             minHeight: 175,
@@ -37,7 +37,7 @@ export class DynamicWindowSharedConfigService {
                 x: '50%',
                 y: '100%'
             },
-            allowedResizers: [...RESIZERS_ARRAY],
+            allowedResizers: [...ɵRESIZERS_ARRAY],
             isFullscreenByDefault: false,
             isHiddenByDefault: false,
             isAllowHide: true,
@@ -58,7 +58,7 @@ export class DynamicWindowSharedConfigService {
 
     /** Overrides some part of config on the new one */
     public update(config: DynamicWindowConfig): void {
-        this._data$.next(mergeConfigs(config, this.data));
+        this._data$.next(ɵMergeConfigs(config, this.data));
     }
 
     /** Cleans the shared config completely */

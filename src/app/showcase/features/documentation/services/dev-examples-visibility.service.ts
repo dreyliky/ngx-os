@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { isNil } from 'ngx-os';
+import { ɵIsNil } from 'ngx-os';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -31,7 +31,7 @@ export class DevExamplesVisibilityService {
         const dataAsJson = localStorage.getItem(this.storageKey);
         const data = (dataAsJson) ? JSON.parse(dataAsJson) : null;
 
-        if (!isNil(data)) {
+        if (!ɵIsNil(data)) {
             this._data$.next(data);
         }
     }

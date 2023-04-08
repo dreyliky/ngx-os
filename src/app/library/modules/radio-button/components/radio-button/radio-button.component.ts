@@ -5,16 +5,14 @@ import {
     ElementRef,
     EventEmitter,
     HostBinding,
+    HostListener,
     Input,
-    OnInit,
-    Optional,
     Output,
-    Self,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { CommonCssClassEnum, OsBaseFormControlComponent } from '../../../../core';
+import { ControlValueAccessor } from '@angular/forms';
+import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
 import { RadioButtonValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -23,25 +21,16 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
     host: {
         'class': 'os-radio-button'
     },
+    exportAs: 'osRadioButton',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonComponent<T = any>
-    extends OsBaseFormControlComponent<T>
-    implements OnInit, ControlValueAccessor {
+    extends ɵOsBaseFormControlComponent<T>
+    implements ControlValueAccessor {
     /** Name of the radio-button group */
     @Input()
     public name: string = '';
-
-    /** Is radio-button checked? */
-    @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Checked}`)
-    public isChecked: boolean;
-
-    /** Is radio-button disabled? */
-    @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean;
 
     /** Data of the radio-button */
     @Input()
@@ -51,55 +40,49 @@ export class RadioButtonComponent<T = any>
     @Output()
     public osChange: EventEmitter<RadioButtonValueChangeEvent<T>> = new EventEmitter();
 
-    /** Fires when `checked` state changed. Might be used for two way binding */
-    @Output()
-    public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
+    /** Is radio-button checked? */
+    @HostBinding(`class.${ɵCommonCssClassEnum.Checked}`)
+    public isChecked: boolean;
 
     @ViewChild('radioButton')
-    private readonly radioElementRef: ElementRef<HTMLInputElement>;
+    private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        @Self() @Optional() controlDir: NgControl,
-        private readonly hostRef: ElementRef<HTMLElement>,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
-        this.initControlDir(controlDir, this);
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
     }
 
     /** @internal */
-    public onRadioButtonChange(originalEvent: Event): void {
-        const inputElement = originalEvent.target as HTMLInputElement;
+    public override writeValue(value: T): void {
+        this.isChecked = (this.data === value);
+
+        this.changeDetector.markForCheck();
+    }
+
+    /** @internal */
+    public _onRadioButtonChange(originalEvent: Event): void {
+        const inputElement = (originalEvent.target as HTMLInputElement);
+        this.isChecked = inputElement.checked;
 
         this.onChange?.(this.data);
-        this.isCheckedChange.emit(inputElement.checked);
         this.osChange.emit({
             originalEvent,
             data: this.data,
-            isChecked: inputElement.checked
+            isChecked: this.isChecked
         });
     }
 
     /** @internal */
-    public writeValue(value: T): void {
-        this.isChecked = (this.data === value);
+    @HostListener('click')
+    public _onClick(): void {
+        const element = this.inputElementRef.nativeElement;
 
-        this.changeDetector.detectChanges();
-    }
+        if (!this.isDisabled && !element.checked) {
+            element.checked = true;
 
-    protected onClick(event: PointerEvent): void {
-        const currentState = this.radioElementRef.nativeElement.checked;
-
-        if (!this.isDisabled && !currentState) {
-            this.radioElementRef.nativeElement.checked = true;
-
-            this.radioElementRef.nativeElement.dispatchEvent(new Event('change'));
-            this.radioElementRef.nativeElement.focus();
-            super.onClick(event);
+            element.dispatchEvent(new Event('change'));
+            element.focus();
         }
     }
 }

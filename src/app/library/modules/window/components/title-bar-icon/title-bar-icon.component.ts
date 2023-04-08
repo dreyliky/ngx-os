@@ -1,13 +1,11 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     HostBinding,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar-icon',
@@ -15,10 +13,11 @@ import { OsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-title-bar-icon'
     },
+    exportAs: 'osTitleBarIcon',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarIconComponent extends OsBaseComponent implements OnInit {
+export class TitleBarIconComponent extends ɵOsBaseViewComponent {
     /** The URL to the icon */
     @Input()
     public set url(value: string) {
@@ -29,14 +28,4 @@ export class TitleBarIconComponent extends OsBaseComponent implements OnInit {
 
     @HostBinding('style.backgroundImage')
     public _iconCssBackground: string;
-
-    constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
-    ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
-    }
 }

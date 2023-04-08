@@ -1,5 +1,5 @@
 /** @internal */
-export abstract class EventOutside {
+export abstract class ɵEventOutside {
     public static checkForElement(element: HTMLElement, event: Event): boolean {
         const bubbledElements = event.composedPath() as HTMLElement[];
 

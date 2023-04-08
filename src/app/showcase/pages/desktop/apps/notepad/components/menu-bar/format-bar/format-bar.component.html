@@ -1,0 +1,14 @@
+<button
+    os-menu-bar-button
+    [osMenuBar]="menuBar">
+    Format
+</button>
+
+<ng-template #menuBar>
+    <div class="menu-bar">
+        <os-menu-bar-item
+            (osSelected)="onFontButtonClick()">
+            Font
+        </os-menu-bar-item>
+    </div>
+</ng-template>

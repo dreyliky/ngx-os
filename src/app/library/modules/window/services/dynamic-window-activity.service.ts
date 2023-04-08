@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { WindowReferencesState } from '../states';
+import { ɵWindowReferencesState } from '../states';
 
 /** @internal */
 @Injectable({
     providedIn: 'root'
 })
-export class DynamicWindowActivityService {
+export class ɵDynamicWindowActivityService {
     constructor(
-        private readonly state: WindowReferencesState
+        private readonly state: ɵWindowReferencesState
     ) {}
 
     public makeAllInactiveExceptSpecificId(id: string): void {

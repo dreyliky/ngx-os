@@ -1,34 +1,23 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     Input,
-    OnInit,
     ViewEncapsulation
 } from '@angular/core';
-import { OsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
-    selector: 'os-group-box',
+    selector: 'fieldset[os-group-box]',
     templateUrl: './group-box.component.html',
     host: {
         'class': 'os-group-box'
     },
+    exportAs: 'osGroupBox',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GroupBoxComponent extends OsBaseComponent implements OnInit {
+export class GroupBoxComponent extends ɵOsBaseViewComponent {
     /** Label of group */
     @Input()
     public label: string;
-
-    constructor(
-        private readonly hostRef: ElementRef<HTMLElement>
-    ) {
-        super();
-    }
-
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
-    }
 }

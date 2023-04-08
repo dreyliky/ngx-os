@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
-import { ButtonComponent } from './components';
+import { ɵSharedModule } from '../shared.module';
+import { ButtonDirective, ButtonLinkDirective } from './directives';
 
 @NgModule({
     declarations: [
-        ButtonComponent
+        ButtonDirective,
+        ButtonLinkDirective
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
-        ButtonComponent
+        ButtonDirective,
+        ButtonLinkDirective
     ]
 })
 export class ButtonModule {}

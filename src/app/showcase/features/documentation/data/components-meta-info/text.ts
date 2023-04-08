@@ -13,7 +13,8 @@ export const TEXT_META_INFO: ComponentMetaInfo = {
     libComponents: [
         'TextComponent',
         'HeaderComponent',
-        'LabelComponent'
+        'LabelComponent',
+        'ErrorComponent'
     ],
     demoComponents: [
         {

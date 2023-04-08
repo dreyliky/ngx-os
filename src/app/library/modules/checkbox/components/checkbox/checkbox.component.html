@@ -3,8 +3,8 @@
     type="checkbox"
     [attr.name]="name"
     [disabled]="isDisabled"
-    [checked]="isChecked"
-    (change)="onCheckboxValueChange($event)" />
+    [checked]="value"
+    (change)="_onCheckboxValueChange($event)" />
 
 <label class="os-element os-label">
     <ng-content></ng-content>

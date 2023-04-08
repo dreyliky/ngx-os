@@ -1,5 +1,6 @@
 .os-tree-view {
     width: 100%;
+    height: inherit;
     display: block;
     background: #fff;
     box-shadow: var(--border-field);
@@ -7,6 +8,7 @@
     border: solid 1px #7f9db9;
     cursor: default;
     box-sizing: border-box;
+    overflow: auto;
 
     .os-tree-node {
         width: auto;
@@ -14,7 +16,7 @@
         display: flex;
         align-items: center;
 
-        .os-icon:not(.os-custom) {
+        .os-tree-node-trigger.os-default-trigger {
             width: 16px;
             min-width: 16px;
             height: 16px;
@@ -24,7 +26,17 @@
             padding: 1px 6px 1px 2px;
         }
 
-        &.os-expandable .os-icon:not(.os-custom) {
+        &.os-selected {
+            box-sizing: border-box;
+            background-color: rgba(var(--os-primary-color), 1);
+            color: #fff;
+        }
+
+        &.os-selected:focus {
+            outline: 1px dotted rgb(0, 0, 0);
+        }
+
+        &.os-expandable .os-tree-node-trigger.os-default-trigger {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -41,28 +53,17 @@
             }
         }
 
-        &.os-expanded .os-icon:not(.os-custom):before {
+        &.os-expanded .os-tree-node-trigger.os-default-trigger:before {
             background-position: 0px 0px;
         }
 
         &:not(.os-disabled) {
-            &.os-selected .os-label {
-                box-sizing: border-box;
-                background-color: #ece9d8;
-            }
-
-            &.os-selected:focus .os-label {
-                color: #fff;
-                background-color: rgba(var(--os-primary-color), 1);
-                outline: 1px dotted rgb(0, 0, 0);
-            }
-
-            .os-icon:not(.os-custom):before {
+            .os-tree-node-trigger.os-default-trigger:before {
                 opacity: 1;
                 background-position: 0px -9px;
             }
 
-            &.os-expanded .os-icon:not(.os-custom):before {
+            &.os-expanded .os-tree-node-trigger.os-default-trigger:before {
                 opacity: 1;
                 background-position: 0px 0px;
             }

@@ -1,23 +1,24 @@
-import { DragStrategyEnum } from '../../enums';
+import { ɵPointerHelper } from '../../../../core';
+import { ɵDragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
-import { BaseDragStrategyImpl } from './base-drag-impl.strategy';
+import { ɵBaseDragStrategyImpl } from './base-drag-impl.strategy';
 import { DragStrategyByTranslate3d } from './by-translate3d-drag.strategy';
 
 /** @internal */
-export class DragStrategyByTranslate3dImpl extends BaseDragStrategyImpl {
-    public readonly type = DragStrategyEnum.ByTranslate3d;
+export class ɵDragStrategyByTranslate3dImpl extends ɵBaseDragStrategyImpl {
+    public override readonly type = ɵDragStrategyEnum.ByTranslate3d;
 
-    protected config: DragStrategyByTranslate3d;
+    protected override config: DragStrategyByTranslate3d;
 
     private initialX: number;
     private initialY: number;
 
-    public registerMouseDown(dragInfo: DragInfo): void {
+    public override registerMouseDown(dragInfo: DragInfo): void {
         this.initInitialCoordinates();
         super.registerMouseDown(dragInfo);
     }
 
-    public updateElementPosition(event: MouseEvent): void {
+    public updateElementPosition(event: PointerEvent | TouchEvent): void {
         if (this.context.config.isAllowMoveElement) {
             const x = this.calculateElementPositionX(event);
             const y = this.calculateElementPositionY(event);
@@ -33,16 +34,16 @@ export class DragStrategyByTranslate3dImpl extends BaseDragStrategyImpl {
         this.initialY = (domRect.top - transform.m42);
     }
 
-    private calculateElementPositionX(event: MouseEvent): string {
+    private calculateElementPositionX(event: PointerEvent | TouchEvent): string {
         const position = (!this.config.isLockAxisX) ?
-            (event.clientX - this.initialX - this.shiftX) : 0;
+            (ɵPointerHelper.getClientX(event) - this.initialX - this.shiftX) : 0;
 
         return `${position}px`;
     }
 
-    private calculateElementPositionY(event: MouseEvent): string {
+    private calculateElementPositionY(event: PointerEvent | TouchEvent): string {
         const position = (!this.config.isLockAxisY) ?
-            (event.clientY - this.initialY - this.shiftY) : 0;
+            (ɵPointerHelper.getClientY(event) - this.initialY - this.shiftY) : 0;
 
         return `${position}px`;
     }

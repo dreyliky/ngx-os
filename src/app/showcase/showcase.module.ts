@@ -2,6 +2,11 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FeaturesModule } from '@features';
 import { LayoutsModule } from '@layouts';
+import {
+    NgxBaseStateDevtoolsConfig,
+    NgxBaseStateDevtoolsModule,
+    NGX_BASE_STATE_DEVTOOLS_CONFIG
+} from 'ngx-base-state';
 import { SharedModule } from './shared/shared.module';
 import { ShowcaseComponent } from './showcase.component';
 import { ShowcaseConfig } from './showcase.config';
@@ -15,6 +20,7 @@ import { AppRoutingModule } from './showcase.routing';
         BrowserModule,
         AppRoutingModule,
 
+        NgxBaseStateDevtoolsModule,
         SharedModule,
         FeaturesModule,
         LayoutsModule
@@ -29,6 +35,12 @@ import { AppRoutingModule } from './showcase.routing';
             useFactory: (config: ShowcaseConfig) => () => config.load(),
             deps: [ShowcaseConfig],
             multi: true
+        },
+        {
+            provide: NGX_BASE_STATE_DEVTOOLS_CONFIG,
+            useValue: new NgxBaseStateDevtoolsConfig({
+                isEnabled: true
+            })
         }
     ]
 })

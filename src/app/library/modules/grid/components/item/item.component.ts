@@ -5,25 +5,25 @@ import {
     ContentChild,
     ElementRef,
     HostBinding,
+    HostListener,
     Input,
-    OnInit,
     TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
+import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
-    CommonCssClassEnum,
     Coordinate,
-    EventOutside,
-    GlobalEvents,
-    OsBaseComponent
+    ɵCommonCssClassEnum,
+    ɵEventOutside,
+    ɵGlobalEvents,
+    ɵOsBaseViewComponent
 } from '../../../../core';
 
 /**
  * ## Templates
  * `#gridItemIcon`: Custom template which will be rendered instead of the default icon.
  *
- * @example
  * ```html
  * <os-grid-item>
  *     <ng-template #gridItemIcon>
@@ -40,7 +40,6 @@ import {
  *
  * `#gridItemLabel`: Custom template which will be rendered instead of the default label text.
  *
- * @example
  * ```html
  * <os-grid-item>
  *     <ng-template #gridItemLabel>
@@ -55,16 +54,29 @@ import {
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
     host: {
-        'class': 'os-grid-item'
+        'class': 'os-grid-item',
+        'tabindex': '0'
     },
+    exportAs: 'osGridItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridItemComponent extends OsBaseComponent implements OnInit {
+export class GridItemComponent extends ɵOsBaseViewComponent {
     /** Is grid item selected? */
     @Input()
-    @HostBinding(`class.${CommonCssClassEnum.Selected}`)
-    public isSelected: boolean;
+    @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
+    public set isSelected(isSelected: boolean) {
+        this._isSelected$.next(isSelected);
+
+        if (isSelected) {
+            this.initClickOutsideObserver();
+        }
+    }
+
+    /** Is grid item selected? */
+    public get isSelected(): boolean {
+        return this._isSelected$.getValue();
+    }
 
     /** URL to the icon of the grid item */
     @Input()
@@ -101,33 +113,40 @@ export class GridItemComponent extends OsBaseComponent implements OnInit {
     /** @internal */
     public _iconBackgroundCssUrl: string;
 
+    private _isSelected$ = new BehaviorSubject<boolean>(false);
+
+    private get _viewDestroyedOrBecomeDeselected$(): Observable<boolean> {
+        return merge(
+            this.viewDestroyed$,
+            this._isSelected$
+                .pipe(filter((isSelected) => !isSelected))
+        );
+    }
+
     constructor(
         /** @internal */
-        public readonly hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: GlobalEvents,
+        public readonly _hostRef: ElementRef<HTMLElement>,
+        private readonly globalEvents: ɵGlobalEvents,
         private readonly changeDetector: ChangeDetectorRef
     ) {
         super();
     }
 
-    public ngOnInit(): void {
-        this.initElementEventObservers(this.hostRef.nativeElement);
+    /** @internal */
+    @HostListener('mousedown')
+    public _onMouseDown(): void {
+        this._isSelected$.next(true);
         this.initClickOutsideObserver();
-    }
-
-    protected onMouseDown(event: MouseEvent): void {
-        this.isSelected = true;
-
-        super.onMouseDown(event);
         this.changeDetector.markForCheck();
     }
 
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('mousedown')
             .pipe(
-                takeUntil(this.viewDestroyed$),
-                filter(() => this.isSelected),
-                filter((event) => EventOutside.checkForElement(this.hostRef.nativeElement, event))
+                filter((event) => (
+                    ɵEventOutside.checkForElement(this._hostRef.nativeElement, event)
+                )),
+                takeUntil(this._viewDestroyedOrBecomeDeselected$)
             )
             .subscribe(() => {
                 this.isSelected = false;

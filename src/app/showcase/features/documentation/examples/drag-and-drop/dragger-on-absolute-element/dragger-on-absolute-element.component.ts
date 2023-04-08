@@ -15,9 +15,6 @@ import { DraggerConfig, DragStrategyByAxisProperties } from 'ngx-os';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DraggerOnAbsoluteElementComponent implements AfterViewInit {
-    @ViewChild('containerHideButton', { read: ElementRef })
-    private readonly containerHideButton: ElementRef<HTMLElement>;
-
     public draggerConfig: DraggerConfig;
 
     public isContainerVisible = false;
@@ -33,6 +30,9 @@ export class DraggerOnAbsoluteElementComponent implements AfterViewInit {
             display: (this.isContainerVisible) ? '' : 'none'
         };
     }
+
+    @ViewChild('containerHideButton', { read: ElementRef })
+    private readonly containerHideButton: ElementRef<HTMLElement>;
 
     constructor(
         private readonly changeDetector: ChangeDetectorRef

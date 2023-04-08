@@ -1,36 +1,35 @@
-import { Injectable } from '@angular/core';
-import { TreeNode } from '../interfaces';
+import { Injectable, OnDestroy } from '@angular/core';
 
 /** @internal */
 @Injectable()
-export class TreeNodesState<T = any> {
+export class ɵTreeNodesState<T = any> implements OnDestroy {
     /** Original data tree of nodes */
-    public get data(): TreeNode<T>[] {
+    public get data(): T[] {
         return this._data;
     }
 
     /** Flat array of all nodes. Parents and children on the same level here */
-    public get flatData(): TreeNode<T>[] {
+    public get flatData(): T[] {
         return this._flatData;
     }
 
-    private _data: TreeNode<T>[] = [];
-    private _flatData: TreeNode<T>[] = [];
+    private _data: T[] = [];
+    private _flatData: T[] = [];
 
-    public set(data: TreeNode<T>[]): void {
-        this._data = data;
+    public ngOnDestroy(): void {
+        this._data = [];
         this._flatData = [];
-
-        this.initFlatDataForNodesAndChildren(data);
     }
 
-    private initFlatDataForNodesAndChildren(nodes: TreeNode[]): void {
-        nodes.forEach((node) => {
-            this._flatData.push(node);
+    public set(data: T[]): void {
+        this._data = data;
+    }
 
-            if (node.children?.length) {
-                this.initFlatDataForNodesAndChildren(node.children);
-            }
-        });
+    public _clearFlatData(): void {
+        this._flatData = [];
+    }
+
+    public _pushToFlatData(node: T): void {
+        this._flatData.push(node);
     }
 }

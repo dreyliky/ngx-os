@@ -28,7 +28,8 @@ export class AccentColorService {
     }
 
     /** Sets color value into CSS variable. All components immediately change their color */
-    public apply(colorType: ThemeColorType, { r, g, b }: ThemeRgbColor): void {
+    public apply(colorType: ThemeColorType, color: ThemeRgbColor): void {
+        const { r, g, b } = color;
         const cssVariableName = this.getColorTypeCssVariableName(colorType);
 
         this.documentElement.style.setProperty(cssVariableName, `${r}, ${g}, ${b}`);

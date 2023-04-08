@@ -8,7 +8,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { LibraryModuleDocumentationService } from '@features/documentation';
 import { MainLayoutComponent, MAIN_LAYOUT } from '@layouts';
-import { OsBaseViewComponent } from 'ngx-os';
+import { ɵOsBaseViewComponent } from 'ngx-os';
 import { Observable } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { OverviewService } from '../../overview.service';
@@ -19,7 +19,7 @@ import { OverviewService } from '../../overview.service';
     styleUrls: ['./documentation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DocumentationComponent extends OsBaseViewComponent implements OnInit {
+export class DocumentationComponent extends ɵOsBaseViewComponent implements OnInit {
     public markdownContent$: Observable<string>;
     public contentGithubUrl: string;
 

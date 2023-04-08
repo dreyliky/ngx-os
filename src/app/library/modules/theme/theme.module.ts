@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { AvailableForOsDirective, ForbiddenForOsDirective } from './directives';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { AvailableForOsDirective, ForbiddenForOsDirective } from './directives';
         ForbiddenForOsDirective
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         AvailableForOsDirective,

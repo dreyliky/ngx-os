@@ -1,14 +1,23 @@
 <form [formGroup]="formGroup">
-    <os-slider
-        [label]="'Range'"
-        [min]="0"
-        [max]="25"
-        [minValueLabel]="'From'"
-        [maxValueLabel]="'To'"
-        [formControl]="sliderControl">
-    </os-slider>
+    <os-form-field [isStacked]="true">
+        <os-slider
+            [label]="'Range'"
+            [min]="0"
+            [max]="25"
+            [minValueLabel]="'From'"
+            [maxValueLabel]="'To'"
+            [formControl]="sliderControl">
+        </os-slider>
+
+        <os-text>
+            {{ formGroup.value | json }}
+        </os-text>
+    </os-form-field>
 </form>
 
-<os-text>
-    {{ formGroup.value | json }}
-</os-text>
+<os-form-field>
+    <os-slider
+        [label]="'Slider [Disabled]'"
+        [formControl]="sliderDisabledControl">
+    </os-slider>
+</os-form-field>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared.module';
+import { ɵSharedModule } from '../shared.module';
 import { SliderComponent } from './components';
 
 @NgModule({
@@ -7,7 +7,7 @@ import { SliderComponent } from './components';
         SliderComponent
     ],
     imports: [
-        SharedModule
+        ɵSharedModule
     ],
     exports: [
         SliderComponent

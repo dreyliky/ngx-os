@@ -1,0 +1,47 @@
+@import "./base/context-menu-container.scss";
+@import "./base/option.scss";
+
+.os-menu-bar {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #ece9d8;
+    user-select: none
+}
+
+.os-menu-bar-container {
+    @include os-base-context-menu-container;
+}
+
+.os-menu-bar-button {
+    padding: 3px 6px;
+    box-sizing: border-box;
+    font-size: 11px;
+    border: none;
+    background: transparent;
+    cursor: default;
+
+    &:hover {
+        background: rgb(var(--os-primary-color));
+        color: #fff;
+    }
+
+    &:active, &.os-active {
+        background: rgb(var(--os-primary-color));
+        color: #fff;
+    }
+}
+
+.os-menu-bar-item {
+    @include os-base-option;
+
+    min-height: 17px;
+    padding: 3px 17px;
+
+    &:hover:not(.os-disabled) {
+        background-color: rgb(var(--os-primary-color));
+        color: #fff;
+    }
+}
