@@ -1,18 +1,17 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
     HostBinding,
-    Injector,
+    HostListener,
     Input,
-    OnInit,
     Output,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { filter, map, takeUntil } from 'rxjs/operators';
 import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
 import { RadioButtonValueChangeEvent } from '../../interfaces';
 
@@ -22,25 +21,16 @@ import { RadioButtonValueChangeEvent } from '../../interfaces';
     host: {
         'class': 'os-radio-button'
     },
+    exportAs: 'osRadioButton',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonComponent<T = any>
     extends ɵOsBaseFormControlComponent<T>
-    implements OnInit, ControlValueAccessor {
+    implements ControlValueAccessor {
     /** Name of the radio-button group */
     @Input()
     public name: string = '';
-
-    /** Is radio-button checked? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Checked}`)
-    public isChecked: boolean;
-
-    /** Is radio-button disabled? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean;
 
     /** Data of the radio-button */
     @Input()
@@ -50,55 +40,49 @@ export class RadioButtonComponent<T = any>
     @Output()
     public osChange: EventEmitter<RadioButtonValueChangeEvent<T>> = new EventEmitter();
 
-    /** Fires when `checked` state changed. Might be used for two way binding */
-    @Output()
-    public isCheckedChange: EventEmitter<boolean> = new EventEmitter();
+    /** Is radio-button checked? */
+    @HostBinding(`class.${ɵCommonCssClassEnum.Checked}`)
+    public isChecked: boolean;
 
     @ViewChild('radioButton')
     private readonly inputElementRef: ElementRef<HTMLInputElement>;
 
     constructor(
-        injector: Injector
+        private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(injector);
-    }
-
-    public ngOnInit(): void {
-        this.initClickObserver();
+        super();
     }
 
     /** @internal */
-    public writeValue(value: T): void {
+    public override writeValue(value: T): void {
         this.isChecked = (this.data === value);
 
-        this.changeDetector.detectChanges();
+        this.changeDetector.markForCheck();
     }
 
     /** @internal */
     public _onRadioButtonChange(originalEvent: Event): void {
-        const inputElement = originalEvent.target as HTMLInputElement;
+        const inputElement = (originalEvent.target as HTMLInputElement);
+        this.isChecked = inputElement.checked;
 
         this.onChange?.(this.data);
-        this.isCheckedChange.emit(inputElement.checked);
         this.osChange.emit({
             originalEvent,
             data: this.data,
-            isChecked: inputElement.checked
+            isChecked: this.isChecked
         });
     }
 
-    private initClickObserver(): void {
-        this.osClick
-            .pipe(
-                map(() => this.inputElementRef.nativeElement),
-                filter((element) => !this.isDisabled && !element.checked),
-                takeUntil(this.viewDestroyed$)
-            )
-            .subscribe((element) => {
-                element.checked = true;
+    /** @internal */
+    @HostListener('click')
+    public _onClick(): void {
+        const element = this.inputElementRef.nativeElement;
 
-                element.dispatchEvent(new Event('change'));
-                element.focus();
-            });
+        if (!this.isDisabled && !element.checked) {
+            element.checked = true;
+
+            element.dispatchEvent(new Event('change'));
+            element.focus();
+        }
     }
 }

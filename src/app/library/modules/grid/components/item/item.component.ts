@@ -1,26 +1,29 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
     ElementRef,
     HostBinding,
-    Injector,
+    HostListener,
     Input,
-    OnInit,
     TemplateRef,
     ViewEncapsulation
 } from '@angular/core';
-import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, merge } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
-    Coordinate, ɵCommonCssClassEnum, ɵEventOutside, ɵGlobalEvents, ɵOsBaseComponent
+    Coordinate,
+    ɵCommonCssClassEnum,
+    ɵEventOutside,
+    ɵGlobalEvents,
+    ɵOsBaseViewComponent
 } from '../../../../core';
 
 /**
  * ## Templates
  * `#gridItemIcon`: Custom template which will be rendered instead of the default icon.
  *
- * @example
  * ```html
  * <os-grid-item>
  *     <ng-template #gridItemIcon>
@@ -37,7 +40,6 @@ import {
  *
  * `#gridItemLabel`: Custom template which will be rendered instead of the default label text.
  *
- * @example
  * ```html
  * <os-grid-item>
  *     <ng-template #gridItemLabel>
@@ -52,12 +54,14 @@ import {
     selector: 'os-grid-item',
     templateUrl: './item.component.html',
     host: {
-        'class': 'os-grid-item'
+        'class': 'os-grid-item',
+        'tabindex': '0'
     },
+    exportAs: 'osGridItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
+export class GridItemComponent extends ɵOsBaseViewComponent {
     /** Is grid item selected? */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
@@ -120,32 +124,28 @@ export class GridItemComponent extends ɵOsBaseComponent implements OnInit {
     }
 
     constructor(
-        injector: Injector,
         /** @internal */
         public readonly _hostRef: ElementRef<HTMLElement>,
-        private readonly globalEvents: ɵGlobalEvents
+        private readonly globalEvents: ɵGlobalEvents,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(injector);
+        super();
     }
 
-    public ngOnInit(): void {
-        this.initMouseDownObserver();
-    }
-
-    private initMouseDownObserver(): void {
-        this.osMouseDown
-            .pipe(takeUntil(this.viewDestroyed$))
-            .subscribe(() => {
-                this.isSelected = true;
-
-                this.changeDetector.markForCheck();
-            });
+    /** @internal */
+    @HostListener('mousedown')
+    public _onMouseDown(): void {
+        this._isSelected$.next(true);
+        this.initClickOutsideObserver();
+        this.changeDetector.markForCheck();
     }
 
     private initClickOutsideObserver(): void {
         this.globalEvents.fromDocument('mousedown')
             .pipe(
-                filter((event) => ɵEventOutside.checkForElement(this.hostRef.nativeElement, event)),
+                filter((event) => (
+                    ɵEventOutside.checkForElement(this._hostRef.nativeElement, event)
+                )),
                 takeUntil(this._viewDestroyedOrBecomeDeselected$)
             )
             .subscribe(() => {

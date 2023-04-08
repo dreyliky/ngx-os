@@ -12,10 +12,10 @@ Might be used as a wrapper for some items of form.
     <os-form-field [isStacked]="false">
         <os-label>Login</os-label>
 
-        <os-text-box
-            [placeholder]="'Please enter your login'"
-            [formControl]="formGroup.controls.login">
-        </os-text-box>
+        <input
+            osInput
+            placeholder="Please enter your login"
+            [formControl]="formGroup.controls.login" />
     </os-form-field>
 
     <os-form-field [isStacked]="false">
@@ -27,10 +27,11 @@ Might be used as a wrapper for some items of form.
         </os-password-box>
     </os-form-field>
 
-    <os-button
-        (osClick)="onLogInButtonClick()">
+    <button 
+        osButton
+        (click)="onLogInButtonClick()">
         Log In
-    </os-button>
+    </button>
 </form>
 ```
 

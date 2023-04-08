@@ -27,15 +27,17 @@
 </os-form-field>
 
 <os-form-field>
-    <os-button
-        (osClick)="onAddButtonClick()">
+    <button
+        osButton
+        (click)="onAddButtonClick()">
         Add
-    </os-button>
+    </button>
 
-    <os-button
-        (osClick)="onRemoveButtonClick()">
+    <button
+        osButton
+        (click)="onRemoveButtonClick()">
         Remove
-    </os-button>
+    </button>
 </os-form-field>
 
 <os-scroll-view class="grid-wrapper">

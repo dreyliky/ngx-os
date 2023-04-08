@@ -118,15 +118,9 @@
         left: var(--fullscreen-left);
     }
 
-    &.os-dragging, &.os-resizing {
-        .os-window-body {
-            pointer-events: none;
-        }
-    }
-
     &.os-fullscreen, &.os-entering-fullscreen {
         .os-title-bar-button[aria-label="Fullscreen"] {
-            &:not(.os-disabled) {
+            &:not(:disabled) {
                 .os-icon {
                     background-position: -32px 0px;
                 }
@@ -136,7 +130,7 @@
                 }
             }
             
-            &.os-disabled .os-icon {
+            &:disabled .os-icon {
                 background-position: -32px -28px;
             }
         }
@@ -210,6 +204,7 @@ os-title-bar {
     min-width: 16px;
     min-height: 14px;
     padding: 0;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,7 +223,7 @@ os-title-bar {
         background-repeat: no-repeat;
     }
 
-    &:not(.os-disabled):active {
+    &:not(:disabled):active {
         background-position: 0px -14px;
 
         &[aria-label="Hide"] .os-icon {
@@ -249,31 +244,31 @@ os-title-bar {
     }
 
     &[aria-label="Hide"] {
-        &:not(.os-disabled) .os-icon {
+        &:not(:disabled) .os-icon {
             background-position: 0px 0px;
         }
 
-        &.os-disabled .os-icon {
+        &:disabled .os-icon {
             background-position: 0px -28px;
         }
     }
 
     &[aria-label="Fullscreen"] {
-        &:not(.os-disabled) .os-icon {
+        &:not(:disabled) .os-icon {
             background-position: -16px 0px;
         }
 
-        &.os-disabled .os-icon {
+        &:disabled .os-icon {
             background-position: -16px -28px;
         }
     }
 
     &[aria-label="Close"] {
-        &:not(.os-disabled) .os-icon {
+        &:not(:disabled) .os-icon {
             background-position: -48px 0px;
         }
 
-        &.os-disabled .os-icon {
+        &:disabled .os-icon {
             background-position: -48px -28px;
         }
     }

@@ -3,6 +3,7 @@ import {
     ChangeDetectorRef,
     Component,
     HostBinding,
+    HostListener,
     OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { BackgroundService } from './features/background';
 import { ExecService } from './features/exec';
+import { TextDocumentsService, TextDocumentsState } from './features/file-system';
 import { ShortcutSettingsService } from './features/shortcut';
 import { TaskbarPlacement } from './modules';
 import { DesktopBackgroundService, DesktopTaskbarService } from './services';
@@ -24,6 +26,8 @@ import { DesktopBackgroundService, DesktopTaskbarService } from './services';
         DynamicWindowService,
         ExecService,
         BackgroundService,
+        TextDocumentsService,
+        TextDocumentsState,
         ShortcutSettingsService,
         DesktopBackgroundService,
         DesktopTaskbarService
@@ -53,6 +57,11 @@ export class DesktopComponent extends ɵOsBaseViewComponent implements OnInit {
         this.titleService.setTitle('ngx-os - Desktop');
         this.initHostBackgroundStylelistObserver();
         this.initHostClasslistObserver();
+    }
+
+    @HostListener('document:contextmenu', ['$event'])
+    public onDocumentContextMenuEvent(event: Event): void {
+        event.preventDefault();
     }
 
     private initHostBackgroundStylelistObserver(): void {

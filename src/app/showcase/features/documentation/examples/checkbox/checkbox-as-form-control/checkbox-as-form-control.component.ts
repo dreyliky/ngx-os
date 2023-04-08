@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
     selector: 'showcase-checkbox-as-form-control',
@@ -8,11 +8,13 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxAsFormControlComponent {
-    public readonly checkbox1Control = new FormControl(false);
-    public readonly checkbox2Control = new FormControl(false);
+    public readonly checkboxControl1 = new UntypedFormControl(false);
+    public readonly checkboxControl2 = new UntypedFormControl(true);
+    public readonly checkboxControl3 = new UntypedFormControl({ value: false, disabled: true });
 
-    public readonly formGroup = new FormGroup({
-        checkbox1: this.checkbox1Control,
-        checkbox2: this.checkbox2Control
+    public readonly formGroup = new UntypedFormGroup({
+        checkbox1: this.checkboxControl1,
+        checkbox2: this.checkboxControl2,
+        checkbox3: this.checkboxControl3
     });
 }

@@ -1,5 +1,21 @@
 # Changelog
 
+## [v. 2.0.0-alpha]
+
+### Features
+
+- Angular 15;
+- Context Menu Module;
+- Divider Module;
+- Hint Module;
+- Menu Bar Module;
+- Selection Module;
+
+### Changes
+
+- Changed API for a lot of features to make it closer to native elements/approaches;
+- Different modules for input merged to single InputModule;
+
 ## [v. 1.1.0-alpha]
 
 ### Bug Fixes

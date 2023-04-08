@@ -1,11 +1,8 @@
 import { ɵPointerHelper } from '../../../core';
-import { ResizerEnum } from '../enums';
 import { ɵBaseResizer } from './base-resizer';
 
 /** @internal */
 export class ɵBottomResizer extends ɵBaseResizer {
-    public static id = ResizerEnum.Bottom;
-
     public resizeElement(event: PointerEvent | TouchEvent): void {
         const pageY = ɵPointerHelper.getPageY(event);
         const height = this.originalHeight + (pageY - this.originalMouseY);

@@ -1,0 +1,10 @@
+:host {
+    width: 100%;
+    max-width: 640px;
+    display: flex !important;
+    flex-direction: row;
+}
+
+.wrapper {
+    flex: 1;
+}

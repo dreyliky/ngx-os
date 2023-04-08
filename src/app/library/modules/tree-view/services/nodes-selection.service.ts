@@ -1,82 +1,70 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { ɵIsNil } from '../../../core';
-import { TreeNode, TreeNodeSelectionEvent } from '../interfaces';
+import { EventEmitter, Injectable, OnDestroy } from '@angular/core';
 import { ɵTreeNodesState } from '../states';
 
 /** Must be used only via {@link TreeViewComponent}. Please don't inject it directly */
 @Injectable()
-export class TreeNodesSelectionService<T = any> {
+export class TreeNodesSelectionService<T = any> implements OnDestroy {
     /** @internal */
-    public _osSelected: EventEmitter<TreeNodeSelectionEvent<T>> = new EventEmitter();
+    public _osSelected: EventEmitter<T> = new EventEmitter();
     /** @internal */
-    public _osDeselected: EventEmitter<TreeNodeSelectionEvent<T>> = new EventEmitter();
+    public _osDeselected: EventEmitter<T> = new EventEmitter();
+
+    private _stateMap = new Map<T, boolean>();
 
     constructor(
         private readonly state: ɵTreeNodesState<T>
     ) {}
 
-    /** @internal */
-    public _initDefaultStateForAll(): void {
-        this.setStateForNodes((node) => !!node.isSelected);
+    public ngOnDestroy(): void {
+        this._stateMap.clear();
+    }
+
+    /** Check is node selected */
+    public check(node: T): boolean {
+        return !!this._stateMap.get(node);
     }
 
     /** Returns all selected nodes */
-    public getAllSelected(): TreeNode<T>[] {
+    public getAllSelected(): T[] {
         return this.state.flatData
-            .filter(({ isSelected }) => isSelected);
+            .filter((node) => this.check(node));
     }
 
     /**
      * Selects node
-     * @param originalEvent - PointerEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
+     * @param node - The node to select
      **/
-    public select(node: TreeNode<T>, originalEvent?: PointerEvent): void {
-        node.isSelected = true;
-        const allSelected = this.getAllSelected();
-
-        this._osSelected.emit({ originalEvent, node, allSelected });
-        node.onSelected?.({ originalEvent, node, allSelected });
+    public select(node: T): void {
+        this._stateMap.set(node, true);
+        this._osSelected.emit(node);
     }
 
     /**
      * Deselects node
-     * @param originalEvent - Event which is the reason for selection state changing. Might be undefined if action triggers from code.
+     * @param node - The node to deselect
      **/
-    public deselect(node: TreeNode<T>, originalEvent?: PointerEvent): void {
-        node.isSelected = false;
-        const allSelected = this.getAllSelected();
-
-        this._osDeselected.emit({ originalEvent, node, allSelected });
-        node.onDeselected?.({ originalEvent, node, allSelected });
+    public deselect(node: T): void {
+        this._stateMap.delete(node);
+        this._osDeselected.emit(node);
     }
 
     /**
      * Selects and deselects node (sets the opposite state)
-     * @param originalEvent - PointerEvent which is the reason for selection state changing. Might be undefined if action triggers from code.
+     * @param node - The node to toggle
      **/
-    public toggle(node: TreeNode<T>, originalEvent?: PointerEvent): void {
-        if (node.isSelected) {
-            this.deselect(node, originalEvent);
+    public toggle(node: T): void {
+        if (this.check(node)) {
+            this.deselect(node);
         } else {
-            this.select(node, originalEvent);
+            this.select(node);
         }
     }
 
     /** Deselects all nodes except specific one */
-    public deselectAllExceptSpecific(node: TreeNode<T>): void {
+    public deselectAllExceptSpecific(node: T): void {
         this.state.flatData.forEach((currentNode) => {
-            if (currentNode.isSelected && currentNode !== node) {
+            if (this.check(currentNode) && currentNode !== node) {
                 this.deselect(currentNode);
-            }
-        });
-    }
-
-    private setStateForNodes(getState: (node: TreeNode<T>) => boolean): void {
-        this.state.flatData.forEach((node) => {
-            const newState = getState(node);
-
-            if (!ɵIsNil(newState) && (newState !== node.isSelected)) {
-                (newState) ? this.select(node) : this.deselect(node);
             }
         });
     }

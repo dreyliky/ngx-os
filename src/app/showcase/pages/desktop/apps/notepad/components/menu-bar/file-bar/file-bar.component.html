@@ -1,0 +1,34 @@
+<button
+    os-menu-bar-button
+    [osMenuBar]="menuBar">
+    File
+</button>
+
+<ng-template #menuBar>
+    <div class="menu-bar">
+        <os-menu-bar-item>Open</os-menu-bar-item>
+        <os-menu-bar-item
+            (osSelected)="onSaveButtonClick()">
+            Save
+        </os-menu-bar-item>
+
+        <os-divider></os-divider>
+
+        <os-menu-bar-item
+            (osSelected)="onUploadButtonClick()">
+            Upload
+        </os-menu-bar-item>
+
+        <os-menu-bar-item
+            (osSelected)="onDownloadButtonClick()">
+            Download
+        </os-menu-bar-item>
+    </div>
+
+    <input
+        #fileUploader
+        type="file"
+        accept=".txt"
+        hidden
+        (change)="onFileUpload($event)" />
+</ng-template>

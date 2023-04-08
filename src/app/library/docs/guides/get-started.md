@@ -112,7 +112,7 @@ Now, let's try to display some component:
 
 In your `app.component.html`:
 ```html
-<os-button>Hello world!</os-button>
+<button osButton>Hello world!</button>
 ```
 
 <p>

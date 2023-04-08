@@ -1,17 +1,25 @@
 <div class="row">
-    <os-button
-        (osClick)="onIncreaseButtonClick()">
-        +
-    </os-button>
-
-    <os-button
-        (osClick)="onDecreaseButtonClick()">
-        -
-    </os-button>
+    <os-header [size]="4">
+        Clicks: {{ counter }}
+    </os-header>
 </div>
 
 <div class="row">
-    <os-text>
-        Result: {{ counter }}
-    </os-text>
+    <button 
+        osButton
+        (click)="onIncreaseButtonClick()">
+        +
+    </button>
+
+    <button
+        osButton
+        (click)="onDecreaseButtonClick()">
+        -
+    </button>
+
+    <button
+        osButtonLink
+        (click)="onResetButtonClick()">
+        Reset to default
+    </button>
 </div>

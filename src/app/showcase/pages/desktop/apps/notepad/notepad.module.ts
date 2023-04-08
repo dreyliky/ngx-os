@@ -1,5 +1,13 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
+import {
+    AboutWindowModule,
+    DocumentCreationWindowModule,
+    DocumentDownloaderWindowModule,
+    EditorModule,
+    FontWindowModule,
+    MenuBarModule
+} from './components';
 import { NotepadAppComponent } from './notepad.component';
 
 @NgModule({
@@ -7,7 +15,13 @@ import { NotepadAppComponent } from './notepad.component';
         NotepadAppComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        AboutWindowModule,
+        DocumentCreationWindowModule,
+        DocumentDownloaderWindowModule,
+        EditorModule,
+        FontWindowModule,
+        MenuBarModule
     ]
 })
 export class NotepadAppModule {}

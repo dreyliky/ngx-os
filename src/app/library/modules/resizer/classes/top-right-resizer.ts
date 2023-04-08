@@ -1,11 +1,8 @@
 import { ɵPointerHelper } from '../../../core';
-import { ResizerEnum } from '../enums';
 import { ɵBaseResizer } from './base-resizer';
 
 /** @internal */
 export class ɵTopRightResizer extends ɵBaseResizer {
-    public static id = ResizerEnum.TopRight;
-
     public resizeElement(event: PointerEvent | TouchEvent): void {
         this.processAxisX(event);
         this.processAxisY(event);

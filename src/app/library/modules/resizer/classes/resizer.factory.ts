@@ -14,25 +14,37 @@ import { ɵTopRightResizer } from './top-right-resizer';
 /** @internal */
 @Injectable()
 export class ɵResizerFactory {
-    private readonly resizers = [
-        ɵTopLeftResizer,
-        ɵTopResizer,
-        ɵTopRightResizer,
-        ɵLeftResizer,
-        ɵRightResizer,
-        ɵBottomLeftResizer,
-        ɵBottomResizer,
-        ɵBottomRightResizer
-    ];
-
     constructor(
         private readonly injector: Injector
     ) {}
 
     public create(id: ResizerEnum, context: ResizableDirective): ɵBaseResizer {
-        const ResizerType = this.resizers
-            .find((resizer) => resizer.id === id);
+        const ResizerType = this.getResizerClassById(id);
 
         return new ResizerType(context, this.injector);
+    }
+
+    // eslint-disable-next-line max-lines-per-function
+    private getResizerClassById(id: ResizerEnum): typeof ɵTopResizer {
+        switch (id) {
+            case ResizerEnum.TopLeft:
+                return ɵTopLeftResizer;
+            case ResizerEnum.Top:
+                return ɵTopResizer;
+            case ResizerEnum.TopRight:
+                return ɵTopRightResizer;
+            case ResizerEnum.Left:
+                return ɵLeftResizer;
+            case ResizerEnum.Right:
+                return ɵRightResizer;
+            case ResizerEnum.BottomLeft:
+                return ɵBottomLeftResizer;
+            case ResizerEnum.Bottom:
+                return ɵBottomResizer;
+            case ResizerEnum.BottomRight:
+                return ɵBottomRightResizer;
+            default:
+                throw new Error(`Can't find resizer by id: ${id}`);
+        }
     }
 }

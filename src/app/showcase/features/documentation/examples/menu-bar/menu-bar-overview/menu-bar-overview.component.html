@@ -1,0 +1,65 @@
+<os-window>
+    <os-title-bar>
+        <os-title-bar-content>
+            My App
+        </os-title-bar-content>
+
+        <os-title-bar-controls>
+            <button
+                os-title-bar-button
+                aria-label="Hide">
+            </button>
+    
+            <button
+                os-title-bar-button
+                aria-label="Fullscreen">
+            </button>
+    
+            <button
+                os-title-bar-button
+                aria-label="Close">
+            </button>
+        </os-title-bar-controls>
+    </os-title-bar>
+
+    <os-menu-bar>
+        <button os-menu-bar-button [osMenuBar]="fileMenuBarTemplate">File</button>
+        <button os-menu-bar-button [osMenuBar]="editMenuBarTemplate">Edit</button>
+        <button os-menu-bar-button [osMenuBar]="viewMenuBarTemplate">View</button>
+        <button os-menu-bar-button [osMenuBar]="helpMenuBarTemplate">Help</button>
+    </os-menu-bar>
+
+    <div class="app-content">
+        <os-header>
+            Hello World!
+        </os-header>
+    </div>
+</os-window>
+
+<ng-template #fileMenuBarTemplate>
+    <os-menu-bar-item [isMenuBarCloseOnClick]="false">
+        <b>New File</b>
+    </os-menu-bar-item>
+    <os-menu-bar-item>New Window</os-menu-bar-item>
+    <os-divider></os-divider>
+    <os-menu-bar-item>Open File</os-menu-bar-item>
+    <os-menu-bar-item>Open Window</os-menu-bar-item>
+    <os-divider></os-divider>
+    <os-menu-bar-item [isDisabled]="true">Close</os-menu-bar-item>
+</ng-template>
+
+<ng-template #editMenuBarTemplate>
+    <os-menu-bar-item>Undo</os-menu-bar-item>
+    <os-menu-bar-item>Redo</os-menu-bar-item>
+</ng-template>
+
+<ng-template #viewMenuBarTemplate>
+    <os-menu-bar-item>Font</os-menu-bar-item>
+</ng-template>
+
+<ng-template #helpMenuBarTemplate>
+    <os-menu-bar-item>Help and Support Center</os-menu-bar-item>
+    <os-divider></os-divider>
+    <os-menu-bar-item>License agreement</os-menu-bar-item>
+    <os-menu-bar-item>About the program</os-menu-bar-item>
+</ng-template>

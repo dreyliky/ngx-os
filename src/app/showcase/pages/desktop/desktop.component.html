@@ -1,6 +1,22 @@
-<desktop-shortcuts-zone></desktop-shortcuts-zone>
+<desktop-shortcuts-zone
+    [osContextMenu]="desktopContextMenu">
+    <ng-template #desktopContextMenu>
+        <os-context-menu-item>Shortcuts</os-context-menu-item>
+        <os-context-menu-item>Theme</os-context-menu-item>
+        <os-context-menu-item>Background</os-context-menu-item>
+        <os-context-menu-item>Accent Color</os-context-menu-item>
+        <os-divider></os-divider>
+        <os-context-menu-item>Don't work. Just visual demo</os-context-menu-item>
+    </ng-template>
+</desktop-shortcuts-zone>
 
 <desktop-taskbar
     *ngIf="(taskbarPlacement$ | async) as placement"
-    [osResizable]="placement.resizerConfig">
+    [osResizable]="placement.resizerConfig"
+    [osContextMenu]="taskbarContextMenu">
+    <ng-template #taskbarContextMenu>
+        <os-context-menu-item>Taskbar settings</os-context-menu-item>
+        <os-divider></os-divider>
+        <os-context-menu-item>Don't work. Just visual demo</os-context-menu-item>
+    </ng-template>
 </desktop-taskbar>

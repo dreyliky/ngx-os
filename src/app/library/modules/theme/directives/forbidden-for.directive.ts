@@ -12,7 +12,8 @@ import { ThemeService } from '../services';
 
 /** Allows to hide HTML elements for specific themes */
 @Directive({
-    selector: '[osForbiddenFor]'
+    selector: '[osForbiddenFor]',
+    exportAs: 'osForbiddenFor'
 })
 export class ForbiddenForOsDirective<T = any> implements OnInit, OnDestroy {
     /** An array of theme names for which will be hidden the wrapped HTML element */

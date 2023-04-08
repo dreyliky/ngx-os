@@ -3,7 +3,6 @@ import {
     Component,
     ContentChildren,
     EventEmitter,
-    Injector,
     Input,
     OnDestroy,
     Output,
@@ -13,19 +12,20 @@ import {
 } from '@angular/core';
 import { merge, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 import { TabComponent } from '../tab';
 
 @Component({
-    selector: 'os-tab-group',
+    selector: 'section[os-tab-group]',
     templateUrl: './tab-group.component.html',
     host: {
         'class': 'os-tab-group'
     },
+    exportAs: 'osTabGroup',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
+export class TabGroupComponent extends ɵOsBaseViewComponent implements OnDestroy {
     /** Index of the tab which is selected */
     @Input()
     public selectedTabIndex: number = 0;
@@ -39,7 +39,7 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
     public set _tabComponentList(data: QueryList<TabComponent>) {
         this.__tabComponentList = data;
 
-        this.tabsChanged$.next();
+        this.tabsChanged$.next(true);
         this.initTabSelection();
         this.initTabsSelectionObservers();
     }
@@ -50,16 +50,9 @@ export class TabGroupComponent extends ɵOsBaseComponent implements OnDestroy {
     }
 
     private __tabComponentList: QueryList<TabComponent>;
-    private tabsChanged$ = new Subject();
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
+    private tabsChanged$ = new Subject<boolean>();
 
     public ngOnDestroy(): void {
-        super.ngOnDestroy();
         this.tabsChanged$.complete();
     }
 

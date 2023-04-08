@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 interface Item {
     text: string;
@@ -18,9 +18,13 @@ export class RadioButtonAsFormControlComponent {
         { text: 'Item 3' }
     ];
 
-    public readonly selectedValueControl = new FormControl(this.items[1]);
+    public readonly selectedValueControl = new UntypedFormControl(this.items[1]);
+    public readonly radioButtonDisabledControl = new UntypedFormControl({
+        value: true,
+        disabled: true
+    });
 
-    public readonly formGroup = new FormGroup({
+    public readonly formGroup = new UntypedFormGroup({
         selectedValue: this.selectedValueControl
     });
 }

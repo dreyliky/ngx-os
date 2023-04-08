@@ -1,15 +1,19 @@
-import { Component, InjectFlags, Injector } from '@angular/core';
+import { ChangeDetectorRef, Directive, HostBinding, inject, Input } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
-import { ɵOsBaseComponent } from './component';
+import { ɵCommonCssClassEnum } from '../../enums';
+import { ɵOsBaseViewComponent } from './view';
 
-@Component({
-    template: ''
-})
+@Directive({})
 export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
-    extends ɵOsBaseComponent
+    extends ɵOsBaseViewComponent
     implements ControlValueAccessor {
+    /** Is component disabled? */
+    @Input()
+    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
+    public isDisabled: boolean = false;
+
     /** @internal */
     public onChange: (value: OutputT) => void;
     /** @internal */
@@ -28,11 +32,11 @@ export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
 
     protected controlDir: NgControl;
 
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-        this.initControlDir(injector);
+    private readonly __cdr = inject(ChangeDetectorRef);
+
+    constructor() {
+        super();
+        this.initControlDir();
     }
 
     /** @internal */
@@ -46,14 +50,21 @@ export abstract class ɵOsBaseFormControlComponent<T = any, OutputT = any>
     }
 
     /** @internal */
+    public setDisabledState(state: boolean): void {
+        this.isDisabled = state;
+
+        this.__cdr.markForCheck();
+    }
+
+    /** @internal */
     public writeValue(value: T): void {
         this.value = value;
 
-        this.changeDetector.detectChanges();
+        this.__cdr.detectChanges();
     }
 
-    private initControlDir(injector: Injector): void {
-        const controlDir = injector.get(NgControl, null, InjectFlags.Self);
+    private initControlDir(): void {
+        const controlDir = inject(NgControl, { optional: true, self: true });
 
         // For some strange reason, sometimes injector injects parent's controlDir
         // and this condition helps to filter incorrect controlDir.

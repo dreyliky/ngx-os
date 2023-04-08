@@ -1,13 +1,8 @@
-<fieldset
-    class="os-element"
-    [class]="styleClass"
-    [attr.id]="id"
-    [ngStyle]="style">
-    <legend
-        *ngIf="label"
-        class="os-element">
-        {{ label }}
-    </legend>
+<!-- FIXME: Move to another component group-box-label -->
+<legend
+    *ngIf="label"
+    class="os-element">
+    {{ label }}
+</legend>
 
-    <ng-content></ng-content>
-</fieldset>
+<ng-content></ng-content>

@@ -3,7 +3,7 @@
 </os-header>
 
 <os-text>
-    Components in operating systems style for Angular 12+
+    Components in operating systems style for Angular 15
 </os-text>
 
 <os-grid
@@ -13,6 +13,6 @@
         *ngFor="let component of components"
         [label]="component.name"
         [iconUrl]="component.imageUrl"
-        (osDblClick)="onGridItemClick(component)">
+        (dblclick)="onGridItemClick(component)">
     </os-grid-item>
 </os-grid>

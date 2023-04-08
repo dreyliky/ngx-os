@@ -1,5 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode } from 'ngx-os';
+
+interface Item {
+    label: string;
+    children?: Item[];
+}
 
 @Component({
     selector: 'showcase-tree-view-icon-customization',
@@ -8,7 +12,8 @@ import { TreeNode } from 'ngx-os';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeViewIconCustomizationComponent {
-    public data: TreeNode[] = [
+    public readonly nodeType!: Item;
+    public readonly data: Item[] = [
         { label: 'Item #1' },
         {
             label: 'Item #2',
@@ -17,4 +22,6 @@ export class TreeViewIconCustomizationComponent {
             ]
         }
     ];
+
+    public readonly childrenHandler = (item: Item): Item[] => item.children;
 }

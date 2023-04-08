@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
     selector: 'showcase-radio-button-overview',
@@ -6,4 +7,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./radio-button-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RadioButtonOverviewComponent {}
+export class RadioButtonOverviewComponent {
+    public readonly radioButtonDisabledControl = new UntypedFormControl({
+        value: 1,
+        disabled: true
+    });
+}

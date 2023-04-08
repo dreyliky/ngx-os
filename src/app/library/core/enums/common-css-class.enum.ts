@@ -7,5 +7,6 @@ export enum ɵCommonCssClassEnum {
     Checked = 'os-checked',
     Selected = 'os-selected',
     HasIcon = 'os-has-icon',
-    HasLabel = 'os-has-label'
+    HasLabel = 'os-has-label',
+    UserSelectNone = 'os-user-select-none'
 }

@@ -35,7 +35,7 @@
     class="os-part-of-dropdown"
     [scrollViewStyle]="scrollViewStyle"
     [scrollViewStyleClass]="scrollViewStyleClass"
-    (osClick)="$event.stopPropagation()">
+    (click)="$event.stopPropagation()">
     <ng-content select="[os-dropdown-header]"></ng-content>
 
     <ng-content select="[os-dropdown-content]"></ng-content>

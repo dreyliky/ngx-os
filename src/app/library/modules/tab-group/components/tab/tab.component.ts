@@ -1,36 +1,35 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
     EventEmitter,
-    Injector,
     Input,
     Output,
     TemplateRef,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
+import { TabContentDirective, TabLabelDirective } from '../../directives';
 
 /**
  * ## Templates
- * `#tabLabel`: Template for the label of the tab button.
+ * `osTabLabel`: Template for the label of the tab button.
  *
- * @example
  * ```html
  * <os-tab>
- *     <ng-template #tabLabel>
+ *     <ng-template osTabLabel>
  *         <!-- Your label content here -->
  *     </ng-template>
  * </os-tab>
  * ```
  *
- * `#tabContent`: Template for the content lazy loading.
+ * `osTabContent`: Template for the content lazy loading.
  *
- * @example
  * ```html
  * <os-tab>
- *     <ng-template #tabContent>
+ *     <ng-template osTabContent>
  *         <!-- Your tab content here -->
  *     </ng-template>
  * </os-tab>
@@ -42,10 +41,11 @@ import { ɵOsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-tab'
     },
+    exportAs: 'osTab',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent extends ɵOsBaseComponent {
+export class TabComponent extends ɵOsBaseViewComponent {
     /** Label text of the tab */
     @Input()
     public label: string;
@@ -64,14 +64,14 @@ export class TabComponent extends ɵOsBaseComponent {
 
     /** Fires when the tab selected */
     @Output()
-    public osTabSelected = new EventEmitter<PointerEvent>();
+    public osTabSelected: EventEmitter<MouseEvent> = new EventEmitter();
 
     /** @internal */
-    @ContentChild('tabLabel')
+    @ContentChild(TabLabelDirective, { read: TemplateRef })
     public readonly _tabLabelTemplate: TemplateRef<HTMLElement>;
 
     /** @internal */
-    @ContentChild('tabContent')
+    @ContentChild(TabContentDirective, { read: TemplateRef })
     public readonly _tabContentTemplate: TemplateRef<HTMLElement>;
 
     /** @internal */
@@ -86,13 +86,13 @@ export class TabComponent extends ɵOsBaseComponent {
     public _isSelected: boolean = false;
 
     constructor(
-        injector: Injector
+        private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(injector);
+        super();
     }
 
     /** @internal */
-    public _onTabButtonClick(event: PointerEvent): void {
+    public _onTabButtonClick(event: MouseEvent): void {
         if (!this.isDisabled) {
             this.osTabSelected.emit(event);
         }

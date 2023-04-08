@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-title-bar-controls',
@@ -7,13 +7,8 @@ import { ɵOsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-title-bar-controls'
     },
+    exportAs: 'osTitleBarControls',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleBarControlsComponent extends ɵOsBaseComponent {
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
-}
+export class TitleBarControlsComponent extends ɵOsBaseViewComponent {}

@@ -38,6 +38,7 @@ export class ThemeService<T = any> {
     private initThemeLinkElement(): void {
         const headElement = this.document.getElementsByTagName('head')[0];
         this.themeLinkElement = this.document.createElement('link');
+        this.themeLinkElement.type = 'text/css';
         this.themeLinkElement.rel = 'stylesheet';
 
         headElement.appendChild(this.themeLinkElement);

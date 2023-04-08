@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
     selector: 'showcase-slider-as-form-control',
@@ -8,9 +8,10 @@ import { FormControl, FormGroup } from '@angular/forms';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderAsFormControlComponent {
-    public readonly sliderControl = new FormControl(10);
+    public readonly sliderControl = new UntypedFormControl(10);
+    public readonly sliderDisabledControl = new UntypedFormControl({ value: 0, disabled: true });
 
-    public readonly formGroup = new FormGroup({
+    public readonly formGroup = new UntypedFormGroup({
         sliderValue: this.sliderControl
     });
 }

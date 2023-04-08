@@ -1,11 +1,8 @@
 import { ɵPointerHelper } from '../../../core';
-import { ResizerEnum } from '../enums';
 import { ɵBaseResizer } from './base-resizer';
 
 /** @internal */
 export class ɵLeftResizer extends ɵBaseResizer {
-    public static id = ResizerEnum.Left;
-
     public resizeElement(event: PointerEvent | TouchEvent): void {
         const pageX = ɵPointerHelper.getPageX(event);
         const width = this.originalWidth - (pageX - this.originalMouseX);

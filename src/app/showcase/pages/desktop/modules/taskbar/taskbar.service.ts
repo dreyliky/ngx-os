@@ -15,7 +15,7 @@ export class TaskbarService implements OnDestroy {
     private windowRefs: DynamicWindowRef[];
     private previousPlacement: TaskbarPlacement;
     private windowRefElements: QueryList<ElementRef<HTMLElement>>;
-    private destroyed$ = new Subject();
+    private destroyed$ = new Subject<boolean>();
 
     constructor(
         private readonly dynamicWindowService: DynamicWindowService,
@@ -24,7 +24,7 @@ export class TaskbarService implements OnDestroy {
     ) {}
 
     public ngOnDestroy(): void {
-        this.destroyed$.next();
+        this.destroyed$.next(true);
         this.destroyed$.complete();
         this.clearWindowSharedConfig();
     }
@@ -52,7 +52,7 @@ export class TaskbarService implements OnDestroy {
             this.placementService.data$
         ])
             .pipe(
-                debounceTime(50),
+                debounceTime(10),
                 takeUntil(this.destroyed$)
             )
             .subscribe(() => {
@@ -91,7 +91,6 @@ export class TaskbarService implements OnDestroy {
 
             if (windowRef) {
                 this.updateWindowRefHidesIntoCoordinate(windowRef, element);
-
             }
         });
     }

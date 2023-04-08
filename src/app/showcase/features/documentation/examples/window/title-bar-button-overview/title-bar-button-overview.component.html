@@ -4,24 +4,28 @@
     </os-title-bar-content>
 
     <os-title-bar-controls>
-        <os-title-bar-button
+        <button
+            os-title-bar-button
             class="my-custom-button"
             [iconUrl]="'/assets/showcase/examples/window/title-bar-button-custom-icon.png'">
-        </os-title-bar-button>
+        </button>
 
-        <os-title-bar-button
-            [isDisabled]="true"
-            [ariaLabel]="'Hide'">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            disabled
+            aria-label="Hide">
+        </button>
 
-        <os-title-bar-button
-            [isDisabled]="true"
-            [ariaLabel]="'Fullscreen'">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            disabled
+            aria-label="Fullscreen">
+        </button>
 
-        <os-title-bar-button
-            [isDisabled]="true"
-            [ariaLabel]="'Close'">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            disabled
+            aria-label="Close">
+        </button>
     </os-title-bar-controls>
 </os-title-bar>

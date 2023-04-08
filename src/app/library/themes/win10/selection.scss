@@ -1,0 +1,9 @@
+@import "../core/selection.scss";
+
+.os-selection-container {
+    position: absolute;
+    border: solid 1px rgb(var(--os-primary-color));
+    background-color: rgba(var(--os-primary-color), .25);
+    user-select: none;
+    z-index: 999;
+}

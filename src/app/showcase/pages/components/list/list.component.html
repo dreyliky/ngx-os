@@ -4,21 +4,44 @@
             Components
         </os-header>
 
-        <os-text-box
-            [placeholder]="'Search'"
-            [isAutofocused]="true"
-            (osKeyUp)="onSearch($event)">
-        </os-text-box>
+        <input
+            osInput
+            placeholder="Search"
+            osAutofocus
+            (keyup)="onSearch($event)" />
     </div>
 
     <os-grid
-        [cellSize]="90"
+        [cellSize]="100"
         [direction]="gridDirection">
         <os-grid-item
             *ngFor="let component of (filteredComponents$ | async)"
+            [osHint]="component.name"
+            [osContextMenu]="gridItemContextMenuTemplate"
             [label]="component.name"
             [iconUrl]="component.imageUrl"
-            (osDblClick)="onComponentDblClick(component.type)">
+            (dblclick)="openOverviewSection(component.type, overviewSectionEnum.Documentation)">
+            <ng-template #gridItemContextMenuTemplate>
+                <os-context-menu-item
+                    (click)="openOverviewSection(component.type, overviewSectionEnum.Documentation)">
+                    Documentation
+                </os-context-menu-item>
+
+                <os-context-menu-item
+                    (click)="openOverviewSection(component.type, overviewSectionEnum.Examples)">
+                    Examples
+                </os-context-menu-item>
+
+                <os-context-menu-item
+                    (click)="openOverviewSection(component.type, overviewSectionEnum.Theming)">
+                    Theming
+                </os-context-menu-item>
+
+                <os-context-menu-item
+                    (click)="openOverviewSection(component.type, overviewSectionEnum.Api)">
+                    API
+                </os-context-menu-item>
+            </ng-template>
         </os-grid-item>
     </os-grid>
 </div>

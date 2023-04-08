@@ -2,11 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     HostBinding,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-header',
@@ -14,10 +13,11 @@ import { ɵOsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-header'
     },
+    exportAs: 'osHeader',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent extends ɵOsBaseComponent {
+export class HeaderComponent extends ɵOsBaseViewComponent {
     /** Header size from 1 to 6 (like `<h1>` - `<h6>`) */
     @Input()
     public set size(newSize: number) {
@@ -41,12 +41,6 @@ export class HeaderComponent extends ɵOsBaseComponent {
     private readonly maxSize: number = 6;
 
     private _size: number = this.minSize;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 
     private validateSize(value: number): void {
         if (typeof(value) !== 'number') {

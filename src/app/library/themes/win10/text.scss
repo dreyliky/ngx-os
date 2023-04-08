@@ -31,3 +31,10 @@
         font-size: 1.3em;
     }
 }
+
+.os-error {
+    display: block;
+    margin-top: 3px;
+    font-size: 15px;
+    color: rgb(var(--os-danger-color));
+}

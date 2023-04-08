@@ -5,7 +5,6 @@ import {
     ContentChildren,
     ElementRef,
     HostBinding,
-    Injector,
     Input,
     OnChanges,
     QueryList,
@@ -13,7 +12,7 @@ import {
 } from '@angular/core';
 import { timer } from 'rxjs';
 import { debounce, takeUntil } from 'rxjs/operators';
-import { ɵElementResizingObserver, ɵErrorHelper, ɵOsBaseComponent } from '../../../../core';
+import { ɵElementResizingObserver, ɵErrorHelper, ɵOsBaseViewComponent } from '../../../../core';
 import {
     ɵBaseGridCellCountDeterminator,
     ɵCell,
@@ -28,7 +27,6 @@ import { GridItemComponent } from '../item';
  *
  * - Component `os-grid-item`: Slot for `GridItemComponent`'s
  *
- * @example
  * ```html
  * <os-grid>
  *     <os-grid-item *ngFor="let item of items"></os-grid-item>
@@ -41,10 +39,11 @@ import { GridItemComponent } from '../item';
     host: {
         'class': 'os-grid'
     },
+    exportAs: 'osGrid',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GridComponent extends ɵOsBaseComponent implements OnChanges, AfterViewInit {
+export class GridComponent extends ɵOsBaseViewComponent implements OnChanges, AfterViewInit {
     /** Direction of grid items */
     @Input()
     public direction: GridDirectionEnum = GridDirectionEnum.Horizontal;
@@ -68,7 +67,7 @@ export class GridComponent extends ɵOsBaseComponent implements OnChanges, After
 
     /** How long in milliseconds, the grid should wait after changes before recalculate and repaint all grid items? */
     @Input()
-    public repaintDelayInMs: number = 200;
+    public repaintDelayInMs: number = 10;
 
     /** @internal */
     @ContentChildren(GridItemComponent)
@@ -105,13 +104,12 @@ export class GridComponent extends ɵOsBaseComponent implements OnChanges, After
     private gridItemComponents: QueryList<GridItemComponent>;
 
     constructor(
-        injector: Injector
+        private readonly hostRef: ElementRef<HTMLElement>
     ) {
-        super(injector);
+        super();
     }
 
     public ngAfterViewInit(): void {
-        super.ngAfterViewInit();
         this.initHostSizeChangeObserver();
     }
 

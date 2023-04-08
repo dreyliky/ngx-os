@@ -45,7 +45,7 @@ class MyAppComponent implements OnInit, OnDestroy {
         return this.windowRef.draggableDirective.config.strategy as DragStrategyByAxisProperties;
     }
 
-    private viewDestroy$ = new Subject();
+    private viewDestroy$ = new Subject<boolean>();
 
     constructor(
         @Inject(DYNAMIC_WINDOW_REF) private readonly windowRef: DynamicWindowRef
@@ -65,7 +65,7 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.viewDestroy$.next();
+        this.viewDestroy$.next(true);
         this.viewDestroy$.complete();
     }
 

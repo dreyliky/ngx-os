@@ -1,14 +1,19 @@
-<os-tree-view [data]="data">
+<os-tree-view
+    #treeView
+    [data]="data"
+    [childrenHandler]="childrenHandler">
     <ng-template
-        #nodeIcon
+        osTreeViewNode
+        [ngTemplateType]="nodeType"
         let-node>
-        <ng-container *ngIf="node.children">
-            <os-button class="my-custom-expandable-icon">
-                <img src="/assets/showcase/icons/icon.png" />
+        <os-tree-node>
+            <img
+                osTreeNodeTrigger    
+                [style.opacity]="treeView.nodesExpansion.check(node) ? '1' : '0.6'"
+                class="my-custom-expandable-icon"
+                src="/assets/showcase/icons/icon.png" />
 
-                <ng-container *ngIf="node.isExpanded">collapse</ng-container>
-                <ng-container *ngIf="!node.isExpanded">expand</ng-container>
-            </os-button>
-        </ng-container>
+            {{ node.label }}
+        </os-tree-node>
     </ng-template>
 </os-tree-view>

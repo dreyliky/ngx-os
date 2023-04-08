@@ -32,10 +32,11 @@ export class MyAppComponent {}
 @Component({
     selector: 'my-app-title-bar-content',
     template: `
-        <os-title-bar-button
+        <button
+            os-title-bar-button
             class="close"
-            (osClick)="onCloseButtonClick()">
-        </os-title-bar-button>
+            (click)="onCloseButtonClick()">
+        </button>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

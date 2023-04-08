@@ -12,14 +12,12 @@
 
 <os-form-field>
     <os-checkbox
-        [isDisabled]="true"
-        [ngModel]="false">
+        [formControl]="disabledUncheckedControl">
         Disabled unchecked
     </os-checkbox>
 
     <os-checkbox
-        [isDisabled]="true"
-        [ngModel]="true">
+        [formControl]="disabledCheckedControl">
         Disabled checked
     </os-checkbox>
 </os-form-field>

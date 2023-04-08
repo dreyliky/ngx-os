@@ -18,7 +18,8 @@ import { DraggerConfig, DragInfo } from '../interfaces';
 
 /** Makes HTML element draggable by mouse */
 @Directive({
-    selector: '[osDraggable]'
+    selector: '[osDraggable]',
+    exportAs: 'osDraggable'
 })
 export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     /** Configuration of dragging */
@@ -74,7 +75,7 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     private _movableElement: HTMLElement;
     private _strategy: ɵBaseDragStrategyImpl;
     private _config = new ɵDraggerConfigModel();
-    private _whenViewInit$ = new ReplaySubject();
+    private _whenViewInit$ = new ReplaySubject<true>();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
@@ -86,7 +87,7 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     public ngAfterViewInit(): void {
-        this._whenViewInit$.next();
+        this._whenViewInit$.next(true);
     }
 
     public ngOnDestroy(): void {

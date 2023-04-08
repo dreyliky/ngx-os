@@ -10,6 +10,16 @@
           "changeDetection": "OnPush",
           "style": "scss",
           "prefix": "showcase"
+        },
+        "@schematics/angular:directive": {
+          "prefix": "corn",
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
         }
       },
       "root": "",
@@ -52,7 +62,7 @@
               }
             ],
             "scripts": [
-                "node_modules/prismjs/prism.js"
+              "node_modules/prismjs/prism.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -112,8 +122,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
@@ -124,19 +133,6 @@
               "src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
@@ -167,7 +163,7 @@
       "prefix": "os",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "src/app/library/tsconfig.lib.json",
             "project": "src/app/library/ng-package.json"
@@ -181,30 +177,26 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/app/library/src/test.ts",
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "src/app/library/tsconfig.spec.json",
             "karmaConfig": "src/app/library/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/app/library/tsconfig.lib.json",
-              "src/app/library/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-os-showcase",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
     }
+  },
+  "cli": {
+    "analytics": "a5b959d3-8a09-468e-99b2-e7709f529db4"
   }
 }

@@ -1,0 +1,8 @@
+@import "../core/selection.scss";
+
+.os-selection-container {
+    position: absolute;
+    border: dotted 1px #90600c;
+    user-select: none;
+    z-index: 999;
+}

@@ -1,0 +1,23 @@
+<os-context-menu-item
+    [isDisabled]="isSelectionEmpty"
+    (click)="onCutButtonClick()">
+    Cut
+</os-context-menu-item>
+
+<os-context-menu-item
+    [isDisabled]="isSelectionEmpty"
+    (click)="onCopyButtonClick()">
+    Copy
+</os-context-menu-item>
+
+<os-context-menu-item
+    [isDisabled]="isPasteButtonDisabled"
+    (click)="onPasteButtonClick()">
+    Past
+</os-context-menu-item>
+
+<os-context-menu-item
+    [isDisabled]="isSelectionEmpty"
+    (click)="onDeleteButtonClick()">
+    Delete
+</os-context-menu-item>

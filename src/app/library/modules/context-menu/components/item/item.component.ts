@@ -1,0 +1,50 @@
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    HostListener,
+    Input,
+    Output,
+    ViewEncapsulation
+} from '@angular/core';
+import { ɵOsBaseOptionComponent } from '../../../../core';
+import { ContextMenuDirective } from '../../directives';
+
+@Component({
+    selector: 'os-context-menu-item',
+    template: '<ng-content></ng-content>',
+    host: {
+        'class': 'os-context-menu-item'
+    },
+    exportAs: 'osContextMenuItem',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ContextMenuItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
+    /** Do Context Menu should close on context-menu-item click automatically? Default: `true` */
+    @Input()
+    public isContextMenuCloseOnClick: boolean = true;
+
+    /** Fires when the list item selected */
+    @Output()
+    public readonly osSelected: EventEmitter<T> = new EventEmitter();
+
+    constructor(
+        private readonly contextMenu: ContextMenuDirective
+    ) {
+        super();
+    }
+
+    @HostListener('click')
+    protected _onClick(): void {
+        if (this.isDisabled) {
+            return;
+        }
+
+        if (this.isContextMenuCloseOnClick) {
+            this.contextMenu.close();
+        }
+
+        this.osSelected.emit(this.data);
+    }
+}

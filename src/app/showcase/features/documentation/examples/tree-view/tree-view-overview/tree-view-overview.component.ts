@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TreeNode } from 'ngx-os';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { TreeViewComponent } from 'ngx-os';
+
+interface Item {
+    name: string;
+    nestedItems?: Item[];
+    isDisabled?: boolean;
+}
 
 @Component({
     selector: 'showcase-tree-view-overview',
@@ -7,26 +13,35 @@ import { TreeNode } from 'ngx-os';
     styleUrls: ['./tree-view-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeViewOverviewComponent {
-    public items: TreeNode<any>[] = [
-        { label: 'Item 1' },
+export class TreeViewOverviewComponent implements AfterViewInit {
+    public readonly itemType!: Item;
+    public readonly items: Item[] = [
+        { name: 'Item 1' },
         {
-            label: 'Item 2',
-            children: [
+            name: 'Item 2',
+            nestedItems: [
                 {
-                    label: 'Child item 1',
-                    children: [
-                        { label: 'Another child element 1' },
-                        { label: 'Another child element 2' }
-                    ],
-                    isExpanded: false
+                    name: 'Child item 1',
+                    nestedItems: [
+                        { name: 'Another child element 1' },
+                        { name: 'Another child element 2' }
+                    ]
                 },
-                { label: 'Child item 2' }
+                { name: 'Child item 2' }
             ]
         },
         {
-            label: 'Item 3 (disabled)',
+            name: 'Item 3 (disabled)',
             isDisabled: true
         }
     ];
+
+    @ViewChild(TreeViewComponent)
+    private readonly treeView: TreeViewComponent<Item>;
+
+    public readonly childrenHandler = (node: Item): Item[] => node.nestedItems;
+
+    public ngAfterViewInit(): void {
+        this.treeView.nodesExpansion.expandAll();
+    }
 }

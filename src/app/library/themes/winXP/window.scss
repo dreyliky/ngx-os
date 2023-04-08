@@ -146,19 +146,13 @@
         display: none !important;
     }
 
-    &.os-dragging, &.os-resizing {
-        .os-window-body {
-            pointer-events: none;
-        }
-    }
-
     &.os-fullscreen, &.os-entering-fullscreen {
         .os-title-bar-button[aria-label="Fullscreen"] {
             .os-icon {
                 background-position: -42px 0px;
             }
 
-            &:not(.os-disabled) .os-icon:active {
+            &:not(:disabled) .os-icon:active {
                 background-position: -42px -21px;
             }
         }
@@ -288,11 +282,11 @@ os-title-bar {
         box-shadow: none !important;
     }
 
-    &:hover:not(.os-disabled) {
+    &:hover:not(:disabled) {
         background-position: 0px -21px;
     }
 
-    &:not(.os-disabled):active {
+    &:not(:disabled):active {
         background-position: 0px -42px;
 
         &[aria-label="Hide"] .os-icon {
@@ -313,7 +307,7 @@ os-title-bar {
             background-position: 0px 0px;
         }
 
-        &.os-disabled {
+        &:disabled {
             opacity: .3;
         }
     }
@@ -323,7 +317,7 @@ os-title-bar {
             background-position: -21px 0px;
         }
 
-        &.os-disabled {
+        &:disabled {
             opacity: .3;
         }
     }
@@ -335,7 +329,7 @@ os-title-bar {
             background-position: -63px 0px;
         }
 
-        &.os-disabled {
+        &:disabled {
             opacity: .3;
         }
     }

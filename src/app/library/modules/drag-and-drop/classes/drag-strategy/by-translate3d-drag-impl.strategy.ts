@@ -6,14 +6,14 @@ import { DragStrategyByTranslate3d } from './by-translate3d-drag.strategy';
 
 /** @internal */
 export class ɵDragStrategyByTranslate3dImpl extends ɵBaseDragStrategyImpl {
-    public readonly type = ɵDragStrategyEnum.ByTranslate3d;
+    public override readonly type = ɵDragStrategyEnum.ByTranslate3d;
 
-    protected config: DragStrategyByTranslate3d;
+    protected override config: DragStrategyByTranslate3d;
 
     private initialX: number;
     private initialY: number;
 
-    public registerMouseDown(dragInfo: DragInfo): void {
+    public override registerMouseDown(dragInfo: DragInfo): void {
         this.initInitialCoordinates();
         super.registerMouseDown(dragInfo);
     }

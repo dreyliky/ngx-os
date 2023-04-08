@@ -2,11 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     HostBinding,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
+import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
 
 /**
  * ## Content Projection Slots
@@ -15,7 +14,6 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
  * or use your custom element instead of default title-bar
  * - `Others`: Will be placed inside the body of the window
  *
- * @example
  * ```html
  * <os-window>
  *     <os-title-bar>MY CUSTOM TITLE BAR CONTENT HERE</os-title-bar>
@@ -29,14 +27,15 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-window'
     },
+    exportAs: 'osWindow',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WindowComponent extends ɵOsBaseComponent {
+export class WindowComponent extends ɵOsBaseViewComponent {
     /** Marks window as active (means user works with it right now) */
     @Input()
     @HostBinding(`class.${ɵCommonCssClassEnum.Active}`)
-    public isActive: boolean = false;
+    public isActive: boolean = true;
 
     /** Stylelist for scroll view component of the window */
     @Input()
@@ -45,10 +44,4 @@ export class WindowComponent extends ɵOsBaseComponent {
     /** Classlist for scroll view component of the window */
     @Input()
     public scrollViewStyleClass: string | string[] | object;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 }

@@ -19,7 +19,7 @@
             text-shadow: 0px 1px 3px rgba(0, 0, 0, 1);
         }
 
-        &.os-selected {
+        &.os-selected, &:focus {
             .os-icon::before {
                 width: 100%;
                 max-width: 100%;

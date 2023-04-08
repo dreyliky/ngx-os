@@ -1,0 +1,25 @@
+<div
+    [osContextMenu]="myContextMenuTemplate"
+    class="container">
+    <os-text>
+        Right-click here to call ContextMenu
+    </os-text>
+</div>
+
+<ng-template #myContextMenuTemplate>
+    <div class="context-menu-wrapper">
+        <os-context-menu-item [isContextMenuCloseOnClick]="false">
+            <b>Refresh</b>
+        </os-context-menu-item>
+        <os-context-menu-item>Sort shortcuts</os-context-menu-item>
+        <os-divider></os-divider>
+        <os-context-menu-item [isDisabled]="true">Past</os-context-menu-item>
+        <os-context-menu-item [isDisabled]="true">Past shortcut</os-context-menu-item>
+        <os-divider></os-divider>
+        <os-context-menu-item>Create</os-context-menu-item>
+        <os-divider></os-divider>
+        <os-context-menu-item (click)="onPropertiesContextMenuItemClick()">
+            <i>Properties</i>
+        </os-context-menu-item>
+    </div>
+</ng-template>

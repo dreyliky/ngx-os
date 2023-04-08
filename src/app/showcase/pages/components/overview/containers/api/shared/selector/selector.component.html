@@ -1,7 +1,7 @@
-<os-text-box
+<input
+    osInput
+    readonly
     [size]="name.length"
-    [isReadonly]="true"
     [ngModel]="name"
     [size]="name.length"
-    (osClick)="onSelectorTextBoxClick($event)">
-</os-text-box>
+    (click)="onSelectorTextBoxClick($event)" />

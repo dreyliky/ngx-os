@@ -95,7 +95,8 @@
           "error",
           4,
           {
-            "SwitchCase": 1
+            "SwitchCase": 1,
+            "MemberExpression": 1
           }
         ],
         "max-lines-per-function": [
@@ -247,18 +248,13 @@
               "public-static-field",
               "protected-static-field",
               "private-static-field",
-              "public-decorated-field",
-              "protected-decorated-field",
-              "private-decorated-field",
               "public-instance-field",
               "protected-instance-field",
               "private-instance-field",
               "public-abstract-field",
               "protected-abstract-field",
-              "private-abstract-field",
               "public-constructor",
               "protected-constructor",
-              "private-constructor",
               "public-static-method",
               "protected-static-method",
               "private-static-method",
@@ -266,8 +262,7 @@
               "protected-instance-method",
               "private-instance-method",
               "public-abstract-method",
-              "protected-abstract-method",
-              "private-abstract-method"
+              "protected-abstract-method"
             ]
           }
         ],
@@ -275,7 +270,8 @@
         "@typescript-eslint/no-namespace": "off",
         "@typescript-eslint/no-inferrable-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@angular-eslint/no-host-metadata-property": "off"
+        "@angular-eslint/no-host-metadata-property": "off",
+        "@angular-eslint/no-input-rename": "off"
       }
     },
     {

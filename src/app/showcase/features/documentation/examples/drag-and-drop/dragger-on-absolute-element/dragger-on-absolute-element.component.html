@@ -1,7 +1,8 @@
-<os-button
-    (osClick)="onToggleContainerVisibilityButtonClick()">
+<button
+    osButton
+    (click)="onToggleContainerVisibilityButtonClick()">
     {{ labelOfToggleVisibilityButton }}
-</os-button>
+</button>
 
 <div
     osAppendToBody
@@ -14,9 +15,10 @@
         <b>You can't drag by button below!</b>
     </os-text>
 
-    <os-button
+    <button
         #containerHideButton
-        (osClick)="onToggleContainerVisibilityButtonClick()">
+        osButton
+        (click)="onToggleContainerVisibilityButtonClick()">
         {{ labelOfToggleVisibilityButton }}
-    </os-button>
+    </button>
 </div>

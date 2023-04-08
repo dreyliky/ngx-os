@@ -2,14 +2,12 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    HostBinding,
-    Injector,
     Input,
     Output,
     ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { ɵCommonCssClassEnum, ɵOsBaseFormControlComponent } from '../../../../core';
+import { ɵOsBaseFormControlComponent } from '../../../../core';
 import { SliderValueChangeEvent } from '../../interfaces';
 
 @Component({
@@ -18,6 +16,7 @@ import { SliderValueChangeEvent } from '../../interfaces';
     host: {
         'class': 'os-slider'
     },
+    exportAs: 'osSlider',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -36,11 +35,6 @@ export class SliderComponent
     @Input()
     public maxValueLabel: string;
 
-    /** Is slider disabled? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean;
-
     /** Minimum possible value of the slider */
     @Input()
     public min: number = 0;
@@ -54,13 +48,7 @@ export class SliderComponent
     public osChange: EventEmitter<SliderValueChangeEvent> = new EventEmitter();
 
     /** Value of the slider */
-    public value: number = 0;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
+    public override value: number = 0;
 
     /** @internal */
     public _onSliderInputEvent(originalEvent: Event): void {

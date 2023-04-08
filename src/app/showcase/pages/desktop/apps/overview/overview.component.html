@@ -4,17 +4,18 @@
     <os-form-field [isStacked]="true">
         <os-label>Enter your first and last name</os-label>
 
-        <os-text-box
-            [placeholder]="'For example John Smith'">
-        </os-text-box>
+        <input
+            osInput
+            placeholder="For example John Smith" />
     </os-form-field>
 
     <os-form-field [isStacked]="true">
         <os-label>Description</os-label>
 
-        <os-textarea-box
-            [placeholder]="'Tell about yourself'">
-        </os-textarea-box>
+        <textarea
+            osInput
+            placeholder="Tell about yourself"
+        ></textarea>
     </os-form-field>
 
     <os-form-field [isStacked]="true">
@@ -29,7 +30,8 @@
         </os-dropdown>
     </os-form-field>
 
-    <os-group-box
+    <fieldset
+        os-group-box
         [label]="'Choose your gender'">
         <os-radio-button
             [name]="'gender'">
@@ -40,7 +42,7 @@
             [name]="'gender'">
             Female
         </os-radio-button>
-    </os-group-box>
+    </fieldset>
 
     <os-form-field>
         <os-slider
@@ -59,7 +61,7 @@
         </os-checkbox>
     </os-form-field>
 
-    <os-tab-group>
+    <section os-tab-group>
         <os-tab [label]="'Tab 1'">
             Tab 1 content
         </os-tab>
@@ -69,9 +71,9 @@
                 Tab 2 content
             </os-text>
         </os-tab>
-    </os-tab-group>
+    </section>
 
-    <os-button>
+    <button osButton>
         Submit
-    </os-button>
+    </button>
 </div>

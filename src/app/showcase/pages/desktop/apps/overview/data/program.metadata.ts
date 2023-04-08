@@ -10,7 +10,9 @@ export const OVERVIEW_APP: AppMetadata = {
     windowParams: {
         title: 'Angular OS - components overview',
         iconUrl: 'assets/showcase/icons/my-pc.png',
-        minWidth: 400,
-        minHeight: 500
+        minWidth: 300,
+        minHeight: 175,
+        width: 400,
+        height: 500
     }
 };

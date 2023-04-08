@@ -16,17 +16,18 @@ export const TREE_VIEW_META_INFO: ComponentMetaInfo = {
         'TreeViewModule'
     ],
     libComponents: [
-        'TreeViewComponent'
+        'TreeViewComponent',
+        'TreeNodeComponent'
+    ],
+    libDirectives: [
+        'TreeViewHeaderDirective',
+        'TreeViewFooterDirective',
+        'TreeNodeTriggerDirective',
+        'TreeViewNodeDirective'
     ],
     libServices: [
         'TreeNodesSelectionService',
         'TreeNodesExpansionService'
-    ],
-    libInterfaces: [
-        'TreeNode',
-        'TreeNodeClickEvent',
-        'TreeNodeSelectionEvent',
-        'TreeNodeExpansionEvent'
     ],
     demoComponents: [
         {

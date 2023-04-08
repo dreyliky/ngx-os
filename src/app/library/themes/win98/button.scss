@@ -15,12 +15,13 @@
     cursor: default;
     color: rgb(0, 0, 0);
 
+    &:disabled,
     &.os-disabled {
         color: grey;
         text-shadow: 1px 1px 0 #fff;
     }
 
-    &:not(.os-disabled) {
+    &:not(:disabled, .os-disabled) {
         &:active,
         &.os-active {
             box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
@@ -35,5 +36,39 @@
 
     &::-moz-focus-inner {
         border: 0;
+    }
+}
+
+.os-button-link {
+    line-height: 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0px;
+    box-sizing: border-box;
+    border: none;
+    background: transparent;
+    border-radius: 0px;
+    font-weight: 500;
+    font-size: 11px;
+    outline: 0;
+    user-select: none;
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(var(--os-primary-color));
+
+    &:disabled,
+    .os-disabled {
+        color: grey;
+        text-shadow: 1px 1px 0 #fff;
+        cursor: default;
+    }
+
+    &:not(:disabled, .os-disabled) {
+        &:focus,
+        &.os-focused {
+            outline: 1px dotted #000000;
+            text-decoration: none;
+        }
     }
 }

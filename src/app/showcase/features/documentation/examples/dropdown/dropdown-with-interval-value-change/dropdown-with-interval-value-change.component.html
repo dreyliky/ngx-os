@@ -1,7 +1,9 @@
-<os-button (osClick)="onToggleIntervalButtonClick()">
+<button
+    osButton
+    (click)="onToggleIntervalButtonClick()">
     Toggle interval of dropdown value assignment&nbsp;
     <b>({{ _currentIntervalStateLabel }})</b>
-</os-button>
+</button>
 
 <os-form-field>
     <os-dropdown

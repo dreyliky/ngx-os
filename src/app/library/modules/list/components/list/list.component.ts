@@ -1,11 +1,10 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    Injector,
     Input,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list',
@@ -13,10 +12,11 @@ import { ɵOsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-list'
     },
+    exportAs: 'osList',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent extends ɵOsBaseComponent {
+export class ListComponent extends ɵOsBaseViewComponent {
     /** Stylelist for scroll view component of the list */
     @Input()
     public scrollViewStyle: object;
@@ -24,10 +24,4 @@ export class ListComponent extends ɵOsBaseComponent {
     /** Classlist for scroll view component of the list */
     @Input()
     public scrollViewStyleClass: string;
-
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
 }

@@ -1,0 +1,23 @@
+<div class="header">
+    <img
+        width="64"
+        [src]="metadata.shortcutParams.iconUrl" />
+
+    <os-header>{{ metadata.shortcutParams.label }}</os-header>
+</div>
+
+<os-divider></os-divider>
+
+<os-text class="body">
+    <b>ngx-os</b><br />
+    Version: {{ version }}<br />
+    This program allows to write text.
+</os-text>
+
+<div class="footer">
+    <button
+        osButton
+        (click)="onOkButtonClick()">
+        OK
+    </button>
+</div>

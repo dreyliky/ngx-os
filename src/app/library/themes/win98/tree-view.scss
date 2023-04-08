@@ -1,11 +1,13 @@
 .os-tree-view {
     width: 100%;
+    height: inherit;
     display: block;
     background: #fff;
     box-shadow: var(--border-field);
     padding: 6px 0px;
     box-sizing: border-box;
     cursor: default;
+    overflow: auto;
 
     .os-tree-node {
         width: auto;
@@ -13,7 +15,7 @@
         display: flex;
         align-items: center;
 
-        .os-icon:not(.os-custom) {
+        .os-tree-node-trigger.os-default-trigger {
             width: 16px;
             min-width: 16px;
             height: 16px;
@@ -33,7 +35,7 @@
             outline: 1px dotted rgb(0, 0, 0);
         }
 
-        &.os-expandable .os-icon:not(.os-custom) {
+        &.os-expandable .os-tree-node-trigger.os-default-trigger {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -50,17 +52,17 @@
             }
         }
 
-        &.os-expanded .os-icon:not(.os-custom):before {
+        &.os-expanded .os-tree-node-trigger.os-default-trigger:before {
             background-position: 0px 0px;
         }
 
         &:not(.os-disabled) {
-            .os-icon:not(.os-custom):before {
+            .os-tree-node-trigger.os-default-trigger:before {
                 opacity: 1;
                 background-position: 0px -9px;
             }
 
-            &.os-expanded .os-icon:not(.os-custom):before {
+            &.os-expanded .os-tree-node-trigger.os-default-trigger:before {
                 opacity: 1;
                 background-position: 0px 0px;
             }

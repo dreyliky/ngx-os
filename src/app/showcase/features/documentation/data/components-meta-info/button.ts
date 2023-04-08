@@ -10,8 +10,9 @@ export const BUTTON_META_INFO: ComponentMetaInfo = {
     libModules: [
         'ButtonModule'
     ],
-    libComponents: [
-        'ButtonComponent'
+    libDirectives: [
+        'ButtonDirective',
+        'ButtonLinkDirective'
     ],
     demoComponents: [
         {

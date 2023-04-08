@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Injector, ViewEncapsulation } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { ɵOsBaseViewComponent } from '../../../../core';
 
 @Component({
     selector: 'os-text',
@@ -7,13 +7,8 @@ import { ɵOsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-text'
     },
+    exportAs: 'osText',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextComponent extends ɵOsBaseComponent {
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
-}
+export class TextComponent extends ɵOsBaseViewComponent {}

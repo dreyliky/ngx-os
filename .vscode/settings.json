@@ -1,33 +1,23 @@
 {
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Community Material Theme High Contrast",
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "explorer.compactFolders": false,
     "explorer.confirmDragAndDrop": false,
-    "window.zoomLevel": 2,
-    "workbench.sideBar.location": "left",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,
         "source.organizeImports": true
     },
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
-    "eslint.options": {
-        "extensions": [".ts", ".html"]
-    },
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.detectIndentation": false,
     "javascript.preferences.quoteStyle": "single",
     "typescript.preferences.quoteStyle": "single",
-    "typescript.inlayHints.parameterNames.enabled": "all",
-    "editor.inlayHints.enabled": false,
     "angular.view-engine": false,
     "[markdown]": {
         "editor.wordWrap": "off"
     },
-    "editor.guides.bracketPairs": true,
-    "cSpell.enabled": true
+    "editor.guides.bracketPairs": true
 }

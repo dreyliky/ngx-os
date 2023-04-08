@@ -21,6 +21,8 @@ import { Observable } from 'rxjs';
     ]
 })
 export class ListComponent implements OnInit {
+    public readonly overviewSectionEnum = OverviewSection;
+
     public gridDirection = GridDirectionEnum.Horizontal;
     public filteredComponents$: Observable<ComponentMetaInfo[]>;
 
@@ -49,9 +51,9 @@ export class ListComponent implements OnInit {
         this.componentsSearchService.search(inputElement.value);
     }
 
-    public onComponentDblClick(type: OsComponentEnum): void {
+    public openOverviewSection(type: OsComponentEnum, section: OverviewSection): void {
         this.router.navigateByUrl(
-            `/${AppRoute.Components}/${type}/${OverviewSection.Documentation}`
+            `/${AppRoute.Components}/${type}/${section}`
         );
     }
 }

@@ -22,6 +22,7 @@ import { ResizeInfo, ResizerConfig } from '../interfaces';
 
 @Directive({
     selector: '[osResizable]',
+    exportAs: 'osResizable',
     providers: [
         ɵResizerFactory
     ]
@@ -70,7 +71,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
     private _resizersWrapperElement: HTMLElement;
     private _resizer: ɵBaseResizer;
     private _config = new ɵResizerConfigModel();
-    private _whenViewInit$ = new ReplaySubject();
+    private _whenViewInit$ = new ReplaySubject<true>();
 
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
@@ -85,7 +86,7 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
 
     public ngAfterViewInit(): void {
         this.initResizersWrapperElement();
-        this._whenViewInit$.next();
+        this._whenViewInit$.next(true);
     }
 
     public ngOnDestroy(): void {
@@ -183,13 +184,12 @@ export class ResizableDirective implements OnChanges, AfterViewInit, OnDestroy {
         const resizeInfo = this.getResizeInfo(event);
         this._resizer = this.resizerFactory.create(resizerId, this);
 
-        event.stopPropagation();
         this.osResizeStart.emit(resizeInfo);
         this._resizer.init(this._resizableElement, event);
         this._resizableElement.classList.add(CssClass.Resizing);
         this.document.addEventListener('mousemove', this.onPointerMove);
         this.document.addEventListener('mouseup', this.onPointerUp);
-    }
+    };
 
     private readonly onPointerMove = (event: PointerEvent | TouchEvent): void => {
         const resizeInfo = this.getResizeInfo(event);

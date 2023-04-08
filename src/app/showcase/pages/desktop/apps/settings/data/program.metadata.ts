@@ -10,7 +10,9 @@ export const SETTINGS_APP: AppMetadata = {
     windowParams: {
         title: 'Settings',
         iconUrl: 'assets/showcase/icons/settings.png',
-        minWidth: 700,
-        minHeight: 400
+        minWidth: 450,
+        minHeight: 200,
+        width: 700,
+        height: 400
     }
 };

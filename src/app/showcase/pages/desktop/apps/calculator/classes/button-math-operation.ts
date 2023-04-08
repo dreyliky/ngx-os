@@ -4,7 +4,7 @@ import { ButtonGroupEnum, OperationEnum } from '../enums';
 import { BaseButton } from './base-button';
 
 export class ButtonMathOperation extends BaseButton {
-    public readonly group = ButtonGroupEnum.Operation;
+    public override readonly group = ButtonGroupEnum.Operation;
 
     constructor(
         injector: Injector,

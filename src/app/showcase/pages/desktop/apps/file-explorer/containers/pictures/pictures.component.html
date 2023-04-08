@@ -8,7 +8,7 @@
             *ngFor="let image of images; let index = index;"
             [label]="getImageLabel(index)"
             [iconUrl]="image.getThumbImageUrl()"
-            (osDblClick)="onImageDblClick(image)">
+            (dblclick)="onImageDblClick(image)">
         </os-grid-item>
     </os-grid>
 </os-scroll-view>

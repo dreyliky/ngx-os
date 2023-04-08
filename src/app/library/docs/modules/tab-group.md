@@ -3,7 +3,7 @@
 Allows organizing content across different screens, data sets, and other interactions.
 
 ```html
-<os-tab-group>
+<section os-tab-group>
     <os-tab [label]="'Tab #1'">
         Content of the tab #1
     </os-tab>
@@ -11,7 +11,7 @@ Allows organizing content across different screens, data sets, and other interac
     <os-tab [label]="'Tab #2'">
         Content of the tab #2
     </os-tab>
-</os-tab-group>
+</section>
 ```
 
 ## Tab label customization
@@ -19,13 +19,13 @@ Allows organizing content across different screens, data sets, and other interac
 You can customize tab label passing the template with it's content.
 
 ```html
-<os-tab-group>
+<section os-tab-group>
     <os-tab>
-        <ng-template #tabLabel>
+        <ng-template osTabLabel>
             <b>My tab custom label content</b>
         </ng-template>
     </os-tab>
-</os-tab-group>
+</section>
 ```
 
 ## Content lazy loading (when tab activation)
@@ -33,13 +33,13 @@ You can customize tab label passing the template with it's content.
 You can create content dynamically by simply wrapping it into the template.
 
 ```html
-<os-tab-group>
+<section os-tab-group>
     <os-tab [label]="'My tab'">
-        <ng-template #tabContent>
+        <ng-template osTabContent>
             Dynamic content of the "My tab"
         </ng-template>
     </os-tab>
-</os-tab-group>
+</section>
 ```
 
 ## Two-Way Binding properties support

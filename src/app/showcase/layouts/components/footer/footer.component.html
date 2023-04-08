@@ -17,7 +17,7 @@
             *ngFor="let website of websites"
             [iconUrl]="website.iconUrl"
             [label]="website.name"
-            (osDblClick)="onWebsiteDblClick(website)">
+            (dblclick)="onWebsiteDblClick(website)">
         </os-grid-item>
     </os-grid>
 </div>

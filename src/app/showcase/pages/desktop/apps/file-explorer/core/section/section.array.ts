@@ -1,23 +1,18 @@
-import { TreeNode } from 'ngx-os';
 import { SectionEnum } from './section.enum';
+import { Section } from './section.interface';
 
-export const SECTIONS: TreeNode[] = [
+export const SECTIONS: Section[] = [
     {
+        id: SectionEnum.Desktop,
         label: 'Desktop',
-        data: {
-            id: SectionEnum.Desktop
-        }
+        isSelectedByDefault: true
     },
     {
-        label: 'Documents',
-        data: {
-            id: SectionEnum.Documents
-        }
+        id: SectionEnum.Documents,
+        label: 'Documents'
     },
     {
-        label: 'Pictures',
-        data: {
-            id: SectionEnum.Pictures
-        }
+        id: SectionEnum.Pictures,
+        label: 'Pictures'
     }
 ];

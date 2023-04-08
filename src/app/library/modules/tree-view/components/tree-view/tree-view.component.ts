@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
+    AfterContentInit,
     ChangeDetectionStrategy,
     Component,
     ContentChild,
@@ -9,73 +11,57 @@ import {
     Output,
     SimpleChanges,
     TemplateRef,
-    ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import { ɵOsBaseComponent } from '../../../../core';
-import { ScrollViewComponent } from '../../../scroll-view';
+import { ɵOsBaseViewComponent } from '../../../../core';
+import { ɵTREE_VIEW_COMPONENT } from '../../constants';
+import { TreeViewNodeDirective } from '../../directives/node.directive';
+import { ɵNodeTemplateContext } from '../../interfaces';
 import {
-    TreeNode,
-    TreeNodeClickEvent,
-    TreeNodeExpansionEvent,
-    TreeNodeSelectionEvent
-} from '../../interfaces';
-import { TreeNodesExpansionService, TreeNodesSelectionService } from '../../services';
-import { ɵTreeNodesState } from '../../states';
+    TreeNodesExpansionService,
+    TreeNodesSelectionService,
+    ɵTreeNodesProcessorService
+} from '../../services';
+import {
+    ɵTreeNodesDepthState,
+    ɵTreeNodesState
+} from '../../states';
 
 /**
  * ## Content Projection Slots
- * - Attribute `os-tree-view-header`: Slot for your custom content above nodes
- * - Attribute `os-tree-view-content`: Slot for your custom content above nodes
- * (might be used instead of default behavior. For example you want to display your own nodes
- * somehow instead of auto-generated based on `data`)
- * - Attribute `os-tree-view-footer`: Slot for your custom content below nodes and custom content
+ * - Directive `osTreeViewHeader`: Slot for your custom content above nodes
+ * - Directive `osTreeViewFooter`: Slot for your custom content below nodes and custom content
  *
- * @example
  * ```html
  * <os-tree-view>
- *     <div os-tree-view-header>YOUR HEADER CONTENT</div>
- *     <div os-tree-view-content>YOUR CONTENT</div>
+ *     <div osTreeViewHeader>YOUR HEADER CONTENT</div>
  *     <!-- TREE NODES WILL BE RENDERED HERE -->
- *     <div os-tree-view-footer>YOUR FOOTER CONTENT</div>
+ *     <div osTreeViewFooter>YOUR FOOTER CONTENT</div>
  * </os-tree-view>
  * ```
  *
  * ## Templates
- * `#nodeContent`: Custom template for each node.
+ * `osTreeViewNode`: Custom template for each node.
  *
  * Context:
- * - `$implicit`: {@link TreeNode} node data;
- * - `depth`: depth data (0 - root node; 1 and more - child node);
+ * - `$implicit`: {@type T} node data;
+ * - `depth`: depth of the node (0 - root node; 1 and more - child node);
+ * - `index`: index of the node;
  *
- * @example
  * ```html
  * <os-tree-view>
  *     <ng-template
- *        #nodeContent
+ *        osTreeViewNode
  *        let-node
- *        let-depth="depth">
- *        <!-- Variable `node` contains the node data, and `depth` - the depth of the node. -->
- *        <!-- Now you are ready to build your custom content for each node. -->
+ *        let-nodeDepth="depth"
+ *        let-nodeIndex="index">
+ *        <!--
+ *          `node` contains the node data;
+ *          `nodeDepth` contains depth of the node;
+ *          `nodeIndex` contains index of the node;
+ *          Now you are ready to build your custom content for each node.
+ *        -->
  *      </ng-template>
- * </os-tree-view>
- * ```
- *
- * `#nodeIcon`: Custom template for the node expansion icon.
- *
- * Context:
- * - `$implicit`: {@link TreeNode} node data;
- * - `depth`: depth data (0 - root node; 1 and more - child node);
- *
- * ```html
- * <os-tree-view>
- *     <ng-template
- *        #nodeIcon
- *        let-node
- *        let-depth="depth">
- *        <!-- Variable `node` contains the node data, and `depth` - the depth of the node. -->
- *        <!-- Place your custom content for the node expansion icon here. -->
- *     </ng-template>
  * </os-tree-view>
  * ```
  **/
@@ -83,20 +69,32 @@ import { ɵTreeNodesState } from '../../states';
     selector: 'os-tree-view',
     templateUrl: './tree-view.component.html',
     host: {
-        'class': 'os-tree-view'
+        'class': 'os-tree-view os-scroll-view'
     },
+    exportAs: 'osTreeView',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
+        {
+            provide: ɵTREE_VIEW_COMPONENT,
+            useExisting: TreeViewComponent
+        },
         ɵTreeNodesState,
+        ɵTreeNodesDepthState,
         TreeNodesExpansionService,
-        TreeNodesSelectionService
+        TreeNodesSelectionService,
+        ɵTreeNodesProcessorService
     ]
 })
-export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnChanges {
+export class TreeViewComponent<T = any> extends ɵOsBaseViewComponent
+    implements OnChanges, AfterContentInit {
     /** An array of tree nodes */
     @Input()
-    public data: TreeNode<T>[];
+    public data: T[];
+
+    /** A handler for getting children of the node */
+    @Input()
+    public childrenHandler: (node: T) => T[] = () => [];
 
     /** Can the user select tree nodes? */
     @Input()
@@ -110,111 +108,55 @@ export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnC
     @Input()
     public isSelectionInToggleMode: boolean = false;
 
-    /** Should all nodes be expanded when the component is first rendered? */
-    @Input()
-    public isAllNodesExpanded: boolean = false;
-
     /** Can the user expand multiple nodes at the same time? */
     @Input()
     public isAllowMultipleExpansion: boolean = true;
 
-    /** Stylelist for scroll view component of the tree-view */
-    @Input()
-    public scrollViewStyle: object;
-
-    /** Classlist for scroll view component of the tree-view */
-    @Input()
-    public scrollViewStyleClass: string | string[] | object;
-
     /** Fires when the node selected */
     @Output()
-    public get osNodeSelected(): EventEmitter<TreeNodeSelectionEvent<T>> {
-        return this.nodesSelection._osSelected;
-    }
+    public osNodeSelected: EventEmitter<T> = this.nodesSelection._osSelected;
 
     /** Fires when the node deselected */
     @Output()
-    public get osNodeDeselected(): EventEmitter<TreeNodeSelectionEvent<T>> {
-        return this.nodesSelection._osDeselected;
-    }
+    public osNodeDeselected: EventEmitter<T> = this.nodesSelection._osDeselected;
 
     /** Fires when the node expanded */
     @Output()
-    public get osNodeExpanded(): EventEmitter<TreeNodeExpansionEvent<T>> {
-        return this.nodesExpansion._osExpanded;
-    }
+    public osNodeExpanded: EventEmitter<T> = this.nodesExpansion._osExpanded;
 
     /** Fires when the node collapsed */
     @Output()
-    public get osNodeCollapsed(): EventEmitter<TreeNodeExpansionEvent<T>> {
-        return this.nodesExpansion._osCollapsed;
-    }
-
-    /** Fires when the node clicked by user */
-    @Output()
-    public osNodeClick: EventEmitter<TreeNodeClickEvent<T>> = new EventEmitter();
-
-    /** ScrollView component for scroll manipulations */
-    @ViewChild(ScrollViewComponent)
-    public readonly scrollView: ScrollViewComponent;
+    public osNodeCollapsed: EventEmitter<T> = this.nodesExpansion._osCollapsed;
 
     /** @internal */
-    @ContentChild('nodeIcon')
-    public readonly _nodeIconTemplate: TemplateRef<any>;
-
-    /** @internal */
-    @ContentChild('nodeContent')
-    public readonly _nodeContentTemplate: TemplateRef<any>;
+    @ContentChild(TreeViewNodeDirective, { read: TemplateRef })
+    public readonly _nodeTemplate: TemplateRef<ɵNodeTemplateContext<T>>;
 
     constructor(
-        injector: Injector,
         /** The service for manipulating of nodes selection states */
         public readonly nodesSelection: TreeNodesSelectionService<T>,
         /** The service for manipulating of nodes expansion states */
         public readonly nodesExpansion: TreeNodesExpansionService<T>,
-        private readonly nodesState: ɵTreeNodesState<T>
+        private readonly nodesProcessor: ɵTreeNodesProcessorService<T>,
+        /** @internal */
+        public readonly _injector: Injector
     ) {
-        super(injector);
+        super();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        this.processDataAfterValueChanged(changes);
-    }
-
-    /** @internal */
-    public onNodeClick(originalEvent: PointerEvent, node: TreeNode<T>): void {
-        this.osNodeClick.emit({ originalEvent, node });
-        node.onClick?.({ originalEvent, node });
-
-        if (node.isDisabled || !this.isAllowSelection) {
-            return;
-        }
-
-        if (!this.isAllowMultipleSelection) {
-            this.nodesSelection.deselectAllExceptSpecific(node);
-        }
-
-        if (this.isSelectionInToggleMode) {
-            this.nodesSelection.toggle(node, originalEvent);
-        } else {
-            this.nodesSelection.select(node, originalEvent);
+        if (changes.data?.currentValue !== changes.data?.previousValue) {
+            this.nodesProcessor.register(this.data, this.childrenHandler);
         }
     }
 
-    /** @internal */
-    public onToggleExpandButtonClick(originalEvent: PointerEvent, node: TreeNode<T>): void {
-        if (!node.isDisabled) {
-            this.nodesExpansion.toggle(node, originalEvent);
-        }
-
-        originalEvent.stopPropagation();
+    public ngAfterContentInit(): void {
+        this.throwErrorIfNodeTemplateAbsent();
     }
 
-    private processDataAfterValueChanged(changes: SimpleChanges): void {
-        if (changes.data?.previousValue !== changes.data?.currentValue) {
-            this.nodesState.set(changes.data.currentValue);
-            this.nodesSelection._initDefaultStateForAll();
-            this.nodesExpansion._initDefaultStateForAll(this.isAllNodesExpanded);
+    private throwErrorIfNodeTemplateAbsent(): void {
+        if (!this._nodeTemplate) {
+            throw new Error('The `osTreeViewNode` ng-template is required!');
         }
     }
 }

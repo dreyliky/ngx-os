@@ -2,15 +2,11 @@ import {
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
-    HostBinding,
-    Injector,
-    Input,
-    OnInit,
+    HostListener,
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { filter, takeUntil } from 'rxjs/operators';
-import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
+import { ɵOsBaseOptionComponent } from '../../../../core';
 
 @Component({
     selector: 'os-list-item',
@@ -18,44 +14,20 @@ import { ɵCommonCssClassEnum, ɵOsBaseComponent } from '../../../../core';
     host: {
         'class': 'os-list-item'
     },
+    exportAs: 'osListItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListItemComponent<T = any> extends ɵOsBaseComponent implements OnInit {
-    /** Data of the list item */
-    @Input()
-    public data: T;
-
-    /** Is list item selected? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
-    public isSelected: boolean = false;
-
-    /** Is list item disabled? */
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    @Input()
-    public isDisabled: boolean = false;
-
+export class ListItemComponent<T = any> extends ɵOsBaseOptionComponent<T> {
     /** Fires when the list item selected */
     @Output()
-    public osSelected = new EventEmitter<T>();
+    public readonly osSelected: EventEmitter<T> = new EventEmitter();
 
-    constructor(
-        injector: Injector
-    ) {
-        super(injector);
-    }
-
-    public ngOnInit(): void {
-        this.initClickObserver();
-    }
-
-    private initClickObserver(): void {
-        this.osClick
-            .pipe(
-                filter(() => !this.isDisabled),
-                takeUntil(this.viewDestroyed$)
-            )
-            .subscribe(() => this.osSelected.emit(this.data));
+    /** @internal */
+    @HostListener('click')
+    public _onClick(): void {
+        if (!this.isDisabled) {
+            this.osSelected.emit(this.data);
+        }
     }
 }

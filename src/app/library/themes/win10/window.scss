@@ -113,6 +113,7 @@
     &.os-hiding {
         animation: os-window-hiding .4s ease forwards;
         z-index: 9999 !important;
+        pointer-events: none;
     }
 
     &.os-hidden {
@@ -149,21 +150,15 @@
         }
     }
 
-    &.os-dragging, &.os-resizing {
-        .os-window-body {
-            pointer-events: none;
-        }
-    }
-
     &.os-fullscreen, &.os-entering-fullscreen {
         &.os-active .os-title-bar {
-            .os-title-bar-button[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"]:not(:disabled) .os-icon {
                 background-position: -90px 0px;
             }
         }
 
         &:not(.os-active) .os-title-bar {
-            .os-title-bar-button[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"]:not(:disabled) .os-icon {
                 background-position: -90px -29px;
 
                 &:hover {
@@ -173,7 +168,7 @@
         }
 
         .os-title-bar {
-            .os-title-bar-button[aria-label="Fullscreen"].os-disabled .os-icon {
+            .os-title-bar-button[aria-label="Fullscreen"]:disabled .os-icon {
                 background-position: -90px -87px;
             }
         }
@@ -205,23 +200,23 @@
         .os-title-bar-button {
             background-color: rgb(var(--os-primary-color));
 
-            &:hover:not(.os-disabled) {
+            &:hover:not(:disabled) {
                 background-color: rgba(255, 255, 255, .1);
             }
 
-            &:not(.os-disabled):active {
+            &:not(:disabled):active {
                 background-color: rgba(255, 255, 255, .2);
             }
 
-            &[aria-label="Hide"]:not(.os-disabled) .os-icon {
+            &[aria-label="Hide"]:not(:disabled) .os-icon {
                 background-position: 0px 0px;
             }
     
-            &[aria-label="Fullscreen"]:not(.os-disabled) .os-icon {
+            &[aria-label="Fullscreen"]:not(:disabled) .os-icon {
                 background-position: -45px 0px;
             }
     
-            &[aria-label="Close"]:not(.os-disabled) .os-icon {
+            &[aria-label="Close"]:not(:disabled) .os-icon {
                 background-position: -135px 0px;
     
                 &:hover {
@@ -287,12 +282,12 @@
         background-repeat: no-repeat;
     }
 
-    &:hover:not(.os-disabled) {
+    &:hover:not(:disabled) {
         background-color: #e5e5e5;
     }
 
     &[aria-label="Hide"] {
-        &:not(.os-disabled) {
+        &:not(:disabled) {
             .os-icon {
                 background-position: 0px -29px;
 
@@ -302,7 +297,7 @@
             }
         }
 
-        &.os-disabled {
+        &:disabled {
             .os-icon {
                 background-position: 0px -87px;
             }
@@ -310,7 +305,7 @@
     }
 
     &[aria-label="Fullscreen"] {
-        &:not(.os-disabled) {
+        &:not(:disabled) {
             .os-icon {
                 background-position: -45px -29px;
         
@@ -320,13 +315,13 @@
             }
         }
 
-        &.os-disabled .os-icon {
+        &:disabled .os-icon {
             background-position: -45px -87px;
         }
     }
 
     &[aria-label="Close"] {
-        &:not(.os-disabled) {
+        &:not(:disabled) {
             :hover {
                 background-color: rgb(232, 17, 35);
             }
@@ -340,7 +335,7 @@
             }
         }
 
-        &.os-disabled {
+        &:disabled {
             .os-icon {
                 background-position: -135px -87px;
             }

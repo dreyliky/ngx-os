@@ -1,13 +1,13 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ContentChild,
+    ElementRef,
     EventEmitter,
-    HostBinding,
+    HostListener,
     Inject,
-    Injector,
     Input,
-    OnInit,
     Output,
     TemplateRef,
     ViewEncapsulation
@@ -16,7 +16,6 @@ import { ControlValueAccessor } from '@angular/forms';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
-    ɵCommonCssClassEnum,
     ɵEventOutside,
     ɵGlobalEvents,
     ɵIsNil,
@@ -34,7 +33,6 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
  * - Components `os-dropdown-item`: Slot for `DropdownItemComponent`'s which are will be rendered inside the overlay.
  * - Attribute `os-dropdown-footer`: Slot for your custom content inside overlay at the bottom.
  *
- * @example
  * ```html
  * <os-dropdown>
  *     <div os-dropdown-header>MY HEADER CONTENT</div>
@@ -48,7 +46,6 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
  *
  * `#dropdownPlaceholder`: Custom template which will be rendered instead of the default placeholder.
  *
- * @example
  * ```html
  * <os-dropdown>
  *     <ng-template #dropdownPlaceholder>
@@ -67,7 +64,6 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
  * Context:
  * - `$implicit`: {@link T} value from the selected dropdown item;
  *
- * @example
  * ```html
  * <os-dropdown>
  *     <ng-template
@@ -90,17 +86,13 @@ import { DropdownItemComponent as ItemComponent } from '../dropdown-item';
     host: {
         'class': 'os-dropdown'
     },
+    exportAs: 'osDropdown',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent<T = any>
     extends ɵOsBaseFormControlComponent<T>
-    implements OnInit, ControlValueAccessor {
-    /** Is dropdown disabled? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean = false;
-
+    implements ControlValueAccessor {
     /** Is dropdown overlay should be created inside the `body` HTML element? */
     @Input()
     public isAppendToBody: boolean;
@@ -149,8 +141,6 @@ export class DropdownComponent<T = any>
         return !ɵIsNil(this.value);
     }
 
-    /** Dropdown value */
-    public value: T;
     /** Dropdown label */
     public label: string;
 
@@ -165,15 +155,12 @@ export class DropdownComponent<T = any>
     private _isOverlayOpened$ = new BehaviorSubject<boolean>(false);
 
     constructor(
-        injector: Injector,
         @Inject(IS_DYNAMIC_WINDOW_CONTEXT) private readonly isDynamicWindowContext: boolean,
-        private readonly globalEvents: ɵGlobalEvents
+        private readonly globalEvents: ɵGlobalEvents,
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(injector);
-    }
-
-    public ngOnInit(): void {
-        this.initClickObserver();
+        super();
     }
 
     /** Opens the dropdown overlay */
@@ -186,7 +173,8 @@ export class DropdownComponent<T = any>
     /** Closes the dropdown overlay */
     public close(): void {
         this._isOverlayOpened$.next(false);
-        this.changeDetector.detectChanges();
+        this.onTouched?.();
+        this.changeDetector.markForCheck();
     }
 
     /** Toggle the dropdown overlay open or close */
@@ -210,13 +198,12 @@ export class DropdownComponent<T = any>
         this.close();
     }
 
-    private initClickObserver(): void {
-        this.osClick
-            .pipe(
-                filter(() => !this.isDisabled),
-                takeUntil(this.viewDestroyed$)
-            )
-            .subscribe(() => this.toggle());
+    /** @internal */
+    @HostListener('click')
+    public _onClick(): void {
+        if (!this.isDisabled) {
+            this.toggle();
+        }
     }
 
     private initClickOutsideObserver(): void {

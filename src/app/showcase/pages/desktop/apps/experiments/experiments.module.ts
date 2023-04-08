@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared';
-import { EmptyWindowComponent } from './components';
+import { EmptyWindowComponent, MenuBarModule } from './components';
 import { ExperimentsAppComponent } from './experiments.component';
 
 @NgModule({
@@ -9,7 +9,8 @@ import { ExperimentsAppComponent } from './experiments.component';
         EmptyWindowComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        MenuBarModule
     ]
 })
 export class ExperimentsAppModule {}

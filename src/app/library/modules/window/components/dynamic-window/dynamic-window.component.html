@@ -1,24 +1,28 @@
 <os-window
-    [osResizable]="resizerConfig"
-    [styleClass]="windowStyleClass"
-    [style]="windowStyle"
+    #resizableDir="osWindowResizable"
+    osDynamicWindowCssVariablesBinding
+    osDynamicWindowCssClassesBinding
+    osDynamicWindowResizable
+    [ngClass]="config.styleClass"
+    [ngStyle]="config.style"
+    [style.zIndex]="(zIndex$ | async)"
     [attr.id]="windowRef.id"
     [isActive]="windowRef.isActive"
     [scrollViewStyle]="config.scrollViewStyle"
     [scrollViewStyleClass]="config.scrollViewStyleClass"
-    (osResizeStart)="onResizeStart()"
-    (osResizing)="onResizing($event)"
-    (osResizeEnd)="onResizeEnd()">
+    (osResizeStart)="changeDetector.detach()"
+    (osResizeEnd)="changeDetector.reattach()">
     <os-title-bar
-        [osDraggable]="draggerConfig"
+        #draggableDir="osWindowDraggable"
+        osDynamicWindowDraggable
         [isActive]="windowRef.isActive"
         [style.display]="_titleBarDisplayAttr"
-        [style]="config.titleBarStyle"
-        [styleClass]="config.titleBarStyleClass"
-        (osDblClick)="onTitleBarDblClick()"
-        (osDragStart)="onDragStart()"
+        [ngStyle]="config.titleBarStyle"
+        [ngClass]="config.titleBarStyleClass"
+        (dblclick)="onTitleBarDblClick()"
+        (osDragStart)="changeDetector.detach()"
         (osDragging)="onDragging()"
-        (osDragEnd)="onDragEnd()">
+        (osDragEnd)="changeDetector.reattach()">
         <ng-container *ngIf="config.titleBarCustomContent; else defaultTitleBarContentTemplateOutlet">
             <ng-container *ngComponentOutlet="config.titleBarCustomContent"></ng-container>
         </ng-container>
@@ -30,7 +34,12 @@
         </ng-template>
     </os-title-bar>
 
-    <ng-template #content></ng-template>
+    <!-- Create child-component after ngAfterViewInit hook -->
+    <ng-container *ngIf="windowRef.windowElement">
+        <ng-container
+            *ngComponentOutlet="childComponentType">
+        </ng-container>
+    </ng-container>
 </os-window>
 
 <ng-template #defaultTitleBarContent>
@@ -44,22 +53,25 @@
     </os-title-bar-content>
 
     <os-title-bar-controls>
-        <os-title-bar-button
-            [isDisabled]="!config.isAllowHide"
-            [ariaLabel]="'Hide'"
-            (osClick)="onHideButtonClick()">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            aria-label="Hide"
+            [disabled]="!config.isAllowHide"
+            (click)="onHideButtonClick()">
+        </button>
 
-        <os-title-bar-button
-            [isDisabled]="!config.isAllowFullscreen"
-            [ariaLabel]="'Fullscreen'"
-            (osClick)="onFullscreenButtonClick()">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            aria-label="Fullscreen"
+            [disabled]="!config.isAllowFullscreen"
+            (click)="onFullscreenButtonClick()">
+        </button>
 
-        <os-title-bar-button
-            [isDisabled]="!config.isAllowClose"
-            [ariaLabel]="'Close'"
-            (osClick)="onCloseButtonClick()">
-        </os-title-bar-button>
+        <button
+            os-title-bar-button
+            aria-label="Close"
+            [disabled]="!config.isAllowClose"
+            (click)="onCloseButtonClick()">
+        </button>
     </os-title-bar-controls>
 </ng-template>

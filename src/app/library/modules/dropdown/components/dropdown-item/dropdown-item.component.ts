@@ -1,18 +1,17 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
+    ElementRef,
     EventEmitter,
     Host,
-    HostBinding,
-    Injector,
-    Input,
-    OnInit,
+    HostListener,
     Output,
     ViewEncapsulation
 } from '@angular/core';
-import { filter, takeUntil, tap } from 'rxjs/operators';
-import { ɵCommonCssClassEnum, ɵIsNil, ɵOsBaseComponent } from '../../../../core';
+import { takeUntil } from 'rxjs/operators';
+import { ɵIsNil, ɵOsBaseOptionComponent } from '../../../../core';
 import { DropdownValueChangeEvent } from '../../interfaces';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 
@@ -20,55 +19,28 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
     selector: 'os-dropdown-item',
     template: '<ng-content></ng-content>',
     host: {
-        'class': 'os-dropdown-item os-list-item'
+        'class': 'os-dropdown-item'
     },
+    exportAs: 'osDropdownItem',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownItemComponent<T = any>
-    extends ɵOsBaseComponent
-    implements OnInit, AfterViewInit {
-    /** Data of the dropdown item */
-    @Input()
-    public set data(data: T) {
-        this._data = data;
-
-        this.initDefaultValueIfAbsent();
-    }
-
-    /** Data of the dropdown item */
-    public get data(): T {
-        return this._data;
-    }
-
-    /** Is dropdown item disabled? */
-    @Input()
-    @HostBinding(`class.${ɵCommonCssClassEnum.Disabled}`)
-    public isDisabled: boolean = false;
-
+    extends ɵOsBaseOptionComponent<T>
+    implements AfterViewInit {
     /** Fires when the dropdown item selected */
     @Output()
     public osSelected: EventEmitter<DropdownValueChangeEvent<T>> = new EventEmitter();
 
-    /** Is dropdown item selected? */
-    @HostBinding(`class.${ɵCommonCssClassEnum.Selected}`)
-    public isSelected: boolean = false;
-
-    private _data: T;
-
     constructor(
-        injector: Injector,
-        @Host() private readonly dropdown: DropdownComponent<T>
+        @Host() private readonly dropdown: DropdownComponent<T>,
+        private readonly hostRef: ElementRef<HTMLElement>,
+        private readonly changeDetector: ChangeDetectorRef
     ) {
-        super(injector);
-    }
-
-    public ngOnInit(): void {
-        this.initClickObserver();
+        super();
     }
 
     public ngAfterViewInit(): void {
-        super.ngAfterViewInit();
         this.initDefaultValueIfAbsent();
         queueMicrotask(() => this.initDropdownFormControlValueObserver());
     }
@@ -78,24 +50,22 @@ export class DropdownItemComponent<T = any>
         return this.hostRef.nativeElement.innerText || this.data?.toString() || null;
     }
 
-    private initClickObserver(): void {
-        this.osClick
-            .pipe(
-                tap((event) => event.stopPropagation()),
-                filter(() => !this.isDisabled),
-                takeUntil(this.viewDestroyed$)
-            )
-            .subscribe((originalEvent) => {
-                const event: DropdownValueChangeEvent<T> = { originalEvent, data: this.data };
+    /** @internal */
+    @HostListener('click', ['$event'])
+    public _onClick(originalEvent: PointerEvent): void {
+        originalEvent.stopPropagation();
 
-                this.dropdown._onItemSelect(event, this);
-                this.osSelected.emit(event);
-            });
+        if (!this.isDisabled) {
+            const event: DropdownValueChangeEvent<T> = { originalEvent, data: this.data };
+
+            this.dropdown._onItemSelect(event, this);
+            this.osSelected.emit(event);
+        }
     }
 
     private initDefaultValueIfAbsent(): void {
         if (ɵIsNil(this.data)) {
-            this._data = this.getLabel() as any;
+            this.data = this.getLabel() as any;
         }
     }
 

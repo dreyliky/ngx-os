@@ -13,15 +13,14 @@
 <os-form-field>
     <os-radio-button
         [name]="'radio-group-overview-2'"
-        [isChecked]="false"
-        [isDisabled]="true">
+        [formControl]="radioButtonDisabledControl">
         Disabled unchecked
     </os-radio-button>
 
     <os-radio-button
         [name]="'radio-group-overview-2'"
-        [isChecked]="true"
-        [isDisabled]="true">
+        [data]="1"
+        [formControl]="radioButtonDisabledControl">
         Disabled checked
     </os-radio-button>
 </os-form-field>
