@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Injector } from '@angular/core';
-import { ɵParseInt } from '../../../core';
+import { ɵParseInt, ɵPointerHelper } from '../../../core';
 import { ResizableDirective } from '../directives';
 import { ResizerEnum } from '../enums';
 import { ɵResizerConfigModel } from './resizer-config';
@@ -33,14 +33,14 @@ export abstract class ɵBaseResizer {
         this.documentElement = this.injector.get(DOCUMENT)?.documentElement;
     }
 
-    public init(resizableElement: HTMLElement, event: MouseEvent): void {
+    public init(resizableElement: HTMLElement, event: PointerEvent | TouchEvent): void {
         const { width, height, left, top } = resizableElement.getBoundingClientRect();
         this.originalWidth = width;
         this.originalHeight = height;
         this.originalX = left;
         this.originalY = top;
-        this.originalMouseX = event.pageX;
-        this.originalMouseY = event.pageY;
+        this.originalMouseX = ɵPointerHelper.getPageX(event);
+        this.originalMouseY = ɵPointerHelper.getPageY(event);
         this.resizableElement = resizableElement;
 
         this.initMinAndMaxSizes();
@@ -56,5 +56,5 @@ export abstract class ɵBaseResizer {
         this.maxHeight = this.config.maxHeight || ɵParseInt(maxHeight) || this.minSize;
     }
 
-    public abstract resizeElement(event: MouseEvent): void;
+    public abstract resizeElement(event: PointerEvent | TouchEvent): void;
 }

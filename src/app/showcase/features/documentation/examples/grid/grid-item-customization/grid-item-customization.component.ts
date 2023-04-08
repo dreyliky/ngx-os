@@ -50,7 +50,7 @@ export class GridItemCustomizationComponent {
         private readonly changeDetector: ChangeDetectorRef
     ) {}
 
-    public onFileClick(event: MouseEvent, file: File): void {
+    public onFileClick(event: PointerEvent, file: File): void {
         const fileElement = event.target as HTMLElement;
         file.isEditing = true;
 

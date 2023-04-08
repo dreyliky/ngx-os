@@ -73,8 +73,8 @@ class MyAppComponent implements OnInit, OnDestroy {
         this.windowRef.draggableDirective.osDragStart
             .pipe(takeUntil(this.viewDestroy$))
             .subscribe(({ originalEvent, movableElement }) => {
-                this.shiftX = (originalEvent.clientX - movableElement.offsetLeft);
-                this.shiftY = (originalEvent.clientY - movableElement.offsetTop);
+                this.shiftX = (PointerHelper.getClientX(originalEvent) - movableElement.offsetLeft);
+                this.shiftY = (PointerHelper.getClientY(originalEvent) - movableElement.offsetTop);
             });
     }
 
@@ -85,8 +85,9 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     private calculateWindowPositionX(
-        { originalEvent: { clientX }, movableElement }: DragInfo
+        { originalEvent, movableElement }: DragInfo
     ): void {
+        const clientX = PointerHelper.getClientX(originalEvent);
         const axisPropertyName = this.dragStrategy.xAxisLeftStyleProperty;
 
         if (this.shiftX > clientX) {
@@ -101,8 +102,9 @@ class MyAppComponent implements OnInit, OnDestroy {
     }
 
     private calculateWindowPositionY(
-        { originalEvent: { clientY }, movableElement }: DragInfo
+        { originalEvent, movableElement }: DragInfo
     ): void {
+        const clientY = PointerHelper.getClientY(originalEvent);
         const axisPropertyName = this.dragStrategy.yAxisTopStyleProperty;
 
         if (this.shiftY > clientY) {
@@ -123,5 +125,29 @@ class MyAppComponent implements OnInit, OnDestroy {
         ) {
             this.windowRef.goFullscreen();
         }
+    }
+}
+
+export abstract class PointerHelper {
+    public static getClientX(event: PointerEvent | TouchEvent): number {
+        if (this.isPointerEvent(event)) {
+            return event.clientX;
+        }
+
+        return event.changedTouches[0].clientX;
+    }
+
+    public static getClientY(event: PointerEvent | TouchEvent): number {
+        if (this.isPointerEvent(event)) {
+            return event.clientY;
+        }
+
+        return event.changedTouches[0].clientY;
+    }
+
+    public static isPointerEvent(event: Event): event is PointerEvent {
+        const mouseEvent = event as PointerEvent;
+
+        return (mouseEvent.clientX !== undefined) && (mouseEvent.clientY !== undefined);
     }
 }

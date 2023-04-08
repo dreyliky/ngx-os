@@ -64,7 +64,7 @@ export class TabComponent extends ɵOsBaseComponent {
 
     /** Fires when the tab selected */
     @Output()
-    public osTabSelected = new EventEmitter<MouseEvent>();
+    public osTabSelected = new EventEmitter<PointerEvent>();
 
     /** @internal */
     @ContentChild('tabLabel')
@@ -92,7 +92,7 @@ export class TabComponent extends ɵOsBaseComponent {
     }
 
     /** @internal */
-    public _onTabButtonClick(event: MouseEvent): void {
+    public _onTabButtonClick(event: PointerEvent): void {
         if (!this.isDisabled) {
             this.osTabSelected.emit(event);
         }

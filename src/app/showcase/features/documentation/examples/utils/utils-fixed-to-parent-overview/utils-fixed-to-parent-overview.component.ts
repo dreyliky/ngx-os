@@ -22,7 +22,7 @@ export class UtilsFixedToParentOverviewComponent {
         this.isOverlayVisible = false;
     }
 
-    public onMyDropdownButtonClick(event: MouseEvent): void {
+    public onMyDropdownButtonClick(event: PointerEvent): void {
         this.isOverlayVisible = !this.isOverlayVisible;
 
         event.stopPropagation();

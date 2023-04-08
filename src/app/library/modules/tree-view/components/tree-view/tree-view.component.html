@@ -30,13 +30,13 @@
             [class.os-flat]="!node.children?.length"
             [class.os-expanded]="node.isExpanded"
             [class.os-selected]="node.isSelected"
-            (click)="onNodeClick($event, node)">
+            (click)="onNodeClick($any($event), node)">
             <div
                 class="os-icon"
                 [class.os-custom]="_nodeIconTemplate"
                 [ngClass]="node.iconStyleClass"
                 [ngStyle]="node.iconStyle"
-                (click)="onToggleExpandButtonClick($event, node)">
+                (click)="onToggleExpandButtonClick($any($event), node)">
                 <ng-container *ngIf="_nodeIconTemplate">
                     <ng-container
                         *ngTemplateOutlet="_nodeIconTemplate; context: { $implicit: node, depth: depth }">

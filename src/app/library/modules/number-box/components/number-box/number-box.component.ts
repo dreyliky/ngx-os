@@ -26,7 +26,7 @@ import { NumberBoxChangeEvent } from '../../interfaces';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberBoxComponent
-    extends ɵOsBaseFieldComponent
+    extends ɵOsBaseFieldComponent<string, number>
     implements OnInit, OnChanges, AfterViewInit {
     /** Is native autocomplete for the `input` element enabled? */
     @Input()
@@ -79,12 +79,13 @@ export class NumberBoxComponent
     }
 
     public ngOnInit(): void {
-        this.initDefaultValue();
+        this.value = this.getDefaultValue();
     }
 
     public ngAfterViewInit(): void {
         super.ngAfterViewInit();
-        this.initInputObserver();
+        this.initChangeEventObserver();
+        this.initInputEventObserver();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -96,7 +97,7 @@ export class NumberBoxComponent
         if (!ɵIsNil(value)) {
             this.value = this.converter.toValid(value);
         } else {
-            this.initDefaultValue();
+            this.value = this.getDefaultValue();
         }
 
         this.changeDetector.detectChanges();
@@ -104,18 +105,14 @@ export class NumberBoxComponent
 
     private transformChangeEvent(originalEvent: Event): NumberBoxChangeEvent {
         const inputElement = originalEvent.target as HTMLInputElement;
-        this.value = this.converter.toValid(inputElement.value);
 
-        if (!this.value.length) {
-            this.initDefaultValue();
-        }
-
-        inputElement.value = this.value;
-
-        return { originalEvent, value: +this.value };
+        return {
+            originalEvent,
+            value: +this.converter.toValid(inputElement.value)
+        };
     }
 
-    private initInputObserver(): void {
+    private initInputEventObserver(): void {
         this.osInput
             .pipe(takeUntil(this.viewDestroyed$))
             .subscribe((event) => {
@@ -123,8 +120,23 @@ export class NumberBoxComponent
                 const validValue = this.converter.toValid(inputElement.value);
                 inputElement.value = this.converter.toRaw(inputElement.value);
 
-                this.onChange?.(validValue);
+                this.onChange?.(+validValue);
                 this.changeDetector.markForCheck();
+            });
+    }
+
+    private initChangeEventObserver(): void {
+        this.osChange
+            .pipe(takeUntil(this.viewDestroyed$))
+            .subscribe(({ originalEvent, value }) => {
+                const inputElement = originalEvent.target as HTMLInputElement;
+                this.value = `${value}`;
+
+                if (!this.value.length) {
+                    this.value = this.getDefaultValue();
+                }
+
+                inputElement.value = this.value;
             });
     }
 
@@ -134,7 +146,7 @@ export class NumberBoxComponent
         }
     }
 
-    private initDefaultValue(): void {
-        this.value = (this.isAllowEmpty) ? '' : '0';
+    private getDefaultValue(): string {
+        return (this.isAllowEmpty) ? '' : '0';
     }
 }

@@ -6,4 +6,16 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./dragger-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DraggerOverviewComponent {}
+export class DraggerOverviewComponent {
+    public onTouchStart(event: Event): void {
+        console.log('touchstart', event);
+    }
+
+    public onTouchMove(event: Event): void {
+        console.log('touchmove', event);
+    }
+
+    public onTouchEnd(event: Event): void {
+        console.log('touchend', event);
+    }
+}

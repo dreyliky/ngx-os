@@ -34,9 +34,9 @@ export class TreeNodesExpansionService<T = any> {
 
     /**
      * Expands node
-     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     * @param originalEvent - PointerEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
-    public expand(node: TreeNode<T>, originalEvent?: MouseEvent): void {
+    public expand(node: TreeNode<T>, originalEvent?: PointerEvent): void {
         node.isExpanded = true;
 
         this._osExpanded.emit({ node, originalEvent });
@@ -45,9 +45,9 @@ export class TreeNodesExpansionService<T = any> {
 
     /**
      * Collapses node
-     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     * @param originalEvent - PointerEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
-    public collapse(node: TreeNode<T>, originalEvent?: MouseEvent): void {
+    public collapse(node: TreeNode<T>, originalEvent?: PointerEvent): void {
         node.isExpanded = false;
 
         this._osCollapsed.emit({ node, originalEvent });
@@ -56,9 +56,9 @@ export class TreeNodesExpansionService<T = any> {
 
     /**
      * Expands and collapses node (sets the opposite state)
-     * @param originalEvent - MouseEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
+     * @param originalEvent - PointerEvent which is the reason for expansion state changing. Might be undefined if action triggers from code.
      **/
-    public toggle(node: TreeNode<T>, originalEvent?: MouseEvent): void {
+    public toggle(node: TreeNode<T>, originalEvent?: PointerEvent): void {
         if (node.isExpanded) {
             this.collapse(node, originalEvent);
         } else {

@@ -6,7 +6,7 @@
 <div class="my-dropdown">
     <div
         class="my-dropdown-button"
-        (click)="onMyDropdownButtonClick($event)">
+        (click)="onMyDropdownButtonClick($any($event))">
         <os-text
             *ngIf="!selectedItem; else selectedItemTemplate"
             class="my-placeholder">

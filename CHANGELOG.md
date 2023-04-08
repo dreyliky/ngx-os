@@ -1,6 +1,27 @@
 # Changelog
 
+## [v. 1.1.0-alpha]
+
+### Bug Fixes
+
+- Fixed NumberBox issue with incorrect behavior of `isAllowEmpty` option;
+
+## [v. 1.0.9-alpha]
+
+### Bug Fixes
+
+- Fixed NumberBox incorrect output type;
+- Changed keyframe names at the Window SCSS files;
+
 ## [v. 1.0.8-alpha]
+
+### Bug Fixes
+
+- All components with ValueAccessor support now trigger onTouched callback;
+- All components with ValueAccessor support now change value reactively (not at blur event);
+- Fixed probably memory leaks;
+
+## [v. 1.0.7-alpha]
 
 ### Features
 

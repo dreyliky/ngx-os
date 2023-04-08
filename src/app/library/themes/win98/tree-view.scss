@@ -23,6 +23,16 @@
             padding: 1px 6px 1px 2px;
         }
 
+        &.os-selected {
+            box-sizing: border-box;
+            background-color: rgba(var(--os-primary-color), 1);
+            color: #fff;
+        }
+
+        &.os-selected:focus {
+            outline: 1px dotted rgb(0, 0, 0);
+        }
+
         &.os-expandable .os-icon:not(.os-custom) {
             display: flex;
             align-items: center;
@@ -45,17 +55,6 @@
         }
 
         &:not(.os-disabled) {
-            &.os-selected .os-label {
-                box-sizing: border-box;
-                background-color: #d4d0c8;
-            }
-
-            &.os-selected:focus .os-label {
-                color: #fff;
-                background-color: rgba(var(--os-primary-color), 1);
-                outline: 1px dotted rgb(0, 0, 0);
-            }
-
             .os-icon:not(.os-custom):before {
                 opacity: 1;
                 background-position: 0px -9px;

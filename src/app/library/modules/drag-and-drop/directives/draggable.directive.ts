@@ -11,6 +11,7 @@ import {
     Output
 } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
+import { ɵPointerHelper } from '../../../core';
 import { ɵBaseDragStrategyImpl, ɵDraggerConfigModel, ɵDragStrategyFactory } from '../classes';
 import { ɵDraggerCssClassEnum as CssClass } from '../enums';
 import { DraggerConfig, DragInfo } from '../interfaces';
@@ -89,7 +90,7 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this._draggableElement.removeEventListener('mousedown', this.elementMouseDownHandler);
+        this._draggableElement.removeEventListener('mousedown', this.onPointerDown);
         this._whenViewInit$.complete();
     }
 
@@ -105,7 +106,7 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
         this.initStrategy();
     }
 
-    private updateMovableElementPosition(event: MouseEvent): void {
+    private updateMovableElementPosition(event: PointerEvent | TouchEvent): void {
         if (this._movableElement && this.config.isAllowMoveElement) {
             this._strategy.updateElementPosition(event);
         }
@@ -118,13 +119,15 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
     }
 
     private initDraggableElement(): void {
-        this._draggableElement?.removeEventListener('mousedown', this.elementMouseDownHandler);
+        this._draggableElement?.removeEventListener('mousedown', this.onPointerDown);
+        this._draggableElement?.removeEventListener('touchstart', this.onPointerDown);
         this._draggableElement?.classList.remove(CssClass.Draggable);
 
         this._draggableElement = (this.config?.draggableElement ?? this.hostRef.nativeElement);
 
         this._draggableElement?.classList.add(CssClass.Draggable);
-        this._draggableElement.addEventListener('mousedown', this.elementMouseDownHandler);
+        this._draggableElement.addEventListener('mousedown', this.onPointerDown);
+        this._draggableElement.addEventListener('touchstart', this.onPointerDown);
         this.osDraggableElementInit.emit(this._draggableElement);
     }
 
@@ -137,22 +140,27 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
         this.osMovableElementInit.emit(this._movableElement);
     }
 
-    private readonly elementMouseDownHandler = (event: MouseEvent): void => {
+    private readonly onPointerDown = (event: PointerEvent | TouchEvent): void => {
         if (!this.isDragAllowed(event)) {
             return;
         }
 
         const dragInfo = this.getDragInfo(event);
 
+        event.preventDefault();
         this.osDragStart.emit(dragInfo);
         this._movableElement.classList.add(CssClass.Dragging);
         this._strategy.registerMouseDown(dragInfo);
-        this.document.addEventListener('mousemove', this.documentMouseMoveHandler);
-        this.document.addEventListener('mouseup', this.documentMouseUpHandler);
+        this._draggableElement.addEventListener('touchmove', this.onPointerMove);
+        this._draggableElement.addEventListener('touchend', this.onPointerUp);
+        this.document.addEventListener('mousemove', this.onPointerMove);
+        this.document.addEventListener('mouseup', this.onPointerUp);
     };
 
-    private readonly documentMouseMoveHandler = (event: MouseEvent): void => {
+    private readonly onPointerMove = (event: PointerEvent | TouchEvent): void => {
         const dragInfo = this.getDragInfo(event);
+
+        event.preventDefault();
 
         if (this.config.mouseMoveHandler) {
             this.config.mouseMoveHandler(dragInfo);
@@ -163,24 +171,31 @@ export class DraggableDirective implements OnChanges, AfterViewInit, OnDestroy {
         this.osDragging.emit(this.getDragInfo(event));
     };
 
-    private readonly documentMouseUpHandler = (event: MouseEvent): void => {
+    private readonly onPointerUp = (event: PointerEvent | TouchEvent): void => {
+        event.preventDefault();
         this._movableElement.classList.remove(CssClass.Dragging);
-        this.document.removeEventListener('mousemove', this.documentMouseMoveHandler);
-        this.document.removeEventListener('mouseup', this.documentMouseUpHandler);
+        this._draggableElement.removeEventListener('touchmove', this.onPointerMove);
+        this._draggableElement.removeEventListener('touchend', this.onPointerUp);
+        this.document.removeEventListener('mousemove', this.onPointerMove);
+        this.document.removeEventListener('mouseup', this.onPointerUp);
         this.osDragEnd.emit(this.getDragInfo(event));
     };
 
-    private getDragInfo(originalEvent: MouseEvent): DragInfo {
+    private getDragInfo(originalEvent: PointerEvent | TouchEvent): DragInfo {
         return {
             movableElement: this._movableElement,
             originalEvent
         };
     }
 
-    private isDragAllowed(event: MouseEvent): boolean {
+    private isDragAllowed(event: PointerEvent | TouchEvent): boolean {
+        const isMouseButtonAvailable = ɵPointerHelper.isPointerEvent(event) ?
+            this.config.allowedMouseButtons?.includes(event.button) :
+            (event.touches.length === 1);
+
         return (
             this.config.isEnabled &&
-            this.config.allowedMouseButtons?.includes(event.button) &&
+            isMouseButtonAvailable &&
             !this.config.childElementsBlackList?.includes(event.target as HTMLElement)
         );
     }

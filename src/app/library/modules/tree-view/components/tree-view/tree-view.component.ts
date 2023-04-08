@@ -182,7 +182,7 @@ export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnC
     }
 
     /** @internal */
-    public onNodeClick(originalEvent: MouseEvent, node: TreeNode<T>): void {
+    public onNodeClick(originalEvent: PointerEvent, node: TreeNode<T>): void {
         this.osNodeClick.emit({ originalEvent, node });
         node.onClick?.({ originalEvent, node });
 
@@ -202,7 +202,7 @@ export class TreeViewComponent<T = any> extends ɵOsBaseComponent implements OnC
     }
 
     /** @internal */
-    public onToggleExpandButtonClick(originalEvent: MouseEvent, node: TreeNode<T>): void {
+    public onToggleExpandButtonClick(originalEvent: PointerEvent, node: TreeNode<T>): void {
         if (!node.isDisabled) {
             this.nodesExpansion.toggle(node, originalEvent);
         }

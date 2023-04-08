@@ -1,3 +1,4 @@
+import { ɵPointerHelper } from '../../../../core';
 import { ɵDragStrategyEnum } from '../../enums';
 import { DragInfo } from '../../interfaces';
 import { ɵBaseDragStrategyImpl } from './base-drag-impl.strategy';
@@ -17,7 +18,7 @@ export class ɵDragStrategyByTranslate3dImpl extends ɵBaseDragStrategyImpl {
         super.registerMouseDown(dragInfo);
     }
 
-    public updateElementPosition(event: MouseEvent): void {
+    public updateElementPosition(event: PointerEvent | TouchEvent): void {
         if (this.context.config.isAllowMoveElement) {
             const x = this.calculateElementPositionX(event);
             const y = this.calculateElementPositionY(event);
@@ -33,16 +34,16 @@ export class ɵDragStrategyByTranslate3dImpl extends ɵBaseDragStrategyImpl {
         this.initialY = (domRect.top - transform.m42);
     }
 
-    private calculateElementPositionX(event: MouseEvent): string {
+    private calculateElementPositionX(event: PointerEvent | TouchEvent): string {
         const position = (!this.config.isLockAxisX) ?
-            (event.clientX - this.initialX - this.shiftX) : 0;
+            (ɵPointerHelper.getClientX(event) - this.initialX - this.shiftX) : 0;
 
         return `${position}px`;
     }
 
-    private calculateElementPositionY(event: MouseEvent): string {
+    private calculateElementPositionY(event: PointerEvent | TouchEvent): string {
         const position = (!this.config.isLockAxisY) ?
-            (event.clientY - this.initialY - this.shiftY) : 0;
+            (ɵPointerHelper.getClientY(event) - this.initialY - this.shiftY) : 0;
 
         return `${position}px`;
     }
