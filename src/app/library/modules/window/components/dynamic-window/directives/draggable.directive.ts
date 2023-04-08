@@ -2,16 +2,17 @@ import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
 import { filter, forkJoin, of, switchMap, take, takeUntil } from 'rxjs';
 import { ɵDestroyService } from '../../../../../core';
 import { DragStrategyByAxisProperties, DraggableDirective } from '../../../../drag-and-drop';
-import { ɵDynamicWindowRefModel } from '../../../classes';
-import { DYNAMIC_WINDOW_REF } from '../../../data';
+import { ɵDynamicWindowRefModel } from '../../../classes/dynamic-window-ref';
+import { DYNAMIC_WINDOW_REF } from '../../../data/dynamic-window-ref.token';
 import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
-import { DynamicWindowConfig } from '../../../interfaces';
-import { ɵExitFromFullscreenHelper } from '../helpers';
-import { ɵMergedConfigService } from '../services';
+import { DynamicWindowConfig } from '../../../interfaces/config.interface';
+import { ɵExitFromFullscreenHelper } from '../helpers/exit-from-fullscreen-by-dragging.helper';
+import { ɵMergedConfigService } from '../services/merged-config.service';
 
 /** @internal */
 @Directive({
-    selector: 'os-title-bar[osDynamicWindowDraggable]'
+    selector: 'os-title-bar[osDynamicWindowDraggable]',
+    exportAs: 'osWindowDraggable'
 })
 export class ɵDynamicWindowDraggableDirective extends DraggableDirective implements AfterViewInit {
     public get _windowElement(): HTMLElement {

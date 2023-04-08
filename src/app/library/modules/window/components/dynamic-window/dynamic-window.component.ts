@@ -19,7 +19,10 @@ import { ɵDynamicWindowRefModel } from '../../classes';
 import { DYNAMIC_WINDOW_REF } from '../../data';
 import { DynamicWindowConfig } from '../../interfaces';
 import { WindowComponent } from '../window';
-import { ɵDynamicWindowDraggableDirective, ɵDynamicWindowResizableDirective } from './directives';
+import type {
+    ɵDynamicWindowDraggableDirective,
+    ɵDynamicWindowResizableDirective
+} from './directives';
 import { ɵDynamicStateManager, ɵMergedConfigService, ɵStateManager } from './services';
 
 /**
@@ -73,10 +76,10 @@ export class ɵDynamicWindowComponent implements OnInit, AfterViewInit, OnDestro
     @ViewChild(WindowComponent, { read: ElementRef })
     private readonly windowElementRef: ElementRef<HTMLElement>;
 
-    @ViewChild(ɵDynamicWindowDraggableDirective, { static: true })
+    @ViewChild('draggableDir', { static: true })
     private readonly draggableDirective: ɵDynamicWindowDraggableDirective;
 
-    @ViewChild(ɵDynamicWindowResizableDirective, { static: true })
+    @ViewChild('resizableDir', { static: true })
     private readonly resizableDirective: ɵDynamicWindowResizableDirective;
 
     private readonly baseZIndex: number = 1000;

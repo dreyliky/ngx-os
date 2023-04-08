@@ -1,10 +1,10 @@
 import { ComponentRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ɵIdGenerator } from '../../../core';
-import { DraggableDirective } from '../../drag-and-drop';
-import { ResizableDirective } from '../../resizer';
-import { ɵDynamicWindowComponent } from '../components';
-import { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
+import type { DraggableDirective } from '../../drag-and-drop';
+import type { ResizableDirective } from '../../resizer';
+import type { ɵDynamicWindowComponent } from '../components';
+import type { DynamicWindowConfig, DynamicWindowRef } from '../interfaces';
 
 /** @internal */
 export class ɵDynamicWindowRefModel implements DynamicWindowRef {

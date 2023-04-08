@@ -1,9 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
-import { combineLatest, map, Observable, shareReplay } from 'rxjs';
-import { ɵDynamicWindowRefModel } from '../../../classes';
-import { DYNAMIC_WINDOW_REF, DYNAMIC_WINDOW_SHARED_CONFIG as SHARED_CONFIG } from '../../../data';
-import { ɵMergeConfigs } from '../../../helpers';
-import { DynamicWindowConfig } from '../../../interfaces';
+import { Observable, combineLatest, map, shareReplay } from 'rxjs';
+import { ɵDynamicWindowRefModel } from '../../../classes/dynamic-window-ref';
+import { DYNAMIC_WINDOW_REF } from '../../../data/dynamic-window-ref.token';
+import {
+    DYNAMIC_WINDOW_SHARED_CONFIG as SHARED_CONFIG
+} from '../../../data/shared-dynamic-window-config.token';
+import { ɵMergeConfigs } from '../../../helpers/configs-merger.helper';
+import type { DynamicWindowConfig } from '../../../interfaces/config.interface';
 
 /** @internal */
 @Injectable()

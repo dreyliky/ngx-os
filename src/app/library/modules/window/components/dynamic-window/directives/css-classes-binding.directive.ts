@@ -1,6 +1,6 @@
 import { Directive, DoCheck, HostBinding } from '@angular/core';
 import { ɵDynamicWindowCssClassEnum as CssClass } from '../../../enums';
-import { ɵStateManager } from '../services';
+import { ɵStateManager } from '../services/state-manager.service';
 
 /** @internal */
 @Directive({

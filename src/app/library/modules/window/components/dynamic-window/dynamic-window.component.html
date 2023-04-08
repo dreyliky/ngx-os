@@ -1,4 +1,5 @@
 <os-window
+    #resizableDir="osWindowResizable"
     osDynamicWindowCssVariablesBinding
     osDynamicWindowCssClassesBinding
     osDynamicWindowResizable
@@ -12,6 +13,7 @@
     (osResizeStart)="changeDetector.detach()"
     (osResizeEnd)="changeDetector.reattach()">
     <os-title-bar
+        #draggableDir="osWindowDraggable"
         osDynamicWindowDraggable
         [isActive]="windowRef.isActive"
         [style.display]="_titleBarDisplayAttr"

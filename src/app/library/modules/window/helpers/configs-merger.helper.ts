@@ -1,4 +1,4 @@
-import { DynamicWindowConfig } from '../interfaces';
+import type { DynamicWindowConfig } from '../interfaces';
 
 // FIXME: Investigate is it might be simplified
 /** @internal */

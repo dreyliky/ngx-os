@@ -2,14 +2,15 @@ import {
     Directive,
     DoCheck,
     EmbeddedViewRef,
+    Inject,
     Injector,
     Input,
     OnChanges,
     SimpleChanges,
     ViewContainerRef
 } from '@angular/core';
-import { TreeViewComponent } from '../components';
-import { ɵTREE_NODE } from '../constants';
+import type { TreeViewComponent } from '../components/tree-view';
+import { ɵTREE_NODE, ɵTREE_VIEW_COMPONENT } from '../constants';
 import { ɵNodeTemplateContext } from '../interfaces';
 
 /** @internal */
@@ -29,6 +30,7 @@ export class ɵTreeNodeOutletDirective<T = any> implements OnChanges, DoCheck {
     private viewRef: EmbeddedViewRef<ɵNodeTemplateContext<T>>;
 
     constructor(
+        @Inject(ɵTREE_VIEW_COMPONENT)
         private readonly treeView: TreeViewComponent,
         private readonly viewContainer: ViewContainerRef,
         private readonly injector: Injector

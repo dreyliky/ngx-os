@@ -14,6 +14,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { ɵOsBaseViewComponent } from '../../../../core';
+import { ɵTREE_VIEW_COMPONENT } from '../../constants';
 import { TreeViewNodeDirective } from '../../directives/node.directive';
 import { ɵNodeTemplateContext } from '../../interfaces';
 import {
@@ -74,6 +75,10 @@ import {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
+        {
+            provide: ɵTREE_VIEW_COMPONENT,
+            useExisting: TreeViewComponent
+        },
         ɵTreeNodesState,
         ɵTreeNodesDepthState,
         TreeNodesExpansionService,

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { ɵDynamicWindowRefModel } from '../../../classes';
-import { DYNAMIC_WINDOW_REF } from '../../../data';
+import { ɵDynamicWindowRefModel } from '../../../classes/dynamic-window-ref';
+import { DYNAMIC_WINDOW_REF } from '../../../data/dynamic-window-ref.token';
 import { ɵDynamicStateEnum } from '../../../enums';
 import { ɵDynamicStateManager } from './dynamic-state-manager.service';
 

@@ -3,12 +3,13 @@ import { takeUntil } from 'rxjs';
 import { ɵDestroyService } from '../../../../../core';
 import { ResizableDirective, ɵResizerFactory } from '../../../../resizer';
 import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
-import { DynamicWindowConfig } from '../../../interfaces';
-import { ɵMergedConfigService } from '../services';
+import { DynamicWindowConfig } from '../../../interfaces/config.interface';
+import { ɵMergedConfigService } from '../services/merged-config.service';
 
 /** @internal */
 @Directive({
     selector: 'os-window[osDynamicWindowResizable]',
+    exportAs: 'osWindowResizable',
     providers: [
         ɵResizerFactory
     ]

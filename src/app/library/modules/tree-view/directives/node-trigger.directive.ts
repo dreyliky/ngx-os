@@ -1,10 +1,12 @@
 import {
     Directive,
     HostBinding,
-    HostListener
+    HostListener,
+    Inject
 } from '@angular/core';
 import { ɵDestroyService } from '../../../core';
-import { TreeNodeComponent, TreeViewComponent } from '../components';
+import type { TreeNodeComponent, TreeViewComponent } from '../components';
+import { ɵTREE_NODE_COMPONENT, ɵTREE_VIEW_COMPONENT } from '../constants';
 
 /** Marks element as the expander (action trigger) of the TreeNode. */
 @Directive({
@@ -26,7 +28,9 @@ export class TreeNodeTriggerDirective {
     }
 
     constructor(
+        @Inject(ɵTREE_VIEW_COMPONENT)
         private readonly treeView: TreeViewComponent,
+        @Inject(ɵTREE_NODE_COMPONENT)
         private readonly treeNode: TreeNodeComponent
     ) {}
 

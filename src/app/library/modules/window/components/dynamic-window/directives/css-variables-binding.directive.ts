@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Directive, ElementRef, HostBinding } from '@angular/
 import { debounceTime, filter, takeUntil } from 'rxjs';
 import { ɵDestroyService, ɵElementResizingObserver } from '../../../../../core';
 import { ɵDynamicWindowCssVariableEnum as CssVariable } from '../../../enums';
-import { DynamicWindowConfig } from '../../../interfaces';
-import { ɵMergedConfigService } from '../services';
+import type { DynamicWindowConfig } from '../../../interfaces/config.interface';
+import { ɵMergedConfigService } from '../services/merged-config.service';
 
 /** @internal */
 @Directive({

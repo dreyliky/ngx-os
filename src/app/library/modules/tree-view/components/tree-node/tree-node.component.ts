@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { debounceTime, filter, merge, takeUntil } from 'rxjs';
 import { ɵCommonCssClassEnum, ɵOsBaseViewComponent } from '../../../../core';
-import { ɵTREE_NODE } from '../../constants';
+import { ɵTREE_NODE, ɵTREE_NODE_COMPONENT } from '../../constants';
 import { TreeNodeTriggerDirective } from '../../directives';
 import { ɵTreeNodeCssClassEnum, ɵTreeNodeCssVariableEnum } from '../../enums';
 import { ɵTreeNodesDepthState } from '../../states';
@@ -26,7 +26,13 @@ import { TreeViewComponent } from '../tree-view';
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'os-tree-node'
-    }
+    },
+    providers: [
+        {
+            provide: ɵTREE_NODE_COMPONENT,
+            useExisting: TreeNodeComponent
+        }
+    ]
 })
 export class TreeNodeComponent<T = any> extends ɵOsBaseViewComponent implements OnInit {
     /** Is disabled? */
