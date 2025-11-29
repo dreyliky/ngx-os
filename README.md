@@ -4,7 +4,7 @@
 <tr>
 <td width="128">
 <img
-  src="https://ngx-os.io/assets/showcase/icons/icon.png"
+  src="https://ngx-os-3yfuk.ondigitalocean.app/assets/showcase/icons/icon.png"
   alt="ngx-os icon"
   width="96"
   height="96" />
@@ -13,20 +13,20 @@
 <td>
   Components in operating systems style for Angular 15.
 
-  Visit the <a href="https://ngx-os.io">ngx-os website</a> for general information, examples, demos and documentation.
+  Visit the <a href="https://ngx-os-3yfuk.ondigitalocean.app">ngx-os website</a> for general information, examples, demos and documentation.
 </td>
 </tr>
 </table>
 
-[![Preview](https://ngx-os.io/assets/demo/preview.jpg)](https://ngx-os.io)
+[![Preview](https://ngx-os-3yfuk.ondigitalocean.app/assets/demo/preview.jpg)](https://ngx-os-3yfuk.ondigitalocean.app)
 
 ## For end-users
 
 Check [Library Documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs) 
 to get more information:
 
-- [Get started](https://ngx-os.io/guides);
-- [Components documentation](https://ngx-os.io/components);
+- [Get started](https://ngx-os-3yfuk.ondigitalocean.app/guides);
+- [Components documentation](https://ngx-os-3yfuk.ondigitalocean.app/components);
 - [Components theming documentation](https://github.com/dreyliky/ngx-os/blob/master/src/app/library/docs/theming);
 
 ## For contributors
@@ -47,10 +47,10 @@ Check Roadmap at the [Trello](https://trello.com/b/RxLewteC/ngx-os-roadmap)
 ## Screenshots from demo desktop page
 
 ### Windows 10 theme
-[![Desktop Windows 10](https://ngx-os.io/assets/demo/desktop-win10.jpg)](https://ngx-os.io)
+[![Desktop Windows 10](https://ngx-os-3yfuk.ondigitalocean.app/assets/demo/desktop-win10.jpg)](https://ngx-os-3yfuk.ondigitalocean.app)
 
 ### Windows XP theme
-[![Desktop Windows XP](https://ngx-os.io/assets/demo/desktop-winxp.jpg)](https://ngx-os.io)
+[![Desktop Windows XP](https://ngx-os-3yfuk.ondigitalocean.app/assets/demo/desktop-winxp.jpg)](https://ngx-os-3yfuk.ondigitalocean.app)
 
 ### Windows 98 theme
-[![Desktop Windows 98](https://ngx-os.io/assets/demo/desktop-win98.jpg)](https://ngx-os.io)
+[![Desktop Windows 98](https://ngx-os-3yfuk.ondigitalocean.app/assets/demo/desktop-win98.jpg)](https://ngx-os-3yfuk.ondigitalocean.app)
